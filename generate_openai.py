@@ -48,9 +48,9 @@ else:
 
 outputs = []
 for idx, dd in tqdm.tqdm(enumerate(data), total= len(data) ): # 
-    question = 'Provide me the Python3 codes for sovling the question: ' + dd['prompt'] 
+    question = 'Provide me the Python3 codes for solving the question: ' + dd['prompt']
     if args.model == "davinci_003":
-        question = 'Provide me the Python3 codes for sovling the question. No need to make comments: ' + dd['question'] 
+        question = 'Provide me the Python3 codes for solving the question. No need to make comments: ' + dd['question']
     gen_text = openai_fn(prompt_text=question, temperature=args.temperature, max_tokens=args.max_new_tokens)
 
 

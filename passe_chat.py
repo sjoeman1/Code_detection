@@ -25,7 +25,7 @@ def remove_eos(gen):
             min_index = min(min_index, gen.index(eos))
     return gen[:min_index]
 
-def chatgpt_parse( ret, prompt):
+def chatgpt_parse(ret, prompt):
     outputs = []
     for returns in ret["choices"]:
         raw_o = returns["message"]["content"]
