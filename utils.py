@@ -1,9 +1,11 @@
-import numpy as np
 import openai
-import re, six
+import re
+import six
 import spacy
 from nltk.stem.porter import PorterStemmer
-from rouge_score.rouge_scorer import _create_ngrams, _score_ngrams
+import ast
+from zss import Node
+from zss import simple_distance
 
 PorterStemmer = PorterStemmer()
 nlp = spacy.load('en_core_web_sm')
@@ -161,9 +163,7 @@ def parse_code_snippet(prompt, raw_o):
     return gen
 
 
-import ast
-from zss import Node
-from zss import simple_distance
+
 
 class ASTToZSSConverter(ast.NodeVisitor):
     def visit(self, node):

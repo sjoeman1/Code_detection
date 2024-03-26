@@ -69,7 +69,7 @@ for idx, dd in tqdm.tqdm(enumerate(data), total = len(data) ): # len(data)
                                  'human_gen_truncate': gold_completion[ int( args.truncate_ratio*len(gold_completion)): ],
                                  'machine_gen_truncate': gen_completion[ int( args.truncate_ratio*len(gen_completion) ): ], 
                                  "human_gen_text": human_gen_text, 
-                                  "machine_gen_text": machine_gen_text }) )
+                                 "machine_gen_text": machine_gen_text }) )
     time.sleep(10)
 
     with open(output_file, "a") as f:

@@ -6,28 +6,42 @@ import argparse
 import tqdm
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--batch_size', default=20, type=int)
-parser.add_argument('--mask_lines', default=1, type=int)
+parser.add_argument('--dataset', default="results/gemma-7b-it-apps_competition.jsonl_FIM_human_1_line_4.jsonl")
+parser.add_argument('--batch_size', default=4, type=int)
+parser.add_argument('--mask_lines', default=4, type=int)
 parser.add_argument("--gpu", type=str, default="2")
-parser.add_argument("--model_name", type=str, default="facebook/incoder-6B")
+parser.add_argument("--model_name", type=str, default="facebook/incoder-1B")
 parser.add_argument("--run", type=str, default= "1")
 args = parser.parse_args()
 
-gpu_list = list(args.gpu)
-gpu_list_str = ','.join(map(str, gpu_list))
-os.environ.setdefault("CUDA_VISIBLE_DEVICES", gpu_list_str)
+# output_file = f'results/{args.dataset.split("/")[1]}_FIM_human_{args.run}_line_{args.mask_lines}_temp.jsonl'
+output_file = f'results/temp_gemma-7b-it-apps_competition.jsonl_FIM_human_1_line_4.jsonl'
+with open(args.dataset, 'r') as f:
+    dataset = [json.loads(line) for line in f.readlines()]
 
 print(args)
+print(torch.__version__)
+print(torch.version.cuda)
+print(torch.cuda.is_available())
+print(torch.cuda.get_device_properties(0).total_memory)
+# setting device on GPU if available, else CPU
+device = torch.device('cuda')
+print('Using device:', device)
+print()
 
-device = "cuda" # for GPU usage or "cpu" for CPU usage
+#Additional Info when using cuda
+if device.type == 'cuda':
+    print(torch.cuda.get_device_name(0))
+    print('Memory Usage:')
+    print('Allocated:', round(torch.cuda.memory_allocated(0)/1024**3,1), 'GB')
+    print('Cached:   ', round(torch.cuda.memory_reserved(0)/1024**3,1), 'GB')
+
 if args.model_name == 'facebook/incoder-6B':
     args.half = True
 else:
     args.half = False
 infilling_model = InfillingModel(model_name=args.model_name, cuda=True, half=args.half, device=device)
 
-with open('gpt4_python_codecontest.jsonl', 'r') as f:
-    gpt4_python_codecontest = [json.loads(line) for line in f.readlines()]
 
 def find_all(substring, string):
     start = 0
@@ -39,9 +53,9 @@ def find_all(substring, string):
 
 def mask_code(pasrsed_codes, mask_lines = args.mask_lines):
     for _ in range(mask_lines):
-        positions = list(find_all(substring='\n', string=pasrsed_codes ))
+        positions = list(find_all(substring='\n', string=pasrsed_codes))
         if positions == []:
-            positions = list(find_all(substring=':', string=pasrsed_codes ))
+            positions = list(find_all(substring=':', string=pasrsed_codes))
         if len(positions) < 2:
                 continue # cornor case in which there is no \n and only one ':'
         mask_start = random.choice( range(len( (positions)) -1 ) )
@@ -53,9 +67,9 @@ def mask_code(pasrsed_codes, mask_lines = args.mask_lines):
 
 def norm_inserts_num(pasrsed_code_norm):
     max_num = 0
-    for i, x in enumerate( pasrsed_code_norm):
-        if len( list( find_all(substring='<insert>', string=x) ) ) > max_num:
-            max_num = len( list( find_all(substring='<insert>', string=x) ) )
+    for i, x in enumerate(pasrsed_code_norm):
+        if len(list(find_all(substring='<insert>', string=x))) > max_num:
+            max_num = len(list(find_all(substring='<insert>', string=x)))
             id = i
 
     new_res = []
@@ -66,27 +80,28 @@ def norm_inserts_num(pasrsed_code_norm):
             new_res.append( x )
     return new_res
 
-if os.path.exists('results/gpt4_FIM_human_' + args.run +'line' + str(args.mask_lines) +'.jsonl'):
-    with open( 'results/gpt4_FIM_human_' + args.run +'line' + str(args.mask_lines) +'.jsonl', 'r') as f:
+if os.path.exists(output_file):
+    with open(output_file, 'r') as f:
         finished = [json.loads(line) for line in f.readlines()]
-    gpt4_python_codecontest = gpt4_python_codecontest[len(finished):]
+    dataset = dataset[len(finished):]
 
 ###### fill_in_middle_gold and fill_in_middle_parsed ######
-for idx, ins in tqdm.tqdm(enumerate(gpt4_python_codecontest), total = len(gpt4_python_codecontest) ):
-    gold_completion_all = []
-    if len(ins['gold_completion']) < 2500:
-        for _ in range(args.batch_size):
-            gold_codes_masked = mask_code( ins['gold_completion'], mask_lines=args.mask_lines )
-            gold_completion_all.append( gold_codes_masked[:2500] )
+for idx, ins in tqdm.tqdm(enumerate(dataset), total = len(dataset)):
+    for input, output in [('parsed_codes','fill_in_middle_parsed')]:
+        gold_completion_all = []
+        if len(ins[input]) < 2500:
+            for _ in range(args.batch_size):
+                gold_codes_masked = mask_code(ins[input], mask_lines=args.mask_lines)
+                gold_completion_all.append(gold_codes_masked[:2500])
 
-        gold_completion_all = norm_inserts_num(gold_completion_all)
-        parts_batch = [example.split("<insert>") for example in gold_completion_all]
-        fill_in_middle_gold = infilling_model.batched_infill(parts_batch, max_to_generate=16*args.mask_lines, temperature=0.7)
-        ins['fill_in_middle_gold'] = fill_in_middle_gold
-    else:
-        ins['fill_in_middle_gold'] = ['token exceeds 2500']
+            gold_completion_all = norm_inserts_num(gold_completion_all)
+            parts_batch = [example.split("<insert>") for example in gold_completion_all]
+            fill_in_middle_gold = infilling_model.batched_infill(parts_batch, max_to_generate=16*args.mask_lines, temperature=0.7)
+            ins[output] = fill_in_middle_gold
+        else:
+            ins[output] = ['token exceeds 2500']
 
-    with open('results/gpt4_human_' + args.run +'line' + str(args.mask_lines) +'.jsonl', 'a') as f:
+    with open(output_file, 'a') as f:
         f.write(json.dumps(ins) + '\n')
 
 
