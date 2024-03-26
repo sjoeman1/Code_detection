@@ -1,0 +1,53 @@
+{
+    "os": "Windows-10-10.0.22631-SP0",
+    "python": "3.10.11",
+    "heartbeatAt": "2024-03-20T13:40:39.045023",
+    "startedAt": "2024-03-20T13:40:32.694939",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "D:\\Artificial_Intelligence\\Thesis\\Code_detection\\detect_SVM.py",
+    "codePathLocal": "detect_SVM.py",
+    "codePath": "detect_SVM.py",
+    "git": {
+        "remote": "https://github.com/sjoeman1/Code_detection.git",
+        "commit": "c5ebdbabeac01f97a9ae6cbac389cdfa24b02a87"
+    },
+    "email": "schildersjoerd@gmail.com",
+    "root": "D:/Artificial_Intelligence/Thesis/Code_detection",
+    "host": "MSI",
+    "username": "sjoer",
+    "executable": "D:\\Artificial_Intelligence\\Thesis\\Code_detection\\.venv\\Scripts\\python.exe",
+    "cpu_count": 6,
+    "cpu_count_logical": 12,
+    "cpu_freq": {
+        "current": 2200.0,
+        "min": 0.0,
+        "max": 2201.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 2200.0,
+            "min": 0.0,
+            "max": 2201.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 1862.9999961853027,
+            "used": 824.1573753356934
+        }
+    },
+    "gpu": "NVIDIA GeForce GTX 1050 Ti with Max-Q Design",
+    "gpu_count": 1,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce GTX 1050 Ti with Max-Q Design",
+            "memory_total": 4294967296
+        }
+    ],
+    "memory": {
+        "total": 15.849830627441406
+    }
+}

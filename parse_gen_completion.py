@@ -5,15 +5,16 @@ from tqdm import tqdm
 
 # add argument for dataset
 parser = argparse.ArgumentParser()
-parser.add_argument('--dataset', default="results/regen_apps_competition_gemma-7b-it_2_0.7_test4.jsonl")
-parser.add_argument('--to_parse', default="gen_text", choices=["gen_completion", "gen_text"])
+parser.add_argument('--dataset', default="results/gemma-7b-it-apps_introductory.jsonl")
+parser.add_argument('--to_parse', default="gen_completion", choices=["gen_completion", "gen_text"])
 args = parser.parse_args()
 
 with open(args.dataset, "r") as f:
     data = [json.loads(x) for x in f.read().strip().split("\n")]
-    for i, instance in enumerate(data):
-        for key in ['human_gen_text', 'machine_gen_text']:
-            data[i][key] = json.loads(instance[key])
+    if args.to_parse == "gen_text":
+        for i, instance in enumerate(data):
+            for key in ['human_gen_text', 'machine_gen_text']:
+                data[i][key] = json.loads(instance[key])
 
 if args.to_parse == "gen_completion":
     for i,instance in enumerate(data):

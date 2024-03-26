@@ -2,7 +2,11 @@ rouge-score
 transformers>=4.28.1
 openai
 scikit-learn
+# use your cuda version
+--extra-index-url https://download.pytorch.org/whl/cu118
 torch
+torchvision
+torchaudio
 nltk
 spacy
 en_core_web_sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.7.1/en_core_web_sm-3.7.1-py3-none-any.whl
