@@ -6,17 +6,18 @@ import pandas as pd
 
 from sklearn.svm import SVC
 from sklearn.linear_model import LogisticRegression
-from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--dataset', default="results/gemma-7b-it-apps_introductory.jsonl")
-parser.add_argument('--classifier', default="LR", choices=['SCM', 'LR'])
+parser.add_argument('--classifier', default="MNB", choices=['SCM', 'LR', 'MNB'])
 parser.add_argument('--max_features', default=1000, type=int)
 parser.add_argument('--kernel', default='linear')
-parser.add_argument('--vectorizer', default='TfidfVectorizer', choices=['TfidfVectorizer', 'CountVectorizer'])
-parser.add_argument('--ngram_range', default=(1, 2), type=tuple, nargs=2)
+parser.add_argument('--vectorizer', default='CountVectorizer', choices=['TfidfVectorizer', 'CountVectorizer'])
+parser.add_argument('--ngram_range', default=(1, 4), type=tuple, nargs=2)
 parser.add_argument('--hide_comments', default=True, type=bool)
 args = parser.parse_args()
 # args.ngram_range = tuple(args.ngram_range)
@@ -26,13 +27,13 @@ clf_name = args.classifier
 dataset_name = args.dataset.split('/')[-1].split('.')[0]
 run_name = f"{dataset_name}_{clf_name}"
 
-
-wandb.init(project='Code_Detection', config=args, name=run_name)
-config = wandb.config
-
 # load the dataset
 with open(args.dataset, 'r') as f:
     dataset = [json.loads(line) for line in f.readlines()]
+
+wandb.init(project='Code_Detection', config=args, name=run_name, tags= [dataset_name.split('_')[1], dataset_name.split('_')[0]])
+config = wandb.config
+
 
 # create dataframe
 df = pd.DataFrame(dataset)
@@ -70,8 +71,16 @@ def tokenizer(text):
 # test the tokenizer
 print(tokenizer(X_train[0]))
 
-# create a TfidfVectorizer
-vectorizer = TfidfVectorizer(tokenizer=tokenizer, max_features=config.max_features, ngram_range=tuple(config.ngram_range))
+match config['vectorizer']:
+    case "CountVectorizer":
+        vectorizer = CountVectorizer(tokenizer=tokenizer, max_features=config.max_features, ngram_range=tuple(config.ngram_range))
+    case "TfidfVectorizer":
+        vectorizer = TfidfVectorizer(tokenizer=tokenizer, max_features=config.max_features, ngram_range=tuple(config.ngram_range))
+    case _:
+        print("Invalid vectorizer name")
+        wandb.finish(exit_code=1)
+        exit(1)
+
 X_train = vectorizer.fit_transform(X_train)
 X_test = vectorizer.transform(X_test)
 
@@ -80,6 +89,8 @@ match config['classifier']:
         clf = SVC(kernel=config.kernel)
     case "LR":
         clf = LogisticRegression()
+    case "MNB":
+        clf = MultinomialNB()
     case _:
         print("Invalid model name")
         wandb.finish(exit_code=1)

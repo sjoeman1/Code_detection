@@ -6,7 +6,7 @@ import argparse
 import tqdm
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--dataset', default="results/gemma-7b-it-apps_competition.jsonl_FIM_human_1_line_4.jsonl")
+parser.add_argument('--dataset', default="results/gemma-7b-it-apps_interview.jsonl")
 parser.add_argument('--batch_size', default=4, type=int)
 parser.add_argument('--mask_lines', default=4, type=int)
 parser.add_argument("--gpu", type=str, default="2")
@@ -14,8 +14,7 @@ parser.add_argument("--model_name", type=str, default="facebook/incoder-1B")
 parser.add_argument("--run", type=str, default= "1")
 args = parser.parse_args()
 
-# output_file = f'results/{args.dataset.split("/")[1]}_FIM_human_{args.run}_line_{args.mask_lines}_temp.jsonl'
-output_file = f'results/temp_gemma-7b-it-apps_competition.jsonl_FIM_human_1_line_4.jsonl'
+output_file = f'results/{args.dataset.split("/")[1]}_FIM_human_{args.run}_line_{args.mask_lines}.jsonl'
 with open(args.dataset, 'r') as f:
     dataset = [json.loads(line) for line in f.readlines()]
 
@@ -87,7 +86,7 @@ if os.path.exists(output_file):
 
 ###### fill_in_middle_gold and fill_in_middle_parsed ######
 for idx, ins in tqdm.tqdm(enumerate(dataset), total = len(dataset)):
-    for input, output in [('parsed_codes','fill_in_middle_parsed')]:
+    for input, output in [('parsed_codes','fill_in_middle_parsed'), ('gold_completion','fill_in_middle_gold')]:
         gold_completion_all = []
         if len(ins[input]) < 2500:
             for _ in range(args.batch_size):
