@@ -1,0 +1,9 @@
+```python3
+D, N = map(int, input().split())
+
+# Calculate the multiples of 100 less than or equal to N
+multiples = [x for x in range(1, int(N) + 1) if x % 100 == 0]
+
+# Find the N-th smallest multiple
+print(multiples[N - 1])
+```

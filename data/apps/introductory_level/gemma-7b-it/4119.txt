@@ -1,0 +1,16 @@
+```python
+n, m = map(int, input().split())
+x = list(map(int, input().split()))
+
+x.sort()
+
+# Calculate the minimum number of moves
+moves = 0
+current_position = x[0]
+for i in range(1, m):
+    if x[i] - current_position > 1:
+        moves += abs(x[i] - current_position) - 1
+    current_position = x[i]
+
+print(moves)
+```

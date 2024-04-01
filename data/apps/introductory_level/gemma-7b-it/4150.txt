@@ -1,0 +1,19 @@
+```python
+n, k = map(int, input().split())
+a = list(map(int, input().split()))
+
+a.sort()
+b = set(a)
+c = 0
+
+ans = ""
+
+for i in range(n):
+    if a[i] not in c and b:
+        c.add(a[i])
+        ans += "1"
+    else:
+        ans += "2"
+
+print(ans)
+```

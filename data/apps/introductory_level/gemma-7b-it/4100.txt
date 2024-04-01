@@ -1,0 +1,18 @@
+```python
+n, k, q = map(int, input().split())
+
+a = list(map(int, input().splitlines()))
+
+# Calculate the cumulative sum of points for each player
+cumulative_sum = {}
+cumulative_sum[0] = 0
+for i in range(n):
+    cumulative_sum[i] = cumulative_sum[i-1] + a[i]
+
+# Determine the players who survived the game
+survived = [cumulative_sum[i] >= 0 for i in range(n)]
+
+# Print the results
+for i in range(n):
+    print("No" if not survived[i] else "Yes")
+```

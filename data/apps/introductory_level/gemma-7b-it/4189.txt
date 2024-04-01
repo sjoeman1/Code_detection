@@ -1,0 +1,11 @@
+```python3
+N = int(input())
+
+cheeses = {}
+for _ in range(N):
+    name, type = input().split()
+    if name not in cheeses:
+        cheeses[name] = type
+
+print(len(cheeses.keys()) - 1)
+```

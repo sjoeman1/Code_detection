@@ -1,0 +1,14 @@
+```python3
+N = int(input())
+T = []
+for _ in range(N):
+    T.append(int(input()))
+
+# Calculate the LCM of T
+LCM = 1
+for t in T:
+    LCM = lcm(LCM, t)
+
+# Print the time it takes for the hand to point upward again
+print(LCM)
+```

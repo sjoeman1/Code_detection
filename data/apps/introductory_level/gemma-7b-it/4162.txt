@@ -1,0 +1,26 @@
+```python
+N = int(input())
+a = list(map(int, input().split()))
+
+def f(m):
+    res = 0
+    for i in a:
+        res += (m % i)
+    return res
+
+print(max(f(x) for x in range(1, 10**5 + 1)))
+```
+
+**Explanation:**
+
+- The code reads the number of test cases, N, and then reads the N integers in the list a.
+- The function f(m) calculates the sum of (m % a_i) for each element a_i in the list a.
+- The code finds the maximum value of f(m) by iterating over the range of values from 1 to 10^5 and taking the maximum of the results.
+
+**Time complexity:**
+
+- The code iterates over the range of values from 1 to 10^5, so the time complexity is O(10^5).
+
+**Space complexity:**
+
+- The code uses a constant amount of space, regardless of the input size.

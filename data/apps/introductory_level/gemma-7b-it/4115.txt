@@ -1,0 +1,13 @@
+```python3
+s = input().lower()
+
+# Calculate the minimum number of hugs needed to make S palindromic
+min_hugs = 0
+for i in range(len(s)):
+    # Check if the character at the current position is not a palindrome
+    if s[i] != s[i:i+1].lower():
+        min_hugs += 1
+
+# Print the minimum number of hugs
+print(min_hugs)
+```

@@ -1,0 +1,14 @@
+```python
+n, k, x = map(int, input().split())
+
+a = list(map(int, input().split()))
+
+a.sort()
+
+s = sum(a)
+
+if s - x < k:
+    print(-1)
+else:
+    print(s - x)
+```

@@ -1,0 +1,18 @@
+```python
+n, k = map(int, input().split())
+a = list(map(int, input().split()))
+
+a.sort()
+mn, mx = a[0], a[-1]
+moves = min(abs(mn - a[0]) + abs(mx - a[-1]) + k - 1
+
+print(moves)
+```
+
+**Explanation:**
+
+* The code reads the number of elements $n$ and the required number of equal elements $k$.
+* It then reads the $n$ elements of the array $a$.
+* The code sorts the array in ascending order and finds the minimum and maximum values of $a$.
+* It calculates the minimum number of moves required to obtain at least $k$ equal elements, which is the sum of the absolute difference between the minimum and maximum values of $a$, plus $k - 1.
+* Finally, the code prints the minimum number of moves.

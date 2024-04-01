@@ -1,0 +1,19 @@
+```python3
+n = int(input())
+a = list(map(int, input().split()))
+
+a.sort()
+
+# Calculate the number of monotonic renumerations
+res = 0
+prev = 0
+for i in range(len(a)):
+    cur = 1
+    for j in range(i, len(a)):
+        if a[i] == a[j]:
+            cur += prev
+    prev = cur
+    res += cur
+
+print(res % 998244353)
+```

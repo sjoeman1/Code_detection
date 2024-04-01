@@ -1,0 +1,10 @@
+```python3
+S = input().lower()
+result = ""
+for i in S:
+    result += "x"
+
+print(result)
+
+print("Replacing every character in S with x results in", result)
+```

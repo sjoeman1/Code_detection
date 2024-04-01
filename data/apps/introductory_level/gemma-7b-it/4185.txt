@@ -1,0 +1,22 @@
+```python
+import numpy as np
+
+def minMoves(n, m, matrix):
+    # Calculate the target matrix
+    target = np.arange(1, n * m + 1).reshape(n, m)
+
+    # Calculate the difference between the target matrix and the current matrix
+    diff = target - matrix
+
+    # Find the minimum moves
+    moves = np.min(np.sum(np.abs(diff).reshape(-1))
+
+    # Return the minimum moves
+    return moves
+
+
+n, m = map(int, input().split())
+matrix = np.array(list(map(int, input().splitlines().split().split())))
+
+print(minMoves(n, m, matrix))
+```

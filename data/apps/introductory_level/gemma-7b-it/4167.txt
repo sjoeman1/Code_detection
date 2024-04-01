@@ -1,0 +1,12 @@
+```python
+N, K = map(int, input().split())
+
+# Calculate multiples of K
+multiples_k = set(x for x in range(1, int(N**0.5) + 1) * 3)
+
+# Count triples
+num_triples = len(multiples_k)
+
+# Print the number of triples
+print(num_triples)
+```

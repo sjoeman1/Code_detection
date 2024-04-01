@@ -1,0 +1,30 @@
+```python3
+n, m, s = map(int, input().split())
+g = {}
+graph = []
+for _ in range(m):
+    u, v = map(int, input().split())
+    g[u] = g.get(u, {})
+    g[u][v] = True
+    graph.append((u, v))
+
+distance = {i: float('inf') for i in range(n)}
+distance[s] = 0
+
+queue = [(0, s)]
+visited = set()
+
+while queue:
+    distance_t, city = heapq.heappop(queue)
+    if city in visited:
+        continue
+    visited.add(city)
+    if distance_t == distance[city]:
+        for neighbor in g[city]:
+            new_distance = distance_t + 1
+            if new_distance < distance[neighbor]:
+                distance[neighbor] = new_distance
+                heapq.heappush(queue, (new_distance, neighbor))
+
+print(distance[n] - distance[s]) if distance[n] != float('inf') else print(0)
+```

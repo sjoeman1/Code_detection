@@ -1,0 +1,18 @@
+```python
+n = int(input())
+a = list(map(int, input().split()))
+
+# Calculate the power set of each element
+power_set = {}
+for i in a:
+    powers = set(x for x in range(1, int(i**0.5) + 1))
+    power_set[i] = powers
+
+# Find the minimum number of elements to remove
+min_removes = float('inf')
+for i in a:
+    if not power_set[i] & set(power_set[a_i] - set([a_i])):
+        min_removes = min(min_removes, 1 + a_i)
+
+print(int(min_removes))
+```

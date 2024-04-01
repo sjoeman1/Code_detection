@@ -57,7 +57,7 @@ async def main():
     with open(f'data/apps/{difficulty}_level/{difficulty}_samples.json', 'r') as f:
         samples = json.load(f)
         print(len(samples))
-        for i, sample in enumerate(samples[150:207]):
+        for i, sample in enumerate(samples[100:150]):
             problem_id = sample['problem_id']\
 
             # if parser.regenerate_path:
@@ -80,7 +80,7 @@ async def main():
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--difficulty", type=str, default="competition", choices=["introductory", "interview", "competition"])
+    parser.add_argument("--difficulty", type=str, default="introductory", choices=["introductory", "interview", "competition"])
     parser.add_argument("--model_name", type=str, default="gemma-7b-it",
                         choices=["CodeLlama-70b-Instruct-hf", "gemma-7b-it", "Mixtral-8x7B-Instruct-v0.1"]
                         )

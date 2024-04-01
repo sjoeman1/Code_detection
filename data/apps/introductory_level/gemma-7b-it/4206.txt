@@ -1,0 +1,13 @@
+```python
+s = int(input())
+n = len(str(s))
+
+# Calculate the number of cuts that can be made
+cuts = n - 1
+
+# Calculate the maximum number of numbers divisible by 3 that can be obtained
+max_num_divisible_by_3 = cuts // 3
+
+# Print the maximum number of numbers divisible by 3
+print(max_num_divisible_by_3)
+```
