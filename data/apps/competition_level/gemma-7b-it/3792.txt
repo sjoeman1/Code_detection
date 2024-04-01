@@ -1,0 +1,15 @@
+```python
+n, k = map(int, input().split())
+s = input()
+t = input()
+
+# Calculate the number of strings that are prefixes of at least one of the written strings
+c = 0
+for i in range(len(s) + 1):
+    prefix_s = s[:i]
+    if prefix_s in t or prefix_s == s:
+        c += 1
+
+# Print the maximum value of c
+print(c)
+```

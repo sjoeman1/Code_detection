@@ -1,0 +1,11 @@
+```python
+import math
+
+a, b = map(int, input().split())
+
+if b <= 2:
+    print(-1)
+else:
+    x = math.ceil((b - 1) / 2)
+    print(x)
+```

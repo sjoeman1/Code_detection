@@ -1,0 +1,19 @@
+```python
+import numpy as np
+
+n = int(input().split()[0])
+x_p, y_p = map(int, input().split()[1:3])
+
+# Read the polygon vertices
+vertices = []
+for _ in range(n):
+    x_v, y_v = map(int, input().split())
+    vertices.append((x_v, y_v))
+
+# Create a convex hull of the polygon
+hull = np.array(vertices)
+area = np.abs(np.cross(hull[:, 0] - x_p, hull[:, 1] - y_p)).sum() / 2
+
+# Print the area
+print(area)
+```

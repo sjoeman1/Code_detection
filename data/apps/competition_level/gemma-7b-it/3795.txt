@@ -1,0 +1,13 @@
+```python
+n, d, e = map(int, input().split())
+
+# Calculate the exchange rate
+usd_rate = d
+euro_rate = e
+
+# Calculate the minimum number of rubles
+min_rubles = n // usd_rate + n % usd_rate * euro_rate // euro_rate
+
+# Print the minimum number of rubles
+print(min_rubles)
+```

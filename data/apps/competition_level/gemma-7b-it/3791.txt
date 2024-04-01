@@ -1,0 +1,17 @@
+```python
+
+n = int(input())
+p = list(map(int, input().split()))
+
+p.sort()
+min_dev = float('inf')
+min_id = -1
+
+for i in range(n):
+    dev = sum(abs(x - i - 1) for x in p)
+    if dev < min_dev:
+        min_dev = dev
+        min_id = i
+
+print(min_dev, min_id)
+```

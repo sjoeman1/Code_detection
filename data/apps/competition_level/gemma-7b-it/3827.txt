@@ -1,0 +1,11 @@
+```python
+s = input().lower()
+a_count = s.count('a')
+b_count = s.count('b')
+c_count = len(s) - a_count - b_count
+
+if a_count == c_count or b_count == c_count or a_count == b_count:
+    print("YES")
+else:
+    print("NO")
+```

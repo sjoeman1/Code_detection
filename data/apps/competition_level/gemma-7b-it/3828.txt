@@ -1,0 +1,13 @@
+```python
+n = int(input())
+p = list(map(int, input().split()))
+
+p.sort()
+
+actions = 0
+for i in range(n):
+    if p[i] != i+1:
+        actions += abs(p[i] - i - 1)
+
+print(actions)
+```

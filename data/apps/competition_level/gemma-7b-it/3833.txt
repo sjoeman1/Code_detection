@@ -1,0 +1,24 @@
+```python
+s = input().strip()
+t = input().strip()
+
+def hammingDistance(a, b):
+    distance = 0
+    for i in range(len(a)):
+        if a[i] != b[i]:
+            distance += 1
+    return distance
+
+# Find the maximum number of occurrences of t in s
+max_occurrences = max(hammingDistance(s, t) for t in permutations(s))
+
+# Print the schedule with the maximum number of occurrences
+print("".join(["1" if i == max_occurrences else "0" for i in range(len(s))]))
+```
+
+**Explanation:**
+
+- The code reads two strings, `s` and `t`, representing the current and optimal schedules, respectively.
+- It defines a function `hammingDistance` to calculate the Hamming distance between two strings, which is the number of positions where they differ.
+- It finds the maximum number of occurrences of `t` in `s` by iterating over all possible permutations of `s` and calculating the Hamming distance for each permutation.
+- Finally, it prints the schedule that maximizes the number of occurrences of `t`, ensuring that the number of contest days and days off remains unchanged.

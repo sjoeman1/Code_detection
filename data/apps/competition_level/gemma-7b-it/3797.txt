@@ -1,0 +1,20 @@
+```python3
+import math
+
+N, M = map(int, input().split())
+
+l, r, x = []
+for _ in range(M):
+    l.append(int(input().split()[0]))
+    r.append(int(input().split()[1]))
+    x.append(int(input().split()[2]))
+
+mod = 10**9 + 7
+
+ans = 1
+for i in range(M):
+    ans *= x[i]
+    ans %= mod
+
+print(ans)
+```

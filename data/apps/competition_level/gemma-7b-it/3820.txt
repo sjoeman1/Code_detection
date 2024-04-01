@@ -1,0 +1,13 @@
+```python
+n, m = map(int, input().split())
+s = input().lower()
+t = input().lower()
+
+if '*' in s:
+    s = s.replace('*', '')
+
+if t.find(s) != -1:
+    print("YES")
+else:
+    print("NO")
+```

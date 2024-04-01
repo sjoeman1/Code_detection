@@ -1,0 +1,25 @@
+```python3
+n = int(input())
+a = list(map(int, input().split()))
+
+a.sort()
+
+x = 0
+p = 0
+q = 0
+
+for i in a:
+    if i not in chosen:
+        chosen.append(i)
+        x += 1
+        p = max(p, i)
+        q = i // p
+
+print(x)
+print(p)
+print(q)
+
+for i in range(p):
+    for j in range(q):
+        print(chosen[i * q + j])
+```

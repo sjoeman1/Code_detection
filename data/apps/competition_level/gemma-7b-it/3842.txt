@@ -1,0 +1,15 @@
+```python
+import numpy as np
+
+n, p, q = map(int, input().split())
+
+a = np.array(map(int, input().split()))
+b = np.array(map(int, input().split()))
+
+xp = np.cumsum(a)
+ip = np.cumsum(b)
+
+min_days = np.interp(p, xp, ip)
+
+print(min_days.round())
+```

@@ -1,0 +1,22 @@
+```python
+N = int(input())
+
+# Read the balls' colors and numbers
+c = []
+a = []
+for _ in range(N):
+    c.append(input().strip()[0])
+    a.append(int(input().strip()))
+
+# Calculate the minimum operations
+operations = 0
+for i in range(N-1):
+    for j in range(i+1, N):
+        if c[i] == "W" and c[j] == "W" and a[i] > a[j]:
+            operations += 1
+        elif c[i] == "B" and c[j] == "B" and a[i] > a[j]:
+            operations += 1
+
+# Print the minimum operations
+print(operations)
+```

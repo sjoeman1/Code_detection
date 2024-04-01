@@ -1,0 +1,16 @@
+```python
+n = int(input())
+s = input().strip()
+
+# Check if the wires can be untangled
+can_untangle = True
+
+# Iterate over the sequence of characters
+for i in range(n):
+    # If the wire is on top of the minus wire and it's not the first wire
+    if s[i] == '+' and s[i-1] == '-':
+        can_untangle = False
+
+# Print the answer
+print("Yes" if can_untangle else "No")
+```

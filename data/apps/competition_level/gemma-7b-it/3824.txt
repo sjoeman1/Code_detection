@@ -1,0 +1,11 @@
+```python
+x_1, y_1 = map(int, input().split())
+x_2, y_2 = map(int, input().split())
+
+dx = abs(x_2 - x_1)
+dy = abs(y_2 - y_1)
+
+min_path = min(dx, dy) + min(dx, dy)
+
+print(min_path * 2)
+```

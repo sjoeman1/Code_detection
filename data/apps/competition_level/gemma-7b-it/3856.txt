@@ -1,0 +1,13 @@
+```python
+n = int(input())
+w, h = map(int, input().split())
+areas = []
+for _ in range(n):
+    w_i, h_i = map(int, input().split())
+    areas.append(w_i * h_i)
+h_max = max(h)
+total_area = sum(areas)
+n_lie = int(n // 2)
+min_area = total_area - n_lie * h_max
+print(min_area)
+```

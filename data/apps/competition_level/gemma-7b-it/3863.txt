@@ -1,0 +1,12 @@
+```python3
+n, k = map(int, input().split())
+
+# Calculate the number of sequences with length N and elements between 1 and K
+num_sequences = (n // 2 + 1) * k
+
+# Calculate the modulo
+num_sequences %= 10**9 + 7
+
+# Print the result
+print(num_sequences)
+```

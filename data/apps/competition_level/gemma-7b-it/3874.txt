@@ -1,0 +1,24 @@
+```python3
+n, m = map(int, input().split())
+
+files = []
+for _ in range(n):
+    files.append(input().strip())
+
+indices = map(int, input().split())
+
+pattern = None
+for i in range(n):
+    pattern_i = ""
+    for j in range(len(files[i])):
+        if files[i][j] != '.':
+            pattern_i += files[i][j] + "?" if files[i][j] != files[i][j] else '.'
+    if pattern_i and all(files[i] == pattern_i for i in indices):
+        pattern = pattern_i
+
+if pattern is None:
+    print("No")
+else:
+    print("Yes")
+    print(pattern)
+```

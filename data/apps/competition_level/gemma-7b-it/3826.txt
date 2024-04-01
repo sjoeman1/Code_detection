@@ -1,0 +1,19 @@
+```python
+n = int(input())
+a = list(map(int, input().split()))
+
+# Calculate the distinct elements of the array
+distinct_elements = len(set(a))
+
+# If all elements are distinct, no subsegment needs to be removed
+if distinct_elements == len(a):
+    print(0)
+
+# Calculate the minimum size of the subsegment to remove
+else:
+    # Calculate the minimum subsegment size
+    min_subsegment_size = min([i for i in range(1, len(a)) if a[i] == a[i-1] else i])
+
+    # Print the minimum subsegment size
+    print(min_subsegment_size)
+```

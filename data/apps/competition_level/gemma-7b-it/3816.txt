@@ -1,0 +1,16 @@
+```python
+a, b, c, l = map(int, input().split())
+
+# Calculate the maximum increase for each stick
+max_increase = min(l, a, b, c)
+
+# Calculate the number of ways to increase the sticks
+num_ways = 0
+if max_increase > 0:
+    num_ways += max_increase - 1
+    if max_increase >= 2:
+        num_ways += min(max_increase - 1, a, b, c) - 1
+
+# Print the number of ways
+print(num_ways)
+```

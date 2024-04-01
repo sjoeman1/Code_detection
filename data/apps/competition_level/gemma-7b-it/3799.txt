@@ -1,0 +1,9 @@
+```python3
+s = input().lower()
+
+# Check if the string has two neighboring characters that are equal
+if s[0] == s[1] or s[1] == s[2]:
+    print("Second")
+else:
+    print("First")
+```

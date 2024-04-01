@@ -1,0 +1,22 @@
+```python
+n = int(input())
+
+a = []
+s = []
+for _ in range(n):
+    a_i, s_i = map(int, input().split())
+    a.append(a_i)
+    s.append(s_i)
+
+m = sum(a) // 2
+
+ans = 0
+for i in range(n):
+    if s[i] == "11" or (s[i] == "10" and a[i] > ans):
+        ans = max(ans, a[i] + a[i-1])
+
+if ans == 0:
+    print(0)
+else:
+    print(ans)
+```

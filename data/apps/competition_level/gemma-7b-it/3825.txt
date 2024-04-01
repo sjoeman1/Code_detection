@@ -1,0 +1,17 @@
+```python
+n = int(input())
+
+roman_dict = {1: 1, 5: 5, 10: 10, 50: 50}
+
+def count_roman_numeral(n):
+    count = 0
+    for i in range(1, int(n**0.5) + 1):
+        num_digits = len(str(i))
+        if num_digits == 1:
+            count += roman_dict[i]
+        elif num_digits == 2:
+            count += roman_dict[i] * 2
+    return count
+
+print(count_roman_numeral(n))
+```

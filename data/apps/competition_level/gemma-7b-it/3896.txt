@@ -1,0 +1,14 @@
+```python3
+n = int(input())
+x = int(input(), 2)
+
+# Calculate the complexity
+complexity = 0
+for i in range(n):
+    a = i
+    b = a ^ x
+    complexity += abs(a - b)
+
+# Print the complexity
+print(complexity % 1000000007)
+```

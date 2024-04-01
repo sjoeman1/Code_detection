@@ -1,0 +1,17 @@
+```python
+import random
+
+m, n = map(int, input().split())
+
+# Probability of each face appearing
+p = [1 / m] * m
+
+# Number of dots on each face
+num_dots = range(1, m + 1)
+
+# Calculate the expected number of dots
+expectation = sum(num_dots * p) * n
+
+# Print the expected maximum number of dots
+print(round(expectation, 6))
+```

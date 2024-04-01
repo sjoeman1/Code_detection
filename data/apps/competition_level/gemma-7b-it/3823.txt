@@ -1,0 +1,11 @@
+```python3
+n = int(input())
+a = list(map(float, input().split()))
+a_s = sum(a)
+a_r = []
+for i in range(n):
+    i_max = int(a[i])
+    i_min = int(a[i]) - 1
+    a_r.append(abs((a[i] - i_max) - (a[i] - i_min)))
+print(min(a_r))
+```
