@@ -1,0 +1,4 @@
+```python
+b, d, s = map(int, input().split())
+print(min(b + d - 1, s - 1))
+```

@@ -1,0 +1,25 @@
+```python
+n, m = map(int, input().split())
+
+# Read the pixels
+pixels = []
+for _ in range(n):
+    pixels.append(input().strip().split())
+
+# Check if the required frame exists
+found = False
+for d in range(1, int(n) + 1):
+    for x in range(m):
+        for y in range(n):
+            # Check if the pixel is white and not on the border of the frame
+            if pixels[y][x] == 'w' and (x == 0 or pixels[y][0] == '.' or pixels[y][x] == '.' or pixels[0][x] == '.'):
+                # Check if the frame is optimal
+                frame_size = d * d
+                frame_pixels = set(pixels[y][x] for y in range(y - d + 1, y + d) for x in range(x - d + 1, x + d))
+                if frame_size == frame_pixels and not found:
+                    found = True
+                    print("".join(["+" if pixels[y][x] == 'w' else '.' for y in range(n) for x in range(m)]))
+
+if not found:
+    print(-1)
+```

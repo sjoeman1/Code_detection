@@ -1,0 +1,9 @@
+```python
+x, y = map(int, input().split())
+
+# Calculate the minimum number of seconds required
+seconds = abs(x - y) + abs(x - y // 3) - 1
+
+# Print the result
+print(seconds)
+```

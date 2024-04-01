@@ -1,0 +1,14 @@
+```python
+n = int(input())
+a = list(map(int, input().split()))
+a.sort()
+
+# Find the maximum number of consecutive elements that can be erased
+erase_count = 0
+for i in range(len(a)):
+    if a[i] - a[i-1] == 1:
+        erase_count += 1
+
+# Print the maximum number of consecutive elements that can be erased
+print(erase_count)
+```

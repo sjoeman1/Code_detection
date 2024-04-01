@@ -1,0 +1,8 @@
+```python
+s = input().lower()
+distinct_characters = len(set(s))
+if distinct_characters % 2 == 0:
+    print("CHAT WITH HER!")
+else:
+    print("IGNORE HIM!")
+```

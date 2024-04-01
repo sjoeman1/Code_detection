@@ -1,0 +1,11 @@
+```python
+def solve(l, s, r, p):
+    # Check if the pedestrian light is green and the light of the lane that can get to or from that same part is also green.
+    return (p == 1) and (l == 1 or s == 1 or r == 1)
+
+
+n = int(input())
+for _ in range(n):
+    l, s, r, p = map(int, input().split())
+    print("YES" if solve(l, s, r, p) else "NO")
+```

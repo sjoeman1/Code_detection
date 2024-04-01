@@ -1,0 +1,14 @@
+```python
+a, b = input().split()
+
+# Find the length of the longest common subsequence
+lcs_length = len(set(a) & set(b))
+
+# If the length of the longest common subsequence is zero, output -
+if lcs_length == 0:
+    print("-")
+
+# Otherwise, output the longest common subsequence
+else:
+    print("".join(set(a) & set(b)))
+```

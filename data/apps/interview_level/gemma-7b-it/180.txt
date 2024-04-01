@@ -1,0 +1,47 @@
+```python
+# Function to check if a string can encode a message of length k
+def can_encode(s, k):
+    # Calculate the number of candy canes and snowflakes
+    candy_canes = s.count("?")
+    snowflakes = s.count("*")
+
+    # If the number of candy canes is greater than the number of letters to remove, return impossible
+    if candy_canes > k:
+        return "Impossible"
+
+    # Calculate the number of letters to remove and repeat
+    remove_letters = candy_canes
+    repeat_letters = snowflakes
+
+    # Check if the number of letters to remove and repeat is equal to k
+    if remove_letters + repeat_letters == k:
+        # Construct the message
+        message = ""
+        for i in range(len(s)):
+            # If the letter is followed by a snowflake, repeat it
+            if s[i] + "*" == s[i+1]:
+                message += s[i] * repeat_letters
+            # If the letter is followed by a candy cane, remove it
+            elif s[i] + "?" == s[i+1]:
+                remove_letters -= 1
+            # Otherwise, add the letter to the message
+            else:
+                message += s[i]
+
+        # Return the message
+        return message
+
+    # Otherwise, return impossible
+    else:
+        return "Impossible"
+
+# Get the input
+s = input().strip()
+k = int(input())
+
+# Check if the string can encode a message of length k
+message = can_encode(s, k)
+
+# Print the message
+print(message)
+```

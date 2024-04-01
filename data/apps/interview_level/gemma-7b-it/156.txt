@@ -1,0 +1,13 @@
+```python3
+import math
+
+X = int(input())
+
+for a in range(1, int(X**0.5) + 1):
+    b = X // a
+    if math.lcm(a, b) == X and a > b:
+        print(a, b)
+        exit()
+
+print("No solution")
+```

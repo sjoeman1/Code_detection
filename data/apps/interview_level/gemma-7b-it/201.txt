@@ -1,0 +1,13 @@
+```python
+C, H_r, H_b, W_r, W_b = map(int, input().split())
+
+# Calculate the maximum number of candies that Om Nom can eat
+num_reds = min(C // W_r, H_r)
+num_blues = min(C // W_b, H_b)
+
+# Calculate the total number of joy units
+total_joy = num_reds * H_r + num_blues * H_b
+
+# Print the total number of joy units
+print(total_joy)
+```

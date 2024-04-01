@@ -1,0 +1,16 @@
+```python
+import math
+
+n, k = map(int, input().split())
+a = list(map(int, input().split()))
+
+a.sort()
+a_sorted = a.copy()
+
+operations = 0
+for i in range(n):
+    if a[i] != a_sorted[i]:
+        operations += 1
+
+print(0 if operations == 0 else str(math.floor(operations * math.factorial(n) // math.factorial(n - operations) * pow(operations, -1, 1e9 + 7)))
+```

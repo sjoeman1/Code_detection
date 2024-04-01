@@ -1,0 +1,22 @@
+```python
+import sys
+input_data = sys.stdin.read().strip().split()
+x = int(input_data[0])
+t = 0
+n = 0
+operations = []
+
+# Calculate the number of operations needed to reach the perfect longcat number
+while x != 2**n - 1:
+    if n % 2 == 0:
+        x += 1
+    else:
+        operations.append(n)
+        n += 1
+        x ^= 2**n - 1
+
+# Print the number of operations and the operation numbers
+print(len(operations))
+for i in operations:
+    print(i)
+```

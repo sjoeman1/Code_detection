@@ -1,0 +1,16 @@
+```python
+n, m = map(int, input().split())
+
+n_presents = dict()
+for i in range(n):
+    n_presents[i] = int(input())
+
+boxes = m
+
+ans = 1
+for k, v in n_presents.items():
+    ans *= v + 1
+    boxes -= v
+
+print(ans % (10**9 + 7))
+```

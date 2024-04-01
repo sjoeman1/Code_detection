@@ -1,0 +1,10 @@
+```python3
+
+def hasDivisibleBySixtyFour(s):
+    n = int(s, 2)
+    return n % 64 == 0
+
+
+s = input()
+print("yes" if hasDivisibleBySixtyFour(s) else "no")
+```

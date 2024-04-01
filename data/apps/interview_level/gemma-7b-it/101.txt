@@ -1,0 +1,10 @@
+```python
+n, a, b = map(int, input().split())
+
+if n < a or n < b:
+    print("NO")
+else:
+    print("YES")
+    x, y = divmod(n, a)
+    print(x, y)
+```

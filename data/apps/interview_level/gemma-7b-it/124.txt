@@ -1,0 +1,12 @@
+```python
+a, b, c, x, y, z = map(int, input().split())
+
+# Calculate the minimum grapes needed for each person
+min_grapes = x, y, z
+
+# Check if there are enough grapes to fulfill everyone's desire
+if a >= min_grapes[0] and b >= min_grapes[1] and c >= min_grapes[2]:
+  print("YES")
+else:
+  print("NO")
+```

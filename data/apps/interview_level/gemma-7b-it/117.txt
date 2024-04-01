@@ -1,0 +1,22 @@
+```python
+import math
+
+N, M = map(int, input().split())
+
+# Read the coordinates of the cow and the lines
+A_i, B_i, C_i = map(int, input().split())
+D_j, E_j, F_j = map(int, input().split())
+
+# Calculate the area of the region the cow can reach
+area = 0
+for i in range(N):
+    area += abs(C_i - A_i) * abs(B_i - C_i)
+
+for j in range(M):
+    area += abs(E_j - D_j) * abs(F_j - D_j)
+
+if area == float('inf'):
+    print('INF')
+else:
+    print(int(area))
+```

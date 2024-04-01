@@ -1,0 +1,19 @@
+```python
+n, f = map(int, input().split())
+
+k, l = []
+for _ in range(n):
+    k.append(int(input().split()[0]))
+    l.append(int(input().split()[1]))
+
+k_s = 0
+for i in range(n):
+    if l[i] > 0:
+        k_s += k[i]
+
+s_o = 0
+for i in range(f):
+    s_o += 2 * k[i]
+
+print(max(s_o, k_s))
+```

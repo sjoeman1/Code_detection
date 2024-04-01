@@ -1,0 +1,13 @@
+```python
+n, a, x, b, y = map(int, input().split())
+
+# Calculate the number of minutes it takes for each train to reach their finish station
+min_a = (x - a) + 1
+min_b = (y - b) + 1
+
+# If the minimum number of minutes is the same, it means that Daniel and Vlad will be at the same station at the same time
+if min_a == min_b:
+    print("YES")
+else:
+    print("NO")
+```

@@ -1,0 +1,19 @@
+```python
+x, y, l, r = map(int, input().split())
+
+a, b = x, y
+
+# Calculate the maximum number of lucky years in the interval [l, r]
+def unlucky_years(n):
+    return int((n - 1) // a) + int((n - 1) // b) - int((n - 1) // ab)
+
+# Find the maximum length of The Golden Age
+golden_age_length = unlucky_years(l) - unlucky_years(r)
+
+# Print the maximum length of The Golden Age
+print(golden_age_length)
+
+# If all years in the interval [l, r] are unlucky, print 0
+if golden_age_length == 0:
+    print(0)
+```

@@ -1,0 +1,19 @@
+```python
+n, k = map(int, input().split())
+
+p = list(map(int, input().split()))
+
+p.sort()
+
+# Calculate the maximum messiness
+max_messiness = 0
+for i in range(n-1):
+    for j in range(i, n-1):
+        if p[i] > p[j]:
+            max_messiness += 1
+
+# Subtract the number of swaps
+max_messiness -= min(k, max_messiness)
+
+print(max_messiness)
+```

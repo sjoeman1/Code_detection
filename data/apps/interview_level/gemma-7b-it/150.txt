@@ -1,0 +1,9 @@
+```python3
+n = int(input())
+
+# Calculate the maximum divisor of n that is not equal to n
+tax = max(int(n / i) for i in range(1, int(n ** 0.5) + 1) if n % i == 0 else 0 for i in range(1, int(n ** 0.5) + 1))
+
+# Print the result
+print(tax)
+```

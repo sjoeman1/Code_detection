@@ -1,0 +1,10 @@
+```python
+a, b = map(int, input().split())
+c, d = map(int, input().split())
+
+det = a*d - b*c
+if det == 0:
+  print(0)
+else:
+  print(abs(min(abs(a-c), abs(b-d)) / abs(det))
+```
