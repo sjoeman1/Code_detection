@@ -6,7 +6,7 @@ import json
 import argparse
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--model_name", type=str, default="Mixtral-8x7B-Instruct-v0.1",
+parser.add_argument("--model_name", type=str, default="gemma-7b-it",
                     choices=["CodeLlama-70b-Instruct-hf", "gemma-7b-it", "Mixtral-8x7B-Instruct-v0.1"]
                     )
 parser = parser.parse_args()
@@ -30,5 +30,5 @@ for directory in os.listdir('data/apps'):
                 gen_completion = txt_f.read()
 
             # write the question and the gold_completion and gen completion to a jsonl file
-            with open(f'data/apps/{directory}/{parser.model_name}-apps_{difficulty}.jsonl', 'a') as jsonl_f:
+            with open(f'data/apps/{directory}/{parser.model_name}-apps_{difficulty}_207.jsonl', 'a') as jsonl_f:
                 jsonl_f.write(json.dumps({"problem_id": problem_id, "question": 'Provide me the Python3 codes for solving the question: ' + question, "gold_completion": gold_completion, "gen_completion": gen_completion}) + '\n')
