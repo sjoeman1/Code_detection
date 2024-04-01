@@ -1,0 +1,25 @@
+
+Here is the Python 3 code for the given problem:
+
+```py
+def gcd(a, b):
+    while b:
+        a, b = b, a % b
+    return a
+
+def solve(t, w, b):
+    g = gcd(w, b)
+    t //= g
+    w //= g
+    b //= g
+    if w > b:
+        w, b = b, w
+    return (t - (t // b) * b) // w
+
+t, w, b = map(int, input().split())
+p = solve(t, w, b)
+q = t - p
+print(p, '/', q, sep='')
+```
+
+Here, `gcd` is the function to calculate the greatest common divisor of two integers. The `solve` function calculates the probability of Willman and Bolt tying again. The `solve` function takes the length of the racetrack `t`, the length of Willman's steps `w`, and the length of Bolt's steps `b` as input parameters. It first calculates the greatest common divisor of `w` and `b` and divides `t`, `w`, and `b` by the gcd. If `w > b`, it swaps `w` and `b` to ensure that `w <= b`. Then it calculates the probability of tying again as `(t - (t // b) * b) // w`. The probability is then printed in the desired format.

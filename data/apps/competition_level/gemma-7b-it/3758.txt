@@ -1,0 +1,24 @@
+```python
+n = int(input())
+g = input().split()
+
+# Create a map to store the positions of packmen and asterisks
+pos = {}
+asterisks = {}
+for i in range(n):
+    if g[i] == 'P':
+        pos[i] = 'P'
+    elif g[i] == '*':
+        asterisks[i] = True
+
+# Calculate the minimum time to eat all asterisks
+time = 0
+for i in pos:
+    # Calculate the distance to the nearest asterisk
+    distance = min(abs(i - x) for x in asterisks)
+    # Update the minimum time if necessary
+    time = max(time, distance)
+
+# Print the minimum time
+print(time)
+```

@@ -1,0 +1,41 @@
+ Here's a Python3 solution using math and logic to solve the problem:
+
+```python
+import math
+
+def find_sub_rectangle(n, m, x, y, a, b):
+    # Adjust a and b to make b the divisor
+    a, b = a * b, abs(b)
+
+    # Calculate the possible values of x_1 and y_1
+    x1_vals = [(x // a) * a for x in range(0, x + 1, a)]
+    y1_vals = [(y // b) * b for y in range(0, y + 1, b)]
+
+    # Initialize the best solution and the smallest distance
+    best_x1, best_y1, best_dist = -1, -1, math.inf
+
+    # Iterate through possible values of x_1 and y_1
+    for x1 in x1_vals:
+        for y1 in y1_vals:
+            # Calculate x_2 and y_2
+            x2 = x1 + a
+            y2 = y1 + b
+
+            # Check if the sub-rectangle is valid
+            if 0 <= x1 <= x2 <= n and 0 <= y1 <= y2 <= m:
+                # Calculate the Euclidean distance
+                dist = math.sqrt((x - (x1 + x2) / 2) ** 2 + (y - (y1 + y2) / 2) ** 2)
+
+                # Update the best solution if needed
+                if dist < best_dist:
+                    best_x1, best_y1, best_dist = x1, y1, dist
+
+    # Return the best sub-rectangle
+    return best_x1, best_y1, best_x1 + a, best_y1 + b
+
+# Test cases
+print(find_sub_rectangle(9, 9, 5, 5, 2, 1))
+print(find_sub_rectangle(100, 100, 52, 50, 46, 56))
+```
+
+The function `find_sub_rectangle

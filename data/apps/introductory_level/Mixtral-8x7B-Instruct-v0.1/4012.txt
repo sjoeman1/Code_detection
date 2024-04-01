@@ -1,0 +1,28 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def min\_operations(a, b, c):
+if a == b == c:
+return 0, a, b, c
+
+ops = 0
+while b % a != 0 or c % b != 0:
+ops += 1
+if b % a != 0:
+b += 1 if b % 2 == 0 else -1
+if c % b != 0:
+c += 1 if c % 2 == 0 else -1
+
+return ops, a, b, c
+
+t = int(input().strip())
+for _ in range(t):
+a, b, c = map(int, input().strip().split())
+ops, A, B, C = min\_operations(a, b, c)
+print(ops)
+print(A, B, C)
+```
+
+The `min_operations` function takes in three integers `a`, `b`, and `c` and returns the minimum number of operations required to make `b` divisible by `a` and `c` divisible by `b`. It does this by incrementing or decrementing `b` and `c` by 1 until `b` is divisible by `a` and `c` is divisible by `b`. The function returns the number of operations taken and the final values of `A`, `B`, and `C`.
+
+In the main part of the code, we read in the number of test cases `t` and loop through them. For each test case, we read in the three integers `a`, `b`, and `c`, and call the `min_operations` function to get the minimum number of operations and the final values of `A`, `B`, and `C`. We print out the minimum number of operations and the final values of `A`, `B`, and `C` for each test case.

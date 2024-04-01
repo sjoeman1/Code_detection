@@ -1,0 +1,15 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n, k = map(int, input().split())
+s = input()
+
+if k > len(set(s)):
+    print("NO")
+else:
+    print("YES")
+```
+
+The solution reads the number of baloons and friends from the input, followed by the string of baloon colors. It then checks if the number of friends is greater than the number of distinct baloon colors. If it is, then it's impossible to give out the baloons without upsetting any friends, so the solution prints "NO". Otherwise, it's possible to give out the baloons without upsetting any friends, so the solution prints "YES".
+
+The reason this solution works is that in order to avoid upsetting any friends, each friend must receive baloons of distinct colors. Therefore, the number of friends must be less than or equal to the number of distinct baloon colors. If this condition is satisfied, then it's possible to give out the baloons without upsetting any friends by giving each friend baloons of distinct colors.

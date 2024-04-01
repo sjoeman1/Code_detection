@@ -1,0 +1,12 @@
+```python
+n, k = map(int, input().split())
+
+# Find the number of digits to be deleted
+w = 0
+while n % 10**k != 0:
+    n //= 10
+    w += 1
+
+# Print the result
+print(w)
+```

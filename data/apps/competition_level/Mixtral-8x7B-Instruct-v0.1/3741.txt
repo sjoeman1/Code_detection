@@ -1,0 +1,41 @@
+ Here is a Python3 solution for the problem:
+```python
+import sys
+from collections import defaultdict
+
+input = sys.stdin.readline
+
+def bitwise_and_cycle(n: int, a: list) -> int:
+    graph = defaultdict(list)
+    for i in range(n):
+        for j in range(i + 1, n):
+            if a[i] & a[j] != 0:
+                graph[i].append(j)
+                graph[j].append(i)
+
+    visited = [False] * n
+    length = 0
+    for i in range(n):
+        if not visited[i]:
+            length = max(length, dfs(graph, visited, i, i, -1))
+
+    return length if length != -1 else -1
+
+def dfs(graph: dict, visited: list, node: int, parent: int, prev_length: int) -> int:
+    visited[node] = True
+    length = prev_length + 1
+
+    for child in graph[node]:
+        if not visited[child]:
+            length = max(length, dfs(graph, visited, child, node, length))
+        elif child != parent:
+            length = max(length, prev_length + 1)
+
+    return length
+
+n = int(input().strip())
+a = list(map(int, input().strip().split()))
+
+print(bitwise_and_cycle(n, a))
+```
+The solution uses Depth-First Search (DFS) to find the length of the shortest cycle in the graph. It first constructs a graph using the bitwise AND operation and then performs DFS on each connected component. If a cycle is found, it updates the length of the shortest cycle. Finally, it returns the length of the shortest cycle found or -1 if no cycle is found.

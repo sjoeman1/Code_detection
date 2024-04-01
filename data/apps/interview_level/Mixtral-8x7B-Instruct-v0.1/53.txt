@@ -1,0 +1,47 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def max\_beauty(s, b):
+n = len(s)
+# Initialize result with sum of all beauties
+res = sum(b)
+# Create a frequency array to count the occurrence of each character
+freq = [0]*26
+for c in s:
+freq[ord(c)-ord('a')] += 1
+# Initialize left and right pointers
+left, right = 0, n-1
+# Iterate while left is less than or equal to right
+while left <= right:
+# If current character from left is same as from right, then subtract beauty of left index from result
+if s[left] == s[right]:
+res -= b[left]
+# Move left pointer
+left += 1
+# Move right pointer
+right -= 1
+# If current character from left is less than right, then subtract beauty of right index from result
+elif freq[ord(s[right])-ord('a')] > 0:
+res -= b[right]
+freq[ord(s[right])-ord('a')] -= 1
+# Move right pointer
+right -= 1
+# If current character from left is greater than right, then subtract beauty of left index from result
+else:
+res -= b[left]
+freq[ord(s[left])-ord('a')] -= 1
+# Move left pointer
+left += 1
+return res
+```
+
+You can use this function to solve the problem as follows:
+
+```python
+n = int(input())
+s = input()
+b = list(map(int, input().split()))
+print(max\_beauty(s, b))
+```
+
+This solution first calculates the frequency of each character in the given string `s`. It then initializes the result with the sum of all beauties. Then, it iterates from both ends of the string and subtracts the beauty of the current index from the result if the characters from left and right are the same. If they are not the same, it subtracts the beauty of the index with the smaller frequency from the result. The final result is the maximum possible beauty of `t`.

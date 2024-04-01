@@ -1,0 +1,33 @@
+ Here is a Python3 solution for the problem:
+
+```python
+import sys
+input = sys.stdin.readline
+
+def get_set_bits(x):
+    return bin(x).count("1")
+
+def get_special_numbers(n, k):
+    dp = [0] * (n + 1)
+    dp[1] = 1
+    for i in range(2, n + 1):
+        if i & 1:
+            dp[i] = dp[i - 1]
+        else:
+            dp[i] = dp[i // 2]
+        for j in range(1, i):
+            if get_set_bits(j) == k:
+                dp[i] = (dp[i] + dp[i - j]) % mod
+    return dp[n]
+
+mod = 1000000007
+n = int(input().strip(), 2)
+k = int(input().strip())
+print(get_special_numbers(n, k))
+```
+
+The function `get_set_bits(x)` calculates the number of set bits in the binary representation of `x`. The function `get_special_numbers(n, k)` calculates the number of special numbers not greater than `n` using dynamic programming.
+
+The dynamic programming array `dp` stores the number of special numbers not greater than the index `i` for each `i` from `1` to `n`. The base case is `dp[1] = 1`, since `1` is always a special number. For each `i` from `2` to `n`, if `i` is odd, then `dp[i] = dp[i - 1]` since the minimum number of operations to reduce `i` to `1` is the same as the minimum number of operations to reduce `i - 1` to `1`. If `i` is even, then `dp[i] = dp[i // 2]` since the minimum number of operations to reduce `i` to `1` is the same as the minimum number of operations to reduce `i // 2` to `1`.
+
+Finally, for each `j` from `1` to

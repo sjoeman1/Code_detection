@@ -1,0 +1,22 @@
+```python
+n, m = map(int, input().split())
+a = list(map(int, input().split()))
+
+dp = [0] * (n + 1)
+dp[0] = 1
+
+for i in range(m):
+    dp[a[i]] = 0
+
+dp[n] = 1
+
+print(dp[n] % 1000000007)
+```
+
+**Explanation:**
+
+- The function calculates the number of ways to climb up the stairs, dp, using a dynamic programming approach.
+- The base case is dp[0] = 1, as there is only one way to climb up 0 steps, which is to not climb at all.
+- For each step a[i], the function sets dp[a[i]] to 0 to prevent counting it in the total number of ways.
+- Finally, dp[n] is calculated, which represents the total number of ways to climb up the stairs, excluding the broken steps.
+- The result is printed modulo 1000000007 to ensure that the answer does not exceed this limit.

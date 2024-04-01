@@ -1,0 +1,51 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def solve():
+    s = input()
+    t, u = '', ''
+    while s:
+        t += s[0]
+        u += s[-1]
+        s = s[1:-1]
+    print(u)
+
+solve()
+```
+
+This program takes the input string `s` and repeatedly performs the two possible moves described in the problem statement until `s` becomes empty. At each step, it appends the first character of `s` to `t` and the last character of `t` to `u`. The resulting string `u` is then printed as the output.
+
+Explanation of the code:
+
+* `s = input()` reads the input string from the user.
+* `t, u = '', ''` initializes the two empty strings `t` and `u`.
+* The `while` loop continues as long as `s` is non-empty.
+* At each iteration of the loop, the first character of `s` is appended to `t` using `t += s[0]`, and the last character of `t` is appended to `u` using `u += t[-1]`.
+* The substring of `s` excluding the first and last characters is obtained using `s = s[1:-1]`.
+* Finally, the resulting string `u` is printed using `print(u)`.
+
+Sample input/output:
+
+Input:
+
+```
+cab
+```
+
+Output:
+
+```
+abc
+```
+
+Input:
+
+```
+acdb
+```
+
+Output:
+
+```
+abdc
+```

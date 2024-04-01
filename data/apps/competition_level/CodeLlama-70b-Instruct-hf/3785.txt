@@ -1,0 +1,49 @@
+
+```py
+# Function to check if a cell is valid or not
+def is_valid(x, y, n, m):
+    return x >= 0 and x < n and y >= 0 and y < m
+
+# Function to perform DFS and mark the connected cells
+def dfs(grid, x, y, n, m, visited):
+    visited[x][y] = True
+    # Recurse for all adjacent cells
+    for i in range(4):
+        new_x = x + dx[i]
+        new_y = y + dy[i]
+        if is_valid(new_x, new_y, n, m) and grid[new_x][new_y] == '.' and not visited[new_x][new_y]:
+            dfs(grid, new_x, new_y, n, m, visited)
+
+# Function to add walls to the maze
+def add_walls(grid, n, m, k):
+    # Initialize the visited array
+    visited = [[False] * m for _ in range(n)]
+    # Directions array
+    dx = [-1, 1, 0, 0]
+    dy = [0, 0, -1, 1]
+    # Count the number of empty cells in the maze
+    empty_cells = 0
+    for i in range(n):
+        for j in range(m):
+            if grid[i][j] == '.':
+                empty_cells += 1
+
+    # Start DFS from the top-left corner
+    dfs(grid, 0, 0, n, m, visited)
+
+    # Count the number of connected cells
+    connected_cells = 0
+    for i in range(n):
+        for j in range(m):
+            if grid[i][j] == '.' and visited[i][j]:
+                connected_cells += 1
+
+    # If there are less connected cells than k, return -1
+    if k > connected_cells:
+        return -1
+
+    # Initialize the walls_added variable
+    walls_added = 0
+    # Start adding walls
+    for i in range(n):
+        for j in

@@ -1,0 +1,23 @@
+```python
+s = input().lower()
+a = set(s.split())
+n = len(a)
+if n <= 26:
+    print("YES")
+else:
+    print("NO")
+```
+
+**Explanation:**
+
+- The program reads the input string `s` which represents the identifiers of the program.
+- It creates a set `a` of unique identifiers in the string.
+- If the number of unique identifiers in the set `a` is less than or equal to 26, it prints "YES". Otherwise, it prints "NO".
+
+**Time Complexity:**
+
+- The program reads the input string only once, so the time complexity is O(n) where `n` is the length of the input string.
+
+**Space Complexity:**
+
+- The program uses a set `a` of size at most 26, so the space complexity is O(n) where `n` is the number of unique identifiers in the input string.

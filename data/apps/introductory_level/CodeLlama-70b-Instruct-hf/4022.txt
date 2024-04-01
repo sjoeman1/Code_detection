@@ -1,0 +1,60 @@
+
+
+The solution to this problem is given below:
+
+```python
+from collections import defaultdict
+
+class Graph:
+    def __init__(self, n):
+        self.graph = defaultdict(list)
+        self.n = n
+        self.visited = [False] * (n + 1)
+        self.degree = [0] * (n + 1)
+        self.ans = []
+
+    def addEdge(self, u, v):
+        self.graph[u].append(v)
+        self.graph[v].append(u)
+
+    def dfs(self, v, par):
+        self.visited[v] = True
+        self.degree[v] += 1
+        for child in self.graph[v]:
+            if not self.visited[child]:
+                self.dfs(child, v)
+
+    def solve(self, d):
+        self.dfs(1, 0)
+        if self.degree[1] != d:
+            print("NO")
+        else:
+            print("YES")
+            for v in self.graph[1]:
+                if self.degree[v] == 1:
+                    self.ans.append((1, v))
+                    self.degree[v] += 1
+                    break
+            for u in range(2, self.n + 1):
+                if self.degree[u] == 1:
+                    for v in self.graph[u]:
+                        if self.degree[v] > 1:
+                            self.ans.append((u, v))
+                            self.degree[u] += 1
+                            self.degree[v] += 1
+                            break
+            for u, v in self.ans:
+                print(u, v)
+
+
+if __name__ == "__main__":
+    n, m, d = map(int, input().split())
+    graph = Graph(n)
+    for i in range(m):
+        u, v = map(int, input().split())
+        graph.addEdge(u, v)
+    graph.solve(d)
+
+```
+
+The code above

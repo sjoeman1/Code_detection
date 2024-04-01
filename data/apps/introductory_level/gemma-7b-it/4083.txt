@@ -1,0 +1,22 @@
+```python
+n, k = map(int, input().split())
+a = list(map(int, input().split()))
+
+a.sort()
+operations = 0
+equal = 0
+for i in range(len(a)):
+    if a[i] >= k - equal:
+        operations += 1
+        a[i] = 0
+        equal += 1
+
+print(operations)
+```
+
+**Explanation:**
+1. Sort the array in ascending order.
+2. Iterate over the array and count the number of operations required to make each element equal to $k - equal. 
+3. If the element is greater than or equal to $k - equal, increment operations and set the element to 0.
+4. Increment equal by 1 for each element that is made equal to $k - equal.
+5. Print operations.

@@ -1,0 +1,50 @@
+
+
+Here's the Python3 code to solve the question:
+
+```python
+# import necessary libraries
+from collections import deque
+import sys
+
+# read input from file
+T = int(sys.stdin.readline())
+for _ in range(T):
+    # read the number of bags and dishes
+    N = int(sys.stdin.readline())
+    # read the number of coins in each bag
+    a = list(map(int, sys.stdin.readline().split()))
+
+    # initialize the number of coins in each dish
+    b = [0] * N
+    # initialize the number of coins in each bag
+    c = a.copy()
+
+    # initialize the winner
+    win = "First"
+
+    # simulate the game
+    for i in range(2 * N - 1):
+        # player 1's turn
+        if i % 2 == 0:
+            # find the bag with the highest number of coins
+            bag = c.index(max(c))
+            # move the coins from the bag to the dish
+            b[bag] = c[bag]
+            c[bag] = 0
+        # player 2's turn
+        else:
+            # find the dish with the highest number of coins
+            dish = b.index(max(b))
+            # remove one coin from the dish
+            b[dish] -= 1
+            # if there are no coins left in the dish, player 1 wins
+            if b[dish] == 0:
+                win = "Second"
+                break
+
+    # print the winner
+    print(win)
+```
+
+This code reads the input from the standard input (stdin) in the required format, simulates the game, and prints the winner for each test case. It finds the bag or dish with the highest number of coins and makes the appropriate move. If there are no coins left in the dish, player 1 wins.

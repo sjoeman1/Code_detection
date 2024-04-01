@@ -1,0 +1,44 @@
+
+
+To solve this problem, we need to use the Euclidean distance formula to find the closest rectangle to (x, y) and the lexicographically minimum one. Here's the Python 3 code to solve the problem:
+
+```
+import math
+
+def solve_problem(n, m, x, y, a, b):
+    # Initialize the closest rectangle with a large distance
+    closest_rectangle = [0, 0, 0, 0]
+    closest_distance = float("inf")
+
+    # Iterate through all possible rectangles
+    for x1 in range(x + 1):
+        for x2 in range(x, n + 1):
+            for y1 in range(y + 1):
+                for y2 in range(y, m + 1):
+                    # Check if the current rectangle is a valid solution
+                    if (x2 - x1) / (y2 - y1) == a / b:
+                        # Calculate the Euclidean distance between (x, y) and the center of the rectangle
+                        center_x = (x1 + x2) / 2
+                        center_y = (y1 + y2) / 2
+                        distance = math.sqrt((center_x - x) ** 2 + (center_y - y) ** 2)
+
+                        # Check if this rectangle is closer to (x, y) or lexicographically smaller
+                        if distance < closest_distance or (distance == closest_distance and [x1, y1, x2, y2] < closest_rectangle):
+                            closest_rectangle = [x1, y1, x2, y2]
+                            closest_distance = distance
+
+    # Print the result
+    if closest_rectangle == [0, 0, 0, 0]:
+        print("No solution")
+    else:
+        print(*closest_rectangle)
+
+
+# Read input
+n, m, x, y, a, b = map(int, input().split())
+
+# Solve the problem
+solve_problem(n, m, x, y, a, b)
+```
+
+This code will find the closest rectangle to the given point (x, y)

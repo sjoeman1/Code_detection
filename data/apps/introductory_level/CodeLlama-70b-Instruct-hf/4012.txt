@@ -1,0 +1,19 @@
+
+
+Here's the Python3 code for solving the problem:
+
+```python
+# Input:
+n = int(input())
+a = input()
+f = list(map(int, input().split()))
+
+# Output:
+print(max(f[int(x) - 1] for x in a))
+```
+
+The code starts by reading the input values, `n` and `a`, as integers and strings respectively. It then reads the values of `f(1)`, `f(2)`, ..., `f(9)` as integers and stores them in a list.
+
+Next, it iterates through each digit in `a` and replaces it with the corresponding value of `f` using the `f[int(x) - 1]` expression.
+
+Finally, it finds the maximum of these values using the `max()` function and prints it as the output.

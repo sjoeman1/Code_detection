@@ -1,0 +1,47 @@
+
+
+ Here is the Python3 code for solving the question:
+
+```
+# Define the puzzle class
+class Puzzle:
+    def __init__(self, initial_state):
+        self.initial_state = initial_state
+        self.goal_state = [['A', 'B'], ['C', 'X']]
+
+    def solve(self):
+        # Initialize the frontier with the initial state
+        frontier = [self.initial_state]
+        # Initialize the explored set with the initial state
+        explored = set([tuple(map(tuple, self.initial_state))])
+        # Initialize the number of moves to 0
+        moves = 0
+
+        while frontier:
+            # Pop the current state from the frontier
+            current_state = frontier.pop(0)
+            # Check if the current state is the goal state
+            if current_state == self.goal_state:
+                return moves
+            # Generate the next states from the current state
+            for next_state in self.generate_next_states(current_state):
+                # Check if the next state has already been explored
+                if tuple(map(tuple, next_state)) not in explored:
+                    # Add the next state to the frontier
+                    frontier.append(next_state)
+                    # Add the next state to the explored set
+                    explored.add(tuple(map(tuple, next_state)))
+            # Increment the number of moves
+            moves += 1
+
+        return -1
+
+    def generate_next_states(self, current_state):
+        next_states = []
+        # Find the position of the empty tile
+        empty_tile_pos = [(i, j) for i in range(2) for j in range(2) if current_state[i][j] == 'X'][0]
+        # Generate the possible moves
+        possible_moves = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+
+        for move in possible_moves:
+            next_pos = (empty_tile_pos[0] + move[0], empty_tile_pos[1] + move[

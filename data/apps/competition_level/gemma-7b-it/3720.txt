@@ -1,0 +1,15 @@
+```python
+n = int(input())
+
+# Calculate the powers of each number from 1 to n
+powers = {x: set(x**i for i in range(1, int(n**0.5) + 1)) for x in range(1, n + 1)}
+
+# Vasya's move
+vasya_move = int(input())
+
+# Check if Vasya can win
+if vasya_move not in powers[vasya_move] and not powers[vasya_move].issuperset(powers[vasya_move]):
+    print("Vasya")
+else:
+    print("Petya")
+```

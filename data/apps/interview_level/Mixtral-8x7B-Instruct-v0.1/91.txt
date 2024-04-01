@@ -1,0 +1,36 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def can_achieve(n, k, a):
+    # Initialize result array with -1
+    v = [-1] * n
+    # Initialize power of k
+    k_power = 1
+    # Loop until k^power exceeds the maximum value in a
+    while k_power <= 10**16:
+        # Find the maximum value in a that is less than or equal to k_power
+        max_val = max(x for x in a if x <= k_power)
+        # If the maximum value is equal to k_power
+        if max_val == k_power:
+            # Set the positions of the maximum value in v to k_power
+            for i, x in enumerate(a):
+                if x == max_val:
+                    v[i] = k_power
+            # Return True
+            return True
+        # Increase power of k
+        k_power *= k
+    # Return False
+    return False
+
+T = int(input().strip())
+for t in range(T):
+    n, k = map(int, input().strip().split())
+    a = list(map(int, input().strip().split()))
+    # Call can_achieve function and convert the result to uppercase YES or NO
+    print('YES' if can_achieve(n, k, a) else 'NO')
+```
+
+The `can_achieve` function initializes a result array `v` with -1 and a power of `k` with 1. It then enters a loop that continues until the power of `k` exceeds the maximum value in `a`. In each iteration, it finds the maximum value in `a` that is less than or equal to the current power of `k`. If such a value exists and is equal to the power of `k`, it sets the positions of the maximum value in `v` to the power of `k` and returns `True`. Otherwise, it increases the power of `k` and continues to the next iteration. If the loop completes without returning `True`, the function returns `False`.
+
+The main part of the code reads the input, calls the `can_achieve` function for each test case,

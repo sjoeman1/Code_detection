@@ -1,0 +1,22 @@
+```python
+n, k = map(int, input().split())
+a = list(map(int, input().split()))
+
+a.sort()
+total = sum(a)
+avg = total // k
+
+min_marks = k - avg
+
+print(min_marks)
+```
+
+**Explanation:**
+
+1. Read the number of marks (n) and the highest possible mark (k).
+2. Read n marks received by Noora.
+3. Sort the marks in ascending order.
+4. Calculate the total marks and divide it by k to get the average mark.
+5. Take the integer division of the average mark to get the number of marks that can be achieved with the current marks.
+6. Subtract this number from k to get the minimum number of marks that need to be added.
+7. Print the minimum number of marks.

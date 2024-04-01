@@ -1,0 +1,20 @@
+```python
+n, T = map(int, input().split())
+
+t = list(map(int, input().split()))
+
+t.sort()
+
+# Calculate the maximum number of bowls that can be eaten
+max_ Bowls = 0
+current_Position = 0
+current_Time = 0
+
+for i in range(n):
+    if t[i] - current_Time >= current_Position:
+        max_ Bowls += 1
+        current_Position += 1
+        current_Time = t[i]
+
+print(max_ Bowls)
+```

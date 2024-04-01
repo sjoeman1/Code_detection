@@ -1,0 +1,34 @@
+
+```python
+n = int(input())
+divisors = [int(x) for x in input().split()]
+
+# Get the list of unique divisors
+unique_divisors = list(set(divisors))
+
+# Sort the list in ascending order
+unique_divisors.sort()
+
+# Initialize x and y
+x, y = 1, 1
+
+# Iterate through the unique divisors
+for d in unique_divisors:
+    # Count the number of occurrences of d in the list of divisors
+    count = divisors.count(d)
+
+    # If d is a divisor of both x and y, count will be 2
+    if count == 2:
+        x *= d
+        y *= d
+    # If d is a divisor of x, count will be 1
+    elif count == 1:
+        x *= d
+    # If d is a divisor of y, count will be 0
+    else:
+        y *= d
+
+print(x, y)
+```
+
+This Python code takes the input of the number of divisors and the list of divisors, finds the unique divisors, sorts them in ascending order, initializes x and y, iterates through the unique divisors, counts the number of occurrences of each divisor, and assigns the appropriate divisor to x or y based on the count. Finally, it prints the values of x and y.

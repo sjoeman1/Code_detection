@@ -1,0 +1,46 @@
+ Here is a possible Python3 solution for the problem:
+```python
+from collections import defaultdict
+
+def find_spanning_tree(n, m, D, edges):
+    # create a graph as a dictionary of adjacency lists
+    graph = defaultdict(list)
+    for v, u in edges:
+        graph[v].append(u)
+        graph[u].append(v)
+
+    # initialize a set of visited vertices and a set of tree edges
+    visited = {1}
+    tree_edges = set()
+
+    # recursive function to find a spanning tree
+    def dfs(v, parent):
+        # for each adjacent vertex u of v
+        for u in graph[v]:
+            if u == parent:
+                continue
+            if u not in visited:
+                # mark u as visited and add the edge (v, u) to the tree
+                visited.add(u)
+                tree_edges.add((min(v, u), max(v, u)))
+                dfs(u, v)
+
+    # find a spanning tree rooted at vertex 1
+    dfs(1, -1)
+
+    # check if the degree of vertex 1 is equal to D
+    if graph[1][0] == D - 1:
+        # print the tree edges in the required format
+        for v, u in sorted(tree_edges):
+            print(v, u)
+    else:
+        print("NO")
+
+# read the input
+n, m, D = map(int, input().split())
+edges = [tuple(map(int, input().split())) for _ in range(m)]
+
+# find a spanning tree
+find_spanning_tree(n, m, D, edges)
+```
+The solution uses a depth-first search algorithm to find a spanning tree of the given graph. It first creates a graph as a dictionary of adjacency lists, where each key is a vertex and each value is a list of adjacent vertices. Then it initializes a set of visited vertices and a set of tree edges. The `dfs` function performs a depth-first search starting from the root vertex 1 and recursively visits each unvisited adjacent vertex. For each visited vertex,

@@ -1,0 +1,50 @@
+ It seems like you're asking for a Python3 solution to a problem based on the given Latin text and input/output format. I'll provide the code that solves the problem, but first, let me explain the task.
+
+The Latin text is a riddle, and the input is a list of integers. The task is to find the smallest integer that can be obtained by performing certain arithmetic operations on the given integers. The allowed operations are:
+
+1. Multiply the integer by 2 (Aqua Fortis)
+2. Multiply the integer by 3 (Aqua Regia)
+3. Subtract 1 from the integer, then square the result (Amalgama)
+4. Multiply the integer by 5 and add 1 (Minium)
+5. Multiply the integer by 4 and add 2 (Vitriol)
+
+The goal is to find the smallest positive integer that cannot be obtained through these operations.
+
+Now, here's the Python3 code to solve the problem:
+
+```python
+def apply_operations(n, operations):
+    result = set()
+    result.add(n)
+    for op in operations:
+        for r in result:
+            result.add(op(r))
+    return result
+
+def aqua_fortis(n):
+    return n * 2
+
+def aqua_regia(n):
+    return n * 3
+
+def amalgama(n):
+    return (n - 1) ** 2
+
+def minium(n):
+    return 5 * n + 1
+
+def vitriol(n):
+    return 4 * n + 2
+
+def philospher_stone(a):
+    operations = [aqua_fortis, aqua_regia, amalgama, minium, vitriol]
+    candidates = apply_operations(1, operations)
+    for num in a:
+        candidates = apply_operations(num, operations)
+    for i in range(2, max(candidates) + 1):
+        if i not in candidates:
+            return i
+
+# Read input
+input_str = input().strip()
+input_nums = [int(x) for x in input_str

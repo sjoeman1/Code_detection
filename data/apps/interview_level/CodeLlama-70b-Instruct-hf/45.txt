@@ -1,0 +1,38 @@
+🤖Here is the Python3 code for solving the question:
+```
+def gcd(a, b):
+    while b:
+        a, b = b, a % b
+    return a
+
+n, k = map(int, input().split())
+
+if n == 0:
+    if k == 0:
+        print(0)
+    else:
+        print(-1)
+    exit()
+
+a = [1] * k
+
+for i in range(k):
+    if (n - 1) % k == 0:
+        a[i] += i * (n - 1) // k
+    else:
+        a[i] += (n - 1) // k
+
+if gcd(n, k) == 1:
+    print(-1)
+    exit()
+
+if k == 1:
+    a = [n]
+
+print(*a)
+```
+The code first reads the input numbers n and k. It then calculates the greatest common divisor (gcd) of n and k using the Euclidean algorithm. If the gcd is 1, then there is no possible sequence, and the code prints -1.
+
+Otherwise, it initializes an array a with k elements, each having a value of 1. Then it calculates the sum of the numbers in the sequence by adding (n - 1) / k to each element of a. The code ensures that the sum of the sequence is equal to n.
+
+Finally, it prints the sequence. If k is 1, then the code prints n directly.

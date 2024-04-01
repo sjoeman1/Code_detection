@@ -1,0 +1,20 @@
+```python
+import math
+
+n = int(input())
+a = list(map(int, input().split()))
+p = int(input())
+
+s = sum(a)
+if s <= p:
+    print(len(a))
+else:
+    print(math.floor(s/p))
+```
+
+**Explanation:**
+
+* Read the number of guests, their sizes, and the table's length.
+* Calculate the total sum of guests' sizes.
+* If the total sum is less than or equal to the table's length, print the number of guests.
+* Otherwise, print the integer division of the total sum by the table's length.

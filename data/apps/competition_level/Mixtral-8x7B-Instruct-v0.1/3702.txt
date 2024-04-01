@@ -1,0 +1,8 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def fibonacci_sequence(limit):
+    fibonacci = [0, 1]
+    while fibonacci[-1] < limit:
+        fibonacci.append(fibonacci[-1] + fibonacci[-2])
+    return fibonacci

@@ -1,0 +1,34 @@
+
+
+
+
+ Here is a Python 3 code that solves the problem:
+
+```
+# Read the input from the standard input
+N, X = map(int, input().split())
+A = [int(input(), 2) for _ in range(N)]
+
+# Create a set to store the integers that can be written on the board
+integers = set(A)
+
+# Perform a loop to update the integers set
+for _ in range(1000):
+    new_integers = set()
+    for x in integers:
+        # Double each integer
+        new_integers.add(x << 1)
+        for y in integers:
+            # Take XOR of each pair of integers
+            new_integers.add(x ^ y)
+    # Update the integers set with the new integers
+    integers |= new_integers
+
+# Count the number of integers not exceeding X in the integers set
+count = sum(1 for x in integers if x <= X)
+
+# Print the final count modulo 998244353
+print(count % 998244353)
+```
+
+This code reads the input from the standard input, creates a set to store the integers that can be written on the board, performs a loop to update the integers set, and then counts the number of integers not exceeding X in the integers set. The final count is printed modulo 998244353.

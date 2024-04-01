@@ -1,0 +1,55 @@
+ Here is a Python3 solution for the problem:
+
+```python
+import math
+
+def calculate(x, y, z, operation):
+    if operation == 1:
+        return x ** (y ** z)
+    elif operation == 2:
+        return x ** (z ** y)
+    elif operation == 3:
+        return (x ** y) ** z
+    elif operation == 4:
+        return (x ** z) ** y
+    elif operation == 5:
+        return y ** (x ** z)
+    elif operation == 6:
+        return y ** (z ** x)
+    elif operation == 7:
+        return (y ** x) ** z
+    elif operation == 8:
+        return (y ** z) ** x
+    elif operation == 9:
+        return z ** (x ** y)
+    elif operation == 10:
+        return z ** (y ** x)
+    elif operation == 11:
+        return (z ** x) ** y
+    elif operation == 12:
+        return (z ** y) ** x
+
+def main():
+    x, y, z = map(float, input().split())
+    operations = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    max_value = -1
+    max_operation = -1
+    for operation in operations:
+        value = calculate(x, y, z, operation)
+        if value > max_value:
+            max_value = value
+            max_operation = operation
+
+    result = ""
+    if max_operation == 1:
+        result = "x^y^z"
+    elif max_operation == 2:
+        result = "x^z^y"
+    elif max_operation == 3:
+        result = "(x^y)^z"
+    elif max_operation == 4:
+        result = "(x^z)^y"
+    elif max_operation == 5:
+        result = "y^x^z"
+    elif max_operation == 6:
+        result = "y^z^x"

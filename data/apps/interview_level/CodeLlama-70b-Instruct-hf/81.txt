@@ -1,0 +1,27 @@
+
+Here's the Python3 code for solving the question:
+
+```py
+from math import gcd
+
+def lcm(x, y):
+    return (x * y) // gcd(x, y)
+
+def solution(a, b):
+    lcm_ab = lcm(a, b)
+    lcm_ap_b = lcm(a + 1, b + 1)
+
+    while lcm_ap_b < lcm_ab:
+        a += 1
+        b += 1
+        lcm_ab = lcm_ap_b
+        lcm_ap_b = lcm(a + 1, b + 1)
+
+    return a - b
+
+a, b = map(int, input().split())
+k = solution(a, b)
+print(k)
+```
+
+This code first calculates the least common multiple of $a$ and $b$ using the `lcm` function. Then it iteratively checks if the least common multiple of $a + k$ and $b + k$ is smaller than the least common multiple of $a$ and $b$. If it is, it updates $k$ to the current value of $k$ and updates the least common multiple of $a + k$ and $b + k$ to the new value. This process continues until the least common multiple of $a + k$ and $b + k$ is not smaller than the least common multiple of $a$ and $b$. Finally, it returns the smallest value of $k$ that satisfies the condition.

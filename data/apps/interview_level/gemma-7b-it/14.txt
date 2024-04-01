@@ -1,0 +1,40 @@
+```python
+n, k = map(int, input().split())
+p = list(map(int, input().split()))
+
+p.sort()
+
+# Check if the first k elements are stack-sortable
+if p[0:k] != sorted(p[0:k]):
+    print(-1)
+else:
+    # Create a map to store the positions of the first k elements in their original order
+    positions = {p[i]: i for i in range(k)}
+
+    # Sort the remaining elements in descending order
+    p[k:] = sorted(p[k:], reverse=True)
+
+    # Place the first k elements in their original positions
+    for i in range(k):
+        p[positions[p[i]]] = p[i]
+
+    print(*p)
+```
+
+**Explanation:**
+
+* The code reads the input, including the size of the permutation, k, and the first k elements.
+* It checks if the first k elements are stack-sortable by comparing them to the sorted order of the first k elements. If they are not, it prints -1.
+* If the first k elements are stack-sortable, it creates a map to store the positions of the first k elements in their original order.
+* It sorts the remaining elements in descending order.
+* Finally, it places the first k elements in their original positions and prints the sorted permutation.
+
+**Time Complexity:**
+
+* The code spends O(n) time sorting the remaining elements.
+* It also spends O(n) time creating the map to store the positions of the first k elements.
+* Overall, the code has a time complexity of O(n).
+
+**Space Complexity:**
+
+* The code uses O(n) space for the map and the sorted list.

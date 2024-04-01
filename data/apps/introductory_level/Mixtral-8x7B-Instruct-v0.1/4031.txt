@@ -1,0 +1,24 @@
+ Here is a Python3 solution for the problem:
+```python
+n = int(input().strip())
+strings = []
+for i in range(n):
+    strings.append(input().strip())
+
+# sort the strings based on their length and lexicographical order
+strings.sort(key=lambda x: (len(x), x))
+
+# check if the sorted strings satisfy the given condition
+for i in range(1, n):
+    for j in range(len(strings[i])):
+        if strings[i][j:] == strings[i-1]:
+            print("NO")
+            exit()
+
+print("YES")
+for s in strings:
+    print(s)
+```
+The solution first sorts the strings based on their length and lexicographical order. Then, it checks if the sorted strings satisfy the given condition by iterating through the strings and checking if any string is a substring of the previous string. If such a string is found, then it prints "NO" and exits the program. Otherwise, it prints "YES" and all the strings in the sorted order.
+
+Note that this solution assumes that the input is valid and the number of strings $n$ is at most 100. If this is not the case, then you may need to add additional error checking and handling code.

@@ -1,0 +1,33 @@
+```python
+n, m = map(int, input().split())
+s = []
+d = []
+c = []
+
+for i in range(m):
+    s_i, d_i, c_i = map(int, input().split())
+    s.append(s_i)
+    d.append(d_i)
+    c.append(c_i)
+
+s_set = set(s)
+if len(s_set) != m:
+    print(-1)
+else:
+    ans = []
+    for i in range(n):
+        if i in s_set:
+            ans.append(m + 1)
+        elif i in d_set:
+            ans.append(0)
+        else:
+            ans.append(c[s.index(min(s_set))])
+    print(*ans)
+```
+
+**Explanation:**
+
+1. We create lists `s`, `d`, and `c` to store the days when questions are given, the day of the exam, and the number of days needed to prepare for each exam, respectively.
+2. We create a set `s_set` of the days when questions are given. If the number of exams is not equal to the number of unique days when questions are given, we print -1.
+3. We iterate over the number of days and check if the day is in `s_set` or `d_set`. If it is in `s_set`, we append `m + 1` to the answer list. If it is in `d_set`, we append 0 to the answer list. Otherwise, we append `c[s.index(min(s_set))]` to the answer list. This is because the number of days Petya prepares for each exam is equal to the number of days needed to prepare for that exam, so we need to find the index of the minimum day in `s` that is greater than or equal to the day of the exam and use that index to get the number of days Petya needs to prepare for that exam.
+4. Finally, we print the answer list.

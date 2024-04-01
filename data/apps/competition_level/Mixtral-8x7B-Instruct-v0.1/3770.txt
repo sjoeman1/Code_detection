@@ -1,0 +1,39 @@
+ Here is a Python3 solution using NetworkX library to create and manipulate the graph. The idea is to calculate the sum of B\_i for all connected components before and after deleting each vertex, and keep track of the maximum profit.
+
+```python
+import networkx as nx
+
+def max\_profit():
+n, m = map(int, input().split())
+a = list(map(int, input().split()))
+b = list(map(int, input().split()))
+edges = [list(map(int, input().split())) for _ in range(m)]
+
+G = nx.Graph()
+for u, v in edges:
+G.add\_edge(u, v)
+
+total\_cost = sum(a)
+max\_profit = -total\_cost # initialize with the minimum possible value
+
+# iterate over all vertices
+for v in range(1, n+1):
+G\_v = G.copy() # create a copy of the graph
+G\_v.remove\_node(v) # delete vertex v
+
+# calculate the sum of B\_i for all connected components
+scores = [sum(b[cc] for cc in c) for c in nx.connected\_components(G\_v)]
+
+# calculate the profit
+profit = sum(abs(s) for s in scores) - a[v-1]
+
+# update the maximum profit
+max\_profit = max(max\_profit, profit)
+
+print(max\_profit)
+
+if **name** == '**main**':
+max\_profit()
+```
+
+Note that this solution has a time complexity of O(N \* (N + M)) due to the use of NetworkX library, which may not be efficient enough for larger inputs. A more efficient solution would be to use a disjoint-set data structure to keep track of connected components, which would reduce the time complexity to O(N \* log(N) + M \* log(N)).

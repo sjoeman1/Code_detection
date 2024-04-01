@@ -1,0 +1,41 @@
+
+Here is the Python 3 code that solves the problem:
+
+```python
+from math import gcd
+
+def get_number_of_common_divisors(arr):
+    n = len(arr)
+    result = 1
+
+    # Calculate the GCD of the first two elements
+    result = gcd(arr[0], arr[1])
+
+    # Update the GCD by taking GCD of the current GCD and the next element
+    for i in range(2, n):
+        result = gcd(result, arr[i])
+
+    # Count the number of divisors of the GCD
+    divisors = 1
+    for i in range(2, result + 1):
+        if result % i == 0:
+            divisors += 1
+
+    return divisors
+
+# Test the function
+if __name__ == "__main__":
+    arr = [2, 4, 6, 2, 10]
+    result = get_number_of_common_divisors(arr)
+    print(result)  # Output: 2
+```
+
+This code defines a function `get_number_of_common_divisors` that takes an array as input and calculates the number of common divisors of all elements in the array.
+
+It starts by calculating the greatest common divisor (GCD) of the first two elements using the `gcd` function from the `math` module. Then, it iteratively updates the GCD by taking the GCD of the current GCD and the next element in the array.
+
+Finally, it counts the number of divisors of the GCD by iterating from 2 to the GCD and incrementing the divisors count by 1 if the GCD is divisible by the current number.
+
+The function returns the number of divisors as the result.
+
+The code also includes a test case to demonstrate the function's usage.

@@ -1,0 +1,16 @@
+```python
+n, k = map(int, input().split())
+a = list(map(int, input().split()))
+
+a.sort()
+res = set()
+
+for i in range(n):
+    for exp in range(a[i].factorial() // k, -1, -1):
+        num = a[i] * exp
+        if num % k == 0 and num not in res:
+            res.add(num)
+
+print(len(res))
+print(*sorted(res))
+```

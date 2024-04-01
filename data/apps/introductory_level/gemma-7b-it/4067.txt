@@ -1,0 +1,19 @@
+```python
+n = int(input())
+s = input().strip()
+
+# Calculate the minimum number of characters to replace
+min_replace = sum(x - y for x, y in zip(['0' * (n // 3), s].T))
+
+# Replace characters to make the string balanced
+s = ''.join(['0' if x == '1' else '1' if x == '0' else '2' for x in s])
+
+# Print the balanced ternary string
+print(s)
+```
+
+**Explanation:**
+
+1. Calculate the minimum number of characters to replace. This is equal to the sum of the difference between the number of characters '0' and '1', and the number of characters '1' and '2' in the string.
+2. Replace characters in the string with '0', '1' or '2' to make the string balanced.
+3. Print the balanced ternary string.

@@ -1,0 +1,54 @@
+
+
+```python
+# The following code solves the problem:
+
+def solve_problem(sequence):
+    n = len(sequence)
+    longest_length = 0
+    longest_sequence = ""
+
+    for i in range(n):
+        current_length = 0
+        current_sequence = ""
+        sequence_copy = sequence.copy()
+
+        while len(sequence_copy) > 0:
+            leftmost_element = sequence_copy[0]
+            rightmost_element = sequence_copy[-1]
+
+            if i == 0:
+                current_length += 1
+                current_sequence += "L"
+                sequence_copy.pop(0)
+            elif i == 1:
+                current_length += 1
+                current_sequence += "R"
+                sequence_copy.pop()
+            else:
+                if leftmost_element > rightmost_element:
+                    current_length += 1
+                    current_sequence += "L"
+                    sequence_copy.pop(0)
+                else:
+                    current_length += 1
+                    current_sequence += "R"
+                    sequence_copy.pop()
+
+        if current_length > longest_length:
+            longest_length = current_length
+            longest_sequence = current_sequence
+
+    return longest_length, longest_sequence
+
+
+# Example usage:
+sequence = [2, 1, 5, 4, 3]
+longest_length, longest_sequence = solve_problem(sequence)
+print(f"Longest length: {longest_length}")
+print(f"Longest sequence: {longest_sequence}")
+```
+
+This code defines a function `solve_problem` that takes a sequence of integers as input. The function iterates through each element of the sequence and checks if it should take the leftmost element or the rightmost element based on the conditions. It keeps track of the current length and sequence, and updates the longest length and sequence as needed. Finally, it returns the longest length and sequence.
+
+In the example usage, the sequence `[2, 1, 5, 4, 3]` is provided as input, and the function is called to find the longest length and sequence. The output is printed to the

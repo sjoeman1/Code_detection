@@ -1,0 +1,30 @@
+```python
+n = int(input())
+a = int(input())
+f = list(map(int, input().split()))
+
+max_num = 0
+curr_num = a
+max_diff = 0
+
+# Find the maximum difference between the original number and the number after applying the operation
+for i in range(n-1, -1, -1):
+    digit = a // 10 ** i
+    orig_digit = digit
+    a %= 10 ** i
+    new_digit = f[digit] * 10 ** i
+    diff = abs(orig_digit - new_digit)
+    if diff > max_diff:
+        max_diff = diff
+        max_num = a - 10 ** i * (orig_digit - new_digit)
+
+# Print the maximum number
+print(max_num + max_diff)
+```
+
+**Explanation:**
+
+* We iterate over the digits of the number in reverse order.
+* We find the maximum difference between the original digit and the digit after applying the function $f$.
+* We store the maximum difference and the number that gave us this maximum difference.
+* Finally, we print the maximum number obtained by subtracting the maximum difference from the original number.

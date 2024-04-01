@@ -1,0 +1,53 @@
+
+
+ Here is the Python 3 code that solves the problem:
+
+```
+from collections import deque
+
+n, m = map(int, input().split())
+
+grid = []
+
+for _ in range(n):
+    grid.append(input())
+
+def bfs(grid, start, end):
+    queue = deque([start])
+    visited = set([start])
+    steps = 0
+    
+    while queue:
+        for _ in range(len(queue)):
+            x, y = queue.popleft()
+            if (x, y) == end:
+                return steps
+            
+            for dx, dy in [(1, 0), (0, 1)]:
+                new_x, new_y = x + dx, y + dy
+                if 0 <= new_x < len(grid) and 0 <= new_y < len(grid[0]) and grid[new_x][new_y] == '.' and (new_x, new_y) not in visited:
+                    queue.append((new_x, new_y))
+                    visited.add((new_x, new_y))
+                    
+        steps += 1
+        
+    return -1
+
+def min_witch_cells(grid):
+    start = (0, 0)
+    end = (len(grid) - 1, len(grid[0]) - 1)
+    dist = bfs(grid, start, end)
+    
+    if dist == -1:
+        return -1
+    
+    min_cells = float('inf')
+    
+    for x in range(len(grid)):
+        for y in range(len(grid[0])):
+            if grid[x][y] == '.' and (x, y) != start and (x, y) != end:
+                grid[x] = grid[x][:y] + '#' + grid[x][y+1:]
+                new_dist = bfs(grid, start, end)
+                if new_dist == -1 or new_dist > dist:
+                    min_cells = min(min_cells, 1)
+                grid[x] = grid[x][:y] +

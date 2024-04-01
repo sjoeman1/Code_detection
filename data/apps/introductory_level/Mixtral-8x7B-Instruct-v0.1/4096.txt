@@ -1,0 +1,14 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n, m = map(int, input().split())
+a = list(map(int, input().split()))
+
+# We use a binary search algorithm to find the minimum number of days needed.
+# The lower bound is 1 and the upper bound is the maximum caffeine dosage.
+low, high = 1, max(a)
+
+while low <= high:
+    mid = (low + high) // 2 # Calculate the middle value.
+    pages_written = 0 # Initialize the number of pages written.
+    

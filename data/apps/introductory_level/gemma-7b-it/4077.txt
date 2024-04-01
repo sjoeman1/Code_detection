@@ -1,0 +1,23 @@
+```python
+n, m = map(int, input().split())
+a = list(map(int, input().split()))
+
+a.sort()
+
+ans = 0
+for i in range(n-1):
+    for j in range(i+1, n):
+        med = (a[i] + a[j]) // 2
+        if med == m:
+            ans += 1
+
+print(ans)
+```
+
+**Explanation:**
+
+* We first sort the sequence in ascending order.
+* Then, we iterate over the sequence from 0 to n-2.
+* For each index i, we compare the median of the subsequence from a[i] to a[j] with the given number m.
+* If the median is equal to m, we increment the variable ans.
+* Finally, we print the value of ans.

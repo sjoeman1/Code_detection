@@ -1,0 +1,51 @@
+ To solve this problem, we can use a greedy strategy where Adil and Bera always pick the two closest bottles to them. This strategy ensures that the total distance traveled is minimized. Here is the Python3 code for this solution:
+
+```python
+import math
+
+def distance(x1, y1, x2, y2):
+    return math.sqrt((x1 - x2)**2 + (y1 - y2)**2)
+
+def min_distance(ax, ay, bx, by, tx, ty, bottles):
+    dist = 0
+    while bottles:
+        # Find the two closest bottles to Adil and Bera
+        min_dist_adil = float('inf')
+        min_dist_bera = float('inf')
+        bottle1 = None
+        bottle2 = None
+        for b in bottles:
+            d = distance(ax, ay, b[0], b[1]) + distance(tx, ty, b[0], b[1])
+            if d < min_dist_adil:
+                min_dist_bera = min_dist_adil
+                min_dist_adil = d
+                bottle2 = bottle1
+                bottle1 = b
+            elif d < min_dist_bera:
+                min_dist_bera = d
+                bottle2 = b
+        
+        # Move Adil and Bera to the chosen bottles
+        dist += min_dist_adil + min_dist_bera
+        ax, ay = bottle1
+        bx, by = bottle2
+        
+        # Remove the chosen bottles
+        bottles.remove(bottle1)
+        bottles.remove(bottle2)
+    
+    return dist
+
+# Read input
+ax, ay, bx, by, tx, ty = map(int, input().split())
+n = int(input())
+bottles = [tuple(map(int, input().split())) for _ in range(n)]
+
+# Calculate minimum distance
+dist = min_distance(ax, ay, bx, by, tx, ty, bottles)
+
+# Print output
+print("%.6f" % dist)
+```
+
+This code first reads the input, which consists of the initial positions

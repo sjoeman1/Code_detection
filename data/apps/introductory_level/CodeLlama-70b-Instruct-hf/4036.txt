@@ -1,0 +1,35 @@
+
+
+```
+from collections import defaultdict, deque
+
+def solve(s):
+    n = len(s)
+    res = 1
+    color = defaultdict(int)
+    color[0] = 1
+    for i in range(1, n):
+        if s[i] < s[i - 1]:
+            res += 1
+            color[i] = res
+        else:
+            color[i] = res
+    return res, color
+
+n = int(input())
+s = input()
+
+res, color = solve(s)
+
+print(res)
+for i in range(n):
+    print(color[i], end=' ')
+```
+
+The code first reads the input values for $n$ and $s$. It then defines a function `solve` that takes the string $s$ as input and returns the minimum number of colors required and the coloring of each character.
+
+The function `solve` initializes the variable `res` to 1 and the default dictionary `color` with the first character of $s$ mapped to color 1. It then iterates through the string $s$ starting from the second character. If the current character is less than the previous character, it increments `res` and assigns it to the current character in the `color` dictionary. Otherwise, it assigns the current character the same color as the previous character.
+
+The function returns `res` and `color` to the main program.
+
+The main program prints the value of `res` and then iterates through the `color` dictionary to print the colors of each character in $s$.

@@ -1,0 +1,26 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n = int(input())
+s = input()
+t = input()
+
+def possible(n, s, t):
+    for i in range(n):
+        if s[0] in ('a' + 'b' * i + 'c' + 'b' * (n - i - 1),
+                    'b' + 'a' * i + 'c' + 'a' * (n - i - 1),
+                    'c' + 'a' * i + 'b' + 'a' * (n - i - 1),
+                    'c' + 'b' * i + 'a' + 'b' * (n - i - 1)):
+            return False
+    return True
+
+if possible(n, s, t):
+    print("YES")
+    print("a" * n + "b" * n + "c" * n)
+else:
+    print("NO")
+```
+
+The `possible` function checks if the strings `s` and `t` can be avoided in a string of length `3n` consisting of `n` `a`'s, `n` `b`'s, and `n` `c`'s. It does this by checking if either `s` or `t` is a substring of any of the four strings obtained by swapping the positions of `a`, `b`, and `c` in the string `'abcbacbacbac'`. If none of these strings is a substring of `s` or `t`, then the function returns `True`, indicating that it is possible to construct the desired string. Otherwise, it returns `False`.
+
+If the function returns `True`, then the program prints "YES" and the desired string, which is simply `'a' * n + 'b' * n + 'c' * n`. Otherwise, it prints "NO".

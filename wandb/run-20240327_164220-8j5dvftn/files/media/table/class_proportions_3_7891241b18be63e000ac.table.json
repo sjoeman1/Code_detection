@@ -1,0 +1,1 @@
+{"columns": ["class", "dataset", "count"], "data": [["human_written", "train", 64], ["human_written", "test", 20], ["machine_generated", "train", 70], ["machine_generated", "test", 14]]}

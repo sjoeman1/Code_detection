@@ -1,0 +1,33 @@
+ Here's the Python3 code to solve the problem:
+
+```python
+import math
+
+def calculate_distance(A, B, H, M):
+    # Calculate the angle in radians for the hour hand
+    hour_angle = (H + M/60) * (math.pi * 2 / 12)
+
+    # Calculate the angle in radians for the minute hand
+    minute_angle = M * (math.pi * 2 / 60)
+
+    # Calculate the difference between the two angles
+    diff_angle = abs(hour_angle - minute_angle)
+
+    # If the difference is greater than pi, take the shorter angle
+    if diff_angle > math.pi:
+        diff_angle = 2 * math.pi - diff_angle
+
+    # Calculate the distance between the hands
+    distance = math.sqrt(A**2 + B**2 - 2*A*B*math.cos(diff_angle))
+
+    # Return the distance without units
+    return round(distance, 12)
+
+# Read input from Standard Input
+A, B, H, M = map(int, input().split())
+
+# Calculate and print the answer
+print(calculate_distance(A, B, H, M))
+```
+
+This code first calculates the angles in radians for both the hour and minute hands, taking into account the different angular velocities of the two hands. It then calculates the difference between the two angles, and if the difference is greater than pi, it takes the shorter angle. Finally, it calculates the distance between the two hands using the law of cosines, and returns the result with 12 decimal places. The result is then printed to Standard Output.

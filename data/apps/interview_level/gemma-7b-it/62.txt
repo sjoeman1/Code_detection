@@ -1,0 +1,11 @@
+```python
+n = int(input())
+a = list(map(int, input().split()))
+
+a.sort()
+
+if a[0] >= 2:
+    print("BitLGM")
+else:
+    print("BitAryo")
+```

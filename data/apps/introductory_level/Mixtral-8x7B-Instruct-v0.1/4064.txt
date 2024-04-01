@@ -1,0 +1,34 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n, h, l, r = map(int, input().split())
+a = list(map(int, input().split()))
+
+# Initialize the result variable
+res = 0
+
+# Keep track of the current time
+curr\_time = 0
+
+# Iterate over the sleep times
+for i in range(n):
+	# Calculate the two possible times Vova can go to sleep
+	time1 = curr\_time + a[i]
+	time2 = curr\_time + a[i] - 1
+	
+	# If going to sleep at time2 is good, then Vova should go to sleep at time2
+	if l <= time2 <= r:
+		curr\_time = time2
+	# If going to sleep at time2 is not good, but going to sleep at time1 is good, then Vova should go to sleep at time1
+	elif time2 < l and l <= time1 <= r:
+		curr\_time = time1
+	# If going to sleep at both time1 and time2 is not good, then Vova should not go to sleep at this moment
+	elif time1 < l or r < time1:
+		continue
+	# Increment the result variable
+	res += 1
+
+print(res)
+```
+
+The solution iterates over the sleep times and calculates the two possible times Vova can go to sleep. It then checks if going to sleep at either time is good, and updates the current time accordingly. Finally, it increments the result variable if Vova goes to sleep. The solution assumes that the input is valid and does not contain any error checking.

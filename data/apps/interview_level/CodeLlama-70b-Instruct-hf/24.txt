@@ -1,0 +1,37 @@
+
+
+def check_win(board):
+    for i in range(10):
+        for j in range(6):
+            if board[i][j] == 'X' and board[i][j+1] == 'X' and board[i][j+2] == 'X' and board[i][j+3] == 'X' and board[i][j+4] == 'X':
+                return True
+    for i in range(6):
+        for j in range(10):
+            if board[i][j] == 'X' and board[i+1][j] == 'X' and board[i+2][j] == 'X' and board[i+3][j] == 'X' and board[i+4][j] == 'X':
+                return True
+    for i in range(6):
+        for j in range(6):
+            if board[i][j] == 'X' and board[i+1][j+1] == 'X' and board[i+2][j+2] == 'X' and board[i+3][j+3] == 'X' and board[i+4][j+4] == 'X':
+                return True
+            if board[i][j+4] == 'X' and board[i+1][j+3] == 'X' and board[i+2][j+2] == 'X' and board[i+3][j+1] == 'X' and board[i+4][j] == 'X':
+                return True
+    return False
+
+
+def main():
+    board = []
+    for _ in range(10):
+        board.append(list(input()))
+    for i in range(10):
+        for j in range(10):
+            if board[i][j] == '.':
+                board[i][j] = 'X'
+                if check_win(board):
+                    print('YES')
+                    return
+                board[i][j] = '.'
+    print('NO')
+
+
+if __name__ == '__main__':
+    main()

@@ -1,0 +1,28 @@
+
+
+ 
+
+Here's a Python3 code that solves the question:
+
+```
+def find_supportable_stewards(n, strengths):
+    strengths.sort()
+    supportable_stewards = 0
+
+    for i in range(1, n-1):
+        if strengths[i-1] < strengths[i] < strengths[i+1]:
+            supportable_stewards += 1
+
+    return supportable_stewards
+
+n = int(input())
+strengths = list(map(int, input().split()))
+
+print(find_supportable_stewards(n, strengths))
+```
+
+This code reads the number of stewards `n` and their strengths as input. It then sorts the strengths in ascending order.
+
+The `find_supportable_stewards` function iterates through the strengths from the second element to the second-to-last element. For each strength, it checks if there is a steward with a lower strength and a steward with a higher strength. If so, it increments the `supportable_stewards` count.
+
+Finally, it prints the number of supportable stewards.

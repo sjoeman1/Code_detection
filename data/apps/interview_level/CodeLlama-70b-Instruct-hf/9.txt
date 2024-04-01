@@ -1,0 +1,32 @@
+
+ Here's a Python 3 code that solves the given problem:
+
+```python
+def find_sofa(d, n, m, sofas, cnt_l, cnt_r, cnt_t, cnt_b):
+    def count_sofas(sofa, sofas, direction):
+        x1, y1, x2, y2 = sofa
+        if direction == 'left':
+            return sum(1 for s in sofas if s[0] < x1 and s[1] == y1)
+        elif direction == 'right':
+            return sum(1 for s in sofas if s[0] > x2 and s[1] == y2)
+        elif direction == 'top':
+            return sum(1 for s in sofas if s[1] < y1 and s[0] == x1)
+        else:
+            return sum(1 for s in sofas if s[1] > y2 and s[0] == x2)
+
+    for i, sofa in enumerate(sofas, 1):
+        cnt_l_sofa = count_sofas(sofa, sofas, 'left')
+        cnt_r_sofa = count_sofas(sofa, sofas, 'right')
+        cnt_t_sofa = count_sofas(sofa, sofas, 'top')
+        cnt_b_sofa = count_sofas(sofa, sofas, 'bottom')
+        if cnt_l_sofa == cnt_l and cnt_r_sofa == cnt_r and cnt_t_sofa == cnt_t and cnt_b_sofa == cnt_b:
+            return i
+    return -1
+
+if __name__ == '__main__':
+    d = int(input())
+    n, m = map(int, input().split())
+    sofas = [list(map(int, input().split())) for _ in range(d)]
+    cnt_l, cnt_r, cnt_t, cnt_b = map(int, input().split())
+
+    result = find_sofa(d, n, m, sofas, cnt

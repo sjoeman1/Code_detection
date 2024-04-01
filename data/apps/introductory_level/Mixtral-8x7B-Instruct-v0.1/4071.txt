@@ -1,0 +1,14 @@
+ Here's the Python3 code to solve the problem:
+
+```python
+# Read the input integer
+a = int(input())
+
+# Calculate the output integer
+output = a**3
+
+# Print the output integer
+print(output)
+```
+
+This code first reads the input integer `a`, then calculates the output integer as `a` cubed, and finally prints the output integer.

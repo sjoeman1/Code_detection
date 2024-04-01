@@ -1,0 +1,47 @@
+ To solve this problem, we need to observe that at each step, we want to increase the maximum element in the sequence as much as possible. Therefore, we should always choose the current maximum element to perform the operation. Also, if the maximum element is at either end of the sequence, we should delete it; otherwise, we should replace it with the sum of the two elements adjacent to it and delete those two elements. Here is the Python3 code to solve the problem:
+```python
+import sys
+from collections import deque
+
+# Read input
+N = int(sys.stdin.readline())
+sequence = list(map(int, sys.stdin.readline().split()))
+
+# Initialize max_element and max_index
+max_element = max(sequence)
+max_index = sequence.index(max_element)
+
+# Initialize result
+result = [0] * (N + 1)
+result[0] = max_element
+result[1] = max_index + 1
+
+# Initialize operation count
+operation_count = 0
+
+# Perform operation until the length of the sequence becomes 1
+while len(sequence) > 1:
+    # Update max_element and max_index
+    max_element = max(sequence)
+    max_index = sequence.index(max_element)
+
+    # If the maximum element is at either end of the sequence, delete it
+    if max_index == 0 or max_index == len(sequence) - 1:
+        del sequence[max_index]
+    # Otherwise, replace it with the sum of the two elements adjacent to it and delete those two elements
+    else:
+        sequence[max_index] = sequence[max_index - 1] + sequence[max_index + 1]
+        del sequence[max_index - 1:max_index + 1]
+
+    # Update result
+    result[operation_count + 1] = max_element
+    result[operation_count + 2] = max_index + 1
+    operation_count += 1
+
+# Print result
+print(result[-1])
+print(operation_count)
+for i in range(1, operation_count + 1, 2):
+    print(result[i])
+```
+The time complexity

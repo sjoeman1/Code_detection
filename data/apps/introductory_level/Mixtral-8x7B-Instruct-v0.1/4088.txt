@@ -1,0 +1,39 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def solve(s, b):
+    n = len(s)
+    f = [0] * (n + 1)
+    g = [0] * (n + 1)
+    for i in range(1, n + 1):
+        f[i] = f[i - 1] + (ord(s[i - 1]) - 96)
+    for i in range(1, n + 1):
+        j = max(1, i - b[i - 1] - 1)
+        g[i] = g[i - 1] + (ord(s[j - 1]) - 96) - (i - j) * (ord(s[j - 1]) - 96)
+    last = [-1] * 26
+    ans = []
+    for i in range(1, n + 1):
+        c = s[i - 1]
+        j = last[ord(c) - 97] + 1
+        ans.append(c)
+        last[ord(c) - 97] = i
+        if j < i:
+            g[i] -= (i - j) * (ord(c) - 96)
+            f[i] -= (i - j) * (ord(c) - 96)
+    j = n
+    for i in range(n, 0, -1):
+        c = ans[i - 1]
+        if g[i] != f[j] - (j - i) * (ord(c) - 96):
+            ans[i - 1] = s[j - 1]
+            j -= 1
+    return ''.join(ans)
+
+q = int(input())
+for _ in range(q):
+    s = input()
+    m = int(input())
+    b = list(map(int, input().split()))
+    print(solve(s, b))
+```
+
+The solution uses two arrays `f` and `g` to calculate the sum of the distances for each letter in the original string `s` and the resulting string `t

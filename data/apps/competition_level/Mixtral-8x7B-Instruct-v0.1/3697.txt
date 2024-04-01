@@ -1,0 +1,39 @@
+ Here is a solution using Python3:
+
+```python
+def solve():
+    n, k, m, a = map(int, input().split())
+    votes = [0] * (n + 1)
+    last_votes = [0] * (n + 1)
+    for i in map(int, input().split()):
+        votes[i] += 1
+        last_votes[i] = a
+    for _ in range(m - a):
+        max_votes = max(votes)
+        max_votes_index = votes.index(max_votes)
+        if max_votes >= k:
+            print(1, end=' ')
+            votes[max_votes_index] += 1
+        elif max_votes == last_votes[max_votes_index] and max_votes + 1 < k:
+            print(3, end=' ')
+        else:
+            print(2, end=' ')
+            last_votes[max_votes_index] = m
+            votes[max_votes_index] += 1
+    print()
+
+
+if __name__ == '__main__':
+    t = int(input())
+    for _ in range(t):
+        solve()
+```
+
+Explanation:
+
+* The solution uses a greedy algorithm to determine the outcome for each candidate.
+* We maintain an array `votes` to keep track of the number of votes for each candidate and an array `last_votes` to keep track of the last time each candidate received a vote.
+* For each of the remaining `m - a` voters, we determine the candidate with the maximum number of votes and update the `votes` and `last_votes` arrays accordingly.
+* If the maximum number of votes is greater than or equal to `k`, we print `1` for the corresponding candidate, indicating that they are guaranteed to take a seat in the parliament.
+* If the maximum number of votes is less than `k` and the last time the maximum votes candidate received a vote is the same as the current time, we print `3` for the corresponding candidate, indicating that they have no chance of being elected.
+* Otherwise, we print `2` for the corresponding candidate

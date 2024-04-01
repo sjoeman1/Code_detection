@@ -1,0 +1,36 @@
+
+
+The input consists of four integers n, k, m and a (1 ≤ k ≤ n ≤ 100, 1 ≤ m ≤ 100, 1 ≤ a ≤ m) — the number of candidates, the number of seats in the parliament, the number of Berland citizens and the number of citizens who already have voted.
+
+The second line contains a sequence of a integers g_1, g_2, ..., g_{a} (1 ≤ g_{j} ≤ n), where g_{j} is the candidate for which the j-th citizen has voted. Citizens who already voted are numbered in increasing order of voting times.
+
+The output consists of n integers r_1, r_2, ..., r_{n} where:
+
+  r_{i} = 1 means that the i-th candidate is guaranteed to take seat in the parliament regardless of votes of the remaining m - a citizens;  r_{i} = 2 means that the i-th candidate has a chance to take a seat in the parliament, i.e. the remaining m - a citizens can vote in such a way that the candidate will take a seat in the parliament;  r_{i} = 3 means that the i-th candidate will not take a seat in the parliament regardless of votes of the remaining m - a citizens. 
+
+
+
+Here is the Python3 code for solving the question:
+
+```
+n, k, m, a = map(int, input().split())
+g = list(map(int, input().split()))
+
+result = [3] * n
+
+votes = [0] * n
+for i in range(a):
+    votes[g[i] - 1] += 1
+
+for i in range(n):
+    if votes[i] > 0:
+        result[i] = 1
+
+for i in range(n):
+    if result[i] == 3 and votes[i] == max(votes):
+        result[i] = 2
+
+print(*result)
+```
+
+The code takes input for the number of candidates, seats in the parliament, citizens, and citizens who have already voted. Then it takes input for the sequence of integers g_1, g_2, ...,

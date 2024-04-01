@@ -1,0 +1,31 @@
+
+
+Here's the Python3 code for the problem:
+
+```
+def solve(n, x, a):
+    if x < 0:
+        a.sort()
+    else:
+        a.sort(reverse=True)
+    beauty = 0
+    for i in range(n):
+        beauty += a[i] * x
+    return beauty
+
+n, x = map(int, input().split())
+a = list(map(int, input().split()))
+
+answer = solve(n, x, a)
+print(answer)
+```
+
+The code starts by taking input for the number of elements in the array and the integer x. Then, it takes input for the array elements.
+
+In the `solve` function, if x is negative, the array is sorted in ascending order. If x is positive, the array is sorted in descending order. This is done because we want to maximize the beauty of the array by multiplying the maximum possible subarray by x.
+
+The `beauty` variable is initialized to 0. Then, for each element in the array, the element is multiplied by x and added to the `beauty` variable.
+
+The `solve` function returns the beauty of the array after multiplying all values belonging to some consecutive subarray x.
+
+Finally, the answer is printed.

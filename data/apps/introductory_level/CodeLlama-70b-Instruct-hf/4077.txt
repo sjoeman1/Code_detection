@@ -1,0 +1,30 @@
+
+
+Here's a Python 3 code that solves the problem:
+
+```python
+from math import gcd
+
+n = int(input())
+nums = list(map(int, input().split()))
+
+def lcm(x, y):
+    return (x * y) // gcd(x, y)
+
+min_lcm = float('inf')
+i, j = 0, 0
+for idx1 in range(n):
+    for idx2 in range(idx1 + 1, n):
+        current_lcm = lcm(nums[idx1], nums[idx2])
+        if current_lcm < min_lcm:
+            min_lcm = current_lcm
+            i, j = idx1 + 1, idx2 + 1
+
+print(i, j)
+```
+
+The code first reads the input values from the user. It then defines a function `lcm` to calculate the least common multiple of two numbers using the `gcd` function from the `math` module.
+
+In the main part, it iterates over all possible pairs of indices in the array, calculates their LCM, and checks if it's the minimum so far. If it is, it updates the `min_lcm` variable and the `i` and `j` indices.
+
+Finally, it prints the indices of the pair with the minimum LCM.

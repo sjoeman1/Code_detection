@@ -1,0 +1,18 @@
+ Here is one way to solve the problem using Python:
+
+```python
+def cook\_chicken(k, d, t):
+t\_on = t * (d - 1) // k + t
+t\_off = (t - 1) // k * (k - d)
+t\_total = t\_on + t\_off
+return t\_total / (d - (t\_total % (d - 1)))
+
+k, d, t = map(int, input().split())
+print(cook\_chicken(k, d, t))
+```
+
+This code first calculates the total time the chicken spends on the stove when it is turned on (`t_on`) and the total time it spends off (`t_off`). It then calculates the total time the chicken spends cooking (`t_total`).
+
+The final step is to adjust the total time so that it is a multiple of the time between Julia's visits to the kitchen. This is done by dividing `t_total` by the remainder of `t_total` when it is divided by `d - 1` and then adding this remainder back to the total time. This ensures that the chicken is finished cooking at a time when Julia is in the kitchen and can turn off the stove.
+
+I hope this helps! Let me know if you have any questions.

@@ -1,0 +1,42 @@
+
+ 
+
+Here is the Python 3 code for the problem:
+
+```python
+def robot_position(a, b, s):
+    # Initialize the robot's position
+    robot_x = 0
+    robot_y = 0
+
+    # Iterate over the commands in the string
+    for command in s:
+        if command == 'U':
+            robot_y += 1
+        elif command == 'D':
+            robot_y -= 1
+        elif command == 'L':
+            robot_x -= 1
+        elif command == 'R':
+            robot_x += 1
+
+    # Check if the robot's position matches the target position
+    if robot_x == a and robot_y == b:
+        return "Yes"
+    else:
+        return "No"
+
+# Read the input
+a, b = map(int, input().split())
+s = input()
+
+# Check the robot's position
+result = robot_position(a, b, s)
+
+# Print the result
+print(result)
+```
+
+This code defines a function `robot_position` that takes three arguments: `a`, `b`, and `s`. It initializes the robot's position to `(0, 0)` and then iterates over the commands in the string `s`. For each command, it updates the robot's position accordingly. Finally, it checks if the robot's position matches the target position `(a, b)`. If it does, it returns "Yes", otherwise it returns "No".
+
+The main program reads the input and calls the `robot_position` function. It then prints the result.

@@ -1,0 +1,23 @@
+ Here is a Python3 solution using dynamic programming to solve the problem:
+
+```python
+def solve():
+    n, t = map(int, input().split())
+    dp = [0] * (n + 1)  # dp[i] is the number of full glasses at level i
+    dp[1] = 1
+    for _ in range(t):
+        for i in range(n, 0, -1):  # iterate from bottom to top
+            dp[i - 1] += dp[i] // (i + 1)  # pour champagne from level i to level i - 1
+            dp[i] %= i + 1  # update remaining champagne at level i
+    print(sum(dp))
+
+
+if __name__ == '__main__':
+    solve()
+```
+
+The solution uses a dynamic programming approach to keep track of the number of full glasses at each level after pouring champagne for `t` seconds. The `dp` array is initialized with 0s and the first element is set to 1, indicating that the top glass is initially full.
+
+At each second, the solution iterates from the bottom level to the top level and pours champagne from the current level to the level below it. The number of full glasses at the current level is updated by dividing it by the number of glasses at the current level plus 1, and the remainder is kept as the number of remaining champagne at the current level.
+
+Finally, the solution prints the sum of the number of full glasses at each level.

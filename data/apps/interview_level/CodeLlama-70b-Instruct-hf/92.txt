@@ -1,0 +1,31 @@
+
+Here's the Python3 code to solve the question:
+```
+import math
+
+def divisors_count(n):
+    count = 1
+    for i in range(2, int(math.sqrt(n)) + 1):
+        if n % i == 0:
+            count += 1
+            if n // i != i:
+                count += 1
+    return count
+
+def calculate_sum(a, b, c):
+    result = 0
+    for i in range(1, a + 1):
+        for j in range(1, b + 1):
+            for k in range(1, c + 1):
+                result += divisors_count(i * j * k)
+    return result % (2 ** 30)
+
+if __name__ == "__main__":
+    a, b, c = map(int, input().split())
+    print(calculate_sum(a, b, c))
+```
+The `divisors_count` function calculates the number of divisors of a positive integer `n`. It iterates through all integers between 2 and the square root of `n` and checks if `n` is divisible by those numbers. If it is, it increments the count by 1. If `n` is divisible by the quotient of `n` and the divisor, it increments the count by 1 again.
+
+The `calculate_sum` function calculates the sum of divisors of all possible combinations of `i`, `j`, and `k` within the given ranges. It iterates through all possible combinations, calculates the number of divisors using the `divisors_count` function, and adds it to the result.
+
+The `if __name__ == "__main__":` block reads the input and calls the `calculate_sum` function with the given values. The result is printed after taking the modulo of 2^30.

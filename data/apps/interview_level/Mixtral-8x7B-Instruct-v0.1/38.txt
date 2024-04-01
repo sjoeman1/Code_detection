@@ -1,0 +1,47 @@
+ Here is a Python3 solution for the problem:
+
+```python
+import sys
+from collections import defaultdict
+
+def check\_tracks(n, L, kefa, sasha):
+kefa\_map = defaultdict(int)
+sasha\_map = defaultdict(int)
+
+for i in range(n):
+kefa\_map[kefa[i]] += 1
+sasha\_map[sasha[i]] += 1
+
+if kefa\_map != sasha\_map:
+return "NO"
+
+min\_dist = min(kefa)
+for i in range(n):
+kefa[i] -= min\_dist
+sasha[i] -= min\_dist
+
+if max(kefa) < L - max(sasha):
+return "NO"
+
+kefa\_map = defaultdict(int)
+sasha\_map = defaultdict(int)
+
+for i in range(n):
+kefa\_map[kefa[i]] += 1
+sasha\_map[sasha[i]] += 1
+
+if kefa\_map != sasha\_map:
+return "NO"
+
+return "YES"
+
+if __name__ == "__main__":
+input = sys.stdin.readline
+n, L = map(int, input().strip().split())
+kefa = list(map(int, input().strip().split()))
+sasha = list(map(int, input().strip().split()))
+
+print(check\_tracks(n, L, kefa, sasha))
+```
+
+The solution checks if both the athletes have the same set of distances to the barriers. It also checks if the maximum distance of any barrier in Kefa's list is less than the minimum distance of any barrier in Sasha's list. If both these conditions are satisfied, it means that the athletes have run the same track. The function `check_tracks` returns "YES" if the tracks are the same, otherwise it returns "NO".

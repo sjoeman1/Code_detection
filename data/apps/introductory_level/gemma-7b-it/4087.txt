@@ -1,0 +1,23 @@
+```python
+a = int(input())
+n = a + 1
+while not (sum(str(n).split()) % 4 == 0 and n >= a):
+    n += 1
+print(n)
+```
+
+**Explanation:**
+
+* The code reads the input integer $a$.
+* It starts from $a + 1 and iteratively increases $n until the sum of digits of $n is divisible by 4 and $n is greater than or equal to $a.
+* The code uses the `sum(str(n).split())` function to calculate the sum of digits of $n.
+* The code uses the modulo operator (`%`) to check if the sum of digits is divisible by 4.
+* The code prints the value of $n.
+
+**Time Complexity:**
+
+* The code iterates over the number $n$ only once, so the time complexity is O(1).
+
+**Space Complexity:**
+
+* The code uses a constant amount of space, regardless of the size of $a$.

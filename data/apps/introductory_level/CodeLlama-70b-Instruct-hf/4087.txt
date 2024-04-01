@@ -1,0 +1,58 @@
+
+ Here is the Python3 code for the problem:
+
+```python
+#!/usr/bin/env python3
+import sys
+from collections import Counter
+
+# Input the number of switches and bulbs
+N, M = map(int, input().split())
+
+# Input the switches each bulb is connected to
+switches = []
+for _ in range(M):
+    k = int(input())
+    switches.append(list(map(int, input().split())))
+
+# Input the parity of each bulb
+parity = list(map(int, input().split()))
+
+# Count the number of switches each bulb is connected to
+count = Counter()
+for switch_set in switches:
+    for switch in switch_set:
+        count[switch] += 1
+
+# Create a dictionary to store the number of combinations
+# that light each bulb
+combinations = {}
+
+# Iterate through each switch
+for switch in range(1, N + 1):
+    # Initialize the number of combinations for each bulb
+    combinations[switch] = [0] * M
+
+    # Iterate through each bulb
+    for bulb in range(M):
+        # Check if the switch is connected to the bulb
+        if switch in switches[bulb]:
+            # If the switch is connected to the bulb,
+            # increment the number of combinations that
+            # light the bulb
+            combinations[switch][bulb] += 1
+
+    # Compute the number of combinations that light all bulbs
+    total = 1
+    for bulb in range(M):
+        if parity[bulb] == 0:
+            total *= 2 ** combinations[switch][bulb]
+        else:
+            total *= 2 ** (count[switch] - combinations[switch][bulb])
+
+    # Print the result
+    print(total)
+
+```
+
+This code solves the problem by first reading the input, then counting the number of switches each bulb is connected to. Then, it iterates through each switch and calculates the number of combinations that light each bulb. Finally, it computes the number of combinations that light all bulbs and prints the result.

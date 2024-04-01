@@ -1,0 +1,28 @@
+ Here's a Python3 solution for the problem you provided. This code reads the input string `t`, then checks for possible errors and outputs the result accordingly.
+
+```python
+def find_overlap(t):
+    for i in range(1, len(t)):
+        if t[:i] == t[i:i+i]:
+            return i
+    return 0
+
+def main():
+    t = input()
+    n = find_overlap(t)
+    if n == 0:
+        print("NO")
+    else:
+        print("YES")
+        print(t[:-n])
+
+if __name__ == "__main__":
+    main()
+```
+
+This code defines two functions: `find_overlap` and `main`.
+
+- `find_overlap` takes the input string `t` and checks for possible overlaps. It returns the length of the overlap if there is one, and 0 otherwise.
+- `main` reads the input string, calls `find_overlap` and checks its output. Depending on the result, it prints "NO" or "YES" followed by the possible message, as specified in the problem statement.
+
+You can test this code using the examples provided in the problem statement. Just copy and paste the input strings, and check the output.

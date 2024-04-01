@@ -1,0 +1,24 @@
+```python
+n = int(input())
+a = list(map(int, input().split().strip().split()))
+
+# Check if it is possible to reassemble the binary search tree
+if all(gcd(a[i], a[j]) > 1 for i in range(n) for j in range(i, n)):
+    print("Yes")
+else:
+    print("No")
+```
+
+**Explanation:**
+
+* The algorithm reads the number of vertices `n` and then reads the `n` distinct integers `a_i` representing the values of the vertices.
+* It checks if the greatest common divisor (GCD) of any two vertices connected by an edge is greater than 1 for all pairs of vertices. If it is not, the algorithm prints "No".
+* Otherwise, the algorithm prints "Yes".
+
+**Time Complexity:**
+
+* The algorithm reads the input in linear time, so the time complexity is O(n).
+
+**Space Complexity:**
+
+* The algorithm uses a constant amount of space, regardless of the size of the input, so the space complexity is O(1).

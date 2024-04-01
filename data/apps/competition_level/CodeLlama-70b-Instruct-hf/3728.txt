@@ -1,0 +1,32 @@
+
+
+Here is the Python 3 code for the solution:
+
+```py
+def is_sorted(l):
+    for i in range(len(l)-1):
+        if l[i] > l[i+1]:
+            return False
+    return True
+
+def solve(n, m, matrix):
+    for i in range(n):
+        if not is_sorted(matrix[i]):
+            return "NO"
+    for j in range(m):
+        col = [matrix[i][j] for i in range(n)]
+        if not is_sorted(col):
+            return "NO"
+    return "YES"
+
+
+if __name__ == "__main__":
+    n, m = list(map(int, input().split()))
+    matrix = []
+    for _ in range(n):
+        matrix.append(list(map(int, input().split())))
+    ans = solve(n, m, matrix)
+    print(ans)
+```
+
+This code checks if each row and column is sorted, and if not, it returns "NO". If all rows and columns are sorted, it returns "YES".

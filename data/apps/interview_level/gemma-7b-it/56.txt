@@ -1,0 +1,25 @@
+```python
+n, t = map(int, input().split())
+
+g = 1
+f = 0
+a = 0
+for i in range(n):
+    a += g
+    g += 1
+    f = max(f, a)
+
+print(f)
+```
+
+**Explanation:**
+
+* The variable `n` is the height of the pyramid.
+* The variable `t` is the number of seconds.
+* The variable `g` is the number of glasses on the top level.
+* The variable `f` is the number of completely full glasses.
+* The variable `a` is the total number of glasses that have been filled.
+
+The loop iterates over the number of seconds and fills the glasses in the pyramid. The variable `a` is updated to keep track of the total number of glasses that have been filled. The variable `f` is updated to keep track of the number of completely full glasses.
+
+At the end of the loop, the number of completely full glasses is printed.

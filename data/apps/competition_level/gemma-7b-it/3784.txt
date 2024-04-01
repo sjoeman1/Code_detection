@@ -1,0 +1,42 @@
+```python
+import numpy as np
+
+n, m = map(int, input().split())
+
+# Calculate the number of non-similar worlds
+num_worlds = 0
+
+# Calculate the number of changes
+num_changes = n
+
+# Calculate the maximum number of edges that can be added to the graph
+max_edges = m - 1
+
+# Iterate over the number of changes
+for i in range(num_changes):
+    # Calculate the number of edges that can be added in this change
+    num_edges_added = min(max_edges, i)
+
+    # Add the number of edges that can be added in this change to the total number of edges
+    num_worlds += num_edges_added
+
+# Calculate the number of non-similar worlds modulo 10^9 + 7
+num_worlds %= 10**9 + 7
+
+# Print the number of non-similar worlds
+print(num_worlds)
+```
+
+**Explanation:**
+
+* The algorithm calculates the number of changes and the maximum number of edges that can be added to the graph in each change.
+* It iterates over the number of changes and adds the number of edges that can be added in each change to the total number of edges.
+* The total number of edges is then modulo 10^9 + 7.
+
+**Time complexity:**
+
+* The algorithm iterates over the number of changes only once, so the time complexity is O(n).
+
+**Space complexity:**
+
+* The algorithm uses a constant amount of space, regardless of the size of the input.

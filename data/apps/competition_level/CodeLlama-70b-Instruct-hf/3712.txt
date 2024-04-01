@@ -1,0 +1,36 @@
+
+
+Here is the Python3 code for the solution:
+
+```
+n = int(input())
+compartments = list(map(int, input().split()))
+
+def swap_compartments(compartments):
+    bored_compartments = 0
+    for compartment in compartments:
+        if compartment == 1 or compartment == 2:
+            bored_compartments += 1
+
+    if bored_compartments == 0:
+        return 0
+
+    swaps = 0
+    for i in range(n):
+        if compartments[i] == 1 or compartments[i] == 2:
+            for j in range(i + 1, n):
+                if compartments[j] == 3 or compartments[j] == 4:
+                    compartments[i], compartments[j] = compartments[j], compartments[i]
+                    swaps += 1
+                    break
+    return swaps
+
+swaps = swap_compartments(compartments)
+
+if swaps == 0:
+    print(-1)
+else:
+    print(swaps)
+```
+
+In this code, the `swap_compartments` function takes in the list of compartments and checks for bored compartments with 1 or 2 students. If no bored compartments are found, it returns 0. Otherwise, it swaps the compartments with 1 or 2 students with the compartments with 3 or 4 students and keeps track of the number of swaps. If no swaps are made, it means that no sequence of swapping seats with other people leads to the desired result, so it prints -1. Otherwise, it prints the minimum number of people that need to be persuaded to swap places.

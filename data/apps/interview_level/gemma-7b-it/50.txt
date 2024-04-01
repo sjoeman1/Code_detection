@@ -1,0 +1,16 @@
+```python
+n, m, r = map(int, input().split())
+s = list(map(int, input().split()))
+b = list(map(int, input().split()))
+
+# Calculate the maximum number of bourles that can be gained from selling
+max_bourles = 0
+for i in range(m):
+    max_bourles += min(b[i], r)
+
+# Update the number of bourles to the maximum number
+r = max_bourles
+
+# Print the maximum number of bourles
+print(r)
+```

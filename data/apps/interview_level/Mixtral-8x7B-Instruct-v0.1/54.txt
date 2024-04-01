@@ -1,0 +1,45 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def can_weight(w, m):
+    # If m is 0, we can weight it
+    if m == 0:
+        return 'YES'
+
+    # If m is greater than the maximum weight, we cannot weight it
+    if m > w*100:
+        return 'NO'
+
+    # Create a set of weights that we can use to weight m
+    weights = set()
+    for i in range(101):
+        weight = w**i
+        if weight > m:
+            break
+        weights.add(weight)
+
+    # Check if we can use the weights to get m
+    while m > 0:
+        # Find the largest weight that is less than or equal to m
+        weight = next((w for w in weights if w <= m), None)
+        if weight is None:
+            return 'NO'
+
+        # Subtract the weight from m
+        m -= weight
+
+        # Remove the weight from the set of weights
+        weights.remove(weight)
+
+    return 'YES'
+
+# Read input
+w, m = map(int, input().split())
+
+# Print output
+print(can_weight(w, m))
+```
+
+The solution uses a set to store the weights that we can use to weight the item. It then repeatedly subtracts the largest weight that is less than or equal to the remaining mass of the item, until the item has been completely weighed. If at any point we cannot find a suitable weight, we return 'NO'. If we are able to weigh the entire item, we return 'YES'.
+
+This solution has a time complexity of O(log m) and a space complexity of O(log m), because we only need to store a small number of weights at any given time.

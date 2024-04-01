@@ -1,0 +1,56 @@
+
+
+ Here is the Python3 code to solve the given question:
+
+```py
+# Input
+n = int(input())
+a = list(map(int, input().split()))
+
+# If there are no targets in the grid, output 0
+if all(x == 0 for x in a):
+    print(0)
+    exit()
+
+# Check if there is a valid configuration of targets
+if n % 2 == 0:
+    if a[n // 2] == 0 or a[n // 2 - 1] == 0:
+        print(-1)
+        exit()
+
+# Construct a valid configuration of targets
+targets = []
+
+for i in range(1, n + 1):
+    if i % 2 == 0:
+        if a[i - 1] == 3:
+            targets.append((i, n))
+            targets.append((i, n - 1))
+            targets.append((i, n - 2))
+        elif a[i - 1] == 2:
+            targets.append((i, n))
+            targets.append((i, n - 1))
+        elif a[i - 1] == 1:
+            targets.append((i, n))
+    else:
+        if a[i - 1] == 3:
+            targets.append((n, i))
+            targets.append((n - 1, i))
+            targets.append((n - 2, i))
+        elif a[i - 1] == 2:
+            targets.append((n, i))
+            targets.append((n - 1, i))
+        elif a[i - 1] == 1:
+            targets.append((n, i))
+
+# Output
+print(len(targets))
+for target in targets:
+    print(target[0], target[1])
+```
+
+The code first checks if there are no targets in the grid, and if so, it prints `0` and exits.
+
+If there are targets in the grid, it checks if there is a valid configuration of targets by checking if the number of targets in the middle row and column are non-zero if `n` is even.
+
+If

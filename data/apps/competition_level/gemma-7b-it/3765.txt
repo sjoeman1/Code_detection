@@ -1,0 +1,17 @@
+```python
+a, b, h, w, n = map(int, input().split())
+ab = int(input())
+a_list = list(map(int, input().split()))
+
+w_mul = h_mul = 0
+for i in range(n):
+    a_mul = max(a_mul, a_list[i] * w)
+    h_mul = max(h_mul, a_list[i] * h)
+
+if ab <= w_mul and ab <= h_mul:
+    print(0)
+elif ab > w_mul or ab > h_mul:
+    print(-1)
+else:
+    print(1)
+```

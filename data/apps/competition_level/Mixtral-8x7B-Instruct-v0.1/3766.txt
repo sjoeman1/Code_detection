@@ -1,0 +1,31 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def min\_hints(cards):
+n = len(cards)
+
+# Count the number of occurrences of each color and value
+color\_counts = [0]*5
+value\_counts = [0]*5
+for card in cards:
+color\_counts[ord(card[0])-ord('A')] += 1
+value\_counts[int(card[1])-1] += 1
+
+# Calculate the minimum number of hints
+color\_hints = sum(1 for c in color\_counts if c > 1)
+value\_hints = sum(1 for v in value\_counts if v > 1)
+return color\_hints + value\_hints
+
+# Test the function
+print(min\_hints(list("G3 G3".split()))) # 0
+print(min\_hints(list("G4 R4 R3 B3".split()))) # 2
+print(min\_hints(list("B1 Y1 W1 G1 R1".split()))) # 4
+```
+
+The function `min_hints` takes a list of strings representing the cards and returns the minimum number of hints required for Borya to know the color and value of each card.
+
+First, the function counts the number of occurrences of each color and value using two arrays `color_counts` and `value_counts`.
+
+Then, the function calculates the minimum number of hints by summing up the number of colors and values that occur more than once. This is because for each color or value that occurs more than once, Borya needs a hint to distinguish between the different cards of that color or value.
+
+Finally, the function tests the `min_hints` function with the given examples and prints the results.

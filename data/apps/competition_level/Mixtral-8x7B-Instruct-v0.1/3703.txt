@@ -1,0 +1,18 @@
+ Here is the Python3 code to solve the problem:
+
+```python
+import sys
+input = sys.stdin.readline
+
+MOD = 1000000007
+
+def extended_gcd(a, b):
+    if b == 0:
+        return a, 1, 0
+    else:
+        g, x, y = extended_gcd(b, a % b)
+        return g, y, x - (a // b) * y
+
+def invmod(a, b):
+    g, x, _ = extended_gcd(a, b)
+    return x % b

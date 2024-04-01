@@ -1,0 +1,66 @@
+```python
+n, m = map(int, input().split())
+g = [[int(input()) for _ in range(m)] for _ in range(n)]
+
+# Check if it is possible to beat the level
+if not sum(sum(g) for _ in range(n)) == sum(g):
+    print(-1)
+else:
+    k = min(sum(g) - sum(sum(g) // n * m) for _ in range(n) + sum(g) // n * m))
+
+    print(k)
+
+    for _ in range(k):
+        r, c = map(int, input().split())
+        print(r, c)
+```
+
+**Explanation:**
+
+* The code reads the number of rows and columns, `n` and `m`, and the grid `g`.
+* It checks if it is possible to beat the level by verifying if the total sum of the grid is equal to the sum of the desired values. If not, it prints -1.
+* Otherwise, it calculates the minimum number of moves, `k`, which is the difference between the total sum of the grid and the sum of the desired values, divided by the number of rows and columns.
+* The code then prints `k`, followed by the moves in the order they must be done.
+
+**Example Usage:**
+
+```
+Input:
+3 5
+2 2 2 3 2
+0 0 0 1 0
+1 1 1 2 1
+
+Output:
+4
+row 1
+row 1
+col 4
+row 3
+
+```
+
+```
+Input:
+3 3
+0 0 0
+0 1 0
+0 0 0
+
+Output:
+-1
+```
+
+```
+Input:
+3 3
+1 1 1
+1 1 1
+1 1 1
+
+Output:
+3
+row 1
+row 2
+row 3
+```

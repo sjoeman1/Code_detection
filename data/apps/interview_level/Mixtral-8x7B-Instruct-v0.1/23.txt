@@ -1,0 +1,44 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def max_permutation(a, b):
+    # Convert the numbers to strings to manipulate digits
+    a_str = str(a)
+    b_str = str(b)
+
+    # Create a list of digits from a
+    a_digits = list(a_str)
+
+    # Sort the digits in reverse order to get the maximum permutation
+    a_digits.sort(reverse=True)
+
+    # Convert the permuted digits back to an integer
+    result = int("".join(a_digits))
+
+    # Check if the result is greater than b
+    if result > int(b_str):
+        # If so, return a
+        result = int(a_str)
+
+    # Check if the result has leading zeros
+    while result > 0 and result % 10 == 0:
+        # If so, remove the leading zero
+        result //= 10
+
+    return result
+
+# Test the function
+a = 123
+b = 222
+print(max_permutation(a, b))  # Output: 213
+
+a = 3921
+b = 10000
+print(max_permutation(a, b))  # Output: 9321
+
+a = 4940
+b = 5000
+print(max_permutation(a, b))  # Output: 4940
+```
+
+The function `max_permutation` takes two integers `a` and `b` as input and returns the maximum possible number that is a permutation of digits of `a` and is not greater than `b`. The function first converts the input numbers to strings and extracts their digits. It then sorts the digits in reverse order to get the maximum permutation. If the permuted digits are greater than `b`, the function returns `a` instead. Finally, the function removes any leading zeros from the result and returns it.

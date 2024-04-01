@@ -1,0 +1,42 @@
+
+
+ Here is the Python 3 code to solve the question:
+
+```python
+# Read the input values of A and B
+A, B = map(int, input().split())
+
+# Initialize a flag to check if a valid price is found
+found = False
+
+# Initialize the price to 1
+price = 1
+
+# Iterate until the price is less than or equal to 100
+while price <= 100:
+    # Calculate the amount of consumption tax levied on the price with 8% tax rate
+    tax8 = int(price * 0.08)
+
+    # Calculate the amount of consumption tax levied on the price with 10% tax rate
+    tax10 = int(price * 0.1)
+
+    # Check if both taxes match the given values A and B
+    if tax8 == A and tax10 == B:
+        # Set the flag to True
+        found = True
+
+        # Print the lowest price that satisfies the condition
+        print(price)
+
+        # Break out of the loop
+        break
+
+    # Increment the price
+    price += 1
+
+# If no price satisfies the condition, print -1
+if not found:
+    print(-1)
+```
+
+In this code, we read the input values of A and B. We initialize a flag to check if a valid price is found. We then iterate through prices from 1 to 100, calculating the amount of consumption tax levied on each price with 8% and 10% tax rates. If both taxes match the given values A and B, we set the flag to True, print the lowest price that satisfies the condition, and break out of the loop. If no price satisfies the condition, we print -1.

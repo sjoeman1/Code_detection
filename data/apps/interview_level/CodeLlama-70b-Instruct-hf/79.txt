@@ -1,0 +1,34 @@
+
+
+Here's the Python 3 code for solving the question:
+
+```python
+from random import randint
+
+def gcd(a, b):
+    while b:
+        a, b = b, a % b
+    return a
+
+def get_expected_length(m):
+    dp = [0] * (m + 1)
+    dp[1] = 1
+    for i in range(2, m + 1):
+        dp[i] = (dp[i - 1] * i + 1) // gcd(i, dp[i - 1])
+    return dp[m]
+
+def main():
+    m = int(input())
+    P = get_expected_length(m)
+    Q = 1000000007
+    print(P * pow(Q, -1, 1000000007) % 1000000007)
+
+if __name__ == "__main__":
+    main()
+```
+
+The function `gcd` calculates the greatest common divisor of two integers using the Euclidean algorithm.
+
+The function `get_expected_length` computes the expected length of the array by using dynamic programming. It iterates from 2 to m and for each i, it calculates the expected length of the array if the first random integer is i.
+
+The main function reads the input m and computes the expected length of the array. It then calculates the result P and Q as required in the question. The result is printed using the modular exponentiation function `pow` to calculate the inverse of Q modulo 1000000007.

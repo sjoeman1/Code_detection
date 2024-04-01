@@ -1,0 +1,24 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n, m, k, x, y = map(int, input().split())
+
+# Calculate the total number of students in the classroom
+total_students = n * m
+
+# Calculate the maximum and minimum number of questions asked
+max_questions = k // (total_students // 2) + (k % (total_students // 2) > 0)
+min_questions = max_questions - (k % (total_students // 2) > 0) * (total_students % 2)
+
+# Calculate the number of times Sergei is asked
+sergei_questions = (k // (total_students // 2)) + (k % (total_students // 2) >= (x - 1) * m + y) - (k % (total_students // 2) >= x * m + y - 1)
+
+# Print the results
+print(max_questions, min_questions, sergei_questions)
+```
+
+The solution works by first calculating the total number of students in the classroom. Then, it calculates the maximum and minimum number of questions asked by dividing the total number of questions by the number of times the teacher goes through the classroom, and then adding/subtracting 1 depending on whether the number of questions is even or odd.
+
+To calculate the number of times Sergei is asked, the solution divides the total number of questions by the number of times the teacher goes through the classroom, and then adds/subtracts 1 depending on whether Sergei's seat is included in the first or second half of the current cycle.
+
+The solution assumes that the input is valid and does not contain any error checking.

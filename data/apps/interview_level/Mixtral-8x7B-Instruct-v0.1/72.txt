@@ -1,0 +1,36 @@
+ Here is a Python3 solution for the problem. This solution uses dynamic programming to calculate the beauty of each cat's ribbon after each turn. It also uses a max heap to keep track of the maximum beauty of the ribbons of the three cats.
+
+```python
+import sys
+import heapq
+
+def solve():
+    n = int(input().strip())
+    k, s, kt = input().strip(), input().strip(), input().strip()
+    k = [0] + [ord(c) for c in k]
+    s = [0] + [ord(c) for c in s]
+    kt = [0] + [ord(c) for c in kt]
+
+    dp_k = [0] * (n + 1)
+    dp_s = [0] * (n + 1)
+    dp_kt = [0] * (n + 1)
+
+    for i in range(1, n + 1):
+        dp_k[i] = max(dp_k[i - 1], dp_k[i - 1] + 1)
+        for j in range(1, i):
+            if k[i] != k[j]:
+                dp_k[i] = max(dp_k[i], dp_k[j] + 1)
+
+    for i in range(1, n + 1):
+        dp_s[i] = max(dp_s[i - 1], dp_s[i - 1] + 1)
+        for j in range(1, i):
+            if s[i] != s[j]:
+                dp_s[i] = max(dp_s[i], dp_s[j] + 1)
+
+    for i in range(1, n + 1):
+        dp_kt[i] = max(dp_kt[i - 1], dp_kt[i - 1] + 1)
+        for j in range(1, i):
+            if kt[i] != kt[j]:
+                dp_kt[i] = max(dp_kt[i], dp_kt[j] + 1)
+
+    heap = [(-

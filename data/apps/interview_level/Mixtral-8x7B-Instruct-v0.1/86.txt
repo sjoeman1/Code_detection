@@ -1,0 +1,31 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def winner(xp, yp, xv, yv):
+    # If Polycarp is already at (0, 0), he wins
+    if xp == 0 and yp == 0:
+        return "Polycarp"
+    # If Vasiliy is at (0, 0), he wins
+    if xv == 0 and yv == 0:
+        return "Vasiliy"
+    # If Polycarp can reach (0, 0) in one move, he wins
+    if xp - 1 >= 0 and yp - 1 >= 0:
+        return "Polycarp"
+    # If Vasiliy can reach (0, 0) in one move, he wins
+    if xv - 1 >= 0 and yv - 1 >= 0 and xv - 2 >= 0:
+        return "Vasiliy"
+    # If Polycarp can reach (0, 0) in two moves, he wins
+    if xp - 2 >= 0 and yp - 2 >= 0:
+        return "Polycarp"
+    # Otherwise, Vasiliy wins
+    return "Vasiliy"
+
+# Read input
+xp, yp, xv, yv = map(int, input().split())
+# Print the winner
+print(winner(xp, yp, xv, yv))
+```
+
+This solution checks if either player can reach the target cell (0, 0) in one or two moves, and returns the name of the first player who can do so. If neither player can reach the target cell in one or two moves, then Vasiliy wins because he can always block Polycarp from reaching the target cell.
+
+Note that this solution assumes that the input is valid, i.e., the starting coordinates of the two pawns are different and none of them is at the target cell (0, 0). If the input may be invalid, then you should add error checking code to handle such cases.

@@ -1,0 +1,31 @@
+```python
+a, b, x = map(int, input().split())
+
+s = ""
+a_count, b_count, x_count = 0, 0, 0
+
+# Construct the string with a zeroes, b ones and x indices of non-equality
+for i in range(a):
+    s += "0"
+a_count += a
+
+for i in range(b):
+    s += "1"
+b_count += b
+
+for i in range(x):
+    s = s.replace("0", "1", 1)
+    x_count += 1
+
+# Print the constructed string
+print(s)
+```
+
+**Explanation:**
+
+* Read the three integers $a$, $b$ and $x$.
+* Initialize variables `a_count`, `b_count` and `x_count` to 0, 0 and 0 respectively.
+* Construct the string `s` with a zeroes, b ones and x indices of non-equality.
+* For each index `i` in the range `x`, replace the first occurrence of "0" in `s` with "1".
+* Increment `x_count` by 1 for each index of non-equality.
+* Finally, print the constructed string `s`.

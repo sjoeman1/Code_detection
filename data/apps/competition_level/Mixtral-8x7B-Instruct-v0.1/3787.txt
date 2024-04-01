@@ -1,0 +1,39 @@
+ Here is a Python3 solution for the given problem. This solution involves generating all permutations of the sequence and checking if they satisfy the given conditions. However, since the range of N is up to 3 x 10^5, generating all permutations may exceed the time limit. Therefore, we can optimize the solution by checking for the conditions while generating the permutations. The idea is to keep track of the longest increasing and decreasing subsequences found so far and extend them when possible. If the length of both subsequences becomes greater than or equal to the required length, we can return the sequence.
+
+```python
+import sys
+from collections import defaultdict
+
+input = sys.stdin.readline
+
+def main():
+    n, a, b = map(int, input().split())
+    seq = list(range(1, n+1))
+    inc = [0] * n
+    dec = [0] * n
+    inc_len = dec_len = 1
+    inc_idx = dec_idx = 0
+
+    def dfs(i):
+        nonlocal inc_len, dec_len, inc_idx, dec_idx
+        if i == n:
+            if inc_len == a and dec_len == b:
+                print(*seq)
+                exit(0)
+            return
+
+        for j in range(i, n):
+            if inc[i-1] < inc[j] and dec[i-1] < dec[j]:
+                continue
+            seq[i], seq[j] = seq[j], seq[i]
+            inc[i] = inc[i-1] + 1 if inc[i-1] < inc[j] else inc[i]
+            dec[i] = dec[i-1] + 1 if dec[i-1] < dec[j] else dec[i]
+            if inc_len < inc[i]:
+                inc_len = inc[i]
+                inc_idx = i
+            if dec_len < dec[i]:
+                dec_len = dec[i]
+                dec_idx = i
+            dfs(i+1)
+            inc[i] = inc[dec_idx]
+            dec[i]

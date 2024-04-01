@@ -1,0 +1,24 @@
+```python
+
+t = int(input())
+
+for _ in range(t):
+    n, m = map(int, input().split())
+    print(max((m - n) // 2, 0))
+
+```
+
+**Explanation:**
+
+* The sum of the array is given by the variable `m`.
+* The length of the array is given by the variable `n`.
+* We can maximize the sum of absolute differences between adjacent elements by subtracting `n` from `m` and dividing the result by 2. This is because we need to distribute the elements of the array as evenly as possible between adjacent elements.
+* If the result is negative, it means that it is not possible to achieve the required sum of absolute differences. Therefore, we print 0.
+
+**Time complexity:**
+
+* The time complexity of this code is O(1) because the code reads the input and calculates the output in constant time.
+
+**Space complexity:**
+
+* The space complexity of this code is O(1) because the code uses a constant amount of space regardless of the size of the input.

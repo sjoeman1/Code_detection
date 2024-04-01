@@ -1,0 +1,31 @@
+```python
+a_00, a_01, a_10, a_11 = map(int, input().split())
+
+if a_00 + a_01 + a_10 + a_11 == 0:
+    print("Impossible")
+else:
+    s = ""
+    # Calculate the number of 0s and 1s in the string
+    a_0 = min(a_00, a_01)
+    a_1 = min(a_10, a_11)
+    a_00 -= a_0
+    a_01 -= a_0
+    a_10 -= a_1
+    a_11 -= a_1
+
+    # Construct the string
+    for i in range(a_0):
+        s += "0"
+    for i in range(a_1):
+        s += "1"
+
+    # Print the answer
+    print(s)
+```
+
+**Explanation:**
+
+- The algorithm calculates the number of 0s and 1s required for the string based on the input integers.
+- It then constructs the string by allocating the maximum number of 0s followed by the maximum number of 1s.
+- The remaining number of 0s and 1s are added to the end of the string.
+- If the total number of 0s and 1s in the string is not equal to the input integers, it prints "Impossible".

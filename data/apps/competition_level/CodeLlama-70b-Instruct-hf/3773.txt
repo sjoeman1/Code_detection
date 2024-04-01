@@ -1,0 +1,40 @@
+
+
+Here is the Python 3 code for the given problem:
+
+```
+def solve(n, a, k):
+    # Find the pile with the maximum value of A_i/K_i
+    max_value = 0
+    max_index = -1
+    for i in range(n):
+        if a[i] / k[i] > max_value:
+            max_value = a[i] / k[i]
+            max_index = i
+
+    # If the maximum value is an integer, the first player loses
+    if max_value == int(max_value):
+        return "Aoki"
+    else:
+        return "Takahashi"
+
+
+# Read input from STDIN
+n = int(input())
+a = []
+k = []
+for _ in range(n):
+    a_i, k_i = map(int, input().split())
+    a.append(a_i)
+    k.append(k_i)
+
+# Call the solve function to find the winner
+winner = solve(n, a, k)
+
+# Output the winner
+print(winner)
+```
+
+The code first reads the input from STDIN, which is the number of piles N and the corresponding values of A_i and K_i for each pile.
+
+Then, it calls the `solve` function, which finds the pile with the maximum value of A_i/K_i. If this value is an integer, the first player loses, and the code returns "Aoki" as the winner. Otherwise, the first player wins, and the code returns "Takahashi" as the winner.

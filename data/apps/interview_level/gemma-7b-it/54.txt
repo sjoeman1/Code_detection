@@ -1,0 +1,14 @@
+```python
+w, m = map(int, input().split())
+
+if w * m >= m:
+    print("YES")
+else:
+    print("NO")
+```
+
+**Explanation:**
+
+* Read the two integers `w` and `m`.
+* Multiply `w` by `m` and check if the result is greater than or equal to `m`.
+* If the result is greater than or equal to `m`, print "YES". Otherwise, print "NO".

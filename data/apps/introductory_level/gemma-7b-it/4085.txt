@@ -1,0 +1,19 @@
+```python
+t = int(input())
+
+for _ in range(t):
+    n = int(input())
+    d = list(map(int, input().split()))
+
+    if 1 not in d and x not in d:
+        print(-1)
+    else:
+        x = min(d)
+        print(x)
+```
+
+**Explanation:**
+
+* We read the number of queries and for each query, read the number of divisors and the list of divisors.
+* If the list does not contain 1 and the guessed number, we print -1.
+* Otherwise, we find the minimum possible number that satisfies the list of divisors and print that number.

@@ -1,0 +1,26 @@
+ Here is a Python3 solution for the problem:
+
+```python
+import sys
+from collections import defaultdict
+
+def get_period(s):
+    for i in range(1, len(s)//2 + 1):
+        if s[:i] * (len(s) // i) == s:
+            return i
+    return len(s)
+
+def solve(n, s):
+    if n == 1:
+        return 2 if s == '0' or s == '1' else 0
+
+    t = s * (n // len(s)) + s[:n % len(s)]
+    period = get_period(t)
+    count = (n // period) * (len(s) // period)
+
+    # if the period of t is not a factor of the length of s,
+    # then there are some shifts of t that will not contain s as a substring
+    if len(s) % period != 0:
+        # calculate the number of shifts that do not contain s
+        # by subtracting the number of shifts that do contain s
+        #

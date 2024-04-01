@@ -1,0 +1,33 @@
+```python
+n = int(input())
+s = input().strip()
+
+def hash(s):
+    return ''.join(['%x'%i for i in s])
+
+distinct_strings = set()
+for i in range(len(s) - 1):
+    sub_s = s[i:i+1] + s[:i]
+    hash_s = hash(sub_s)
+    if hash_s not in distinct_strings:
+        distinct_strings.add(hash_s)
+
+print(len(distinct_strings))
+```
+
+**Explanation:**
+
+* The function `hash(s)` calculates the hash of a string `s`.
+* We iterate over the range `len(s) - 1` to find the substring of length one.
+* We concatenate the substring with the preceding part of the string and store the hash in `distinct_strings`.
+* Finally, we print the number of distinct strings.
+
+**Time Complexity:**
+
+* The time complexity is O(n) where n is the length of the string.
+* We iterate over the string only once.
+
+**Space Complexity:**
+
+* The space complexity is O(n) as well.
+* We store the hash of each substring in a set.

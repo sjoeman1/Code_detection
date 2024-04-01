@@ -1,0 +1,35 @@
+```python
+n = int(input())
+
+name = ''
+
+# Calculate the name for the dog numbered N
+if n <= 26:
+    name = chr(n-1)
+elif n <= 702:
+    name = chr(26) + chr(n-26)
+elif n <= 18277:
+    name = chr(26) + chr(n-26) + chr(n-702)
+elif n <= 475253:
+    name = chr(26) + chr(n-26) + chr(n-702) + chr(n-18277)
+else:
+    name = chr(26) + chr(n-26) + chr(n-702) + chr(n-18277) + chr(n-475253)
+
+# Print the name
+print(name)
+```
+
+**Explanation:**
+
+* The code calculates the name for the dog numbered N based on the number of the dog and the naming convention.
+* The code uses the `chr()` function to convert the integer index into a lowercase letter.
+* The code calculates the number of characters in the name of the dog numbered 1, 2, ..., 26 to determine the number of characters to add for the name of the dog numbered N.
+* The code then adds the appropriate number of characters to the name of the dog numbered 1, 2, ..., 26 to get the name of the dog numbered N.
+
+**Time Complexity:**
+
+* The code calculates the name of the dog numbered N in a linear time complexity, as it only traverses the name of the dog numbered 1, 2, ..., 26 once.
+
+**Space Complexity:**
+
+* The code uses a constant amount of space, regardless of the value of N.

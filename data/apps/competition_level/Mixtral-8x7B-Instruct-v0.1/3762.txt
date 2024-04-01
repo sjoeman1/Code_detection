@@ -1,0 +1,34 @@
+ Here is a Python3 solution for the problem:
+
+```python
+import sys
+input = sys.stdin.readline
+
+MOD = 1000000007
+
+def power(x, y):
+    res = 1
+    while y > 0:
+        if y % 2:
+            res = (res * x) % MOD
+            y -= 1
+        x = (x*x) % MOD
+        y //= 2
+    return res
+
+def solve(k):
+    return (power(2, k+1) + MOD - 2) % MOD
+
+k = int(input().strip())
+print(solve(k))
+```
+
+The idea is to use the property of XOR operation that for any non-negative integer `x`, `x xor x = 0` and `x xor 0 = x`.
+
+So, for a given `k`, all non-negative integers from `0` to `k` form a perfect set. Also, for any perfect set `S`, the complement of `S` (i.e. `{0, 1, ..., k} - S`) is also a perfect set.
+
+Therefore, the number of perfect sets consisting of integers not greater than `k` is equal to `2` (the empty set and the full set) plus the number of non-empty proper subsets of `{0, 1, ..., k}`.
+
+The number of non-empty proper subsets of `{0, 1, ..., k}` is `2^(k+1) - 2`, because for each of the `k+1` elements, we have 2 choices (include or not include the element) and we need to subtract 2 (the empty set and the full set) from the total count.
+
+Therefore, the answer is `(2^(k+1) + MOD - 2) % MOD`. We use the `power` function to calculate `2^(k+1)` efficiently.

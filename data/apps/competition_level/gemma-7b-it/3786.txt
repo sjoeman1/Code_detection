@@ -1,0 +1,18 @@
+```python
+n = int(input())
+p = list(map(int, input().split()))
+
+s = 0
+for i in range(1, n):
+    s += p[i] - i
+
+print(s)
+```
+
+**Explanation:**
+
+* The variable `n` represents the number of inflorescences.
+* The list `p` stores the number of inflorescence into which the apple from the i-th inflorescence rolls down.
+* The variable `s` calculates the total number of apples that can be collected from the first inflorescence.
+* The loop iterates over the range from 1 to `n` and adds the value of `p[i] - i` to `s`.
+* Finally, the value of `s` is printed as the output.

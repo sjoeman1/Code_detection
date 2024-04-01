@@ -1,0 +1,26 @@
+```python
+T = int(input())
+
+for _ in range(T):
+    n = int(input())
+    p = []
+    c = []
+    for _ in range(n):
+        p.append(int(input()))
+        c.append(int(input()))
+
+    flag = True
+    for i in range(n-1):
+        if p[i] > p[i+1] or c[i] < c[i+1]:
+            flag = False
+
+    print("YES" if flag else "NO")
+```
+
+**Explanation:**
+
+The code reads the number of test cases, then for each test case reads the number of moments of time and the number of plays and clears at each moment of time.
+
+It then checks if there is a sequence of plays and clears that matches the given stats.
+
+If there is, it prints "YES". Otherwise, it prints "NO".

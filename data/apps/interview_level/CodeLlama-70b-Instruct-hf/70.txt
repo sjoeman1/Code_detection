@@ -1,0 +1,31 @@
+
+
+Here is the Python 3 code that solves the problem:
+
+```py
+def min_deletions(n, k):
+    n_str = str(n)
+    max_length = len(n_str) - k + 1
+    for length in range(max_length, -1, -1):
+        for start_index in range(len(n_str) - length + 1):
+            candidate = n_str[start_index:start_index + length]
+            if int(candidate) % 10**k == 0:
+                return len(n_str) - length
+    return -1
+
+if __name__ == "__main__":
+    n, k = map(int, input().split())
+    print(min_deletions(n, k))
+```
+
+This code works as follows:
+
+1.  It reads the input values for n and k.
+2.  It converts the number n to a string for easier manipulation.
+3.  It calculates the maximum length of a substring of n that can be divisible by 10^k.
+4.  It iterates over possible substring lengths from the maximum to 1.
+5.  For each length, it iterates over all possible starting indices.
+6.  For each substring, it checks if it is divisible by 10^k. If it is, it returns the number of deletions required to obtain this substring.
+7.  If no substring is found, it returns -1.
+
+Please note that this code assumes that the input is valid and does not include error handling.

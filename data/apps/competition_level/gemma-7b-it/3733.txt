@@ -1,0 +1,34 @@
+```python
+n, I = map(int, input().split())
+a = list(map(int, input().split()))
+
+# Calculate the number of distinct values
+K = len(set(a))
+
+# Calculate the number of bits needed to store each value
+k = int((K-1).log2()) + 1
+
+# Calculate the number of changed elements
+c = min(n, k) - len(set(a))
+
+print(c)
+```
+
+**Explanation:**
+
+* The code reads the input data: $n$ (length of the array), $I$ (size of the disk in bytes), and the array $a$.
+* It calculates the number of distinct values $K$ in the array.
+* It calculates the number of bits needed to store each value $k$.
+* It calculates the number of changed elements $c$ as the minimum of $n$ and $k$, minus the length of the set of elements in $a$.
+* Finally, the code prints the number of changed elements.
+
+**Time complexity:**
+
+* The code reads the input data in constant time.
+* The code calculates the number of distinct values in linear time.
+* The code calculates the number of bits needed to store each value in logarithmic time.
+* The code calculates the number of changed elements in linear time.
+
+**Space complexity:**
+
+* The code uses a constant amount of space.

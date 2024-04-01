@@ -1,0 +1,40 @@
+```python
+n, m = map(int, input().split())
+a = list(map(int, input().split()))
+segments = []
+for _ in range(m):
+    l, r = map(int, input().split())
+    segments.append((l, r))
+
+segments.sort()
+
+ans = 0
+q = 0
+c = []
+for l, r in segments:
+    if a[l] - a[r] > ans:
+        ans = a[l] - a[r]
+        q += 1
+        c.append(segments.index((l, r)))
+
+print(ans)
+print(q)
+print(*c)
+```
+
+**Explanation:**
+
+* The code reads the number of elements in the array $n$, the number of segments $m$, and the array $a$.
+* It then reads the $m$ segments and stores them in the `segments` list.
+* The segments are sorted in ascending order based on their left endpoints.
+* The code iterates over the sorted segments and checks if the difference between the values of the elements at the left and right endpoints of the segment is greater than the current maximum difference.
+* If it is, the code updates the maximum difference, the number of segments used, and the list of segment indices.
+* Finally, the code prints the maximum difference, the number of segments used, and the list of segment indices.
+
+**Time complexity:**
+
+* The code iterates over the sorted segments only once, so the time complexity is O(m log m).
+
+**Space complexity:**
+
+* The code uses a constant amount of space regardless of the size of the input, so the space complexity is O(m).

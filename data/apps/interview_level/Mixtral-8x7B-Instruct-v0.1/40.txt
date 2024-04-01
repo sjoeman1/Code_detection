@@ -1,0 +1,25 @@
+ Here is one way to solve the problem using Python 3:
+
+```python
+n = int(input().strip())
+ratings = []
+for _ in range(n):
+    a, b = map(int, input().strip().split())
+    ratings.append((a, b))
+
+# Check if the round is unrated
+if len(set(a for a, b in ratings)) == 1:
+    print("unrated")
+    exit()
+
+# Check if the round is rated
+for i in range(1, n):
+    if ratings[i - 1][1] > ratings[i][1] and ratings[i - 1][0] < ratings[i][0]:
+        print("rated")
+        exit()
+
+# If we haven't determined if the round is rated or not yet, it must be 'maybe'
+print("maybe")
+```
+
+The code first reads the number of participants and their ratings before and after the round. It then checks if all participants have the same rating before the round, in which case the round is unrated. If not, it checks if the round is rated by comparing the ratings and standings of each pair of adjacent participants. If it finds a pair where the participant with lower rating has a better standing and their ratings are different, it prints "rated" and exits. If it goes through all pairs without finding such a pair, it prints "maybe".

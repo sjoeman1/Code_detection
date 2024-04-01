@@ -1,0 +1,26 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n, k = map(int, input().split())
+
+# Find the position of the rightmost digit that should be kept
+keep_pos = -1
+while keep_pos >= -k and n % 5 != 0:
+    keep_pos -= 1
+    n //= 10
+
+# Calculate the number of digits to remove
+to_remove = len(str(n)) + keep_pos
+
+# Print the result
+print(max(0, to_remove))
+```
+
+The solution works as follows:
+
+1. We first read the input numbers `n` and `k`.
+2. We initialize the variable `keep_pos` to -1, which will keep track of the position of the rightmost digit that should be kept in the resulting number.
+3. We then enter a loop that runs as long as `keep_pos` is non-negative and the current number `n` is not divisible by 5. In each iteration of the loop, we decrement `keep_pos` by 1 and divide `n` by 10. This has the effect of shifting our attention to the next digit to the left.
+4. Once the loop exits, `keep_pos` will be the position of the rightmost digit that should be kept in the resulting number. If `keep_pos` is negative, it means that all digits should be kept (i.e., no digits need to be removed).
+5. We then calculate the number of digits that need to be removed by adding `keep_pos` to the length of the string representation of `n`. We take the maximum of this value and 0, since the number of digits to remove cannot be negative.
+6. Finally, we print the result.

@@ -1,0 +1,46 @@
+
+```python
+# Function to check if the given array can be transformed
+# to the desired array after some steps
+def canTransform(v, a, k, n):
+
+    # Initialize a temporary array to store the transformed array
+    temp = [0] * n
+
+    # Perform the given operation on the temporary array
+    # i.e., choose a position and increase it by k^i
+    for i in range(n):
+        pos = (k ** i) % n
+        temp[pos] += k ** i
+
+    # Check if the transformed array is equal to the desired array
+    for i in range(n):
+        if temp[i] != a[i]:
+            return False
+
+    # If all elements are equal, return True
+    return True
+
+# Driver code
+if __name__ == '__main__':
+    T = int(input())
+    for i in range(T):
+        n, k = map(int, input().split())
+        a = list(map(int, input().split()))
+        if canTransform(a, k, n):
+            print("YES")
+        else:
+            print("NO")
+```
+
+In this code, the function `canTransform` takes three parameters:
+
+* `v`: the array to be transformed
+* `a`: the desired array
+* `k`: the value used in the algorithm
+
+It initializes a temporary array `temp` to store the transformed array. Then, it performs the given operation on `temp` by choosing a position `pos` and increasing it by `k^i`.
+
+After that, it checks if the transformed array is equal to the desired array. If all elements are equal, it returns `True`, otherwise, it returns `False`.
+
+The driver code takes the input, calls the `canTransform` function, and prints the result accordingly.

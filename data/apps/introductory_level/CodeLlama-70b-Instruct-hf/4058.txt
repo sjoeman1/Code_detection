@@ -1,0 +1,46 @@
+
+Here is the Python 3 code for solving the problem:
+
+```python
+# Read the input
+n = int(input())
+a = list(map(int, input().split()))
+
+# Calculate the prefix sum
+prefix_sum = [0]
+for i in range(n):
+    prefix_sum.append(prefix_sum[i] + a[i])
+
+# Calculate the suffix sum
+suffix_sum = [0] * (n + 1)
+for i in range(n - 1, -1, -1):
+    suffix_sum[i] = suffix_sum[i + 1] + a[i]
+
+# Find the block sums
+block_sums = {}
+for i in range(n):
+    for j in range(i + 1, n + 1):
+        block_sum = prefix_sum[j] - prefix_sum[i]
+        if block_sum not in block_sums:
+            block_sums[block_sum] = []
+        block_sums[block_sum].append((i, j))
+
+# Find the maximum number of blocks
+max_blocks = 0
+max_block_sum = None
+for block_sum, blocks in block_sums.items():
+    if len(blocks) > max_blocks:
+        max_blocks = len(blocks)
+        max_block_sum = block_sum
+
+# Output the result
+if max_block_sum is None:
+    print(0)
+else:
+    print(max_blocks)
+    for block in block_sums[max_block_sum]:
+        print(block[0] + 1, block[1])
+```
+
+
+This code reads the input, calculates the prefix sum and suffix sum for the array elements, finds the block sums, and then finds the maximum number of blocks with the same sum. Finally, it outputs the result.

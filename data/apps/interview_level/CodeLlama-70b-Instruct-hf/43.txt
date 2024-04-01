@@ -1,0 +1,42 @@
+
+
+This is a simple application of geometry in Python. Here is the Python3 code for solving the question:
+
+```python
+import math
+
+def dot_product(v1, v2):
+    return v1[0] * v2[0] + v1[1] * v2[1]
+
+def magnitude(v):
+    return math.sqrt(v[0]**2 + v[1]**2)
+
+def compute_angle(v1, v2):
+    dp = dot_product(v1, v2)
+    mg1 = magnitude(v1)
+    mg2 = magnitude(v2)
+    return math.acos(dp / (mg1 * mg2))
+
+n = int(input())
+vectors = []
+for i in range(n):
+    x, y = map(int, input().split())
+    vectors.append((x, y))
+
+min_angle = math.pi
+pair = None
+for i in range(n):
+    for j in range(i+1, n):
+        angle = compute_angle(vectors[i], vectors[j])
+        if angle < min_angle:
+            min_angle = angle
+            pair = (i+1, j+1)
+
+print(*pair)
+```
+
+In this code, we first define the `dot_product` function to calculate the dot product of two vectors, the `magnitude` function to calculate the magnitude of a vector, and the `compute_angle` function to compute the angle between two vectors.
+
+We then take the number of vectors `n` as input and store the vectors in a list. We iterate over all pairs of vectors, calculate their angle, and update the minimum angle and the pair of vectors if we find a smaller angle.
+
+Finally, we print the pair of indices of vectors with the minimal non-oriented angle.

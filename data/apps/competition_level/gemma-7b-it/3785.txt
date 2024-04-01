@@ -1,0 +1,44 @@
+```python
+n, m, k = map(int, input().split())
+
+# Read the maze
+maze = []
+for _ in range(n):
+    maze.append(list(input().strip().split()))
+
+# Calculate the number of empty cells
+s = sum(sum(x == '.' for x in row) for row in maze) - k
+
+# If there are no empty cells, exit
+if s == 0:
+    print("No solution")
+    exit()
+
+# Find the connected component of the empty cells
+connected_component = dfs(maze)
+
+# Mark the empty cells that are part of the connected component as walls
+for r in connected_component:
+    for c in connected_component[r]:
+        maze[r][c] = '#'
+
+# Print the new maze
+for r in range(n):
+    print(''.join(['#' if maze[r][c] == '#' else '.' for c in range(m)]))
+```
+
+**Explanation:**
+
+* The code reads the input and calculates the number of empty cells.
+* It then finds the connected component of the empty cells.
+* For each cell in the connected component, it turns it into a wall.
+* Finally, it prints the new maze.
+
+**Time Complexity:**
+
+* The code calculates the connected component of the empty cells, which takes O(n * m) time.
+* The code iterates over the connected component only once, so the time complexity is O(n * m) again.
+
+**Space Complexity:**
+
+* The code uses an additional data structure to store the connected component, so the space complexity is O(n * m) as well.

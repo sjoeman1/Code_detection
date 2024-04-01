@@ -1,0 +1,19 @@
+```python
+n, m = map(int, input().split())
+f = []
+for _ in range(n):
+    f.append(input().strip())
+
+is_correct = (len(set(f[0].split())) == 3) and all(len(set(x.split())) == 1 for x in f) and all((f[0] == f[i] for i in range(1, n))
+
+print("YES" if is_correct else "NO")
+```
+
+**Explanation:**
+
+* The code reads the input and stores the size of the field and the field itself in the variable `f`.
+* It checks if the number of distinct colors in the first row is 3.
+* It checks if the number of distinct colors in each row is 1.
+* It checks if the first row is equal to the other rows.
+
+If all conditions are met, the code prints "YES". Otherwise, it prints "NO".

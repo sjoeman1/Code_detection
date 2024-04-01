@@ -1,0 +1,17 @@
+```python
+n, r = map(int, input().split())
+a = list(map(int, input().split()))
+
+# Calculate the sum of the heaters
+sum_heaters = sum(a)
+
+# If the sum of heaters is less than the number of elements, it is impossible to warm up the whole house
+if sum_heaters < n:
+    print(-1)
+else:
+    # Calculate the minimum number of heaters needed to warm up the whole house
+    min_heaters = n - sum_heaters + 1
+
+    # Print the minimum number of heaters
+    print(min_heaters)
+```

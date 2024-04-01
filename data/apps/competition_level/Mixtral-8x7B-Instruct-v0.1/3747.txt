@@ -1,0 +1,29 @@
+ Here is a Python3 code that can solve the problem:
+```python
+def count_bulbasaurs(s: str) -> int:
+    # Initialize the count of Bulbasaurs
+    count = 0
+
+    # Loop until the entire string has been processed
+    while len(s) > 0:
+        # Try to find a Bulbasaur in the string
+        if s.find("Bulbasaur") == 0:
+            # If found, increment the count and remove the Bulbasaur from the string
+            count += 1
+            s = s[len("Bulbasaur"):].lower()
+        else:
+            # If not found, remove the first character from the string
+            s = s[1:].lower()
+
+    # Return the count of Bulbasaurs
+    return count
+
+# Get the string from the user
+s = input()
+
+# Print the result
+print(count_bulbasaurs(s))
+```
+The code defines a function `count_bulbasaurs` that takes a string `s` as input and returns the number of Bulbasaurs that can be formed from the string. The function uses a while loop to repeatedly search for a Bulbasaur in the string. If a Bulbasaur is found, it is removed from the string and the count of Bulbasaurs is incremented. If a Bulbasaur is not found, the first character is removed from the string. The function continues this process until the entire string has been processed.
+
+The code then gets the string from the user and prints the result of calling the `count_bulbasaurs` function on the string.

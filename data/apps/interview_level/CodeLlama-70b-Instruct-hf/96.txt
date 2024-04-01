@@ -1,0 +1,38 @@
+
+
+Here's the Python 3 code that solves the problem:
+
+```python
+def f(x):
+    if x % 2 == 0:
+        return x // 2
+    else:
+        return x - 1
+
+def path(x):
+    path = []
+    while x != 1:
+        path.append(x)
+        x = f(x)
+    path.append(1)
+    return path
+
+def solve(n, k):
+    max_y = 0
+    for x in range(1, n + 1):
+        path_x = path(x)
+        for y in path_x:
+            if path_x.count(y) >= k and y > max_y:
+                max_y = y
+    return max_y
+
+if __name__ == "__main__":
+    n, k = map(int, input().split())
+    print(solve(n, k))
+```
+
+The code defines a function `f` that calculates the value of the function $f(x)$ as specified in the problem statement. The `path` function computes the path of $f$ applied to a given value $x$.
+
+The `solve` function iterates over all values from 1 to $n$ and calculates the path for each value. For each path, it checks if any value $y$ occurs at least $k$ times. If it does, the function updates the maximum value $y$.
+
+Finally, the code takes input for $n$ and $k$ and prints the result of the `solve` function.

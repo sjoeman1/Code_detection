@@ -1,0 +1,36 @@
+```python
+n, m, d = map(int, input().split())
+
+x, y, x2, y2 = [int(input().split()) for _ in range(d)]
+
+cnt_l, cnt_r, cnt_t, cnt_b = map(int, input().split())
+
+# Create a dictionary to store the information about each sofa
+sofa_dict = {}
+
+for i in range(1, d + 1):
+    sofa_dict[i] = {"x": 0, "y": 0, "left": 0, "right": 0, "top": 0, "bottom": 0}
+
+for i in range(d):
+    x, y, x2, y2 = map(int, input().split())
+    sofa_dict[x] = {"x": x, "y": y, "left": x2, "right": x2, "top": y2, "bottom": y2}
+
+# Calculate the number of sofas that meet the given conditions
+cnt = 0
+for i in range(1, d + 1):
+    if sofa_dict[i]["left"] - sofa_dict[i]["x"] == cnt_l and sofa_dict[i]["right"] - sofa_dict[i]["x"] == cnt_r and sofa_dict[i]["top"] - sofa_dict[i]["y"] == cnt_t and sofa_dict[i]["bottom"] - sofa_dict[i]["y"] == cnt_b:
+        cnt += 1
+
+# Print the number of the sofa that meets the given conditions
+if cnt == 1:
+    print(i)
+else:
+    print(-1)
+```
+
+**Explanation:**
+
+- The code reads the number of sofas, the size of the storehouse, and the coordinates of each sofa.
+- It then creates a dictionary to store the information about each sofa, including its position, the number of sofas to its left, right, top, and bottom.
+- The code calculates the number of sofas that meet the given conditions, which are the number of sofas to its left, right, top, and bottom that are equal to the given values.
+- If there is only one sofa that meets the given conditions, the code prints the number of that sofa. Otherwise, it prints -1.

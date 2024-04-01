@@ -1,0 +1,27 @@
+## Solution
+
+This problem is a simple arithmetic problem. We need to find the maximum value of the XOR of two numbers from the array a.
+
+Here's the solution:
+
+```python
+n = int(input())
+a = list(map(int, input().split()))
+
+max_xor = 0
+for i in range(n):
+    for j in range(i, n):
+        xor_value = a[i] ^ a[j]
+        max_xor = max(max_xor, xor_value)
+
+print(max_xor)
+```
+
+**Explanation:**
+
+1. Read the number of test cases (n) and the array of integers (a).
+2. Iterate over the array a and find the pair of numbers whose XOR is maximum.
+3. Update the maximum XOR value if necessary.
+4. Print the maximum XOR value.
+
+This code will find the maximum XOR of two numbers from the array a in O(n^2) time complexity.

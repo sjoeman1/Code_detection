@@ -1,0 +1,11 @@
+ Here is a Python3 solution for the problem:
+
+```python
+name = input().upper()
+if name == name[::-1]:
+    print('YES')
+else:
+    print('NO')
+```
+
+In this code, we first take the input string and convert it to uppercase using the `upper()` method. Then, we check if the string is the same when reversed using the slice notation `[::-1]`. If the string is the same forwards and backwards, we print 'YES', otherwise we print 'NO'.

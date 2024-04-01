@@ -1,0 +1,32 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def solve():
+    n, m, x, y, vx, vy = map(int, input().split())
+    px, py = x + vx, y + vy
+    if vx == 1:
+        px = (px - 1) % (n + 2)
+    elif vx == -1:
+        px = (n + 1 + px) % (n + 2)
+    if vy == 1:
+        py = (py - 1) % (m + 2)
+    elif vy == -1:
+        py = (m + 1 + py) % (m + 2)
+    if px in [0, n + 1] or py in [0, m + 1]:
+        print(f'{px - 1} {py - 1}')
+    else:
+        print(-1)
+
+solve()
+```
+
+The idea is to simulate the movement of the ball on an extended table of size $(n+2)	imes (m+2)$. The extra columns and rows represent the pockets. The ball will eventually fall into a pocket if its $x$ or $y$ coordinate becomes $0$ or $n+1$ or $m+1$.
+
+We can handle the four possible directions of the ball using the following rules:
+
+* If the ball moves to the right ($vx = 1$), then $px = (px - 1) mod (n+2)$.
+* If the ball moves to the left ($vx = -1$), then $px = (n+1+px) mod (n+2)$.
+* If the ball moves upwards ($vy = 1$), then $py = (py - 1) mod (m+2)$.
+* If the ball moves downwards ($vy = -1$), then $py = (m+1+py) mod (m+2)$.
+
+After applying the corresponding rule, we check if the ball is in a pocket. If so, we print the coordinates of the pocket. Otherwise, we print $-1$.

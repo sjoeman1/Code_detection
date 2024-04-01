@@ -1,0 +1,31 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n = int(input())
+s = input()
+
+# Initialize left and right indices and corresponding counts of golden trophies
+left, left_count = 0, 0
+right, right_count = n-1, 0
+
+# Count the number of golden trophies on both sides of the array
+for i in range(n):
+    if s[i] == 'G':
+        if i <= left:
+            left = i
+            left_count += 1
+        if n-1-i <= right:
+            right = n-1-i
+            right_count += 1
+
+# Print the maximum length of golden trophies
+print(max(left_count, right_count))
+```
+
+This solution works by initializing two pointers, one at the beginning and one at the end of the array. It then counts the number of golden trophies on both sides of the array. The answer will be the maximum of the two counts.
+
+Explanation of the examples:
+
+1. For the first example, the left count is 4 and the right count is 3. The maximum of the two is 4, so Vova should swap the trophies at indices 4 and 10 to get the sequence "GGGGGGGSGS".
+2. For the second example, the left count is 4 and the right count is 0. The maximum of the two is 4, so Vova should not make any swaps.
+3. For the third example, the left count is 0 and the right count is 0. The maximum of the two is 0, so Vova cannot make the length of the longest subsegment of golden trophies greater than 0.

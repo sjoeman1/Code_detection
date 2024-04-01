@@ -1,0 +1,32 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def find\_common\_number(n, pairs1, m, pairs2):
+possible\_pairs = set()
+for a, b in pairs1:
+for c, d in pairs2:
+if a == c or a == d or b == c or b == d:
+possible\_pairs.add((a, b))
+possible\_pairs.add((c, d))
+
+if len(possible\_pairs) == 1:
+return list(possible\_pairs.pop())[0]
+
+for a, b in pairs1:
+if possible\_pairs.intersection({(a, i) for i in range(1, 10)})\
+& possible\_pairs.intersection({(j, b) for j in range(1, 10)}):
+return 0
+
+return -1
+
+# Test cases
+print(find\_common\_number(2, [(1, 2), (3, 4)], 2, [(1, 5), (3, 4)])) # 1
+print(find\_common\_number(2, [(1, 2), (3, 4)], 2, [(1, 5), (6, 4)])) # 0
+print(find\_common\_number(2, [(1, 2), (4, 5)], 3, [(1, 2), (1, 3), (2, 3)])) # -1
+```
+
+The solution first constructs a set of possible pairs by considering each pair in the two input lists and adding them to the set if they have at least one common number. If the size of the set is 1, then the common number can be determined with certainty, and it is returned.
+
+If the size of the set is greater than 1, then we check if there is a pair in the first list that intersects with a range of pairs for the first element and another range for the second element. If this condition is met, then both participants know the common number, but we do not. In this case, 0 is returned.
+
+If none of the above conditions are met, then -1 is returned, indicating that the common number cannot be

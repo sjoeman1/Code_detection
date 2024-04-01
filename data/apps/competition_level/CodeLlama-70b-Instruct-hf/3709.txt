@@ -1,0 +1,26 @@
+
+
+```py
+n, k = map(int, input().split())
+known = [0] * n
+for _ in range(n):
+    for i, x in enumerate(input().split()):
+        if x == '1':
+            known[i] += 1
+
+problemset = []
+for i, count in enumerate(known):
+    if count <= k / 2:
+        problemset.append(i + 1)
+
+if len(problemset) == 0:
+    print("NO")
+else:
+    print("YES")
+    print(len(problemset))
+    print(' '.join(map(str, problemset)))
+```
+
+The provided code snippet uses a list to keep track of the number of teams that know each problem. Then it iterates through the list and adds each problem index to the problemset list if the number of teams that know the problem is less than or equal to half of the total number of teams.
+
+If the problemset list is empty, it means that it is not possible to make an interesting problemset. Otherwise, it prints "YES" and the problemset.

@@ -1,0 +1,38 @@
+ To solve this problem, we can use a breadth-first search (BFS) algorithm to find the minimum number of moves needed to reach a square that contains the integer N. The idea is to start at the square (1,1) and explore all possible neighboring squares at each step, keeping track of the minimum number of moves needed to reach each square. Here is the Python3 code to solve the problem:
+
+```python
+import sys
+from collections import deque
+
+def min_moves_to_square(n):
+    # Initialize the queue and the visited set
+    queue = deque([(1, 1, 0)])
+    visited = set([(1, 1)])
+
+    # BFS algorithm
+    while queue:
+        i, j, moves = queue.popleft()
+
+        # Check if we have reached the target square
+        if i * j == n:
+            return moves
+
+        # Explore neighboring squares
+        for di, dj in [(0, 1), (1, 0)]:
+            ni, nj = i + di, j + dj
+            if (ni, nj) not in visited:
+                queue.append((ni, nj, moves + 1))
+                visited.add((ni, nj))
+
+    # If we cannot reach the target square, return -1
+    return -1
+
+# Read input and print output
+n = int(sys.stdin.readline())
+moves = min_moves_to_square(n)
+print(moves)
+```
+
+The `min_moves_to_square` function takes an integer `n` as input and returns the minimum number of moves needed to reach a square that contains `n`. The function uses a queue to keep track of the squares to visit next, and a set to keep track of the squares that have already been visited. The function returns the minimum number of moves needed to reach the target square, or `-1` if the target square cannot be reached.
+
+The main part of the code reads the input from standard input, calls the `min_moves_to_square` function with the input value, and prints the output. Note that the input value is read using `sys.stdin.readline()` instead

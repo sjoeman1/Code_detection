@@ -1,0 +1,17 @@
+```python
+import math
+
+n, k = map(int, input().split())
+
+if n < k:
+    print(-1)
+else:
+    g = math.floor(n / k)
+    print(*[g] * k)
+```
+
+**Explanation:**
+
+* We calculate the greatest common divisor (g) of n and k using the formula g = math.floor(n / k).
+* We repeat g for each element of the sequence, thereby maximizing the greatest common divisor.
+* If the total sum of the sequence is not equal to n, we output -1.

@@ -1,0 +1,35 @@
+
+```
+# This program checks whether a grid is symmetric or not.
+
+# Import necessary libraries
+import sys
+
+# Function to check if the grid is symmetric or not
+def is_symmetric(grid):
+    # Check if the grid is square shaped
+    if len(grid) != len(grid[0]):
+        return False
+    
+    # Iterate through the grid
+    for i in range(len(grid)):
+        for j in range(len(grid[i])):
+            # Check if the elements at (i, j) and (H - i - 1, W - j - 1) are equal
+            if grid[i][j] != grid[len(grid) - i - 1][len(grid[i]) - j - 1]:
+                return False
+    
+    # If all checks pass, return True
+    return True
+
+# Read input from stdin
+H, W = map(int, input().split())
+grid = []
+for _ in range(H):
+    grid.append(input())
+
+# Check if the grid is symmetric
+if is_symmetric(grid):
+    print("YES")
+else:
+    print("NO")
+```

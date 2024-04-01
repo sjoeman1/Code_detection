@@ -1,0 +1,16 @@
+```python
+n = int(input())
+for _ in range(n):
+    s = input().lower()
+    if len(set(s)) == len(s) and ''.join(sorted(s)) == s:
+        print("Yes")
+    else:
+        print("No")
+```
+
+**Explanation:**
+
+* The code reads the number of strings, $n$, and for each string, reads the string and checks if it is diverse.
+* The code checks if the number of distinct letters in the string is equal to the length of the string. If it is not, it prints "No".
+* The code then sorts the letters in the string in ascending order and checks if the sorted string is equal to the original string. If it is, it prints "Yes".
+* The code uses the `set()` function to check the number of distinct letters and the `sorted()` function to sort the letters in ascending order.

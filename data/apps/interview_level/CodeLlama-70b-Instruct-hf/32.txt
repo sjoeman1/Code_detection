@@ -1,0 +1,59 @@
+
+
+Here is a Python 3 code that solves the problem:
+
+```py
+n = int(input())
+
+is_valid = True
+
+current_latitude = 90
+
+for i in range(n):
+
+    distance, direction = input().split()
+
+    distance = int(distance)
+
+    if direction == "North":
+
+        if current_latitude == -90:
+
+            is_valid = False
+
+            break
+
+        current_latitude -= distance / 40000
+
+    elif direction == "South":
+
+        if current_latitude == 90:
+
+            is_valid = False
+
+            break
+
+        current_latitude += distance / 40000
+
+    else:
+
+        current_latitude += 0
+
+
+
+if current_latitude != 90:
+
+    is_valid = False
+
+
+
+if is_valid:
+
+    print("YES")
+
+else:
+
+    print("NO")
+```
+
+This code reads the number of directions, `n`, from the input. It then iterates through the `n` directions and calculates the current latitude based on the direction and distance. It also checks if the current latitude is 90 degrees (the North Pole) or -90 degrees (the South Pole) and sets the `is_valid` flag accordingly. Finally, it prints "YES" if the journey is valid, and "NO" otherwise.

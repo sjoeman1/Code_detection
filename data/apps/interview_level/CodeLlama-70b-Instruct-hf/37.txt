@@ -1,0 +1,16 @@
+
+
+Here's a Python 3 solution:
+
+```
+def can_break_shield(a, b, c):
+    for i in range(c // a + 1):
+        if (c - i * a) % b == 0:
+            return "Yes"
+    return "No"
+
+a, b, c = map(int, input().split())
+print(can_break_shield(a, b, c))
+```
+
+In this solution, the `can_break_shield` function takes three parameters: `a`, `b`, and `c`. It iterates over all possible numbers of shots from the Ebony gun, starting from 0 and going up to `c // a` (the maximum number of shots that can be taken from Ebony). For each shot from Ebony, it checks if the remaining damage to be dealt can be achieved by taking a multiple of shots from the Ivory gun. If so, it returns "Yes", otherwise it returns "No".

@@ -1,0 +1,25 @@
+ Here is the Python3 code to solve the problem:
+
+```python
+def min\_time\_to\_bake(n, t, k, d):
+n\_cakes\_per\_batch = k
+n\_batches = n // k + (n % k != 0)
+t\_with\_one\_oven = t * n\_batches
+t\_with\_two\_ovens = max(t, d) + (t + t * (n\_batches - 2) + t % d) if n\_batches > 2 else t\_with\_one\_oven
+return "YES" if t\_with\_two\_ovens < t\_with\_one\_oven else "NO"
+
+# Reading input
+n, t, k, d = map(int, input().split())
+
+# Calculating minimum time needed
+result = min\_time\_to\_bake(n, t, k, d)
+
+# Printing the result
+print(result)
+```
+
+The function `min_time_to_bake` calculates the minimum time needed to bake `n` cakes using one or two ovens. The variable `n_cakes_per_batch` is the number of cakes baked at the same time, and `n_batches` is the number of batches needed to bake `n` cakes.
+
+The variable `t_with_one_oven` is the minimum time needed to bake `n` cakes using one oven. The variable `t_with_two_ovens` is the minimum time needed to bake `n` cakes using two ovens. It is calculated as the maximum of `t` and `d` (which is the time needed to build the second oven) plus the time needed to bake the remaining cakes after the second oven is built.
+
+If `t_with_two_ovens` is less than `t_with_one_oven`, then it is reasonable to build the second oven. Otherwise, it is unreasonable. The result is printed accordingly.

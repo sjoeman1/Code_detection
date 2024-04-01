@@ -1,0 +1,31 @@
+
+
+This problem can be solved using a dynamic programming approach. Here is a Python 3 code that solves the problem:
+
+```python
+import math
+
+mod = 1000000007
+
+def solve(n, s):
+    dp = [[0] * (len(s) + 1) for _ in range(n + 1)]
+    dp[0][0] = 1
+    for i in range(1, n + 1):
+        for j in range(len(s) + 1):
+            dp[i][j] += dp[i - 1][j]
+            if j < len(s) and s[j] == '(':
+                dp[i][j] += dp[i - 1][j + 1]
+            dp[i][j] %= mod
+    return dp[n][0]
+
+n = int(input())
+s = input()
+ans = solve(n, s)
+print(ans)
+```
+
+In the code, `mod` is the modulo value of 10^9 + 7. The `solve` function takes two parameters: `n`, which is the half-length of the resulting regular bracket sequences, and `s`, which is the substring that should be a substring in each of the resulting regular bracket sequences.
+
+The `dp` array is a two-dimensional array where `dp[i][j]` represents the number of regular bracket sequences of length `i` that contain the substring `s` starting at index `j`. The initial value of `dp[0][0]` is set to 1 because there is one regular bracket sequence of length 0 that contains the empty substring.
+
+The code iterates over `i` from 1 to `n` and `j` from 0 to `len(s)`. For each `i` and `j`, the code updates `dp[i][j]` by adding the number of regular bracket sequences of length `i - 1` that contain the substring `s` starting at index `j`. If the substring `s` is not empty and its first character is '(', the code also adds the number of regular bracket sequences of length `i - 1` that contain the substring `s

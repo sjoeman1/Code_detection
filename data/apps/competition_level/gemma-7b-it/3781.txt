@@ -1,0 +1,21 @@
+```python
+T = int(input())  # Number of test cases
+
+for _ in range(T):
+    N = int(input())  # Number of bags and dishes
+    a = list(map(int, input().split()))  # Number of coins in each bag
+
+    # Calculate the winner of the game
+    winner = "Second" if sum(a) % 2 == 0 else "First"
+
+    # Print the winner
+    print(winner)
+```
+
+**Explanation:**
+
+- The game has two players, Taro and Jiro, and they take turns alternately.
+- In each turn, a player can either move all the coins from a bag to a dish or remove coins from a dish.
+- The game ends when one player is unable to make a move.
+- If the total number of coins is even, Taro wins. If the total number of coins is odd, Jiro wins.
+- The code calculates the total number of coins and checks if it is even or odd to determine the winner.

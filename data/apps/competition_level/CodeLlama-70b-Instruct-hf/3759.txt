@@ -1,0 +1,48 @@
+
+
+This problem can be solved using a graph theory approach. Here's the Python 3 code:
+
+```python
+from collections import deque
+
+def solve(n):
+    # Initialize the graph
+    graph = {}
+    for i in range(-n, n+1):
+        for j in range(-n, n+1):
+            graph[(i, j)] = []
+
+    # Add edges between 4-connected points
+    for i in range(-n, n+1):
+        for j in range(-n, n+1):
+            for x, y in [(i-1, j), (i+1, j), (i, j-1), (i, j+1)]:
+                if -n <= x <= n and -n <= y <= n:
+                    graph[(i, j)].append((x, y))
+
+    # Initialize the visited set and queue
+    visited = set()
+    queue = deque()
+
+    # Add the origin to the queue
+    queue.append((0, 0))
+    visited.add((0, 0))
+
+    # Perform a Breadth-First Search (BFS) to find all the special points
+    while queue:
+        x, y = queue.popleft()
+        for neighbor in graph[(x, y)]:
+            if neighbor not in visited:
+                queue.append(neighbor)
+                visited.add(neighbor)
+
+    # Return the number of points to block
+    return len(graph) - len(visited)
+
+# Read the input
+n = int(input())
+
+# Call the solve function and print the result
+print(solve(n))
+```
+
+This code defines a function `solve(n)` that takes the input n as the maximum distance from the origin. It initializes a graph representing the plane and adds edges between 4-connected points. Then, it performs a Breadth-First Search (BFS) starting from the origin to find all the special points. Finally, it returns the number of points to block, which is the difference between the total number of points and the number of special points. The code reads the input n and calls the `solve(n)` function to print the result.

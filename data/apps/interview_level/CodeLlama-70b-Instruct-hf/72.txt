@@ -1,0 +1,44 @@
+
+
+Here is the Python3 code for solving the question:
+
+```
+def max_beauty(s):
+    n = len(s)
+    cnt = 1
+    ans = 0
+    for i in range(1, n):
+        if s[i] == s[i - 1]:
+            cnt += 1
+        else:
+            ans = max(ans, cnt)
+            cnt = 1
+    ans = max(ans, cnt)
+    return ans
+
+n = int(input())
+kuro = input()
+shiro = input()
+katie = input()
+
+ans = max_beauty(kuro)
+if max_beauty(shiro) > ans:
+    ans = max_beauty(shiro)
+    winner = 'Shiro'
+elif max_beauty(shiro) == ans:
+    winner = 'Draw'
+else:
+    winner = 'Kuro'
+
+if max_beauty(katie) > ans:
+    ans = max_beauty(katie)
+    winner = 'Katie'
+elif max_beauty(katie) == ans:
+    winner = 'Draw'
+
+print(winner)
+```
+
+This code defines a function `max_beauty` that calculates the maximum beauty of a ribbon. It iterates through the ribbon and counts the number of consecutive identical characters. If the count is greater than the current maximum, it updates the maximum.
+
+The main part of the code takes input for the number of turns `n` and the three ribbons. It then calculates the maximum beauty of each ribbon and determines the winner. If two or more cats share the maximum beauty, the winner is "Draw".

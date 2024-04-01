@@ -1,0 +1,31 @@
+
+
+ Here is a possible Python3 solution for the question:
+
+```
+def max_length_increasing_subarray(arr):
+    n = len(arr)
+    if n <= 2:
+        return n
+    dp = [1] * n
+    for i in range(1, n):
+        for j in range(i):
+            if arr[i] > arr[j]:
+                dp[i] = max(dp[i], dp[j] + 1)
+    return max(dp)
+
+n = int(input())
+arr = list(map(int, input().split()))
+ans = max_length_increasing_subarray(arr)
+print(ans)
+```
+
+The solution uses dynamic programming to solve the problem. The function `max_length_increasing_subarray` takes an array `arr` as input and returns the maximum possible length of a strictly increasing contiguous subarray.
+
+The function first checks if the length of the array is less than or equal to 2. If it is, then the maximum possible length is the length of the array itself.
+
+Next, the function initializes an array `dp` of length `n` where `n` is the length of the array, and each element is initialized to 1. This array represents the maximum possible length of a strictly increasing contiguous subarray ending at each index.
+
+The function then iterates through the array from index 1 to n-1. For each index `i`, it iterates through all the elements before it (from 0 to i-1) and checks if the element at the current index `i` is greater than the element at the previous index `j`. If it is, it updates the value of `dp[i]` to the maximum of its current value and the value of `dp[j] + 1`. This is because if the element at index `i` is greater than the element at index `j`, then the length of the strictly increasing contiguous subarray ending at index `i` can be increased by 1.
+
+Finally, the function returns the maximum value in the `dp` array, which represents the maximum possible length of a strictly increasing contiguous subarray in the given array.

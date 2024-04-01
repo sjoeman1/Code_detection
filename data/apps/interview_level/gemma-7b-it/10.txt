@@ -1,0 +1,23 @@
+```python
+n = int(input())
+
+min_off = n // 5 * 2
+max_off = min_off + 2
+
+print(min_off, max_off)
+```
+
+**Explanation:**
+
+* We calculate the number of weeks in a year on Mars, which is `n // 5`.
+* The number of days off per year is the number of weeks in a year multiplied by 2, which is the number of days off per week.
+* The minimum possible number of days off is the number of weeks in a year multiplied by 2.
+* The maximum possible number of days off is the number of weeks in a year multiplied by 2 plus 2.
+
+**Time complexity:**
+
+* The code calculates the number of weeks in a year on Mars only once, so the time complexity is O(1).
+
+**Space complexity:**
+
+* The code uses a constant amount of space, regardless of the input size, so the space complexity is O(1).

@@ -1,0 +1,24 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def solve():
+    n = int(input())
+    s = input()
+
+    # Calculate the target counts for each digit
+    target = [n // 3] * 3
+
+    # Calculate the current counts for each digit
+    current = [0, 0, 0]
+    for c in s:
+        current[int(c)] += 1
+
+    # Initialize the result string
+    result = []
+
+    # Replace the characters to reach the target counts
+    for i in range(3):
+        diff = target[i] - current[i]
+        result.extend([i] * diff)
+
+    # Combine the result string

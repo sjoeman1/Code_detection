@@ -1,0 +1,20 @@
+```python
+n = int(input())
+a = list(map(int, input().split().strip().split()))
+
+a.sort()
+ans = 1
+for i in range(n-1):
+    if a[i] > a[i+1]:
+        ans = max(ans, i+2)
+
+print(ans)
+```
+
+**Explanation:**
+
+1. Sort the sequence in ascending order.
+2. Iterate over the sequence and find the first element that is greater than the previous element.
+3. The length of the subsegment is the number of elements between the current element and the previous element.
+4. Update the maximum length of the subsegment if necessary.
+5. Print the maximum length of the subsegment.

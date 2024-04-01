@@ -1,0 +1,24 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n, k = map(int, input().split())
+arr = list(map(int, input().split()))
+
+left, right = 0, n-1
+count = 0
+while left <= right:
+    if arr[left] <= k:
+        count += 1
+        left += 1
+    elif arr[right] <= k:
+        count += 1
+        right -= 1
+    else:
+        break
+
+print(count)
+```
+
+In this solution, we keep track of the left and right ends of the list. At each step, we check if the leftmost or rightmost problem can be solved by Mishka. If it can be solved, we increment the count and move to the next problem on that end. If it cannot be solved, we break out of the loop.
+
+In the end, we print the count, which represents the maximum number of problems Mishka can solve.

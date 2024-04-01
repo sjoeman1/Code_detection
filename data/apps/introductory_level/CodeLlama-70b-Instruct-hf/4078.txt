@@ -1,0 +1,10 @@
+
+The following Python3 code should solve the problem:
+
+```py
+a = int(input())
+result = (2**a) - 1
+print(result)
+```
+
+The first line reads the input and converts it to an integer. The second line calculates the result using the formula `2^a - 1` and stores it in the `result` variable. The third line prints the result.

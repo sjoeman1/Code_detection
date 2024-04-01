@@ -1,0 +1,41 @@
+
+
+Here is the Python 3 code that solves the question:
+
+```
+import math
+
+def square_intersection(square1, square2):
+    # Define a point class to store the coordinates of the points
+    class Point:
+        def __init__(self, x, y):
+            self.x = x
+            self.y = y
+
+    # Define a function to check if two points are equal
+    def point_equal(point1, point2):
+        return point1.x == point2.x and point1.y == point2.y
+
+    # Define a function to check if a point lies on a line segment
+    def point_on_segment(point, line):
+        return (point.x - line[0].x) * (line[1].y - line[0].y) == (point.y - line[0].y) * (line[1].x - line[0].x) and (
+                    line[0].x - point.x) * (line[1].x - point.x) <= 0 and (line[0].y - point.y) * (line[1].y - point.y) <= 0
+
+    # Define a function to check if two line segments intersect
+    def segment_intersect(line1, line2):
+        # Find the four orientations needed for the general and special cases
+        o1 = orientation(line1[0], line1[1], line2[0])
+        o2 = orientation(line1[0], line1[1], line2[1])
+        o3 = orientation(line2[0], line2[1], line1[0])
+        o4 = orientation(line2[0], line2[1], line1[1])
+
+        # General case
+        if o1 != o2 and o3 != o4:
+            return True
+
+        # Special cases
+        # line1[0], line1[1] and line2[0] are colinear and line2[0] lies on segment line1
+        if o1 == 0 and point_on_segment(line2[0], line1):
+            return True
+
+        # line1[0], line1[1] and line2[1]

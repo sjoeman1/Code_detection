@@ -1,0 +1,26 @@
+```python
+import math
+
+a1, b1 = map(int, input().split())
+a2, b2 = map(int, input().split())
+
+# Calculate the minimum number of minutes
+m = int(math.ceil((a1 * b1 - a2 * b2) / 2))
+
+# Calculate the possible sizes of the bars after the process
+s1 = int((a1 * b1 - m) // b1)
+s2 = int((a2 * b2 + m) // b2)
+
+# Print the results
+print(m)
+print(s1, b1)
+print(s2, b2)
+```
+
+**Explanation:**
+
+* The algorithm calculates the minimum number of minutes required to make the two bars have the same number of squares.
+* It calculates the number of squares that can be removed from the first bar and the number of squares that can be added to the second bar.
+* The algorithm divides the number of squares that can be removed from the first bar by the number of squares that can be added to the second bar to find the minimum number of minutes.
+* The algorithm then calculates the number of squares that remain in the first bar and the number of squares that can be added to the second bar.
+* The algorithm prints the minimum number of minutes, followed by the possible sizes of the bars after the process.

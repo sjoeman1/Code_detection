@@ -1,0 +1,26 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n = int(input())
+
+# Minimum number of days off
+min_days_off = n % 7
+if min_days_off == 0:
+    min_days_off = 7
+min_days_off = min_days_off // 2
+print(min_days_off, end=' ')
+
+# Maximum number of days off
+max_days_off = (n - 1) % 7
+if max_days_off == 0:
+    max_days_off = 7
+max_days_off = max_days_off // 2
+print(max_days_off)
+```
+
+Explanation:
+
+* The minimum number of days off is either 0 or 7, depending on whether the year starts with a work day or a day off. After that, the minimum number of days off per week is 2.
+* The maximum number of days off is determined by the maximum number of consecutive days off that can be squeezed into the year. If the year ends with a work day, then the maximum number of days off is 2; otherwise, the maximum number of days off is 7. After that, the maximum number of days off per week is 2.
+
+The code calculates the minimum and maximum number of days off based on these rules. Note that the `%` operator calculates the remainder of division, and the `//` operator calculates integer division.

@@ -1,0 +1,29 @@
+
+
+The following Python 3 code solves the problem:
+
+```python
+x, y, m = map(int, input().split())
+steps = 0
+while not (x >= m or y >= m):
+    if x == y == 0:
+        break
+    if x < y:
+        x, y = x + y, y
+    else:
+        x, y = x, x + y
+    steps += 1
+
+if x >= m or y >= m:
+    print(steps)
+else:
+    print(-1)
+```
+
+This code uses a simple greedy algorithm to find the minimum number of operations. It first reads the input numbers x, y, and m from the standard input. Then, it initializes the number of steps to 0.
+
+The code enters a loop that repeats until both x and y are greater than or equal to m. Inside the loop, it checks if x and y are both 0. If they are, it breaks out of the loop, as there is no way to make them both greater than or equal to m.
+
+Otherwise, it checks which of x and y is smaller and adds it to the larger one. It updates the smaller number to be the sum of the two original numbers, and the larger number remains unchanged. This is a greedy step, as it aims to increase the smaller number as much as possible, hoping to eventually make it greater than or equal to m.
+
+After each step, it increments the number of steps by 1. When the loop ends, it checks if either x or y is greater than or equal to m. If so, it prints the number of steps taken. Otherwise, it prints -1 to indicate that it is impossible to transform the pair to m-perfect.

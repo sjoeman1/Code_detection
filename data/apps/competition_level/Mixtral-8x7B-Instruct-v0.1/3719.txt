@@ -1,0 +1,21 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def destroyable\_spaceships(n, m, y1, y2):
+y1\_set = set(y1)
+y2\_set = set(y2)
+y\_set = y1\_set.union(y2_set)
+return len(y\_set) + min(len(y1\_set), len(y2\_set))
+
+n, m = map(int, input().split())
+y1 = list(map(int, input().split()))
+y2 = list(map(int, input().split()))
+
+print(destroyable\_spaceships(n, m, y1, y2))
+```
+
+This solution works by first creating sets of the y-coordinates for both groups of enemy spaceships, and then finding the union of those sets. This gives us the number of enemy spaceships that will be destroyed no matter where the small spaceships are positioned (the ones with unique y-coordinates).
+
+Next, we find the minimum of the sizes of the two sets. This gives us the number of enemy spaceships that will be destroyed if the small spaceships are positioned such that they destroy all the enemy spaceships in the group with fewer distinct y-coordinates.
+
+Adding these two numbers together gives us the maximum number of enemy spaceships that can be destroyed.

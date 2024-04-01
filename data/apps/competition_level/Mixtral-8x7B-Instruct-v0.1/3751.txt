@@ -1,0 +1,35 @@
+ Here is one way to solve the problem in Python3:
+```python
+def is_obfuscated(s):
+    if len(s) > 26:
+        return False
+    used = set()
+    for c in s:
+        if c.isalpha() and c not in used:
+            used.add(c)
+    alphabet = list(set(chr(ord('a') + i) for i in range(len(used))))
+    current = {}
+    for c in used:
+        current[c] = alphabet.pop(0)
+    obfuscated = [current[c] for c in s]
+    for i in range(len(s)):
+        for j in range(i+1, len(s)):
+            if obfuscated[i] == obfuscated[j] and s[i] != s[j]:
+                return False
+    return True
+
+# Test cases
+print(is_obfuscated('abacaba'))  # YES
+print(is_obfuscated('jinotega'))  # NO
+```
+The function `is_obfuscated` takes a string `s` as input and returns `True` if the string can be a result of Kostya's obfuscation and `False` otherwise.
+
+The function first checks if the length of the string is greater than 26, in which case it returns `False` since there cannot be more than 26 unique identifiers in Kostya's program.
+
+Next, the function creates a set `used` of all unique identifiers in the string. It then initializes an alphabet list `alphabet` with the letters a-z in order.
+
+The function then creates a dictionary `current` where the keys are the unique identifiers in the string and the values are the letters in alphabet in the order they were popped.
+
+The function then creates a list `obfuscated` where each element is the corresponding letter in alphabet for each identifier in the string.
+
+Finally, the function checks if there are any two elements in `obfuscated` that are the same but correspond to different identifiers in the string. If such a pair exists, the function returns `False` since Kostya'

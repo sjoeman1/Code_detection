@@ -1,0 +1,19 @@
+
+```py
+#!/usr/bin/python3
+
+n = int(input())
+
+# calculate the number of work days in a year
+work_days = n * 5 // 7
+
+# calculate the minimum number of days off
+min_days_off = n - work_days
+
+# calculate the maximum number of days off
+max_days_off = n - (n - min_days_off) // 7 - 1
+
+print(min_days_off, max_days_off)
+```
+
+In this Python3 code, we first take the input 'n' which represents the number of days in a year on Mars. Then, we calculate the number of work days in a year using the formula (n * 5) // 7. Then, we calculate the minimum number of days off using the formula n - work_days. Finally, we calculate the maximum number of days off using the formula n - (n - min_days_off) // 7 - 1. We print the minimum and maximum number of days off as the output.

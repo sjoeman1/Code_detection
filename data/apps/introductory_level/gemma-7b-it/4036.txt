@@ -1,0 +1,18 @@
+```python
+n, k = map(int, input().split())
+
+if n < k:
+    print("NO")
+else:
+    print("YES")
+    a = list(int(input().split()))
+    print(a)
+```
+
+**Explanation:**
+
+* The code reads the input for the number of problems and days.
+* If the number of problems to be solved is less than the number of days, it prints "NO".
+* Otherwise, it prints "YES" and the array of problems to be solved on each day.
+* The code checks if the sum of problems solved on each day is equal to the total number of problems to be solved.
+* It also checks if the number of problems solved on each day is greater than zero and less than or equal to twice the number of problems solved on the previous day.

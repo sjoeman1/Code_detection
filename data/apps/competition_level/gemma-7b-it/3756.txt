@@ -1,0 +1,21 @@
+```python
+
+n, t = map(int, input().split())
+grade = float(input())
+
+# Calculate the maximum number of decimal places that can be rounded down
+decimal_places = int(n) - int(grade.as_integer())
+
+# Calculate the maximum grade that can be achieved in t seconds
+max_grade = grade.copy()
+for _ in range(t):
+    # Round down the grade to the nearest integer
+    max_grade = min(max_grade, round(grade, decimal_places) + 0.001)
+
+    # If the grade is equal to 9, round down the second decimal place
+    if max_grade.is_integer():
+        max_grade = round(max_grade, decimal_places - 1)
+
+# Print the maximum grade
+print(max_grade)
+```

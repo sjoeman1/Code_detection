@@ -1,0 +1,29 @@
+
+
+Here is the Python3 code for solving the question:
+
+```python
+n = int(input())
+arr = list(map(int, input().split()))
+
+min_index = []
+for i in range(n):
+    if arr[i] == min(arr):
+        min_index.append(i)
+
+min_distance = n
+for i in range(len(min_index)-1):
+    if min_index[i+1] - min_index[i] < min_distance:
+        min_distance = min_index[i+1] - min_index[i]
+
+print(min_distance)
+```
+
+Here's a brief explanation of the code:
+
+1.  The first line reads the number of elements in the array.
+2.  The second line reads the array elements and converts them to integers.
+3.  The for loop iterates through the array and appends the indices of the minimum elements to the min_index list.
+4.  The second for loop iterates through the min_index list and calculates the distance between consecutive minimum elements.
+5.  The min_distance variable stores the minimum distance between two consecutive minimum elements.
+6.  Finally, the minimum distance is printed.

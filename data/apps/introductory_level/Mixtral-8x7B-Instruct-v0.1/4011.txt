@@ -1,0 +1,22 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n = int(input())
+a = input()
+f = list(map(int, input().split()))
+
+# Initialize result as the given number
+result = int(a)
+
+# Iterate over all possible subsegments
+for i in range(n):
+    for j in range(i, n):
+        # Generate the number by applying function f on the subsegment
+        num = int(''.join(str(f[int(ch)]) if i <= k < j else ch for k, ch in enumerate(a)))
+        # Update result if the generated number is greater
+        result = max(result, num)
+
+print(result)
+```
+
+The solution generates all possible subsegments of the given number and applies the function f on each of them. It then updates the result if the generated number is greater than the current result. Finally, it prints the maximum number obtained.

@@ -1,0 +1,38 @@
+ Here is a Python3 solution for the problem:
+```python
+import sys
+
+def solve():
+    n = int(input().strip())
+    crushes = list(map(int, input().strip().split()))
+    for t in range(1, 101):
+        already_joonjoon = [False]*n
+        for x in range(n):
+            y = x
+            while not already_joonjoon[y]:
+                already_joonjoon[y] = True
+                y = crushes[y] - 1
+            if y != x:
+                break
+        else:
+            return t
+    return -1
+
+if __name__ == '__main__':
+    print(solve())
+```
+The solution works as follows:
+
+* Read the number of people `n` and their crushes.
+* For each `t` from 1 to 100 (we can't have `t` greater than 100, since the number of people is at most 100), do the following:
+	+ Initialize an array `already_joonjoon` of length `n` with all elements set to `False`. This array will keep track of the people who have already become Joon-Joon in the current round.
+	+ For each person `x`, do the following:
+		- Set `y` to `x`.
+		- While `y` has not become Joon-Joon yet, do the following:
+			* Set `already_joonjoon[y]` to `True`.
+			* Set `y` to the crush of `y`.
+		- If `y` is not equal to `x`, then `t` is not the desired number, so break the loop and continue with the next value of `t`.
+	- If the loop finished without breaking, then `t` is the desired number, so return it.
+* If none of the values of `t` from 1 to 100 satisfy the condition, then return -1.
+
+The solution has a time complexity of O(n^2*100) = O(n^2), since in the worst case, we have to iterate over all values

@@ -1,0 +1,29 @@
+```python
+n = int(input())
+p = []
+k = 0
+for i in range(2, int(n**0.5) + 1):
+    while n - i * i >= 0:
+        p.append(i)
+        n -= i
+        k += 1
+print(k)
+print(*p)
+```
+
+**Explanation:**
+
+- The code calculates the primes less than or equal to the square root of the input number n.
+- It iterates over the primes and adds them to the list p until the sum of the primes is equal to n.
+- The number of primes in the representation is stored in k.
+- The primes are printed in any order.
+
+**Time Complexity:**
+
+- The code calculates the primes less than or equal to n, which takes O(n) time.
+- The loop iterates over the primes only once, so the time complexity is O(n).
+
+**Space Complexity:**
+
+- The code uses a list p of size O(n) to store the primes.
+- The space complexity is O(n).

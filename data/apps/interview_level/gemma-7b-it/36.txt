@@ -1,0 +1,26 @@
+```python
+n = int(input())
+
+x = -1
+y = 0
+
+r = 0
+c = 0
+
+for i in range(n):
+    r += 1
+    c += 1
+    if r % 2 == 0:
+        x += 1
+    if c % 3 == 0:
+        y += 1
+
+print(x, y)
+```
+
+**Explanation:**
+* The number of moves is divided into two groups: the number of moves that increase the row number and the number of moves that increase the column number.
+* The number of moves that increase the row number is always even, so the row number increases by one for every two moves.
+* The number of moves that increase the column number is always divisible by three, so the column number increases by one for every three moves.
+* The initial position of Ayrat is (0, 0).
+* Therefore, after n moves, the position of Ayrat is (-1 + n/2) 0, and (n/3) 2.

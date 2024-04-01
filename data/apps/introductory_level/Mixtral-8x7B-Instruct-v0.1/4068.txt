@@ -1,0 +1,24 @@
+ Here is a Python3 solution using dynamic programming:
+
+```python
+import sys
+input = sys.stdin.readline
+
+MOD = 1000000007
+
+N, M = map(int, input().strip().split())
+a = list(map(int, input().strip().split()))
+
+dp = [0] * (N+1)
+dp[0] = 1
+
+for i in range(N):
+    if i+1 < N and i+1 not in a:
+        dp[i+1] += dp[i]
+    if i+2 < N and i+2 not in a:
+        dp[i+2] += dp[i]
+
+print(dp[N] % MOD)
+```
+
+This solution works by creating an array `dp` to store the number of ways to reach each step. The base case is `dp[0] = 1`, since there is only one way to reach the 0-th step (by not moving at all). For each step `i` from 1 to `N`, if it is not broken, then the number of ways to reach `i` is the sum of the number of ways to reach `i-1` and `i-2`. This is because Takahashi can either move up one step or two steps at a time. Finally, the answer is `dp[N]` modulo 1000000007.

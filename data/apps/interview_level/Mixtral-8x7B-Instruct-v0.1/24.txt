@@ -1,0 +1,9 @@
+ Here is a Python3 solution for the problem:
+```python
+def check_horizontal(board, row):
+    for col in range(len(board[0]) - 4):
+        if board[row][col] == '.' and all(board[row][col:col+5] == 'X'):
+            return True
+    return False
+
+def check_vertical(board, col):

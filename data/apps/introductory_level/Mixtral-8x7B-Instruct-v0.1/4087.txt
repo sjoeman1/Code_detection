@@ -1,0 +1,20 @@
+ Here is a Python3 solution for the problem:
+
+```python
+# Get input number
+a = int(input())
+
+# Initialize result as current number
+result = a
+
+# If the current number is not interesting, find the next interesting number
+if sum(int(digit) for digit in str(a)) % 4 != 0:
+    # Increase number until it becomes interesting
+    while sum(int(digit) for digit in str(result)) % 4 != 0:
+        result += 1
+
+# Print result
+print(result)
+```
+
+This script first reads the input number `a`. If the sum of its digits is not divisible by 4, it increments the number until it finds the next interesting number (i.e., a number with a sum of digits divisible by 4). Finally, it prints the result.

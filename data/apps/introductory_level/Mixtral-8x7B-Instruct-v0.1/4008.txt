@@ -1,0 +1,17 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n, k = map(int, input().split())
+a = list(map(int, input().split()))
+
+if k > n:
+    print("NO")
+else:
+    print("YES")
+    for i in range(1, k+1):
+        for j in range(i-1, n, k):
+            print(i, end=" ")
+    print()
+```
+
+This solution first checks if the number of colors `k` is greater than the length of the array `n`. If it is, then it prints "NO" and exits. Otherwise, it prints "YES" and then creates a coloring that satisfies the conditions. The coloring is created by assigning color `i` to elements at positions `i-1, i+k-1, i+2k-1, ...` until the end of the array. This ensures that each color is used at least once and that no two elements with the same color are adjacent.

@@ -1,0 +1,46 @@
+
+
+This is a Python code that solves the given problem:
+
+```python
+from collections import deque
+
+def solve(n, m, days):
+    ans = [0] * n
+    for i in range(m):
+        s, d, c = days[i]
+        if c == 1:
+            ans[s] = i + 1
+            continue
+        if s + c == d:
+            ans[s] = i + 1
+            continue
+        if s + c - 1 == d:
+            ans[s] = i + 1
+            continue
+        if s + c - 2 == d:
+            ans[s] = i + 1
+            ans[s + 1] = i + 1
+            continue
+        if s + c - 3 == d:
+            ans[s] = i + 1
+            ans[s + 1] = i + 1
+            ans[s + 2] = i + 1
+            continue
+        return -1
+    return ans
+
+
+n, m = map(int, input().split())
+days = []
+for i in range(m):
+    days.append(list(map(int, input().split())))
+days.sort()
+ans = solve(n, m, days)
+if ans == -1:
+    print(-1)
+else:
+    print(*ans)
+```
+
+This code solves the problem by checking for each exam if it can be prepared and passed in the given time, and if not, it returns -1. If all exams can be prepared and passed, it prints the schedule for Petya.

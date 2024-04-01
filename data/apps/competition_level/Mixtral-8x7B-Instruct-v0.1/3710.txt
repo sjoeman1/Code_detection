@@ -1,0 +1,36 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def has\_winning\_strategy(n, k, ancient\_numbers):
+ ans = "Yes"
+ # If k is present in the ancient numbers, then Arya can always determine x mod k
+ if k in ancient\_numbers:
+ return ans
+
+ # Check if any of the ancient numbers is a multiple of k
+ for num in ancient\_numbers:
+ if num % k == 0:
+ continue
+ else:
+ # If none of the ancient numbers is a multiple of k, then Arya cannot determine x mod k
+ # because for any two numbers x1 and x2, such that x1 % k != x2 % k, there will always
+ # be a common ancient number with which they will have the same remainder
+ ans = "No"
+ break
+ return ans
+
+# Read input
+n, k = map(int, input().split())
+ancient\_numbers = list(map(int, input().split()))
+
+# Call the function
+print(has\_winning\_strategy(n, k, ancient\_numbers))
+```
+
+The function `has_winning_strategy` takes the number of ancient numbers `n`, the number `k` chosen by Pari, and the list of ancient numbers as input, and returns "Yes" if Arya has a winning strategy and "No" otherwise.
+
+The function first checks if `k` is present in the list of ancient numbers. If it is, then Arya can always determine the value of `x mod k` by simply asking for `x mod k` directly from Pari.
+
+If `k` is not present in the list of ancient numbers, then the function checks if any of the ancient numbers is a multiple of `k`. If there is a multiple of `k`, then Arya can determine the value of `x mod k` by asking for `x mod c_i`, where `c_i` is the multiple of `k`.
+
+If none of the ancient numbers is a multiple of `k`, then Arya cannot determine the value of `x mod k` because for any two numbers `x1` and `x2`, such that `x1 % k != x2 % k`, there will always be a common ancient number with which they will have the same remainder

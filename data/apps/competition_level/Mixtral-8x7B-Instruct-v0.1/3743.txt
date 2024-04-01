@@ -1,0 +1,18 @@
+ Here is a Python3 solution for the problem:
+
+```python
+import math
+
+def max_colors(n):
+    if n == 1:
+        return 1
+    elif n % 2 == 0:
+        return int(math.log2(n)) + 1
+    else:
+        return int(math.log2(n // 2)) + 2
+
+n = int(input())
+print(max_colors(n))
+```
+
+The function `max_colors` calculates the maximum number of different colors that Ujan can use to paint the path. If `n` is 1, then only one color is needed. If `n` is even, then the maximum number of colors is equal to the number of bits in the binary representation of `n` plus one (because two consecutive tiles cannot have the same color). If `n` is odd, then the maximum number of colors is equal to the number of bits in the binary representation of `n // 2` plus two (because the first and last tiles must have the same color, and two consecutive tiles cannot have the same color).

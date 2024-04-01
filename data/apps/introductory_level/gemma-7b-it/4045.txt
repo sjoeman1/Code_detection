@@ -1,0 +1,18 @@
+```python
+n = int(input())
+s = input().strip()
+t = input().strip()
+
+if len(s) + len(t) > n or s in t or t in s:
+    print("NO")
+else:
+    print("YES")
+    res = ''.join(['a' * i for i in range(n)] + ['b' * i for i in range(n)] + ['c' * i for i in range(n)])
+    print(res)
+```
+
+**Explanation:**
+
+1. Read the number of characters $n$, the string $s$, and the string $t$.
+2. If the sum of the length of $s$ and $t$ is greater than $n$ or if $s$ or $t$ is a substring of $res$, print "NO".
+3. Otherwise, print "YES" and the string $res$ that consists of $3n$ characters, $n$ characters should be 'a', $n$ characters should be 'b' and $n$ characters should be 'c'.

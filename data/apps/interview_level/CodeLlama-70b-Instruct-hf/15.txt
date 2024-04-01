@@ -1,0 +1,18 @@
+
+
+Here is the Python3 code for the problem:
+
+```python
+# input integers a, b, c
+a, b, c = map(int, input().split())
+
+# check if b is a multiple of c + a
+if ((b - a) % c == 0):
+    # b is a multiple of c + a, print "YES"
+    print("YES")
+else:
+    # b is not a multiple of c + a, print "NO"
+    print("NO")
+```
+
+This code will solve the problem by checking if the difference between b and a is a multiple of c. If it is, then b is a part of the sequence and it will print "YES". Otherwise, it will print "NO".

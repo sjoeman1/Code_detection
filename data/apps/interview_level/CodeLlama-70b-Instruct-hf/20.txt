@@ -1,0 +1,57 @@
+
+
+Here is a Python3 code that solves the question:
+
+```python
+def get_minutes_to_palindrome(current_time):
+    hours, minutes = current_time.split(":")
+    hours = int(hours)
+    minutes = int(minutes)
+
+    # Check if the current time is a palindrome
+    if hours == hours % 10 * 10 + hours // 10 and minutes == minutes % 10 * 10 + minutes // 10:
+        return 0
+
+    # Increment the time by 1 minute
+    minutes += 1
+    if minutes == 60:
+        minutes = 0
+        hours += 1
+        if hours == 24:
+            hours = 0
+
+    # Check if the new time is a palindrome
+    if hours == hours % 10 * 10 + hours // 10 and minutes == minutes % 10 * 10 + minutes // 10:
+        return 1
+
+    # Increment the time by 1 minute
+    minutes += 1
+    if minutes == 60:
+        minutes = 0
+        hours += 1
+        if hours == 24:
+            hours = 0
+
+    # Check if the new time is a palindrome
+    if hours == hours % 10 * 10 + hours // 10 and minutes == minutes % 10 * 10 + minutes // 10:
+        return 2
+
+    # Increment the time by 1 minute
+    minutes += 1
+    if minutes == 60:
+        minutes = 0
+        hours += 1
+        if hours == 24:
+            hours = 0
+
+    # Check if the new time is a palindrome
+    if hours == hours % 10 * 10 + hours // 10 and minutes == minutes % 10 * 10 + minutes // 10:
+        return 3
+
+    # Increment the time by 1 minute
+    minutes += 1
+    if minutes == 60:
+        minutes = 0
+        hours += 1
+        if hours == 24:
+            hours =

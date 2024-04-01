@@ -1,0 +1,43 @@
+```python
+n, m = map(int, input().split())
+a = list(map(int, input().split()))
+l, r = [tuple(map(int, input().split())) for _ in range(m)]
+
+# Calculate the maximum possible value
+max_diff = 0
+for i in range(n):
+    min_val = float('inf')
+    for seg in l:
+        if seg[0] <= i <= seg[1]:
+            min_val = min(min_val, a[i] - 1)
+    max_diff = max(max_diff, a[i] - min_val)
+
+# Calculate the number of segments to apply
+q = 0
+segments_used = set()
+for i in range(m):
+    if l[i] not in segments_used and r[i] not in segments_used:
+        segments_used.add(l[i])
+        segments_used.add(r[i])
+        q += 1
+
+# Print the answer
+print(max_diff)
+print(q)
+print(*sorted(segments_used))
+```
+
+**Explanation:**
+
+* We calculate the maximum possible value for each element in the array by finding the minimum value of the element in each segment and subtracting it from the element value in the array.
+* We store the indices of the segments that we use to calculate the maximum possible value.
+* We use a set to store the indices of the segments that we use to avoid repetition.
+* Finally, we print the maximum possible value, the number of segments used, and the indices of the segments used.
+
+**Time Complexity:**
+
+* The time complexity of this code is O(n) since it iterates over the array only once.
+
+**Space Complexity:**
+
+* The space complexity of this code is O(m) since it stores the indices of the segments used in a set.

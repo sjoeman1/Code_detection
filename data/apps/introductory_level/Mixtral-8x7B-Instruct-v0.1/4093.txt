@@ -1,0 +1,27 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def max\_abs\_sum(n, m):
+if n == 1:
+return 0
+else:
+return max(m - n, n - 1)
+
+t = int(input().strip())
+for _ in range(t):
+n, m = map(int, input().strip().split())
+print(max\_abs\_sum(n, m))
+```
+
+The function `max_abs_sum(n, m)` calculates the maximum possible value of the sum of absolute differences between adjacent elements in an array of length `n` and sum `m`.
+
+If `n` is 1, the only possible array is `[m]`, and the answer is 0.
+
+Otherwise, there are two possible arrays to consider:
+
+* `[m - n + 1, 1, 1, ..., 1]` (n - 1 ones): The sum of the absolute differences between adjacent elements is `(m - n + 1) - 1 + (n - 2) * 1 = m - n + (n - 2) = m - 2 + n`.
+* `[1, 1, ..., 1, m - n + 1]` (n - 1 ones): The sum of the absolute differences between adjacent elements is `1 - (m - n + 1) + (n - 2) * 1 = -m + n + (n - 2) = -m + 2n - 2 = m - 2 + n`.
+
+Therefore, the maximum of the two possible sums is `m - 2 + n`.
+
+The program takes the number of test cases `t` as input, and for each test case, reads two integers `n` and `m` and prints the maximum possible value of the sum of absolute differences between adjacent elements in the array.

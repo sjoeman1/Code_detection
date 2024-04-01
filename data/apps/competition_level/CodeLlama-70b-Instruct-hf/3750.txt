@@ -1,0 +1,33 @@
+
+
+
+
+Here is the Python 3 code to solve the question:
+
+```python
+k, a, b = list(map(int, input().split()))
+
+sets = 0
+
+while a + b >= k:
+    if a >= k:
+        a = 0
+    if b >= k:
+        b = 0
+    sets += 1
+
+if a + b > 0:
+    print(-1)
+else:
+    print(sets)
+```
+
+Explanation:
+
+*   The first line of the code takes the input values for k, a, and b.
+*   The while loop iterates as long as a + b is greater than or equal to k.
+*   If a is greater than or equal to k, it resets a to 0.
+*   If b is greater than or equal to k, it resets b to 0.
+*   For each iteration, the sets variable is incremented by 1.
+*   After the while loop, if a + b is greater than 0, it means the situation is impossible, and the code prints -1.
+*   Otherwise, it prints the number of sets calculated by the sets variable.

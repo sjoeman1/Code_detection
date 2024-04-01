@@ -1,0 +1,23 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def check\_records(n: int, stats: list) -> str:
+record\_plays = [0]
+record\_clears = [0]
+for play, clear in stats:
+if play < record\_plays[-1]:
+return "NO"
+record\_plays.append(play)
+if clear < record\_clears[-1]:
+return "NO"
+record\_clears.append(clear)
+return "YES"
+
+T = int(input().strip())
+for t in range(T):
+n = int(input().strip())
+stats = [list(map(int, input().strip().split())) for \_ in range(n)]
+print("YES" if check\_records(n, stats) == "YES" else "NO")
+```
+
+The solution defines a helper function `check_records` that takes in the number of moments `n` and a list of tuples `stats` representing the number of plays and clears at each moment. It checks if the number of plays and clears at each moment is greater than or equal to the previous moment, and returns "NO" if it is not, and "YES" otherwise. The main part of the solution reads in the input and calls `check_records` for each test case.

@@ -1,0 +1,29 @@
+```python
+n, k = map(int, input().split())
+a = list(map(int, input().split()))
+
+a.sort()
+teams = 0
+current_team = 0
+for i in range(n):
+    if a[i] - current_team <= 5:
+        current_team += a[i]
+        teams += 1
+    else:
+        current_team = a[i]
+        teams += 1
+
+print(teams)
+```
+
+**Explanation:**
+
+1. **Sort the list of programming skills:** Sort the list `a` in ascending order.
+2. **Initialize variables:**
+   - `teams` is initialized to 0.
+   - `current_team` is initialized to 0. This keeps track of the total programming skill of the current team.
+   - Loop through the list of programming skills.
+3. **Form teams:**
+   - If the current programming skill is within 5 units of the current team's total skill, add the student's programming skill to the current team and increment `teams` by 1.
+   - Otherwise, start a new team with the student's programming skill and add it to the current team. Increment `teams` by 1.
+4. **Print the result:** Print the total number of students in teams.

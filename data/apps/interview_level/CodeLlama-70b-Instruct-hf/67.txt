@@ -1,0 +1,34 @@
+
+Here is the Python3 code that solves the question:
+
+```py
+x, y, z = map(int, input().split())
+if z == 0:
+    if x > y:
+        print('+')
+    elif y > x:
+        print('-')
+    else:
+        print('0')
+else:
+    if (x + z) > y:
+        if x > y:
+            print('+')
+        else:
+            print('?')
+    elif (x + z) < y:
+        if y > x:
+            print('-')
+        else:
+            print('?')
+    else:
+        print('?')
+```
+
+The code first reads the input integers `x`, `y`, and `z` from the user. It then checks if `z` is zero, which indicates that there are no unknown persons. If `z` is zero, it checks if `x` is greater than `y` to determine if the result is "+", if `y` is greater than `x` to determine if the result is "-", or if `x` is equal to `y` to determine if the result is "0".
+
+If `z` is not zero, it checks if the sum of `x` and `z` is greater than `y`, which means there are more upvotes than downvotes. If `x` is greater than `y`, it prints "+", but if `x` is not greater than `y`, it prints "?".
+
+If the sum of `x` and `z` is less than `y`, it means there are more downvotes than upvotes. If `y` is greater than `x`, it prints "-", but if `y` is not greater than `x`, it prints "?".
+
+If the sum of `x` and `z` is equal to `y`, it means there are an equal number of upvotes and downvotes. In this case, it prints "?".

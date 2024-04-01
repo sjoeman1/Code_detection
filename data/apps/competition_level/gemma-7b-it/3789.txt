@@ -1,0 +1,38 @@
+```python
+n = int(input())
+a = list(map(int, input().split()))
+
+# Calculate the multiples of each gem.
+multiples = {}
+for i in range(1, n + 1):
+    for multiple in range(i, n + 1, i):
+        if multiple not in multiples:
+            multiples[multiple] = 0
+        multiples[multiple] += 1
+
+# Calculate the total yen earned.
+total_yen = 0
+for i in range(1, n + 1):
+    if multiples[i] == 0:
+        total_yen += a[i - 1]
+
+# Print the maximum amount of money that can be earned.
+print(total_yen)
+```
+
+**Explanation:**
+
+1. Calculate the multiples of each gem using the `multiples` dictionary.
+2. Iterate over the gems and check if their multiples have already been smashed.
+3. If a gem has not been smashed, add its value to the `total_yen` variable.
+4. Print the `total_yen` as the maximum amount of money that can be earned.
+
+**Time Complexity:**
+
+* The time complexity of this algorithm is O(n) where n is the number of gems.
+* The algorithm iterates over the gems only once.
+
+**Space Complexity:**
+
+* The space complexity of this algorithm is O(n) where n is the number of gems.
+* The algorithm uses a dictionary `multiples` to store the multiples of each gem, which has a space complexity of O(n).

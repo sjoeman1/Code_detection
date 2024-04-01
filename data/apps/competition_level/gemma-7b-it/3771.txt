@@ -1,0 +1,39 @@
+```python
+H, W = map(int, input().split())
+
+a = []
+for _ in range(H):
+    a.append([input().strip() for _ in range(W)])
+
+S, T = None, None
+for i in range(H):
+    for j in range(W):
+        if a[i][j] == "S":
+            S = (i, j)
+        elif a[i][j] == "T":
+            T = (i, j)
+
+leaves_to_remove = 0
+if S and T:
+    for i in range(H):
+        for j in range(W):
+            if a[i][j] == "o" and (i, j) != S and (i, j) != T:
+                leaves_to_remove += 1
+
+    print(leaves_to_remove)
+    print("Remove the following leaves:")
+    for i in range(H):
+        for j in range(W):
+            if a[i][j] == "o" and (i, j) != S and (i, j) != T:
+                print((i, j))
+else:
+    print(-1)
+```
+
+**Explanation:**
+
+- The code reads the input, including the number of rows and columns in the pond, and the grid of squares.
+- It then finds the locations of the frog (S) and the leaf (T).
+- The code calculates the number of leaves to remove, which is the number of squares with leaves (o) that are not S or T.
+- If the objective is achievable, the code prints the number of leaves to remove and the squares where they should be removed.
+- If the objective is not achievable, the code prints -1.

@@ -1,0 +1,31 @@
+```python
+n = int(input())
+
+if n == 0:
+    print(-1)
+
+else:
+    m = n + 1
+    a = list(int(input().split())[:m])
+    b = list(int(input().split())[:m])
+
+    # Find the greatest common divisor
+    while a[-1] % b[0] != 0:
+        q = a[-1] // b[0]
+        r = a[-1] % b[0]
+        a = b
+        b = r
+
+    # Print the polynomials
+    print(len(a))
+    print(*a)
+    print(len(b))
+    print(*b)
+```
+
+**Explanation:**
+
+* The code reads the number of steps n and checks if it is 0. If it is, it prints -1 as there is no answer.
+* It then reads the coefficients of two polynomials a and b, respectively.
+* The code enters a loop until the greatest common divisor is found. In each iteration, the degree of the second polynomial is decreased.
+* Once the greatest common divisor is found, the code prints the degree of the first polynomial, the coefficients of the first polynomial, the degree of the second polynomial, and the coefficients of the second polynomial.

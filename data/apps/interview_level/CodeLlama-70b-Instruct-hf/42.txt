@@ -1,0 +1,54 @@
+
+Here is the code:
+```
+n = int(input())
+s = input()
+
+def next_greater(s):
+    # Find the rightmost digit that can be increased
+    for i in range(len(s) - 2, -1, -1):
+        if s[i] < s[i + 1]:
+            break
+    else:
+        return s
+
+    # Find the rightmost digit to the right of the above digit
+    # that is greater than the above digit
+    for j in range(len(s) - 1, i, -1):
+        if s[j] > s[i]:
+            break
+
+    # Swap the two digits
+    s = s[:i] + s[j] + s[i + 1:j] + s[i] + s[j + 1:]
+
+    # Reverse the suffix starting from the digit to the right of the above digit
+    s = s[:i + 1] + s[i + 1:][::-1]
+
+    return s
+
+def next_smaller(s):
+    # Find the rightmost digit that can be decreased
+    for i in range(len(s) - 2, -1, -1):
+        if s[i] > s[i + 1]:
+            break
+    else:
+        return s
+
+    # Find the rightmost digit to the right of the above digit
+    # that is less than the above digit
+    for j in range(len(s) - 1, i, -1):
+        if s[j] < s[i]:
+            break
+
+    # Swap the two digits
+    s = s[:i] + s[j] + s[i + 1:j] + s[i] + s[j + 1:]
+
+    # Reverse the suffix starting from the digit to the right of the above digit
+    s = s[:i + 1] + s[i + 1:][::-1]
+
+    return s
+
+def generate_next(s):
+    next_s = next_greater(s)
+    if next_s == s:
+        next_s = next_smaller(s)

@@ -1,0 +1,33 @@
+
+
+Here is the Python3 code for the question:
+
+```python
+def min_rest_days(n, a):
+    # dp[i][j] is the minimum number of rest days if we have j days left and
+    # we have done sport in the previous day if i is 1, or not if i is 0
+    dp = [[float('inf') for _ in range(n + 1)] for _ in range(2)]
+    dp[0][0] = 0
+    dp[1][0] = 0
+
+    for i in range(n):
+        if a[i] == 0 or a[i] == 1:
+            # If the gym is closed or the contest is carried out, we can only rest
+            dp[0][i + 1] = min(dp[0][i + 1], dp[0][i])
+            dp[1][i + 1] = min(dp[1][i + 1], dp[1][i])
+        elif a[i] == 2 or a[i] == 3:
+            # If the gym is open, we can either rest or do sport
+            dp[0][i + 1] = min(dp[0][i + 1], dp[0][i] + 1)
+            dp[1][i + 1] = min(dp[1][i + 1], dp[1][i] + 1)
+            dp[0][i + 1] = min(dp[0][i + 1], dp[1][i])
+            dp[1][i + 1] = min(dp[1][i + 1], dp[0][i])
+
+    return min(dp[0][n], dp[1][n])
+
+
+n = int(input())
+a = list(map(int, input().split()))
+print(min_rest_days(n, a))
+```
+
+This code uses dynamic programming to solve the problem. It iterates through the days and considers the cases where Vasya has a rest, writes a contest, or does sport. The code uses the `min_rest_days` function

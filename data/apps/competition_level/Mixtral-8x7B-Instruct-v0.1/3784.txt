@@ -1,0 +1,43 @@
+ To solve this problem, we need to use the concept of graph theory and dynamic programming. Here is the Python3 code for the problem:
+
+```python
+import sys
+input = sys.stdin.readline
+MOD = 1000000007
+
+def power(x, y):
+    res = 1
+    while y > 0:
+        if y & 1:
+            res = (res * x) % MOD
+        x = (x * x) % MOD
+        y >>= 1
+    return res
+
+def dfs(cur, pre, vis, sum_vis):
+    if cur == n + 2:
+        if sum_vis - vis[0] - vis[1] == m:
+            return 1
+        else:
+            return 0
+    ret = 0
+    for i in range(n + 2):
+        if not vis[i] and (not pre or i != pre):
+            vis[i] = 1
+            sum_vis += 1
+            ret += dfs(cur + 1, i, vis, sum_vis)
+            sum_vis -= 1
+            vis[i] = 0
+    return ret
+
+def solve(n, m):
+    vis = [0] * (n + 2)
+    vis[0] = vis[1] = 1
+    return dfs(2, 0, vis, 2) * power(2, n - 1) % MOD
+
+if __name__ == "__main__":
+    n, m = map(int, input().strip().split())
+    print(solve(n, m))
+```
+
+The code first calculates the number of non-similar worlds that can be built using dynamic programming and then multiplies the result by `2^(n-1)` to account for the number of ways to connect the new vertices to the existing path. The `power` function is used to calculate `2^(n-1)` efficiently. The `dfs` function is used to calculate the number of non-similar worlds that can be built with a fixed path from `s(G)` to `t(G)`. The `vis` array is used to keep track of the visited vertices and
