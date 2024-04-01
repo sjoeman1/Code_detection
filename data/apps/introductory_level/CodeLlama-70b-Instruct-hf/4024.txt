@@ -1,0 +1,18 @@
+
+
+The solution for this problem is as follows:
+
+```
+a = int(input())
+
+result = 0
+while a > 1:
+    if a % 2 == 0:
+        a = a // 2
+    else:
+        a = (a - 1) // 2
+    result += 1
+print(result)
+```
+
+In this solution, we take the input as an integer `a`. We initialize the result variable as 0. Then, we use a while loop to keep dividing `a` by 2 until it becomes 1. If `a` is even, we divide it by 2. If `a` is odd, we subtract 1 from it and then divide it by 2. Each time we perform one of these operations, we increment the result by 1. Finally, we print the result.

@@ -1,0 +1,16 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n = int(input().strip())
+strengths = list(map(int, input().strip().split()))
+
+# Count the number of stewards that Jon Snow can support
+count = 0
+for strength in strengths:
+    if strength > 0 and strengths.count(strength - 1) > 0 and strengths.count(strength + 1) > 0:
+        count += 1
+
+print(count)
+```
+
+This solution first reads the number of stewards `n` and their strengths from the input. Then, it iterates through the list of strengths and checks for each steward if there exists at least one steward with a strength strictly less than it and at least one steward with a strength strictly greater than it. If such a steward is found, the count of stewards that Jon Snow can support is incremented. Finally, the solution prints the count of such stewards.

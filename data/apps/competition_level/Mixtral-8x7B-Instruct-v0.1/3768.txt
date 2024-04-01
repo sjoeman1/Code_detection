@@ -1,0 +1,38 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def solve(x, y):
+    if x == 1 and y == 1:
+        return "Impossible"
+    elif x == 1:
+        return "B" * y
+    elif y == 1:
+        return "A" * x
+    elif x % 2 == 0 and y % 2 == 0:
+        return ("A" * (x // 2)) + ("B" * (y // 2))
+    else:
+        return "Impossible"
+
+if __name__ == "__main__":
+    x, y = map(int, input().split())
+    print(solve(x, y))
+```
+
+The solution checks the input values and returns "Impossible" if either `x` or `y` is 1. If both `x` and `y` are greater than 1, it checks if both of them are even. If they are, it returns the string of alternating 'A' and 'B' characters. Otherwise, it returns "Impossible".
+
+Explanation of the first sample:
+
+* If the row contained three cards with letter 'B', then Bob should give one apple to Alice three times.
+* So, in the end of the game Alice has one orange and three apples, and Bob has one apple.
+* In total it is one orange and four apples.
+
+Explanation of the second sample:
+
+* There is no answer since one card is not enough for the game to finish.
+* Two cards will produce at least three apples or three oranges.
+
+Explanation of the third sample:
+
+* Cards contain letters 'AB', so after removing the first card Bob has one orange and one apple.
+* After removal of the second card Alice has two oranges and one apple.
+* So, in total it is three oranges and two apples.

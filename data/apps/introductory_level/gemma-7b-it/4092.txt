@@ -1,0 +1,25 @@
+```python
+import bisect
+
+n = int(input())
+a = list(map(int, input().split()))
+
+a.sort()
+
+# Calculate the cumulative sum of the array
+cumulative_sum = []
+cumulative_sum.append(a[0])
+for i in range(1, len(a)):
+    cumulative_sum.append(cumulative_sum[i-1] + a[i])
+
+# Find the minimum number of insertions
+ insertions = bisect.bisect.bisect(cumulative_sum, 0) - 1
+
+print(insertions)
+```
+
+**Explanation:**
+
+1. **Calculate the cumulative sum of the array:** This helps us identify the subsegments with the sum $0.
+2. **Find the minimum number of insertions:** We use the `bisect` library to find the insertion point for each element in the cumulative sum array. The insertion point is the index where the cumulative sum is just greater than the desired sum of $0. Subtracting 1 from the insertion point gives us the number of insertions.
+3. **Output the minimum number of insertions:** This is the answer to the problem.

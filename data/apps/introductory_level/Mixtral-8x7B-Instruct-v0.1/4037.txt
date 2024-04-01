@@ -1,0 +1,27 @@
+ Here is a Python3 solution for the problem. This solution uses dynamic programming to keep track of the maximum size of the subset of projects that Polycarp can complete with a rating of at least `r` after completing the previous project.
+
+The time complexity of this solution is O(n^2) and the space complexity is O(n).
+```python
+n, r = map(int, input().split())
+projects = []
+for _ in range(n):
+    a, b = map(int, input().split())
+    projects.append((a, b))
+
+dp = [0] * (r + 1)
+dp[r] = 0
+for i in range(n - 1, -1, -1):
+    a, b = projects[i]
+    for j in range(r, -1, -1):
+        if j >= a:
+            dp[j] = max(dp[j], dp[j - a] + 1)
+        if j + b >= 0:
+            dp[j] = max(dp[j], dp[j + b])
+
+print(dp[r])
+```
+In the above solution, we initialize an array `dp` with size `r + 1` and initialize all elements to `0`. The value of `dp[j]` represents the maximum size of the subset of projects that Polycarp can complete with a rating of at least `j` after completing the previous project.
+
+We iterate over the projects in reverse order and for each project, we check if it is possible to complete the project with the current rating `j`. If it is possible, we update `dp[j]` to be the maximum of the current value and `dp[j - a] + 1` (where `a` is the rating required to complete the project).
+
+Finally, we print the value of `dp[r]` which is the maximum size of the subset of projects that Polycarp can complete with an initial rating of `r`.

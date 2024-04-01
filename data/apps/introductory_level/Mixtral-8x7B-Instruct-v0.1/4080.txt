@@ -1,0 +1,44 @@
+ Here is a Python3 solution for the problem. This solution uses a data structure called "segment tree" to efficiently compute the maximum and minimum values of a subarray after applying some segments. The time complexity of this solution is O(m \* log(n)).
+
+```python
+import sys
+input = sys.stdin.readline
+
+def segTreeInit(node, segStart, segEnd):
+    if segStart == segEnd:
+        tree[node] = [a[segStart], a[segStart]]
+        return a[segStart]
+
+    mid = (segStart + segEnd) // 2
+    leftVal = segTreeInit(node * 2, segStart, mid)
+    rightVal = segTreeInit(node * 2 + 1, mid + 1, segEnd)
+
+    tree[node] = [max(leftVal, rightVal), min(leftVal, rightVal)]
+    return max(leftVal, rightVal)
+
+def segTreeUpdate(node, segStart, segEnd, idx, val):
+    if segStart > idx or segEnd < idx:
+        return tree[node]
+
+    if segStart == segEnd:
+        tree[node][0] -= val
+        tree[node][1] -= val
+        return tree[node]
+
+    mid = (segStart + segEnd) // 2
+    leftVal = segTreeUpdate(node * 2, segStart, mid, idx, val)
+    rightVal = segTreeUpdate(node * 2 + 1, mid + 1, segEnd, idx, val)
+
+    tree[node] = [max(leftVal[0], rightVal[0]), min(leftVal[1], rightVal[1])]
+    return tree[node]
+
+def segTreeQuery(node, segStart, segEnd, left, right):
+    if segStart > right or segEnd < left:
+        return [-10**6, 10**6]
+
+    if segStart >= left and segEnd <= right:
+        return tree[node]
+
+    mid = (segStart + segEnd) // 2
+    leftVal = segTreeQuery(node * 2, segStart, mid, left, right)
+    rightVal =

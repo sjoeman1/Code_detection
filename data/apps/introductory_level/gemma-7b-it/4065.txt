@@ -1,0 +1,22 @@
+```python
+n = int(input())
+a = list(map(int, input().split()))
+a.sort()
+
+ans = 1
+curr = a[0]
+for i in range(1, n):
+    if a[i] <= 2 * curr:
+        ans += 1
+    curr = a[i]
+
+print(ans)
+```
+
+**Explanation:**
+
+* We maintain a variable `curr` to store the current difficulty.
+* We iterate over the problems and add them to the contest if their difficulty is less than or equal to twice the current difficulty.
+* We update the current difficulty if necessary.
+* The number of problems in the contest is stored in the variable `ans`.
+* Finally, the answer is printed.

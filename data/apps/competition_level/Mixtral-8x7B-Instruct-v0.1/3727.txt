@@ -1,0 +1,43 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def is_beautiful(a, b, c, d):
+    # If the sum of a, b, c, and d is odd, it's impossible to form a beautiful sequence
+    if (a + b + c + d) % 2 != 0:
+        return False
+
+    # If any of a, b, c, or d is greater than the sum of the others, it's impossible to form a beautiful sequence
+    if max(a, b, c, d) > a + b + c + d - max(a, b, c, d):
+        return False
+
+    # If all a's are at the beginning and all d's are at the end, we can form a beautiful sequence
+    if a and not d:
+        return True
+
+    # If all d's are at the beginning and all a's are at the end, we can form a beautiful sequence
+    if d and not a:
+        return True
+
+    # In all other cases, it's impossible to form a beautiful sequence
+    return False
+
+
+def main():
+    a, b, c, d = map(int, input().split())
+    if is_beautiful(a, b, c, d):
+        print("YES")
+        # Construct the beautiful sequence by interleaving a's, b's, c's, and d's
+        for i in range(min(a, d)):
+            print("0 3", end=" ")
+        a -= i
+        d -= i
+        print(*(["0"] * a + ["1"] * b + ["2"] * c + ["3"] * d))
+    else:
+        print("NO")
+
+
+if __name__ == "__main__":
+    main()
+```
+
+The `is_beautiful` function checks if it's possible to form a beautiful sequence based on the given constraints. If the sum of `a`, `b`, `c`, and `d` is odd, it's impossible to form a beautiful sequence since beautiful sequences have an equal number of ascending and descending pairs. If any of `a`, `b`, `c`, or `d` is greater than

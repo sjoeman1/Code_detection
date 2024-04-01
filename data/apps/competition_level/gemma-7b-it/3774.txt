@@ -1,0 +1,10 @@
+```python
+n, m = map(int, input().split())
+print(min((n-1) * m, (n-1) // 3 + m // 3))
+```
+
+**Explanation:**
+
+* The maximum number of chessmen that can be placed is equal to the minimum number of empty cells that are at a distance of $3 from any other cell.
+* The number of empty cells at a distance of $3 from a cell $(x, y)$ is equal to $(n-1-x) + (m-1-y) - 1$.
+* Therefore, the maximum number of chessmen that can be placed is equal to the minimum of $(n-1) * m and $(n-1) // 3 + m // 3$.

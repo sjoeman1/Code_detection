@@ -1,0 +1,31 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def find_x(n, divisors):
+    divisors.sort()
+    max_div = divisors[-1]
+    min_div = divisors[0]
+    if max_div % min_div != 0:
+        return -1
+    else:
+        # calculate the product of all divisors
+        product = 1
+        for div in divisors:
+            product *= div
+        # the smallest possible number x is the product divided by the greatest common divisor (gcd) of all divisors
+        x = product // math.gcd(*divisors)
+        # check if x is valid
+        if x % min_div == 0 and x // min_div not in divisors:
+            return x
+        else:
+            return -1
+
+t = int(input().strip())
+for _ in range(t):
+    n = int(input().strip())
+    divisors = list(map(int, input().strip().split()))
+    result = find_x(n, divisors)
+    print(result)
+```
+
+The solution works by first sorting the list of divisors and calculating the maximum and minimum divisors. If the maximum divisor is not a multiple of the minimum divisor, then it is impossible to find a number with the given divisors. Otherwise, we calculate the product of all divisors and divide it by the greatest common divisor (gcd) of all divisors to get the smallest possible number x. We then check if x is valid by verifying that x is a multiple of the minimum divisor and that x/min\_div is not in the list of divisors. If x is valid, we return it, otherwise, we return -1.

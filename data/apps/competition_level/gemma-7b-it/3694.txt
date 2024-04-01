@@ -1,0 +1,17 @@
+```python
+n = int(input())
+a = list(map(int, input().split()))
+
+s = set(a)
+if len(s) == 1 or not a:
+    print("cslnb")
+else:
+    print("sjfnb")
+```
+
+**Explanation:**
+
+* The code reads the number of piles `n` and the number of stones in each pile `a`.
+* It creates a set `s` of the number of stones in each pile.
+* If the number of piles is 1 or there are no stones, CSL will win.
+* Otherwise, if the number of stones in two piles is the same after Tokitsukaze's move, she will lose.

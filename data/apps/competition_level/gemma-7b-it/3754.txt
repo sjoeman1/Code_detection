@@ -1,0 +1,32 @@
+```python
+n = int(input())
+d = list(map(int, input().split()))
+
+# Calculate the number of ways to connect each part to the rest
+ways = 0
+for i in range(n):
+    ways += d[i] - 1
+
+# Calculate the total number of ways to make the figure complete
+total_ways = ways * (ways - 1) // 2
+
+# Print the answer
+print(total_ways % 998244353)
+```
+
+**Explanation:**
+
+* The number of ways to connect each part to the rest is given by the number of holes in that part minus 1.
+* To make the figure complete, we need to connect all N-1 components, so we need to multiply the number of ways to connect each part to the rest by the number of components.
+* The total number of ways to make the figure complete is the number of ways to connect each part to the rest multiplied by the number of components minus 1, divided by 2. This is because we need to count each pair of connected parts only once.
+* Finally, we need to modulo the answer by 998244353 to ensure that the answer does not exceed this value.
+
+**Time Complexity:**
+
+* The time complexity of this algorithm is O(n).
+* The algorithm iterates over the list of d values only once, where n is the length of the list.
+
+**Space Complexity:**
+
+* The space complexity of this algorithm is O(1).
+* The algorithm uses a constant amount of space regardless of the size of the input.

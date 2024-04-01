@@ -1,0 +1,48 @@
+ Here is a Python3 solution for the problem:
+```python
+import sys
+from collections import defaultdict
+
+def min_cost_to_obtain_set(n, k, s):
+    # dp[i] will store the minimum cost to obtain a set of size i
+    dp = [sys.maxsize] * (k + 1)
+    dp[0] = 0
+
+    # Precompute the frequency of all substrings of length 1 to n
+    freq = defaultdict(int)
+    for i in range(n + 1):
+        freq[s[:i]] += 1
+
+    # Iterate over all possible subset sizes from 1 to k
+    for i in range(1, k + 1):
+        # Iterate over all possible lengths of subsequences from 1 to n
+        for j in range(1, n + 1):
+            # If the frequency of the current subsequence is greater than 1,
+            # then we can include it in the set without any cost
+            if freq[s[:j]] > 1:
+                dp[i] = min(dp[i], dp[i - 1])
+                continue
+
+            # If the current subset size is less than the length of the
+            # current subsequence, then we cannot include it in the set
+            if i < j:
+                continue
+
+            # Calculate the cost of including the current subsequence
+            # in the set
+            cost = (n - j) * (i - j + 1)
+
+            # If the cost is less than the current minimum cost, then
+            # update the minimum cost
+            dp[i] = min(dp[i], dp[i - j] + cost)
+
+    return dp[k] if dp[k] != sys.maxsize else -1
+
+n, k = map(int, input().split())
+s = input()
+
+print(min_cost_to_obtain_set(n, k, s))
+```
+The solution uses dynamic programming to find the minimum cost to obtain a set of size `k` from the given string `s`.
+
+The `dp` array stores the minimum cost to obtain a set of size `i`, where `i` ranges

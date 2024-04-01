@@ -1,0 +1,22 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n = int(input())
+a = list(map(int, input().split()))
+b = list(map(int, input().split()))
+
+# Calculate the minimum and maximum number of rounds Alice can win
+min_alice_wins = max(a[i] - b[2] for i in range(3))
+max_alice_wins = sum(min(a[i], b[i-1]) for i in range(1,4))
+
+# Print the result
+print(min_alice_wins, max_alice_wins)
+```
+
+The solution first reads the input values for `n`, `a`, and `b`. Then, it calculates the minimum and maximum number of rounds Alice can win, based on the given rules.
+
+The minimum number of rounds Alice can win is calculated as the maximum difference between the number of times Alice shows a particular weapon and the number of times Bob shows the weapon that beats that weapon. For example, the minimum number of rounds Alice can win with rock is `a[0] - b[2]`, since Bob can only beat rock with paper.
+
+The maximum number of rounds Alice can win is calculated as the sum of the minimum of the number of times Alice and Bob show the same weapon, for each weapon. For example, the maximum number of rounds Alice can win with rock is `min(a[0], b[0])`, since Alice and Bob must show rock the same number of times in this case.
+
+Finally, the solution prints the minimum and maximum number of rounds Alice can win.

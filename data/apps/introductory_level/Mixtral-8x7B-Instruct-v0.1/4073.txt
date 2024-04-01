@@ -1,0 +1,15 @@
+ Here is the Python3 code to solve the problem:
+
+```python
+import sys
+
+def main():
+    n = int(input().strip())
+    a = list(map(int, input().strip().split()))
+    print(sum(a))
+
+if __name__ == '__main__':
+    main()
+```
+
+The code first reads the number of integers `n` from the first line of the input. Then, it reads `n` integers from the second line and stores them in a list `a`. Finally, it calculates and prints the sum of the integers in the list `a`.

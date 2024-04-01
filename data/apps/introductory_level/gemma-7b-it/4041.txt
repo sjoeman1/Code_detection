@@ -1,0 +1,30 @@
+```python
+s = input().lower()
+t = input().lower()
+
+# Find the maximum length of the substring that can be removed
+# such that t is still a subsequence of s
+max_length = 0
+for i in range(len(s)):
+    # Check if the substring s[i:i+1] is a subsequence of t
+    if s[i:i+1] in t and max_length < 1:
+        max_length = 1
+    # Check if the substring s[i:i+k] is a subsequence of t
+    for k in range(2, len(s) - i + 1):
+        substring = s[i:i+k]
+        if substring in t and max_length < k:
+            max_length = k
+
+# Print the maximum length of the substring that can be removed
+print(max_length)
+```
+
+**Explanation:**
+
+The algorithm works as follows:
+
+1. **Iterate over the string $s:** We iterate over the string $s to find the maximum length of the substring that can be removed.
+2. **Check if the substring is a subsequence of $t:** For each substring, we check if it is a subsequence of $t. If it is, then we update the maximum length of the substring that can be removed.
+3. **Find the maximum length:** Finally, we find the maximum length of the substring that can be removed such that $t$ is still a subsequence of $s.
+
+The time complexity of the algorithm is O(n) where n is the length of the string $s. The space complexity is O(1) since the algorithm uses a constant amount of space regardless of the size of the input.

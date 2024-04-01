@@ -1,0 +1,44 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def min_cost(n, x, y, s):
+    # Initialize the cost and the number of zeros
+    cost = 0
+    zeros = 0
+
+    # Count the number of zeros in the string
+    for c in s:
+        if c == '0':
+            zeros += 1
+
+    # If there are no zeros, return 0
+    if zeros == 0:
+        return 0
+
+    # If the cost of reversing is more than the cost of inverting,
+    # then we will always invert
+    if x > y:
+        cost = zeros * y
+    else:
+        # Calculate the number of blocks of zeros
+        blocks = 1 + (zeros - 1) // n
+
+        # Reversing is cheaper, so we will reverse the entire string
+        # and then invert the blocks
+        cost = x + blocks * y
+
+    return cost
+
+# Read the input
+n, x, y = map(int, input().split())
+s = input()
+
+# Print the result
+print(min_cost(n, x, y, s))
+```
+
+The solution is based on the observation that the optimal strategy is to either reverse the entire string and then invert some blocks of zeros, or to invert all zeros. The first approach is better if the cost of reversing is less than or equal to the cost of inverting. Otherwise, the second approach is better.
+
+The number of blocks of zeros can be calculated as `1 + (zeros - 1) // n`, where `zeros` is the number of zeros in the string. This formula calculates the number of full blocks that can fit in the string, and adds 1 for the possible incomplete block at the end of the string.
+
+The overall cost is then calculated as the cost of reversing (if it is cheaper) or the cost of inverting (otherwise), plus the cost of inverting all blocks of zeros.

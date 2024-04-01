@@ -1,0 +1,34 @@
+```python
+n = int(input())
+a = list(map(int, input().split()))
+
+# Find the common divisor of all elements in the array
+common_divisors = set(a[0].factors())
+
+for i in a[1:]:
+    common_divisors &= set(i.factors())
+
+print(len(common_divisors))
+```
+
+**Explanation:**
+
+* The code reads the number of elements `n` and the `n` integers of the array `a`.
+* It then finds the factors of the first element `a[0]` and stores them in a set `common_divisors`.
+* For each subsequent element `i` in the array, it updates the `common_divisors` set by intersecting it with the factors of `i`.
+* Finally, the code prints the number of elements in the `common_divisors` set.
+
+**Time Complexity:**
+
+* The code iterates over the array `a` only once, so the time complexity is O(n).
+* The factors of a number can be found in O(sqrt(n)) time, so the overall time complexity is O(n) as well.
+
+**Space Complexity:**
+
+* The code uses a set `common_divisors` to store the common divisors, which has a space complexity of O(n).
+* The code also uses a list `a` to store the array of numbers, which has a space complexity of O(n).
+
+**Total Complexity:**
+
+* Time Complexity: O(n)
+* Space Complexity: O(n)

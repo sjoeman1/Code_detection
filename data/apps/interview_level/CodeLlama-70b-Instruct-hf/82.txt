@@ -1,0 +1,21 @@
+😊, here's the Python3 code that solves the problem:
+
+```py
+def calculate_additional_marks(n, k, marks):
+    current_average = sum(marks) / n
+    if current_average >= k:
+        return 0
+
+    additional_marks_needed = k * n - sum(marks)
+    return additional_marks_needed
+
+
+if __name__ == "__main__":
+    n, k = map(int, input().split())
+    marks = list(map(int, input().split()))
+
+    additional_marks = calculate_additional_marks(n, k, marks)
+    print(additional_marks)
+```
+
+This code takes the inputs, calculates the current average, and if it's lower than k, it calculates the additional marks needed to reach k. If the current average is already greater than or equal to k, it returns 0.

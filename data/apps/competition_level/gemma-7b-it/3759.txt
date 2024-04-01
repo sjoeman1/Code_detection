@@ -1,0 +1,17 @@
+```python
+n = int(input())
+m = int((n + 1) ** 2)
+g = 0
+for i in range(m):
+    g += i + 1
+
+print(g)
+```
+
+**Explanation:**
+
+The key to solving this problem is to understand that the number of special points that are 4-connected to a point at a distance of r is equal to r. Therefore, to prevent a point at a distance of r from being 4-connected to a non-special point, we need to block all points at a distance of r or less.
+
+The formula to calculate the number of special points that are 4-connected to a point at a distance of r is given by the formula: g = r(r+1) / 2.
+
+Once we have calculated the total number of points to block, we can simply print that number.

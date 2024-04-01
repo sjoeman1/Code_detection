@@ -1,0 +1,50 @@
+
+
+The following Python code solves the problem:
+
+```py
+import math
+
+# Define the distance function
+def distance(a, b):
+    return math.sqrt((a[0] - b[0])**2 + (a[1] - b[1])**2)
+
+# Read the input
+a_x, a_y, b_x, b_y, t_x, t_y = map(int, input().split())
+n = int(input())
+bottles = []
+for _ in range(n):
+    x, y = map(int, input().split())
+    bottles.append((x, y))
+
+# Initialize the minimum distance
+min_distance = math.inf
+
+# Try all possible orderings of the bottles
+for ordering in itertools.permutations(bottles):
+    # Initialize the distance for this ordering
+    distance_a = 0
+    distance_b = 0
+
+    # Start from Adil's initial position
+    current_position_a = (a_x, a_y)
+    current_position_b = (b_x, b_y)
+
+    # Go through each bottle in the ordering
+    for bottle in ordering:
+        # Calculate the distances for Adil and Bera to the bottle
+        distance_to_bottle_a = distance(current_position_a, bottle)
+        distance_to_bottle_b = distance(current_position_b, bottle)
+
+        # Determine which one is closer and move accordingly
+        if distance_to_bottle_a < distance_to_bottle_b:
+            distance_a += distance_to_bottle_a
+            current_position_a = bottle
+        else:
+            distance_b += distance_to_bottle_b
+            current_position_b = bottle
+
+        # Move to the recycling bin after picking up the bottle
+        distance_a += distance(current_position_a, (t_x, t_y))
+        distance_b += distance(current_position_b, (t_x, t_y))
+        current_position_a = (t_x

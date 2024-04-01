@@ -1,0 +1,32 @@
+```python
+
+n = int(input())
+a = list(map(int, input().split()))
+
+if sum(a) != n:
+    print(-1)
+else:
+    t = min(a)
+    print(t)
+    for i in range(t):
+        r, c = map(int, input().split())
+        print(r, c)
+
+```
+
+**Explanation:**
+
+* The code reads the number of columns `n` and the list of number of hits `a` for each column.
+* If the total number of targets is not equal to `n`, it prints -1.
+* Otherwise, it calculates the minimum number of targets `t` that can be placed.
+* It then reads `t` lines of input, each line containing two integers `r` and `c`, representing the row and column of the target.
+* The code ensures that each row and column has at most two targets and that all targets are different.
+
+**Time Complexity:**
+
+* The code reads input in linear time complexity.
+* The loop over the number of targets takes time proportional to the number of targets.
+
+**Space Complexity:**
+
+* The code uses a constant amount of space regardless of the input size.

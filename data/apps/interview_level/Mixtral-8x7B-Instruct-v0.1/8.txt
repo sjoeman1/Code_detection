@@ -1,0 +1,43 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def min\_extra\_tiles(hand):
+hand.sort()
+num\_sets = 0
+prev\_num = -1
+prev\_suit = None
+for tile in hand:
+num, suit = map(tuple, tile)
+if prev\_suit is None:
+prev\_suit = suit
+continue
+if suit == prev\_suit:
+if num == prev\_num + 1:
+# shuntsu
+return 0
+else:
+# koutsu
+num\_sets += 1
+else:
+# switch in suit
+prev\_suit = suit
+prev\_num = num
+# no mentsu yet
+num\_sets = 0
+return 1 if num\_sets == 0 else 2
+
+# test
+cases = [
+("1s", "2s", "3s"),
+("9m", "9m", "9m"),
+("3p", "9m", "2p"),
+]
+for hand in cases:
+print(min\_extra\_tiles(hand))
+```
+
+The function `min_extra_tiles` takes a list of strings representing the tiles in Tokitsukaze's hand and returns the minimum number of extra suited tiles she needs to draw to win the game.
+
+The function first sorts the tiles in the hand in ascending order. Then it iterates through the sorted list and checks if a mentsu (koutsu or shuntsu) is formed. If a mentsu is formed, the function returns 0. Otherwise, it checks if there are enough tiles to form a mentsu and returns the number of extra tiles needed.
+
+In the test, the function is called with three example hands and the expected minimum number of extra suited tiles is printed for each hand.

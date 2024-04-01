@@ -1,0 +1,30 @@
+```python
+T = int(input())
+
+for _ in range(T):
+    n, k, a = map(int, input().split())
+    a = list(map(int, input().split()))
+
+    v = [0] * n
+
+    for i in range(n):
+        if a[i] - v[i] <= k and v[i] == 0:
+            v[i] = a[i] - k
+
+    print("YES" if all(v[i] == a[i] for i in range(n)) else "NO")
+```
+
+**Explanation:**
+
+* The algorithm iterates over the array `a` and checks if the value at each position is achievable.
+* If the value is achievable, it sets the value of `v` at that position to the value of `a` minus `k`.
+* If the value is not achievable, it skips the step.
+* The algorithm stops when all elements of `v` are equal to `a`.
+
+**Time complexity:**
+
+* The algorithm iterates over the array `a` only once, so the time complexity is O(n).
+
+**Space complexity:**
+
+* The algorithm uses an array `v` of size `n`, so the space complexity is O(n).

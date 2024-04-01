@@ -1,0 +1,39 @@
+
+
+In this problem, the $x$-mouse moves from room $i$ to room $i \cdot x \mod m$. This means that if $x$-mouse starts in room $i$, it will move to room $i \cdot x \mod m$. Also, $\text{GCD} (x, m) = 1$ implies that $x$ and $m$ are coprime.
+
+Here's a Python 3 code that solves this problem:
+
+```
+def gcd(a, b):
+    while b:
+        a, b = b, a % b
+    return a
+
+
+def solve(m, x):
+    if gcd(x, m) != 1:
+        return -1
+    else:
+        return m - 1
+
+
+if __name__ == "__main__":
+    m, x = map(int, input().split())
+    print(solve(m, x))
+```
+
+Here's a brief explanation of the code:
+
+1.  The `gcd` function calculates the Greatest Common Divisor (GCD) of two numbers.
+2.  The `solve` function takes `m` and `x` as input and returns the minimum number of traps required to catch the $x$-mouse.
+
+    *   If $\text{GCD} (x, m) \neq 1$, it returns -1.
+    *   If $\text{GCD} (x, m) = 1$, it returns $m - 1$.
+3.  The `if __name__ == "__main__":` block is the entry point of the program.
+
+    *   It reads the input `m` and `x` as integers from the user.
+    *   It calls the `solve` function with `m` and `x` as arguments.
+    *   It prints the result returned by the `solve` function.
+
+In this code, the `solve` function returns $m - 1$ because if $\text{GCD} (x, m) = 1$, $x$-mouse will visit all rooms $1..m-1$ if it will start in any of these rooms. So, placing one trap in room $0$ and one trap in any other room

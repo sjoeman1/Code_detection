@@ -1,0 +1,35 @@
+
+Here's the Python 3 code to solve the problem:
+
+```python
+import math
+import functools
+
+# Calculate the number of combinations of items in n stacks
+def comb(n, items):
+    res = 1
+    for i in range(n):
+        res *= math.factorial(items)
+        items -= 1
+    return res
+
+# Calculate the probability of Jon Snow liking the arrangement
+def probability(f, w, h):
+    # Calculate the total number of arrangements
+    total = comb(f + w, f + w)
+    # Calculate the number of arrangements where Jon Snow won't like the arrangement
+    bad = 0
+    for i in range(1, h + 1):
+        bad += comb(w - i + 1, w) * comb(f + i, f)
+    # Calculate the probability of Jon Snow liking the arrangement
+    good = total - bad
+    # Return the probability, using a modulo to handle large numbers
+    return good % (10**9 + 7)
+
+# Read input from the user
+f, w, h = map(int, input().split())
+# Calculate the probability and print the result
+print(probability(f, w, h))
+```
+
+This code will calculate the probability of Jon Snow liking the arrangement, which is the number of good arrangements divided by the total number of arrangements. The number of total arrangements is calculated using the combination formula. The number of bad arrangements is calculated by considering all possible heights of wine barrels that are less than or equal to h. The probability is then calculated using the modulo operation to handle large numbers.

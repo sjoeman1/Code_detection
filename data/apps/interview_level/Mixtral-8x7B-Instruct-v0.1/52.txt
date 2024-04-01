@@ -1,0 +1,25 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def is\_possible(n):
+if n & 1:
+return False
+i = 1
+while True:
+k = (i * (i - 1)) // 2
+if k > n:
+break
+if k == n:
+print(i)
+i += 1
+if i > n:
+return
+print(-1)
+
+n = int(input())
+is\_possible(n)
+```
+
+The function `is_possible` takes an integer `n` as input and checks if it is possible to have a tournament with exactly `n` games. If `n` is odd, then it is not possible, so the function returns `False`. Otherwise, it uses a while loop to check for all possible values of `i` (starting from 1) if the number of games in a round-robin tournament with `i` teams is equal to `n`. If it finds such a value of `i`, it prints it and continues to the next value. If it has checked all values up to `n` and hasn't found any that work, it prints `-1`.
+
+The main part of the code reads the input value of `n` and calls the `is_possible` function with it.

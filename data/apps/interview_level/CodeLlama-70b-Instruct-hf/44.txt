@@ -1,0 +1,27 @@
+
+ Here is the Python 3 code that solves the problem:
+
+```py
+d, k, a, b, t = map(int, input().split())
+
+# Initialize time and distance
+time = 0
+distance = 0
+
+# Travel until the destination is reached
+while distance < d:
+    # Drive on car until it breaks
+    time += min(k, d - distance) * a
+    distance += min(k, d - distance)
+    # If the destination is not reached yet
+    if distance < d:
+        # Repair the car
+        time += t
+        # Walk until the car can be driven again
+        time += (k - (d - distance)) * b
+        distance += k - (d - distance)
+
+print(time)
+```
+
+This code takes the input, initializes the variables, and then uses a while loop to travel until the destination is reached. Inside the loop, it calculates the time spent driving on the car, repairing the car, and walking. Finally, it prints the minimum time needed to reach the destination.

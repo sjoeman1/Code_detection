@@ -1,0 +1,34 @@
+ Here is a Python3 solution using dynamic programming to solve the problem:
+```python
+n = int(input())
+a = list(map(int, input().split()))
+
+# dp[i] will store the length of the longest block that ends at index i
+dp = [1] * n
+
+for i in range(1, n):
+    for j in range(i):
+        if a[i] == a[j] and dp[i] < dp[j] + 1:
+            dp[i] = dp[j] + 1
+
+# max_block is the maximum length of a block
+max_block = max(dp)
+
+# answer will store the blocks that make up the longest block
+blocks = []
+
+# iterate through the array in reverse order
+for i in range(n-1, -1, -1):
+    if dp[i] == max_block:
+        # add the current index and the length of the block to the answer
+        blocks.append((i, i + max_block - 1))
+        max_block -= 1
+
+# print the number of blocks and the blocks themselves
+print(len(blocks))
+for block in blocks:
+    print(*block)
+```
+The solution works by first calculating the length of the longest block ending at each index using dynamic programming. Then, starting from the end of the array, it iteratively adds the longest block ending at each index to the answer, decrementing the length of the longest block as it goes. This process continues until the length of the longest block is 0, at which point all of the blocks in the answer have been found.
+
+Note: This solution assumes that the input is valid and does not check for edge cases. If the input is not guaranteed to be valid, additional checks should be added to ensure that the input is within the specified bounds.

@@ -1,0 +1,24 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def max\_min\_cake\_pieces(n, a, b):
+    # Calculate the maximum number of pieces that can be placed on a single plate
+    max\_pieces = min(a, b, n)
+
+    # Calculate the minimum number of plates needed to serve each cake
+    min\_plates = (a + max\_pieces - 1) // max\_pieces + (b + max\_pieces - 1) // max\_pieces
+
+    # If the number of plates is less than the minimum number needed,
+    # increase the max_pieces and try again
+    while min\_plates > n:
+        max\_pieces -= 1
+        min\_plates = (a + max\_pieces - 1) // max\_pieces + (b + max\_pieces - 1) // max\_pieces
+
+    return max\_pieces
+
+# Test cases
+print(max\_min\_cake\_pieces(5, 2, 3)) # 1
+print(max\_min\_cake\_pieces(4, 7, 10)) # 3
+```
+
+The solution works by first calculating the maximum number of pieces that can be placed on a single plate, which is equal to the minimum of `a`, `b`, and `n`. Then, it calculates the minimum number of plates needed to serve each cake by dividing the number of pieces of each cake by the maximum number of pieces per plate and rounding up. If the minimum number of plates needed is greater than the number of available plates, the maximum number of pieces per plate is decreased until the minimum number of plates needed is less than or equal to the number of available plates. The final answer is the maximum number of pieces per plate.

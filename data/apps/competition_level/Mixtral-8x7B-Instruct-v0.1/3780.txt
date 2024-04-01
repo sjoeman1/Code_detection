@@ -1,0 +1,36 @@
+ Here is the Python3 code to solve the problem:
+
+```python
+import math
+
+def min\_time\_to\_reach(x1, y1, x2, y2, v\_max, t, vx, vy, wx, wy):
+v = math.sqrt(vx\*\*2 + vy\*\*2)
+w = math.sqrt(wx\*\*2 + wy\*\**2)
+
+if t == 0:
+return math.sqrt((x2 - x1)**2 + (y2 - y1)**2) / v\_max
+
+u\_x = vx + (x2 - x1 - t \* vx) / t
+u\_y = vy + (y2 - y1 - t \* vy) / t
+u = math.sqrt(u\_x**2 + u\_y**2)
+
+if u > v\_max:
+t\_1 = t * v / v\_max
+t\_2 = math.sqrt((x2 - x1 - t\_1 * u\_x)**2 + (y2 - y1 - t\_1 * u\_y)**2) / w
+return t\_1 + t\_2
+
+t\_1 = t * v / u
+t\_2 = (x2 - x1 - t\_1 * u\_x)**2 + (y2 - y1 - t\_1 * u\_y)**2
+t\_2 = math.sqrt(t\_2) / w
+return t\_1 + t\_2
+
+---
+
+x1, y1, x2, y2 = 0, 0, 5, 5
+v\_max, t = 3, 2
+vx, vy, wx, wy = -1, -1, -1, 0
+
+print(min\_time\_to\_reach(x1, y1, x2, y2, v\_max, t, vx, vy, wx, wy))
+```
+
+This code defines a function `min_time_to_reach` which takes as input the coordinates of the headquarters and the distress signal, the maximum speed of the dirigible, the time until the wind changes, and the velocities of the wind before and after the change. It calculates the minimum time needed to reach

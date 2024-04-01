@@ -1,0 +1,28 @@
+
+
+Here is the Python 3 code for solving the problem:
+
+```
+def get_digit(k):
+    # Find the length of the number where the k-th digit is from
+    digit = 1
+    while k > digit * 9 * 10 ** (digit - 1):
+        k -= digit * 9 * 10 ** (digit - 1)
+        digit += 1
+
+    # Find the actual number where the k-th digit is from
+    number = 10 ** (digit - 1) + (k - 1) // digit
+
+    # Find the k-th digit and return it
+    return int(str(number)[(k - 1) % digit])
+
+# Read input from stdin
+k = int(input())
+
+# Print the result
+print(get_digit(k))
+```
+
+The `get_digit` function takes a number `k` as input and calculates the `k-th` digit of the sequence. It does this by first finding the length of the number where the `k-th` digit is from. It then finds the actual number where the `k-th` digit is from and extracts the digit from the number.
+
+The `get_digit` function is then called with the input `k` and the result is printed.

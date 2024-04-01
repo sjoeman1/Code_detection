@@ -1,0 +1,19 @@
+```python
+t = int(input())
+
+for _ in range(t):
+    n, k = map(int, input().split())
+    
+    # Calculate the minimum number of packages
+    min_packages = int((n - 1) // k) + 1
+
+    # Print the answer
+    print(min_packages)
+```
+
+**Explanation:**
+
+* The loop iterates over the number of test cases.
+* For each test case, read the number of shovels and packages.
+* Calculate the minimum number of packages by dividing $n - 1$ by $k$ and adding 1 to the result.
+* Print the minimum number of packages.

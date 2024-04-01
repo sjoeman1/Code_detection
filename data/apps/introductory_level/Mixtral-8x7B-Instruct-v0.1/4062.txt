@@ -1,0 +1,15 @@
+ Here is a Python3 solution for the problem:
+
+```python
+a, b, c, d = map(int, input().split())
+answer = a * d
+if b > c:
+    answer = max(answer, b * c)
+print(answer)
+```
+
+Explanation:
+
+* The maximum value of `x * y` is achieved when `x` is at its maximum and `y` is at its minimum, or when `x` is at its minimum and `y` is at its maximum.
+* So, the maximum value is either `b * c` or `a * d`, depending on which one is greater.
+* We can calculate both values and print the maximum of the two.

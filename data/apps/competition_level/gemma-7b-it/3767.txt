@@ -1,0 +1,26 @@
+```python
+n = int(input())
+a = list(map(int, input().split()))
+b = list(map(int, input().split()))
+
+a_sum = sum(a)
+b_sum = sum(b)
+k = 0
+t = 0
+
+for i in range(n):
+    k_i = a[i] // b[i]
+    t_i = a[i] % b[i]
+    k += k_i
+    t += t_i
+
+print(k, t)
+```
+
+**Explanation:**
+
+* The code calculates the total amount of soda (a_sum) and the total volume of the bottles (b_sum).
+* It then iterates over the bottles and calculates the number of units of soda that can be stored in each bottle (k_i).
+* The code updates the total number of bottles (k) and the total time (t) required to store the soda.
+* The time (t) is calculated by taking the remainder (t_i) when the number of units of soda to be stored (a[i]) is divided by the volume of the bottle (b[i]) and multiplying it by the time spent pouring units of soda from one bottle to another (1).
+* Finally, the code prints the number of bottles (k) and the time (t) required to store the soda.

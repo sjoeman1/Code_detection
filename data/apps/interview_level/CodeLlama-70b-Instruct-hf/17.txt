@@ -1,0 +1,33 @@
+
+
+The code for solving this problem is as follows:
+
+```
+# Python3 code to solve the given problem
+
+# Function to calculate the number of spectators standing at a given time
+def standing_spectators(n, k, t):
+    # If time t is greater than n + k, then all spectators are sitting
+    if t > n + k:
+        return 0
+    # If time t is less than n, then at most t spectators can be standing
+    if t < n:
+        return t
+    # Otherwise, the number of spectators standing at time t is given by
+    return n - ((t - 1) % k)
+
+# Main function
+if __name__ == "__main__":
+    # Take input from user
+    n, k, t = map(int, input().split())
+    # Calculate and print the number of standing spectators
+    print(standing_spectators(n, k, t))
+```
+
+This code uses a function `standing_spectators` to calculate the number of standing spectators at time `t`. It takes three arguments: `n` (the total number of spectators), `k` (the number of spectators that stand and sit in each cycle), and `t` (the time at which we want to find the number of standing spectators).
+
+In the `standing_spectators` function, we first check if `t` is greater than `n + k`. If it is, then all spectators will be sitting at that time, and we return 0.
+
+If `t` is less than `n`, then at most `t` spectators can be standing at that time. We return `t` in this case.
+
+If `t` is greater than or equal to `n`, then we calculate the number of spectators standing at that time using the formula `n - ((t - 1) % k)`. This formula works because the number of spectators standing at time `t` is always equal to `n` minus the number of spectators that have sat down since time `t - 1`. The `(t - 1) % k` part of the formula determines the number of spectators that have sat down since time `t - 1`, and we subtract this from `n` to get the number of standing spectators

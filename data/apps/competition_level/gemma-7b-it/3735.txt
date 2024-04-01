@@ -1,0 +1,43 @@
+```python
+n = int(input())
+
+# Find the pair of integers a and b that maximizes S(a) + S(b)
+# such that 0 <= a, b <= n, a + b = n
+
+def S(x):
+    sum = 0
+    while x:
+        digit = x % 10
+        sum += digit
+        x //= 10
+    return sum
+
+a, b = 0, n - a
+
+max_sum = 0
+
+for i in range(1, int(n**0.5) + 1):
+    if S(i) + S(n - i) > max_sum:
+        a, b = i, n - i
+        max_sum = S(i) + S(n - i)
+
+print(max_sum)
+```
+
+**Explanation:**
+
+* The function `S(x)` calculates the sum of digits in the base 10 representation of `x`.
+* The loop iterates over the range from 1 to the square root of `n`.
+* For each value of `i`, the function calculates the sum of digits in `i` and `n - i`.
+* The maximum sum is updated if the current sum is greater than the maximum sum.
+* Finally, the answer is printed.
+
+**Time complexity:**
+
+* The function `S(x)` takes O(x) time, where `x` is the number of digits in `x`.
+* The loop iterates over the range from 1 to the square root of `n`, so the time complexity is O(n**0.5).
+
+**Space complexity:**
+
+* The function `S(x)` uses O(1) space.
+* The loop iterates over the range from 1 to the square root of `n`, so the space complexity is O(n**0.5).

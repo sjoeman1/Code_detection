@@ -1,0 +1,26 @@
+
+
+Here's the Python 3 code that solves the problem:
+
+```py
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+def isLucky(n):
+    n = str(n)
+    return all(x == '0' for x in n) or len(n) == 1
+
+n = int(input())
+
+while True:
+    n += 1
+    if isLucky(n):
+        break
+
+print(n - year)
+```
+
+Explanation:
+
+1.  The `isLucky` function checks if a given number is lucky or not. It converts the number to a string and checks if all digits are zeroes or if it's a single digit.
+2.  In the main code, we read the input `n` and initialize a loop that iterates from the current year (`n`) until a lucky year is found.
+3.  Inside the loop, we increment `n` by 1 and check if it's lucky using the `isLucky` function.
+4.  When a lucky year is found, we break out of the loop and print the number of years from the current year to the next lucky one.

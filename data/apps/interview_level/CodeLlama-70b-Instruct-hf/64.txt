@@ -1,0 +1,33 @@
+
+
+ 
+
+ Here's the Python3 code that solves the problem:
+
+```
+# Inputs
+n, k = map(int, input().split())
+s = input()
+
+# Initialize a dictionary to store the count of each color
+colors = {}
+
+# Iterate through the string and count the colors
+for c in s:
+    if c not in colors:
+        colors[c] = 1
+    else:
+        colors[c] += 1
+
+# Check if there is a color with count greater than the number of friends
+if any(count > k for count in colors.values()):
+    print("NO")
+else:
+    print("YES")
+```
+
+In this code, we first take the input `n` and `k` and then read the string `s`. We initialize a dictionary `colors` to store the count of each color. We iterate through the string and count the occurrence of each color. If the color is not present in the dictionary, we initialize it with a count of 1, otherwise we increment the count.
+
+After counting the colors, we check if any of the colors has a count greater than the number of friends `k`. If so, we print "NO" because it is not possible to give out all the balloons without upsetting someone. Otherwise, we print "YES".
+
+Note that this code assumes that the input is valid and doesn't perform any error checking.

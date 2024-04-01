@@ -1,0 +1,22 @@
+```python
+N, M = map(int, input().split())
+k = [int(input().split()) for _ in range(M)]
+p = [int(input()) for _ in range(M)]
+
+res = 0
+for i in range(M):
+    cnt = sum(k[i] == 1)
+    if p[i] == 0 and cnt % 2 == 0:
+        res += 1
+
+print(res)
+```
+
+**Explanation:**
+
+- The code reads the number of switches (N) and bulbs (M).
+- It reads the number of switches connected to each bulb (k) and the switch numbers (s) for each bulb.
+- It reads the parity of each bulb (p) - if it's 0, the bulb is lighted when there is an even number of switches that are "on".
+- The code calculates the number of switches that are "on" for each bulb and checks if the number of "on" switches is congruent to p_i modulo 2.
+- If the number of "on" switches is congruent to p_i modulo 2, the code increments the variable 'res'.
+- Finally, the code prints the value of 'res'.

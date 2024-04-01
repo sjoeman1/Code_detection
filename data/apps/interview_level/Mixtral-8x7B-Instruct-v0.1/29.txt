@@ -1,0 +1,37 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def get_min_replacements(ticket: str) -> int:
+    # Calculate the sum of the first three and the last three digits
+    first_half_sum = sum(map(int, ticket[:3]))
+    second_half_sum = sum(map(int, ticket[3:]))
+
+    # If the sums are already equal, then no replacements are needed
+    if first_half_sum == second_half_sum:
+        return 0
+
+    # Initialize the minimum number of replacements to 3 (as at least one digit in each half needs to be changed)
+    min_replacements = 3
+
+    # Iterate over all possible replacement digits
+    for replacement_digit in range(10):
+        # Calculate the new sum of the first three digits if the replacement digit is used
+        new_first_half_sum = sum(map(int, (ticket[:3] if ticket[i] != str(replacement_digit) else "0"*3) for i in range(3)))
+
+        # Calculate the number of replacements needed if the replacement digit is used
+        replacements_needed = abs(new_first_half_sum - second_half_sum)
+
+        # Update the minimum number of replacements if fewer replacements are needed
+        min_replacements = min(min_replacements, 3 + replacements_needed)
+
+    return min_replacements
+
+# Test cases
+print(get_min_replacements("000000"))  # 0
+print(get_min_replacements("123456"))  # 2
+print(get_min_replacements("111000"))  # 1
+```
+
+The `get_min_replacements` function first calculates the sum of the first three and the last three digits of the ticket. If they are already equal, then no replacements are needed.
+
+Otherwise, it initializes the minimum number of replacements to 3 (as at least one digit in each half needs to be changed). It then

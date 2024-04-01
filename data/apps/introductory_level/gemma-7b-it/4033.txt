@@ -1,0 +1,16 @@
+```python
+a, b = map(int, input().split())
+
+# Calculate the minimum perimeter
+min_perimeter = 2 * (a + b) + abs(a - b)
+
+# Print the minimum perimeter
+print(min_perimeter)
+```
+
+**Explanation:**
+
+- The minimum perimeter of a rectangle with $a$ red tiles and $b$ blue tiles is $2(a+b) + |a-b|.
+- This is because the two sides of the rectangle with the maximum number of tiles will be of equal length, and the other two sides will be of equal length as well.
+- The absolute value of the difference between $a$ and $b$ represents the perimeter of the two squares formed by the red and blue tiles, respectively.
+- Therefore, the total minimum perimeter is $2(a+b) + |a-b|$.

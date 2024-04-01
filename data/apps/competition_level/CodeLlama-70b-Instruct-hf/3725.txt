@@ -1,0 +1,56 @@
+
+Here is the Python 3 code that solves the question:
+
+```python
+#Input
+m = int(input())
+h1, a1 = map(int, input().split())
+x1, y1 = map(int, input().split())
+h2, a2 = map(int, input().split())
+x2, y2 = map(int, input().split())
+
+# Find the first time that Xaniar's height is a1
+time1 = -1
+if x1 == 1:
+    if y1 == a1:
+        time1 = 0
+    else:
+        time1 = (a1 - h1) % m
+else:
+    # Calculate the GCD of m and x1
+    gcd = m
+    for i in range(1, m):
+        if x1 * i % m == 0:
+            gcd = i
+            break
+    # Find the first time that Xaniar's height is a1
+    for i in range(m // gcd):
+        if (h1 + i * x1) % m == a1:
+            time1 = i * gcd
+            break
+
+# Find the first time that Abol's height is a2
+time2 = -1
+if x2 == 1:
+    if y2 == a2:
+        time2 = 0
+    else:
+        time2 = (a2 - h2) % m
+else:
+    # Calculate the GCD of m and x2
+    gcd = m
+    for i in range(1, m):
+        if x2 * i % m == 0:
+            gcd = i
+            break
+    # Find the first time that Abol's height is a2
+    for i in range(m // gcd):
+        if (h2 + i * x2) % m == a2:
+            time2 = i * gcd
+            break
+
+# Find the first time when both Xaniar's and Abol's heights are a1 and a2
+if time1 != -1 and time2 != -1:
+    if time1 < time2:
+        time = time1 + (time2 - time1) % m
+    else

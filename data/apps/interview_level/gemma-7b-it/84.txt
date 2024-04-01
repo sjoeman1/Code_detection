@@ -1,0 +1,20 @@
+```python
+n = int(input())
+
+cost = 0
+pairs = 0
+for i in range(1, n+1):
+    cost += i
+    num_nine = cost // 9
+    pairs += num_nine
+
+print(pairs)
+```
+
+**Explanation:**
+
+* The code reads the number of shovels, `n`, from the input.
+* It calculates the total cost, `cost`, of each shovel, which is equal to its number.
+* The code then iterates over the range from 1 to `n` and adds the number of 9s that can be divided by the total cost to the variable `pairs`.
+* The number of 9s that can be divided by the total cost is equal to the integer division of the total cost by 9.
+* Finally, the code prints the number of pairs.

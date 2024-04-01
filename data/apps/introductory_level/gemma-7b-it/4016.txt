@@ -1,0 +1,22 @@
+```python
+n, k = map(int, input().split())
+t = input().strip()
+
+# Calculate the minimum length of the string
+min_length = (k - 1) // n + 1
+
+# Construct the string
+s = ""
+for _ in range(min_length):
+    s += t
+
+# Print the answer
+print(s)
+```
+
+**Explanation:**
+
+* The minimum length of the string is equal to the number of substrings of $t$ plus one, minus one. This is because we need to have exactly $k$ substrings of $t$, and the minimum length of a substring is one character.
+* We construct the string by repeating $t$ for a total of $min_length$ times.
+* The number of substrings of $s$ equal to $t$ is equal to the number of occurrences of $t$ in the string $s$.
+* The answer is always unique because there is only one way to construct the string $s$ with the required number of substrings of $t$.

@@ -1,0 +1,19 @@
+```python
+n, k = map(int, input().split())
+main_courses = set(map(int, input().split()))
+courses_dependencies = [[int(input())] + list(map(int, input().split())) for _ in range(n)]
+
+courses_passed = set()
+
+for i in range(n):
+    t, dependencies = courses_dependencies[i]
+    if all(course not in courses_passed for course in dependencies):
+        courses_passed.add(i+1)
+
+if not courses_passed:
+    print(-1)
+else:
+    m = len(courses_passed)
+    print(m)
+    print(*courses_passed)
+```

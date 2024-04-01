@@ -1,0 +1,41 @@
+```python
+import sys
+
+# Read input
+bessie_grid = sys.stdin.read().splitlines()
+elsie_grid = sys.stdin.read().splitlines()
+
+# Create grids
+bessie_grid_2D = [[int(x) for x in line.split()] for line in bessie_grid.splitlines()]
+elsie_grid_2D = [[int(x) for x in line.split()] for line in elsie_grid.splitlines()]
+
+# Check if the grids are the same
+is_same = True
+for r in range(2):
+    for c in range(2):
+        if bestie_grid_2D[r][c] != elsie_grid_2D[r][c]:
+            is_same = False
+
+# Print the answer
+if is_same:
+    print("YES")
+else:
+    print("NO")
+```
+
+**Explanation:**
+
+* The code reads the input for both Bessie's and Elsie's puzzles.
+* It creates two 2D lists to represent the grids.
+* It iterates over the two grids and checks if the tiles are in the same position.
+* If the grids are the same, it prints "YES". Otherwise, it prints "NO".
+
+**Time Complexity:**
+
+* The code reads the input twice, so the time complexity is O(n).
+* The code iterates over the two grids twice, so the time complexity is O(n).
+* Overall, the time complexity is O(n).
+
+**Space Complexity:**
+
+* The code uses a constant amount of space, regardless of the size of the input.

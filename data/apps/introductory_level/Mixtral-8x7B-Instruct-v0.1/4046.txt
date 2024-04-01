@@ -1,0 +1,27 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n = int(input())
+q = list(map(int, input().split()))
+
+# Check if the given array q can form a valid permutation
+if sum(q) < -(n-1) or sum(q) > n-1:
+    print(-1)
+else:
+    # Initialize the permutation with the first element
+    p = [0] * n
+    p[0] = -q[0]
+    for i in range(1, n-1):
+        p[i] = p[i-1] + q[i-1]
+    p[n-1] = p[n-2] + q[n-2] + n
+
+    # Check if the last element is correct
+    if p[n-1] != n*(n-1)//2 + 1:
+        print(-1)
+    else:
+        print(*p)
+```
+
+The solution first checks if the sum of the elements in q is within the valid range. If not, it prints -1 and exits. Otherwise, it initializes the permutation p with the first element as -q[0]. Then, it iterates over the remaining elements of q and updates the permutation accordingly. Finally, it checks if the last element of the permutation is correct and prints the permutation if it is valid.
+
+Note that the solution assumes that the input is valid and does not contain any errors. In a real-world scenario, you may want to add error checking and handling code to ensure that the input is valid and meets the problem constraints.

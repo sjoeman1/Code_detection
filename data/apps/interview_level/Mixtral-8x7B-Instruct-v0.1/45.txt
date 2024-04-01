@@ -1,0 +1,37 @@
+ Here is a Python3 solution for the problem:
+```python
+def gcd(a, b):
+    while b:
+        a, b = b, a % b
+    return a
+
+def max_gcd_sequence(n, k):
+    if k == 1:
+        return [n]
+    elif k > n:
+        return -1
+    else:
+        i = 2
+        while i * i <= n:
+            if n % i:
+                i += 1
+            else:
+                g = n // i
+                if gcd(i, g) > 1 and k - 1 >= g:
+                    return [i] + [g] * (k - 1)
+                n = n // i - 1
+                i = 2
+        if n > 1 and k - 1 >= n:
+            return [n] + [1] * (k - 1)
+        return -1
+
+n, k = map(int, input().split())
+sequence = max_gcd_sequence(n, k)
+if sequence == -1:
+    print(-1)
+else:
+    print(*sequence)
+```
+The function `gcd` calculates the greatest common divisor of two numbers using the Euclidean algorithm. The function `max_gcd_sequence` generates the sequence of length `k` with the maximum GCD. It starts by checking if `k` is equal to 1, in which case the sequence consists of a single number `n`. If `k` is greater than `n`, then the sequence cannot be constructed, and the function returns -1.
+
+The function then checks all divisors `i` of `n` from 2 to the square root of `n`. If `n` is divisible by `i`, it calculates `g = n // i` and checks if the GCD of `i` and `g` is greater than 1 and if `k - 1` is greater than or equal to `g`. If these conditions are satisfied, it returns a sequence consisting of `i` followed by `g` repeated `k - 1` times. If `n` is not divisible by any `i`, it checks if `n` is greater than 

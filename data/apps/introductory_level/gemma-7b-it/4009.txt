@@ -1,0 +1,13 @@
+```python
+n, x, y = map(int, input().split())
+num = int(input())
+
+# Calculate the remainder when num is divided by 10^x
+rem = num % (10**x)
+
+# Calculate the minimum number of operations to get the desired remainder
+operations = abs(rem - 10**y) // 10**x + 1
+
+# Print the minimum number of operations
+print(operations)
+```

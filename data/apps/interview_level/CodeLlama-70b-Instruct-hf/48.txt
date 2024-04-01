@@ -1,0 +1,15 @@
+
+
+Here's the Python3 code:
+
+```
+n, m, k = map(int, input().split())
+numbers = []
+for i in range(1, n + 1):
+    for j in range(1, m + 1):
+        numbers.append(i * j)
+numbers.sort()
+print(numbers[k - 1])
+```
+
+This code takes the input for the three integers n, m, and k, where n and m represent the dimensions of the multiplication table, and k represents the k-th largest number. It then iterates through the multiplication table and appends each number to a list called numbers. After the list is populated, it sorts the numbers in ascending order. Finally, it prints the k-th largest number from the sorted list.

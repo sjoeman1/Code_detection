@@ -1,0 +1,48 @@
+
+
+```
+from collections import defaultdict
+
+n = int(input())
+
+f = list(map(int, input().split()))
+
+graph = defaultdict(list)
+
+for i in range(n):
+    if f[i] != 0:
+        graph[f[i]].append(i)
+
+for i in range(1, n+1):
+    if len(graph[i]) == 0:
+        graph[i].append(i)
+
+while True:
+    is_change = False
+    for i in range(1, n+1):
+        if len(graph[i]) == 1:
+            for j in range(1, n+1):
+                if i in graph[j] and len(graph[j]) > 1:
+                    graph[j].remove(i)
+                    is_change = True
+    if not is_change:
+        break
+
+for i in range(1, n+1):
+    if len(graph[i]) == 1:
+        graph[i].append(i)
+
+for i in range(n):
+    if f[i] == 0:
+        f[i] = graph[i+1][0]
+
+print(*f)
+```
+
+This code uses a graph to represent the relationships between the friends. The friends that want to give gifts to specific friends are represented as edges in the graph. If a friend does not know whom he wants to give a gift to, they are not represented in the graph.
+
+The code then iteratively removes edges from the graph until there is only one edge left for each friend. This is done by checking if a friend has only one edge and removing any other edges that may be connected to them.
+
+Once the graph has been reduced to the minimum number of edges, the code fills in the remaining values in the `f` list by using the remaining edges in the graph.
+
+Finally, the code prints the updated `f` list as the output.

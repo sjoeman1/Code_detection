@@ -1,0 +1,23 @@
+```python
+a, b = map(int, input().split())
+
+# Find the LCM of a+k and b+k
+def lcm(n, m):
+    return n * m // gcd(n, m)
+
+k_min = float('inf')
+for k in range(0, int((a + b) ** 0.5) + 1):
+    lcm_value = lcm(a + k, b + k)
+    if lcm_value < k_min:
+        k_min = lcm_value
+
+print(k_min)
+```
+
+**Explanation:**
+
+* The code reads the input integers $a$ and $b$.
+* It defines a function `lcm` to find the least common multiple of two numbers.
+* It iterates over the range from 0 to the square root of $a + b$, calculating the LCM for each $k$.
+* The code updates the minimum $k$ if the LCM value is smaller than the current minimum.
+* Finally, the code prints the minimum $k$.

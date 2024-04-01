@@ -1,0 +1,14 @@
+```python
+n, k, s = map(int, input().split())
+a = list(map(int, input().split()))
+
+a.sort()
+s_sum = sum(a)
+dp = 0
+
+for i in range(n):
+    if s_sum - a[i] <= k and a[i] > 0:
+        dp += 1
+
+print(dp)
+```

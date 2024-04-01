@@ -1,0 +1,42 @@
+
+
+Here is the Python3 code that solves the problem:
+
+```
+def max_grade(n, t, grade):
+    # Convert the grade to a string to make it easier to modify
+    grade = str(grade)
+    
+    # Split the grade into the integer part and the decimal part
+    integer_part = grade.split('.')[0]
+    decimal_part = grade.split('.')[1]
+    
+    # If the grade is already an integer, return it as it is the maximum
+    if len(decimal_part) == 0:
+        return int(integer_part)
+    
+    # If t is greater than the number of decimal places, round to the nearest integer
+    if t >= len(decimal_part):
+        return round(float(grade))
+    
+    # If t is less than the number of decimal places, round to the t-th decimal place
+    rounded_decimal_part = decimal_part[:t]
+    next_digit = int(decimal_part[t])
+    
+    # If the next digit is less than 5, keep the current decimal part
+    if next_digit < 5:
+        return float(integer_part + '.' + rounded_decimal_part)
+    
+    # If the next digit is greater than or equal to 5, round up
+    rounded_decimal_part = str(int(rounded_decimal_part) + 1)
+    return float(integer_part + '.' + rounded_decimal_part)
+
+# Input the values of n, t, and grade
+n, t = map(int, input().split())
+grade = input()
+
+# Call the max_grade function and print the result
+print(max_grade(n, t, grade))
+```
+
+In this code, the function `max_grade` takes three parameters: `n`, `t`, and `grade`. It first converts the grade to a string to make it easier to modify. Then, it splits the grade into the integer part and the decimal part. If the grade is already an integer, it returns it as it is the maximum. If `t` is greater than the number of decimal places, it rounds to the nearest integer. If `t` is less than the number of decimal places

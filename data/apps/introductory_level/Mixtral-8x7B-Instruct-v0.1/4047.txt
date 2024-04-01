@@ -1,0 +1,44 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n = int(input())
+coords = list(map(int, input().split()))
+
+# Calculate the maximum and minimum coordinates
+min_coord = min(coords)
+max_coord = max(coords)
+
+# Initialize the total cost
+total_cost = 0
+
+# Move all chips to the minimum coordinate
+while coords != [min_coord] * n:
+    # Find the chip that is furthest from the minimum coordinate
+    furthest_chip = max(coords)
+    # Calculate the cost to move it to the minimum coordinate
+    cost = (furthest_chip - min_coord) // 2
+    # Add the cost to the total cost
+    total_cost += cost
+    # Move the chip to the minimum coordinate
+    coords[coords.index(furthest_chip)] = min_coord
+
+# Move all chips to the maximum coordinate
+while coords != [max_coord] * n:
+    # Find the chip that is furthest from the maximum coordinate
+    furthest_chip = min(coords)
+    # Calculate the cost to move it to the maximum coordinate
+    cost = (max_coord - furthest_chip) // 2
+    # Add the cost to the total cost
+    total_cost += cost
+    # Move the chip to the maximum coordinate
+    coords[coords.index(furthest_chip)] = max_coord
+
+# Print the total cost
+print(total_cost)
+```
+
+The idea is to first move all chips to the minimum coordinate, then move all chips to the maximum coordinate. The total cost is the sum of the costs to move the furthest chip to the minimum and maximum coordinates.
+
+To move a chip to the minimum or maximum coordinate, we can move it by half the distance between its current coordinate and the target coordinate. The cost of moving it by one unit is one coin, so the cost of moving it by half the distance is half the number of units.
+
+Note that this solution assumes that the input is valid and does not contain any error handling.

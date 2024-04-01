@@ -1,0 +1,31 @@
+ Here is a Python3 solution using the `heapq` module to efficiently select the top p and s students for the programming and sports teams respectively:
+
+```python
+import heapq
+
+def solve():
+    n, p, s = map(int, input().split())
+    a = list(map(int, input().split()))
+    b = list(map(int, input().split()))
+
+    # Use a min heap to get the top p students by programming skill
+    heapq.heapify(a)
+    programming_team = [heapq.heappop(a) for _ in range(p)]
+
+    # Use a max heap to get the top s students by sports skill
+    heapq.heapify(b)
+    sports_team = [heapq.heappop(b) for _ in range(s)]
+
+    # Calculate the total strength of the university
+    total_strength = sum(programming_team) + sum(sports_team)
+
+    print(total_strength)
+    print(*programming_team)
+    print(*sports_team)
+
+solve()
+```
+
+This solution runs in O(n log n) time, where n is the number of students. It first creates two heaps (min heap for programming skill and max heap for sports skill) and then repeatedly pops the top elements from each heap to form the two teams. The total strength of the university is then calculated as the sum of the skills of the two teams.
+
+Note that this solution assumes that there are at least p students with positive programming skill and at least s students with positive sports skill. If this is not the case, the solution will need to be modified accordingly.

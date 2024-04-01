@@ -1,0 +1,25 @@
+
+
+Here is a Python 3 code that solves the problem:
+
+```python
+def solve(n):
+    return n % 2
+
+
+if __name__ == '__main__':
+    n = int(input())
+    result = solve(n)
+    print(result)
+```
+
+Explanation:
+
+*   The `solve` function takes an integer `n` as input.
+*   It calculates and returns the minimum possible value of $|sum(A) - sum(B)|$ as `n % 2`.
+*   The `%` operator calculates the remainder of `n` when divided by 2.
+*   If `n` is odd, the remainder is 1, and the minimum possible value of $|sum(A) - sum(B)|$ is 1.
+*   If `n` is even, the remainder is 0, and the minimum possible value of $|sum(A) - sum(B)|$ is 0.
+*   The `if __name__ == '__main__':` block handles input/output.
+*   It reads the input `n` from the user and passes it to the `solve` function.
+*   The result is printed to the console.

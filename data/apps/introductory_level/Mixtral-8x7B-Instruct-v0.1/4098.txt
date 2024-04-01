@@ -1,0 +1,38 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n, k = map(int, input().split())
+a = list(map(int, input().split()))
+
+# Sort the list of students by their skill level
+a.sort()
+
+# Initialize the maximum total number of students
+max_students = 0
+
+# Iterate through all possible numbers of teams from 1 to k
+for num_teams in range(1, min(k, n//2 + 1)):
+    # Calculate the maximum skill level of a student in a team
+    max_skill = a[n - 2*num_teams]
+    # Initialize the total number of students in teams
+    teams_students = 0
+    # Iterate through the sorted list of students
+    for i in range(n - 2*num_teams + 1):
+        # Calculate the minimum skill level of a student in a team
+        min_skill = a[i]
+        # Check if the difference in skill level between the two students is within 5
+        if max_skill - min_skill <= 5:
+            # Add the two students to a team
+            teams_students += 2
+            # Update the maximum skill level of a student in a team
+            max_skill = a[i + num_teams - 1]
+    # Update the maximum total number of students
+    max_students = max(max_students, teams_students)
+
+# Print the maximum total number of students
+print(max_students)
+```
+
+This solution sorts the list of students by their skill level and then iterates through all possible numbers of teams from 1 to k. For each number of teams, it calculates the maximum and minimum skill level of a student in a team and checks if the difference in skill level between the two students is within 5. If it is, it adds the two students to a team and updates the maximum skill level of a student in a team. It then updates the maximum total number of students and repeats the process for the next number of teams. Finally, it prints the maximum total number of students.
+
+Note that the solution assumes that k is less than or equal to n//2 + 1, because if k is greater than n//2 +

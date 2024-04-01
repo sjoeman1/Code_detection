@@ -1,0 +1,29 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def max\_sets(k, a, b):
+if a + b == 0:
+return -1
+
+sets\_a = a // k
+sets\_b = b // k
+if a % k != 0:
+sets\_a += 1
+if b % k != 0:
+sets\_b += 1
+
+return min(sets\_a, sets\_b)
+
+k, a, b = map(int, input().split())
+print(max\_sets(k, a, b))
+```
+
+The function `max_sets` takes three arguments: k, a, and b, which represent the number of points needed to win a set, the number of points scored by Misha, and the number of points scored by Vanya, respectively.
+
+The function first checks if the total number of points scored by both players is zero. If it is, the function returns -1, indicating that the situation is impossible.
+
+The function then calculates the number of sets that Misha and Vanya could have played by dividing their respective scores by k and rounding down to the nearest integer. If either player's score is not a multiple of k, the function adds 1 to the corresponding number of sets.
+
+Finally, the function returns the minimum of the two numbers of sets, since the total number of sets played is limited by the number of sets played by the player with the fewest sets.
+
+The last two lines of the code read the input values for k, a, and b from standard input, and print the result of calling the `max_sets` function with these arguments.

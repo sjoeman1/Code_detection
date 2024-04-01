@@ -1,0 +1,32 @@
+
+
+This is a tricky problem that requires some creative thinking. Here is the Python 3 code that solves the problem:
+
+```python
+# Input
+n, L = map(int, input().split())
+
+# Input for Kefa
+kefa = list(map(int, input().split()))
+
+# Input for Sasha
+sasha = list(map(int, input().split()))
+
+# Check if Kefa's and Sasha's tracks coincide
+flag = False
+
+# Loop through all possible starting points for Kefa and Sasha
+for i in range(n):
+    # Check if the tracks coincide when Kefa starts from i and Sasha starts from 0
+    if kefa[i:] + kefa[:i] == sasha:
+        flag = True
+        break
+
+# Print the output
+if flag:
+    print("YES")
+else:
+    print("NO")
+```
+
+This code works by checking if the tracks coincide when Kefa starts from different starting points and Sasha starts from 0. If they coincide, it prints "YES", otherwise it prints "NO".

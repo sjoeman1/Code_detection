@@ -1,0 +1,43 @@
+ Here is a Python3 solution for the problem:
+
+```python
+import sys
+input = sys.stdin.readline
+
+MOD = 1000000007
+
+def power(a, b):
+    res = 1
+    while b > 0:
+        if b % 2:
+            res = (res * a) % MOD
+            b -= 1
+        a = (a * a) % MOD
+        b //= 2
+    return res
+
+def solve(n, s):
+    dp = [[0] * len(s) for _ in range(n + 1)]
+    # base case: length 2
+    dp[1][0], dp[1][1] = 1, 1
+    for i in range(2, n + 1):
+        for j in range(len(s)):
+            if s[j] == '(':
+                if j > 0:
+                    dp[i][j] = (dp[i][j] + dp[i - 2][j - 1]) % MOD
+                if j + 1 < len(s) and s[j + 1] == ')':
+                    if j > 0 and s[j - 1] == '(':
+                        dp[i][j] = (dp[i][j] + dp[i - 2][j - 2]) % MOD
+                    if j + 2 < len(s) and s[j + 2] == ')':
+                        dp[i][j] = (dp[i][j] + dp[i - 4][j]) % MOD
+            elif s[j] == ')':
+                if j > 1 and s[j - 1] == '(' and s[j - 2] == ')':
+                    dp[i][j] = (dp[i][j] + dp[i - 2][j - 2]) % MOD
+    return sum(dp[n]) % MOD
+
+n = int(input().strip())
+s = input().strip()
+print(solve(n * 2, s))
+```
+
+The solution uses dynamic programming to calculate the number of regular bracket sequences of

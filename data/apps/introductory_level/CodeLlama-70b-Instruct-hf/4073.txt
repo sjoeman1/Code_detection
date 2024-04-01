@@ -1,0 +1,22 @@
+
+
+Here is the Python3 code to solve the question:
+
+```
+a, b, c, d = map(int, input().split())
+max_xy = 0
+for x in range(a, b + 1):
+    for y in range(c, d + 1):
+        max_xy = max(max_xy, x * y)
+print(max_xy)
+```
+
+Explanation:
+
+1.  The input is read from standard input using `input().split()`.
+2.  The values are mapped to integers using `map(int, input().split())`.
+3.  We initialize a variable `max_xy` to 0.
+4.  We loop through all possible values of `x` in the range `a` to `b` (inclusive) using `range(a, b + 1)`.
+5.  For each value of `x`, we loop through all possible values of `y` in the range `c` to `d` (inclusive) using `range(c, d + 1)`.
+6.  For each pair of `x` and `y`, we update `max_xy` to the maximum of the current `max_xy` and `x * y`.
+7.  After all possible pairs of `x` and `y` have been considered, we print the final value of `max_xy`.

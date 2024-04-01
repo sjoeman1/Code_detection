@@ -1,0 +1,24 @@
+```python
+n, m, a, b = map(int, input().split())
+
+if n % m != 0:
+  print(-1)
+else:
+  boxes = n // m
+  burles = boxes * a - boxes * b
+  print(burles)
+```
+
+**Explanation:**
+
+* Calculate the number of boxes that can be distributed evenly to each delegation (boxes = n // m).
+* Calculate the total number of burles spent to build and demolish boxes (burles = boxes * a - boxes * b).
+* Print the total number of burles.
+
+**Time Complexity:**
+
+* The code calculates the number of boxes and burles only once, so the time complexity is O(1).
+
+**Space Complexity:**
+
+* The code uses a constant amount of space, regardless of the input size, so the space complexity is O(1).

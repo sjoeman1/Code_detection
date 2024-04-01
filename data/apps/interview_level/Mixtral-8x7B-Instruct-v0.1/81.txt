@@ -1,0 +1,29 @@
+ Here is a Python3 solution for the problem:
+
+```python
+import sys
+import math
+
+def gcd(a, b):
+    while b:
+        a, b = b, a % b
+    return a
+
+def lcm(a, b):
+    return a * b // gcd(a, b)
+
+def solve():
+    a, b = map(int, input().strip().split())
+    if a > b:
+        a, b = b, a
+    min_lcm = math.lcm(a, b)
+    for k in range(min_lcm, 0, -1):
+        if math.lcm(a + k, b + k) == min_lcm:
+            print(k)
+            return
+
+if __name__ == "__main__":
+    solve()
+```
+
+This solution first calculates the least common multiple of `a` and `b` using the `math.lcm` function. Then it checks for each non-negative integer `k` smaller than `min_lcm` if the least common multiple of `a + k` and `b + k` is equal to `min_lcm`. If it is, then `k` is the smallest non-negative integer such that the least common multiple of `a + k` and `b + k` is the smallest possible. The solution prints `k` and terminates.

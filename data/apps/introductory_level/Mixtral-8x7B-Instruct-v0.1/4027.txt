@@ -1,0 +1,14 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def minimum_difference(n):
+    # The sum of the first n natural numbers is n*(n+1)//2
+    total_sum = n * (n + 1) // 2
+    # The average of the total sum is total_sum/2
+    return total_sum // 2 if n % 2 == 0 else total_sum // 2 - n // 2
+
+n = int(input())
+print(minimum_difference(n))
+```
+
+The idea is to divide the sequence into two sets $A$ and $B$ such that the sum of the elements in each set is as close to the average of the total sum as possible. The average of the total sum is `total_sum // 2` where `total_sum` is the sum of the first `n` natural numbers. If `n` is even, then we can divide the sequence into two sets of equal size, each with a sum equal to the average. If `n` is odd, then one set will have a sum one greater than the average and the other set will have a sum one less than the average. In either case, the difference between the sums of the two sets is `total_sum // 2` if `n` is even and `total_sum // 2 - n // 2` if `n` is odd.

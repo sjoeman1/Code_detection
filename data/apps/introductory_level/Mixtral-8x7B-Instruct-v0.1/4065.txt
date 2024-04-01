@@ -1,0 +1,16 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n = int(input())
+a = list(map(int, input().split()))
+
+dp = [1] + [0]*n
+for i in range(1, n):
+    for j in range(i):
+        if a[i] > a[j]*2:
+            dp[i] = max(dp[i], dp[j]+1)
+
+print(max(dp))
+```
+
+This solution uses dynamic programming to keep track of the maximum number of problems that can be included in a valid contest ending at the `i`-th problem. For each problem, we check all previous problems and if their difficulty is less than half of the current problem's difficulty, we update the current problem's value in the `dp` array. Finally, we print the maximum value in the `dp` array which represents the maximum number of problems in the contest.

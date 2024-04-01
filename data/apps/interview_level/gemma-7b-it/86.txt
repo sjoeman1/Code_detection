@@ -1,0 +1,15 @@
+```python
+x_p, y_p, x_v, y_v = map(int, input().split())
+
+# Calculate the difference between the pawns' positions
+dx = x_v - x_p
+dy = y_v - y_p
+
+# If the difference is even, Polycarp wins
+if dx % 2 == 0 and dy % 2 == 0:
+  print("Polycarp")
+
+# Otherwise, Vasiliy wins
+else:
+  print("Vasiliy")
+```

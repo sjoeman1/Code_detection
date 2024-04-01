@@ -1,0 +1,20 @@
+```python
+n, k = map(int, input().split())
+
+def numSetBits(x):
+    return sum(int(x & (-1) & x) for x in range(1, int(x**0.5) + 1))
+
+ans = 0
+for i in range(1, n + 1):
+    if numSetBits(i) == k:
+        ans += 1
+
+print(ans % (10**9 + 7))
+```
+
+**Explanation:**
+
+* The function `numSetBits` calculates the number of set bits in a number.
+* The loop iterates over the range from 1 to n and checks if the number of set bits in each number is equal to k.
+* If the number of set bits is equal to k, it increments the variable `ans`.
+* Finally, the answer is printed modulo 10^9 + 7.

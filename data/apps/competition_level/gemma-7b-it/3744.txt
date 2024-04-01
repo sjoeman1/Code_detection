@@ -1,0 +1,40 @@
+```python
+n, p, s = map(int, input().split())
+
+a = list(map(int, input().split()))
+b = list(map(int, input().split()))
+
+a.sort()
+b.sort()
+
+total_strength = 0
+programming_team = []
+sports_team = []
+
+for i in range(n):
+    if a[i] + b[i] > total_strength:
+        total_strength = a[i] + b[i]
+        programming_team.append(i + 1)
+        sports_team.append(i + 1)
+
+print(total_strength)
+print(*programming_team)
+print(*sports_team)
+
+```
+
+**Explanation:**
+
+* Read the input data and store it in variables n, p, s, a, and b.
+* Sort the lists a and b in ascending order.
+* Initialize variables total_strength, programming_team, and sports_team to store the maximum strength, programming team members, and sports team members, respectively.
+* Iterate over the list of students and calculate the total strength for each student. If the total strength is greater than the maximum strength seen so far, update the maximum strength and add the student to the programming team. If the student's total strength is less than the maximum strength, add the student to the sports team.
+* Print the maximum strength, followed by the members of the programming team and the members of the sports team.
+
+**Time Complexity:**
+
+* The code iterates over the list of students only once, so the time complexity is O(n).
+
+**Space Complexity:**
+
+* The code uses a constant amount of space, regardless of the size of the input data.

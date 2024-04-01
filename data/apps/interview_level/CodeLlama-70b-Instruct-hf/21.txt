@@ -1,0 +1,32 @@
+
+
+Here is the Python3 code for solving the problem:
+
+```
+n = int(input())
+
+a = list(map(int, input().split()))
+
+# Find the index of the minimum element
+min_index = a.index(1)
+
+# Find the index of the maximum element
+max_index = a.index(n)
+
+# Initialize the maximum distance
+max_distance = -1
+
+# Loop through all indices of the array
+for i in range(n):
+    # Calculate the absolute difference between the indices
+    # of the minimum and maximum elements
+    distance = abs(i - (n - i - 1))
+
+    # Update the maximum distance if the current distance is greater
+    max_distance = max(max_distance, distance)
+
+# Print the maximum distance
+print(max_distance)
+```
+
+This code reads the input and finds the indices of the minimum and maximum elements in the array. It then iterates through all the indices of the array and calculates the absolute difference between the indices of the minimum and maximum elements. Finally, it prints the maximum distance achieved by performing exactly one swap.

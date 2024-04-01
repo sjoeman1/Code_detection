@@ -1,0 +1,11 @@
+```python
+n, h, l, r = map(int, input().split())
+a = list(map(int, input().split()))
+
+good_time = 0
+for i in range(n):
+    if l <= a[i] <= r:
+        good_time += 1
+
+print(good_time)
+```

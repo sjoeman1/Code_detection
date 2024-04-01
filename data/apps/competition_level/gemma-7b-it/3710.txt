@@ -1,0 +1,34 @@
+```python
+n, k = map(int, input().split())
+c = list(map(int, input().split()))
+
+c.sort()
+mod = c[0]
+
+if k in c:
+    print("Yes")
+else:
+    print("No")
+```
+
+**Explanation:**
+
+1. Read the number of ancient integers `n` and the value of `k` chosen by Pari.
+2. Read the `n` ancient numbers and store them in the list `c`.
+3. Sort the list `c` in ascending order.
+4. Now the first element in `c` is the modulo of all numbers. If `k` is in `c`, then Arya has a winning strategy, otherwise not.
+
+**Time Complexity:**
+
+* Reading input: O(n)
+* Sorting the list: O(n)
+* Checking if `k` is in the list: O(n)
+
+**Space Complexity:**
+
+* Constant space
+
+**Complexity:**
+
+* Time complexity: O(n)
+* Space complexity: Constant

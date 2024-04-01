@@ -1,0 +1,46 @@
+ Here is a Python3 program that checks if an array is unimodal:
+
+```python
+n = int(input())
+arr = list(map(int, input().split()))
+
+if n == 1:
+    print("YES")
+else:
+    flag = False
+    i = 0
+    while i < n - 1 and not flag:
+        if arr[i] < arr[i + 1]:
+            # increase
+            j = i + 1
+            while j < n - 1 and arr[j] < arr[j + 1]:
+                j += 1
+            if j == n - 1 or arr[j] > arr[j + 1]:
+                i = j + 1
+            else:
+                flag = True
+        elif arr[i] > arr[i + 1]:
+            # decrease
+            j = i + 1
+            while j < n - 1 and arr[j] > arr[j + 1]:
+                j += 1
+            if j == n - 1 or arr[j] < arr[j + 1]:
+                i = j + 1
+            else:
+                flag = True
+        else:
+            i += 1
+
+    if flag:
+        print("NO")
+    else:
+        print("YES")
+```
+
+The program first reads the number of elements in the array `n` and the array `arr` itself. If `n` is 1, the array is considered unimodal.
+
+Otherwise, the program sets a flag `flag` to `False`, and iterates over the array starting from the first element. For each element, the program checks if it is smaller than the next element (i.e., the array is increasing), or if it is larger than the next element (i.e., the array is decreasing). If neither is true, the program moves to the next element.
+
+If the array is increasing, the program finds the position `j` where the array starts to decrease. If the next element after `j` is larger than `arr[j]`, the array is not unimodal and the program sets `flag` to `True`.
+
+If the array is decreasing, the program

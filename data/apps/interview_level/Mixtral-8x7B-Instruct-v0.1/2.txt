@@ -1,0 +1,21 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def is\_lucky(n):
+if n < 0:
+n = -n
+return any(int(digit) == 0 or sum(int(digit) == 9 for digit in str(n)) <= 1
+for digit in str(n))
+
+n = int(input())
+years = 0
+while True:
+years += 1
+if is\_lucky(n + years):
+print(years)
+break
+```
+
+The function `is_lucky` checks if a given year is lucky or not. It does this by converting the year to a string, and then checking if any digit is 0 or if there is at most one digit that is not 0 and not 9.
+
+The main part of the solution is a loop that increments the year by 1 and checks if the result is lucky. If it is, the loop breaks and the number of years is printed.

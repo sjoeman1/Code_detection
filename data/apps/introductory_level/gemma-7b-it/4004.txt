@@ -1,0 +1,19 @@
+```python
+n = int(input())
+a = list(map(int, input().split()))
+
+# Calculate the minimum difference between elements
+diff = min(abs(x - y) for x, y in zip(a, a[0:1] + a[1:]))
+
+# If the minimum difference is 0, it means that the array is already equal
+if diff == 0:
+    print(-1)
+else:
+    print(diff)
+```
+
+**Explanation:**
+
+* The code calculates the minimum difference between elements in the array `a`.
+* If the minimum difference is 0, it means that the array is already equal.
+* Otherwise, the code prints the minimum difference.

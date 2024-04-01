@@ -1,0 +1,34 @@
+```python
+n = int(input())
+s = input().lower()
+
+# Create a frequency table of the characters
+freq = {}
+for i in s:
+    if i not in freq:
+        freq[i] = 0
+    freq[i] += 1
+
+# Calculate the minimum number of colors
+min_colors = 1 + sum(sorted(freq.values())[-1:])
+
+# Create the coloring
+c = []
+for i in range(n):
+    c.append(1)
+
+# Color the characters according to the frequency
+for i in range(n):
+    c[i] = freq[s[i]]
+
+# Print the minimum number of colors and the coloring
+print(min_colors)
+print(*c)
+```
+
+**Explanation:**
+
+* The algorithm calculates the frequency of each character in the string.
+* The minimum number of colors is equal to 1 plus the sum of the sorted frequency of the characters.
+* The coloring is done according to the frequency of each character.
+* The characters are colored the same color if they have the same frequency.

@@ -1,0 +1,22 @@
+ To solve this problem, we can use the formula for the geometric series to calculate the number of blue balls after $10^{100}$ operations. The number of blue balls added after each operation is A, and the number of operations is $10^{100}$. Therefore, the total number of blue balls after $10^{100}$ operations is:
+
+$$\text{number of blue balls} = A \times \frac{1 - (A+B)^{100}}{1 - (A+B)}$$
+
+We can simplify this formula by calculating $(A+B)^{100}$ only once and then calculating the number of blue balls for each query separately.
+
+Here's the Python code for solving the problem:
+
+```python
+def solve():
+    N, A, B = map(int, input().split())
+    p = A + B
+    ans = A * (1 - p**100) / (1 - p)
+    print(int(ans % (10**9+7)))
+
+# Take input and solve for each test case
+T = int(input())
+for _ in range(T):
+    solve()
+```
+
+The time complexity of this solution is $O(T)$, where $T$ is the number of test cases. The space complexity is $O(1)$.

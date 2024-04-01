@@ -1,0 +1,16 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def solve():
+    n, k, x = map(int, input().split())
+    arr = list(map(int, input().split()))
+    arr.sort()
+    for _ in range(k):
+        for i in range(1, len(arr), 2):
+            arr[i] = arr[i] ^ x
+    print(max(arr), min(arr))
+
+solve()
+```
+
+This solution takes the number of rangers `n`, the number of times Jon will carry out the operation `k`, and Jon's favorite number `x` as input. It then reads in the strengths of the rangers and sorts them in increasing order. After that, it performs the XOR operation `k` times as specified, by iterating through the array with a step of 2 and updating the elements with the XOR of their current value and `x`. Finally, it prints the maximum and minimum strength of the rangers after performing the operation `k` times.

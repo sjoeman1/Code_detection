@@ -1,0 +1,26 @@
+```python
+N = int(input())
+A = list(map(int, input().split()))
+K = list(map(int, input().split()))
+
+# Calculate the maximum number of stones that can be removed from each pile
+max_stones = []
+for i in range(N):
+    max_stones.append(int(A[i] // K[i]))
+
+# Iterate over the piles and remove stones
+for i in range(N):
+    A[i] -= max_stones[i]
+
+# Check if Takahashi can still remove stones
+if any(A[i] > 0 for i in range(N)):
+    print("Takahashi")
+else:
+    print("Aoki")
+```
+
+**Explanation:**
+
+- The code calculates the maximum number of stones that can be removed from each pile based on the value of K.
+- It then iterates over the piles and removes stones according to the maximum number of stones that can be removed.
+- If there are still stones left in any pile, Takahashi wins. Otherwise, Aoki wins.

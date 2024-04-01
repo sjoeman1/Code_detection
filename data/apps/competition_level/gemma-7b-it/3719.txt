@@ -1,0 +1,10 @@
+```python
+n, m = map(int, input().split())
+y1 = list(map(int, input().split()))
+y2 = list(map(int, input().split()))
+
+# Calculate the maximum number of destroyed spaceships
+destroyed = max(sum(1 for y in y1 if y in y2) for y in range(min(y1) - 1, max(y2) + 1))
+
+print(destroyed)
+```

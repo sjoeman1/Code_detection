@@ -1,0 +1,27 @@
+
+ Here is the Python 3 code for solving the question:
+
+```python
+def check_order(n, r, a, b):
+    for i in range(n):
+        if r >= a[i]:
+            r += b[i]
+        else:
+            return False
+    return True
+
+n, r = map(int, input().split())
+a = []
+b = []
+for _ in range(n):
+    a_i, b_i = map(int, input().split())
+    a.append(a_i)
+    b.append(b_i)
+
+if check_order(n, r, a, b):
+    print("YES")
+else:
+    print("NO")
+```
+
+This code takes the input in the required format and then checks for the condition where the rating of Polycarp is greater than or equal to the rating required for the project before starting it. If the condition is satisfied, it adds the rating change to the current rating. If the condition is not satisfied, it returns `False` and prints "NO". If all projects can be completed, it prints "YES".

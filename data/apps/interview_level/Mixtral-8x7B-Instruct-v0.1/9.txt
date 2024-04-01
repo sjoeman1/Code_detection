@@ -1,0 +1,27 @@
+ Here is a Python3 solution for the problem:
+```python
+n, m, d = map(int, input().split())
+sofas = []
+for _ in range(d):
+    x1, y1, x2, y2 = map(int, input().split())
+    sofas.append((x1, y1, x2, y2))
+cnt = list(map(int, input().split()))
+
+for i, sofa in enumerate(sofas):
+    x1, y1, x2, y2 = sofa
+    if (x1 - 1) * (y1 - 1) == cnt[0] and \
+       (n - x2) * (y1 - 1) == cnt[1] and \
+       (x1 - 1) * (m - y2) == cnt[2] and \
+       (n - x2) * (m - y2) == cnt[3]:
+        print(i + 1)
+        break
+else:
+    print(-1)
+```
+The solution iterates through the sofas and checks if the sofa satisfies the given conditions. If it does, the solution prints the number of the sofa and breaks the loop. If no sofa satisfies the conditions, the solution prints -1.
+
+The solution assumes that the input is provided in the format specified in the problem statement. The input is split into lines, and each line is further split into integers as needed. The solution then uses these integers to construct the storehouse and the sofas, and to calculate the number of sofas to the left, right, top, and bottom of each sofa.
+
+The solution checks if a sofa satisfies the conditions by comparing the calculated number of sofas to the left, right, top, and bottom of the sofa to the given counts. The solution does this by calculating the product of the number of cells to the left or top of the sofa and the number of rows or columns in the storehouse, respectively. This product is then compared to the given counts. If all comparisons succeed, the sofa satisfies the conditions.
+
+The solution is efficient and has a time complexity of O(d), where d is the number of sofas. This is because the solution iterates through all the sofas once and checks each sofa for the given conditions. The space complexity of the

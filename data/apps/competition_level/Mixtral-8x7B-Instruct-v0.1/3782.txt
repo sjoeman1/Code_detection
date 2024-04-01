@@ -1,0 +1,46 @@
+ To solve this problem, we can use a sliding window approach to maintain the minimum and maximum values of a sliding window of length K. At each step, we remove the minimum value in the current window and update the maximum value. The difference between the maximum and minimum values at any step is the value of X-Y at that step. The minimum value of X-Y over all steps is what we are looking for.
+
+Here is the Python3 code to solve this problem:
+
+```python
+import sys
+from collections import deque
+
+input = sys.stdin.readline
+
+def solve():
+    N, K, Q = map(int, input().split())
+    A = list(map(int, input().split()))
+
+    # Initialize a deque to maintain the sliding window.
+    window = deque((x, i) for i, x in enumerate(A[:K]))
+    window = sorted(window, key=lambda x: x[0])
+
+    # Initialize the minimum and maximum values of X-Y.
+    x_y_min = 10**9 + 1
+    x_y_max = 0
+
+    # Perform the Q operations.
+    for _ in range(Q):
+        # Get the minimum and maximum values in the current window.
+        min_val, _ = window[0]
+        max_val, _ = window[-1]
+
+        # Update the minimum and maximum values of X-Y.
+        x_y_min = min(x_y_min, max_val - min_val)
+        x_y_max += max_val - min_val
+
+        # Remove the leftmost element in the window.
+        left, _ = window.popleft()
+
+        # Add the next element in the array to the window.
+        next_idx = i + 1
+        if next_idx < N:
+            next_val = A[next_idx]
+            window.append((next_val, next_idx))
+            window.sort(key=lambda x: x[0])
+
+        i += 1
+
+    # The minimum value of X-Y is the minimum of x_y_min and x_y_max - x_y_min.
+    print(min(x_

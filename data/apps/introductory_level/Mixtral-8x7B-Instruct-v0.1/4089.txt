@@ -1,0 +1,39 @@
+ Here is a Python function that takes an integer `n` as input and returns the corresponding name of the dog:
+
+```python
+def dog_name(n):
+    # Initialize an empty string to store the name
+    name = ''
+
+    # Keep dividing n by 26 and updating the name until n becomes 1 or less
+    while n > 1:
+        # Compute the remainder of n divided by 26
+        rem = (n - 1) % 26
+
+        # If the remainder is 0, set it to 26 and subtract 1 from the quotient
+        if rem == 0:
+            rem = 26
+            n = n // 26 - 1
+        else:
+            n = n // 26
+
+        # Add the corresponding letter to the name
+        if rem > 0:
+            name = chr(ord('a') + rem - 1) + name
+        else:
+            name = 'z' + name
+
+    # If n is 1, the name is 'a'
+    if n == 1:
+        name = 'a' + name
+
+    return name
+```
+
+You can test the function using the sample input:
+
+```python
+print(dog_name(2))  # Output: 'b'
+```
+
+The function works by repeatedly dividing `n` by 26 and computing the remainder until `n` becomes 1 or less. The remainder is used to determine the next letter to add to the name, starting from 'a' and going up to 'z'. If the remainder is 0, the next letter is 'z', and 1 is subtracted from the quotient. Once `n` becomes 1, the name is 'a'.

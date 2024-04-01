@@ -1,0 +1,49 @@
+
+```py
+# This program uses a BFS algorithm to find the shortest path from the frog's initial position to the target leaf.
+# It will also keep track of the number of leaves removed.
+# If the frog can reach the target leaf, it will output the minimum number of leaves removed.
+# If the frog cannot reach the target leaf, it will output -1.
+import queue
+
+# Read the input
+H, W = map(int, input().split())
+grid = []
+for _ in range(H):
+    row = input()
+    grid.append(row)
+
+# Define a function to check if a square is a valid square
+def is_valid(x, y):
+    return 0 <= x < H and 0 <= y < W and grid[x][y] != '.'
+
+# Define a function to perform a BFS search
+def bfs(start_x, start_y, target_x, target_y):
+    # Initialize variables
+    visited = [[False] * W for _ in range(H)]
+    removed_leaves = 0
+    queue = [[start_x, start_y]]
+
+    # Perform the BFS search
+    while queue:
+        x, y = queue.pop(0)
+
+        # If the current square is the target, return the number of removed leaves
+        if x == target_x and y == target_y:
+            return removed_leaves
+
+        # Check the adjacent squares
+        for dx, dy in [(1, 0), (-1, 0), (0, 1), (0, -1)]:
+            next_x, next_y = x + dx, y + dy
+            if is_valid(next_x, next_y) and not visited[next_x][next_y]:
+                # Mark the current square as visited
+                visited[next_x][next_y] = True
+
+                # If the current square is a leaf, increase the number of removed leaves
+                if grid[next_x][next_y] == 'o':
+                    removed_leaves += 1
+
+                # Add the current square to the queue
+                queue.append([next_x, next_y])
+
+    # If the target cannot be

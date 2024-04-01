@@ -1,0 +1,26 @@
+```python
+import re
+
+def calculate_extra_tiles(tiles):
+    # Check if there is already a koutsu or shuntsu
+    koutsu_check = bool(re.search("((\d){3})", tiles))
+    shuntsu_check = bool(re.search("((\d){3})-((\d){1})", tiles))
+
+    # If there is no koutsu or shuntsu, draw at least one extra tile
+    if not koutsu_check and not shuntsu_check:
+        return 1
+
+    # Otherwise, draw no extra tiles
+    else:
+        return 0
+
+
+# Get the tiles in Tokitsukaze's hand
+tiles = input().split()
+
+# Calculate the minimum number of extra tiles
+extra_tiles = calculate_extra_tiles(tiles)
+
+# Print the result
+print(extra_tiles)
+```

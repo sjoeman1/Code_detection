@@ -1,0 +1,16 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n, m = map(int, input().split())
+
+# The maximum number of chessmen that can be placed
+max_chessmen = (min(n, m) // 3) * 2
+
+print(max_chessmen)
+```
+
+The solution works by placing chessmen in pairs along the longest side of the smaller dimension of the chessboard, such that the Manhattan distance between the two cells in each pair is 3. The number of pairs that can be placed is equal to the smallest integer that is at least half the length of the longest side divided by 3. This is because each pair occupies a 3x2 rectangle along the longest side. The solution then prints the maximum number of chessmen that can be placed.
+
+In the first example, the input is 2 and 2, so the smallest integer that is at least half the length of the longest side (which is 2) divided by 3 is 0, so the solution prints 0.
+
+In the second example, the input is 3 and 3, so the smallest integer that is at least half the length of the longest side (which is 3) divided by 3 is 2, so the solution prints 8.

@@ -1,0 +1,51 @@
+
+
+ In this problem, we need to find the maximum number of Pokemon that Bash can take from the lab without them fighting among themselves.
+
+Here's a Python 3 code that solves the problem:
+
+```py
+# Importing necessary libraries
+import math
+import sys
+
+# Function to find the greatest common divisor (gcd) of two numbers
+def gcd(a, b):
+    while b:
+        a, b = b, a % b
+    return a
+
+# Function to find the greatest common divisor (gcd) of a list of numbers
+def gcd_list(numbers):
+    return reduce(gcd, numbers)
+
+# Function to find the maximum number of Pokemon that Bash can take
+def maximum_pokemon(strengths):
+    # Initialize the maximum number of Pokemon
+    max_pokemon = 0
+
+    # Iterate through all possible subsets of Pokemon strengths
+    for i in range(len(strengths)):
+        for j in range(i + 1, len(strengths) + 1):
+            # Get the current subset of Pokemon strengths
+            current_subset = strengths[i:j]
+
+            # Check if the gcd of the current subset is 1
+            if gcd_list(current_subset) == 1:
+                # Update the maximum number of Pokemon if the current subset is larger
+                max_pokemon = max(max_pokemon, len(current_subset))
+
+    return max_pokemon
+
+# Read the input
+n = int(input())
+strengths = list(map(int, input().split()))
+
+# Find and print the maximum number of Pokemon Bash can take
+max_pokemon = maximum_pokemon(strengths)
+print(max_pokemon)
+```
+
+This code first defines a function to calculate the greatest common divisor (gcd) of two numbers. It then defines another function to find the gcd of a list of numbers.
+
+The `maximum_pokemon` function takes a list of Pokemon strengths as input. It iterates through all possible subsets of the strengths, calculates their gcd, and updates the maximum number of Pokemon if the gcd is

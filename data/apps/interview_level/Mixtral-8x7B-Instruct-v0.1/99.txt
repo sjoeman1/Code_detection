@@ -1,0 +1,27 @@
+ Here's a Python3 solution for the problem:
+
+```python
+def will\_write(b\_1, q, l, bad\_numbers):
+numbers = set()
+i = 1
+n = b\_1
+while True:
+if n in numbers or n in bad\_numbers:
+i += 1
+n = b\_1 \* q**i
+continue
+numbers.add(n)
+if abs(n) > l:
+return len(numbers) if len(numbers) < float('inf') else 'inf'
+i += 1
+
+b\_1, q, l, m = map(int, input().split())
+bad\_numbers = set(map(int, input().split()))
+
+result = will\_write(b\_1, q, l, bad\_numbers)
+print(result)
+```
+
+The function `will_write` calculates the number of progression terms that will be written on the board. It uses a while loop to iterate through the geometric progression and adds each term to a set called `numbers`. If the term is in the `bad_numbers` set or already exists in the `numbers` set, it skips the term and moves forward to the next term. If the absolute value of the term is greater than `l`, it returns the length of the `numbers` set if it's not infinite, or `inf` otherwise.
+
+The script then reads the input, creates the `bad_numbers` set, and calls the `will_write` function to get the result. Finally, it prints the result.

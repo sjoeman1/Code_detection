@@ -1,0 +1,34 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n = int(input())
+a = list(map(int, input().split()))
+s = input()
+
+i = 0
+while i < n - 1:
+    if s[i] == '1' and a[i] < a[i + 1]:
+        i += 1
+    elif s[i] == '1' and a[i] > a[i + 1]:
+        a[i], a[i + 1] = a[i + 1], a[i]
+    elif s[i] == '0' and a[i] > a[i + 1]:
+        print("NO")
+        break
+    else:
+        i += 1
+
+if i == n - 1:
+    print("YES" if sorted(a) == a else "NO")
+```
+
+The solution works as follows:
+
+* Read the number of elements `n` and the array `a` from the input.
+* Read the string `s` from the input.
+* Initialize a variable `i` to 0.
+* Iterate from 0 to `n - 1`:
+	+ If the `i`-th character in `s` is '1' and the `i`-th element in `a` is less than the `(i + 1)`-th element, then increment `i`.
+	+ If the `i`-th character in `s` is '1' and the `i`-th element in `a` is greater than the `(i + 1)`-th element, then swap the `i`-th and `(i + 1)`-th elements.
+	+ If the `i`-th character in `s` is '0' and the `i`-th element in `a` is greater than the `(i + 1)`-th element, then print "NO" and break the loop.
+	+ Otherwise, increment `i`.
+* If the loop was not broken, then check if the array `a` is sorted. If it is, then print "YES", otherwise print "NO".

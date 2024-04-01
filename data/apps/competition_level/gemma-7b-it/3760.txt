@@ -1,0 +1,16 @@
+```python
+import math
+n, m, x, y, a, b = map(int, input().split())
+x_1 = math.floor((x - a * y) // b)
+y_1 = math.floor((y - a * x_1) // b)
+x_2 = x_1 + a - 1
+y_2 = y_1 + b - 1
+print(x_1, y_1, x_2, y_2)
+```
+
+**Explanation:**
+
+* Calculate the integer division of (x - a * y) by b and store it in x_1.
+* Calculate the integer division of (y - a * x_1) by b and store it in y_1.
+* Add a - 1 to x_1 and y_1 to get the upper right corner of the sub-rectangle.
+* Print the values of x_1, y_1, x_2, y_2.

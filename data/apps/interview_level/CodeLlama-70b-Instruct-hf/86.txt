@@ -1,0 +1,15 @@
+
+Here is the Python3 code that solves the question:
+```
+def who_wins(x_p, y_p, x_v, y_v):
+    if x_p == x_v:
+        return "Vasiliy" if y_p < y_v else "Polycarp"
+    else:
+        return "Vasiliy" if x_p < x_v else "Polycarp"
+
+x_p, y_p, x_v, y_v = map(int, input().split())
+print(who_wins(x_p, y_p, x_v, y_v))
+```
+This code works by first checking if the x-coordinates of the pawns are equal. If they are, it checks if the y-coordinate of Polycarp's pawn is less than Vasiliy's, and if so, Vasiliy can reach (0, 0) before Polycarp. If the y-coordinates are equal, it means that Polycarp can reach (0, 0) before Vasiliy.
+
+If the x-coordinates are not equal, the same logic is applied, but with the x-coordinates instead.

@@ -1,0 +1,18 @@
+```python
+n = int(input())
+a = list(map(int, input().split()))
+
+# Calculate the number of students that need to be persuaded
+persuaded = 0
+for i in range(n):
+    if a[i] == 1 or a[i] == 2:
+        persuaded += 1
+
+# If no sequence of swapping seats leads to the desired result, print -1
+if persuaded == 0:
+    print(-1)
+
+# Otherwise, print the smallest number of people to persuade
+else:
+    print(persuaded)
+```

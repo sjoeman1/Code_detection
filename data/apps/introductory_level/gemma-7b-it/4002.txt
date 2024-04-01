@@ -1,0 +1,36 @@
+```python
+n, m, k = map(int, input().split())
+a = [[int(input()) for _ in range(m)] for _ in range(n)]
+
+# Calculate the maximum sum divisible by k for each row
+row_sums = []
+for i in range(n):
+    row_sum = 0
+    k_elements = int(m // 2)
+    for j in range(m):
+        row_sum += a[i][j]
+        if row_sum > k_elements:
+            row_sum -= a[i][j]
+    row_sums.append(row_sum)
+
+# Find the maximum sum divisible by k
+max_sum = 0
+for row_sum in row_sums:
+    max_sum = max(max_sum, row_sum % k * k)
+
+print(max_sum)
+```
+
+**Explanation:**
+
+1. **Calculate the maximum sum divisible by k for each row:** We iterate over the rows and calculate the total sum for each row. We then find the maximum number of elements that can be selected from each row, which is half the number of elements in the row (rounded down). We subtract the selected elements from the total sum and store the remaining sum for each row in `row_sums`.
+
+2. **Find the maximum sum divisible by k:** We iterate over the `row_sums` list and find the maximum sum divisible by k. We use the modulo operator to find the remainder when each sum is divided by k and multiply the remainder by k to get the maximum sum divisible by k. We update `max_sum` if necessary.
+
+**Time complexity:**
+
+- The algorithm iterates over the matrix only once, so the time complexity is O(n*m).
+
+**Space complexity:**
+
+- The algorithm uses a constant amount of space regardless of the size of the matrix, so the space complexity is O(1).

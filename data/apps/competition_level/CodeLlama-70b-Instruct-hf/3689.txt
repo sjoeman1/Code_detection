@@ -1,0 +1,34 @@
+
+```py
+def get_smallest_beautiful_number(n, k, x):
+    if n <= k:
+        return x
+
+    i = 0
+    while i < n - k:
+        if x[i] < x[i + k]:
+            return ''.join(x[:i + 1]) + ''.join(x[i + 1:])
+        i += 1
+
+    return ''.join(x)
+
+
+n, k = map(int, input().split())
+x = input()
+
+y = get_smallest_beautiful_number(n, k, x)
+m = len(y)
+
+print(m)
+print(y)
+```
+
+In this Python3 code, the `get_smallest_beautiful_number` function takes three arguments: `n`, `k`, and `x`. It first checks if `n` is less than or equal to `k`. If it is, it returns `x`, as there is no way to create a beautiful number in this case.
+
+If `n` is greater than `k`, the function initializes a variable `i` to `0` and enters a `while` loop that iterates until `i` is less than `n - k`. For each iteration, it checks if the digit at index `i` is less than the digit at index `i + k`. If it is, it returns a string consisting of the digits from `x` up to and including the digit at index `i + 1` concatenated with the digits from `x` starting from index `i + 1`.
+
+If the `while` loop completes without returning a value, it means that there are no digits in `x` that are less than their corresponding digits `k` indices away. In this case, it returns the entire string `x`.
+
+The main program prompts the user for input for `n`, `k`, and `x`. It then calls the `get_smallest_beautiful_number` function with these inputs and stores the result in `y`. It calculates the length of `y` and stores it in `m`.
+
+Finally, it prints `m` and `y` as the output.

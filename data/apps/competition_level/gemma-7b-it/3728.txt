@@ -1,0 +1,19 @@
+```python
+n, m = map(int, input().split())
+
+a = []
+
+for _ in range(n):
+    a.append(list(map(int, input().split())))
+
+ans = "YES" if all(sorted(a[i]) == list(range(1, m + 1)) for i in range(n)) else "NO"
+
+print(ans)
+```
+
+**Explanation:**
+
+- The code reads the number of rows and columns, and then reads the elements of the table.
+- It checks if the elements in each row are in sorted order. If they are not, it swaps the two elements in that row.
+- It also checks if the elements in any column are swapped. If they are, it swaps the two columns.
+- If all rows and columns are sorted, the code prints "YES". Otherwise, it prints "NO".

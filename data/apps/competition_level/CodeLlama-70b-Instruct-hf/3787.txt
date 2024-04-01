@@ -1,0 +1,29 @@
+
+Here is the Python 3 code for the question:
+
+```
+def get_sequence(n, a, b):
+    if n < max(a, b):
+        return -1
+    elif a == b == 1:
+        return n
+    elif a == b:
+        return get_sequence(n, a - 1, b)
+    elif a < b:
+        return get_sequence(n, a, b - 1)
+    elif n == a:
+        return [i for i in range(1, n + 1)]
+    else:
+        return get_sequence(n, a - 1, b)
+
+
+if __name__ == "__main__":
+    n, a, b = map(int, input().split())
+    sequence = get_sequence(n, a, b)
+    if sequence == -1:
+        print("No such sequence exists.")
+    else:
+        print(" ".join(map(str, sequence)))
+```
+
+This code defines a function `get_sequence` that takes three parameters `n`, `a`, and `b` and returns the sequence if it exists. The function checks if `n` is less than the maximum of `a` and `b`, and if it is, it returns -1. If `a` and `b` are both 1, it returns `n`. If `a` and `b` are the same, it reduces `a` by 1 and calls itself recursively. If `a` is less than `b`, it reduces `b` by 1 and calls itself recursively. If `n` is equal to `a`, it returns a list of integers from 1 to `n`. Otherwise, it reduces `a` by 1 and calls itself recursively. The `if __name__ == "__main__":` block reads the input from the user and calls the `get_sequence` function with the input values. If the sequence exists, it prints the sequence, and if it doesn't, it prints a message saying that no such sequence exists.

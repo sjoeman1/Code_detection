@@ -1,0 +1,47 @@
+
+
+ Here is the Python3 code for solving the question:
+
+```python
+def solve(b_1, q, l, m, bad_numbers):
+    if b_1 == 0 and q == 0:
+        return "inf"
+    if b_1 == 0 and q == 1:
+        return 0
+    if b_1 == 0 and q == -1:
+        return 0
+
+    current_term = b_1
+    bad_numbers = set(bad_numbers)
+    count = 0
+
+    while abs(current_term) <= l:
+        if current_term not in bad_numbers:
+            count += 1
+        current_term = current_term * q
+
+    if count == 0:
+        return 0
+    else:
+        return count
+
+
+if __name__ == "__main__":
+    b_1, q, l, m = map(int, input().split())
+    bad_numbers = list(map(int, input().split()))
+
+    result = solve(b_1, q, l, m, bad_numbers)
+    print(result)
+```
+
+In this code, we define a function `solve` that takes in the initial term `b_1`, the common ratio `q`, the absolute value of the maximal number that can be written on the board `l`, the number of "bad" integers `m`, and a list of `bad_numbers`.
+
+Inside the function, we handle some special cases where `b_1` and `q` are zero, and return the appropriate output.
+
+If none of the special cases apply, we initialize the `current_term` to `b_1`, convert the `bad_numbers` list into a set for faster lookup, and initialize the `count` to zero.
+
+In a while loop, we check if the absolute value of the `current_term` is less than or equal to `l`. If it is, we check if the `current_term` is not in the `bad_numbers` set. If it's not, we increment the `count`.
+
+We then update the `current_term` by multiplying it by `q`.
+
+After the while loop, we check if the `count` is zero

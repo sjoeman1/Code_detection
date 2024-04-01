@@ -1,0 +1,11 @@
+
+Here is the Python3 code for the problem:
+
+```python
+a = int(input())
+
+# Check if a is a multiple of 13
+if a % 13 == 0:
+    print(1)
+else:
+    print(0)

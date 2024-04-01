@@ -1,0 +1,32 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def count_pairs(n, k):
+    # Initialize the result to 0
+    result = 0
+
+    # Iterate from 1 to n
+    for i in range(1, n + 1):
+        # If the difference between k and i is positive and
+        # can be represented as a difference of two numbers
+        if k - i > 0 and (k - i) % i == 0:
+            # Increment the result by 1
+            result += 1
+
+    # Return the result
+    return result
+
+# Read the input values of n and k
+n, k = map(int, input().split())
+
+# Print the result
+print(count_pairs(n, k))
+```
+
+The solution uses a simple algorithm: for each toy with cost `i`, it checks if there is another toy with cost `k - i`. Since the cost of each toy is unique, it is enough to check if `k - i` is a multiple of `i` (i.e., if `(k - i) % i == 0`). If it is, then the pair `(i, k - i)` satisfies the conditions of the problem.
+
+Note that the problem forbids pairs `(a, b)` and `(b, a)` to be considered different, so we don't need to check both `i` and `k - i`. It is enough to check only the smaller value (`i`).
+
+Also note that the problem forbids pairs `(a, b)` where `a = b`, so we don't need to check the case when `i = k - i` (i.e., when `k % 2 == 0` and `i = k // 2`).
+
+Finally, note that the input values of `n` and `k` can be as large as `10^14`, so we need to use a data type that can represent such large numbers. In Python, the built-in `int` type can represent arbitrarily large integers, so we don't need to worry about overflow or precision loss.

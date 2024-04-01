@@ -1,0 +1,37 @@
+```python
+n = int(input())
+a = list(map(int, input().split()))
+
+a.sort()
+k = len(set(a))
+s = ""
+
+for i in range(k):
+    if a[i] == a[i-1]:
+        s += "L"
+    else:
+        s += "R"
+
+print(k)
+print(s)
+```
+
+**Explanation:**
+
+* The code reads the number of elements `n` and the sequence `a`.
+* It sorts the sequence in ascending order and removes duplicates, resulting in a sequence of distinct elements.
+* The length of the sequence is stored in `k`.
+* The code constructs a string `s` of length `k`, where 'L' represents taking the leftmost element and 'R' represents taking the rightmost element.
+* The final string `s` is printed.
+
+**Time Complexity:**
+
+* The code spends time sorting the sequence, which takes O(nlogn) time.
+* The code also spends time removing duplicates, which takes O(n) time.
+* Overall, the time complexity is O(nlogn).
+
+**Space Complexity:**
+
+* The code uses a set to remove duplicates, which has a space complexity of O(n).
+* The code also uses a string of length `k`, which has a space complexity of O(k).
+* Overall, the space complexity is O(n) + O(k).

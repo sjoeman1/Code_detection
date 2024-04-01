@@ -1,0 +1,29 @@
+
+
+Python 3 code:
+
+```python
+n = int(input())
+s = input()
+ans = 0
+stack = []
+for i in range(n):
+    if s[i] == '(':
+        stack.append(i)
+    else:
+        if stack:
+            stack.pop()
+        else:
+            ans += 1
+for i in range(len(stack)):
+    ans += 1
+print(ans)
+```
+
+In this code, we first take the input for the length of the bracket sequence and the sequence itself.
+
+We then initialize a stack to keep track of the opening brackets. We iterate through each character of the sequence. If the character is an opening bracket '(', we push its index into the stack. If it is a closing bracket ')', we check if the stack is not empty. If it is not, we pop the top element of the stack. If it is, we increment the answer count by 1.
+
+After iterating through the entire sequence, we check if the stack is not empty. If it is not, we increment the answer count by the number of elements remaining in the stack.
+
+Finally, we print the answer count.

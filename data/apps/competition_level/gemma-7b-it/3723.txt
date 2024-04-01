@@ -1,0 +1,21 @@
+```python
+n = int(input())
+s = list(map(int, input().split()))
+
+s.sort()
+
+g = 1
+for i in s:
+    g = gcd(g, i)
+
+print(len(s) - g + 1)
+```
+
+**Explanation:**
+
+* Read the number of Pokemon and their strengths.
+* Sort the strengths in ascending order.
+* Find the greatest common divisor (gcd) of the first group of strengths.
+* Subtract the gcd from the number of strengths.
+* Add 1 to the result to account for the Pokemon that does not fight with itself.
+* Print the result.

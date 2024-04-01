@@ -1,0 +1,52 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def solve():
+    n = int(input().strip())
+    s = input().strip()
+    t = input().strip()
+
+    # Initialize result list with -1
+    res = [-1]
+
+    # If strings are not equal, find the first index where they differ
+    if s != t:
+        for i in range(n):
+            if s[i] != t[i]:
+                break
+
+        # Initialize the current index and swaps list
+        cur_idx = i
+        swaps = []
+
+        # Loop until the current index reaches the end of the string
+        while cur_idx < n:
+            # If the current character of s is the same as the corresponding character of t,
+            # increment the current index
+            if s[cur_idx] == t[cur_idx]:
+                cur_idx += 1
+            # If the current character of s is different from the corresponding character of t,
+            # and the previous character is the same as the next character,
+            # swap the current character with the previous character
+            elif cur_idx > 0 and s[cur_idx] == t[cur_idx - 1] and s[cur_idx - 1] == t[cur_idx + 1]:
+                s = s[:cur_idx - 1] + s[cur_idx] + s[cur_idx - 1] + s[cur_idx + 1:]
+                swaps.append(cur_idx - 1)
+                cur_idx += 1
+            # If the current character of s is different from the corresponding character of t,
+            # and the previous character is different from the next character,
+            # increment the current index
+            else:
+                cur_idx += 1
+
+        # If the swaps list is not empty, append its length to the result list
+        if swaps:
+            res = [len(swaps)] + swaps
+
+    # Print the result list
+    print(*res)
+
+# Call the solve function
+solve()
+```
+
+The solution first reads the length of the strings and the strings themselves. If the strings are equal, it prints 

@@ -1,0 +1,21 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def min_burles(n, m, a, b):
+    # Calculate the difference between n and the closest multiple of m
+    diff = (n - 1) % m
+    # If the difference is 0, then no need to build or demolish any boxes
+    if diff == 0:
+        return 0
+    # Calculate the number of boxes to be built or demolished
+    num_boxes = (diff if diff < m//2 else m - diff)
+    # Return the minimum cost to build or demolish the boxes
+    return num_boxes * a if a < b else num_boxes * b
+
+# Read the input values
+n, m, a, b = map(int, input().split())
+# Print the minimum amount of burles
+print(min_burles(n, m, a, b))
+```
+
+The solution first calculates the difference between `n` and the closest multiple of `m`. If the difference is 0, then no need to build or demolish any boxes. Otherwise, it calculates the number of boxes to be built or demolished, which is the minimum of either the difference or `m - difference`. Finally, it returns the minimum cost to build or demolish the boxes, which is `a * num_boxes` if `a` is less than `b`, or `b * num_boxes` otherwise.

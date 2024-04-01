@@ -1,0 +1,31 @@
+```python
+n = int(input())
+s = input().lower()
+t = input().lower()
+
+if s == t:
+    print(0)
+    print()
+
+moves = 0
+for i in range(n - 1):
+    if s[i] != t[i]:
+        moves += 1
+        c = i
+        s[i] = t[i]
+        s[i + 1] = t[i]
+
+if moves <= 1000:
+    print(moves)
+    print(*[c + 1] * moves)
+else:
+    print(-1)
+```
+
+**Explanation:**
+
+* The code reads the length of the strings $s$ and $t, the string $s$, and the string $t$.
+* It checks if $s$ is equal to $t$. If it is, it prints $0 and exits.
+* It iterates over the string $s$ and checks if the character at the current position is not equal to the character at the same position in $t. If it is not, it increments the number of moves and swaps the characters at the current position and the position one to the right.
+* If the number of moves is less than or equal to $1000, it prints the number of moves, followed by the positions of the swaps.
+* If the number of moves is greater than $1000, it prints -1.

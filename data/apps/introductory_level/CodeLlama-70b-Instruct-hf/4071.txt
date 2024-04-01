@@ -1,0 +1,14 @@
+
+Here is the Python 3 code for solving the problem:
+
+```python
+a = int(input())
+
+# Calculate the output value
+output = a ** 3
+
+# Print the output
+print(output)
+```
+
+The code reads a single integer `a` from the input, calculates the cube of `a`, and prints the result.

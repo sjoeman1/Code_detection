@@ -1,0 +1,26 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n, k, m = map(int, input().split())
+a = list(map(int, input().split()))
+
+current\_sum = sum(a)
+min\_points = (m * n - current\_sum) % n
+if min\_points > 0 and min\_points <= k:
+    print(min\_points)
+else:
+    print(-1)
+```
+
+The solution first reads the values of `n`, `k`, and `m` from the input, and then reads the `n-1` scores of Takahashi. It calculates the current sum of the scores and then calculates the minimum number of points Takahashi needs to achieve the average score of `m` or above. If the minimum number of points is greater than `0` and less than or equal to `k`, it prints the minimum number of points. Otherwise, it prints `-1`.
+
+Explanation of the formula for calculating the minimum number of points:
+
+* `m * n` is the target sum of the scores.
+* `current_sum` is the current sum of the scores.
+* The difference between the target sum and the current sum is `m * n - current_sum`.
+* Since Takahashi can score any integer between `0` and `k` (inclusive) on the final subject, we need to find the minimum number of points that satisfies the condition `m * n - current_sum + x >= m * n` (where `x` is the number of points Takahashi scores on the final subject).
+* Simplifying the inequality, we get `x >= (m * n - current_sum) % n`.
+* Therefore, the minimum number of points Takahashi needs to achieve the average score of `m` or above is `(m * n - current_sum) % n`.
+
+Note: The solution assumes that the input is valid and satisfies the given constraints. If the input is not valid, the solution may not work correctly.

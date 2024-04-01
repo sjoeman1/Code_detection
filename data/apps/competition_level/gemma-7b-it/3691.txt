@@ -1,0 +1,37 @@
+```python
+x_0, y_0, a_x, a_y, b_x, b_y = map(int, input().split())
+x_s, y_s, t = map(int, input().split())
+
+# Calculate the maximum number of data nodes that Aroma can collect
+# within t seconds
+max_nodes = 0
+curr_x = x_s
+curr_y = y_s
+
+# Iterate over the time available
+for _ in range(t):
+    # Move to one of the adjacent nodes
+    dx = [-1, 1, 0, 0]
+    dy = [0, 0, -1, 1]
+    for i in range(4):
+        next_x = curr_x + dx[i]
+        next_y = curr_y + dy[i]
+
+        # Check if the node is valid and has not been collected
+        if 0 <= next_x <= x_0 and 0 <= next_y <= y_0 and nodes[next_x][next_y] has not been collected:
+            curr_x = next_x
+            curr_y = next_y
+            nodes[next_x][next_y] = True
+            max_nodes += 1
+
+# Print the maximum number of data nodes that Aroma can collect
+print(max_nodes)
+```
+
+**Explanation:**
+
+- The code calculates the maximum number of data nodes that Aroma can collect within $t$ seconds.
+- It iterates over the time available and moves to one of the adjacent nodes in each step.
+- The code checks if the node is valid and has not been collected.
+- If the node is valid and has not been collected, the code updates the current position of Aroma and collects the node.
+- The maximum number of data nodes collected is printed.

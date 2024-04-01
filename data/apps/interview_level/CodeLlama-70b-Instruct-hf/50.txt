@@ -1,0 +1,26 @@
+
+Here is the code:
+```
+n, m, r = map(int, input().split())
+s = list(map(int, input().split()))
+b = list(map(int, input().split()))
+s.sort()
+b.sort()
+shares = 0
+for i in range(n):
+    if s[i] <= r:
+        r -= s[i]
+        shares += 1
+    else:
+        break
+r = 0
+for i in range(m):
+    if b[i] <= shares:
+        r += b[i]
+        shares -= b[i]
+    else:
+        break
+print(r)
+```
+
+The code first reads the input values of `n`, `m`, and `r`. Then, it reads the `s` values and the `b` values. The `s` values are sorted in ascending order, and the `b` values are sorted in descending order. It then calculates the maximum number of shares that can be bought with the `r` bourles. Then, it calculates the maximum number of bourles that can be earned by selling the shares. Finally, it prints the maximum number of bourles that can be held after the evening.

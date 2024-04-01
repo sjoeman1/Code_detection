@@ -1,0 +1,10 @@
+```python
+s = input().strip().split()
+x = int(s[2])
+y = int(s[3])
+
+# Check if the objective is achievable
+ achievable = (x == 0 and y == 0) or (x == len(s) - 1 and y == 0) or (x == len(s) - 1 and y == len(s) - 1)
+
+print("Yes" if achievable else "No")
+```

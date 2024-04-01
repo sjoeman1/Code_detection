@@ -1,0 +1,43 @@
+
+Here is the Python3 code for solving the question:
+```
+def max_area_smallest_piece(n, m, k):
+    def check(n, m, k, area):
+        def dfs(x, y, n, m, dp):
+            if dp[x][y] != -1:
+                return dp[x][y]
+            res = 1
+            if x + 1 < n and not visited[x + 1][y]:
+                res += dfs(x + 1, y, n, m, dp)
+            if x - 1 >= 0 and not visited[x - 1][y]:
+                res += dfs(x - 1, y, n, m, dp)
+            if y + 1 < m and not visited[x][y + 1]:
+                res += dfs(x, y + 1, n, m, dp)
+            if y - 1 >= 0 and not visited[x][y - 1]:
+                res += dfs(x, y - 1, n, m, dp)
+            dp[x][y] = res
+            return res
+        visited = [[False] * m for _ in range(n)]
+        dp = [[-1] * m for _ in range(n)]
+        count = 0
+        for i in range(n):
+            for j in range(m):
+                if not visited[i][j] and dfs(i, j, n, m, dp) * area <= n * m:
+                    count += 1
+        return count <= k
+    low, high = 1, n * m
+    while low < high:
+        mid = (low + high) // 2
+        if check(n, m, k, mid):
+            high = mid
+        else:
+            low = mid + 1
+    if check(n, m, k, low):
+        return low
+    return -1
+
+n, m, k = list(map(int, input().split()))
+print(max_area_smallest_piece(n, m, k))
+```
+
+In this code, the `max_area_smallest

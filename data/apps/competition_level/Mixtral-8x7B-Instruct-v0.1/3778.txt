@@ -1,0 +1,47 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n = int(input())
+a = list(map(int, input().split()))
+
+# Check if it's possible to place targets
+for i in range(n):
+    if a[i] > (n - i):
+        print(-1)
+        exit()
+
+# Initialize the grid
+grid = [[0] * (n + 1) for _ in range(n + 1)]
+
+# Place targets in the grid
+for i in range(n - 1, -1, -1):
+    for j in range(1, n + 1):
+        if a[i] > 0:
+            grid[j][i + 1] = 1
+            a[i] -= 1
+
+# Find the rows with 2 targets
+rows_with_2 = [i for i in range(1, n + 1) if sum(grid[i]) == 2]
+
+# Place remaining targets
+for i in range(1, n + 1):
+    if sum(grid[i]) == 0:
+        if len(rows_with_2) > 0:
+            r = rows_with_2.pop()
+            grid[r][i] = 1
+        else:
+            grid[1][i] = 1
+
+# Print the result
+print(sum([sum(row) for row in grid]))
+for i in range(1, n + 1):
+    for j in range(1, n + 1):
+        if grid[i][j] == 1:
+            print(i, j)
+```
+
+The solution first checks if it's possible to place targets according to the given number of hits. If it's not possible, it prints -1 and exits.
+
+Then it initializes the grid and places targets in the grid from right to left, top to bottom. After placing targets, it finds the rows with exactly 2 targets and places the remaining targets in the rows that have none.
+
+Finally, it prints the number of targets and their positions in the grid.

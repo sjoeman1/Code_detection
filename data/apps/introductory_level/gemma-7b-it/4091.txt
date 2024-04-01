@@ -1,0 +1,27 @@
+```python
+n, k = map(int, input().split())
+a = list(map(int, input().split()))
+
+a.sort()
+
+dp = 0
+t = 0
+ans = 0
+for i in range(n):
+    dp = max(dp, a[i] + t)
+    t += 1
+    ans = max(ans, dp)
+
+print(ans)
+print(*([int](str(t).split())])
+
+```
+
+**Explanation:**
+
+* The code reads the number of problems and days, and then reads the difficulties of each problem.
+* It sorts the difficulties in ascending order and then iterates over them.
+* It keeps track of the maximum profit and the number of problems solved on each day.
+* The code calculates the maximum profit for each day by adding the difficulty of the problem being solved with the maximum profit achieved on the previous day.
+* The code updates the maximum profit and the number of problems solved on each day.
+* Finally, the code prints the maximum profit and the number of problems solved on each day.

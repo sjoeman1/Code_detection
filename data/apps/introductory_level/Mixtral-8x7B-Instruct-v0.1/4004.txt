@@ -1,0 +1,36 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n = int(input().strip())
+a = list(map(int, input().strip().split()))
+
+# Compute the minimum and maximum values in the array
+min_val = min(a)
+max_val = max(a)
+
+# If the minimum and maximum values are equal, then all elements are already equal
+# and we can set D to 0
+if min_val == max_val:
+    print(0)
+else:
+    # Compute the difference between the maximum and minimum values
+    diff = max_val - min_val
+
+    # If the difference is not a multiple of the minimum value, then it is impossible
+    # to make all elements equal
+    if diff % min_val != 0:
+        print(-1)
+    else:
+        # Set D to the difference divided by the minimum value
+        D = diff // min_val
+        print(D)
+```
+
+This solution first computes the minimum and maximum values in the array. If the minimum and maximum values are equal, then all elements are already equal and we can set D to 0.
+
+If the minimum and maximum values are not equal, then we compute the difference between the maximum and minimum values. If the difference is not a multiple of the minimum value, then it is impossible to make all elements equal. Otherwise, we set D to the difference divided by the minimum value.
+
+Here are the explanations for the provided examples:
+
+* For the first example (input: `6 1 4 4 7 4 1`), the minimum value is 1 and the maximum value is 7. The difference between the maximum and minimum values is 6, and this difference is not a multiple of the minimum value (1), so it is impossible to make all elements equal. Therefore, the solution prints `-1`.
+* For the second example (input: `5 2 2 5 2 5`), the minimum value is 2 and the maximum value is 5. The difference between the maximum and minimum values is 3, and this difference is a multiple of the minimum value (2), so we can set D to 3/2 = 1.5. However, since D must be an integer, we can set D to 

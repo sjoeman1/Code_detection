@@ -1,0 +1,27 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def find\_kth\_largest(n, m, k):
+n, m = min(n, m), max(n, m)
+left, right = 1, n \* m
+while left < right:
+mid = (left + right) // 2
+count = 0
+for i in range(1, n + 1):
+count += min(m, mid // i)
+if count < k:
+left = mid + 1
+else:
+right = mid
+return left
+```
+
+This solution uses binary search to find the k-th largest number in the multiplication table. The lower bound of the binary search is 1 and the upper bound is n \* m (the total number of elements in the table). At each step, we calculate the number of elements that are less than or equal to the current mid value and adjust the search range based on the comparison. The function returns the k-th largest number once the binary search is completed.
+
+You can test the function with the given examples as follows:
+
+```python
+assert find\_kth\_largest(2, 2, 2) == 2
+assert find\_kth\_largest(2, 3, 4) == 3
+assert find\_kth\_largest(1, 10, 5) == 5
+```

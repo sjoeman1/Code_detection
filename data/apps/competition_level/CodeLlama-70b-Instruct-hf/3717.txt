@@ -1,0 +1,53 @@
+
+Here's a Python 3 solution:
+
+```
+import math
+
+# Read input
+n = int(input())
+rectangles = []
+for i in range(n):
+    x1, y1, x2, y2 = map(int, input().split())
+    rectangles.append((x1, y1, x2, y2))
+
+# Function to check if a point is inside a rectangle
+def is_inside(x, y, rectangle):
+    x1, y1, x2, y2 = rectangle
+    return x1 <= x <= x2 and y1 <= y <= y2
+
+# Find a point with integer coordinates that belongs to at least (n-1) given rectangles
+def find_point(rectangles):
+    n = len(rectangles)
+    # Calculate the center point of each rectangle
+    center_points = []
+    for rectangle in rectangles:
+        x1, y1, x2, y2 = rectangle
+        center_x = (x1 + x2) / 2
+        center_y = (y1 + y2) / 2
+        center_points.append((center_x, center_y))
+    
+    # Check if the center point of each rectangle belongs to at least (n-1) given rectangles
+    for i in range(n):
+        count = 0
+        for j in range(n):
+            if i != j and is_inside(center_points[i][0], center_points[i][1], rectangles[j]):
+                count += 1
+        if count >= n - 1:
+            x = math.floor(center_points[i][0])
+            y = math.floor(center_points[i][1])
+            return (x, y)
+    
+    # If no such point is found, return None
+    return None
+
+# Call the find_point function and print the result
+result = find_point(rectangles)
+if result is not None:
+    print(result[0], result[1])
+else:
+    print("No such point found.")
+
+```
+
+This code reads the input, calculates the center point of each rectangle, and checks if the center point belongs to at least (n-

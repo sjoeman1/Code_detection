@@ -1,0 +1,40 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def is\_palindromic(matrix):
+    n = len(matrix)
+    # check rows
+    for i in range(n):
+        if matrix[i] != matrix[n-1-i][::-1]:
+            return False
+    # check columns
+    for j in range(n):
+        if matrix[:,j] != matrix[:,n-1-j][::-1]:
+            return False
+    return True
+
+def solve(n, nums):
+    if n == 1:
+        return ["YES", nums]
+    nums.sort(reverse=True)
+    matrix = [nums[:n], nums[n:2*n], nums[2*n:3*n], nums[3*n:]] if n > 1 else [nums]
+    if is_palindromic(matrix):
+        return ["YES", "\n".join([" ".join(map(str, row)) for row in matrix])]
+    else:
+        for i in range(n):
+            for j in range(n-1):
+                matrix[i][j], matrix[i][n-1-j] = matrix[i][n-1-j], matrix[i][j]
+        if is_palindromic(matrix):
+            return ["YES", "\n".join([" ".join(map(str, row)) for row in matrix])]
+        else:
+            return ["NO"]
+
+n = int(input())
+nums = list(map(int, input().split()))
+if len(nums) != n*n:
+    print("NO")
+else:
+    print("\n".join(solve(n, nums)))
+```
+
+The solution first checks if the input matrix is already palindromic. If it is, then the function returns "YES" followed by the matrix. If not, the function sorts the input numbers in descending order and creates a matrix with the sorted numbers. If this matrix is palindromic, the function returns "YES" followed by the matrix. If not, the function reverses the order of the elements in each row of the matrix and checks if the

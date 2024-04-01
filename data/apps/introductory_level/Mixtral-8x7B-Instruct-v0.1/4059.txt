@@ -1,0 +1,23 @@
+ Here is a Python3 solution for the problem:
+
+```python
+import sys
+
+def count_tuples(n):
+    count = 0
+    for a in range(1, n):
+        for b in range(1, n-a+1):
+            if a*b + 1 == n:
+                count += 1
+            elif a*b + 1 < n:
+                break
+    return count
+
+if __name__ == "__main__":
+    n = int(sys.stdin.readline())
+    print(count_tuples(n))
+```
+
+This program reads an integer `n` from the standard input, and then calculates the number of tuples `(A, B, C)` that satisfy the equation `A x B + C = n` by iterating over all possible values of `A` and `B` and checking whether `A x B + 1` is equal to `n`. If it is, the program increments the `count` variable. If `A x B + 1` is less than `n`, the program breaks the inner loop, as there is no point in continuing the iteration, since the value of `A x B + 1` will only increase. Finally, the program prints the value of `count`.
+
+Note that the program uses the `sys` module to read the input from the standard input, as this is the recommended way of reading input in programming contests. However, if you are running this program in a different environment, you may need to modify the input/output code accordingly.

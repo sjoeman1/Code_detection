@@ -1,0 +1,49 @@
+```python
+import math
+
+x = float(input())
+
+# Find the integers that bracketing x
+low = int(math.floor(x))
+high = int(math.ceil(x))
+
+# Print the integers
+print(low, high)
+```
+
+**Explanation:**
+
+* Read the input floating-point number `x`.
+* Use the `math.floor()` function to find the integer below `x`, and store it in `low`.
+* Use the `math.ceil()` function to find the integer above `x`, and store it in `high`.
+* Print `low` and `high`.
+
+**Example Usage:**
+
+```
+Input:
+1.200000
+
+Output:
+3 2
+
+Input:
+2.572479
+
+Output:
+10 3
+
+Input:
+4.024922
+
+Output:
+9 9
+```
+
+**Output:**
+
+```
+3 2
+10 3
+9 9
+```

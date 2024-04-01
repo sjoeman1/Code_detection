@@ -1,0 +1,45 @@
+
+
+ The Python3 code for the above problem is:
+
+```py
+from collections import defaultdict
+
+n, k = map(int, input().split())
+ancient_numbers = list(map(int, input().split()))
+
+# Function to find if there exists a winning strategy
+def is_winning_strategy_exist(n, k, ancient_numbers):
+
+    # Create an empty dictionary to store the counts
+    count = defaultdict(int)
+
+    # For each ancient number
+    for c in ancient_numbers:
+
+        # Calculate the remainder and increment its count
+        remainder = c % k
+        count[remainder] += 1
+
+    # If there are two or more ancient numbers with the same remainder
+    if max(count.values()) >= 2:
+
+        # Then Arya has a winning strategy
+        return True
+
+    # Otherwise, Arya does not have a winning strategy
+    return False
+
+# Check if Arya has a winning strategy
+if is_winning_strategy_exist(n, k, ancient_numbers):
+
+    # Print "Yes" if Arya has a winning strategy
+    print("Yes")
+
+else:
+
+    # Print "No" if Arya does not have a winning strategy
+    print("No")
+```
+
+This code takes input from the user for n and k, and then the ancient numbers. It uses a dictionary to store the counts of remainders after division by k. If there are two or more ancient numbers with the same remainder, it means Arya has a winning strategy. Otherwise, Arya does not have a winning strategy.

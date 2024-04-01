@@ -1,0 +1,32 @@
+```python
+n, m = map(int, input().split())
+p = list(map(int, input().split()))
+
+p.sort()
+
+res = 0
+for i in range(n):
+    for j in range(i, n):
+        med = (p[i] + p[j]) // 2
+        if med == m:
+            res += 1
+
+print(res)
+```
+
+**Explanation:**
+
+* The code reads the number of elements `n` and the target median value `m`.
+* It reads the permutation `p` of size `n`.
+* The code sorts the permutation in ascending order.
+* It iterates over the sorted permutation and calculates the median for each pair of indices `(i, j)`.
+* If the median value is equal to `m`, the code increments the `res` variable.
+* Finally, the code prints the value of `res`.
+
+**Time Complexity:**
+
+* The code iterates over the sorted permutation only once, so the time complexity is O(n).
+
+**Space Complexity:**
+
+* The code uses a constant amount of space regardless of the size of the input, so the space complexity is O(1).

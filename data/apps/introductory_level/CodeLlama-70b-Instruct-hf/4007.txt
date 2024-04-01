@@ -1,0 +1,25 @@
+
+Here is the Python3 code for the problem:
+```py
+def f(x):
+    x += 1
+    while x % 10 == 0:
+        x //= 10
+    return x
+
+
+n = int(input())
+
+# We will use a set to store the numbers that are reachable from n.
+reachable_numbers = set()
+
+# We will apply f to n until we get a number that is already in the set.
+# This will ensure that we have found all reachable numbers from n.
+while n not in reachable_numbers:
+    reachable_numbers.add(n)
+    n = f(n)
+
+# Print the length of the set, which is the number of reachable numbers from n.
+print(len(reachable_numbers))
+```
+This code works by applying the function `f` to `n` until it finds a number that is already in the set of reachable numbers. Each time it applies `f`, it adds the result to the set. Once it finds a number that is already in the set, it has found all reachable numbers from `n` and can print the length of the set.

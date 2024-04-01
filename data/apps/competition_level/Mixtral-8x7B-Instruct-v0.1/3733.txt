@@ -1,0 +1,31 @@
+ Here is a Python3 solution for the problem:
+
+```python
+import math
+
+def solve():
+    n, I = map(int, input().split())
+    a = list(map(int, input().split()))
+    K = len(set(a))
+    k = math.ceil(math.log2(K))
+    nk = n * k
+    if nk <= 8 * I:
+        print(0)
+        return
+    bound = (8 * I + n - 1) // n
+    ans = float('inf')
+    for r in range(1000000001):
+        l = max(0, r - bound)
+        cnt = sum(1 for x in a if l <= x <= r)
+        if nk - 8 * I >= 8 * (cnt - (r - l + 1) * n):
+            ans = min(ans, n - cnt)
+    print(ans)
+
+solve()
+```
+
+The solution uses binary search to find the optimal values of $l$ and $r$. The bound for $r$ is calculated as $(8 \* I + n - 1) // n$, which is the largest integer such that $8 \* I \geq n \* k'$, where $k'$ is the number of bits required to store $r - l + 1$ distinct values.
+
+For each value of $r$, the solution calculates the number of elements that will be changed if we choose $l$ and $r$ as the new range, and checks if the total number of bits required to store the array with the new range is less than or equal to $8 \* I$. If it is, then the number of changed elements is updated if it is smaller than the current minimum.
+
+Finally, the solution prints the minimum number of changed elements found during the binary search.

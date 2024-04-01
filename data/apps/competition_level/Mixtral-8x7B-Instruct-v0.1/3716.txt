@@ -1,0 +1,15 @@
+ Here is a Python3 solution for the problem:
+
+```python
+import math
+
+def max_lcm_of_three(n):
+    return math.lcm(n, n-1, n-2) if n >= 2 else n
+
+n = int(input())
+print(max_lcm_of_three(n))
+```
+
+The function `max_lcm_of_three` calculates the LCM of the three largest integers not greater than `n`. It uses the built-in `math.lcm` function to calculate the LCM of the three numbers. If `n` is less than 2, then the function simply returns `n` since the LCM of one or two numbers is the numbers themselves.
+
+The input `n` is read from the standard input and passed to the `max_lcm_of_three` function. The result is printed to the standard output.

@@ -1,0 +1,39 @@
+ Here is a possible Python3 solution using Depth-First Search (DFS) to solve the problem:
+```python
+n, k = map(int, input().split())
+main_courses = list(map(int, input().split()))
+
+adj_list = [[] for _ in range(n+1)]
+indegrees = [0] * (n+1)
+for _ in range(n):
+    t, *deps = map(int, input().split())
+    adj_list[t] = deps
+    for dep in deps:
+        indegrees[dep] += 1
+
+queue = [i for i in range(1, n+1) if indegrees[i] == 0 and i not in main_courses]
+count = 0
+order = []
+while queue:
+    if len(queue) > 1 and count == k:
+        print(-1)
+        exit()
+    node = queue.pop(0)
+    order.append(node)
+    count += 1
+    for neighbor in adj_list[node]:
+        indegrees[neighbor] -= 1
+        if indegrees[neighbor] == 0:
+            queue.append(neighbor)
+
+if count < k:
+    print(-1)
+else:
+    print(len(order))
+    print(' '.join(map(str, order)))
+```
+The program first reads the input values of `n`, `k`, and the list of main courses. It then creates an adjacency list `adj_list` and an array `indegrees` to keep track of the number of incoming edges for each node. The program then initializes the queue with all nodes that have an indegree of 0 and are not main courses.
+
+The program then enters a loop that continues until the queue is empty or the number of courses taken is equal to or greater than `k`. In each iteration of the loop, the program checks if there are multiple nodes in the queue and the number of courses taken is less than `k`. If this is the case, the program prints `-1` and exits.
+
+Otherwise, the program dequeues a node from the queue, increments the count of courses taken, and adds the node to the

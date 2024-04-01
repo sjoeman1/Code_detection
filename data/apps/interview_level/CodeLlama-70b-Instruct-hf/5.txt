@@ -1,0 +1,18 @@
+
+
+Here's a Python3 code that solves the problem:
+
+```python
+n, pos, l, r = map(int, input().split())
+
+if pos < l:
+    steps = pos - 1 + (l - pos - 1) + (n - r)
+elif pos > r:
+    steps = r - 1 + (pos - r - 1) + (n - l)
+else:
+    steps = min(pos - l, r - pos) + n - r
+
+print(steps)
+```
+
+In this code, we first read the input values for `n`, `pos`, `l`, and `r`. Then, we check if the cursor is before the segment (`pos < l`), after the segment (`pos > r`), or within the segment (`pos >= l` and `pos <= r`). Based on these conditions, we calculate the minimum number of steps required to close all the tabs outside the segment. Finally, we print the minimum number of steps as the output.

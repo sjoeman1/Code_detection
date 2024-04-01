@@ -1,0 +1,20 @@
+```python
+n = int(input())
+s = input()
+
+def solve(n, s):
+    res = 0
+    for i in range(len(s) - 1):
+        sub_s = s[i:i + 2]
+        if sub_s == '(())':
+            res += 1
+    return res
+
+print(solve(n, s) % 1000000007)
+```
+
+**Explanation:**
+
+- The function `solve(n, s)` calculates the number of regular bracket sequences containing the given bracket sequence `s` as a substring.
+- It iterates over the length of `s` and checks if the subsequence of two characters is equal to '(())'. If it is, it increments the `res` variable.
+- Finally, the total number of regular bracket sequences is printed modulo $10^9+7.

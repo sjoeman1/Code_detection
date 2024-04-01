@@ -1,0 +1,27 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def gcd(a, b):
+    while b:
+        a, b = b, a % b
+    return a
+
+def max\_pokemon(n, s):
+    s.sort()
+    count, current\_gcd = 1, s[0]
+    for i in range(1, n):
+        current\_gcd = gcd(current\_gcd, s[i])
+        if current\_gcd == 1:
+            count = i + 1
+        elif i == n - 1 or current\_gcd != s[i + 1]:
+            print(count)
+            return
+
+n = int(input())
+s = list(map(int, input().split()))
+max\_pokemon(n, s)
+```
+
+The solution first defines a helper function `gcd` to calculate the greatest common divisor of two integers. Then, it defines the main function `max_pokemon` which takes in the number of Pokemon `n` and their strengths `s` as input. The function sorts the strengths and initializes the count of Pokemon and the current greatest common divisor to 1 and the first strength, respectively. It then iterates over the strengths, updating the current greatest common divisor and incrementing the count if the current greatest common divisor is 1. If the current greatest common divisor becomes greater than 1 and is not equal to the next strength, the function prints the current count and returns.
+
+Note: The solution assumes that the input is well-formed and does not contain any errors. In a real-world scenario, you may want to add error checking and handling code to ensure the input is valid.

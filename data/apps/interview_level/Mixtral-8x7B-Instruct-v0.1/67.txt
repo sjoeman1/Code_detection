@@ -1,0 +1,21 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def solve():
+    x, y, z = map(int, input().split())
+    if x > y:
+        return '+'
+    elif x < y:
+        return '-'
+    elif x == y and z == 0:
+        return '0'
+    else:
+        return '?'
+
+# In the following code, the function solve() is called and the result is printed.
+print(solve())
+```
+
+The function `solve()` takes three integers `x`, `y`, and `z` as input, representing the number of persons who would upvote, downvote, and have an unknown vote, respectively. It first checks if there is a clear winner between upvotes and downvotes. If `x` is greater than `y`, it returns '+', indicating that there are more upvotes than downvotes. If `x` is less than `y`, it returns '-', indicating that there are more downvotes than upvotes. If `x` is equal to `y` and `z` is 0, it returns '0', indicating that there is a tie with no unknown votes. In all other cases, it returns '?', indicating that the result is uncertain.
+
+In the main part of the code, the function `solve()` is called with the input values and the result is printed.

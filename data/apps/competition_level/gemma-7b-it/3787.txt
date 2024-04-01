@@ -1,0 +1,26 @@
+```python
+import sys
+
+n, a, b = map(int, sys.stdin.read().split())
+
+if a + b - 1 < n:
+    print(-1)
+else:
+    print(*sorted(range(n), key=lambda x: x + a - b)[:n])
+```
+
+**Explanation:**
+
+- The key idea is to find the sum of each element with the maximum length of the increasing subsequence (A) and the maximum length of the decreasing subsequence (B).
+- We need to find the elements whose sum is equal to the target sum (N) and arrange them in descending order.
+- The elements whose sum is equal to N will form the longest increasing and decreasing subsequences.
+- If the total number of elements whose sum is equal to N is less than the required length of the sequence, it is not possible to satisfy the conditions.
+
+**Time Complexity:**
+
+- The time complexity of the code is O(n) where n is the number of elements in the sequence.
+- The code iterates over the sequence only once.
+
+**Space Complexity:**
+
+- The space complexity of the code is O(1) as the code uses a constant amount of space regardless of the size of the input.

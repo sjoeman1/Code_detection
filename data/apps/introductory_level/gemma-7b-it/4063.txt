@@ -1,0 +1,16 @@
+```python
+N = int(input())
+
+d = list(map(int, input().split()))
+
+K = int((N-2) // 2)
+
+print(len(set(d) & set(range(K+1, d[-1]+1))))
+```
+
+**Explanation:**
+
+* We need to find the number of problems with difficulty K or higher and the number of problems with difficulty lower than K.
+* We can use a set `set(d)` to store the difficulties of the problems and a range of numbers from `1` to `K` to represent the difficulties of the problems that are lower than K.
+* The intersection of the two sets will give us the number of problems that have difficulty K or higher and the number of problems that have difficulty lower than K.
+* The number of choices of K is the number of elements in the intersection.

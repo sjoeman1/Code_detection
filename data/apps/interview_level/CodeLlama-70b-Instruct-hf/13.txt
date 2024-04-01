@@ -1,0 +1,62 @@
+
+
+I can provide you with the Python 3 code for the given problem statement. Here is the code:
+
+```python
+# python3
+import sys
+from collections import deque
+
+def topo_sort(adj):
+    n = len(adj)
+    order = []
+    visited = [False] * n
+    for v in range(n):
+        if not visited[v]:
+            visited[v] = True
+            stack = [v]
+            while stack:
+                node = stack.pop()
+                for child in adj[node]:
+                    if not visited[child]:
+                        stack.append(child)
+                        visited[child] = True
+                order.append(node)
+    return order
+
+def main():
+    n, m = map(int, input().split())
+    adj = [[] for _ in range(n + 1)]
+    indeg = [0] * (n + 1)
+    for _ in range(n):
+        line = list(map(int, input().split()))
+        k = line[0]
+        for i in range(k):
+            x = line[i + 1]
+            adj[x].append(line[i + 1])
+            indeg[line[i + 1]] += 1
+    for _ in range(m):
+        x = int(input())
+        order = topo_sort(adj)
+        if order.count(x) == 0:
+            print(-1)
+            return
+        else:
+            i = 0
+            while i < len(order):
+                if order[i] == x:
+                    break
+                i += 1
+            ans = order[:i + 1]
+            for node in order[i + 1:]:
+                if indeg[node] == 0:
+                    ans.append(node)
+            print(len(ans))
+            print(' '.join(map(str, ans)))
+            return
+
+if __name__ == '__main__':
+    main()
+```
+
+This code defines a function `topo_sort` that performs a topological sort on the graph represented by the adjacency list `adj`. It then defines a function `main` that

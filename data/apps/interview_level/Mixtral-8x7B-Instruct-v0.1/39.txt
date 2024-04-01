@@ -1,0 +1,28 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def is\_palindrome(s):
+s = s.lower()
+return s == s[::-1]
+
+def longest\_non\_palindrome\_substring(s):
+max\_length = 0
+start\_index = 0
+for i in range(len(s)):
+for j in range(i, len(s)):
+if not is\_palindrome(s[i:j+1]) and (j - i + 1) > max\_length:
+max\_length = j - i + 1
+start\_index = i
+return s[start\_index:start\_index + max\_length]
+
+s = input()
+result = longest\_non\_palindrome\_substring(s)
+if result:
+print(len(result))
+else:
+print(0)
+```
+
+The `is_palindrome` function checks if a given string is a palindrome or not. The `longest_non_palindrome_substring` function finds the longest substring of a given string that is not a palindrome. It iterates through all possible substrings and checks if they are palindromes or not. If a substring is not a palindrome and its length is greater than the current maximum length, it updates the maximum length and the starting index of the substring. Finally, it returns the longest non-palindrome substring.
+
+The main part of the code reads the input string and calls the `longest_non_palindrome_substring` function to find the longest non-palindrome substring. If such a substring exists, it prints its length. Otherwise, it prints 0.

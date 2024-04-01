@@ -1,0 +1,21 @@
+```python
+n = int(input())
+s = input().strip()
+x, y = map(int, input().split())
+
+dx, dy = 0, 0
+for i in range(n):
+    if s[i] == 'U':
+        dy += 1
+    elif s[i] == 'D':
+        dy -= 1
+    elif s[i] == 'L':
+        dx -= 1
+    elif s[i] == 'R':
+        dx += 1
+
+if dx == x and dy == y:
+    print(0)
+else:
+    print(-1)
+```

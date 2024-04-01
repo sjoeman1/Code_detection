@@ -1,0 +1,13 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def max\_phone\_numbers(n, digits):
+    # Count the number of '8's in the string
+    eight\_count = digits.count('8')
+
+    # Return 0 if there are no '8's
+    if eight\_count == 0:
+        return 0
+
+    # Calculate the number of phone numbers that can be made
+    #

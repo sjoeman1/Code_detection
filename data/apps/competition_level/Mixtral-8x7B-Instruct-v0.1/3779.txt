@@ -1,0 +1,42 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n, k = map(int, input().split())
+a = list(map(int, input().split()))
+
+# Compute the maximum power of k that is less than or equal to the largest denomination
+max_power = 0
+while k ** max_power <= max(a):
+    max_power += 1
+
+# Initialize the result
+divine_digits = set()
+for i in range(k):
+    # Check if a number formed by the digit i in base k can be obtained as a sum of banknotes
+    if can_obtain_sum(a, k ** (max_power - 1) * i):
+        divine_digits.add(i)
+
+# Print the result
+print(len(divine_digits))
+print(*sorted(divine_digits))
+
+
+def can_obtain_sum(a, s):
+    # Check if it is possible to obtain the sum s using the banknotes in a
+    dp = [False] * (s + 1)
+    dp[0] = True
+    for i in range(n):
+        for j in range(s, -1, -1):
+            if dp[j] and j + a[i] <= s:
+                dp[j + a[i]] = True
+    return dp[s]
+```
+
+The solution works as follows:
+
+1. We first read the input and compute the maximum power of $k$ that is less than or equal to the largest denomination. This is because any sum greater than or equal to this value will have a carry when expressed in base $k$, and therefore the last digit will always be $0$.
+2. We then initialize a set to store the divine digits.
+3. For each digit $i$ in base $k$, we check if it is possible to obtain the sum $k^{max\_power-1} \* i$ using the banknotes in $a$. If it is possible, then we add $i$ to the set of divine digits.
+4. Finally, we print the number of divine digits and the divine digits themselves.
+
+The function `can_obtain_sum` checks if it is possible to obtain the

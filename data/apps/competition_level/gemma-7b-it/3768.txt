@@ -1,0 +1,17 @@
+```python
+x, y = map(int, input().split())
+
+if x + y < 2:
+    print("Impossible")
+else:
+    print(str(x//y) + str(y) + str(x%y) + "A" * x//y + "B" * x%y)
+```
+
+**Explanation:**
+
+* Read the input for the number of oranges and apples.
+* If the total number of fruits is less than 2, print Impossible.
+* Otherwise, calculate the number of apples and oranges that Alice and Bob will have at the end of the game.
+* Create a string with the number of cards of each letter.
+* Replace the segments of identical consecutive characters with the number of repetitions of the characters.
+* Print the resulting string.

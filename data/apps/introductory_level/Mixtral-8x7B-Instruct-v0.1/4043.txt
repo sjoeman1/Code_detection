@@ -1,0 +1,42 @@
+ Here is a Python3 solution for the problem:
+
+```python
+from sys import stdin, stdout
+
+def construct_tree(n, d, k):
+    if (d % 2 == 0 or d < 2 or n % 2 == 0 or (n - 1) % 2 == 0 or k < (d // 2) or k >= n - 1):
+        print("NO")
+        return
+
+    print("YES")
+    mid = d // 2 + 1
+    print(mid, 1)
+
+    curr = 1
+    for i in range(2, mid):
+        print(i, curr)
+        if i == n - mid:
+            curr = i
+
+    for i in range(n - mid + 1, n):
+        print(i, curr)
+
+def main():
+    line = stdin.readline().strip().split()
+    n, d, k = [int(x) for x in line]
+    construct_tree(n, d, k)
+
+if __name__ == "__main__":
+    main()
+```
+
+This solution checks if it is possible to construct a tree with the given conditions. If it is possible, it constructs a tree where all vertices are connected in a path-like structure. The first vertex of the path is the middle vertex of the tree, and the other vertices are connected to it in increasing order. The last `(d-1)/2` vertices are then connected to the first `(d-1)/2` vertices in reverse order.
+
+The solution checks the following conditions:
+
+* The diameter must be odd and at least 2.
+* The number of vertices must be odd and at least 3.
+* The degree of each vertex must be at most `k` and at least `d/2`.
+* The number of edges must be `n-1`.
+
+If any of these conditions are not met, the solution prints "NO". Otherwise, it prints "YES" and constructs the tree as described above.

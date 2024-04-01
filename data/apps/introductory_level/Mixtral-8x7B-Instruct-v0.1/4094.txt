@@ -1,0 +1,13 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n = int(input())
+i = 1
+power_of_7 = 7
+while power_of_7 % n != 0:
+    i += 1
+    power_of_7 = 7 * (10 ** i)
+print(i + 1)
+```
+
+This code works by repeatedly multiplying the last number in the sequence by 10, checking if the result is a multiple of K. If it's not, it continues to the next number in the sequence. The result is printed when a multiple of K is found, or -1 if no multiples are found in the first 1,000,000 numbers.

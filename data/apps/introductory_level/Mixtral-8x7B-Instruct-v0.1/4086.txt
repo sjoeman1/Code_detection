@@ -1,0 +1,20 @@
+ Here is a Python3 solution for the problem:
+```python
+n = int(input())
+a = list(map(int, input().split()))
+
+# Keep track of the last occurrence of each number
+last_occurrence = {}
+for i in range(n-1, -1, -1):
+    last_occurrence[a[i]] = i
+
+# Find unique elements and print them in order
+unique_elements = []
+for i in range(1001):
+    if i in last_occurrence:
+        unique_elements.append(i)
+
+print(len(unique_elements))
+print(*unique_elements)
+```
+The solution keeps track of the last occurrence of each number in the array. Then, it iterates over the range of possible numbers (1 to 1000) and checks if each number is in the last occurrence dictionary. If it is, then it adds the number to the list of unique elements. Finally, it prints the length of the unique elements list and the elements themselves.

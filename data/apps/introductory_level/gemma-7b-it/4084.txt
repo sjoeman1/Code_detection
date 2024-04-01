@@ -1,0 +1,14 @@
+```python
+n, a, b = map(int, input().split())
+
+# Calculate the number of blue balls that will be placed in the first N balls
+num_blue = min(a, n)
+
+# Print the number of blue balls
+print(num_blue)
+```
+
+**Explanation:**
+
+- The number of blue balls that will be placed in the first N balls is equal to the minimum of A and N.
+- This is because A blue balls will be placed at the end of the row in each operation, and the number of red balls that will be placed is also equal to A. Therefore, the number of blue balls that will be placed in the first N balls is equal to the minimum of A and N.

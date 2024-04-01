@@ -1,0 +1,24 @@
+```python
+T = int(input())
+
+for _ in range(T):
+    n, x = map(int, input().split())
+    s = input()
+
+    cnt0 = s.count("0")
+    cnt1 = s.count("1")
+
+    balance = cnt0 - cnt1
+
+    if balance == x:
+        print(min(len(s) // n, x))
+    else:
+        print(-1)
+```
+
+**Explanation:**
+
+- We calculate the number of occurrences of 0 and 1 in the string $s.
+- We calculate the balance (cnt0 - cnt1) and check if it is equal to $x.
+- If the balance is equal to $x, we find the minimum number of prefixes of length $n that can be formed from $s. This is equal to the minimum number of blocks of size $n that can be formed from $s.
+- If the balance is not equal to $x, we print -1.

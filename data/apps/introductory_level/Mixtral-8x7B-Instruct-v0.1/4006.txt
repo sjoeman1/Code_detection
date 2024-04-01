@@ -1,0 +1,23 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def f(x):
+    while str(x).endswith('0'):
+        x = int(str(x)[:-1])
+    return x + 1
+
+def count_reachable(n):
+    reachable = set()
+    to\_visit = set([n])
+    while to\_visit:
+        current = to\_visit.pop()
+        if current not in reachable:
+            reachable.add(current)
+            to\_visit.update(f(current) for c in reachable if c > current)
+    return len(reachable)
+
+n = int(input())
+print(count\_reachable(n))
+```
+
+The function `f(x)` implements the operation described in the problem statement. The function `count_reachable(n)` uses a breadth-first search approach to find all numbers reachable from `n`. It maintains a set of reachable numbers and a set of numbers that still need to be visited. In each iteration, it removes a number from the to-visit set, adds it to the reachable set, and adds all numbers that can be reached from the current number (using the `f` function) to the to-visit set, if they are not already in the reachable set and greater than the current number. The function returns the number of reachable numbers. The input `n` is read from the standard input and the result is printed to the standard output.

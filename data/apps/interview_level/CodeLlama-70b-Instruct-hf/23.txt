@@ -1,0 +1,53 @@
+
+
+Here's a possible solution in Python 3:
+
+```
+def solve(a, b):
+    # Convert the numbers to strings
+    a_str = str(a)
+    b_str = str(b)
+
+    # Check if a is greater than or equal to b
+    if a >= b:
+        return a_str
+
+    # Create a dictionary to store the count of each digit in a
+    digit_count = {}
+    for digit in a_str:
+        if digit not in digit_count:
+            digit_count[digit] = 1
+        else:
+            digit_count[digit] += 1
+
+    # Create a list to store the digits in decreasing order
+    digits = []
+    for digit in digit_count:
+        for _ in range(digit_count[digit]):
+            digits.append(digit)
+
+    # Iterate through the digits of b in reverse order
+    for i in range(len(b_str) - 1, -1, -1):
+        digit = b_str[i]
+        if digit in digits:
+            # If the digit is in the list, swap it with the largest digit in the list
+            digits[digits.index(digit)], digits[-1] = digits[-1], digits[digits.index(digit)]
+            break
+
+    # Construct the maximum number by concatenating the digits in the list
+    max_num = int("".join(digits))
+
+    # Check if the maximum number is greater than or equal to b
+    if max_num >= b:
+        return a_str
+    else:
+        return str(max_num)
+
+a = int(input())
+b = int(input())
+
+result = solve(a, b)
+print(result)
+```
+
+The `solve` function takes the two numbers `a` and `b` as input and returns the maximum possible number that is a permutation of the digits of `a` and not greater than `b`. The function first converts the numbers to strings to make it easier to manipulate the digits. If `a` is greater than or equal to `b`, it returns `a`. If not, it creates a dictionary to store the count of each digit in `a`. It

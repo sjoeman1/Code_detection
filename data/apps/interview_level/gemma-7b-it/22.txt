@@ -1,0 +1,14 @@
+```python
+s = input().lower()
+
+is_palindrome = s == s.lower().replace(" ", "") and s.lower() == s.lower()[::-1]
+
+print("TAK" if is_palindrome else "NIE")
+```
+
+**Explanation:**
+
+1. **`s.lower().replace(" ", "")`:** This line removes all spaces and converts the string to lowercase. It is done to make the string more uniform and to eliminate case sensitivity.
+2. **`s.lower() == s.lower().replace(" ", "")`:** This line checks if the modified string is the same as the original string. If they are the same, it means that the string is "s-palindrome".
+3. **`s.lower() == s.lower()[::-1]`:** This line checks if the modified string is a mirror reflection of itself. If it is, it means that the string is "s-palindrome".
+4. If both conditions are met, the string is "s-palindrome", and the output is "TAK". Otherwise, the output is "NIE".

@@ -1,0 +1,51 @@
+
+
+Here is the Python 3 code for the problem:
+
+```
+def mishka(n, k, arr):
+    # Initialise the count of problems solved
+    solved = 0
+
+    # Create a copy of the array
+    arr_copy = arr[:]
+
+    # Keep solving problems until there are some left
+    while arr_copy:
+        # Check if the leftmost problem is solvable
+        if arr_copy[0] <= k:
+            solved += 1
+            arr_copy.pop(0)
+        # Check if the rightmost problem is solvable
+        elif arr_copy[-1] <= k:
+            solved += 1
+            arr_copy.pop()
+        # If neither end is solvable, Mishka cannot continue
+        else:
+            break
+
+    # Return the count of problems solved
+    return solved
+
+
+# Input
+n, k = [int(x) for x in input().split()]
+arr = [int(x) for x in input().split()]
+
+# Output
+print(mishka(n, k, arr))
+```
+
+This code defines a function `mishka` that takes in the number of problems `n`, Mishka's problem-solving skill `k`, and an array `arr` containing the difficulties of the problems.
+
+It initializes a count of problems solved, `solved`, to 0. Then, it creates a copy of the array, `arr_copy`, to keep track of the problems left to solve.
+
+In a while loop, it checks if the leftmost problem is solvable (if `arr_copy[0]` is less than or equal to `k`). If it is, it increments `solved` and removes the leftmost problem from `arr_copy`.
+
+Similarly, it checks if the rightmost problem is solvable. If it is, it increments `solved` and removes the rightmost problem from `arr_copy`.
+
+If neither end is solvable, it means Mishka cannot continue, so it breaks out of the while loop.
+
+Finally, it returns the count of problems solved.
+
+In the main code, it reads the input values for `n`, `k`, and `arr`

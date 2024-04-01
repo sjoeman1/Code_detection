@@ -1,0 +1,30 @@
+```python
+S = int(input())
+
+def f(n):
+    return len(str(n).split())
+
+pairs = 0
+for l in range(1, int(S**0.5) + 1):
+    r = int((S - f(l)) // f(l) * l)
+    pairs += r - l + 1
+
+print(pairs % 10**9 + 7)
+```
+
+**Explanation:**
+
+- The function `f(n)` calculates the number of digits in base 10 of a number `n`.
+- We iterate over the range `(1, int(S**0.5) + 1)` to find the pairs (l, r).
+- For a given value of `l`, we find the maximum value of `r` that satisfies the condition `f(l) + f(l + 1) + ... + f(r) = S`.
+- The number of pairs is the number of pairs between `l` and `r` inclusive, which is `r - l + 1`.
+- Finally, we take the count modulo 10^9 + 7.
+
+**Time Complexity:**
+
+- The function `f(n)` takes O(1) time.
+- We iterate over the range `(1, int(S**0.5) + 1)` only once, so the time complexity is O(int(S**0.5) + 1).
+
+**Space Complexity:**
+
+- The space complexity is O(1) as the algorithm uses a constant amount of space regardless of the input size.

@@ -1,0 +1,29 @@
+```python
+s = input().lower()
+n = len(s)
+
+# Create a function to find the length of the longest non-palindrome substring
+def longest_non_palindrome(s, l, r):
+    max_length = 0
+    for i in range(l, r + 1):
+        substring = s[i:i + 1]
+        if substring != substring.reverse():
+            max_length = max(max_length, len(substring))
+    return max_length
+
+# Find the length of the longest non-palindrome substring
+longest_non_palindrome_length = longest_non_palindrome(s, 0, n - 1)
+
+# Print the length of the longest non-palindrome substring
+print(longest_non_palindrome_length)
+```
+
+**Explanation:**
+
+* The function `longest_non_palindrome(s, l, r)` takes a string `s`, an integer `l`, and an integer `r` as input.
+* It finds the maximum length of the non-palindrome substring in the range `[l, r]`.
+* The function iterates over the range `[l, r]` and checks if the substring is a palindrome.
+* If it is not, the function updates the maximum length of the non-palindrome substring.
+* The function returns the maximum length of the non-palindrome substring.
+* The `longest_non_palindrome_length` variable stores the length of the longest non-palindrome substring.
+* The `print` statement prints the value of the `longest_non_palindrome_length` variable.

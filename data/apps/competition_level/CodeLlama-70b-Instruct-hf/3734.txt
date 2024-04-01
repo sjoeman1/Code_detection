@@ -1,0 +1,33 @@
+
+
+Here is the Python3 code for solving the problem:
+
+```
+import calendar
+
+def leap_year(year):
+    if year % 4 == 0 and (year % 100 != 0 or year % 400 == 0):
+        return True
+    return False
+
+def get_day(day, month, year):
+    return calendar.day_name[calendar.weekday(year, month, day)]
+
+def is_possible(first_day, second_day):
+    for year in range(2017, 2023):
+        for month in range(1, 13):
+            days_in_month = 31 if month in [1, 3, 5, 7, 8, 10, 12] else 30
+            days_in_month = 29 if month == 2 and leap_year(year) else days_in_month
+
+            if get_day(1, month, year).lower() == first_day and get_day(1, month + 1, year).lower() == second_day:
+                return True
+
+    return False
+
+first_day = input()
+second_day = input()
+
+if is_possible(first_day, second_day):
+    print("YES")
+else:
+    print("NO")

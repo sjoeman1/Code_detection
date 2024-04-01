@@ -1,0 +1,16 @@
+ Here is a Python3 code that solves the problem:
+
+```python
+m, d = map(int, input().split())
+days\_in\_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+first\_day\_of\_month = (d + sum(days\_in\_month[:m-1]) - 1) % 7 + 1
+num\_columns = (days\_in\_month[m-1] + first\_day\_of\_month - 2) // 7 + 1
+print(num\_columns)
+```
+
+Explanation:
+
+* The variable `days_in_month` is a list containing the number of days in each month.
+* The variable `first_day_of_month` is calculated by summing up the number of days in the previous months and adding the day of the first date of the current month. Since January 1 is always a Monday (1), we need to adjust the day of the first date of the current month by subtracting 1 and then taking the remainder modulo 7 to account for the wraparound from December to January.
+* The variable `num_columns` is calculated by dividing the total number of days in the current month plus the first day of the month (minus 2, since the first day is already accounted for) by 7, and rounding up to the nearest integer using the `//` operator.
+* The final answer is printed to the console.

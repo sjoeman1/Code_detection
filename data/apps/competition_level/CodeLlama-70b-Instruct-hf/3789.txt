@@ -1,0 +1,17 @@
+
+Here is a Python 3 code that solves the question:
+```
+n = int(input())
+a = list(map(int, input().split()))
+
+def solve(n, a):
+    res = 0
+    for i in range(1, n+1):
+        s = sum(a[i-1] for j in range(1, n+1) if j % i == 0)
+        res = max(res, s)
+    return res
+
+print(solve(n, a))
+```
+
+The `solve` function takes the number of gemstones `n` and a list of the values `a` of the gemstones as input. It iterates over all possible values of `i` from 1 to `n`, calculates the sum of the values of gemstones that have a multiple of `i` as their label, and updates the maximum sum `res`. Finally, it returns the maximum sum. The main function reads the input, calls the `solve` function, and prints the result.

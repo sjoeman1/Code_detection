@@ -1,0 +1,14 @@
+ Here is a Python3 solution for the problem:
+
+```python
+s = input()
+n = len(s)
+for i in range(n // 2):
+    if s[i] != s[n - i - 1]:
+        print("NIE")
+        break
+else:
+    print("TAK")
+```
+
+This solution works by checking each pair of characters from the beginning and end of the string and comparing them. If any pair is not the same, the string is not an "s-palindrome" and we print "NIE". If we make it through all the pairs without finding a mismatch, the string is an "s-palindrome" and we print "TAK".

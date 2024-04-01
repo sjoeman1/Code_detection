@@ -1,0 +1,29 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def is\_prime(num):
+if num < 2:
+return False
+for i in range(2, int(num**0.5) + 1):
+if num % i == 0:
+return False
+return True
+
+def represent\_as\_sum\_of\_primes(n):
+primes = []
+for i in range(1, 4):
+for j in range(n - 2*i + 1):
+if is\_prime(j) and is\_prime(n - 2*i - j):
+primes = [j, n - 2*i - j, i]
+break
+if len(primes) == 3:
+break
+return primes
+
+n = int(input())
+primes = represent\_as\_sum\_of\_primes(n)
+print(len(primes))
+print(*primes)
+```
+
+The `is_prime` function checks if a number is prime. The `represent_as_sum_of_primes` function finds a representation of `n` as the sum of at most three primes. It iterates over possible values of the smallest prime `j` and finds the second and third primes as `n - 2*i - j`, where `i` is the number of "missing" primes (i.e., `i = 1` when there are two primes, and `i = 2` when there is one prime). The function returns the primes in ascending order. Finally, the input is read, the representation is found, and the result is printed.

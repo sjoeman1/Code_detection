@@ -1,0 +1,28 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def check\_flag(n, m, field):
+stripe\_height = n // 3
+for i in range(3):
+if field[i \* stripe\_height:(i + 1) \* stripe\_height].count('R') != stripe\_height or \
+field[i \* stripe\_height:(i + 1) \* stripe\_height].count('G') != stripe\_height or \
+field[i \* stripe\_height:(i + 1) \* stripe\_height].count('B') != stripe\_height:
+return "NO"
+return "YES"
+
+n, m = map(int, input().split())
+field = []
+for i in range(n):
+field.append(input())
+
+if n % 3 != 0 or m % 3 != 0:
+print("NO")
+else:
+print(check\_flag(n, m, field))
+```
+
+The solution first checks if the dimensions of the field are divisible by 3. If not, it prints "NO" because the flag cannot have three stripes of equal width and height.
+
+If the dimensions are divisible by 3, it calculates the height of each stripe and checks if each stripe has exactly the same number of 'R', 'G', and 'B' characters. If any stripe has a different number of any of these characters, it prints "NO".
+
+If all stripes have the same number of 'R', 'G', and 'B' characters, it prints "YES".

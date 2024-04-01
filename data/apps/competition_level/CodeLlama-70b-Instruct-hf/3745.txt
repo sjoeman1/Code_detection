@@ -1,0 +1,31 @@
+
+
+Here is the Python3 code for the question:
+
+```py
+n, m = map(int, input().split())
+
+edges = [list(map(int, input().split())) for _ in range(m)]
+
+ans = "No"
+
+def is_valid(s):
+    for a, b in edges:
+        if s[a - 1] != s[b - 1] and s[a - 1] != chr(ord(s[b - 1]) + 1) and s[a - 1] != chr(ord(s[b - 1]) - 1):
+            return False
+    return True
+
+for i in range(3**n):
+    s = ""
+    for j in range(n):
+        s += ["a", "b", "c"][i % 3**(j + 1) // 3**j]
+    if is_valid(s):
+        ans = "Yes"
+        break
+
+print(ans)
+if ans == "Yes":
+    print(s)
+```
+
+This code works by first reading the input, then creating a list of all the edges in the graph. Then, it initializes the answer to "No" and creates a function `is_valid` that checks if a given string is a valid solution. It iterates over all possible strings of length n, where each character is "a", "b", or "c", and checks if the string is a valid solution. If it finds a valid solution, it updates the answer to "Yes" and breaks out of the loop. Finally, it prints the answer and, if it is "Yes", the valid string.

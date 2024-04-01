@@ -1,0 +1,25 @@
+
+
+Here is the Python3 code to solve the question:
+
+```py
+def sum_of_digits(n):
+    s = 0
+    while n > 0:
+        s += n % 10
+        n //= 10
+    return s
+
+def solve(n):
+    max_sum = 0
+    for a in range(n + 1):
+        b = n - a
+        max_sum = max(max_sum, sum_of_digits(a) + sum_of_digits(b))
+    return max_sum
+
+if __name__ == "__main__":
+    n = int(input())
+    print(solve(n))
+```
+
+In this code, the `sum_of_digits` function calculates the sum of digits in the base 10 representation of a number `n`. The `solve` function iterates over all possible values of `a` from 0 to `n` and calculates the sum of digits of `a` and `b` (which is `n - a`). It then returns the maximum of these sums.

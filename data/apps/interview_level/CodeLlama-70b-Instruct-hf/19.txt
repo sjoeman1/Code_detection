@@ -1,0 +1,56 @@
+
+
+Here is the Python 3 code for solving the question:
+
+```python
+# Input the number of test cases
+T = int(input())
+
+# Iterate through the test cases
+for _ in range(T):
+    # Input the number of moments
+    n = int(input())
+
+    # Initialize the number of plays and clears
+    plays = 0
+    clears = 0
+
+    # Initialize the correctness flag
+    correct = True
+
+    # Iterate through the moments
+    for _ in range(n):
+        # Input the current number of plays and clears
+        current_plays, current_clears = map(int, input().split())
+
+        # Check if the current number of plays is correct
+        if current_plays != plays:
+            correct = False
+            break
+
+        # Check if the current number of clears is correct
+        if current_clears != clears:
+            correct = False
+            break
+
+        # Update the number of plays and clears
+        plays += 1
+        if current_clears == plays:
+            clears += 1
+
+    # Check if the correctness flag is True
+    if correct:
+        print("YES")
+    else:
+        print("NO")
+```
+
+In this code, we iterate through the test cases. For each test case, we initialize the number of plays and clears to 0. We also initialize a correctness flag to True.
+
+Then, we iterate through the moments, inputting the current number of plays and clears. We check if the current number of plays is correct by comparing it to the previous number of plays. If it is not correct, we set the correctness flag to False and break out of the loop.
+
+Similarly, we check if the current number of clears is correct by comparing it to the previous number of clears. If it is not correct, we set the correctness flag to False and break out of the loop.
+
+If the current number of clears is correct, we update the number of plays and clears.
+
+After iterating through all the moments, we check if the correctness flag is True. If it is, we print "YES" to indicate that the records are correct. Otherwise, we print "NO" to indicate that the records are incorrect

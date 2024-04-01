@@ -1,0 +1,29 @@
+```python
+n = int(input())
+a = list(map(int, input().split()))
+
+is_unimodal = True
+
+# Increasing block
+increasing_block = False
+for i in range(n):
+    if i > 0 and a[i] < a[i-1]:
+        increasing_block = False
+
+# Constant block
+constant_block = False
+for i in range(n):
+    if i > 0 and a[i] == a[i-1]:
+        constant_block = True
+
+# Decreasing block
+decreasing_block = False
+for i in range(n-1, -1, -1):
+    if i < n-1 and a[i] > a[i+1]:
+        decreasing_block = False
+
+if increasing_block or constant_block or decreasing_block:
+    print("YES")
+else:
+    print("NO")
+```

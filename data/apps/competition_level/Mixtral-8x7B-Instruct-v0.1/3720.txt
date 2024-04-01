@@ -1,0 +1,26 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def is_pow(x, y):
+    while y != 1:
+        if y % 2:
+            return False
+        y //= 2
+        if x == y:
+            return True
+        x *= x
+    return x == 1
+
+def powers_game(n):
+    if n == 1:
+        return "Vasya"
+    for i in range(2, int(n ** 0.5) + 1):
+        if not is_pow(i, n) and not is_pow(n, i):
+            return "Petya" if i % 2 else "Vasya"
+    return "Petya"
+
+n = int(input())
+print(powers_game(n))
+```
+
+The function `is_pow(x, y)` checks if `x` is a power of `y` or not. The function `powers_game(n)` calculates the winner of the game. If `n` is 1, then Vasya wins immediately. If `n` is greater than 1, then the function checks if there exists a number `i` (where `2 <= i <= sqrt(n)`) such that `i` is not a power of `n` and `n` is not a power of `i`. If such a number exists, then the function returns "Petya" if `i` is odd and "Vasya" if `i` is even. If no such number exists, then Petya wins.

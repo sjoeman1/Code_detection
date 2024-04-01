@@ -1,0 +1,46 @@
+ Here is a Python3 solution using a greedy approach. The idea is to start by finding the row or column with the maximum difference between the current sum and the desired sum, and then adding or subtracting from that row or column until it matches the desired sum. This process is repeated until all rows and columns have the desired sum.
+
+```python
+def min_moves(n, m, grid):
+    # Initialize result list with -1 to indicate error
+    result = [-1]
+
+    # Calculate the desired sum for each row and column
+    row_sums = [sum(row) for row in grid]
+    col_sums = [sum(col) for col in zip(*grid)]
+    row_desired = [(r * n - sum(row_sums)) // n for r in set(row_sums)]
+    col_desired = [(c * m - sum(col_sums)) // m for c in set(col_sums)]
+
+    # Initialize moves list
+    moves = []
+
+    # Perform moves for each row
+    for r, des in zip(row_desired, row_sums):
+        diff = des - r
+        if diff > 0:
+            moves.append(("row", diff, r))
+        elif diff < 0:
+            moves.append(("row", -diff, r))
+
+    # Perform moves for each column
+    for c, des in zip(col_desired, col_sums):
+        diff = des - c
+        if diff > 0:
+            moves.append(("col", diff, c))
+        elif diff < 0:
+            moves.append(("col", -diff, c))
+
+    # If there are no moves to be made, return 0
+    if not moves:
+        result[0] = 0
+
+    # Otherwise, sort moves by absolute difference and then by type
+    else:
+        moves.sort(key=lambda x: (abs(x[1]), x[0]))
+        result.extend(["{} {}".format(x[0], x[2]) for x in moves])
+
+    # Return the result
+    return result
+
+# Test cases
+print(min_moves(3

@@ -1,0 +1,23 @@
+
+```python
+# Read the input times
+h1, m1 = map(int, input().split(':'))
+h2, m2 = map(int, input().split(':'))
+
+# Calculate the duration of the contest
+total_minutes = (h2 - h1) * 60 + (m2 - m1)
+midpoint_minutes = total_minutes // 2
+
+# Calculate the midpoint time
+h3 = (h1 * 60 + m1 + midpoint_minutes) // 60
+m3 = (h1 * 60 + m1 + midpoint_minutes) % 60
+
+# Print the result in the required format
+print(f'{h3:02d}:{m3:02d}')
+```
+
+The above code reads the input times and calculates the duration of the contest in minutes. Then, it calculates the midpoint minutes by dividing the total minutes by 2.
+
+To calculate the midpoint time, it adds the start time (h1 * 60 + m1) and midpoint minutes to find the total minutes. Then, it calculates the hours and minutes by dividing and modulo 60, respectively.
+
+Finally, it prints the result in the required format with leading zeros for single-digit hours and minutes.

@@ -1,0 +1,38 @@
+```python
+n, k = map(int, input().split())
+
+paths = []
+for x in range(1, n + 1):
+    path = []
+    for y in range(x):
+        if y % 2 == 0:
+            path.append(y // 2)
+    paths.append(path)
+
+y_max = 0
+for y in range(1, n + 1):
+    count = 0
+    for path in paths:
+        if y in path:
+            count += 1
+    if count >= k:
+        y_max = max(y_max, y)
+
+print(y_max)
+```
+
+**Explanation:**
+
+* The function `f(x)` defines a function that maps each integer `x` to a list of integers in the path of `x`.
+* The `path(x)` list is created by applying `f(x)` to `x` and then applying `f` to each element in the resulting list until the list contains only one element.
+* The maximum value `y` that is contained in at least `k` different lists is found by iterating over all values of `y` and checking if `y` is contained in at least `k` lists.
+* The maximum value is printed as the output.
+
+**Time complexity:**
+
+* The time complexity of the code is O(n) since the loop iterates over the list `paths` only once.
+* The space complexity is O(n) since the code stores all the paths in memory.
+
+**Space complexity:**
+
+* The space complexity of the code is O(n) since the code stores all the paths in memory.

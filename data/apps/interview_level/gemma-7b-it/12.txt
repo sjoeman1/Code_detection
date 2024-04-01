@@ -1,0 +1,16 @@
+```python
+n = int(input())
+s = input().strip()
+
+g = s.count("G")
+swap = False
+
+if g >= 2:
+    for i in range(n):
+        if s[i] == "G" and not swap:
+            s[i] = "S"
+            swap = True
+    g -= 1
+
+print(g)
+```

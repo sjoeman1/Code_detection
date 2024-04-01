@@ -1,0 +1,15 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n, m = map(int, input().split())
+day = 1
+while (day * (day - 1) + 1 + (day - 1)) / 2 <= n + m - day:
+    day += 1
+print(day)
+```
+
+The solution uses a while loop to iterate through the days. The condition of the while loop checks if the barn will still have grains left at the end of the day. If the barn becomes empty at the end of the day, the loop will break and the current day number will be printed.
+
+The formula `(day * (day - 1) + 1 + (day - 1)) / 2` calculates the total number of grains that will be eaten by the sparrows up to and including the current day. The formula `n + m - day` calculates the total number of grains in the barn at the beginning of the current day. If the former is less than or equal to the latter, then the barn will still have grains left at the end of the day.
+
+The time complexity of this solution is O(sqrt(n)), which should be efficient enough for the given constraints.

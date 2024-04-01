@@ -1,0 +1,29 @@
+ Here is a Python3 solution for the problem:
+```python
+def get_max_nines(n):
+    # Calculate the maximum number of nines that can be at the end
+    max_nines = (n-1) % 10
+    # If the maximum number of nines is zero, then it means that all
+    # numbers from 1 to n can form a pair, so the answer is n*(n-1)//2
+    if max_nines == 0:
+        return n * (n - 1) // 2
+    # Calculate the number of pairs that will result in the maximum number
+    # of nines
+    num_pairs = (n - 1) // 10
+    # Subtract the number of pairs that have been counted
+    n -= num_pairs * 10
+    # Calculate the remaining number of pairs
+    remaining_pairs = n * (n - 1) // 2
+    # Return the total number of pairs
+    return remaining_pairs + num_pairs
+
+# Read the input number
+n = int(input())
+# Print the result
+print(get_max_nines(n))
+```
+The solution first calculates the maximum number of nines that can be at the end of the sum of the costs of two shovels. If this number is zero, then all pairs of shovels can be chosen, so the answer is simply the number of pairs of shovels that can be formed from n shovels.
+
+If the maximum number of nines is not zero, then the solution calculates the number of pairs of shovels that will result in the maximum number of nines, and subtracts the number of pairs that have been counted. The remaining number of pairs is then calculated and added to the result.
+
+The time complexity of the solution is O(1), since all operations are constant. The space complexity is also O(1), since only a few variables are used.

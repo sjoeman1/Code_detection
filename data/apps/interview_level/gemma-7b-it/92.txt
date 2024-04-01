@@ -1,0 +1,30 @@
+```python
+a, b, c = map(int, input().split())
+
+sum = 0
+for i in range(1, a + 1):
+    for j in range(1, b + 1):
+        for k in range(1, c + 1):
+            div = i * j * k
+            sum += d(div)
+
+print(sum % 1073741824)
+
+def d(n):
+    return sum(x for x in range(1, int(n**0.5) + 1) if x * x == n else 0)
+```
+
+**Explanation:**
+
+* The code calculates the number of divisors (d(n)) for a given integer n using the function d(n).
+* It then iterates over the ranges a, b, and c to find the product of three integers (i, j, k).
+* For each product, it calculates the number of divisors (div) and adds it to the sum.
+* Finally, the total sum is printed modulo 1073741824.
+
+**Time complexity:**
+
+* The code calculates d(n) for each product of i, j, and k, so the time complexity is O(abc).
+
+**Space complexity:**
+
+* The code uses a constant amount of space regardless of the input size, so the space complexity is O(1).

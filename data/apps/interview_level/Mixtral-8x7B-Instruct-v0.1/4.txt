@@ -1,0 +1,35 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def find\_snooze\_button\_presses(x, hh, mm):
+minute = mm + x
+if minute >= 60:
+hour = hh + (minute // 60)
+minute = minute % 60
+if minute < 10:
+minute = "0" + str(minute)
+if hour < 10:
+hour = "0" + str(hour)
+time = str(hour) + ":" + str(minute)
+count = 0
+while "7" not in time:
+count += 1
+minute += x
+if minute >= 60:
+hour += 1
+minute %= 60
+if hour >= 24:
+hour %= 24
+if hour < 10:
+hour = "0" + str(hour)
+time = str(hour) + ":" + str(minute)
+return count
+
+# Test cases
+print(find\_snooze\_button\_presses(3, 11, 23)) # 2
+print(find\_snooze\_button\_presses(5, 1, 7)) # 0
+```
+
+The function `find_snooze_button_presses` takes in the three inputs: `x`, `hh`, and `mm` and returns the minimum number of times Jamie needs to press the snooze button.
+
+The function first calculates the number of minutes until the next hour and then converts the time into a string. It then initializes a count variable to 0 and enters a while loop that continues until the time string contains the digit '7'. In each iteration of the loop, the function increments the minute count by `x`, updates the hour and minute if necessary, and then converts the updated time into a string. The loop terminates when the time string contains the digit '7', and the function returns the count.

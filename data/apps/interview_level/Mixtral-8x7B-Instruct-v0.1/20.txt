@@ -1,0 +1,35 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def min_minutes_to_palindrome(current_time):
+    hh, mm = map(int, current_time.split(":"))
+    minutes_to_add = 0
+
+    # If the current time is already a palindrome, we can wake up immediately
+    if hh == mm or (hh == 0 and mm == 9) or (hh == 9 and mm == 0):
+        return minutes_to_add
+
+    while True:
+        # Create a palindrome by adding minutes to the current time
+        palindrome = str(hh).zfill(2) + str(mm + minutes_to_add // 60).zfill(2) + str(hh).zfill(2)
+
+        # Convert the palindrome back to hours and minutes
+        ph, pm = map(int, palindrome.split(":"))
+
+        # Check if the palindrome is a valid time (i.e., between 00:00 and 23:59)
+        if 0 <= ph <= 23 and 0 <= pm <= 59:
+            break
+
+        minutes_to_add += 1
+
+    return minutes_to_add % 1440  # The result should be within 24 hours
+
+# Test cases
+print(min_minutes_to_palindrome("05:39"))  # Output: 11
+print(min_minutes_to_palindrome("13:31"))  # Output: 0
+print(min_minutes_to_palindrome("23:59"))  # Output: 1
+```
+
+This script defines a function called `min_minutes_to_palindrome` that takes a string representing the current time in the format hh:mm and returns the minimum number of minutes Karen should sleep for, such that when she wakes up, the time is a palindrome.
+
+The function first checks if the current time is already a palindrome and returns 0 if it is. Otherwise, it iteratively adds minutes to the current time until it creates a palindrome that is a valid time within 

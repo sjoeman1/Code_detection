@@ -1,0 +1,24 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n = int(input())
+balls = list(map(int, input().split()))
+
+balls.sort()
+
+# check if the difference between any two adjacent balls is more than 2
+if balls[1] - balls[0] > 2 or balls[-1] - balls[-2] > 2:
+    print("NO")
+else:
+    # check if we can choose three balls that satisfy the conditions
+    for i in range(n - 2):
+        if balls[i + 2] - balls[i] <= 2:
+            print("YES")
+            break
+    else:
+        print("NO")
+```
+
+This solution first sorts the list of balls. Then, it checks if the difference between any two adjacent balls is more than 2. If it is, then it's impossible to choose three balls that satisfy the conditions.
+
+If the difference between any two adjacent balls is not more than 2, then it checks if we can choose three balls that satisfy the conditions. It does this by iterating over the sorted list of balls and checking if the difference between the current ball and the ball that is two indices ahead is less than or equal to 2. If it is, then we can choose these three balls and print "YES". If we iterate over the entire list without finding three balls that satisfy the conditions, then we print "NO".

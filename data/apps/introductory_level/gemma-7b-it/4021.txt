@@ -1,0 +1,11 @@
+```python
+a = int(input())
+print(int((a ** 0.5).ceil()))
+```
+
+**Explanation:**
+
+* Read an integer `a` from the input.
+* Calculate the square root of `a` using the `** 0.5` operator.
+* Ceil the square root to the nearest integer using the `ceil()` function.
+* Convert the ceil value to an integer and print it.

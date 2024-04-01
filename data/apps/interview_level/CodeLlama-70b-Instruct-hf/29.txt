@@ -1,0 +1,28 @@
+
+
+Here is the Python3 code to solve the question:
+
+```python
+def lucky_ticket(ticket):
+    s = sum(map(int, ticket[:3]))
+    e = sum(map(int, ticket[3:]))
+    if s == e:
+        return 0
+    return abs(s - e)
+
+
+def main():
+    ticket = input("Enter the ticket: ")
+    result = lucky_ticket(ticket)
+    print("Minimum number of digits to replace:", result)
+
+
+if __name__ == "__main__":
+    main()
+```
+
+The `lucky_ticket` function takes the input `ticket` as a string and calculates the sum of the first three digits and the last three digits. If the sums are equal, it returns 0. If the sums are not equal, it returns the absolute difference between them.
+
+The `main` function takes the input `ticket` from the user and calls the `lucky_ticket` function to calculate the minimum number of digits to replace. It then prints the result.
+
+This code should work for all the test cases provided.

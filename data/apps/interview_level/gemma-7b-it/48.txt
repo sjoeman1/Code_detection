@@ -1,0 +1,16 @@
+```python
+n, m, k = map(int, input().split())
+
+a = [[int(i) for i in range(m)] for _ in range(n)]
+
+a.sort()
+
+print(a[k-1])
+```
+
+**Explanation:**
+
+* Read the input values `n`, `m`, and `k`.
+* Create a 2D list `a` of size `n`x`m` and initialize it with the values from the input.
+* Sort the `a` list in descending order.
+* Print the element at the `k-th` index in the sorted list.

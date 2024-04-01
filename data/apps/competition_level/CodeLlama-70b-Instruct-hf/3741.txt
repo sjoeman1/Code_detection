@@ -1,0 +1,43 @@
+
+Here's the Python 3 code for solving the problem:
+```
+#Input
+n = int(input())
+a = list(map(int, input().split()))
+
+# Initialize the graph
+graph = {}
+for i in range(n):
+    graph[i] = []
+
+# Find the cycles
+for i in range(n):
+    for j in range(i+1, n):
+        if (a[i] & a[j]) != 0:
+            graph[i].append(j)
+            graph[j].append(i)
+
+# Function to find the shortest cycle
+def dfs(v, visited, length):
+    global shortest_cycle
+    visited[v] = True
+    for u in graph[v]:
+        if not visited[u]:
+            dfs(u, visited, length + 1)
+        else:
+            if length + 1 < shortest_cycle:
+                shortest_cycle = length + 1
+
+# Find the shortest cycle
+shortest_cycle = float('inf')
+for i in range(n):
+    visited = [False] * n
+    dfs(i, visited, 0)
+
+# Output
+if shortest_cycle == float('inf'):
+    print(-1)
+else:
+    print(shortest_cycle)
+```
+This code will take the input of the number of integers and the integers themselves. It will then create a graph based on the rules provided in the problem. Finally, it will use a depth-first search to find the shortest cycle in the graph and output the length of the shortest cycle or -1 if no cycles exist.

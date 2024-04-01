@@ -1,0 +1,24 @@
+```python
+p, k = map(int, input().split())
+
+# Calculate the number of distinct functions
+num_functions = 0
+for a in range(1, int((p-1)**k) + 1):
+    is_valid = True
+    for b in range(k):
+        if f(a, b) != k * f(a // p, b) % p:
+            is_valid = False
+    if is_valid:
+        num_functions += 1
+
+print(num_functions % (10**9 + 7))
+```
+
+**Explanation:**
+
+- The function f takes two arguments: x and b.
+- The equation $f(k x \operatorname{mod} p) \equiv k \cdot f(x) \operatorname{mod} p$ holds for any integer x in the range 0 to p - 1.
+- The number of distinct functions f is equal to the number of ways to choose the values of f(0), f(1), ..., f(p-2) such that the equation is satisfied.
+- The function iterates over the range of possible values for f(0) and checks if the equation is satisfied for all x in the range 0 to p - 1.
+- If the equation is satisfied, the function increments the number of distinct functions.
+- The final number of distinct functions is printed modulo 10^9 + 7.

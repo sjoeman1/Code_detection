@@ -1,0 +1,27 @@
+
+
+Here's the Python3 code for the given problem:
+
+```py
+n = int(input())
+s = input()
+
+# Check if it's possible to sort the string
+def is_sortable(s):
+    colors = {0: [], 1: []}
+    for i in range(len(s)):
+        if s[i] < s[i - 1] and s[i] not in colors[1]:
+            colors[1].append(s[i])
+        elif s[i] > s[i - 1] and s[i] not in colors[0]:
+            colors[0].append(s[i])
+    return colors[0] == sorted(colors[0]) and colors[1] == sorted(colors[1])
+
+# Output the result
+if is_sortable(s):
+    print("YES")
+    print("0" * n)
+else:
+    print("NO")
+```
+
+This code defines a function `is_sortable` that checks if the string `s` can be sorted by coloring. It assigns each character to one of two colors (0 or 1) depending on whether it is greater than or less than the previous character. If the characters assigned to each color are sorted, then the string can be sorted by coloring. If not, then it cannot be sorted by coloring. The main program then calls the `is_sortable` function and prints the result accordingly.

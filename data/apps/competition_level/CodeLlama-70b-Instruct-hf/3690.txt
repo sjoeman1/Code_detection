@@ -1,0 +1,42 @@
+
+
+Here is the Python 3 code for the given problem:
+
+```python
+def get_clock_angle(hour, minute):
+    hour_angle = (hour * 30) + (minute / 2)
+    minute_angle = (minute * 6)
+    return abs(hour_angle - minute_angle)
+
+def can_prepare_contest(h, m, s, t1, t2):
+    t1_angle = get_clock_angle(t1, 0)
+    t2_angle = get_clock_angle(t2, 0)
+
+    if t1_angle == t2_angle:
+        return "YES"
+
+    if t1_angle < t2_angle:
+        if t2_angle - t1_angle <= 180:
+            return "YES"
+        else:
+            return "NO"
+
+    if t2_angle < t1_angle:
+        if t1_angle - t2_angle <= 180:
+            return "YES"
+        else:
+            return "NO"
+
+if __name__ == "__main__":
+    h, m, s, t1, t2 = map(int, input().split())
+    print(can_prepare_contest(h, m, s, t1, t2))
+```
+
+This code defines a function `get_clock_angle` that calculates the angle between the hour hand and the minute hand. It takes the hour and minute as input and calculates the angle using the formula:
+
+```
+hour_angle = (hour * 30) + (minute / 2)
+minute_angle = (minute * 6)
+```
+
+The `can_prepare_contest` function takes the input parameters and calculates the angles of both t1 and t2. It then checks if the angles are the same, and if they are, it returns "YES" as Misha can prepare the contest. If the angles are not the same, it checks if the difference between the angles is less than or equal to 180. If it is, Misha can prepare the contest, and the code returns "YES". Otherwise, it returns "NO".

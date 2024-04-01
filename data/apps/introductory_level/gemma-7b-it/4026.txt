@@ -1,0 +1,14 @@
+```python
+t = int(input())
+
+for _ in range(t):
+    n, m = map(int, input().split())
+    tiles = []
+    for _ in range(2 * n):
+        top_left, top_right, bottom_left, bottom_right = map(int, input().split())
+        tiles.append((top_left, top_right, bottom_left, bottom_right))
+
+    can_construct = (sum(set(tiles[0]) & set(tiles[1]) == set(tiles[0])) and (sum(set(tiles[2]) & set(tiles[1]) == set(tiles[0])) and (all(tiles[i][0] == tiles[0][0] for i in range(2, len(tiles)))) and (all(tiles[i][1] == tiles[0][1] for i in range(2, len(tiles))))
+
+    print("YES" if can_construct else "NO")
+```
