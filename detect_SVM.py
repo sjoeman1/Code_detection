@@ -12,7 +12,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--dataset', default="results/gemma-7b-it-apps_introductory.jsonl")
+parser.add_argument('--dataset', default="results/Mixtral-8x7B-Instruct-v0.1-apps_competition.jsonl")
 parser.add_argument('--classifier', default="MNB", choices=['SCM', 'LR', 'MNB'])
 parser.add_argument('--max_features', default=1000, type=int)
 parser.add_argument('--kernel', default='linear')
@@ -20,11 +20,10 @@ parser.add_argument('--vectorizer', default='CountVectorizer', choices=['TfidfVe
 parser.add_argument('--ngram_range', default=(1, 4), type=tuple, nargs=2)
 parser.add_argument('--hide_comments', default=True, type=bool)
 args = parser.parse_args()
-# args.ngram_range = tuple(args.ngram_range)
 print(args)
 
 clf_name = args.classifier
-dataset_name = args.dataset.split('/')[-1].split('.')[0]
+dataset_name = args.dataset.split('/')[-1][:-6]
 run_name = f"{dataset_name}_{clf_name}"
 
 # load the dataset
