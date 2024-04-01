@@ -1,0 +1,28 @@
+```python
+s = input().lower()
+n = len(s)
+ans = 0
+
+for i in range(n):
+    # Check if the first letter is uppercase and the rest are lowercase
+    if s[i].isupper() and s[i].lower() not in ['b', 'u', 'l', 's', 'a', 'r']:
+        # Count the number of Bulbasaurs
+        ans += 1
+
+print(ans)
+```
+
+**Explanation:**
+
+* The code reads the input string `s`.
+* It iterates over the string to check if the first letter is uppercase and the rest are lowercase.
+* If the conditions are met, it increments the `ans` variable.
+* Finally, the code prints the value of `ans`.
+
+**Time complexity:**
+
+* The code iterates over the input string only once, so the time complexity is O(n), where `n` is the length of the string.
+
+**Space complexity:**
+
+* The code uses a constant amount of space regardless of the length of the input string, so the space complexity is O(1).

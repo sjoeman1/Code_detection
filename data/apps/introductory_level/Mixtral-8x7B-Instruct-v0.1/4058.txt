@@ -1,0 +1,25 @@
+ Here is a Python3 solution for the problem:
+```python
+n, r = map(int, input().split())
+a = list(map(int, input().split()))
+
+left, right = 0, r
+res = 0
+while right < n:
+    while left >= 0 and a[left] == 0:
+        left -= 1
+    while right < n and a[right] == 0:
+        right += 1
+    if left < 0 or right >= n:
+        print(-1)
+        break
+    a[left:right] = [1]* (right - left + 1)
+    res += 1
+    left, right = left - r + 1, right + r - 1
+print(res)
+```
+The solution uses a sliding window approach to iterate through the array, checking if there are any heaters in the current range of the window. If there are no heaters, it extends the window to the right or left until it finds a heater. Once a heater is found, it turns on all the heaters in the range and moves the window to the next range.
+
+The solution keeps track of the minimum number of heaters needed to warm up the whole house and prints it at the end. If it's impossible to warm up the whole house, it prints -1.
+
+It's important to notice that, if the left or right pointer goes out of range of the array, it means that it's impossible to warm up the whole house, and the solution should print -1 and break the loop.

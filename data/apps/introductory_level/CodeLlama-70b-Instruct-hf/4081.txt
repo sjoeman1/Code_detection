@@ -1,0 +1,22 @@
+
+
+Here is the Python 3 code for the given question:
+
+```python
+def solve(X, K, D):
+    # If K is odd, the destination will be X + K * D.
+    # If K is even, the destination will be X + (K - 1) * D.
+    if K % 2 == 0:
+        K -= 1
+    destination = X + K * D
+    return abs(destination)
+
+
+# Input
+X, K, D = map(int, input().split())
+
+# Output
+print(solve(X, K, D))
+```
+
+In this code, we first check if K is odd or even. If K is odd, the destination will be X + K * D. If K is even, the destination will be X + (K - 1) * D. Then, we return the absolute value of the destination.

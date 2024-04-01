@@ -1,0 +1,17 @@
+```python
+n = int(input())
+a = list(map(int, input().split()))
+
+# Check if the algorithm can sort the array correctly
+can_sort = True
+for i in range(n-1):
+    if abs(a[i] - a[i+1]) >= 2:
+        can_sort = False
+
+print("YES" if can_sort else "NO")
+```
+
+**Explanation:**
+
+- The algorithm iterates over the array and checks if the difference between the current element and the next element is two or more. If it is, it means that the top ravioli of the taller stack will slide down on top of the lower stack, and the algorithm cannot sort the array correctly.
+- If there are no such pairs of elements, the algorithm can sort the array correctly, and the output is "YES". Otherwise, the output is "NO".

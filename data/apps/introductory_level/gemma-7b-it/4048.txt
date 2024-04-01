@@ -1,0 +1,15 @@
+```python
+n = int(input())
+
+# Calculate the minimum number of moves needed to reach a square that contains N
+moves = int((n-1) // 2) + 1
+
+# Print the minimum number of moves
+print(moves)
+```
+
+**Explanation:**
+
+- The minimum number of moves needed to reach a square that contains N is equal to the number of squares that are below and to the left of the square containing N, plus 1.
+- The number of squares that are below and to the left of the square containing N is equal to (n-1) // 2.
+- Therefore, the minimum number of moves needed to reach a square that contains N is (n-1) // 2 + 1.

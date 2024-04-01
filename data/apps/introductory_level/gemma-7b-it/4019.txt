@@ -1,0 +1,49 @@
+```python
+n, m, D = map(int, input().split())
+
+if m < n - 1:
+    print("NO")
+else:
+    print("YES")
+
+edges = []
+for i in range(m):
+    v, u = map(int, input().split())
+    edges.append((v, u))
+
+graph = {i: set() for i in range(n)}
+for v, u in edges:
+    graph[v].add(u)
+    graph[u].add(v)
+
+visited = set()
+queue = [1]
+visited.add(1)
+
+# Find the nodes that are at distance D from the first node
+def dfs(node, distance):
+    if distance == D:
+        return True
+
+    for neighbor in graph[node]:
+        if neighbor not in visited:
+            visited.add(neighbor)
+            if dfs(neighbor, distance + 1):
+                return True
+
+    return False
+
+# If there is a spanning tree with the required degree, print YES and the edges of the tree
+if dfs(1, 0):
+    print("YES")
+    for edge in edges:
+        if edge[0] == 1 or edge[1] == 1:
+            print(edge)
+```
+
+**Explanation:**
+
+- The code reads the input data and creates a graph representation of the graph.
+- It then searches for a spanning tree of the graph where the degree of the first vertex is equal to $D$ using the `dfs` function.
+- If a spanning tree is found, it prints "YES" and the edges of the tree.
+- Otherwise, it prints "NO".

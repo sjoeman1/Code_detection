@@ -1,0 +1,8 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def day_of_week_map(d):
+    return ("monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday").index(d)
+
+def solve():
+    day1 = input().strip().lower()

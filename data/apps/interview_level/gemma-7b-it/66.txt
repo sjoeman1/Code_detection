@@ -1,0 +1,16 @@
+```python
+import random
+
+t, w, b = map(int, input().split())
+
+# Calculate the maximum distance that Willman and Bolt can cover
+distance_willman = w * random.randint(1, t)
+distance_bolt = b * random.randint(1, t)
+
+# If the distance covered by both athletes is equal, they tie
+if distance_willman == distance_bolt:
+    print(str(distance_willman) + "/" + str(distance_willman + 1))
+else:
+    # Otherwise, the winner is the athlete who can cover a greater distance
+    print(str(max(distance_willman, distance_bolt)) + "/" + str(max(distance_willman, distance_bolt) + 1))
+```

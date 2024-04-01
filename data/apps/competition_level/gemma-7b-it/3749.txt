@@ -1,0 +1,27 @@
+```python
+n, x = map(int, input().split())
+a = list(map(int, input().splitlines()))
+
+# Calculate the XOR of two numbers
+def xor(x, y):
+    return (x ^ y) & 2**32 - 1
+
+# Calculate the number of different integers not exceeding X that can be written on the blackboard
+ans = 0
+for i in a:
+    x_double = 2 * i
+    x_xor = xor(i, x_double)
+    if x_xor <= x:
+        ans += 1
+
+print(ans)
+```
+
+**Explanation:**
+
+- The code reads the number of non-negative integers, `N`, and the value of `X`, which is the upper bound for the integers that can be written on the blackboard.
+- It then reads the `N` integers, `A_i`, written on the blackboard.
+- The code calculates the XOR of two numbers using the `xor` function.
+- It calculates the double of each integer and XORs it with the original integer.
+- If the result of the XOR operation is less than or equal to `X`, it increments the `ans` variable.
+- Finally, the code prints the value of `ans`.

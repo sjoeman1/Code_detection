@@ -1,0 +1,56 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def min\_leaves\_to\_remove():
+\# Read input
+H, W = map(int, input().split())
+pond = [list(input()) for \_ in range(H)]
+
+S\_row, S\_col = 0, 0
+for i in range(H):
+for j in range(W):
+if pond[i][j] == "S":
+S\_row, S\_col = i, j
+break
+
+T\_row, T\_col = 0, 0
+for i in range(H):
+for j in range(W):
+if pond[i][j] == "T":
+T\_row, T\_col = i, j
+break
+
+# Initialize necessary leaves to remove
+necessary\_leaves = 0
+
+# Check if the frog can reach the leaf T
+if S\_row == T\_row:
+# Same row
+for j in range(min(S\_col, T\_col) - 1, max(S\_col, T\_col)):
+if pond[S\_row][j] == "o":
+necessary\_leaves += 1
+elif pond[S\_row][j] == ".":
+break
+
+elif S\_col == T\_col:
+# Same column
+for i in range(min(S\_row, T\_row) - 1, max(S\_row, T\_row)):
+if pond[i][S\_col] == "o":
+necessary\_leaves += 1
+elif pond[i][S\_col] == ".":
+break
+
+else:
+# Different rows and columns
+if pond[S\_row][T\_col] == "o":
+necessary\_leaves += 1
+elif pond[S\_row][T\_col] == ".":
+necessary\_leaves = -1
+
+print(necessary\_leaves)
+
+if **name** == "**main**":
+min\_leaves\_to\_remove()
+```
+
+This solution reads the input and initializes the necessary leaves to remove as 0. It then checks if the frog can reach the leaf T and calculates the necessary leaves to remove accordingly. Finally, it

@@ -1,0 +1,13 @@
+```python
+n, L = map(int, input().split())
+kefa_distances = list(map(int, input().split()))
+sasha_distances = list(map(int, input().split()))
+
+kefa_distances.sort()
+sasha_distances.sort()
+
+if kefa_distances ==Sasha_distances:
+    print("YES")
+else:
+    print("NO")
+```

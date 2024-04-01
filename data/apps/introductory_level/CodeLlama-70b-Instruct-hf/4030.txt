@@ -1,0 +1,22 @@
+
+
+Here is the Python 3 code for solving the question:
+
+```python
+def max_days_without_food(a, b, c):
+    max_days = 0
+    if a >= b + c:
+        max_days = b + c
+    if b >= a + c:
+        max_days = a + c
+    if c >= a + b:
+        max_days = a + b
+    return max_days
+
+if __name__ == '__main__':
+    a, b, c = map(int, input().split())
+    max_days = max_days_without_food(a, b, c)
+    print(max_days)
+```
+
+This code defines a function `max_days_without_food` that takes the values of `a`, `b`, and `c` as input. It then calculates the maximum number of days the cat can eat without additional food purchases and returns the result. The `if` statements check for the maximum number of days by comparing the quantities of food for each day of the week. The code then prints the maximum number of days the cat can eat without additional food purchases.

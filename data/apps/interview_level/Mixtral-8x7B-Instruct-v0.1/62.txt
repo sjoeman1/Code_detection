@@ -1,0 +1,52 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def bitland_game(n, a):
+    # If there is only one element in the array, BitLGM can win by taking it
+    if n == 1:
+        return "BitLGM"
+
+    # If the sum of the array is less than or equal to 1, BitAryo can win
+    if sum(a) <= 1:
+        return "BitAryo"
+
+    # If the minimum value in the array is 0, BitAryo can win
+    if min(a) == 0:
+        return "BitAryo"
+
+    # If the array has two elements, BitAryo can win by taking the smaller element
+    if n == 2:
+        if a[0] > a[1]:
+            a[0], a[1] = a[1], a[0]
+        if a[0] == a[1]:
+            return "BitAryo"
+        if a[0] > 1:
+            return "BitAryo"
+        else:
+            return "BitLGM"
+
+    # BitLGM can always reduce the array to a smaller subproblem where n is 1, 2 or 3
+    for i in range(n):
+        if a[i] > 0:
+            a[i] -= 1
+            break
+    for i in range(n):
+        if a[i] > 0:
+            for j in range(i+1, n):
+                if a[j] > 0:
+                    a[i], a[j] = a[j], a[i]
+                    break
+            a[i] -= 1
+            for j in range(i+1, n):
+                a[j] -= 1
+            break
+    for i in range(n):
+        if a[i] > 1:
+            a[i] -= 1
+            break
+    for i in range(n):
+        if a[i] > 0:
+            a[i] -= 1
+            break
+
+    return bitland_game(n-1 if n > 3 else n,

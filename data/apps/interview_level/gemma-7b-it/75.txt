@@ -1,0 +1,29 @@
+```python
+n, m = map(int, input().split())
+grid = []
+for _ in range(n):
+    grid.append(list(input().strip().split()))
+
+is_possible = False
+bomb_pos = None
+for r in range(n):
+    for c in range(m):
+        if grid[r][c] == "*":
+            if not bomb_pos:
+                bomb_pos = (r, c)
+            else:
+                is_possible = False
+
+if is_possible:
+    print("YES")
+    print(bomb_pos)
+else:
+    print("NO")
+```
+
+**Explanation:**
+
+- The code reads the input, including the size of the depot and the description of the field.
+- It then checks if it is possible to wipe out all walls by placing and triggering exactly one bomb.
+- If it is possible, it finds the coordinates of the cell at which the bomb should be laid and prints them.
+- If it is not possible, it prints "NO".

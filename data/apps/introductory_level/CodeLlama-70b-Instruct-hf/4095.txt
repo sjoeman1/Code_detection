@@ -1,0 +1,39 @@
+
+Here is the Python 3 code for solving the problem:
+```
+n, k = map(int, input().split())
+a = list(map(int, input().split()))
+
+count = {}
+
+for x in a:
+    count.setdefault(x, 0)
+    count[x] += 1
+
+ans = n
+for x in count:
+    ans = min(ans, n-count[x])
+
+for i in range(30):
+    flag = False
+    new_count = {}
+    for x in count:
+        if count[x] < k:
+            new_count.setdefault(x//2, 0)
+            new_count[x//2] += count[x]
+            flag = True
+    count = new_count
+    if flag:
+        ans -= 1
+    else:
+        break
+
+print(ans)
+```
+This code reads the input values and stores them in the `n` and `k` variables. It then reads the array `a` and counts the number of occurrences of each element in the array using a dictionary.
+
+The code then initializes the `ans` variable to `n`, which is the maximum number of operations possible. It then iterates through the dictionary and finds the minimum number of operations required to obtain `k` equal numbers in the array.
+
+The code then iterates through the array and divides each element by 2, rounding down. It updates the `count` dictionary and decrements the `ans` variable by 1. This process is repeated until the count of each element in the array is at least `k`.
+
+Finally, the code prints the minimum number of operations required to obtain `k` equal numbers in the array.

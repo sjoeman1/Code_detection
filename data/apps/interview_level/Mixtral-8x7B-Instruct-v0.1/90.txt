@@ -1,0 +1,34 @@
+ Here is a Python3 solution using dynamic programming:
+
+```python
+import sys
+input = sys.stdin.readline
+
+def factorial(n):
+    if n == 0:
+        return 1
+    else:
+        return n * factorial(n-1)
+
+def solve(n, k, s, a):
+    dp = [[0] * (s+1) for _ in range(n+1)]
+    dp[0][0] = 1
+    for i in range(1, n+1):
+        for j in range(s+1):
+            dp[i][j] = dp[i-1][j]
+            if j >= a[i-1]:
+                dp[i][j] += dp[i-1][j-a[i-1]]
+                if k > 0:
+                    dp[i][j] += dp[i-1][j-a[i-1]*2]
+                    k -= 1
+    return dp[n][s]
+
+if __name__ == "__main__":
+    n, k, s = map(int, input().split())
+    a = list(map(int, input().split()))
+    print(solve(n, k, s, a))
+```
+
+The idea is to use a 2D dynamic programming array `dp[i][j]` to represent the number of ways to get a sum of `j` after processing the first `i` cubes. For each cube, we can either choose to include it or not. If we include it, then the sum will increase by the value of the cube. If we include it twice (i.e. stick an exclamation mark on it), then the sum will increase by the factorial of the cube's value. The maximum number of times we can include a cube is twice, since we have at most `k` stickers and each sticker can increase the sum by at most the value of the cube.
+
+The base case is `dp[0][0] = 1`, which represents the empty sum. For each cube, we iterate over all possible sums `j` from 0 to `s`, and update `dp[i][j]` based on

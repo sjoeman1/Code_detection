@@ -1,0 +1,35 @@
+
+Here is the Python 3 code to solve the problem:
+
+```python
+def can_see_white_sheet(x1, y1, x2, y2, x3, y3, x4, y4, x5, y5, x6, y6):
+    if x1 >= x6 and x2 <= x5 and y1 >= y6 and y2 <= y5:
+        return False
+    if x1 >= x4 and x2 <= x3 and y1 >= y4 and y2 <= y3:
+        return False
+    if x1 >= x4 and x1 < x3 and y1 >= y3 and y1 < y4:
+        return True
+    if x2 <= x3 and x2 > x4 and y1 >= y3 and y1 < y4:
+        return True
+    if x1 >= x4 and x1 < x3 and y2 <= y3 and y2 > y4:
+        return True
+    if x2 <= x3 and x2 > x4 and y2 <= y3 and y2 > y4:
+        return True
+    if x1 >= x3 and x1 < x6 and y1 >= y6 and y1 < y5:
+        return True
+    if x2 <= x6 and x2 > x3 and y1 >= y6 and y1 < y5:
+        return True
+    if x1 >= x3 and x1 < x6 and y2 <= y6 and y2 > y5:
+        return True
+    if x2 <= x6 and x2 > x3 and y2 <= y6 and y2 > y5:
+        return True
+    return False
+
+if __name__ == "__main__":
+    x1, y1, x2, y2 = map(int, input().split())
+    x3, y3, x4, y4 = map(int, input().split())
+    x5, y5, x6, y6 = map(int, input().split())
+
+    if can_see_white_sheet(x1, y1, x2, y2, x3, y3, x4, y4, x5, y5, x6, y6):
+        print("YES")
+    else

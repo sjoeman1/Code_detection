@@ -1,0 +1,29 @@
+ Here is a Python3 solution for the problem:
+
+```python
+import sys
+from math import floor
+
+def can_takahashi_move(a, k):
+    return any(1 <= x % k < a[x] for x in range(n))
+
+def simulate(a, k):
+    while can_takahashi_move(a, k):
+        b = [(x - min(x, a[x] // k) + k - 1) // k * k for x in range(n)]
+        a = [x - b[x] for x in range(n)]
+    return 'Aoki' if sum(a) == 0 else 'Takahashi'
+
+input()
+a, k = [], []
+for _ in range(int(input())):
+    x, y = map(int, input().split())
+    a.append(x)
+    k.append(y)
+print(simulate(a, k))
+```
+
+The solution uses dynamic programming to simulate the game. At each step, we check if Takahashi can make a move. If so, we calculate the new state of the piles after Takahashi's move, and repeat the process. If not, it means that Takahashi has lost the game, and Aoki wins.
+
+The function `can_takahashi_move` checks if Takahashi can make a move. It returns `True` if there exists a pile with at least one stone, and such that the number of stones in the pile is not a multiple of `k[i]`, or it is a multiple of `k[i]` and is strictly greater than `a[i]`.
+
+The function `simulate` simulates the game. It takes as input the piles of stones `a` and the associated integers `k`, and returns the winner of the game. It does so by repeatedly applying `can_takahashi_move` and updating the state of the piles until Takahashi can no longer make a move. At that point, it checks if all the piles are empty. If so, it means that Aoki has won the game, and the function returns `'Aoki'`. Otherwise, it means that Takahashi has won the game, and the

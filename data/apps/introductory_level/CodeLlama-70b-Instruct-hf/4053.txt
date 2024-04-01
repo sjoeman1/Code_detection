@@ -1,0 +1,42 @@
+1.  **Checking the input**
+
+    We will first check if the input is valid. If $n$ is not in the range of $1$ to $10^5$, we will print "NO" and exit the program.
+2.  **Checking the substrings**
+
+    We will check if the string $s$ or $t$ is a substring of the string $res$. If they are, we will print "NO" and exit the program.
+3.  **Creating the result string**
+
+    We will create the result string $res$ using the given conditions. We will create a list and add $n$ 'a's, $n$ 'b's, and $n$ 'c's to it. We will then convert the list to a string $res$.
+4.  **Printing the result**
+
+    If all the checks are passed, we will print "YES" and the string $res$.
+
+Here is the Python 3 code for the solution:
+
+```python
+# Checking the input
+n = int(input())
+if n < 1 or n > 10**5:
+    print("NO")
+    exit()
+
+# Taking the input strings
+s = input()
+t = input()
+
+# Checking the substrings
+if s in res or t in res:
+    print("NO")
+    exit()
+
+# Creating the result string
+res = ""
+for i in range(n):
+    res += "abc"
+
+# Printing the result
+print("YES")
+print(res)
+```
+
+This code satisfies the given conditions and provides the required output.

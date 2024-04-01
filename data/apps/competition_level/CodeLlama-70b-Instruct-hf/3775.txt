@@ -1,0 +1,40 @@
+
+
+Here is the Python 3 code that solves the question:
+
+```
+def solve(n, m, set1, set2):
+    known = set()
+    for pair in set1:
+        for num in pair:
+            if num in known:
+                return num
+            known.add(num)
+    for pair in set2:
+        for num in pair:
+            if num in known:
+                return num
+            known.add(num)
+    return 0
+
+if __name__ == "__main__":
+    n, m = map(int, input().split())
+    set1 = []
+    set2 = []
+
+    for _ in range(n):
+        pair = list(map(int, input().split()))
+        set1.append(pair)
+
+    for _ in range(m):
+        pair = list(map(int, input().split()))
+        set2.append(pair)
+
+    result = solve(n, m, set1, set2)
+
+    print(result)
+```
+
+In this code, we define a function `solve` that takes the number of pairs `n` and `m`, the first set `set1`, and the second set `set2` as input. It iterates through each pair in `set1`, checks if any of the numbers in the pair is already in a set called `known`. If it is, it returns the number as the shared number. If not, it adds the number to the `known` set. It then does the same for `set2`. If no shared number is found, it returns 0.
+
+In the main function, we take input for `n` and `m`, and then iterate `n` times to take input for `set1` and `m` times to take input for `set2`. We then call the `solve` function with the input values and print the result.

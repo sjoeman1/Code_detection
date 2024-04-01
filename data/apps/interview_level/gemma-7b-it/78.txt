@@ -1,0 +1,33 @@
+```python
+n, T = map(int, input().split())
+
+t = []
+g = []
+
+for _ in range(n):
+    ti, gi = map(int, input().split())
+    t.append(ti)
+    g.append(gi)
+
+t.sort()
+g.sort()
+
+ans = 0
+prev = -1
+for i in range(len(t)):
+    if g[i] != prev and t[i] + prev <= T:
+        prev = g[i]
+        ans += 1
+
+print(ans % (10**9 + 7))
+```
+
+**Explanation:**
+
+* The code reads the number of songs and the total duration.
+* It reads the duration and genre of each song.
+* It sorts the songs by duration and genre.
+* It keeps track of the previous genre.
+* It iterates over the songs and adds them to the playlist if the genre is different from the previous song and the total duration is less than or equal to the total duration.
+* The number of different sequences of songs is stored in the variable `ans`.
+* The answer is printed modulo `10^9 + 7`.

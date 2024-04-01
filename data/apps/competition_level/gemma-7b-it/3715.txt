@@ -1,0 +1,16 @@
+```python
+n = int(input())
+a = list(map(int, input().split()))
+
+# Calculate the minimum number of days of rest
+min_rest = 0
+prev_activity = -1
+for i in range(n):
+    if a[i] == 1 and prev_activity != 1:
+        min_rest += 1
+    elif a[i] == 2 and prev_activity != 2:
+        min_rest += 1
+    prev_activity = a[i]
+
+print(min_rest)
+```

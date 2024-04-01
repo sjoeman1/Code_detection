@@ -1,0 +1,23 @@
+ Here is a Python3 solution for the problem:
+```python
+n, q = map(int, input().split())
+painters = []
+for _ in range(q):
+    l, r = map(int, input().split())
+    painters.append((l, r))
+
+painters.sort(key=lambda x: x[1])
+hired = set()
+for l, r in painters:
+    if r - l + 1 < n - hired:
+        continue
+    hired.update(range(l, r + 1))
+    if len(hired) == n:
+        print(len(hired))
+        break
+else:
+    print(n - len(hired))
+```
+The solution sorts the painters by their right endpoint, then iterates through the painters from left to right. For each painter, if the number of sections that will be painted by this painter is less than the number of unpainted sections, it skips to the next painter. Otherwise, it adds the sections painted by this painter to the set of hired painters and checks if all sections are painted. If all sections are painted, it prints the number of painted sections and breaks the loop. If none of the first `q-2` painters can paint all sections, it prints the number of unpainted sections.
+
+Note that the solution assumes that the input is valid (i.e., `3 <= n, q <= 5000` and `1 <= li <= ri <= n`). If this is not the case, additional error checking may be necessary.

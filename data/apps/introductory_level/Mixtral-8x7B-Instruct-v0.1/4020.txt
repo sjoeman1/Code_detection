@@ -1,0 +1,26 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def midpoint(h1, m1, h2, m2):
+    # calculate total minutes
+    total\_minutes = (h2 - h1) \* 60 + (m2 - m1)
+    # divide by 2 to get the difference
+    minutes\_difference = total\_minutes // 2
+    # calculate new time
+    h3 = h1 + minutes\_difference // 60
+    m3 = m1 + minutes\_difference % 60
+    # adjust time if it's past midnight
+    if h3 >= 24:
+        h3 -= 24
+    # format and print the answer
+    print('{:02d}:{:02d}'.format(h3, m3))
+
+# read input
+h1, m1 = map(int, input().split(':'))
+h2, m2 = map(int, input().split(':'))
+
+# call the function
+midpoint(h1, m1, h2, m2)
+```
+
+The solution first calculates the total number of minutes in the contest and then divides it by 2 to get the difference in minutes between the start and the midpoint. It then calculates the new time by adding the difference to the start time and adjusts it if it's past midnight. Finally, it formats and prints the answer.

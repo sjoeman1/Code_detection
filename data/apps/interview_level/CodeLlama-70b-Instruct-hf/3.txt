@@ -1,0 +1,27 @@
+
+```python
+def max_painted_sections(n, q, painters):
+    painters.sort(key=lambda x: (x[1], x[0]))
+    painters = [painters[i] for i in range(q - 2)]
+    painters.sort(key=lambda x: x[0])
+
+    sections = 0
+    last = 1
+    for painter in painters:
+        if painter[0] > last:
+            break
+        last = max(last, painter[1])
+        sections += 1
+
+    return sections
+
+
+n, q = list(map(int, input().split()))
+painters = []
+for _ in range(q):
+    painters.append(list(map(int, input().split())))
+
+print(max_painted_sections(n, q, painters))
+```
+
+This code first sorts the list of painters based on the rightmost section they paint, then it removes the two painters who paint the most sections. Then, it sorts the remaining painters based on the leftmost section they paint. Finally, it iterates through the sorted painters, keeping track of the rightmost section that has been painted. If the leftmost section of the current painter is less than or equal to the rightmost section that has been painted, then it updates the rightmost section that has been painted. If not, it breaks out of the loop because the remaining painters cannot paint any more sections. The total number of painted sections is the number of painters iterated through.

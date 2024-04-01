@@ -1,0 +1,31 @@
+ Here is a Python3 solution for the problem:
+```python
+n, m = map(int, input().split())
+a = list(map(int, input().split()))
+segments = []
+for _ in range(m):
+    l, r = map(int, input().split())
+    segments.append((l, r))
+
+left, right = max(a), min(a)
+for l, r in segments:
+    left = min(left, a[l-1])
+    right = max(right, a[r-1])
+
+ans = right - left
+seg_to_use = []
+for l, r in segments:
+    if a[l-1] == left:
+        ans = max(ans, right - (a[r-1] - 1))
+        seg_to_use.append(l)
+    elif a[r-1] == right:
+        ans = max(ans, (a[l-1] - 1) - left)
+        seg_to_use.append(r)
+
+print(ans)
+print(len(seg_to_use))
+print(*sorted(seg_to_use))
+```
+The idea is to first find the maximum and minimum elements in the array, and the difference between them will be the answer if no segments are applied. Then, for each segment, we check if it contains either the minimum or maximum element in the current array. If it contains the minimum element, we subtract one from the right endpoint of the segment and update the answer if the new difference is greater than the current answer. If it contains the maximum element, we add one to the left endpoint of the segment and update the answer if the new difference is greater than the current answer. Finally, we print the answer, the number of segments to be applied, and the indices of those segments.
+
+Note: This solution assumes that the input is valid and does not contain any errors. In a real-world programming competition, you would need to add error checking and handling code to make sure that the program does not crash or produce incorrect results if the input is not valid.

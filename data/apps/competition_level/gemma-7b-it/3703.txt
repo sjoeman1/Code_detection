@@ -1,0 +1,40 @@
+```python
+n, k = map(int, input().split())
+
+def gcd(a, b):
+    if b:
+        return gcd(b, a % b)
+    else:
+        return a
+
+def f(n):
+    return sum(1 for x, y in enumerate(range(1, int(n**0.5) + 1)) if gcd(x, y) == 1 else 0)
+
+def Fk(n, k):
+    if k == 1:
+        return f(n)
+    elif k % 2 == 0:
+        return g(Fk(n, k - 1))
+    else:
+        return f(Fk(n, k - 1))
+
+g = lambda n: sum(f(n / d) for d in range(1, int(n**0.5) + 1))
+
+print(Fk(n, k) % 1000000007)
+```
+
+**Explanation:**
+
+* The function `f(n)` calculates the number of distinct ordered pairs (x, y) satisfying x + y = n and gcd(x, y) = 1.
+* The function `Fk(n, k)` calculates the value of F_k(n) recursively.
+* The function `g(n)` calculates the sum of f(n / d) for all positive integers d that divide n.
+* The final answer is printed modulo 1000000007.
+
+**Time Complexity:**
+
+* The function `f(n)` calculates the number of distinct pairs for a given number n, which takes O(n) time.
+* The function `Fk(n, k)` calculates the value of F_k(n) recursively, so the time complexity is O(k).
+
+**Space Complexity:**
+
+* The function `Fk(n, k)` uses a constant amount of space, regardless of the input size.

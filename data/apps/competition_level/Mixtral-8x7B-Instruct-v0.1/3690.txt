@@ -1,0 +1,38 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def is_possible(h, m, s, t1, t2):
+    # If Misha and the target time are the same, it's not possible to reach
+    if t1 == t2:
+        return "NO"
+
+    # Calculate the angle of each hand in degrees
+    h_angle = (h % 12) * 30
+    m_angle = m * 6
+    s_angle = s * 6
+
+    # Calculate the total angle between Misha's position and the target time
+    total_angle = ((t2 - t1) % 12) * 30
+
+    # If the total angle is not a multiple of 30, it's not possible to reach
+    if total_angle % 30 != 0:
+        return "NO"
+
+    # Check if it's possible to reach the target time by following the shortest path
+    if abs(h_angle - total_angle) <= 180 or abs(m_angle - total_angle) <= 180 or abs(s_angle - total_angle) <= 180:
+        return "YES"
+
+    # If not, check if it's possible to reach by following the longest path
+    if abs(h_angle - total_angle) >= 180 and abs(m_angle - total_angle) >= 180 and abs(s_angle - total_angle) >= 180:
+        return "YES"
+
+    # Otherwise, it's not possible to reach
+    return "NO"
+
+# Test cases
+print(is_possible(12, 30, 45, 3, 11)) # NO
+print(is_possible(12, 0, 1, 12, 1))  # YES
+print(is_possible(3, 47, 0, 4, 9))   # YES
+```
+
+This solution calculates the angle of each clock hand in degrees, and then calculates the total angle between Misha's position and the target time. If the total angle is not a multiple of 3

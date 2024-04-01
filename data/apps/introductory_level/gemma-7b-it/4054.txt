@@ -1,0 +1,25 @@
+## Explanation
+
+The text you provided describes a letter written by Nicolas Flamel, a famous alchemist. In this letter, Flamel emphasizes the importance of labor and the impossibility of creating something from nothing. He also introduces his alchemical symbols and encourages the recipient to engage in the practice of alchemy.
+
+Here is a breakdown of the text:
+
+**Main points:**
+
+* **Labor conquers all:** Flamel emphasizes that hard work is the key to success, regardless of the obstacles.
+* **No creation ex nihilo:** He argues that creation from scratch is impossible, emphasizing the need to utilize existing parts.
+* **Alchemical symbols:** Flamel introduces his alchemical symbols, including "Aqua Fortis," "Aqua Regia," "Amalgama," "Minium," and "Vitriol."
+* **Engaging in alchemy:** He encourages the recipient to join him in the practice of alchemy, stating that "Festina lente" (work slowly) and " nulla tenaci invia est via" (there is no short way).
+
+**Additional notes:**
+
+* The text includes a signature at the end, "Fac et spera, Vale, Nicolas Flamel."
+* The text is written in a formal and persuasive tone.
+* The use of symbolism and imagery is evident.
+
+**The input and output sections:**
+
+* The input section reads several integers, representing the number of cases.
+* The output section prints a single integer, which is the result for each case.
+
+**Overall, this text is a letter written by a alchemist who encourages hard work and creativity. It also introduces the concept of alchemical symbols and practices.**

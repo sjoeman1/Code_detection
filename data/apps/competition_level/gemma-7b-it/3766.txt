@@ -1,0 +1,34 @@
+```python
+n = int(input())
+cards = []
+for _ in range(n):
+    cards.append(input().strip().split())
+
+# Create a dictionary to store the number of cards of each type
+cards_dict = {}
+for color, value in cards:
+    if color not in cards_dict:
+        cards_dict[color] = 0
+    cards_dict[color] += int(value)
+
+# Calculate the minimum number of hints
+min_hints = 0
+for color, value in cards_dict.items():
+    min_hints += max(0, cards_dict[color] - 1)
+
+print(min_hints)
+```
+
+**Explanation:**
+
+1. **Create a dictionary to store the number of cards of each type:** The dictionary `cards_dict` stores the number of cards of each color and value.
+2. **Calculate the minimum number of hints:** For each color, the number of hints required is equal to the maximum number of cards of that color minus 1. The total number of hints is the sum of these values for all colors.
+3. **Print the minimum number of hints:** The final output is the total number of hints.
+
+**Time Complexity:**
+
+- The time complexity of this algorithm is O(n) where n is the number of cards. This is because the algorithm iterates over the list of cards only once.
+
+**Space Complexity:**
+
+- The space complexity of this algorithm is O(n) as well, because the algorithm uses a dictionary to store the number of cards of each type, which has a space complexity of O(n).

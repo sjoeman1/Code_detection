@@ -1,0 +1,39 @@
+ Here is a Python3 solution for the problem:
+
+```python
+import sys
+
+def get_number_of_pairs(n, m, p):
+    count = 0
+    for i in range(n):
+        # Find the position of m in the subarray p[i:]
+        j = search_right(p[i:], m)
+        if j < len(p[i:]):
+            # If m is found, then count the number of elements to the right of m
+            count += len(p[i:]) - j - 1
+        else:
+            # If m is not found, then m is greater than all elements in the subarray
+            count += len(p[i:])
+
+    return count
+
+def search_right(arr, target):
+    left, right = 0, len(arr)
+    while left < right:
+        mid = (left + right) // 2
+        if arr[mid] > target:
+            right = mid
+        else:
+            left = mid + 1
+    return left
+
+if __name__ == '__main__':
+    input = sys.stdin.readline
+    n, m = map(int, input().split())
+    p = list(map(int, input().split()))
+    print(get_number_of_pairs(n, m, p))
+```
+
+The solution uses a binary search algorithm to find the position of the median in the subarray p[i:]. If the median is found, then the number of pairs is the number of elements to the right of the median. If the median is not found, then the number of pairs is the length of the subarray. The total number of pairs is the sum of the number of pairs for all subarrays.
+
+The time complexity of the solution is O(nlogn), where n is the length of the given sequence. The space complexity is O(1), not counting the input.

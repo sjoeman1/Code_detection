@@ -1,0 +1,50 @@
+
+Here is the Python 3 code for the given problem:
+
+```python
+# Function to check if two rectangles overlap
+def check_overlap(rect1, rect2):
+    if (rect1[0] < rect2[0] + rect2[2] and
+        rect1[0] + rect1[2] > rect2[0] and
+        rect1[1] < rect2[1] + rect2[3] and
+        rect1[1] + rect1[3] > rect2[1]):
+        return True
+    else:
+        return False
+
+# Function to check if the paintings can be placed on the board
+def check_paintings(a1, b1, a2, b2, a3, b3):
+    # Check if the board is large enough to hold both paintings
+    if a1 * b1 < (a2 * b2) + (a3 * b3):
+        return "NO"
+
+    # Check if the paintings overlap
+    rect1 = [0, 0, a2, b2]
+    rect2 = [0, 0, a3, b3]
+
+    if check_overlap(rect1, rect2):
+        return "NO"
+
+    # Check if the paintings can be placed on the board
+    if a1 >= max(a2, a3) and b1 >= max(b2, b3):
+        return "YES"
+    elif b1 >= max(a2, a3) and a1 >= max(b2, b3):
+        return "YES"
+    else:
+        return "NO"
+
+# Main function
+if __name__ == "__main__":
+    # Read the input
+    a1, b1 = map(int, input().split())
+    a2, b2 = map(int, input().split())
+    a3, b3 = map(int, input().split())
+
+    # Check if the paintings can be placed on the board
+    result = check_paintings(a1, b1, a2, b2, a3, b3)
+
+    # Print the result
+    print(result)
+```
+
+The code defines two functions: `

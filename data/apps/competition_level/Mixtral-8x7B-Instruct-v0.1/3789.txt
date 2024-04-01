@@ -1,0 +1,34 @@
+ Here is a Python3 solution for the problem:
+
+```python
+import sys
+from collections import defaultdict
+
+input = sys.stdin.readline
+
+def solve():
+    N = int(input())
+    A = list(map(int, input().split()))
+
+    # Compute the prefix sum of A.
+    P = [0] * (N + 1)
+    for i in range(N):
+        P[i + 1] = P[i] + A[i]
+
+    # Initialize the maximum amount of money that can be earned.
+    max_money = 0
+
+    # Try all possible numbers to smash.
+    for x in range(1, 101):
+        # Compute the remaining money if we smash all multiples of x.
+        remain = [P[i + 1] - P[max(0, i - (i % x) + 1)] for i in range(N)]
+
+        # Update the maximum amount of money that can be earned.
+        max_money = max(max_money, sum(max(0, a) for a in remain))
+
+    print(max_money)
+
+solve()
+```
+
+This solution first computes the prefix sum of A. Then, for each possible number to smash, it computes the remaining money if we smash all multiples of x. Finally, it updates the maximum amount of money that can be earned by taking the maximum of the remaining money and the current maximum. The time complexity of this solution is O(N \* M), where M is the maximum number to smash, which is 100 in this problem.

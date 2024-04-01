@@ -1,0 +1,27 @@
+```python
+n = int(input())
+s = input()
+
+# Calculate the minimum operations to type the string
+operations = len(s)
+
+# If there is a copy operation, the minimum operations are reduced by 1
+if s.count(s[0]) == 1:
+    operations -= 1
+
+print(operations)
+```
+
+**Explanation:**
+
+* The code calculates the length of the string `s` and stores it in the variable `operations`.
+* If there is a copy operation, the minimum operations are reduced by 1. This is because we can copy the string and append it to itself, which saves us the need to type the characters one by one.
+* The code then prints the minimum operations.
+
+**Time Complexity:**
+
+* The code calculates the length of the string `s` only once, so the time complexity is O(n).
+
+**Space Complexity:**
+
+* The code uses a constant amount of space, regardless of the size of the input string.

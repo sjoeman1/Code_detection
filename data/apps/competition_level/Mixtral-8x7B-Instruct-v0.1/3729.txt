@@ -1,0 +1,42 @@
+ Here is a Python3 solution for the problem:
+
+```python
+from math import comb
+
+MOD = 1000000007
+
+def solve(f, w, h):
+    if w == 0:
+        return 1
+    if f == 0:
+        return 0 if h > 0 else 1
+    if h == 0:
+        return 0
+    if f == 1:
+        return (sum([comb(w+i-1, w-1) for i in range(h, min(w, h+2))]) % MOD * pow(2, w-1, MOD)) % MOD
+    if w == 1:
+        return (sum([comb(f+i-1, f-1) for i in range(h, min(f, h+2))]) % MOD * pow(2, f-1, MOD)) % MOD
+
+    ans = 0
+    for i in range(h, min(f, w, h+2)):
+        ans = (ans + (comb(f+i-1, f-1) * comb(w+i-1, w-1)) % MOD) % MOD
+    ans = (ans * pow(2, f+w-2, MOD)) % MOD
+    return ans
+
+while True:
+    try:
+        f, w, h = map(int, input().strip().split())
+        print(solve(f, w, h))
+    except:
+        break
+```
+
+The solution uses the combinatorial approach to calculate the number of valid arrangements and then calculates the probability by dividing the number of valid arrangements by the total possible arrangements.
+
+The `comb` function is used to calculate the binomial coefficient `n choose k`, which is the number of ways to choose `k` items from a set of `n` items.
+
+The `pow` function is used to calculate `x^y` modulo `MOD` using the modular exponentiation technique.
+
+The input is read using the `input` function and the `strip` and `split` methods. The input is expected to be in the format `f w h`, where `f`, `w`, and `h` are integers separated by spaces.
+
+The

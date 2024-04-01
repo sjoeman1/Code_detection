@@ -1,0 +1,34 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def min_operations(x, y, m):
+    if x >= m or y >= m:
+        return 0
+    operations = 0
+    while x < 0 or y < 0:
+        if x <= y:
+            x += y
+            y = abs(x - y)
+            operations += 1
+        else:
+            y += x
+            x = abs(x - y)
+            operations += 1
+    return (m - x - y) // (x + y) + operations
+
+if __name__ == "__main__":
+    x, y, m = map(int, input().split())
+    result = min_operations(x, y, m)
+    if result < 0:
+        print("-1")
+    else:
+        print(result)
+```
+
+The function `min_operations` takes three arguments `x`, `y`, and `m` and returns the minimum number of operations required to make the pair of integers `x` and `y` `m`-perfect.
+
+The function first checks if either `x` or `y` is already greater than or equal to `m`, in which case no operations are required. If not, it initializes a counter `operations` to zero and then repeatedly replaces the smaller of `x` and `y` with their sum until both `x` and `y` are non-negative. This ensures that the resulting pair of integers will be `m`-perfect if one of the original integers is non-negative and the other is not too far away in absolute value.
+
+Finally, the function computes the minimum number of additional operations required to make the resulting pair of integers `m`-perfect. If this number is negative (i.e., if the resulting pair of integers is already `m`-perfect), the function returns zero. Otherwise, the function returns the computed number of operations.
+
+The main part of the program reads the input values of `x`, `y`, and `m`, calls the `min_operations` function, and prints the result.

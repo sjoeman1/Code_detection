@@ -1,0 +1,25 @@
+```python
+n, r = map(int, input().split())
+
+projects = [tuple(map(int, input().split())) for _ in range(n)]
+
+projects.sort(key=lambda x: x[0] - x[1])
+
+rating = r
+
+max_projects = 0
+
+for a, b in projects:
+    if rating - b >= a:
+        max_projects += 1
+        rating += b
+
+print(max_projects)
+```
+
+**Explanation:**
+
+1. **Sort projects by required rating minus change:** This helps us find the projects that can be completed in order, maximizing the number of completed projects.
+2. **Maintain current rating:** We need to track our current rating to see if we have enough rating to complete each project.
+3. **Complete projects until rating falls below zero:** We continue completing projects until our rating falls below zero, ensuring that we have enough rating before starting each project and maintaining a non-negative rating after completing each project.
+4. **Count completed projects:** Finally, we count the number of completed projects to find the maximum possible subset.

@@ -1,0 +1,24 @@
+```python
+import math
+
+n, m, k = map(int, input().split())
+
+if k > 2 * (n + m):
+    print(-1)
+else:
+    area = n * m
+    cuts = 0
+    while area // k:
+        cuts += 1
+        area //= k
+    print(area)
+```
+
+**Explanation:**
+
+* We need to find the number of cuts that can be made to the chocolate bar.
+* The maximum number of cuts that can be made is the minimum of the number of cuts that can be made to the bar in each direction (horizontal and vertical).
+* The number of cuts that can be made in each direction is equal to the number of unit squares in the bar in that direction.
+* We need to find the area of the smallest piece of chocolate that can be cut from the bar with the number of cuts that we have found.
+* The area of the smallest piece of chocolate is equal to the number of unit squares in that piece.
+* The answer is the area of the smallest piece of chocolate that can be cut from the bar with exactly k cuts.

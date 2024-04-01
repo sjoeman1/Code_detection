@@ -1,0 +1,31 @@
+```python
+a_1, b_1, a_2, b_2, L, R = map(int, input().split())
+
+# Calculate the first progression
+a_1_k = a_1 + k * b_1 for k in range(1, int((R-a_1)/b_1) + 1)
+
+# Calculate the second progression
+a_2_l = a_2 + l * b_2 for l in range(1, int((R-a_2)/b_2) + 1)
+
+# Find the intersection
+x = set(a_1_k) & set(a_2_l)
+
+# Print the number of integers in the intersection
+print(len(x))
+```
+
+**Explanation:**
+
+1. **Calculate the first progression:** `a_1_k` is calculated by adding `k` multiples of `b_1` to `a_1`.
+2. **Calculate the second progression:** `a_2_l` is calculated by adding `l` multiples of `b_2` to `a_2`.
+3. **Find the intersection:** The sets `a_1_k` and `a_2_l` are intersected to find the common elements.
+4. **Print the number of integers in the intersection:** The number of elements in the intersection is printed.
+
+**Time complexity:**
+
+* Calculating `a_1_k` and `a_2_l` takes O(n) time, where `n` is the number of iterations.
+* Finding the intersection takes O(n) time, where `n` is the number of elements in the sets.
+
+**Space complexity:**
+
+* The program uses a constant amount of space, regardless of the input size.

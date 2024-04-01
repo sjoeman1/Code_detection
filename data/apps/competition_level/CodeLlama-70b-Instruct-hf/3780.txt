@@ -1,0 +1,31 @@
+
+
+The provided input describes a scenario where a team of furry rescue rangers is sitting idle in their hollow tree when they receive a signal of distress. They have a dirigible that can move in the air, and they need to reach the distress signal's location as soon as possible.
+
+The input consists of four integers on the first line, x1, y1, x2, y2, which represent the coordinates of the rescuers' headquarters and the point where the distress signal came from, respectively. The second line contains two integers vmax and t, which denote the maximum speed of the chipmunk dirigible relative to the air and the moment of time when the wind changes according to the weather forecast, respectively. The third line contains two pairs of integers (vx, vy) and (wx, wy) that describe the wind for the first t seconds and the wind that will blow at all the remaining time, respectively.
+
+Here's the Python code to solve this problem:
+
+```
+import math
+
+# Input the coordinates of the rescuers' headquarters and the distress signal's location
+x1, y1, x2, y2 = map(int, input().split())
+
+# Input the maximum speed of the dirigible relative to the air and the moment of time when the wind changes
+vmax, t = map(int, input().split())
+
+# Input the wind for the first t seconds and the wind that will blow at all the remaining time
+vx, vy, wx, wy = map(int, input().split())
+
+# Calculate the distance between the rescuers' headquarters and the distress signal's location
+distance = math.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2)
+
+# Calculate the minimum time the rescuers need to get to the distress signal's location
+time = distance / vmax
+
+# If the wind is blowing in the air, adjust the time accordingly
+if vx != 0 or vy != 0:
+    time = (distance + t * vmax * math.sqrt(vx ** 2 + vy ** 2)) / (vmax - math.sqrt(vx ** 2 + vy ** 2))
+
+# If the wind changes after t seconds, adjust the time accordingly

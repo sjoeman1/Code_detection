@@ -1,0 +1,25 @@
+```python
+n = int(input())
+crush = list(map(int, input().split()))
+
+possible = False
+t = 1
+while not possible:
+    for i in range(n):
+        if crush[i] == i and crush[crush[i]] == i:
+            for j in range(i, n):
+                if crush[j] == i and crush[crush[j]] == j:
+                    t += 1
+                    possible = True
+    if not possible:
+        t = -1
+
+print(t)
+```
+
+**Explanation:**
+
+* The code reads the number of people in Arpa's land and their crushes.
+* It checks if there is a t that satisfies the condition for each person.
+* If the condition is not satisfied, it prints -1.
+* Otherwise, it prints the smallest t that satisfies the condition.

@@ -1,0 +1,28 @@
+```python
+n = int(input())
+s = input().lower()
+
+# Check if the string can be sorted
+if sorted(s) == s:
+    print("YES")
+    print("".join(["0" if i == s[i-1] else "1" for i in range(len(s))]))
+else:
+    print("NO")
+```
+
+**Explanation:**
+
+* The code reads the input and stores the length of the string and the string itself.
+* It checks if the string can be sorted by comparing it with the sorted string.
+* If the strings are equal, it prints "YES" and the coloring.
+* Otherwise, it prints "NO".
+
+**Time complexity:**
+
+* The code reads the input in constant time.
+* The code checks if the string can be sorted in constant time.
+* The code prints the output in constant time.
+
+**Space complexity:**
+
+* The code uses a constant amount of space.

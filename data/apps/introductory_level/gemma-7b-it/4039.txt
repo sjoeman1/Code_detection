@@ -1,0 +1,19 @@
+```python
+n, r = map(int, input().split())
+a, b = [], []
+for _ in range(n):
+    a.append(int(input()))
+    b.append(int(input()))
+
+s = r
+for i in range(n):
+    if s - a[i] < 0:
+        print("NO")
+        exit()
+    s += b[i]
+    if s < 0:
+        print("NO")
+        exit()
+
+print("YES")
+```

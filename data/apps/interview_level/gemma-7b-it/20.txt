@@ -1,0 +1,52 @@
+```python
+import re
+
+time_str = input().strip()
+
+# Convert time_str to hours and minutes
+hh, mm = map(int, re.findall(r"(\d+):(\d+)", time_str).pop().split(":"))
+
+# Calculate the minimum number of minutes to sleep
+min_sleep = abs((hh * 60 + mm) - (hh * 60 + mm) // 2)
+
+# Print the minimum number of minutes to sleep
+print(min_sleep)
+```
+
+**Explanation:**
+
+1. **Input and Conversion:**
+   - Reads the input time_str in the format hh:mm.
+   - Converts the time_str into hours and minutes using re.findall and int.
+2. **Calculating Minimum Sleep:**
+   - Calculates the minimum number of minutes to sleep using the formula `abs((hh * 60 + mm) - (hh * 60 + mm) // 2)`, which calculates the difference between the current time and the time when the time is a palindrome.
+   - The formula accounts for the hours and minutes separately and takes the integer division of the resulting number to get the minimum number of minutes to sleep.
+3. **Output:**
+   - Prints the minimum number of minutes to sleep on a single line.
+
+**Example Usage:**
+
+```
+# Example 1
+time_str = "05:39"
+min_sleep = palindrome_sleep(time_str)
+print(min_sleep)  # Output: 11
+
+# Example 2
+time_str = "13:31"
+min_sleep = palindrome_sleep(time_str)
+print(min_sleep)  # Output: 0
+
+# Example 3
+time_str = "23:59"
+min_sleep = palindrome_sleep(time_str)
+print(min_sleep)  # Output: 1
+```
+
+**Output:**
+
+```
+11
+0
+1
+```

@@ -1,0 +1,26 @@
+ Here is a Python3 solution for the problem:
+
+```python
+import math
+
+def gcd(a, b):
+    return math.gcd(a, b)
+
+n = int(input().strip())
+a = list(map(int, input().strip().split()))
+
+result = 1
+for i in range(1, min(a) + 1):
+    if all(i % x == 0 for x in a):
+        result += 1
+
+print(result)
+```
+
+Explanation:
+
+* First, we read the number of elements in the array `n` and the array `a` itself.
+* We initialize the result variable to 1 (since 1 is a common divisor of all numbers).
+* Then, we iterate from 1 to the minimum value in the array `a`. For each value `i`, we check if it is a common divisor of all elements in the array. This is done using the `all` function, which checks if all elements in the iterable (in this case, a generator expression) are true. The generator expression checks if `i` is divisible by the current element in `a`.
+* If `i` is a common divisor of all elements in the array, we increment the result variable by 1.
+* Finally, we print the result variable, which contains the number of common divisors of all elements in the array.

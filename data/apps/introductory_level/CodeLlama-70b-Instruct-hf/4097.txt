@@ -1,0 +1,33 @@
+
+Here is the Python3 code for solving the question:
+```python
+# Input: t, the number of queries
+t = int(input())
+
+# Process each query
+for _ in range(t):
+    # Input: n, the number of divisors
+    n = int(input())
+
+    # Input: d_1, d_2, ..., d_n, the divisors
+    divisors = [int(x) for x in input().split()]
+
+    # Initialize the answer to -1
+    answer = -1
+
+    # Sort the divisors in descending order
+    divisors.sort(reverse=True)
+
+    # Find the product of all divisors
+    product = 1
+    for divisor in divisors:
+        product *= divisor
+
+    # Check if the product of divisors is divisible by 1 and x
+    if product % (divisors[0] * divisors[-1]) == 0:
+        answer = product // (divisors[0] * divisors[-1])
+
+    # Output the answer
+    print(answer)
+```
+This code will take care of the given input and output format, and it will handle all possible cases.

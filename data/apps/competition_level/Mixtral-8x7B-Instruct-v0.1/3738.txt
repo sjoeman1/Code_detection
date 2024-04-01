@@ -1,0 +1,16 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def robot_walk():
+    a, b = map(int, input().split())
+    s = input()
+    x, y = 0, 0
+    dx, dy = { 'R': (1, 0), 'L': (-1, 0), 'U': (0, 1), 'D': (0, -1) }[s[0]]
+    while True:
+        if x == a and y == b:
+            print("Yes")
+            return
+        if (x + dx, y + dy) == (a, b) or (x + dx, y + dy) == (a - dx, y - dy):
+            print("Yes")
+            return
+        x, y = x + dx, y + dy

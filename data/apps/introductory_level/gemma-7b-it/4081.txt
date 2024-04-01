@@ -1,0 +1,27 @@
+```python
+n = int(input())
+a = list(map(int, input().split()))
+
+a.sort()
+
+k = len(set(a))
+s = ""
+
+for i in range(k):
+    if a[i] == a[0]:
+        s += "L"
+    else:
+        s += "R"
+
+print(k)
+print(s)
+```
+
+**Explanation:**
+
+* The code reads the number of elements `n` and then reads the `n` integers into a list `a`.
+* The code creates a set `set(a)` of unique elements from the list `a`.
+* The length of the set is stored in variable `k`, which represents the maximum number of elements in a strictly increasing sequence.
+* The code creates a string `s` of length `k` and initializes it to an empty string.
+* The code iterates over the range `k` and checks if the element at that position is the first element in the list. If it is, it appends 'L' to the string. If it is not, it appends 'R'.
+* Finally, the code prints `k` and the string `s`.

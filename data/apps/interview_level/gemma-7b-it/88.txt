@@ -1,0 +1,32 @@
+```python
+a, b = map(int, input().split())
+
+# Calculate the binary representation of the year 2015
+num_2015 = 2015
+num_2015_bin = str(bin(num_2015).replace("0b", ""))
+
+# Count the number of years with exactly one zero in the binary representation
+count = 0
+for year in range(a, b + 1):
+    num_year = year
+    num_year_bin = str(bin(num_year).replace("0b", ""))
+    if num_year_bin.count("1") - num_year_bin.count("0") == 1:
+        count += 1
+
+print(count)
+```
+
+**Explanation:**
+
+1. **Calculate the binary representation of 2015:** Convert 2015 to binary using the `bin()` function and remove the "0b" prefix.
+2. **Count the number of years with exactly one zero in the binary representation:** Iterate over the range of years between `a` and `b`, convert each year to binary, and count the number of ones and zeros. If the number of ones and zeros is equal to 1, increment the `count` variable.
+3. **Print the count:** Once the loop is complete, print the `count` value.
+
+**Time complexity:**
+
+* The algorithm iterates over the range of years, so the time complexity is O(b-a).
+* Converting a number to binary takes O(log(n)) time, where n is the number of digits in the binary representation. Therefore, the time complexity for converting all years is O(b-a) * log(n).
+
+**Space complexity:**
+
+* The algorithm uses a constant amount of space, regardless of the input size.

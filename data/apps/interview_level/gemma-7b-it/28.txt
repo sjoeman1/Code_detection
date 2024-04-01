@@ -1,0 +1,23 @@
+```python
+n = int(input())
+a = []
+for _ in range(n):
+    name, typ = input().split()
+    a.append({"name": name, "typ": typ})
+
+# Sort files by type and then by name
+a.sort(key=lambda x: (x["typ"], x["name"]))
+
+# Calculate the number of examples
+e = sum(1 for x in a if x["typ"] == "1")
+
+# Print the minimum number of lines
+print(e + 1)
+
+# Print the script file
+for i in range(e):
+    print("move " + a[i]["name"] + " " + str(i + 1))
+
+    # Rewrite the file with the same content as the previous file
+    print("move " + str(i + 1) + " " + a[i]["name"])
+```

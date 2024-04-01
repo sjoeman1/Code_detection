@@ -1,0 +1,31 @@
+
+
+Here is the Python3 code that solves the problem:
+
+```python
+# Inputs the number of test cases
+t = int(input())
+
+# Iterates through each test case
+for i in range(t):
+    # Inputs the length of the array
+    n = int(input())
+
+    # Inputs the array elements
+    a = list(map(int, input().split()))
+
+    # Iterates through each possible subsequence of length at least 3
+    for i in range(n - 2):
+        for j in range(i + 2, n):
+            # Checks if the subsequence is a palindrome
+            if a[i] == a[j] and a[i + 1] == a[j - 1]:
+                print("YES")
+                break
+        else:
+            continue
+        break
+    else:
+        print("NO")
+```
+
+This code iterates through each test case and checks each possible subsequence of length at least 3 to determine if it is a palindrome. If it finds a palindrome, it prints "YES" and moves on to the next test case. If it does not find a palindrome, it prints "NO".

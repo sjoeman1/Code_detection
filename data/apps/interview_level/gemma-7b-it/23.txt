@@ -1,0 +1,28 @@
+```python
+a, b = map(int, input().split())
+
+# Convert a to a list of digits
+a_digits = [int(x) for x in str(a)]
+
+# Sort the digits in descending order
+a_digits.sort()
+
+# Construct the maximum number not exceeding b
+max_num = 0
+for i in a_digits:
+    max_num = max_num * 10 + i
+
+# Remove leading zeroes
+max_num = str(max_num).lstrip('0') or '0'
+
+# Print the maximum number
+print(max_num)
+```
+
+**Explanation:**
+
+1. Convert the integer `a` to a list of digits.
+2. Sort the digits in descending order.
+3. Construct the maximum number not exceeding `b` by multiplying each digit by the appropriate power of 10 and adding it to the maximum number.
+4. Remove leading zeroes from the maximum number.
+5. Print the maximum number.

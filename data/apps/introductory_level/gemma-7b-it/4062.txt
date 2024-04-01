@@ -1,0 +1,17 @@
+```python
+a, b, c, d = map(int, input().split())
+
+x_min = max(a, c)
+x_max = min(b, d)
+
+y_min = max(1, int((c-1)/a))
+y_max = min(int((d-1)/a) + 1, int((b-a)/a) + 1)
+
+print(max(x_min * y_min, x_max * y_max))
+```
+
+**Explanation:**
+
+- We find the maximum value of x that can be multiplied by y within the given constraints. This is the minimum of `b` and `d`, divided by `a` and rounded down.
+- We find the maximum value of y that can be multiplied by x within the given constraints. This is the maximum of `1` and the result of dividing `c-1` by `a` plus one, and the result of dividing `b-a` by `a` plus one.
+- Finally, we find the maximum of the product of `x_min` and `y_min` and the product of `x_max` and `y_max` and print that.

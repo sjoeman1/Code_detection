@@ -1,0 +1,18 @@
+```python
+k = int(input())
+n = 1
+num = str(n)
+while len(num) < k:
+    n += 1
+    num = str(n)
+print(int(num[k-1]))
+```
+
+**Explanation:**
+
+* Read the input integer $k$, which represents the position of the digit to be retrieved.
+* Initialize variables `n` to 1 and `num` to a string representation of `n`.
+* Enter a loop to continue incrementing `n` until the length of `num` exceeds $k.
+* Once the loop breaks, the `num` string will contain the number with the desired number of digits.
+* Extract the digit at the $k-th position from the string and convert it back to an integer.
+* Print the result.

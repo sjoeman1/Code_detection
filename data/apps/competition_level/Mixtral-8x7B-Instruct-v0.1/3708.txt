@@ -1,0 +1,38 @@
+ Here is a Python3 solution using BFS (Breadth First Search) to find the shortest path from the start to the end while avoiding the volcanoes:
+
+```python
+import collections
+
+def min\_time(n, m, volcanoes):
+if (n, n) in volcanoes:
+return -1
+
+queue = collections.deque([((1, 1), 0)])
+visited = set([(1, 1)])
+
+while queue:
+current, time = queue.popleft()
+
+if current == (n, n):
+return time
+
+for dr, dc in [(0, 1), (1, 0)]:
+next\_row, next\_col = current[0] + dr, current[1] + dc
+if 1 <= next\_row <= n and 1 <= next\_col <= n and \
+(next\_row, next\_col) not in visited and \
+(next_row, next\_col) not in volcanoes:
+queue.append(((next\_row, next\_col), time + 1))
+visited.add((next\_row, next\_col))
+
+return -1
+
+n, m = map(int, input().split())
+volcanoes = set()
+for _ in range(m):
+x, y = map(int, input().split())
+volcanoes.add((x, y))
+
+print(min\_time(n, m, volcanoes))
+```
+
+This program first checks if the destination is occupied by a volcano. If it is, it returns -1. Then, it initializes a queue with the starting point and a visited set to keep track of the cells already visited. It uses a BFS approach to explore the desert, always moving down or right. When it reaches the destination, it returns the time spent. If it cannot reach the destination, it returns -1.

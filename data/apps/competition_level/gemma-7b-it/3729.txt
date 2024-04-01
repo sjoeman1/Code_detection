@@ -1,0 +1,33 @@
+```python
+import random
+
+f, w, h = map(int, input().split())
+
+# Calculate the number of ways to arrange food boxes and wine barrels such that no two stacks of food boxes are together and no two stacks of wine barrels are together
+num_ways = 0
+if f:
+    num_ways += f * (w - 1)
+if w:
+    num_ways += w * (f - 1)
+
+# Calculate the number of ways to arrange food boxes and wine barrels such that no stack of wine barrels has height less than or equal to h
+num_ways_acceptable = 0
+if f:
+    num_ways_acceptable += f * min(h, w)
+if w:
+    num_ways_acceptable += w * h
+
+# Calculate the probability of Jon Snow liking the arrangement
+probability = num_ways_acceptable / num_ways
+
+# Print the probability
+print(str(int(probability * 1e6)) + "e-6")
+print(int((probability * 1e6) // (1e9 + 7)))
+```
+
+**Explanation:**
+
+* The code calculates the number of ways to arrange food boxes and wine barrels such that no two stacks of food boxes are together and no two stacks of wine barrels are together. This is done by multiplying the number of food boxes by the number of ways to arrange them and multiplying the number of wine barrels by the number of ways to arrange them.
+* The code then calculates the number of ways to arrange food boxes and wine barrels such that no stack of wine barrels has height less than or equal to h. This is done by multiplying the number of food boxes by the minimum of h and w and multiplying the number of wine barrels by h.
+* Finally, the code calculates the probability of Jon Snow liking the arrangement by dividing the number of ways to arrange food boxes and wine barrels such that no stack of wine barrels has height less than or equal to h by the number of ways to arrange food boxes and wine barrels such that no two stacks of food boxes are together and no two stacks of wine barrels are together.
+* The code then prints the probability in scientific notation and the integer part of the probability multiplied by the inverse of (1e9 + 7).

@@ -1,0 +1,56 @@
+ Here is a Python3 solution using the shapely library to create and check for intersection of the squares:
+
+```python
+from shapely.geometry import Polygon
+
+def check_intersection(square1, square2):
+    poly1 = Polygon(square1)
+    poly2 = Polygon(square2)
+    return poly1.intersects(poly2)
+
+def parse_square(square_str):
+    square = []
+    for i in range(0, len(square_str), 2):
+        square.append((int(square_str[i]), int(square_str[i+1])))
+    return square
+
+def main():
+    square1_str = input()
+    square2_str = input()
+
+    square1 = parse_square(square1_str)
+    square2 = parse_square(square2_str)
+
+    if check_intersection(square1, square2):
+        print("Yes")
+    else:
+        print("No")
+
+if __name__ == "__main__":
+    main()
+```
+
+This solution first parses the input strings into pairs of coordinates and creates Polygon objects for each square. Then, it checks for intersection using the `intersects` method of the Polygon class.
+
+You can install the shapely library with pip:
+
+```
+pip install shapely
+```
+
+Then you can run the program with the provided examples:
+
+```
+$ python3 square_intersection.py
+0 0 6 0 6 6 0 6
+1 3 3 5 5 3 3 1
+Yes
+$ python3 square_intersection.py
+0 0 6 0 6 6 0 6
+7 3 9 5 11 3 9 1
+No
+$ python3 square_intersection.py
+6 0 6 6 0 6 0 0
+7 4 4 7 7 10 10 7
+Yes
+```

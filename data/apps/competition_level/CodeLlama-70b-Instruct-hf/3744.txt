@@ -1,0 +1,44 @@
+
+
+Here's the Python 3 code for solving the problem:
+
+```python
+import sys
+from itertools import combinations
+
+# Define the number of students, number of students in the programming team, and number of students in the sports team
+n, p, s = map(int, input().split())
+
+# Define the programming skills and sports skills for each student
+a = list(map(int, input().split()))
+b = list(map(int, input().split()))
+
+# Define the maximum strength of the university and the teams
+max_strength = -1
+max_prog_team = []
+max_sports_team = []
+
+# Iterate through all possible combinations of students for the programming team and the sports team
+for prog_team in combinations(range(1, n + 1), p):
+    for sports_team in combinations(set(range(1, n + 1)) - set(prog_team), s):
+        # Calculate the strength of the programming team and the sports team
+        prog_strength = sum(a[i - 1] for i in prog_team)
+        sports_strength = sum(b[i - 1] for i in sports_team)
+
+        # Check if the current combination has the maximum strength
+        if prog_strength + sports_strength > max_strength:
+            max_strength = prog_strength + sports_strength
+            max_prog_team = prog_team
+            max_sports_team = sports_team
+
+# Print the maximum strength of the university and the teams
+print(max_strength)
+print(*max_prog_team)
+print(*max_sports_team)
+```
+
+The code first takes the input for the number of students, number of students in the programming team, and number of students in the sports team. Then, it takes the input for the programming skills and sports skills for each student.
+
+Next, it iterates through all possible combinations of students for the programming team and the sports team using the `combinations` function from the `itertools` module. For each combination, it calculates the strength of the programming team and the sports team.
+
+If the current combination has the maximum strength, it updates the maximum strength and the

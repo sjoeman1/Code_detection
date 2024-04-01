@@ -1,0 +1,30 @@
+```python
+t = int(input())
+
+for _ in range(t):
+    n = int(input())
+    a = list(map(int, input().split()))
+
+    has_palindrome = False
+    for i in range(n-2):
+        subsequence = a[i:i+3]
+        if subsequence == subsequence[::-1]:
+            has_palindrome = True
+
+    print("YES" if has_palindrome else "NO")
+```
+
+**Explanation:**
+
+* The code reads the number of test cases, $t$, and for each test case reads the length of the array, $n$, and the $n$ integers of the array, $a$.
+* It then iterates over the array $a$ from the beginning to the end, skipping the first two elements.
+* For each group of three elements, it checks if the group is a palindrome. If it is, it sets the `has_palindrome` flag to `True`.
+* Finally, if the `has_palindrome` flag is `True`, it prints "YES". Otherwise, it prints "NO".
+
+**Time complexity:**
+
+* The code iterates over the array $a$ only once, so the time complexity is O(n).
+
+**Space complexity:**
+
+* The code uses a constant amount of space regardless of the size of the input, so the space complexity is O(1).

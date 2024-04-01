@@ -1,0 +1,26 @@
+```python
+x, k, d = map(int, input().split())
+
+# Calculate the minimum absolute value of the destination
+min_abs = abs(x - (x - d * k))
+
+# Print the minimum absolute value
+print(min_abs)
+```
+
+**Explanation:**
+
+- The idea is to calculate the absolute value of the destination coordinate as `abs(x - (x - d * k))`.
+- This calculates the distance from the current position `x` to the destination position `x - d * k`, and takes the absolute value.
+- The minimum absolute value is then printed.
+
+**Time complexity:**
+
+- The code reads the input in constant time.
+- The calculation of the absolute value takes constant time.
+- Therefore, the time complexity is O(1).
+
+**Space complexity:**
+
+- The code uses a constant amount of space regardless of the input size.
+- Therefore, the space complexity is O(1).

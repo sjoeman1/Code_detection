@@ -1,0 +1,24 @@
+
+Here is a possible solution:
+
+```python
+def is_beautiful(a, b, c, d):
+    if a < b or b < c or c < d:
+        return False
+    if a == b and b == c and c == d:
+        return True
+    return False
+
+
+def beautiful_sequence(a, b, c, d):
+    if not is_beautiful(a, b, c, d):
+        return "NO"
+    return "YES"
+
+
+if __name__ == "__main__":
+    a, b, c, d = map(int, input().split())
+    print(beautiful_sequence(a, b, c, d))
+```
+
+The `is_beautiful` function checks whether a sequence is beautiful. If it is, it returns `True`, otherwise it returns `False`. The `beautiful_sequence` function prints the output based on the result of `is_beautiful`.

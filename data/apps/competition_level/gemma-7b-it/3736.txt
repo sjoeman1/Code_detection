@@ -1,0 +1,27 @@
+```python
+import re
+
+name = input().strip().upper()
+
+# Check if the name is a mirror word
+is_mirror = bool(re.match("(?i)^[a-zA-Z]*$", name) and re.match("(?i)^[a-zA-Z]*$", name.lower().swapcase()) and name.lower() == name.lower().swapcase())
+
+print('YES' if is_mirror else 'NO')
+```
+
+**Explanation:**
+
+* The program reads the input name and converts it to uppercase and strips any whitespace.
+* It then checks if the name is a mirror word using the following conditions:
+    * The name must match the regex `(?i)^[a-zA-Z]*$`, which ensures that the name is a string of letters.
+    * The name must match its lowercase version with the letters swapped in reverse order.
+    * The name must be equal to its lowercase version with the letters swapped in reverse order.
+* If all conditions are met, the program prints 'YES'. Otherwise, it prints 'NO'.
+
+**Time Complexity:**
+
+* The program reads the input name only once, so the time complexity is O(n) where n is the length of the input name.
+
+**Space Complexity:**
+
+* The program uses a regular expression, which has a space complexity of O(n) where n is the length of the regular expression. In this case, the regular expression is `(?i)^[a-zA-Z]*$`, so the space complexity is O(n).

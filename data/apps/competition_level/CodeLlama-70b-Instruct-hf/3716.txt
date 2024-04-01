@@ -1,0 +1,24 @@
+
+
+Here is the Python3 code for the question:
+
+```
+def lcm(a, b):
+    return (a*b)//gcd(a,b)
+
+n = int(input())
+
+result = 1
+for i in range(1, n+1):
+    result = lcm(result, i)
+
+print(result)
+```
+
+The `lcm` function calculates the LCM of two numbers using the GCD (Greatest Common Divisor) formula.
+
+The `for` loop iterates through all the numbers from 1 to n, calculating the LCM of each number with the previous result.
+
+Finally, the `print` statement prints the final result.
+
+Note that this code assumes that the GCD function is already defined. You can define the GCD function using the Euclidean algorithm if needed.

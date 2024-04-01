@@ -1,0 +1,23 @@
+```python
+import numpy as np
+
+a_x, a_y, b_x, b_y, t_x, t_y = map(int, input().split())
+n = int(input())
+
+x_i, y_i = np.array(map(int, input().split())).reshape(n, 2)
+
+# Calculate the distance between Adil/Bera and each bottle
+distance = np.sqrt((x_i - a_x)**2 + (y_i - a_y)**2) + np.sqrt((x_i - b_x)**2 + (y_i - b_y)**2)
+
+# Find the minimum distance
+min_distance = np.sum(np.min(distance, axis=0))
+
+print(min_distance)
+```
+
+**Explanation:**
+
+* The code reads the input data, including the positions of Adil, Bera, the recycling bin, and the number of bottles.
+* It calculates the distance between Adil/Bera and each bottle using the square root of the sum of squares of the difference in x and y coordinates.
+* The code finds the minimum distance by taking the minimum of the distances for each bottle and summing them.
+* The total distance is printed as the output.

@@ -1,0 +1,29 @@
+```python
+n = int(input())
+s = []
+for _ in range(n):
+    s.append(input().lower())
+
+s.sort()
+
+if all(s[i] is prefix(s[i-1]) for i in range(1, len(s))):
+    print("YES")
+    print("\n".join(s))
+else:
+    print("NO")
+```
+
+**Explanation:**
+
+* The code reads the number of strings `n`, then reads the `n` strings.
+* It sorts the strings in ascending order based on their lexicographical order.
+* If for every string, all strings that are placed before it are its substrings, it prints "YES" and the rearranged strings.
+* Otherwise, it prints "NO".
+
+**Time Complexity:**
+
+* The code reads and sorts `n` strings, so the time complexity is O(n*n).
+
+**Space Complexity:**
+
+* The code uses an additional list `s` to store the strings, so the space complexity is O(n).

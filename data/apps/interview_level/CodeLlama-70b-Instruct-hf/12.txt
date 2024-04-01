@@ -1,0 +1,47 @@
+
+```python
+def longest_segment(trophies):
+    # Initially, the number of golden trophies is 0
+    golden = 0
+    # Initialize the start and end indices of the segment
+    start, end = 0, 0
+    # Initialize the maximum length of the segment
+    max_len = 0
+    # Iterate over the trophies
+    for i, trophy in enumerate(trophies):
+        if trophy == 'G':
+            # If the current trophy is golden, increase the number of golden trophies in the segment
+            golden += 1
+            # Update the end index of the segment
+            end = i
+            # Update the maximum length of the segment
+            max_len = max(max_len, end - start + 1)
+        else:
+            # If the current trophy is silver, reset the segment
+            start = i + 1
+            end = i + 1
+            golden = 0
+    return max_len
+
+def solve(n, trophies):
+    # Get the maximum length of the segment before swapping
+    max_len = longest_segment(trophies)
+    # Initialize the maximum length after swapping
+    max_len_swap = 0
+    # Iterate over the trophies
+    for i in range(n - 1):
+        # Swap the current trophy with the next one
+        trophies[i], trophies[i + 1] = trophies[i + 1], trophies[i]
+        # Calculate the maximum length of the segment after the swap
+        max_len_swap = max(max_len_swap, longest_segment(trophies))
+        # Reverse the swap to restore the original arrangement
+        trophies[i], trophies[i + 1] = trophies[i + 1], trophies[i]
+    # Return the maximum length of the segment after swapping
+    return max(max_len, max_len_swap)
+
+# Read the input
+n = int(input())
+trophies = list(input().strip())
+# Print the maximum possible beauty of the arrangement
+print(solve(n, trophies))
+```

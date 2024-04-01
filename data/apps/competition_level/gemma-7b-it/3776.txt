@@ -1,0 +1,31 @@
+```python
+import sys
+
+format = int(sys.stdin.readline())
+time_str = sys.stdin.readline().strip().split(":")
+hours = int(time_str[0])
+minutes = int(time_str[1])
+
+# Calculate the minimum number of digits to change
+min_changes = min(abs(hours - hours_target), abs(minutes - minutes_target)) + abs(minutes_target - minutes)
+
+# Update the time with the minimum changes
+time_str_new = str(hours_target) + ":" + str(minutes_target)
+
+# Print the corrected time
+print(time_str_new)
+```
+
+**Explanation:**
+
+- The code reads the format, time_str, and calculates the target hours and minutes.
+- It then calculates the minimum number of changes by considering the absolute difference between the current hours and minutes and the target hours and minutes.
+- The code updates the time_str with the target hours and minutes and prints the corrected time.
+
+**Time Complexity:**
+
+- The code calculates the minimum number of changes only once, so the time complexity is O(1).
+
+**Space Complexity:**
+
+- The code uses a constant amount of space, regardless of the input size, so the space complexity is O(1).

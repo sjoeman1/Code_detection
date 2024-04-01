@@ -1,0 +1,13 @@
+```python
+n = int(input())
+s = input().split()
+s = [int(x) for x in s]
+
+# Check if there is at least one phone number that can be made
+if any(len(str(x)) == 11 and str(x).startswith('8') for x in s):
+    # Calculate the maximum number of phone numbers that can be made
+    max_phone_numbers = sum(1 for x in s if len(str(x)) == 11 and str(x).startswith('8'))
+    print(max_phone_numbers)
+else:
+    print(0)
+```

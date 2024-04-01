@@ -1,0 +1,29 @@
+```python
+l, r, x, y = map(int, input().split())
+
+gcd_lcm = lambda a, b: (a * b) // GCD(a, b)
+
+pairs = 0
+for a in range(l, r + 1):
+    for b in range(a, r + 1):
+        if gcd_lcm(a, b) == x and gcd_lcm(a, b) == y:
+            pairs += 1
+
+print(pairs)
+```
+
+**Explanation:**
+
+* The code reads the input values `l`, `r`, `x`, and `y`.
+* It defines a function `gcd_lcm` that calculates the GCD and LCM of two numbers.
+* It iterates over the range `[l, r]` for both `a` and `b`, checking if the pair `(a, b)` satisfies the condition `GCD(a, b) = x` and `LCM(a, b) = y`.
+* The number of pairs that satisfy the condition is stored in the variable `pairs`.
+* Finally, the answer is printed.
+
+**Time Complexity:**
+
+* The code iterates over the range `[l, r]` twice, so the time complexity is O((r - l + 1) ^ 2).
+
+**Space Complexity:**
+
+* The code uses a constant amount of space, regardless of the input size.

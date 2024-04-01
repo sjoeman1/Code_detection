@@ -1,0 +1,31 @@
+
+Here is the Python 3 code to solve the question:
+
+```
+def check_flag(n, m, field):
+    if n % 3 != 0 or m != n // 3:
+        return "NO"
+    colors = set()
+    for i in range(n // 3):
+        color = field[i][0]
+        if color in colors:
+            return "NO"
+        colors.add(color)
+        for j in range(n):
+            if field[j][i] != color:
+                return "NO"
+    return "YES"
+
+n, m = map(int, input().split())
+field = []
+for _ in range(n):
+    field.append(list(input()))
+
+print(check_flag(n, m, field))
+```
+
+The code first checks if the field is a correct flag of Berland by checking if the height of the field is divisible by 3 and if the width is equal to the height divided by 3.
+
+If these conditions are satisfied, it checks if each stripe has only one color and if the colors are different from each other.
+
+If any of the conditions are not satisfied, it prints "NO" as the output. Otherwise, it prints "YES".

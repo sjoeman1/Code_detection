@@ -1,0 +1,30 @@
+ Here is a Python3 solution for the problem:
+
+```python
+import sys
+from collections import deque
+from functools import reduce
+from math import factorial
+
+def solve(n, a, p):
+    # Calculate the sum of all guest sizes
+    sum_a = sum(a)
+    # Calculate the maximum number of guests that can fit in the table
+    max_guests = p // sum_a if sum_a > 0 else 0
+    # Calculate the number of ways to arrange the guests
+    num_arrangements = factorial(n)
+    # Calculate the number of ways where at least one guest can fit in the table
+    num_fitting_arrangements = reduce(lambda x, y: x * (num_arrangements - y + 1), range(0, num_arrangements - max_guests + 1), 1)
+    # Calculate the average number of guests that can fit in the table
+    avg_guests = (num_fitting_arrangements * max_guests + (num_arrangements - num_fitting_arrangements) * 0) / num_arrangements
+    return avg_guests
+
+if __name__ == '__main__':
+    input_n, input_a, input_p = map(int, sys.stdin.readline().strip().split())
+    output_avg_guests = solve(input_n, list(map(int, sys.stdin.readline().strip().split())), input_p)
+    print(f'{output_avg_guests:.12f}')
+```
+
+This solution uses dynamic programming to calculate the number of ways to arrange the guests such that at least one guest can fit in the table. The average number of guests that can fit in the table is then calculated as the sum of the maximum number of guests that can fit in the table, weighted by the number of ways to arrange the guests such that at least one guest can fit in the table, divided by the total number of ways to arrange the guests. The result is formatted with 12 decimal places.
+
+The solution uses the `factorial` function from the `math` module to calculate the number of ways to arrange

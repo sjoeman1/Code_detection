@@ -1,0 +1,22 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def min\_packages(n, k):
+for i in range(1, k+1):
+if n % i == 0:
+return n // i
+return -1
+
+t = int(input().strip())
+for _ in range(t):
+n, k = map(int, input().strip().split())
+ans = min\_packages(n, k)
+if ans == -1:
+print("Impossible")
+else:
+print(ans)
+```
+
+The function `min_packages` takes two arguments, `n` and `k`, and returns the minimum number of packages that Polycarp needs to buy to get exactly `n` shovels, given that he will buy packages of the same type and the number of shovels in each package is an integer from 1 to `k`, inclusive. If it's impossible to get exactly `n` shovels, it returns -1.
+
+The main part of the solution is a loop that reads the number of test cases `t` and for each test case, reads the values of `n` and `k`, calls the `min_packages` function and prints the result. If the result is -1, it prints "Impossible".

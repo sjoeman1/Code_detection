@@ -1,0 +1,53 @@
+
+
+Here's the Python3 code that solves the problem:
+
+```python
+def is_mirror(s):
+    if len(s) % 2 != 0:
+        return False
+    mirror_map = {
+        "A": "A",
+        "B": "B",
+        "C": "C",
+        "D": "D",
+        "E": "E",
+        "F": "F",
+        "G": "G",
+        "H": "H",
+        "I": "I",
+        "J": "J",
+        "K": "K",
+        "L": "L",
+        "M": "M",
+        "N": "N",
+        "O": "O",
+        "P": "P",
+        "Q": "Q",
+        "R": "R",
+        "S": "S",
+        "T": "T",
+        "U": "U",
+        "V": "V",
+        "W": "W",
+        "X": "X",
+        "Y": "Y",
+        "Z": "Z"
+    }
+
+    n = len(s)
+    for i in range(n // 2):
+        if s[i] not in mirror_map or s[n - i - 1] != mirror_map[s[i]]:
+            return False
+    return True
+
+
+if __name__ == "__main__":
+    s = input()
+    if is_mirror(s):
+        print("YES")
+    else:
+        print("NO")
+```
+
+The code first checks if the length of the input string is odd. If it is, it immediately returns False, as the string cannot be a mirror word if it has an odd length. If the length is even, it creates a dictionary called `mirror_map` that maps each letter to its mirror image. Then, it iterates through the string and checks if each letter has a mirror image in the dictionary and if the mirror image is at the correct position in the string. If any of these conditions is not met, it returns False. If all letters have a mirror image and are at the correct positions, it returns True.

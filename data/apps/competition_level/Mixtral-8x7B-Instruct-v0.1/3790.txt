@@ -1,0 +1,38 @@
+ Here's the Python3 code to solve the problem:
+```python
+n, T = map(int, input().split())
+arr = list(map(int, input().split()))
+
+# Create an array of size 301 to store the maximum length of
+# non-decreasing subsequence ending at each number from 1 to 300
+dp = [0] * 301
+
+max_len = 0
+for i in range(n):
+    # Calculate the index of the current number in the array
+    # after repeating it T times
+    curr_num = arr[i]
+    curr_index = (curr_num - 1) * T + i + 1
+    
+    # Update dp array by taking maximum of previous values
+    dp[curr_num] = max(dp[curr_num], dp[curr_num - 1])
+    dp[curr_num] = max(dp[curr_num], 1)
+    
+    # Update the maximum length of non-decreasing subsequence
+    max_len = max(max_len, dp[curr_num])
+    
+    # Add T to the current index to get the index of the same number
+    # after T steps
+    next_index = curr_index + T
+    
+    # Update the dp array for the next T steps
+    for j in range(curr_num + 1, 301):
+        dp[j] = max(dp[j], dp[curr_num] + 1)
+        if next_index < n:
+            next_index += T
+        else:
+            break
+
+print(max_len)
+```
+The idea is to use dynamic programming to keep track of the maximum length of non-decreasing subsequence ending at each number from 1 to 300. For each number in the array, we calculate the index of the same number after repeating it T times. We then update the dp array by taking the maximum of previous values and adding 1 to the current value. We also update the maximum length of non-decreasing subsequence. Finally, we update the dp array for the next T steps. The final answer is the maximum length of non-decreasing subsequence.

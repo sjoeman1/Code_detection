@@ -1,0 +1,17 @@
+```python
+a, b, c = map(int, input().split())
+
+s = a
+while s <= 1e9:
+    s += c
+    if s == b:
+        print("YES")
+    else:
+        print("NO")
+```
+
+**Explanation:**
+
+- The program reads the input values a, b and c.
+- It calculates the sequence S by adding c to the previous element until the sequence reaches a maximum of 1e9.
+- If the value of b is found in the sequence S, it prints "YES". Otherwise, it prints "NO".

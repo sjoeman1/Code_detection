@@ -1,0 +1,21 @@
+```python
+n, m = map(int, input().split())
+
+set1 = set(map(int, input().split()))
+set2 = set(map(int, input().split()))
+
+if len(set1.intersection(set2)) == 1:
+  print(list(set1.intersection(set2))[0])
+elif len(set1.intersection(set2)) == 0:
+  print(0)
+else:
+  print(-1)
+```
+
+**Explanation:**
+
+- The code reads the number of pairs and the pairs of numbers communicated by each participant.
+- It creates two sets to store the pairs of numbers from each participant.
+- If the number of elements common to both sets is 1, the code prints the shared number.
+- If the number of elements common to both sets is 0, the code prints 0.
+- If the number of elements common to both sets is greater than 1, the code prints -1.

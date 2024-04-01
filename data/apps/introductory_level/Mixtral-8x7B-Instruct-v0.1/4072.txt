@@ -1,0 +1,14 @@
+ Here is the Python3 code to solve the problem:
+
+```python
+a = int(input())
+
+# Check if the sum of the digits of a is divisible by 3
+sum\_of\_digits = sum(int(digit) for digit in str(a))
+if sum\_of\_digits % 3 == 0:
+    print(1)
+else:
+    print(0)
+```
+
+This code takes an integer input `a`, calculates the sum of its digits using a for loop and the `sum()` function, and then checks if the sum is divisible by 3. If it is, the code prints `1`, otherwise it prints `0`.

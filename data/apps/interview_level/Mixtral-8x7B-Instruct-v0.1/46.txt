@@ -1,0 +1,5 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def count_pairs(n, m):
+    # Initialize a 5x5 matrix to count pairs for each remainder

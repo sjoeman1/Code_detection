@@ -1,0 +1,18 @@
+ Here's the Python3 code to solve the problem:
+
+```python
+import math
+
+def solve():
+    x = float(input())
+    a = math.floor((x * 9 + 1) / 2)
+    b = math.floor(x * 10) % 10
+    return a, b
+
+# Read inputs and print the solution
+x = input()
+a, b = solve()
+print(a, b)
+```
+
+The `solve()` function calculates the two integers `a` and `b` based on the input floating-point number `x`. It first calculates the integer part of `(x * 9 + 1) / 2` to get `a`, and then calculates the remainder of `x * 10` divided by 10 to get `b`. The main part of the code reads the input and prints the solution using the `solve()` function.

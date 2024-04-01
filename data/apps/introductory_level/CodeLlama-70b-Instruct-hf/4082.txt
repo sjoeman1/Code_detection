@@ -1,0 +1,42 @@
+
+
+Here's a solution in Python 3:
+
+```py
+def solve(n):
+    if n < 0 or n > 2000000000:
+        raise ValueError("Input must be between 0 and 2000000000.")
+
+    if n == 0:
+        return 0
+
+    result = 0
+    while n > 1:
+        if n % 2 == 0:
+            n //= 2
+        else:
+            n -= 1
+        result += 1
+
+    return result
+
+
+if __name__ == "__main__":
+    print(solve(11))
+    print(solve(14))
+    print(solve(61441))
+    print(solve(571576))
+    print(solve(2128506))
+```
+
+The `solve` function takes an integer `n` as input and returns the minimum number of operations needed to reduce the number to 1.
+
+If the input number is 0, it returns 0.
+
+If the input number is even, it divides the number by 2.
+
+If the input number is odd, it subtracts 1 from the number.
+
+The function continues until the number becomes 1.
+
+The number of iterations required is the minimum number of operations needed to reduce the number to 1.

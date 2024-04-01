@@ -1,0 +1,29 @@
+```python
+n, m = map(int, input().split())
+
+# Calculate the number of grains that are brought every day
+total_grains = m
+
+# Calculate the number of sparrows that come every day
+num_sparrows = 1
+
+# Calculate the number of days it takes for the barn to become empty
+num_days = 1
+
+# Iterate over the days until the barn becomes empty
+while total_grains > 0:
+    # Bring grains to the barn
+    total_grains += m
+
+    # Eat grains by sparrows
+    total_grains -= num_sparrows
+
+    # Increment the number of days
+    num_days += 1
+
+    # Update the number of sparrows that come every day
+    num_sparrows += 1
+
+# Print the number of days it takes for the barn to become empty
+print(num_days)
+```

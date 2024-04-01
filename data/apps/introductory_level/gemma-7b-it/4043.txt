@@ -1,0 +1,21 @@
+```python
+n, d, k = map(int, input().split())
+
+if d > n-1 or k > n-1:
+    print("NO")
+else:
+    print("YES")
+    edges = []
+    for _ in range(n-1):
+        u, v = map(int, input().split())
+        edges.append((u, v))
+    print(*edges)
+```
+
+**Explanation:**
+
+* The code reads the input values $n$, $d$, and $k$.
+* If the diameter $d$ is greater than $n-1$ or the degree $k$ is greater than $n-1$, it prints "NO".
+* Otherwise, it prints "YES" and then constructs a tree satisfying the conditions.
+* The edges of the tree are read from the input and stored in the `edges` list.
+* The tree is printed by printing the edges in the format `u` and `v`, where `u` and `v` are the vertices connected by the edge.

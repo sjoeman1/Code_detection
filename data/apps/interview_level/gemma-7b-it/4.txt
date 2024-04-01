@@ -1,0 +1,15 @@
+```python
+x = int(input())
+hh, mm = map(int, input().split())
+
+# Calculate the number of minutes until the wake-up time
+min_diff = (hh * 60 + mm) - (0 if hh == 0 else 24 * (hh - 1) * 60)
+
+# Find the multiple of x that contains the digit 7
+y = min_diff // x
+if min_diff % x != 0:
+    y += 1
+
+# Print the minimum number of times to press the snooze button
+print(y)
+```

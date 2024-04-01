@@ -1,0 +1,59 @@
+
+
+Here is the Python3 code that solves the question:
+
+```py
+# Takes the input of number of strings
+n = int(input())
+
+# Initialize an empty list to store the strings
+strings = []
+
+# Reads the input strings and appends them to the list
+for _ in range(n):
+    strings.append(input())
+
+# Function to check if a string is a substring of another string
+def isSubstring(s1, s2):
+    return s1 in s2
+
+# Function to check if the list of strings can be reordered in the required order
+def canReorder(strings):
+    # Initialize a list to store the reordered strings
+    reorderedStrings = []
+
+    # Iterate over all the strings
+    for i in range(len(strings)):
+        # Initialize a flag to check if the current string is a substring of any of the strings in the reordered list
+        isSubstringFlag = False
+
+        # Iterate over the reordered list
+        for j in range(len(reorderedStrings)):
+            # Check if the current string is a substring of the string at the current index of the reordered list
+            if isSubstring(strings[i], reorderedStrings[j]):
+                # Set the flag to True
+                isSubstringFlag = True
+                # Insert the current string at the current index of the reordered list
+                reorderedStrings.insert(j, strings[i])
+                # Break out of the loop
+                break
+
+        # If the current string is not a substring of any of the strings in the reordered list
+        if not isSubstringFlag:
+            # Append the current string to the reordered list
+            reorderedStrings.append(strings[i])
+
+    # Check if the reordered list is the same as the original list
+    if reorderedStrings == strings:
+        # The list can be reordered in the required order
+        return True
+    else:
+        # The list cannot be reordered in the required order
+        return False
+
+# Function to print the reordered list of strings
+def printReorderedStrings(strings):
+    # Check if the list of strings can be reordered in the required order
+    if canReorder(strings):
+        # Print "YES"
+       

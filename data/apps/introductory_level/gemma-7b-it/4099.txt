@@ -1,0 +1,14 @@
+```python
+import sys
+
+n, k, m = map(int, sys.stdin.readline().split())
+a = list(map(int, sys.stdin.readline().split().strip().split()))
+
+total_points = sum(a)
+num_subjects = len(a)
+
+if (total_points - a[-1]) / num_subjects < m:
+    print(-1)
+else:
+    print((total_points - a[-1]) // num_subjects)
+```

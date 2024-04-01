@@ -1,0 +1,55 @@
+
+
+This is a simple problem that involves simulating a bomb blast in a rectangular grid. Here's a Python 3 solution:
+
+```py
+# Read the dimensions of the grid
+n, m = map(int, input().split())
+
+# Create a list to store the grid
+grid = []
+
+# Read the grid
+for _ in range(n):
+    grid.append(list(input()))
+
+# Check if the bomb can be placed at a specific position
+def can_be_placed(x, y):
+    # Check if all the cells in the row x are empty
+    for j in range(m):
+        if grid[x][j] == '*':
+            return False
+
+    # Check if all the cells in the column y are empty
+    for i in range(n):
+        if grid[i][y] == '*':
+            return False
+
+    # If all the cells in the row and column are empty, return True
+    return True
+
+# Initialize the bomb position
+bomb_position = None
+
+# Iterate through the grid
+for i in range(n):
+    for j in range(m):
+        # If the cell is empty and can be bombed, set the bomb position
+        if grid[i][j] == '.' and can_be_placed(i, j):
+            bomb_position = (i, j)
+            break
+
+    # If the bomb position is set, break from the loop
+    if bomb_position:
+        break
+
+# Print the output
+if bomb_position:
+    print("YES")
+    print(bomb_position[0] + 1, bomb_position[1] + 1)
+else:
+    print("NO")
+
+```
+
+This solution iterates through the grid, checking each empty cell to see if it is possible to place a bomb at that position. If a bomb can be placed, it stores the position and breaks from the loop. If no bomb can be placed, it prints "NO". Otherwise, it prints "YES" and the coordinates of the bomb position.

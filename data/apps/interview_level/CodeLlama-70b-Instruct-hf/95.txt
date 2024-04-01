@@ -1,0 +1,48 @@
+
+Here's the Python 3 code for solving the problem:
+
+```python
+# Function to check if the given array is unimodal
+def isUnimodal(arr):
+    n = len(arr)
+    i = 0
+
+    # Check for strictly increasing sequence
+    while (i < n - 1 and arr[i] < arr[i + 1]):
+        i += 1
+
+    # If array was strictly increasing till last element, then it is unimodal
+    if (i == n - 1):
+        return True
+
+    # Check for constant sequence
+    while (i < n - 1 and arr[i] == arr[i + 1]):
+        i += 1
+
+    # If array was constant till last element, then it is unimodal
+    if (i == n - 1):
+        return True
+
+    # Check for strictly decreasing sequence
+    while (i < n - 1 and arr[i] > arr[i + 1]):
+        i += 1
+
+    # If array was strictly decreasing till last element, then it is unimodal
+    if (i == n - 1):
+        return True
+
+    # If none of the above conditions are satisfied, then array is not unimodal
+    return False
+
+# Driver code
+if __name__ == "__main__":
+    n = int(input())
+    arr = list(map(int, input().split()))
+
+    if (isUnimodal(arr)):
+        print("YES")
+    else:
+        print("NO")
+```
+
+This code first checks if the array is strictly increasing until the last element. If it is, then it is unimodal. If not, it checks if the array is constant until the last element. If it is, then it is unimodal. If not, it checks if the array is strictly decreasing until the last element. If it is, then it is unimodal. If none of these conditions are satisfied, then the array is not unimodal.

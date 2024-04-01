@@ -1,0 +1,46 @@
+
+Here is the code for solving the problem:
+
+```python
+def get_max_nodes(x0, y0, ax, ay, bx, by, xs, ys, t):
+    def get_node(i):
+        x, y = x0, y0
+        while i > 0:
+            x = ax * x + bx
+            y = ay * y + by
+            i -= 1
+        return x, y
+
+    nodes = [(x0, y0)]
+    i = 1
+    while True:
+        x, y = get_node(i)
+        if abs(x - x0) + abs(y - y0) > t:
+            break
+        nodes.append((x, y))
+        i += 1
+
+    visited = set()
+    best = 0
+    def dfs(x, y, time):
+        nonlocal best
+        if (x, y) in visited or time < 0:
+            return
+        visited.add((x, y))
+        if time == 0:
+            return
+        best = max(best, len(visited))
+        for nx, ny in [(x - 1, y), (x + 1, y), (x, y - 1), (x, y + 1)]:
+            if (nx, ny) in nodes:
+                dfs(nx, ny, time - 1)
+        visited.remove((x, y))
+
+    dfs(xs, ys, t)
+    return best
+
+x0, y0, ax, ay, bx, by = map(int, input().split())
+xs, ys, t = map(int, input().split())
+print(get_max_nodes(x0, y0, ax, ay, bx, by, xs, ys, t))
+```
+
+The code defines a function `get_max_nodes` which takes the input parameters as arguments and returns the maximum number of data nodes Aroma can collect within `t` seconds. The function first generates a list of all data nodes within the time limit using a loop, and then performs a depth-first search (DFS) to find the maximum number of data nodes Aroma can collect.

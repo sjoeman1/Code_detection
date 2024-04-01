@@ -1,0 +1,41 @@
+ Here is a Python3 solution for the problem:
+
+```python
+import sys
+
+def find_area(points):
+    if len(points) != 2 and len(points) != 4:
+        return -1
+
+    x_coords = set([point[0] for point in points])
+    y_coords = set([point[1] for point in points])
+
+    if len(x_coords) != 2 or len(y_coords) != 2:
+        return -1
+
+    x_min, x_max = min(x_coords), max(x_coords)
+    y_min, y_max = min(y_coords), max(y_coords)
+
+    width = x_max - x_min
+    height = y_max - y_min
+
+    return width * height
+
+def main():
+    n = int(sys.stdin.readline())
+    points = []
+
+    for i in range(n):
+        x, y = map(int, sys.stdin.readline().split())
+        points.append((x, y))
+
+    area = find_area(points)
+    print(area)
+
+if __name__ == "__main__":
+    main()
+```
+
+The `find_area` function calculates the area of the rectangle given its vertices. If the number of vertices is not 2 or 4, or if the x or y coordinates are not distinct, it returns -1. Otherwise, it calculates the width and height of the rectangle by finding the minimum and maximum x and y coordinates, and returns the product of width and height.
+
+The `main` function reads the input, creates a list of points, and calls `find_area` to calculate the area. The result is printed to stdout.

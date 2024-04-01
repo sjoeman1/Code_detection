@@ -1,0 +1,28 @@
+```python
+n = int(input())
+s = input().strip()
+
+# Create a map to store the positions of balanced brackets
+balanced_brackets = {}
+for i in range(len(s)):
+    if s[i] == '(':
+        balanced_brackets[i] = -1
+    else:
+        if i - balanced_brackets[i] in balanced_brackets:
+            balanced_brackets[i] = balanced_brackets[i - balanced_brackets[i]]
+
+# Count the number of balanced brackets
+num_balanced = sum(1 for i in balanced_brackets if balanced_brackets[i] >= 0)
+
+# Print the number of balanced brackets
+print(num_balanced)
+```
+
+**Explanation:**
+
+* The code reads the input and creates a string `s` of length `n`.
+* It then creates a map `balanced_brackets` to store the positions of balanced brackets.
+* For each opening parenthesis, it stores its position in `balanced_brackets` with a value of -1.
+* For each closing parenthesis, it checks if the position of the balanced parenthesis is stored in `balanced_brackets`. If it is, it updates the position of the balanced parenthesis to be the position of the closing parenthesis.
+* Finally, the code counts the number of balanced brackets by checking if the position of the balanced parenthesis is greater than or equal to 0 in `balanced_brackets`.
+* The number of balanced brackets is printed as the output.

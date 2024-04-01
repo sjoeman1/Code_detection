@@ -1,0 +1,32 @@
+ Here is a Python3 solution for the problem:
+
+```python
+# Read input values
+a, b, c = map(int, input().split())
+
+# Check if it's possible to break the shield
+if c % gcd(a, b) == 0:
+    print("Yes")
+else:
+    print("No")
+```
+
+This solution first calculates the greatest common divisor (gcd) of `a` and `b` using the Euclidean algorithm. Then, it checks if `c` is divisible by this gcd. If it is, then it's possible to break the shield by firing the same number of bullets from both guns. Otherwise, it's not possible.
+
+Explanation of the third sample:
+
+* `a` is 6, `b` is 11, and `c` is 6.
+* The gcd of `a` and `b` is 1.
+* Since `c` is not divisible by 1, it's not possible to break the shield with the given values of `a`, `b`, and `c`.
+
+Explanation of the second sample:
+
+* `a` is 3, `b` is 2, and `c` is 7.
+* The gcd of `a` and `b` is 1.
+* Since `c` is 7 and it's divisible by 1, it's possible to break the shield by firing 1 bullet from Ebony and 2 bullets from Ivory (1 \* 3 + 2 \* 2 = 7).
+
+Explanation of the first sample:
+
+* `a` is 4, `b` is 6, and `c` is 15.
+* The gcd of `a` and `b` is 2.
+* Since `c` is not divisible by 2, it's not possible to break the shield with the given values of `a`, `b`, and `c`.

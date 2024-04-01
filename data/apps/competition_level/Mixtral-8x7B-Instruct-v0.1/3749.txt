@@ -1,0 +1,46 @@
+ To solve this problem, we need to keep track of the number of ways to represent each number that can be written on the blackboard. We can use a bitset to do this, since the numbers are relatively small. However, since the numbers can be extremely large, we need to use a large prime number (998244353) for the modulo operation.
+
+Here's the Python3 code for solving the problem:
+
+```python
+import sys
+import operator
+
+# Modulo operation
+mod = 998244353
+
+# Bitwise XOR operation
+xor = lambda a, b: (a&b) ^ (a|b)
+
+# Read input data
+N, X = map(int, sys.stdin.readline().split())
+A = list(map(int, sys.stdin.readline().split()))
+
+# Initialize bitset
+dp = [0] * (X + 1)
+dp[0] = 1
+
+# Calculate number of ways to represent each number
+for a in A:
+    dp2 = [0] * (X + 1)
+    for x in range(X + 1):
+        dp2[x] = dp[x]
+        if x + a < X + 1:
+            dp2[x + a] += dp[x]
+        if x + a & a < X + 1:
+            dp2[x + a & a] += dp[x]
+    dp = dp2
+
+# Print the answer
+print(sum(dp))
+```
+
+In this code, we first read the input data from the standard input. Then, we initialize a bitset `dp` to keep track of the number of ways to represent each number. We then iterate through each number `a` in the input data, and calculate the number of ways to represent each number `x` by using the following formula:
+```makefile
+dp2[x] = dp[x]
+if x + a < X + 1:
+    dp2[x + a] += dp[x]
+if x + a & a < X + 1:
+    dp2[x + a & a] += dp[x]
+```
+This formula calculates the number

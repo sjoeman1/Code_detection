@@ -1,0 +1,31 @@
+
+Here is the Python3 code for solving the question:
+
+```python
+def max_non_palindrome_length(s):
+    n = len(s)
+    if n == 0:
+        return 0
+    if n == 1:
+        return 1
+    if n == 2:
+        if s[0] == s[1]:
+            return 0
+        else:
+            return 2
+    if n == 3:
+        if s[0] == s[2]:
+            return 0
+        else:
+            return 3
+    if n >= 4:
+        if s[0] == s[n-1] and s[1] == s[n-2]:
+            return 0
+        else:
+            return n
+
+s = input()
+print(max_non_palindrome_length(s))
+```
+
+The `max_non_palindrome_length` function takes a string as input and calculates the length of the longest substring that is not a palindrome. If there is no such substring, it returns 0. The function handles special cases for strings with lengths 0, 1, 2, and 3, and then for strings with lengths greater than or equal to 4, it checks whether the first and last characters are equal and the second and second-to-last characters are equal. If they are, it returns 0, indicating that there is no non-palindrome substring. Otherwise, it returns the length of the string, indicating that all substrings are non-palindromes.

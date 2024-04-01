@@ -1,0 +1,55 @@
+
+
+Here is the Python 3 code that solves the problem:
+
+```py
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+
+def check_value(value, power):
+    while value > 0:
+        if value % 2 != 0:
+            return False
+        value //= 2
+    return True
+
+def solve(n, k):
+    if n == 0:
+        return [0] * k
+    if k == 1:
+        if n == 1:
+            return [0]
+        else:
+            return [-1]
+    max_power = 0
+    while 2 ** max_power < n:
+        max_power += 1
+    if 2 ** max_power == n:
+        return [max_power] + [0] * (k - 1)
+    max_power -= 1
+    while max_power >= 0:
+        value = n - 2 ** max_power
+        if value > 0 and check_value(value, max_power):
+            result = [max_power]
+            result.extend(solve(value, k - 1))
+            return result
+        max_power -= 1
+    return [-1]
+
+def main():
+    n, k = map(int, input().split())
+    result = solve(n, k)
+    if result[0] == -1:
+        print("No")
+    else:
+        print("Yes")
+        print(' '.join(map(str, result)))
+
+if __name__ == '__main__':
+    main()
+```
+
+The code starts by defining a function `check_value` that checks if a value is a power of 2. It iterates over the bits of the value and checks if each bit is 0 except for the last one.
+
+The `solve` function takes the target sum `n` and the length of the sequence `k` as input. It first checks if `n` is 0, in which case it returns a list of `k` zeros. If `k` is 1, it returns a list containing 0 if `n` is 1 and -1 otherwise.
+
+The function then calculates the

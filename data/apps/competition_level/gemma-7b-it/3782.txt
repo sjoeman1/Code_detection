@@ -1,0 +1,21 @@
+```python
+n, k, q = map(int, input().split())
+a = list(map(int, input().split()))
+
+a.sort()
+
+x = 0
+y = float('inf')
+for i in range(k-1):
+    x = max(x, a[i])
+    y = min(y, a[i])
+
+print(x-y)
+```
+
+**Explanation:**
+
+* We need to find the contiguous subsequence of length K that has the smallest element.
+* We store the first K-1 elements in the list `a` and sort them in ascending order.
+* The largest element removed is the maximum element in the sorted list, and the smallest element removed is the minimum element in the sorted list.
+* The difference between the largest and smallest elements is the answer.

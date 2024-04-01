@@ -1,0 +1,17 @@
+```python
+x, y, z = map(int, input().split())
+
+up = x
+down = y
+unk = z
+
+if up > down:
+    print("-")
+elif down > up:
+    print("+")
+else:
+    print("0")
+
+if up + down != z:
+    print("?")
+```

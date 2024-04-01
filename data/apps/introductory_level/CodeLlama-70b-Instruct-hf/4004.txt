@@ -1,0 +1,29 @@
+
+
+Here's a Python 3 code that solves the problem:
+
+```
+def solve(n, a):
+    sum = 0
+    for i in range(n):
+        sum += a[i]
+    average = sum / n
+    D = 0
+    for i in range(n):
+        if (a[i] < average):
+            D += average - a[i]
+    if (D == 0):
+        return -1
+    return D
+
+if __name__ == "__main__":
+    n = int(input())
+    a = list(map(int, input().split()))
+    D = solve(n, a)
+    if (D == -1):
+        print(-1)
+    else:
+        print(int(D))
+```
+
+The code first calculates the sum of all elements in the array. It then calculates the average of the array by dividing the sum by the number of elements. Then, it iterates through the array, and for each element less than the average, it adds the difference between the element and the average to `D`. If `D` is zero, it means that the array already has all equal elements, and it returns -1. Otherwise, it returns `D`.

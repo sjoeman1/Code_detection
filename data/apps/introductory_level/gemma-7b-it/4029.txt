@@ -1,0 +1,27 @@
+```python
+n = int(input())
+
+if n % 25 == 0:
+  print(0)
+else:
+  # Find the first digit of n that is not a zero
+  i = 0
+  while n // 10 ** i != 0:
+    i += 1
+
+  # Count the number of moves required to make n divisible by 25
+  moves = 0
+  # If the first digit is not a zero, we can move it to the end
+  if n // 10 ** i != n:
+    moves += 1
+  # We can move the second digit of n to the end
+  if n % 10 != 0:
+    moves += 1
+
+  # If the number of moves required is greater than the number of moves that are possible, print -1
+  if moves > 1:
+    print(-1)
+  # Otherwise, print the number of moves required
+  else:
+    print(moves)
+```

@@ -1,0 +1,41 @@
+
+
+Here is the Python 3 code for the problem:
+
+```python
+# The function to check if a given string is a regular bracket sequence
+def is_regular(s):
+    n = len(s)
+    if n % 2 != 0:
+        return False
+    cnt = 0
+    for i in range(n):
+        if s[i] == '(':
+            cnt += 1
+        else:
+            cnt -= 1
+        if cnt < 0:
+            return False
+    return cnt == 0
+
+# The function to check if it is possible to form a regular bracket sequence
+def solve(cnt1, cnt2, cnt3, cnt4):
+    if cnt1 == 0 and cnt2 == 0 and cnt3 == 0 and cnt4 == 0:
+        return 1
+    if cnt1 == 0 and cnt2 == 0 and cnt3 == 0 and cnt4 != 0:
+        return 0
+    if cnt1 == 0 and cnt2 == 0 and cnt3 != 0 and cnt4 == 0:
+        return 0
+    if cnt1 == 0 and cnt2 == 0 and cnt3 != 0 and cnt4 != 0:
+        return 0
+    if cnt1 == 0 and cnt2 != 0 and cnt3 == 0 and cnt4 == 0:
+        return 1
+    if cnt1 == 0 and cnt2 != 0 and cnt3 == 0 and cnt4 != 0:
+        return 1
+    if cnt1 == 0 and cnt2 != 0 and cnt3 != 0 and cnt4 == 0:
+        return 1
+    if cnt1 == 0 and cnt2 != 0 and cnt3 != 0 and cnt4 != 0:
+        return 1
+    if cnt1 != 0 and cnt2 == 0 and cnt3 == 0 and cnt4 == 0:
+        return 0
+    if cnt1 != 0 and cnt2 == 0 and cnt3 ==

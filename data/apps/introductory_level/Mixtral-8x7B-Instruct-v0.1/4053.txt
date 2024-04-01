@@ -1,0 +1,44 @@
+ Here is a Python3 solution for the problem:
+```python
+n = int(input())
+pref_suff = [input() for _ in range(2*n-2)]
+
+# Initialize an array to keep track of whether a substring is a prefix or a suffix
+prefix = ['?' for _ in range(n)]
+suffix = ['?' for _ in range(n)]
+
+# Initialize an array to keep track of the length of the longest common prefix and suffix
+lcp = [0 for _ in range(n)]
+lcs = [0 for _ in range(n)]
+
+# Set the length of the longest common prefix and suffix for the empty string
+lcp[0] = lcs[0] = -1
+
+# Calculate the length of the longest common prefix and suffix for each substring
+for i in range(1, n):
+    for j in range(i):
+        if pref_suff[i-1][:j+1] == pref_suff[i-1-j][:j+1]:
+            lcp[i] = j+1
+            break
+
+    for j in range(1, i+1):
+        if pref_suff[i-1][-j:] == pref_suff[2*n-2-i+j][-j:]:
+            lcs[i] = j
+            break
+
+# Set the prefix and suffix for each substring based on the length of the longest common prefix and suffix
+for i in range(1, n):
+    if lcp[i] == i:
+        for j in range(i):
+            prefix[j] = 'P'
+            suffix[2*n-2-j] = 'S'
+    if lcs[i] == i:
+        for j in range(i):
+            prefix[j] = 'S'
+            suffix[2*n-2-j] = 'P'
+
+# If there are any '?' left in the prefix and suffix arrays, set them to 'P' or 'S' based on the remaining substrings
+for i in range(n):
+    if prefix[i] == '?':
+        for j in range(2*n-2):
+            if pref_suff[j][i:

@@ -1,0 +1,43 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def is_possible_to_obtain_identity_permutation(n, m, table):
+    # Initialize the number of swaps needed for each row and column
+    row_swaps = [0]*n
+    col_swaps = [0]*m
+
+    # Count the number of swaps needed for each row and column
+    for i in range(n):
+        for j in range(m-1):
+            if table[i][j] > table[i][j+1]:
+                row_swaps[i] += 1
+                table[i][j], table[i][j+1] = table[i][j+1], table[i][j]
+        for j in range(m):
+            if table[i][j] != j+1:
+                col_swaps[j] += 1
+
+    # Check if the number of swaps needed is valid
+    total_swaps = sum(row_swaps) + sum(col_swaps)
+    if total_swaps % 2 == 1 or total_swaps > n + 1:
+        return False
+
+    # Check if it's possible to obtain the identity permutation by swapping elements in each row and column
+    for i in range(n):
+        for j in range(m-1):
+            if row_swaps[i] % 2 == 1 and table[i][j] > table[i][j+1]:
+                return False
+            if col_swaps[j] % 2 == 1 and table[i][j] > table[i+1][j] if i+1 < n else table[i][j] > 1:
+                return False
+
+    return True
+
+# Read the input
+n, m = map(int, input().split())
+table = []
+for i in range(n):
+    table.append(list(map(int, input().split())))
+
+# Check if it's possible to obtain the identity permutation
+if is_possible_to_obtain_identity_permutation(n, m, table):
+    print("YES")
+else

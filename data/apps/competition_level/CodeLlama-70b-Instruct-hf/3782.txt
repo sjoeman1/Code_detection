@@ -1,0 +1,14 @@
+
+
+Here's the Python 3 code to solve the problem:
+```
+def solve(N, K, Q, A):
+    A.sort()
+    return A[Q] - A[Q - 1]
+
+N, K, Q = map(int, input().split())
+A = list(map(int, input().split()))
+print(solve(N, K, Q, A))
+```
+
+In the `solve` function, we sort the array `A` in ascending order. Then, we calculate the difference between the `Q`th element and the `Q-1`th element, which is the smallest possible value of `X-Y`.

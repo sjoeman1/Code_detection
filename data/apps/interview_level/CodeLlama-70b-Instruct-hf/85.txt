@@ -1,0 +1,39 @@
+
+Here is the Python 3 code to solve the question:
+
+```python
+# Function to calculate the number of squares in a bar
+def number_of_squares(a, b):
+    return (a*b) // (min(a, b)**2)
+
+# Function to find the number of minutes to make two bars equal
+def make_equal(a1, b1, a2, b2):
+    # Initialize the minimum number of minutes
+    min_minutes = float('inf')
+    # Check if it's possible to make the bars equal
+    if (a1 * b1) % (a2 * b2) == 0 or (a2 * b2) % (a1 * b1) == 0:
+        # Generate all possible bar sizes after cutting the bars
+        for a in range(1, min(a1, a2) + 1):
+            for b in range(1, min(b1, b2) + 1):
+                # Check if the bars are equal after cutting
+                if number_of_squares(a1, b1) == number_of_squares(a, b):
+                    # Calculate the number of minutes required
+                    minutes = (a1 - a) + (b1 - b)
+                    # Update the minimum number of minutes
+                    min_minutes = min(min_minutes, minutes)
+                if number_of_squares(a2, b2) == number_of_squares(a, b):
+                    # Calculate the number of minutes required
+                    minutes = (a2 - a) + (b2 - b)
+                    # Update the minimum number of minutes
+                    min_minutes = min(min_minutes, minutes)
+    else:
+        # If it's not possible to make the bars equal, return -1
+        return -1
+    return min_minutes
+
+# Read the input from the user
+a1, b1 = map(int, input().split())
+a2, b2 = map(int, input().split())
+
+# Call the make_equal function to find the number of minutes
+minutes = make_equal(a1, b1, a2, b2)

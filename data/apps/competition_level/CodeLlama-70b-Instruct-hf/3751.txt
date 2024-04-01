@@ -1,0 +1,27 @@
+
+
+The Python 3 code for this problem is as follows:
+
+```py
+def obfuscation(S):
+    n = len(S)
+    alphabet = "abcdefghijklmnopqrstuvwxyz"
+    char_map = {}
+    index = 0
+    for i in range(n):
+        if S[i] not in char_map:
+            char_map[S[i]] = alphabet[index]
+            index += 1
+    result = ""
+    for i in range(n):
+        result += char_map[S[i]]
+    if len(set(result)) == len(set(S)):
+        return "YES"
+    else:
+        return "NO"
+
+S = input()
+print(obfuscation(S))
+```
+
+The code first reads the input string `S` and creates a dictionary `char_map` to store the mapping of characters to their obfuscated versions. It iterates through the string and checks if a character is already present in the dictionary. If it is not, it adds the character to the dictionary with its corresponding obfuscated version. After the loop, it checks if the length of the dictionary is equal to the number of unique characters in the input string. If it is, it prints "YES" to indicate that the input string can be a result of Kostya's obfuscation, otherwise it prints "NO".

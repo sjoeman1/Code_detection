@@ -1,0 +1,27 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def count_years_with_one_zero(a, b):
+    count = 0
+    for year in range(a, b+1):
+        if binary_representation_has_one_zero(year):
+            count += 1
+    return count
+
+def binary_representation_has_one_zero(n):
+    binary_rep = format(n, 'b')
+    return binary_rep.count('0') == 1
+
+# Read input values
+a, b = map(int, input().split())
+
+# Print the result
+print(count_years_with_one_zero(a, b))
+```
+
+This solution defines two functions:
+
+* `count_years_with_one_zero` takes two integers `a` and `b` as input and returns the number of years in the range `[a, b]` that have exactly one zero in their binary representation.
+* `binary_representation_has_one_zero` checks whether the binary representation of a given integer `n` has exactly one zero.
+
+The solution reads the input values `a` and `b`, calls the `count_years_with_one_zero` function with these input values, and prints the result.

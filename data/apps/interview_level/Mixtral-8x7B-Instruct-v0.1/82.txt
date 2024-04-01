@@ -1,0 +1,17 @@
+ Here is one way to solve the problem using Python3:
+
+```python
+n, k = map(int, input().split())
+marks = list(map(int, input().split()))
+
+current\_sum = sum(marks)
+current\_avg = current\_sum / n
+additional\_marks = (k - current\_avg) * n
+additional\_marks = math.ceil(additional\_marks)
+
+print(additional\_marks)
+```
+
+This code first reads in the values of `n` and `k` from the first line of input, and then reads in the list of `marks` from the second line. It calculates the current sum of the marks, and the current average. It then calculates the number of additional marks needed to bring the average up to `k`, and rounds this value up to the nearest integer using the `math.ceil` function. Finally, it prints the result.
+
+Note that this solution assumes that the input will always be valid, and does not contain any error checking or exception handling. You may want to add this in a production environment.

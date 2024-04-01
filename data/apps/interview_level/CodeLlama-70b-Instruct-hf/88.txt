@@ -1,0 +1,18 @@
+
+
+Here is the Python 3 code for solving the question:
+
+```python
+def count_years(a, b):
+    count = 0
+    for year in range(a, b + 1):
+        binary = bin(year)[2:]
+        if binary.count('0') == 1:
+            count += 1
+    return count
+
+a, b = map(int, input().split())
+print(count_years(a, b))
+```
+
+This code defines a function `count_years` that takes two parameters `a` and `b`. It iterates over the range from `a` to `b` (inclusive) and converts each number to its binary representation. It then checks if the binary representation contains exactly one `0` and increments the `count` variable accordingly. Finally, it returns the `count`. The input is taken from the user, and the function is called with the given input. The result is then printed.

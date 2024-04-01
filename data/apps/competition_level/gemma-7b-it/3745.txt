@@ -1,0 +1,17 @@
+```python
+n, m = map(int, input().split())
+g = [list(map(int, input().split())) for _ in range(m)]
+
+# Create a dictionary to store the graph
+graph = {i: set() for i in range(n)}
+for u, v in g:
+    graph[u].add(v)
+
+# Check if the graph can be created from a string
+s = ''.join(['a' if v == 1 else 'b' if v == 2 else 'c' for v in graph])
+if s and graph[i] == set(graph[i] for i in s):
+    print('Yes')
+    print(s)
+else:
+    print('No')
+```

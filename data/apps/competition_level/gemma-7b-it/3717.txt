@@ -1,0 +1,32 @@
+```python
+import numpy as np
+
+n = int(input())
+
+rectangles = []
+for _ in range(n):
+    x1, y1, x2, y2 = map(int, input().split())
+    rectangles.append([(x1, y1), (x2, y2)])
+
+# Find the point that belongs to at least (n-1) given rectangles
+point = np.array(rectangles).reshape((-1, 2)).min()
+
+# Print the point
+print(point)
+```
+
+**Explanation:**
+
+- The code reads the number of rectangles, $n$, and then reads the coordinates of each rectangle.
+- It creates a list of rectangles, `rectangles`, using the coordinates.
+- It then finds the point that belongs to at least $(n-1)$ given rectangles using the `min()` function over the array of rectangle coordinates.
+- The point is printed.
+
+**Time Complexity:**
+
+- The code reads $n$ lines, so the time complexity is O(n).
+- The code traverses the array of rectangles only once, so the time complexity is O(n).
+
+**Space Complexity:**
+
+- The code uses an additional array `rectangles` of size $n$, so the space complexity is O(n).

@@ -1,0 +1,33 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n = int(input())
+a = list(map(int, input().split()))
+b = list(map(int, input().split()))
+
+# Sort bottles by remaining amount of soda in ascending order
+sorted_bottles = sorted((a[i], b[i]) for i in range(n))
+
+# Initialize variables to keep track of the minimum number of bottles and time taken
+k, t = 1, 0
+
+# Pour soda from one bottle to another until the current bottle is full
+for i in range(n - 1):
+    if sorted_bottles[i][0] + sorted_bottles[i + 1][0] <= sorted_bottles[i + 1][1]:
+        sorted_bottles[i + 1] = (sorted_bottles[i][0] + sorted_bottles[i + 1][0], sorted_bottles[i + 1][1])
+        sorted_bottles[i] = (0, sorted_bottles[i][1])
+        k += 1
+    else:
+        t += sorted_bottles[i][0]
+        sorted_bottles[i] = (0, sorted_bottles[i][1])
+
+# Pour the remaining soda in the last bottle
+t += sorted_bottles[-1][0]
+
+# Print the minimum number of bottles and time taken
+print(k, t)
+```
+
+The solution sorts the bottles by the remaining amount of soda in ascending order. Then, it pours soda from one bottle to another until the current bottle is full, and increments the number of bottles used. Finally, it pours the remaining soda in the last bottle and prints the minimum number of bottles and time taken.
+
+Note that the time taken is calculated as the sum of the remaining amount of soda in each bottle, as it takes `x` seconds to pour `x` units of soda from one bottle to another.

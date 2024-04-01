@@ -1,0 +1,39 @@
+
+```python
+import math
+
+def compress(n, I, A):
+    K = len(set(A))
+    k = math.ceil(math.log2(K))
+    if k * n / 8 <= I:
+        return 0
+    res = float('inf')
+    for l in range(K):
+        for r in range(l + 1, K + 1):
+            cnt = 0
+            for a in A:
+                if a < l or a > r:
+                    cnt += 1
+            if cnt < res and k * n / 8 <= I - cnt:
+                res = cnt
+    return res
+
+if __name__ == '__main__':
+    n, I = map(int, input().split())
+    A = list(map(int, input().split()))
+    print(compress(n, I, A))
+```
+
+
+
+Here's the Python 3 code that solves the question:
+
+1.  It reads the input values for $n$ and $I$ from the first line.
+2.  It reads the input values for the array $A$ from the second line.
+3.  It calculates the value of $K$ as the number of distinct elements in the array $A$.
+4.  It calculates the value of $k$ as the smallest integer such that $K \le 2^{k}$.
+5.  If $k * n / 8 \le I$, it means that the file fits onto the disk without compression. In this case, it returns 0 as the number of changed elements.
+6.  Otherwise, it iterates over all possible combinations of $l$ and $r$ (with $l \le r$) to find the minimum number of changed elements.
+7.  For each combination, it counts the number of elements in the array that are outside the range $[l,r]$.
+8.  If the number of changed elements is less than the minimum value found so far and the compressed file fits onto the disk, it updates the minimum number of changed elements.
+9.  Finally, it returns the minimum number of changed elements found.

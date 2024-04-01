@@ -1,0 +1,22 @@
+```python
+n, k = map(int, input().split())
+
+n_days = 2 ** n
+n_people = k
+
+# Calculate the number of pairs of people with the same birthday
+num_pairs = n_people * (n_people - 1) // 2
+
+# Calculate the probability of at least two people having the same birthday
+prob = num_pairs / n_days
+
+# Find the gcd of A and B
+gcd = abs(math.gcd(int(prob.numerator), int(prob.denominator)))
+
+# Calculate A and B
+A = int(prob.numerator) // gcd
+B = int(prob.denominator) // gcd
+
+# Print A and B modulo 10^6 + 3
+print(A, B)
+```

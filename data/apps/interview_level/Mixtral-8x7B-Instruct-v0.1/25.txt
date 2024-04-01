@@ -1,0 +1,33 @@
+ Here is a Python3 code to solve the problem:
+
+```python
+def solve(n, k):
+    if k > n * (n + 1) // 2 or k % 2 != 0:
+        return -1
+
+    matrix = [[0] * n for _ in range(n)]
+    for i in range(n):
+        matrix[i][i] = 1
+        k -= 1
+        if k == 0:
+            break
+
+    for i in range(n - 1, -1, -1):
+        for j in range(n - 1, i, -1):
+            if k > 0:
+                matrix[i][j] = 1
+                k -= 1
+
+    return matrix
+
+n, k = map(int, input().split())
+matrix = solve(n, k)
+for row in matrix:
+    print(*row)
+```
+
+The code first checks if the number of ones `k` is valid. If `k` is greater than `n * (n + 1) // 2` or if `k` is odd, then there is no solution.
+
+The code then creates a matrix of zeros and fills the diagonal with ones. It then adds the remaining ones to the matrix in a lexicographically maximal way. To do this, it starts by adding ones to the bottom-right corner of the matrix, then moves up the diagonal and adds ones to the next diagonal, and so on.
+
+Finally, the code prints the resulting matrix. If there is no solution, the code prints -1.

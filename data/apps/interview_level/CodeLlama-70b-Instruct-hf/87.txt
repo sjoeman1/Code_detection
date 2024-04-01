@@ -1,0 +1,45 @@
+
+
+Here is the Python 3 code to solve the question:
+
+```
+# Input
+m, d = map(int, input().split())
+
+# Months with 30 days
+months_30 = [4, 6, 9, 11]
+
+# Months with 31 days
+months_31 = [1, 3, 5, 7, 8, 10, 12]
+
+# Initialize number of columns
+cols = 0
+
+# Check if it's a leap year
+if m == 2:
+    # Leap year
+    cols = 6
+else:
+    # Not leap year
+    if m in months_30:
+        # Month with 30 days
+        cols = 6
+    elif m in months_31:
+        # Month with 31 days
+        cols = 5
+    else:
+        # Month with 28 days
+        cols = 5
+
+# Subtract the starting day
+cols -= d - 1
+
+# Output
+print(cols)
+```
+
+In this code, we take the input from the user and store them in the variables `m` and `d`. Then, we initialize the number of columns `cols` to 0. We check if the month is February (2) or not. If it's February, we know it's a leap year, so the number of columns is 6.
+
+Otherwise, we check if the month is in the list `months_30`, which contains the months with 30 days. If it is, we set `cols` to 6. If the month is not in `months_30`, we check if it's in `months_31`, which contains the months with 31 days. If it is, we set `cols` to 5. If it's not in `months_30` or `months_31`, we know it's a month with 28 days, so we set `cols` to 5.
+
+Finally, we subtract the starting day `d` from 1 from `cols` and print the result.

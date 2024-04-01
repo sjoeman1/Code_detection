@@ -1,0 +1,42 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n = int(input())
+p = list(map(int, input().split()))
+
+# Initialize the result with the number of pairs of adjacent bulbs
+# with different parity in the given garland
+result = sum(p[i] % 2 != p[i-1] % 2 for i in range(1, n) if p[i-1] != 0 and p[i] != 0)
+
+# Try to place the removed bulbs in the positions with the same parity
+# as the previous bulb
+for i in range(n):
+    if p[i] == 0:
+        if i % 2 == 0:
+            # If the current position has even index, then look for
+            # the nearest removed bulb on the left
+            j = i - 1
+            while j >= 0 and p[j] == 0:
+                j -= 1
+            if j >= 0 and p[j] % 2 == 0:
+                # If the nearest removed bulb on the left has the same
+                # parity as the previous bulb, then place it in the
+                # current position
+                p[i] = p[j]
+                p[j] = 0
+                if i < n - 1 and p[i] % 2 != p[i+1] % 2:
+                    # If the complexity changes, then update the result
+                    result -= 1
+        else:
+            # If the current position has odd index, then look for
+            # the nearest removed bulb on the right
+            j = i + 1
+            while j < n and p[j] == 0:
+                j += 1
+            if j < n and p[j] % 2 == 1:
+                # If the nearest removed bulb on the right has the same
+                # parity as the previous bulb, then place it in the
+                # current position
+                p[i] = p[j]
+                p[j] = 0
+                if i >= 1 and p[i] % 2 != p[i-1]

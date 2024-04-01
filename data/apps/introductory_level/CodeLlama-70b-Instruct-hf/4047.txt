@@ -1,0 +1,20 @@
+
+```py
+n = int(input())
+coords = list(map(int, input().split()))
+
+even, odd = 0, 0
+for coord in coords:
+    if coord % 2 == 0:
+        even += 1
+    else:
+        odd += 1
+
+print(min(even, odd))
+```
+
+
+
+
+
+In this code, we first read the number of chips `n` and the coordinates of each chip. Then, we count the number of even-numbered coordinates and the number of odd-numbered coordinates. The minimum of these two counts is the minimum number of coins required to move all the chips to the same coordinate.

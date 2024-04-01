@@ -1,0 +1,34 @@
+```python
+import math
+
+A, B, H, M = map(int, input().split())
+
+# Calculate the angular velocity of the hour and minute hands
+omega_h = 2 * math.pi / 12
+omega_m = 2 * math.pi / 60
+
+# Calculate the angle rotated by the hour and minute hands
+theta_h = omega_h * H + omega_h * M / 60
+theta_m = omega_m * M
+
+# Calculate the distance between the unfixed endpoints of the hands
+distance = B * math.sin(theta_h) - A * math.sin(theta_m)
+
+# Print the answer
+print(distance)
+```
+
+**Explanation:**
+
+* The angular velocity of the hour and minute hands is calculated based on the number of rotations they make in one hour and minute, respectively.
+* The angle rotated by the hour and minute hands is calculated based on the number of hours and minutes elapsed.
+* The distance between the unfixed endpoints of the hands is calculated using the sine of the angles rotated by the hour and minute hands.
+* The answer is printed without units.
+
+**Time complexity:**
+
+* The code calculates the angular velocity and angle rotated by the hands only once, so the time complexity is O(1).
+
+**Space complexity:**
+
+* The code uses a constant amount of space, regardless of the input size, so the space complexity is O(1).

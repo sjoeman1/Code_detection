@@ -1,0 +1,42 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def min_changes_to_make_arithmetic_progression(n, b):
+    # If the length of the sequence is less than 2, it is already an arithmetic progression
+    if n < 2:
+        return 0
+
+    # Calculate the difference between consecutive elements
+    diffs = [b[i+1] - b[i] for i in range(n-1)]
+
+    # If the differences are not equal, we need to make at least one change
+    if len(set(diffs)) > 1:
+        return 1
+
+    # If the first difference is 0, we cannot make the sequence an arithmetic progression
+    if diffs[0] == 0:
+        return -1
+
+    # If the first difference is not 0, we can make the sequence an arithmetic progression by changing the first element
+    return 1
+
+# Read the input
+n = int(input())
+b = list(map(int, input().split()))
+
+# Calculate the minimum number of changes needed
+min_changes = min_changes_to_make_arithmetic_progression(n, b)
+
+# Print the result
+print(min_changes)
+```
+
+This solution first checks if the length of the sequence is less than 2. If it is, the sequence is already an arithmetic progression and no changes are needed.
+
+If the length of the sequence is greater than or equal to 2, the solution calculates the difference between consecutive elements. If all the differences are equal, the sequence is already an arithmetic progression and no changes are needed.
+
+If not all the differences are equal, the solution checks if the first difference is 0. If it is, it is impossible to make the sequence an arithmetic progression by changing each element by at most one.
+
+If the first difference is not 0, the solution can make the sequence an arithmetic progression by changing the first element. The solution returns 1, indicating that one change is needed.
+
+The solution then reads the input, calculates the minimum number of changes needed, and prints the result.

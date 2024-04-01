@@ -1,0 +1,38 @@
+
+
+Here's the Python 3 code for solving the question:
+
+```py
+n, k = map(int, input().split())
+s = input()
+
+if n < k:
+    print(-1)
+    exit()
+
+dp = [[float('inf')] * n for _ in range(k)]
+
+for i in range(n):
+    dp[0][i] = n - (i + 1)
+
+for i in range(1, k):
+    for j in range(i, n):
+        for l in range(j, -1, -1):
+            dp[i][j] = min(dp[i][j], dp[i - 1][l] + n - (j - l))
+
+print(dp[k - 1][n - 1])
+```
+
+The algorithm uses dynamic programming to calculate the minimum cost for each pair of $k$ and $n$ values.
+
+The cost for a subsequence is calculated by subtracting the length of the subsequence from the total length of the string.
+
+The code first initializes the dynamic programming table, `dp`, with a large number for all values.
+
+It then iterates through each row of the table, calculating the minimum cost for each pair of $k$ and $n$ values.
+
+For each pair, it checks all possible substrings from the end of the string to the current position and takes the minimum cost.
+
+Finally, it prints the minimum cost for the last pair of $k$ and $n$ values.
+
+If the length of the string is less than the required set size, it prints -1 to indicate that it is impossible.

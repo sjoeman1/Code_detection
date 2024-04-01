@@ -1,0 +1,22 @@
+
+
+ The problem asks us to find the minimum number of layers needed to arrange the segments so that they do not overlap. For example, when N = 4, there are 10 segments, as shown in the image. We can arrange them in 6 layers without overlapping, as shown in the image. We cannot do better than 6 layers because each layer can have at most 4 segments, and we need 10 segments.
+
+Here is the Python code to solve this problem:
+
+```python
+def min_layers(N):
+    total_segments = N * (N + 1) // 2
+    layers = 0
+    while total_segments > 0:
+        layers += 1
+        total_segments -= min(N, total_segments)
+    return layers
+
+# Test the function
+print(min_layers(2))  # Output: 2
+print(min_layers(3))  # Output: 4
+print(min_layers(4))  # Output: 6
+```
+
+The `min_layers` function calculates the minimum number of layers needed for the given value of N. It uses a while loop to calculate the number of layers, and the total number of segments decreases with each layer until it reaches zero.

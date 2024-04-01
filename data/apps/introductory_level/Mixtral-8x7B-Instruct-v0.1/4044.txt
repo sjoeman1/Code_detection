@@ -1,0 +1,25 @@
+ Here is a Python3 code that solves the problem:
+
+```python
+def construct_string(a, b, x):
+    # Initialize the string with a zeroes followed by b ones
+    s = '0'*a + '1'*b
+
+    # Place the x-1 transitions in the string
+    for i in range(x-1):
+        # If the current and next characters are the same, flip the next character
+        if s[i] == s[i+1]:
+            s = s[:i+1] + ('0' if s[i] == '1' else '1') + s[i+2:]
+
+    return s
+
+# Read input
+a, b, x = map(int, input().split())
+
+# Construct and print the string
+print(construct_string(a, b, x))
+```
+
+This code first initializes the string `s` with `a` zeroes followed by `b` ones. Then, it places `x-1` transitions (i.e., places where `s[i]` is not equal to `s[i+1]`) in the string by iterating over the string and flipping the next character if the current and next characters are the same. The last transition is not placed explicitly, because the string is guaranteed to have at least one transition (since `x` is at least 1 and `a+b` is at least 2). Finally, the code prints the resulting string.
+
+Note that this code does not produce all possible strings that satisfy the conditions, but it produces at least one such string.

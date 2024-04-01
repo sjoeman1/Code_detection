@@ -1,0 +1,36 @@
+ Here is a solution using a single pass through the array:
+```python
+n = int(input())
+a = list(map(int, input().split()))
+
+max_len = 1
+curr_len = 1
+prev_val = a[0]
+curr_val = prev_val
+for i in range(1, n):
+    curr_val = a[i]
+    if curr_val >= prev_val:
+        # current value is greater than or equal to previous value
+        # so we continue the current subsegment
+        max_length = max(max_len, curr_len + 1)
+        curr_len += 1
+    else:
+        # current value is less than previous value
+        # so we check if the current subsegment can be made strictly increasing
+        # by changing at most one element
+        if curr_len == 1 or a[i-1] >= curr_val:
+            # we can change the current element to make the subsegment increasing
+            # or the previous element is already greater than or equal to the current element
+            # so we continue the current subsegment
+            max_length = max(max_len, curr_len + 1)
+            curr_len += 1
+        else:
+            # we can't change the current element to make the subsegment increasing
+            # and the previous element is less than the current element
+            # so we start a new subsegment
+            curr_len = 1
+    prev_val = curr_val
+
+print(max_len)
+```
+The basic idea is to keep track of the current subsegment and its length, and the previous value. If the current value is greater than or equal to the previous value, we continue the current subsegment. Otherwise, we check if the current subsegment can be made strictly increasing by changing at most one element. If it can, we continue the current subsegment, otherwise, we start a new subsegment. At the end, we print the maximum length of the required subsegment.

@@ -1,0 +1,16 @@
+```python
+n, k = map(int, input().split())
+s = input().lower()
+
+bal_dict = {}
+for i in range(n):
+    bal_dict[s[i]] = bal_dict.get(s[i], 0) + 1
+
+ upset = False
+for i in range(k):
+    num_balloons = int(input())
+    if num_balloons > bal_dict[s[i]] or num_balloons == bal_dict[s[i]] and bal_dict[s[i]] != 0:
+        upset = True
+
+print("YES" if not upset else "NO")
+```

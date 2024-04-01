@@ -1,0 +1,36 @@
+ Here is a Python3 code that can solve the problem:
+
+```python
+def solve():
+    n, k = map(int, input().split())
+    if k == 1:
+        print("YES")
+        print(n)
+        return
+    if n % 2 == 0 and k % 2 == 0:
+        print("YES")
+        for i in range(k // 2):
+            print(2 * i + 1, end=" ")
+        for i in range(k // 2):
+            print(2 * i + 2, end=" ")
+        print()
+    elif n % 2 == 1 and k % 2 == 1:
+        print("YES")
+        for i in range(k // 2):
+            print(2 * i + 1, end=" ")
+        print(n)
+    else:
+        print("NO")
+
+solve()
+```
+
+The code first reads the input values `n` and `k` from the standard input. If `k` is 1, the code prints the only possible solution and returns.
+
+If `n` is even and `k` is even, the code prints the sequence of numbers `1, 2, 3, ..., k/2, k/2, k/2-1, ..., 1` as the solution and returns.
+
+If `n` is odd and `k` is odd, the code prints the sequence of numbers `1, 2, 3, ..., (k-1)/2, (k-1)/2, (k-1)/2+1, ..., n` as the solution and returns.
+
+In all other cases, the code prints "NO" to indicate that there is no solution.
+
+The code assumes that the input is valid and does not contain any error checking or exception handling. If the input is not guaranteed to be valid, the code should be modified accordingly.

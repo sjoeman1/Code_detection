@@ -1,0 +1,48 @@
+## Solution
+
+This problem requires careful analysis of the information provided to determine whether the round is rated, unrated, or impossible to determine. Here's the solution:
+
+**1. Identify the conditions for rating:**
+- If at least one participant's rating has changed, the round is rated for sure.
+- If the round was rated and a participant with lower rating took a better place than a participant with higher rating, then at least one participant's rating has changed.
+
+**2. Analyze the information:**
+- Read the number of participants (n) and their ratings before and after the round (a_i and b_i).
+- Check if there is any change in ratings. If there is, the round is rated.
+- If the round is rated, check if the participant with lower rating took a better place than the participant with higher rating. If they did, then at least one participant's rating has changed.
+
+**3. Conclusion:**
+- If there is a change in ratings, the round is rated.
+- If the round is rated and there is a participant with lower rating taking a better place than a participant with higher rating, the round is rated.
+- If neither condition above is met, the round is unrated.
+
+**Here's the code:**
+
+```python
+n = int(input())
+
+ratings = []
+for _ in range(n):
+    a, b = map(int, input().split())
+    ratings.append((a, b))
+
+# Check if the round is rated
+rated = False
+for a, b in ratings:
+    if a != b:
+        rated = True
+
+# Check if the round is unrated due to lower rated participant taking a better place
+if rated and sorted(ratings)[-1][0] < sorted(ratings)[0][0]:
+    rated = True
+
+# Print the result
+if rated:
+    print("rated")
+elif not rated:
+    print("unrated")
+else:
+    print("maybe")
+```
+
+This code reads the number of participants, their ratings, checks for changes in ratings, and determines whether the round is rated, unrated, or impossible to determine. It's important to note that the code does not make any assumptions about the rating system and follows the conditions defined in the problem statement.

@@ -1,0 +1,26 @@
+```python
+n = int(input())
+a = list(map(int, input().split()))
+
+a.sort()
+
+odd_sum = 0
+odd_sum_max = -1
+
+for i in range(n):
+    if a[i] % 2 != 0:
+        odd_sum += a[i]
+        if odd_sum_max == -1 or odd_sum > odd_sum_max:
+            odd_sum_max = odd_sum
+
+print(odd_sum_max)
+```
+
+**Explanation:**
+
+1. Read the number of elements n and the sequence of n integers a_1, ..., a_n.
+2. Sort the sequence in ascending order.
+3. Initialize variables odd_sum and odd_sum_max to 0 and -1, respectively.
+4. Iterate over the sequence and add elements that are not divisible by 2 to the odd_sum.
+5. Update odd_sum_max if the current odd_sum is greater than the maximum odd_sum seen so far.
+6. Print odd_sum_max as the answer.

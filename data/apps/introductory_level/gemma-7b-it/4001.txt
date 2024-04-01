@@ -1,0 +1,32 @@
+```python
+n = int(input())
+d = list(map(int, input().split()))
+
+# Create a dictionary to store the divisors of x and y
+divisors_x_y = {}
+x = y = 0
+for i in d:
+    if i not in divisors_x_y:
+        divisors_x_y[i] = 0
+    divisors_x_y[i] += 1
+
+# Find the maximum common divisor of x and y
+max_common_divisor = 0
+for i in divisors_x_y:
+    if divisors_x_y[i] == 2:
+        max_common_divisor = i
+
+# Calculate x and y
+x = max_common_divisor * 2
+y = x * y // max_common_divisor
+
+# Print x and y
+print(x, y)
+```
+
+**Explanation:**
+
+- The code reads the number of divisors $n$ and then reads the list of divisors $d$.
+- It creates a dictionary `divisors_x_y` to store the number of occurrences of each divisor.
+- The code iterates over the list of divisors and checks if the divisor occurs twice in the list. If it does, the code updates the maximum common divisor `max_common_divisor`.
+- Finally, the code calculates $x$ and $y$ using the maximum common divisor and the formula $x = max_common_divisor * 2, $y = x * y // max_common_divisor.

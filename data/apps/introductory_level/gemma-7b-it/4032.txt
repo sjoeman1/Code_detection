@@ -1,0 +1,14 @@
+```python
+n, k = map(int, input().split())
+a = list(map(int, input().split()))
+
+a.sort()
+i = 0
+ans = 0
+while i < n and a[i] <= k:
+    ans += 1
+    a.pop(0)
+    i += 1
+
+print(ans)
+```

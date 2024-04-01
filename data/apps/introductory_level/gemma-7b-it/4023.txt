@@ -1,0 +1,9 @@
+```python
+n = int(input())
+a = list(map(int, input().split()))
+
+if all(a[i] == a[i+1] for i in range(n-1)) and sum(a) == n:
+    print("YES")
+else:
+    print("NO")
+```

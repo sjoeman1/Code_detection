@@ -1,0 +1,17 @@
+
+
+ Here is the Python3 code for the question:
+
+```python
+def solve(N, k):
+    mod = 1000000007
+    ans = 0
+    for i in range(1, N + 1):
+        ans = (ans + pow(i, k, mod)) % mod
+    return ans
+
+N, k = map(int, input().split())
+print(solve(N, k))
+```
+
+In this code, we take input for `N` and `k`. Then, we calculate the sum of the cost of each non-empty subset by using the formula `x^k`. Finally, we return the sum of all the costs modulo `10^9 + 7`.

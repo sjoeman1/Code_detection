@@ -1,0 +1,31 @@
+
+
+Here is the Python3 code for solving the question:
+
+```python
+def nearest_interesting_number(a):
+    def is_interesting(n):
+        # Check if the sum of the digits of n is divisible by 4
+        return sum(int(digit) for digit in str(n)) % 4 == 0
+
+    # If a is already an interesting number, return it
+    if is_interesting(a):
+        return a
+
+    # Increment a until it becomes an interesting number
+    while not is_interesting(a):
+        a += 1
+
+    return a
+
+# Read the input
+a = int(input())
+
+# Find the nearest larger or equal interesting number
+n = nearest_interesting_number(a)
+
+# Print the result
+print(n)
+```
+
+This code defines a function `nearest_interesting_number` that takes an integer `a` as input and returns the nearest larger or equal interesting number. It first defines a helper function `is_interesting` that checks if the sum of the digits of a number is divisible by 4. Then, it checks if `a` is already an interesting number. If not, it increments `a` until it becomes an interesting number, and finally returns the result.

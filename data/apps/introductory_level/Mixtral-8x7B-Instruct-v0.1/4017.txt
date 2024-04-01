@@ -1,0 +1,45 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n = int(input())
+a = list(map(int, input().split()))
+
+# Calculate the total sum of the array
+total_sum = sum(a)
+
+# Initialize a set to store the candidates for the nice indices
+candidates = set()
+
+# Iterate over the elements of the array
+for i, val in enumerate(a):
+    # Calculate the sum of the array without the current element
+    sub_sum = total_sum - val
+    # If the current element is equal to the sum of the remaining elements,
+    # then the current index is a nice index
+    if sub_sum == val:
+        candidates.add(i+1)
+    # Check if the sum of the remaining elements is equal to the total sum
+    # divided by 2. If it is, then there is a subset of the remaining elements
+    # that sums to the current element. Therefore, the current index is a nice index.
+    elif sub_sum * 2 == total_sum:
+        candidates.add(i+1)
+
+# Calculate the number of nice indices
+k = len(candidates)
+
+# Print the number of nice indices
+print(k)
+
+# Print the nice indices
+print(*sorted(candidates))
+```
+
+The solution works as follows:
+
+* First, we read the input values `n` and `a` from the standard input.
+* Then, we calculate the total sum of the array `a` using the `sum` function.
+* Next, we initialize an empty set `candidates` to store the indices that are candidates for being nice indices.
+* After that, we iterate over the elements of the array `a` using a `for` loop.
+* For each element, we calculate the sum of the array without the current element, which is equal to the total sum minus the current element.
+* If the current element is equal to the sum of the remaining elements, then the current index is a nice index, so we add it to the set `candidates`.
+* We also check if the sum of the remaining elements is equal to the total sum divided by 2. If it is, then there is a subset of the remaining elements

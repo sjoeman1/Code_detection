@@ -1,0 +1,15 @@
+```python
+m = int(input())
+h_1, a_1 = map(int, input().split())
+x_1, y_1 = map(int, input().split())
+h_2, a_2 = map(int, input().split())
+x_2, y_2 = map(int, input().split())
+
+if h_1 == a_1 or h_2 == a_2:
+    print(-1)
+else:
+    h_diff = abs(h_1 - a_1)
+    a_diff = abs(h_2 - a_2)
+    min_time = min(h_diff // x_1 + y_diff // x_2, a_diff // x_2 + y_diff // x_1)
+    print(min_time)
+```

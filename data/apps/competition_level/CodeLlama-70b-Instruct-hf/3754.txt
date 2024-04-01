@@ -1,0 +1,18 @@
+
+Here is the Python3 code for the question:
+
+```
+def solve(n, d):
+    d = sorted(d)
+    ans = 1
+    for i in range(n):
+        ans *= d[i]
+        ans %= 998244353
+    return ans
+
+n = int(input())
+d = list(map(int, input().split()))
+print(solve(n, d))
+```
+
+This code will take the input `N` and the array `d` from the user, sort the array `d` and then calculate the answer by multiplying all the elements of the sorted array. Finally, it will print the answer modulo 998244353.

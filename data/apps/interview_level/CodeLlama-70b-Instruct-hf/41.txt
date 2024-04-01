@@ -1,0 +1,28 @@
+
+Here's the Python3 code for solving the question:
+
+```
+def nearest_zero(arr):
+    n = len(arr)
+    result = [0] * n
+    zero_pos = -1
+    for i in range(n):
+        if arr[i] == 0:
+            zero_pos = i
+        if zero_pos != -1:
+            result[i] = i - zero_pos
+
+    zero_pos = -1
+    for i in range(n - 1, -1, -1):
+        if arr[i] == 0:
+            zero_pos = i
+        if zero_pos != -1:
+            result[i] = min(result[i], zero_pos - i)
+    return result
+
+n = int(input())
+arr = list(map(int, input().split()))
+print(' '.join(map(str, nearest_zero(arr))))
+```
+
+The `nearest_zero` function takes the array as input and returns an array with the distances to the nearest zero element. The first loop iterates over the array from left to right and updates the distance to the nearest zero element. The second loop iterates over the array from right to left and updates the distance to the nearest zero element. In both loops, the `result` array is updated with the minimum of the current distance and the distance to the nearest zero element. Finally, the `nearest_zero` function returns the `result` array.

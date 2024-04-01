@@ -1,0 +1,33 @@
+ Here is a possible Python3 solution for the problem:
+
+```python
+import sys
+from collections import defaultdict
+
+def can_construct_square(n, m, tiles):
+    # A tile can be represented as a set of four numbers
+    tile_set = {frozenset(x) for x in tiles}
+    # Precompute the sum of each 2x2 submatrix in the target square
+    target_sums = set()
+    for i in range(m):
+        for j in range(i, m):
+            target_sums.add(sum(sum(k) for k in ( (i, j), (i, j+1), (i+1, j), (i+1, j+1) )))
+    # Check if each tile covers a submatrix with a sum present in target_sums
+    for tiles_sum in tile_set:
+        if not any(sums & tiles_sum for sums in target_sums):
+            return False
+    return True
+
+t = int(sys.stdin.readline())
+for _ in range(t):
+    n, m = map(int, sys.stdin.readline().split())
+    tiles = [tuple(map(int, sys.stdin.readline().split())) + tuple(map(int, sys.stdin.readline().split())) for _ in range(n)]
+    if can_construct_square(n, m, tiles):
+        print("YES")
+    else:
+        print("NO")
+```
+
+The solution first reads the number of test cases `t` and then processes each test case one by one. For each test case, it reads the number of tile types `n` and the size of the square `m`. Then it reads the descriptions of the tile types, converts them into sets of four numbers (representing the top-left, top-right, bottom-left, and bottom-right numbers of each tile), and stores them in the set `tile_set`.
+
+Next, it precomputes the set of all possible sums of 2x2 submatrices in the target square. This is done by iterating over all possible top-left corners of the submatrices (from `(0, 0)` to

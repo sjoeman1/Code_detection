@@ -1,0 +1,45 @@
+
+
+ The code for this problem is given below:
+
+```python
+from collections import Counter
+
+def count_prefixes(s, x):
+    n = len(s)
+    cnt = Counter(s)
+    zeros = cnt['0']
+    ones = cnt['1']
+
+    if x == 0:
+        return 1
+    elif x == ones - zeros:
+        return 1
+    elif x == ones - zeros - 1:
+        return 2
+    elif x == ones - zeros + 1:
+        return 2
+    else:
+        return 0
+
+
+def main():
+    t = int(input())
+
+    for _ in range(t):
+        n, x = map(int, input().split())
+        s = input()
+
+        prefixes = count_prefixes(s, x)
+
+        if prefixes == 0:
+            print(0)
+        else:
+            print(-1)
+
+
+if __name__ == "__main__":
+    main()
+```
+
+This code solves the given problem by using the `Counter` class from the `collections` module to count the number of zeros and ones in the input string `s`. It then calculates the number of prefixes with the given balance `x`. If the number of prefixes is finite, it prints the number, otherwise it prints `-1`.

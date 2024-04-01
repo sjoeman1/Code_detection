@@ -1,0 +1,35 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n = int(input().strip())
+a = list(map(int, input().strip().split()))
+
+# Initialize variables to keep track of the maximum length of increasing subarray
+max_length = 1
+current_length = 1
+
+# Iterate over the array
+for i in range(1, n):
+    # If the current element is greater than the previous one,
+    # increment the current length
+    if a[i] > a[i - 1]:
+        current_length += 1
+    else:
+        # If the current length is greater than the maximum length,
+        # update the maximum length
+        max_length = max(max_length, current_length)
+        # Reset the current length to 1, since we can start a new increasing subarray
+        current_length = 1
+
+# After the loop, check if the current length is greater than the maximum length
+# and update the maximum length if necessary
+max_length = max(max_length, current_length)
+
+# If we remove one element from the array, we can potentially form an increasing
+# subarray of length n-1. So, we return the maximum of max_length and n-1
+print(max(max_length, n - 1))
+```
+
+The solution uses a simple linear scan of the array to find the maximum length of the increasing contiguous subarray. If the current element is greater than the previous one, we increment the current length. Otherwise, we update the maximum length if the current length is greater than the maximum length found so far. At the end, we return the maximum of max\_length and n-1, since we can potentially form an increasing subarray of length n-1 by removing one element from the array.
+
+The time complexity of the solution is O(n), where n is the number of elements in the array, and the space complexity is O(1), since we only use a constant amount of extra space to keep track of the maximum length and the current length.

@@ -1,0 +1,39 @@
+```python
+n = int(input())
+
+# Function to count the number of reachable numbers from n
+def count_reachable(n):
+    # Initialize the count of reachable numbers
+    reachable_count = 1
+
+    # Iterate over the number of iterations
+    for i in range(1, int(n**0.5) + 1):
+        # Calculate the number of zeros in the multiple of n
+        num_zeros = len(str(n // i).split("0"))
+
+        # If there are any zeros, remove them and add the number of iterations
+        if num_zeros:
+            reachable_count += i
+
+    # Return the count of reachable numbers
+    return reachable_count
+
+# Print the count of reachable numbers
+print(count_reachable(n))
+```
+
+**Explanation:**
+
+* The function `count_reachable(n)` takes an integer `n` as input.
+* It iterates over the number of iterations from 1 to the square root of `n`.
+* For each iteration, it calculates the number of zeros in the multiple of `n` and adds the number of iterations if there are any zeros.
+* The count of reachable numbers is stored in the variable `reachable_count`.
+* Finally, the function returns `reachable_count`.
+
+**Time complexity:**
+
+* The function iterates over the number of iterations from 1 to the square root of `n`, so the time complexity is O(n**0.5).
+
+**Space complexity:**
+
+* The function uses a constant amount of space, regardless of the size of the input.

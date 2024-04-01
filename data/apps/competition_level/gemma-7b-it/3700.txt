@@ -1,0 +1,11 @@
+```python
+n, k = map(int, input().split())
+
+toys = list(range(1, n + 1))
+total_cost = sum(toys)
+
+if total_cost - k < 0:
+    print(0)
+else:
+    print(min((total_cost - k) // 2, n))
+```

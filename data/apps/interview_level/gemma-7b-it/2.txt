@@ -1,0 +1,21 @@
+```python
+n = int(input())
+
+# Convert the year to a string
+year_str = str(n)
+
+# Count the number of non-zero digits in the year
+num_non_zero_digits = sum(int(digit) for digit in year_str.split('-') if int(digit) else 0)
+
+# Find the next lucky year
+next_lucky_year = int(year_str) + 1
+
+# If the next lucky year is in the same year, increment the year until the next lucky year is found
+while num_non_zero_digits > 0:
+    next_lucky_year += 1
+    year_str = str(next_lucky_year)
+    num_non_zero_digits = sum(int(digit) for digit in year_str.split('-') if int(digit) else 0)
+
+# Print the number of years until the next lucky year
+print(next_lucky_year - n)
+```

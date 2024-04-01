@@ -1,0 +1,28 @@
+ Here is a Python3 solution using two pointers technique:
+```python
+n = int(input().strip())
+a = list(map(int, input().strip().split()))
+
+left, right = 0, 0
+result = []
+while left < n or right < n:
+    if left < n and a[left] != 0:
+        left += 1
+    elif right < n and a[right] == 0:
+        result.append(right - left)
+        right += 1
+    else:
+        right += 1
+
+print(*result)
+```
+Explanation:
+
+* Initialize two pointers, `left` and `right`, pointing to the beginning of the array.
+* If `left` is not at the end of the array and the current element is not 0, move `left` to the next element.
+* If `right` is not at the end of the array and the current element is 0, calculate the distance between `left` and `right` and add it to the result list, then move `right` to the next element.
+* If both `left` and `right` are at the end of the array or the current element is 0, move `right` to the next element.
+* Repeat the above steps until both pointers are at the end of the array.
+* Finally, print the result list.
+
+Note: The `strip()` method is used to remove the whitespaces from the input string and `split()` method is used to split the string into a list of strings using a single space as a separator.

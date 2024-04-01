@@ -1,0 +1,37 @@
+ Here is a possible solution for the problem:
+
+```python
+n, m = map(int, input().split())
+exams = []
+for i in range(m):
+    s, d, c = map(int, input().split())
+    exams.append((s, d, c, i))
+
+exams.sort(key=lambda x: x[1])
+schedule = [0]*n
+prep = [-1]*m
+
+for i in range(m):
+    s, d, c, e = exams[i]
+    if d - s < c:
+        print(-1)
+        exit()
+    for j in range(s-1, d):
+        if schedule[j] == 0:
+            schedule[j] = e + 1
+            prep[e] = j
+            c -= 1
+            if c == 0:
+                break
+    if c > 0:
+        print(-1)
+        exit()
+
+print(*schedule)
+```
+
+This solution sorts the exams by their deadline and then processes them in order. For each exam, it checks if there are enough days between the publication and the deadline to prepare for it. If not, it immediately reports that it's impossible.
+
+Otherwise, it iterates through the days between the publication and the deadline, trying to find a free day to prepare for the exam. If it finds a free day, it marks it with the exam number and decreases the number of days needed to prepare for the exam. If it can't find a free day, it reports that it's impossible.
+
+Finally, it prints the schedule. If there are multiple schedules, it prints one of them.

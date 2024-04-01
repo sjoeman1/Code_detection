@@ -1,0 +1,29 @@
+```python
+n, m, k, x, y = map(int, input().split())
+
+# Calculate the maximum number of questions a particular pupil is asked
+max_questions = (n - 1) * m + 1
+
+# Calculate the minimum number of questions a particular pupil is asked
+min_questions = 1
+
+# Calculate how many times the teacher asked Sergei
+sergei_questions = min_questions + (n - 1) * m
+
+# Print the results
+print(max_questions, min_questions, sergei_questions)
+```
+
+**Explanation:**
+
+* The maximum number of questions a particular pupil is asked is the number of questions asked to all pupils in the class, minus the number of questions asked to the pupils in the previous rows.
+* The minimum number of questions a particular pupil is asked is 1.
+* The number of times the teacher asked Sergei is the number of questions asked to all pupils in the class, minus the number of questions asked to the pupils in the previous rows, plus 1.
+
+**Time complexity:**
+
+* The time complexity of this algorithm is O(n) where n is the number of rows in the class. This is because the algorithm iterates over the rows of the class only once.
+
+**Space complexity:**
+
+* The space complexity of this algorithm is O(1) since the algorithm uses a constant amount of space regardless of the size of the input.

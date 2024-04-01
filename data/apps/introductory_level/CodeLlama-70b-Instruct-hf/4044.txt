@@ -1,0 +1,57 @@
+
+
+Here is the Python3 code for solving the problem:
+
+```py
+import sys
+
+n = int(input())
+numbers = list(map(int, input().split()))
+
+if n == 1:
+    print("YES")
+    print(numbers[0])
+    sys.exit(0)
+
+matrix = [[0] * n for _ in range(n)]
+
+# Fill the top half of the matrix
+for i in range(n):
+    for j in range(n // 2):
+        matrix[i][j] = numbers[i * n + j]
+
+# Fill the bottom half of the matrix
+for i in range(n // 2, n):
+    for j in range(n // 2, n):
+        matrix[i][j] = numbers[(n - i - 1) * n + (n - j - 1)]
+
+# Fill the rest of the matrix
+for i in range(n // 2, n):
+    for j in range(n // 2):
+        matrix[i][j] = matrix[n - i - 1][n - j - 1]
+
+# Check if the matrix is palindromic
+palindromic = True
+for i in range(n):
+    for j in range(n):
+        if matrix[i][j] != matrix[n - i - 1][n - j - 1]:
+            palindromic = False
+            break
+    if not palindromic:
+        break
+
+if palindromic:
+    print("YES")
+    for row in matrix:
+        print(' '.join(map(str, row)))
+else:
+    print("NO")
+```
+
+This code first reads the input values, then checks if the matrix is 1x1. If it is, it prints "YES" and the number, and exits.
+
+Then, it fills the top half of the matrix with the numbers provided, and then fills the bottom half by reflecting the top half.
+
+After that, it fills the rest of the matrix by reflecting the top-right half.
+
+Finally, it checks if the matrix is palindromic by comparing the elements with their reflected counterparts. If the matrix is palind

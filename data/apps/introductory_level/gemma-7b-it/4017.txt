@@ -1,0 +1,28 @@
+```python
+n = int(input())
+a = list(map(int, input().split()))
+
+s = sum(a)
+good = False
+nice = []
+
+for i in range(n):
+    if s - a[i] == sum(a[:i]) + sum(a[i+1:]):
+        good = True
+        nice.append(i+1)
+
+print(len(nice))
+print(*nice)
+
+if not good:
+    print(0)
+```
+
+**Explanation:**
+
+1. Calculate the total sum of the array `a` and store it in variable `s`.
+2. Initialize variables `good` to `False` and `nice` to an empty list.
+3. Iterate over the array from 0 to `n-1`.
+4. For each element at index `i`, check if the sum of the remaining elements is equal to `s - a[i]`. If it is, update `good` to `True` and append `i+1` (index of the element) to the `nice` list.
+5. After iterating over the entire array, print the number of nice indices and the nice indices.
+6. If no nice indices are found, print `0` and leave the second line empty.

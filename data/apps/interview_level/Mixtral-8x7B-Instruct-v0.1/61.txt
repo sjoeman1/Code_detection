@@ -1,0 +1,23 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def convert_to_decimal(number, base):
+    result = 0
+    for digit in number:
+        result = result * base + digit
+    return result
+
+def compare_numbers(X, bx, Y, by):
+    return '>' if convert_to_decimal(X, bx) > convert_to_decimal(Y, by) else ('=' if convert_to_decimal(X, bx) == convert_to_decimal(Y, by) else '<')
+
+n, bx = map(int, input().split())
+X = list(map(int, input().split()))[::-1]
+m, by = map(int, input().split())
+Y = list(map(int, input().split()))[::-1]
+
+print(compare_numbers(X, bx, Y, by))
+```
+
+The solution first defines two helper functions `convert_to_decimal` and `compare_numbers`. `convert_to_decimal` converts a given base-n number to its decimal representation, and `compare_numbers` compares two numbers by converting them to decimal and then comparing the results.
+
+The main solution then reads the input, reverses the order of the digits of X and Y (as they are given from most significant to least significant), and then calls `compare_numbers` to get the answer.

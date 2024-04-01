@@ -1,0 +1,34 @@
+
+
+Here is a Python 3 code that solves the problem:
+
+```python
+# Input the number of cards with digits
+n = int(input())
+
+# Input the string of n digits
+s = input()
+
+# Initialize the count of phone numbers that can be made
+count = 0
+
+# Initialize the index to start from
+index = 0
+
+# Iterate until there are at least 11 digits left
+while index + 11 <= n:
+    # Check if the current substring is a valid phone number
+    if s[index] == '8' and all(char in '0123456789' for char in s[index+1:index+11]):
+        # Increment the count if it is a valid phone number
+        count += 1
+        # Increment the index by 11
+        index += 11
+    else:
+        # Increment the index by 1
+        index += 1
+
+# Output the maximum number of phone numbers that can be made
+print(count)
+```
+
+This code works by iterating through the input string of digits and checking if each substring of length 11 starting from the current index is a valid phone number. If it is a valid phone number, it increments the count and skips ahead 11 characters to avoid counting duplicate phone numbers. If it is not a valid phone number, it increments the index by 1 and continues the search. It outputs the maximum number of phone numbers that can be made from the input.

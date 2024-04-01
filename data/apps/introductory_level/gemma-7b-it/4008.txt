@@ -1,0 +1,19 @@
+```python
+n, k = map(int, input().split())
+a = list(map(int, input().split()))
+
+if k < len(a) or sum(a) != k:
+    print("NO")
+else:
+    print("YES")
+    c = list(set(a))
+    c.sort()
+    print(*c)
+```
+
+**Explanation:**
+
+- The code reads the number of elements `n` and the number of colors `k`.
+- It reads the `n` elements of the array `a`.
+- It checks if the number of colors `k` is less than the number of elements in the array or if the sum of the elements is not equal to `k`. If it is, it prints "NO".
+- Otherwise, it prints "YES" and the sorted list of distinct colors in the array.

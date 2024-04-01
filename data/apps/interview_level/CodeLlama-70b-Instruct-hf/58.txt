@@ -1,0 +1,20 @@
+
+Here's the Python 3 code that meets the requirements:
+
+```
+n = int(input())
+a = int(input())
+b = int(input())
+
+# The total length of all sides of the frames for two doors
+total_length = 2 * (2 * a + b)
+
+# Calculate the number of bars needed
+bars_needed = total_length // n
+if total_length % n != 0:
+    bars_needed += 1
+
+print(bars_needed)
+```
+
+The code starts by reading the input values for `n`, `a`, and `b`. Then, it calculates the total length of all sides of the frames for two doors. Next, it calculates the number of bars needed by dividing the total length by `n` and rounding up to the nearest integer. Finally, it prints the number of bars needed.

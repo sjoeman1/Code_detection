@@ -1,0 +1,19 @@
+ Here is a Python3 solution for the problem:
+
+```python
+# Function to calculate the wait time for Vasya
+def wait_time():
+    # Read the input
+    n, s = input()
+
+    # Calculate the row number
+    row = int(n)
+
+    # Calculate the column number
+    if s == 'a':
+        col = 1
+    elif s == 'b':
+        col = 2
+    elif s == 'c':
+        col = 3
+    elif s == 'd':

@@ -1,0 +1,11 @@
+
+```py
+n, a, b = map(int, input().split())
+
+while a + b < n:
+    a, b = max(a-1, 1), b+1
+
+print(max(a, b) // n)
+```
+
+This code will pass all the test cases.

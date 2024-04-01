@@ -1,0 +1,36 @@
+```python
+n = int(input())
+a = list(map(int, input().split()))
+
+a.sort()
+min_distance = float('inf')
+
+# Iterate over the array to find the two nearest minimums
+for i in range(len(a) - 1):
+    # Calculate the distance between the current minimum and the previous minimum
+    distance = abs(a[i] - a[i + 1])
+
+    # Update the minimum distance if necessary
+    if distance < min_distance:
+        min_distance = distance
+
+print(min_distance)
+```
+
+**Explanation:**
+
+1. **Sort the array:** We need to sort the array in ascending order to find the two nearest minimums.
+2. **Iterate over the array:** Iterate over the sorted array from 0 to the end, skipping the last element.
+3. **Calculate the distance:** Calculate the distance between the current minimum and the previous minimum using the absolute difference.
+4. **Update the minimum distance:** If the current distance is less than the minimum distance, update the minimum distance.
+5. **Print the minimum distance:** Once the iteration is complete, print the minimum distance.
+
+**Time complexity:**
+
+* Sorting the array takes O(n log n) time, where n is the size of the array.
+* Iterating over the array takes O(n) time, where n is the size of the array.
+* Overall, the time complexity is O(n log n)
+
+**Space complexity:**
+
+* The algorithm uses a constant amount of space, regardless of the size of the array.

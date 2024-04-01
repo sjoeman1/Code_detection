@@ -1,0 +1,55 @@
+
+
+Here is the Python 3 code for the given question:
+
+```py
+def solve(n, a):
+    # Return "sjfnb" if Tokitsukaze will win, or "cslnb" if CSL will win.
+
+    # Check if there is only one pile.
+    if n == 1:
+        # If the pile is empty, CSL wins.
+        if a[0] == 0:
+            return "cslnb"
+        # Otherwise, Tokitsukaze wins.
+        else:
+            return "sjfnb"
+
+    # Check if there are two piles.
+    if n == 2:
+        # If both piles are empty, CSL wins.
+        if a[0] == 0 and a[1] == 0:
+            return "cslnb"
+        # If one pile is empty and the other is not, CSL wins.
+        elif a[0] == 0 or a[1] == 0:
+            return "cslnb"
+        # If both piles have the same number of stones, CSL wins.
+        elif a[0] == a[1]:
+            return "cslnb"
+        # Otherwise, Tokitsukaze wins.
+        else:
+            return "sjfnb"
+
+    # Check if there are three or more piles.
+    if n >= 3:
+        # Initialize a variable to count the number of piles with even numbers of stones.
+        even_piles = 0
+
+        # Loop through the piles and count the number of piles with even numbers of stones.
+        for i in range(n):
+            if a[i] % 2 == 0:
+                even_piles += 1
+
+        # If the number of even piles is even, CSL wins.
+        if even_piles % 2 == 0:
+            return "cslnb"
+        # Otherwise, Tokitsukaze wins.
+        else:
+            return "sjfnb"
+
+
+# Read the input data.
+n = int(input())
+a = list(map(int, input().split()))
+
+# Call the solve function and print the result.

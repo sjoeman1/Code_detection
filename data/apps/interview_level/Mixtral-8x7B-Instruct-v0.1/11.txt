@@ -1,0 +1,35 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def max\_chocolates(n, a, b, p, q):
+max\_count = 0
+
+# Handling the case when the tile with index divisible by a and b is painted Red
+max\_count = (p*(n//a) + q*(n//b)) if (n%a == 0 or n%b == 0) else 0
+
+# Handling the case when the tile with index divisible by a and b is painted Blue
+max\_count = max(max\_count, p*(n//a) + q*(n//b - 1) + q*(n//(a*b)) if (n%a == 0 and n%b == 0) else 0)
+
+# Handling the case when the tile with index divisible by a and b is painted Red
+max\_count = max(max\_count, p*(n//a - 1) + q*(n//b) + p*q*(n//(a*b)) if (n%a == 0 and n%b != 0) else 0)
+
+# Handling the case when the tile with index divisible by a and b is painted Red
+max\_count = max(max\_count, p*(n//a - 1) + q*(n//b - 1) + (p+q)*q*(n//(a*b)) if (n%a != 0 and n%b != 0) else 0)
+
+return max\_count
+
+# Taking input
+n, a, b, p, q = map(int, input().split())
+
+# Printing the answer
+print(max\_chocolates(n, a, b, p, q))
+```
+
+Explanation:
+
+The solution involves checking all the possible cases for painting the tiles and finding the maximum number of chocolates Joty can get in each case. The four cases are:
+
+1. The tile with index divisible by a and b is painted Red.
+2. The tile with index divisible by a and b is painted Blue.
+3. The tile with index divisible by a is painted Red and the tile with index divisible by b is painted Blue.
+4. The tile

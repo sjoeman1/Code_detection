@@ -1,0 +1,29 @@
+```python
+x = int(input())
+
+max_sum = 0
+max_num = 0
+
+for num in range(1, x + 1):
+    num_sum = sum(int(digit) for digit in str(num))
+    if num_sum > max_sum:
+        max_sum = num_sum
+        max_num = num
+
+print(max_num)
+```
+
+**Explanation:**
+
+* The code reads the integer `x` from the input.
+* It iterates over the range `1` to `x` and calculates the sum of digits for each number.
+* The code stores the number with the maximum sum of digits in `max_num`.
+* Finally, the code prints `max_num`.
+
+**Time Complexity:**
+
+* The code iterates over the range `1` to `x`, so the time complexity is O(x).
+
+**Space Complexity:**
+
+* The code uses a constant amount of space, regardless of the input size.

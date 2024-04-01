@@ -1,0 +1,43 @@
+ Here is a Python3 solution for the problem:
+```python
+def max_remove(s, t):
+    # Initialize result as 0
+    res = 0
+
+    # Initialize j as 0
+    j = 0
+
+    # Traverse string s
+    for i in range(len(s)):
+
+        # If current character of s matches with
+        # current character of t, increment j
+        if j < len(t) and s[i] == t[j]:
+            j += 1
+
+        # Keep removing characters from s while
+        # t[j] can still be obtained from s[i..]
+        while j < len(t) and i + res + 1 < len(s) and s[i + res + 1] != t[j]:
+            res += 1
+
+    # Return the result
+    return res
+
+# Test the function
+s = "bbaba"
+t = "bb"
+print(max_remove(s, t))  # Output: 3
+
+s = "baaba"
+t = "ab"
+print(max_remove(s, t))  # Output: 2
+
+s = "abcde"
+t = "abcde"
+print(max_remove(s, t))  # Output: 0
+
+s = "asdfasdf"
+t = "fasd"
+print(max_remove(s, t))  # Output: 3
+```
+The function `max_remove` takes two strings `s` and `t` as input and returns the maximum possible length of the substring that can be removed from `s` such that `t` remains a subsequence of `s`. The function uses a simple algorithm that iterates through `s` and checks if the current character of `s` matches with the current character of `t`. If it does, the function increments a counter `j`. If it doesn't, the function keeps removing characters from `s` while `t[j]` can still be obtained from `s[i..]`. The function returns the counter `res` as the result.

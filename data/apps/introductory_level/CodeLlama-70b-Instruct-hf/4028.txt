@@ -1,0 +1,23 @@
+
+
+Here is the Python 3 code for solving the question:
+
+```python
+# Input
+n = int(input())
+heights = list(map(int, input().split()))
+
+# Check if all heights are equal
+if all(heights[0] == height for height in heights):
+    print("YES")
+    exit()
+
+# Check if the wall can be completed
+for i in range(n - 1):
+    if heights[i] == heights[i + 1]:
+        print("YES")
+        exit()
+print("NO")
+```
+
+The code first reads the number of parts of the wall, `n`, and the heights of each part. It then checks if all the heights are equal. If they are, it prints "YES" and exits. If not, it iterates through each pair of adjacent parts and checks if their heights are equal. If it finds a pair with equal heights, it prints "YES" and exits. If it doesn't find any pairs with equal heights, it prints "NO".

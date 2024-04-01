@@ -1,0 +1,21 @@
+```python
+n, k, x = map(int, input().split())
+a = list(map(int, input().split()))
+
+a.sort()
+
+for i in range(k):
+    for i in range(0, len(a), 2):
+        a[i] ^= x
+
+print(max(a), min(a))
+```
+
+**Explanation:**
+
+1. Read the number of rangers, the number of operations, and Jon's favourite number.
+2. Read the strengths of the rangers.
+3. Sort the rangers by strength in ascending order.
+4. Iterate over the rangers in steps of 2 and perform the XOR operation with Jon's favourite number.
+5. Update the strengths of the rangers.
+6. Print the maximum and minimum strengths of the rangers.

@@ -1,0 +1,26 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def gcd(a, b):
+    while b:
+        a, b = b, a % b
+    return a
+
+def lcm(a, b):
+    return a * b // gcd(a, b)
+
+def count_good_pairs(l, r, x, y):
+    count = 0
+    for a in range(l, r+1):
+        for b in range(l, r+1):
+            if gcd(a, b) == x and lcm(a, b) == y:
+                count += 1
+    return count
+
+l, r, x, y = map(int, input().split())
+print(count_good_pairs(l, r, x, y))
+```
+
+This solution uses two helper functions, `gcd` and `lcm`, to calculate the greatest common divisor and least common multiple of two integers, respectively. The `count_good_pairs` function iterates over all pairs of integers (a, b) in the given range and checks if they form a good pair. If they do, the count is incremented. Finally, the result is printed.
+
+Note that this solution has a time complexity of O(r^2), which may be slow for very large values of r. A more efficient solution would involve using the prime factorization of x and y to determine the number of good pairs directly, without having to iterate over all pairs. However, this would require a more complex algorithm and is not necessary for the given constraints.

@@ -1,0 +1,43 @@
+
+
+Here is the Python 3 code that solves the question:
+
+```python
+from heapq import *
+
+def solve(x, n, d, h):
+    if x == 0:
+        return 0
+    if n == 0:
+        return -1
+
+    hpq = []
+    for i in range(n):
+        heappush(hpq, (-d[i], -h[i]))
+
+    cnt = 0
+    while x > 0:
+        cnt += 1
+        d_i, h_i = heappop(hpq)
+        x -= -d_i
+        if x > 0:
+            x += -h_i
+
+    return cnt
+
+t = int(input())
+for _ in range(t):
+    n, x = map(int, input().split())
+    d = []
+    h = []
+    for i in range(n):
+        di, hi = map(int, input().split())
+        d.append(di)
+        h.append(hi)
+
+    print(solve(x, n, d, h))
+```
+
+This code defines a function `solve` that takes the number of heads `x`, the number of types of blows `n`, and the blows `d` and `h` as input. It returns the minimum number of blows to defeat Zmei Gorynich or -1 if Zmei Gorynuch cannot be defeated. The function uses a heap to find the most effective blow to use at each step.
+
+The main part of the code reads the input and calls the `solve` function for each query.

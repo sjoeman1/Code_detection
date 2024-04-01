@@ -1,0 +1,22 @@
+```python
+a, b = map(int, input().split())
+s = input()
+
+x, y = 0, 0
+dx, dy = 1, 1
+
+for i in s:
+    if i == 'U':
+        y += dy
+    elif i == 'D':
+        y -= dy
+    elif i == 'L':
+        x -= dx
+    elif i == 'R':
+        x += dx
+
+if x == a and y == b:
+    print("Yes")
+else:
+    print("No")
+```

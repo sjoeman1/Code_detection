@@ -1,0 +1,31 @@
+
+
+Here's the Python 3 code that solves the question:
+
+```python
+import math
+
+def calculate_distance(A, B, H, M):
+    # Calculate the angle of the hour hand
+    hour_angle = (H + M / 60) * 30
+    # Calculate the angle of the minute hand
+    minute_angle = M * 6
+    # Calculate the x and y coordinates of the hour hand
+    x_hour = A * math.cos(math.radians(hour_angle))
+    y_hour = A * math.sin(math.radians(hour_angle))
+    # Calculate the x and y coordinates of the minute hand
+    x_minute = B * math.cos(math.radians(minute_angle))
+    y_minute = B * math.sin(math.radians(minute_angle))
+    # Calculate the distance between the two hands
+    distance = math.sqrt((x_hour - x_minute)**2 + (y_hour - y_minute)**2)
+    return distance
+
+# Take input from the user
+A, B, H, M = map(int, input().split())
+# Calculate the distance between the two hands
+distance = calculate_distance(A, B, H, M)
+# Print the answer
+print(distance)
+```
+
+The code takes four inputs: A, B, H, and M. It then calculates the angles of the hour and minute hands using the given constraints. It calculates the coordinates of the endpoints of the hour and minute hands using trigonometric functions. Finally, it calculates the distance between the two hands using the Pythagorean theorem. The code prints the answer to the standard output.

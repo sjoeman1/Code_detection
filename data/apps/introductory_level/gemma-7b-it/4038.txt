@@ -1,0 +1,32 @@
+```python
+n = int(input())
+a = list(map(int, input().split()))
+
+# Check if the input is valid
+if len(a) != n**2 or len(set(a)) != n**2:
+    print("NO")
+else:
+    # Create a matrix and fill it with the numbers
+    m = n
+    n_a = len(a)
+    matrix = [[0] * m for _ in range(m)]
+    i = 0
+    for num in a:
+        matrix[i // m][i % m] = num
+        i += 1
+
+    # Check if the matrix is palindromic
+    is_palindrome = True
+    for i in range(m):
+        for j in range(m):
+            if matrix[i][j] != matrix[j][i]:
+                is_palindrome = False
+
+    # If the matrix is palindromic, print YES and the matrix
+    if is_palindrome:
+        print("YES")
+        for i in range(m):
+            print(" ".join(str(matrix[i][j]) for j in range(m)))
+    else:
+        print("NO")
+```

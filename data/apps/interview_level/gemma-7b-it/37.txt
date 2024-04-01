@@ -1,0 +1,10 @@
+```python
+a, b, c = map(int, input().split())
+
+damage = a * 1 + b * 2
+
+if damage >= c:
+    print("Yes")
+else:
+    print("No")
+```

@@ -1,0 +1,44 @@
+
+
+Here is the Python3 code for solving the problem:
+
+```
+def solve(s):
+    n = len(s)
+    a = s.count('0')
+    b = s.count('1')
+    c = s.count('2')
+    i = 0
+    j = n - 1
+    while i < j and a + b == c:
+        while i < j and s[i] != '1':
+            i += 1
+        while j > i and s[j] != '2':
+            j -= 1
+        if i < j:
+            s = s[:i] + '2' + s[i + 1:j] + '1' + s[j + 1:]
+            i += 1
+            j -= 1
+            a += 1
+            c -= 1
+    if a + b == c:
+        return s
+    else:
+        return 'IMPOSSIBLE'
+
+n = int(input())
+s = input()
+ans = solve(s)
+if ans == 'IMPOSSIBLE':
+    print(ans)
+else:
+    print(''.join(sorted(ans)))
+```
+
+The function `solve(s)` takes the input string `s` as a parameter. It calculates the number of occurrences of each character in the string, and initializes the indices `i` and `j` at the beginning and end of the string respectively.
+
+The code then enters a while loop that continues as long as `i` is less than `j` and the number of occurrences of '0' and '1' are equal to the number of occurrences of '2'.
+
+While `i` is less than `j` and the character at the `i`th position of the string is not '1', `i` is incremented. While `j` is greater than `i` and the character at the `j`th position of the string is not '2', `j` is decremented.
+
+If `i` is less than `j`, the character at the `i`th position is replaced with '2' and the character at the `j`th position is replaced with '1'. The counts of '0', '1', and '2

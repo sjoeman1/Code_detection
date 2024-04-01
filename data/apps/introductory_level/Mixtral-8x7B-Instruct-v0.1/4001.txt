@@ -1,0 +1,46 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def get_divisors(n):
+    divs = [1]
+    for i in range(2, int(n ** 0.5) + 1):
+        if n % i == 0:
+            divs.append(i)
+            divs.append(int(n / i))
+    divs.append(n)
+    return list(set(divs))
+
+def restore_numbers(divs):
+    divs_dict = {}
+    for div in divs:
+        divs_dict[div] = divs_dict.get(div, 0) + 1
+
+    x_divs, y_divs = [], []
+    for div, count in divs_dict.items():
+        if count % 2 == 1:
+            x_divs.append(div)
+        else:
+            y_divs.append(div)
+
+    x = 1
+    for div in x_divs:
+        x *= div
+
+    y = 1
+    for div in y_divs:
+        if x % div == 0:
+            y *= div
+        else:
+            y *= div * div
+
+    return x, y
+
+n = int(input())
+divs = list(map(int, input().split()))
+x, y = restore_numbers(divs)
+print(x, y)
+```
+
+The solution first calculates the set of divisors for each of the numbers $x$ and $y$, then it constructs two dictionaries to count the occurrences of each divisor in the input list. After that, it separates the divisors that occur an odd number of times into one set and the divisors that occur an even number of times into another set. It then calculates the values of $x$ and $y$ as the product of all divisors in the odd and even sets, respectively.
+
+Note that if the same prime number occurs an odd number of times in the set of divisors of $y$, then it must occur an even number of times in the set of divisors of $x$, and vice versa. This is why we can calculate the value of $y

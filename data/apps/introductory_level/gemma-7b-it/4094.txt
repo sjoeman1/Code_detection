@@ -1,0 +1,42 @@
+```python
+import math
+
+k = int(input())
+
+# Find the multiple of K in the sequence
+for i in range(1, int(math.sqrt(k)) + 1):
+    if k % i == 0:
+        position = i
+        break
+
+# If no multiple of K is found, print -1
+if position == None:
+    print(-1)
+else:
+    print(position)
+```
+
+**Explanation:**
+
+* The code reads the input value `k`, which represents the number of the multiple of K to search for in the sequence.
+* It finds the square root of `k` and iterates over the range from 1 to the square root of `k`.
+* If the loop finds a multiple of `k`, the position of the multiple is stored in the variable `position`.
+* If no multiple of `k` is found, `position` is `None`.
+* Finally, the code prints the value of `position`.
+
+**Sample Input:**
+
+```
+101
+```
+
+**Sample Output:**
+
+```
+4
+```
+
+**Explanation:**
+
+* The sequence is 7, 77, 777, ..., and there is no multiple of 101 in the sequence.
+* The code finds the first multiple of 101 in the sequence, which is the fourth element.

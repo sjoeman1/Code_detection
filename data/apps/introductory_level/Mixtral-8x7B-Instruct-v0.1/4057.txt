@@ -1,0 +1,38 @@
+ Here is a Python3 solution for the problem:
+```python
+n = int(input())
+coins = list(map(int, input().split()))
+
+# Sort the coins in ascending order
+coins.sort()
+
+# Initialize pockets and current coin index
+pockets = 0
+curr_index = 0
+
+# Loop through the sorted coins
+while curr_index < n:
+    # Put the current coin in the current pocket
+    coins[curr_index] = -coins[curr_index]
+    curr_index += 1
+
+    # Initialize a flag to check if the current pocket can accommodate more coins
+    can_add_more = True
+
+    # Loop through the remaining coins
+    while curr_index < n and can_add_more:
+        # If the current coin can be added to the current pocket
+        if coins[curr_index] != coins[curr_index - 1]:
+            coins[curr_index] = -coins[curr_index]
+            curr_index += 1
+        # If the current coin cannot be added to the current pocket
+        else:
+            can_add_more = False
+
+    # Increment the number of pockets
+    pockets += 1
+
+# Print the minimum number of pockets needed
+print(pockets)
+```
+The solution works by first sorting the coins in ascending order. Then, it iterates through the sorted coins and adds each coin to the current pocket, as long as the coin does not have the same value as the previous coin in the pocket. If a coin cannot be added to the current pocket, a new pocket is created. The number of pockets created is the minimum number of pockets needed to distribute all the coins.

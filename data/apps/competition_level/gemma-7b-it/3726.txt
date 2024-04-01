@@ -1,0 +1,33 @@
+```python
+import math
+
+n = int(input())
+x = list(map(int, input().split()))
+
+x.sort()
+
+operations = 0
+prime = 3
+
+while any(card >= prime for card in x):
+    operations += math.ceil(card / prime)
+    prime = min(prime, card)
+
+print(operations)
+```
+
+**Explanation:**
+
+- The algorithm works by finding the prime that divides the maximum number of cards.
+- The number of operations is the number of times the prime divides the maximum number of cards.
+- The algorithm iterates over the primes starting from 3 and selecting the prime that divides the maximum number of cards.
+- The algorithm stops when all the cards are face down.
+
+**Time Complexity:**
+
+- The algorithm iterates over the primes only once, so the time complexity is O(n).
+- The algorithm finds the prime factor of a number in O(sqrt(n)) time, so the time complexity is O(sqrt(n)).
+
+**Space Complexity:**
+
+- The algorithm uses a constant amount of space, regardless of the size of the input.

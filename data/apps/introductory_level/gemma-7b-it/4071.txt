@@ -1,0 +1,11 @@
+```python
+a = int(input())
+
+print(a**3)
+```
+
+**Explanation:**
+
+* Read an integer `a` from the input.
+* Calculate `a**3` to raise `a` to the power of 3.
+* Print the result.

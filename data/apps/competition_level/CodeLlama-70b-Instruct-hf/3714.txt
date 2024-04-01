@@ -1,0 +1,27 @@
+
+
+```
+# read the number of people
+n = int(input())
+# read the crushes
+crushes = list(map(int, input().split()))
+
+# store the count of each crush
+count = [0] * (n + 1)
+for crush in crushes:
+    count[crush] += 1
+
+# check if t = 1 satisfies the condition
+if all(crushes[i - 1] == i or count[i] == 1 for i in range(1, n + 1)):
+    print(1)
+else:
+    # find the smallest t that satisfies the condition
+    for t in range(2, n + 1):
+        if all(crushes[i - 1] == i or count[crushes[crushes[i - 1] - 1]] == 1 for i in range(1, n + 1)):
+            print(t)
+            break
+    else:
+        print(-1)
+```
+
+This Python3 code reads the input, calculates the number of each crush, and then checks if t=1 satisfies the condition. If not, it iterates from t=2 to n and checks if each person's crush has a crush, and if so, if that crush's crush has a crush, and so on until t-1, and then checks if the crush's crush's crush... (t-1 times) has a crush. If this condition is satisfied, it prints the smallest t, and if not, it prints -1.

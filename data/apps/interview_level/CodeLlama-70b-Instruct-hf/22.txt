@@ -1,0 +1,27 @@
+
+
+Here's the Python 3 code to solve the question:
+
+```python
+def check_spalindrome(s):
+    n = len(s)
+    mid = n // 2
+    if n % 2 == 0:
+        return s[:mid] == s[mid:][::-1]
+    else:
+        return s[:mid] == s[mid + 1:][::-1]
+
+
+if __name__ == "__main__":
+    s = input()
+    if check_spalindrome(s):
+        print("TAK")
+    else:
+        print("NIE")
+```
+
+The code defines a function `check_spalindrome` that takes a string `s` as input. It calculates the length of the string and finds the middle index. If the length of the string is even, it checks if the first half of the string is equal to the reverse of the second half. If the length of the string is odd, it checks if the first half of the string (excluding the middle character) is equal to the reverse of the second half.
+
+The `check_spalindrome` function returns `True` if the string is "s-palindrome" and `False` otherwise.
+
+In the `main` part of the code, it takes the input string `s` and checks if it is "s-palindrome" by calling the `check_spalindrome` function. If it is, it prints "TAK", otherwise, it prints "NIE".

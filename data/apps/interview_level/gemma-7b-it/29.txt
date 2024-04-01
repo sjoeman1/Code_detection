@@ -1,0 +1,39 @@
+```python
+def minMoves(num):
+    num_str = str(num)
+    sum_first_three = int(num_str[:3])
+    sum_last_three = int(num_str[3:])
+
+    # Calculate the minimum number of moves required
+    moves = abs(sum_first_three - sum_last_three)
+
+    # Return the minimum number of moves
+    return moves
+
+
+# Get the input ticket number
+ticket = int(input())
+
+# Calculate the minimum number of moves required
+moves = minMoves(ticket)
+
+# Print the minimum number of moves
+print(moves)
+```
+
+**Explanation:**
+
+* The function `minMoves` takes an integer `num` as input, which represents Luba's ticket number.
+* It converts the integer `num` into a string `num_str`.
+* It then splits the string `num_str` into the first three digits and the last three digits.
+* It converts the first three digits and the last three digits into integers `sum_first_three` and `sum_last_three` respectively.
+* It calculates the absolute difference between `sum_first_three` and `sum_last_three` and stores it in the variable `moves`.
+* Finally, the function returns the value of `moves`.
+
+**Time complexity:**
+
+* The function `minMoves` has a time complexity of O(1), as it performs a constant number of operations regardless of the size of the input ticket number.
+
+**Space complexity:**
+
+* The function `minMoves` has a space complexity of O(1), as it uses a constant amount of space regardless of the size of the input ticket number.

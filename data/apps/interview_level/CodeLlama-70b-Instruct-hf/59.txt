@@ -1,0 +1,28 @@
+
+Here's the Python3 code for solving the given question:
+
+```
+n = int(input())
+
+a = list(map(int, input().split()))
+
+s = input()
+
+for i in range(n-1):
+
+    if s[i] == '1':
+
+        while a[i] != i+1:
+
+            a[i], a[i+1] = a[i+1], a[i]
+
+if a == [i for i in range(1, n+1)]:
+
+    print("YES")
+
+else:
+
+    print("NO")
+```
+
+This code reads the input, then iterates through the string and swaps elements of the array if the current character is '1'. After the swapping operations, it checks if the array is sorted and prints the appropriate output.

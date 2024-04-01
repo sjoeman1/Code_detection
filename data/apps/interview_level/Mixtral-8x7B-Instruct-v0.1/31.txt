@@ -1,0 +1,40 @@
+ Here is a Python3 solution for the problem:
+
+```python
+import sys
+input = sys.stdin.readline
+
+MOD = 1000003
+
+def powmod(x, y, mod):
+    res = 1
+    while y > 0:
+        if y % 2:
+            res = (res * x) % mod
+            y -= 1
+        x = (x * x) % mod
+        y //= 2
+    return res
+
+def solve(n, k):
+    if k > (1 << n):
+        return 0, 1
+    elif k == (1 << n):
+        return 1, 1
+    else:
+        not_k = (1 << n) - k
+        num = powmod(k, not_k, MOD)
+        den = powmod(2, n, MOD) - 1
+        den = (den * powmod(2, MOD - 2, MOD)) % MOD
+        return num, den
+
+n, k = map(int, input().strip().split())
+num, den = solve(n, k)
+print(num, den)
+```
+
+The solution uses the principle of inclusion-exclusion to calculate the probability. The probability that no two people have the same birthday is `(2^n - 1)^k / (2^n - 1)`, which can be simplified as `(2^n - 1)^(k - 1) / (2^n - 1)`. The probability that at least two people have the same birthday is then `1 - (2^n - 1)^(k - 1) / (2^n - 1)`.
+
+To calculate `(2^n - 1)^(k - 1)`, we can use the modular exponentiation algorithm. The denominator `2^n - 1` is then inverted using the extended Euclidean algorithm to get the final answer as an irreducible fraction.
+
+Note that the answer is printed modulo 10^6 + 3 to avoid overflow issues.

@@ -1,0 +1,26 @@
+
+
+Here is the Python 3 code that solves the problem:
+
+```python
+# Input the values of n, d and k
+n, d, k = map(int, input().split())
+
+# Check if it is possible to construct a tree with the given conditions
+if n == 1:
+    print("YES")
+else:
+    if d < k - 1:
+        print("NO")
+    else:
+        # Construct a tree with the given conditions
+        print("YES")
+        for i in range(2, n):
+            print(i, i - 1)
+        for i in range(2, k):
+            print(1, i)
+        for i in range(k + 1, n):
+            print(k, i)
+```
+
+This code will first read the input values for `n`, `d`, and `k` from the user. Then, it will check if it is possible to construct a tree with the given conditions. If `n` is 1, then the diameter and degree are irrelevant, and the tree exists. If `d` is less than `k - 1`, then the diameter is smaller than the minimum possible diameter for a tree with degree at most `k`, so it is impossible. Otherwise, it constructs the tree by adding edges from each node to its predecessor, then adds edges from node 1 to the first `k - 1` nodes, and finally adds edges from node `k` to the remaining nodes.

@@ -1,0 +1,36 @@
+
+
+The code for solving this problem is as follows:
+
+```python
+from math import ceil
+
+def cooking_time(k, d, t):
+    # Calculate the total cooking time when the stove is on
+    time_on = (t + (k - 1)) // k
+
+    # Calculate the number of times the stove is turned off
+    off_count = ceil(time_on / d) - 1
+
+    # Calculate the total cooking time when the stove is off
+    time_off = t / (2 * off_count + 1)
+
+    # Calculate the total cooking time
+    total_time = time_on + time_off
+
+    return total_time
+
+if __name__ == "__main__":
+    k, d, t = map(int, input().split())
+    print(cooking_time(k, d, t))
+```
+
+Here's an explanation of how the code works:
+
+1.  We define a function `cooking_time` that takes three parameters: `k`, `d`, and `t`.
+2.  We calculate the total cooking time when the stove is on using the formula `(t + (k - 1)) // k`. This is because the stove will turn off after `k` minutes, and Julia will turn it on again after `d` minutes.
+3.  We calculate the number of times the stove is turned off using the formula `ceil(time_on / d) - 1`. This is because Julia will turn on the stove every `d` minutes, and we subtract 1 to account for the initial turn-on.
+4.  We calculate the total cooking time when the stove is off using the formula `t / (2 * off_count + 1)`. This is because the stove will be off for the same amount of time as it's on, and we divide `t` by the number of times it's on and off.
+5.  We calculate the total cooking time by adding `time_on` and `time_off`.
+6.  We return the `total_time`.
+7.  In the `main` function, we take input for `k`, `d`, and `t`,

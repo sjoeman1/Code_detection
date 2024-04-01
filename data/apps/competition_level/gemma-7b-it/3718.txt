@@ -1,0 +1,19 @@
+```python
+n = int(input())
+t = list(map(int, input().split()))
+
+t.sort()
+
+if len(set(t)) == 3 and t[1] - t[0] <= 2 and t[2] - t[1] <= 2:
+    print("YES")
+else:
+    print("NO")
+```
+
+**Explanation:**
+
+1. Read the number of balls and the list of ball sizes.
+2. Sort the list of ball sizes in ascending order.
+3. Check if the number of distinct ball sizes is 3.
+4. Check if the difference between any two balls is less than or equal to 2.
+5. If all conditions are met, print "YES". Otherwise, print "NO".

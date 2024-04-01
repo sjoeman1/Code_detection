@@ -1,0 +1,15 @@
+```python
+k, d, t = map(int, input().split())
+
+# Calculate the time spent cooking when the stove is on
+time_on = t
+
+# Calculate the time spent cooking when the stove is off
+time_off = 2 * t
+
+# Calculate the total time spent cooking
+total_time = time_on + time_off
+
+# Print the total time spent cooking
+print(round(total_time, 1))
+```

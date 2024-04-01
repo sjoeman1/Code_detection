@@ -1,0 +1,54 @@
+
+
+Here is the Python3 code that solves the problem:
+
+```
+def solve(n, k):
+    if n == 0 or k == 0:
+        return "NO"
+    if n < k:
+        return "NO"
+
+    # Initialize the array
+    a = [0] * k
+
+    # Find the value of the last element
+    a[k - 1] = n - (k - 1)
+
+    # If the last element is less than 1, return "NO"
+    if a[k - 1] < 1:
+        return "NO"
+
+    # Iterate through the array in reverse order
+    for i in range(k - 2, -1, -1):
+        # Set the current element to be at least 1
+        a[i] = max(1, a[i + 1] // 2)
+        # Update the next element
+        a[i + 1] -= a[i]
+
+    # If the sum of all elements is not equal to n, return "NO"
+    if sum(a) != n:
+        return "NO"
+
+    # Otherwise, return "YES" and the array
+    return "YES" + "\n" + " ".join(map(str, a))
+
+# Input the values of n and k
+n, k = map(int, input().split())
+
+# Get the result
+result = solve(n, k)
+
+# Print the result
+print(result)
+```
+
+This code first checks if `n` or `k` is 0. If so, it returns "NO" because there is no solution.
+
+Then, it checks if `n` is less than `k`. If so, it returns "NO" because there is no solution.
+
+Next, it initializes the array `a` with `k` elements set to 0. It finds the value of the last element `a[k-1]` by subtracting `(k-1)` from `n`.
+
+If the last element is less than 1, it returns "NO" because there is no solution.
+
+It then iterates through the array in reverse order, starting from the second-to-last element. For each element, it sets the current element

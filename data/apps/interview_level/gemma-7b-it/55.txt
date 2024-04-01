@@ -1,0 +1,26 @@
+```python
+n, k = map(int, input().split())
+
+if n < k:
+    print("No")
+else:
+    print("Yes")
+    a = sorted(list(map(int, input().split().split()[:k])))
+    print(" ".join(map(str, a)))
+```
+
+**Explanation:**
+
+* Read the input and check if the sum of two to the power of each number is equal to n. If it is not, print "No".
+* Otherwise, read the k numbers from the input and sort them in descending order.
+* Print "Yes" and then print the sorted numbers.
+
+**Time complexity:**
+
+* Reading input: O(1)
+* Sorting numbers: O(k)
+* Printing output: O(k)
+
+**Space complexity:**
+
+* Constant space

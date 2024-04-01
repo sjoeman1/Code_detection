@@ -1,0 +1,23 @@
+```python
+n = int(input())
+s = input().lower()
+b = list(map(int, input().split()))
+
+m = len(s)
+a = list(set(s))
+
+ans = 0
+for i in range(m):
+    if s[i] not in a:
+        a.add(s[i])
+        ans += b[i]
+
+print(ans)
+```
+
+**Explanation:**
+
+- The code calculates the maximum beauty of t by finding the beauty of each character in the string s that is not yet in the set a.
+- The set a keeps track of the characters that have already been used.
+- The beauty of a character is added to the total beauty of t if it is not already in a.
+- The code then prints the total beauty of t.

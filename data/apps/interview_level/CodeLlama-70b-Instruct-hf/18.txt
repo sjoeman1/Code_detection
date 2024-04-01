@@ -1,0 +1,25 @@
+
+Here is the Python3 code that solves the question:
+
+```
+# Input
+s = input()
+
+# Empty strings t and u
+t = ""
+u = ""
+
+# Loop through the characters of s
+for c in s:
+    # Append the character to t
+    t += c
+    # Check if t is lexicographically greater than u
+    if t > u:
+        # Swap t and u
+        t, u = u, t
+
+# Print the result
+print(u)
+```
+
+The code starts by reading the input string s. Then, it initializes empty strings t and u. For each character c in s, it appends c to t. If t is lexicographically greater than u, it swaps t and u. Finally, it prints the resulting string u.

@@ -1,0 +1,24 @@
+ Here is a Python3 solution for the problem. The idea is to use a square grid of size (2n+1) x (2n+1) to represent the 2D plane, where the central point of the grid represents the origin of the coordinate system. We can then use a bitmask to keep track of the blocked points in the grid. The minimum number of points that need to be blocked can be found by considering the rows and columns of the grid alternately. For each row or column, if there are some special points, we must block the first and last special points to ensure that no special point is 4-connected to some non-special point.
+
+```python
+import math
+
+def min_blocked_points(n):
+    size = 2*n + 1
+    blocked = 0
+    for i in range(1, math.ceil(size/2) + 1):
+        if i <= n:
+            blocked |= (1 << (i-1)) | (1 << (size - i))
+        if i <= n - 1:
+            blocked |= (1 << (size*(i-1) + i)) | (1 << (size*(i-1) + size - i))
+    return blocked.bit_count()
+
+n = int(input())
+print(min_blocked_points(n))
+```
+
+In this code, the `min_blocked_points` function takes an integer `n` as input and returns the minimum number of points that need to be blocked. The function first initializes a variable `blocked` to 0, which will be used to keep track of the blocked points in the grid. The function then loops over the rows and columns of the grid alternately, and for each row or column, if there are some special points, the function blocks the first and last special points by setting the corresponding bits in the `blocked` variable. Finally, the function returns the number of blocked points by calling the `bit_count` method on the `blocked` variable.
+
+Note that the `bit_count` method is used here to count the number of set bits in the `blocked` variable. This method is available in Python 3.7 and later versions. For earlier versions of Python, you can use the following implementation of the `bit_count` function:
+
+``
