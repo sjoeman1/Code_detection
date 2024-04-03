@@ -1,5 +1,8 @@
 import wandb
 import code_tokenize as ctok
+from nltk.tokenize import word_tokenize
+# import nltk
+# nltk.download('punkt')
 import argparse
 import json
 import pandas as pd
@@ -11,14 +14,16 @@ from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
 
+import xgboost as xgb
+
 parser = argparse.ArgumentParser()
-parser.add_argument('--dataset', default="results/gemma-7b-it-apps_introductory.jsonl")
-parser.add_argument('--classifier', default="MNB", choices=['SCM', 'LR', 'MNB'])
-parser.add_argument('--max_features', default=1000, type=int)
-parser.add_argument('--kernel', default='linear')
+parser.add_argument('--dataset', default="results/gemma-7b-it-apps_interview_207.jsonl")
+parser.add_argument('--classifier', default="XGB", choices=['SCM', 'LR', 'MNB', 'XGB'])
+parser.add_argument('--max_features', default=8000, type=int)
 parser.add_argument('--vectorizer', default='CountVectorizer', choices=['TfidfVectorizer', 'CountVectorizer'])
 parser.add_argument('--ngram_range', default=(1, 4), type=tuple, nargs=2)
-parser.add_argument('--hide_comments', default=True, type=bool)
+parser.add_argument('--tokenizer', default='comment_only',
+                    choices=['tokenize_comment', 'tag_comment', 'hide_comment', 'standard_tokenizer', 'comment_only'])
 args = parser.parse_args()
 # args.ngram_range = tuple(args.ngram_range)
 print(args)
@@ -37,6 +42,8 @@ config = wandb.config
 
 # create dataframe
 df = pd.DataFrame(dataset)
+#remove rows with # CANNOT PARSE
+df = df[~df['parsed_codes'].str.startswith("# CANNOT")]
 print(df)
 human_written = df['gold_completion']
 machine_generated = df['parsed_codes']
@@ -58,18 +65,64 @@ print(len(data), len(data_labels))
 X_train, X_test, y_train, y_test = train_test_split(data, data_labels, shuffle=True, test_size=0.2, random_state=42)
 
 # create tokenizer
-def tokenizer(text):
+def tag_comment_tokenizer(text):
+    tokenized = standard_tokenizer(text)
+    tokenized = [token if not is_comment(token) else "#COMMENT#" for token in tokenized]
+    return tokenized
+
+def hide_comment_tokenizer(text):
+    tokenized = standard_tokenizer(text)
+    tokenized = [token for token in tokenized if not is_comment(token)]
+    return tokenized
+
+word_tokenizer = word_tokenize
+def tokenize_comment_tokenizer(text):
+    temp_tokenized = []
+    tokenized = standard_tokenizer(text)
+    for i, token in enumerate(tokenized):
+        if is_comment(token):
+            temp_tokenized += word_tokenizer(token[1:])
+        else:
+            temp_tokenized.append(token)
+    return temp_tokenized
+
+def tokenize_only_comment(text):
+    temp_tokenized = []
+    tokenized = standard_tokenizer(text)
+    for i, token in enumerate(tokenized):
+        if is_comment(token):
+            temp_tokenized += word_tokenizer(token[1:])
+    return temp_tokenized
+def is_comment(token):
+    return token.startswith("#") and not (token == "#NEWLINE#" or token == "#INDENT#" or token == "#DEDENT#")
+
+
+def standard_tokenizer(text):
     tokenized = ctok.tokenize(text, lang='python', syntax_error="ignore")
     # convert to string and return
     tokenized = [str(token) for token in tokenized]
-    if config.hide_comments:
-        for i, token in enumerate(tokenized):
-            if token.startswith("#") and not (token == "#NEWLINE#" or token == "#INDENT#" or token == "#DEDENT#"):
-                tokenized[i] = "#COMMENT#"
     return tokenized
 
+
+
+match config['tokenizer']:
+    case "tokenize_comment":
+        tokenizer = tokenize_comment_tokenizer
+    case "tag_comment":
+        tokenizer = tag_comment_tokenizer
+    case "hide_comment":
+        tokenizer = hide_comment_tokenizer
+    case "standard_tokenizer":
+        tokenizer = standard_tokenizer
+    case "comment_only":
+        tokenizer = tokenize_only_comment
+    case _:
+        print("Invalid tokenizer name")
+
 # test the tokenizer
-print(tokenizer(X_train[0]))
+train_ = df['parsed_codes'][2]
+print(train_)
+print(tokenize_comment_tokenizer(train_))
 
 match config['vectorizer']:
     case "CountVectorizer":
@@ -86,11 +139,13 @@ X_test = vectorizer.transform(X_test)
 
 match config['classifier']:
     case "SCM":
-        clf = SVC(kernel=config.kernel)
+        clf = SVC(kernel='poly', C=10)
     case "LR":
-        clf = LogisticRegression()
+        clf = LogisticRegression(max_iter=1000)
     case "MNB":
         clf = MultinomialNB()
+    case "XGB":
+        clf = xgb.XGBClassifier(objective='binary:logistic', max_depth=10, n_estimators=180, gamma=1)
     case _:
         print("Invalid model name")
         wandb.finish(exit_code=1)
