@@ -1,0 +1,1 @@
+{"columns": ["feature_names", "importances"], "data": [["len_comments", 2.14467085246689], ["amount_of_comments", 0.12562620595737298], ["length", -0.044299700744844066], ["amount_of_code", -0.04684018024964018], ["amount_of_indents", -0.4310571266281354], ["amount_of_defs", -0.6163453258901022], ["amount_of_newlines", -2.1975035571384827]]}
