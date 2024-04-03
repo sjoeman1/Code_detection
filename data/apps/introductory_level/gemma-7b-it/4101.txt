@@ -1,0 +1,19 @@
+```python
+n, m = map(int, input().split())
+a = [[int(input()) for _ in range(m)] for _ in range(n)]
+a_sort = sorted(a)
+res = ""
+ans = ""
+if a_sort != a:
+    print("NO")
+    print("-" * n)
+    print("-" * m)
+else:
+    print("YES")
+    for i in range(n):
+        res += str(a_sort[0][i] ^ 1)
+    print(res)
+    for i in range(m):
+        ans += str(a_sort[i][0] ^ 1)
+    print(ans)
+```

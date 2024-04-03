@@ -1,0 +1,15 @@
+```python
+n = int(input())
+a = list(map(int, input().split()))
+
+cumulative_sum = 0
+for i in range(len(a)):
+    cumulative_sum += a[i]
+
+for i in range(1, n + 1):
+    if cumulative_sum[i - 1] >= sum / 2:
+        print(i)
+        exit()
+
+print(-1)
+```

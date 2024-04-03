@@ -1,0 +1,23 @@
+```python3
+n = int(input())
+s = input().strip()
+
+a, c, g, t = 0, 0, 0, 0
+
+for i in s:
+    if i.lower() == 'a':
+        a += 1
+    elif i.lower() == 'c':
+        c += 1
+    elif i.lower() == 'g':
+        g += 1
+    elif i.lower() == 't':
+        t += 1
+    else:
+        pass
+
+if a != c or c != g or g != t:
+    print("===")
+else:
+    print(s.replace('?', ''.join(['A', 'C', 'G', 'T'][0:a]) + ''.join(['A', 'C', 'G', 'T'][1:c]) + ''.join(['A', 'C', 'G', 'T'][2:g]) + ''.join(['A', 'C', 'G', 'T'][3:t]))
+```

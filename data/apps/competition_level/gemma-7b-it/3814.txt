@@ -1,0 +1,15 @@
+```python
+n, m = map(int, input().split())
+
+# Calculate the number of ways to choose toppings for each topping
+num_ways = 2 ** n
+
+# Calculate the number of ways to satisfy the second condition
+num_ways_2 = 2 ** n - 1
+
+# Calculate the number of sets of bowls of ramen that satisfy the conditions
+num_sets = num_ways - num_ways_2
+
+# Print the number of sets of bowls of ramen that satisfy the conditions
+print(num_sets % m)
+```

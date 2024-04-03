@@ -1,0 +1,10 @@
+```python
+s = input().strip()
+a = set(s.lower())
+b = set(string.ascii_lowercase) - set(a)
+
+if not b:
+  print("-1")
+else:
+  print("".join(sorted(a) + list(b)))
+```

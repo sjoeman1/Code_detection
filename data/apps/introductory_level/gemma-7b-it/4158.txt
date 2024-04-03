@@ -1,0 +1,20 @@
+```python
+n = int(input())
+x = list(map(int, input().split().strip().split()))
+x.sort()
+
+m = 0
+ans = []
+
+for i in range(n):
+    flag = 0
+    for j in range(i):
+        if abs(x[i] - x[j]) % 2 == 0 and x[i] - x[j] not in ans:
+            flag = 1
+    if flag and m < len(ans):
+        m = len(ans)
+        ans = set(x[j] for j in range(i, n))
+
+print(m)
+print(*ans)
+```

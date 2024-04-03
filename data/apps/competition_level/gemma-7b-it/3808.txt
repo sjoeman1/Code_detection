@@ -1,0 +1,12 @@
+```python
+n = int(input())
+s = input().strip()
+
+# Check if the sequence is already correct
+is_correct = (s == "" or s == "()" or s.startswith(")") and s.count(")") == s.count("(")
+
+# Check if the sequence can be corrected by moving one bracket
+can_correct = (s.count(")") - s.count("(") == 1) and (s.count(")") - s.count("(") <= 1) and all(x == "(" or x == ")" for x in s)
+
+print("Yes" if can_correct and is_correct else "No")
+```

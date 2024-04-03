@@ -1,0 +1,18 @@
+```python
+N = int(input())
+a = [[int(input()) for _ in range(N)] for _ in range(N)]
+
+mex = lambda x, y: 0 if x == y else 1 if x > y else 2
+
+zeros, ones, twos = 0, 0, 0
+for i in range(N):
+    for j in range(N):
+        if a[i][j] == 0:
+            zeros += 1
+        elif a[i][j] == 1:
+            ones += 1
+        else:
+            twos += 1
+
+print(zeros, ones, twos)
+```

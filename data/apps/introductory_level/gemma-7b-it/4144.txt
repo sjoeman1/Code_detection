@@ -1,0 +1,11 @@
+```python
+import math
+
+n = int(input())
+
+def func(n):
+    a = math.factorial(n) // n
+    return a * 2
+
+print(func(n) % 10**9 + 7)
+```

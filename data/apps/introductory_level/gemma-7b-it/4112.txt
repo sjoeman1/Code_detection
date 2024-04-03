@@ -1,0 +1,19 @@
+```python
+n, k, x = map(int, input().split())
+a = list(map(int, input().split()))
+
+a.sort()
+
+s = sum(a)
+c = 0
+m = 0
+
+for i in range(n):
+    c += a[i]
+    m = max(m, c - k + a[i])
+
+if m < 0:
+    print(-1)
+else:
+    print(m)
+```

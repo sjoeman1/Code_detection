@@ -1,0 +1,46 @@
+```python
+n = int(input())
+p = list(map(int, input().split()))
+x = list(map(int, input().split()))
+
+# Create a dictionary to store the parent-child relationships between vertices
+parent = {i: None for i in range(1, n + 1)}
+for i in range(1, n):
+    parent[i] = p[i]
+
+# Calculate the total weight of each color group
+total_weight = {i: 0 for i in range(n + 1)}
+def dfs(node):
+    total_weight[node] = 0
+    for child in children(node):
+        total_weight[node] += total_weight[child] + weight[node]
+        dfs(child)
+
+# Check if the total weight of each color group is equal to X_v
+possible = True
+for i in range(1, n + 1):
+    if total_weight[i] != x[i]:
+        possible = False
+
+# Print the answer
+if possible:
+    print("POSSIBLE")
+else:
+    print("IMPOSSIBLE")
+```
+
+**Explanation:**
+
+* The code reads the number of vertices, `N`, and the parent of each vertex, `P_i`, and the sequence of integers, `X_i`.
+* It creates a dictionary `parent` to store the parent-child relationships between vertices.
+* It calculates the total weight of each color group using the `total_weight` dictionary and the `dfs` function.
+* It checks if the total weight of each color group is equal to `X_v`. If it is not, it sets `possible` to `False`.
+* If `possible` is `True`, it prints "POSSIBLE". Otherwise, it prints "IMPOSSIBLE".
+
+**Time Complexity:**
+
+* The code calculates the total weight of each color group only once for each vertex, so the time complexity is O(N) where N is the number of vertices.
+
+**Space Complexity:**
+
+* The code uses a dictionary `parent` and a dictionary `total_weight`, so the space complexity is O(N) where N is the number of vertices.

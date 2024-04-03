@@ -1,0 +1,26 @@
+```python
+n = int(input())
+num = input().strip()
+
+# Create a dictionary to store the finger movements for each number
+finger_movements = {}
+
+# Calculate the finger movements for each number
+for i in range(10):
+    movements = []
+    for j in str(i):
+        movements.append((int(j) - 1) * 3)
+    finger_movements[i] = movements
+
+# Check if the number of finger movements for Mike's number is unique
+unique = True
+for i in range(1, n + 1):
+    if finger_movements[i] == finger_movements[int(num)]:
+        unique = False
+
+# Print the result
+if unique:
+    print("YES")
+else:
+    print("NO")
+```

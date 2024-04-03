@@ -1,0 +1,19 @@
+```python
+
+n = int(input())
+a = list(map(int, input().split()))
+b = list(map(int, input().split()))
+
+a.sort()
+b.sort()
+
+operations = 0
+i = 0
+for card in a:
+    if card != b[i]:
+        operations += abs(b[i] - card) + 1
+        i += 1
+
+print(operations)
+
+```

@@ -1,0 +1,16 @@
+```python
+n = int(input())
+s = input().strip()
+
+# Check if the first character of the string is 8 and the length of the string is 11
+if s[0] == '8' and len(s) == 11:
+    # Check if the remaining string can be a telephone number
+    for i in range(len(s) - 1, -1, -1):
+        s_r = s[:i] + s[i + 1:]
+        if s_r[0] == '8' and len(s_r) == 11:
+            print('YES')
+            exit()
+    print('NO')
+else:
+    print('NO')
+```

@@ -1,0 +1,12 @@
+```python
+L, R = map(int, input().split())
+
+# Calculate the minimum possible value of (i x j) mod 2019
+min_product = (L-1) * L + 1
+
+# Update the minimum product if necessary
+if min_product % 2019 < 2:
+    min_product = min_product % 2019
+
+print(min_product)
+```

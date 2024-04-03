@@ -1,0 +1,24 @@
+```python
+n, m = map(int, input().split())
+l = list(map(int, input().split()))
+s = list(map(int, input().split()))
+c = list(map(int, input().split()))
+
+c_sum = sum(c)
+
+l.sort()
+s.sort()
+
+max_profit = 0
+curr_cost = 0
+curr_aggression = 0
+
+for i in range(len(l)):
+    if l[i] > curr_aggression:
+        break
+    curr_cost += s[i]
+    curr_aggression = l[i]
+    max_profit += c[l[i]] - s[i]
+
+print(max_profit)
+```

@@ -1,0 +1,22 @@
+```python3
+n, m, k = map(int, input().split())
+a, b = map(int, input().split())
+
+# Calculate the number of steps to get from Edvard's apartment to Natasha's apartment
+num_steps = 0
+
+# Calculate the number of steps to the first floor of Edvard's apartment
+num_steps_to_first_floor = 10 + 9
+
+# Calculate the number of steps to the first floor of Natasha's apartment
+num_steps_to_first_floor_natasha = 10 + 9
+
+# Calculate the number of steps to the target floor of Natasha's apartment
+num_steps_to_target_floor = abs(a - b)
+
+# Calculate the total number of steps
+total_steps = num_steps_to_first_floor + num_steps_to_target_floor + 5
+
+# Print the total number of steps
+print(total_steps)
+```

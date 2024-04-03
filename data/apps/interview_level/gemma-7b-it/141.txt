@@ -1,0 +1,13 @@
+```python
+W = int(input())
+
+cnt = list(map(int, input().split()))
+
+# Calculate the maximum possible weight of a good subset
+max_weight = 0
+for i in range(1, 9):
+    max_weight = max(max_weight, i * cnt[i])
+
+# Print the maximum possible weight
+print(max_weight)
+```

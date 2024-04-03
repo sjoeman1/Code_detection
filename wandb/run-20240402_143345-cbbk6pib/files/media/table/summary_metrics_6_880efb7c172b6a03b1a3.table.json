@@ -1,0 +1,1 @@
+{"columns": ["metric_name", "metric_value", "model_name"], "data": [["accuracy_score", 0.89, "XGBClassifier"], ["precision", 0.9, "XGBClassifier"], ["recall", 0.89, "XGBClassifier"], ["f1_score", 0.89, "XGBClassifier"]]}

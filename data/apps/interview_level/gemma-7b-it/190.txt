@@ -1,0 +1,17 @@
+```python3
+n, m = map(int, input().split())
+grid = []
+for _ in range(n):
+    grid.append(list(input().strip().split()))
+
+stars = [(i, j) for i, row in enumerate(grid) for j, star in enumerate(row) if star == '*']
+
+min_side = float('inf')
+for r in range(n):
+    for c in range(m):
+        distance = abs(stars[0][0] - r) + abs(stars[0][1] - c)
+        if distance < min_side:
+            min_side = distance
+
+print(int(min_side))
+```

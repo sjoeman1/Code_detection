@@ -1,0 +1,15 @@
+```python
+n = int(input())
+a = list(map(int, input().split()))
+
+# Find the largest number in the array that is not a perfect square
+largest_non_perfect_square = max(a) - 1
+
+# Iterate over the array and check if the number is a perfect square
+for num in a:
+    if num**2 <= largest_non_perfect_square:
+        largest_non_perfect_square = min(largest_non_perfect_square, num)
+
+# Print the largest number in the array that is not a perfect square
+print(largest_non_perfect_square)
+```

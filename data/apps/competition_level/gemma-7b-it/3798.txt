@@ -1,0 +1,23 @@
+```python
+import math
+
+def f(b, n):
+    n_base = int(math.floor(n / b))
+    remainder = n % b
+    return n_base + (remainder * (b-1))
+
+
+n, s = map(int, input().split())
+
+found = False
+for b in range(2, int(n**0.5) + 1):
+    if f(b, n) == s:
+        found = True
+        min_b = b
+        break
+
+if found:
+    print(min_b)
+else:
+    print(-1)
+```

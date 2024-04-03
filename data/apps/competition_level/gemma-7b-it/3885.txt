@@ -1,0 +1,11 @@
+```python
+n = int(input())
+g = int(input())
+
+cost = 0
+for i in range(n):
+    for j in range(n):
+        cost += (i + j) % (n + 1)
+
+print(cost)
+```

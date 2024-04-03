@@ -1,0 +1,24 @@
+```python
+n = int(input())
+g = {}
+for _ in range(n - 1):
+    x, y = map(int, input().split())
+    g[x] = g[x] or []
+    g[x].append(y)
+
+a = list(map(int, input().split()))
+
+visited = set()
+q = [1]
+visited.add(1)
+
+def bfs(node):
+    for neighbor in g[node]:
+        if neighbor not in visited:
+            visited.add(neighbor)
+            q.append(neighbor)
+
+bfs(1)
+
+print("Yes" if set(a) == set(q) else "No")
+```

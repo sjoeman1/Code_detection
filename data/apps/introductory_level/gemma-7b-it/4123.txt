@@ -1,0 +1,22 @@
+```python3
+
+n = int(input())
+s = input().upper()
+
+# Create a dictionary to store the frequency of each two-gram
+gram_freq = {}
+
+# Iterate over the string to find all two-grams
+for i in range(n-1):
+    gram = s[i:i+2]
+    if gram not in gram_freq:
+        gram_freq[gram] = 0
+    gram_freq[gram] += 1
+
+# Find the two-gram with the maximum frequency
+max_freq = max(gram_freq.items(), key=lambda item: item[1])
+
+# Print the two-gram with the maximum frequency
+print(max_freq[0])
+
+```

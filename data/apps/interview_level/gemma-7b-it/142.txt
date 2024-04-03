@@ -1,0 +1,26 @@
+```python
+n, L = map(int, input().split())
+c = list(map(int, input().split()))
+
+# Calculate the number of bottles of each type that can be bought with the available budget
+bottles = {}
+for i in range(n):
+    bottles[i] = L // (2**i - 1)
+
+# Find the cost of buying the necessary amount of lemonade
+total_cost = 0
+for i in range(n):
+    cost = c[i] * bottles[i]
+    total_cost += cost
+
+# Print the total cost
+print(total_cost)
+```
+
+**Explanation:**
+
+- The code reads the number of types of bottles (n) and the required amount of lemonade (L).
+- It then reads the costs of each bottle type (c).
+- It calculates the number of bottles of each type that can be bought with the available budget using the formula `bottles[i] = L // (2**i - 1)`.
+- It then finds the cost of buying the necessary amount of lemonade by multiplying the cost of each bottle by the number of bottles of that type.
+- Finally, the total cost is printed.

@@ -1,0 +1,13 @@
+```python
+n, k = map(int, input().split())
+q = list(map(int, input().split()))
+s = list(map(int, input().split()))
+
+# Check if Masha's permutation occurred on the board before the k-th move
+for i in range(len(s)):
+    if s[i] not in q:
+        print("YES")
+        exit()
+
+print("NO")
+```

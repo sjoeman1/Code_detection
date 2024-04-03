@@ -1,0 +1,26 @@
+```python
+n, m, k = map(int, input().split())
+
+if m == 0:
+    print(-1)
+else:
+    flights = [list(map(int, input().split())) for _ in range(m)]
+
+    # Calculate the cost of each flight
+    cost = {i: 0 for i in range(n + 1)}
+    for d, f, t, c in flights:
+        cost[f] += c
+
+    # Calculate the minimum cost
+    min_cost = float('inf')
+    for i in range(k + 1):
+        total_cost = 0
+        for j in range(n + 1):
+            if cost[j] and cost[j] <= total_cost:
+                total_cost = cost[j]
+        if total_cost != float('inf'):
+            min_cost = min(min_cost, total_cost)
+
+    # Print the minimum cost
+    print(min_cost)
+```

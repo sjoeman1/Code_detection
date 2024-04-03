@@ -1,0 +1,14 @@
+```python
+H, n = map(int, input().split())
+d = list(map(int, input().split()))
+
+H_init = H
+for i in range(n):
+    H += d[i]
+    if H <= 0:
+        print(-1)
+        exit()
+    H_init = min(H_init, H)
+
+print(H_init)
+```

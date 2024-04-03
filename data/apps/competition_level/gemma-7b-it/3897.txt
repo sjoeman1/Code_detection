@@ -1,0 +1,18 @@
+```python
+n = int(input())
+a = list(map(int, input().split()))
+m = prod = 1
+for i in a:
+    prod *= i
+    m = m // i
+
+print(len(set(tuple(factor(m)))/n)
+```
+
+**Explanation:**
+
+* The code reads the number of test cases (n) and then reads the n integers of the product (a).
+* It calculates the product of the integers (m) and finds all the factors of m.
+* It creates a set of tuples, each tuple containing the factors of m and the number of occurrences of each factor in the product.
+* The code then divides the number of distinct decompositions by n to find the number of distinct decompositions of number m into n ordered multipliers.
+* Finally, the number of distinct decompositions is printed.

@@ -1,0 +1,19 @@
+```python
+n, m = map(int, input().split())
+a = list(map(int, input().split()))
+b = list(map(int, input().split()))
+x = int(input())
+
+c = [[a[i] * b[j] for i in range(n)] for j in range(m)]
+
+max_area = 0
+for i in range(n):
+    for j in range(m):
+        sum = 0
+        for x in range(i, n):
+            for y in range(j, m):
+                sum += c[x][y]
+        max_area = max(max_area, (x - i + 1) * (y - j + 1) if sum <= x else 0)
+
+print(max_area)
+```

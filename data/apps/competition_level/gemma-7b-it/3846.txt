@@ -1,0 +1,25 @@
+```python
+n, m = map(int, input().split())
+users_online = set()
+leader_candidates = set()
+
+for _ in range(m):
+    msg = input().split(":")
+    action = msg[0]
+    user_id = int(msg[1])
+
+    if action == "+":
+        users_online.add(user_id)
+    elif action == "-":
+        users_online.discard(user_id)
+
+    if users_online:
+        leader_candidates.add(user_id)
+
+k = len(leader_candidates)
+print(k)
+print(*sorted(leader_candidates))
+
+if k == 0:
+    print(0)
+```

@@ -1,0 +1,23 @@
+```python
+N = int(input())
+a = list(map(int, input().split()))
+
+# Calculate the prefix sum of a
+ps = []
+s = 0
+for i in range(len(a)):
+    s += a[i]
+    ps.append(s)
+
+# Find the minimum operations to satisfy the condition
+m = min(ps[-1] - ps[0] + 1 for ps in ps)
+
+# Print the number of operations
+print(m)
+
+# Print the numbers x and y for each operation
+for i in range(m):
+    x = ps[i] - ps[0]
+    y = ps[i] - ps[0] + 1
+    print(x, y)
+```

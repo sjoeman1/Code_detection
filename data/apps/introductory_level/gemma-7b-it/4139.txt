@@ -1,0 +1,22 @@
+```python
+def numShichiGoSan(n):
+    # Function to check if a number is a Shichi-Go-San number
+    def isShichiGoSan(num):
+        # Convert the number to a string
+        numStr = str(num)
+
+        # Check if the number has at least one digit of 7, 5, and 3
+        return (numStr.count("7") >= 1) and (numStr.count("5") >= 1) and (numStr.count("3") >= 1)
+
+    # Count the number of Shichi-Go-San numbers between 1 and n
+    numShichiGoSan = sum(1 for num in range(1, n + 1) if isShichiGoSan(num) else 0)
+
+    # Print the number of Shichi-Go-San numbers
+    print(numShichiGoSan)
+
+# Get the input
+n = int(input())
+
+# Solve the problem
+numShichiGoSan(n)
+```

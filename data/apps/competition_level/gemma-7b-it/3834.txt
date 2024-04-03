@@ -1,0 +1,27 @@
+```python
+n, m, k = map(int, input().split())
+a = []
+for _ in range(n):
+    a.append(list(map(int, input().split())))
+
+if not a or not a[0]:
+    print(-1)
+    exit()
+
+components = {}
+for i in range(n):
+    for j in range(m):
+        if a[i][j] and (i, j) not in components:
+            components[(i, j)] = set()
+            for di in range(i-1, i+2):
+                for dj in range(j-1, j+2):
+                    if 0 <= di < n and 0 <= dj < m and a[di][dj] == a[i][j] and (di, dj) not in components[(i, j)]:
+                        components[(i, j)].add((di, dj))
+
+change_cnt = 0
+for component in components.values():
+    h, w = len(component)
+    change_cnt += abs(h-w)
+
+print(change_cnt if change_cnt else -1)
+```

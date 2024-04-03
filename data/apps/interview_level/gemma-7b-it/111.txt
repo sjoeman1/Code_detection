@@ -1,0 +1,10 @@
+```python
+n, k = map(int, input().split())
+
+divisors = set(x for x in range(1, int(n**0.5) + 1) if divisors else None
+
+if not divisors:
+    print(-1)
+else:
+    print(divisors.pop(k - 1))
+```

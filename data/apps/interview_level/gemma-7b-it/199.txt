@@ -1,0 +1,18 @@
+```python
+n, s = map(int, input().split())
+v = list(map(int, input().split()))
+
+v.sort()
+
+# Find the maximum amount of kvass that can be poured from the first keg
+max_kvass = 0
+for i in range(len(v)):
+    if v[i] >= s:
+        max_kvass = max(max_kvass, v[i] - s)
+
+# If the Fair Nut cannot pour his glass by s liters of kvass, print -1
+if max_kvass == 0:
+    print(-1)
+else:
+    print(max_kvass)
+```

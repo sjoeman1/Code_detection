@@ -1,0 +1,33 @@
+```python
+import re
+
+def fix_typo(word):
+    # Define the regex to find a block of three or more consonants in a row
+    consonant_block_regex = r"[a-z]{3,}"
+
+    # Check if the word has a typo
+    if re.search(consonant_block_regex, word):
+        # Count the number of vowels in the word
+        num_vowels = len(re.findall("[aeiou]", word))
+
+        # If the number of vowels is less than the number of consonants, insert spaces to divide the word into words without typos
+        if num_vowels < re.search(consonant_block_regex, word).groups()[0].count("c"):
+            # Find the minimum number of spaces to insert
+            min_spaces = min(re.findall(r"\s+", word).count(" ") + 1, len(word) - re.search(consonant_block_regex, word).start())
+
+            # Insert spaces into the word
+            words = re.split(r"\s+", word, min_spaces)
+
+            # Print the words
+            print("".join(words))
+    else:
+        # Print the original word
+        print(word)
+
+
+# Get the input word
+word = input().strip()
+
+# Fix the typo
+fix_typo(word)
+```

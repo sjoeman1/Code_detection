@@ -1,0 +1,43 @@
+```python3
+K = int(input())
+
+sum = 0
+for a in range(1, K + 1):
+    for b in range(1, K + 1):
+        for c in range(1, K + 1):
+            gcd = __gcd(a, b, c)
+            sum += gcd
+
+print(sum)
+```
+
+**Explanation:**
+
+- The code reads the integer `K` from the input.
+- It then iterates over the range `1` to `K` for `a`, `b`, and `c`.
+- For each triple `(a, b, c)`, it calculates the greatest common divisor (GCD) using the `__gcd()` function and adds the GCD to the `sum` variable.
+- Finally, the code prints the value of `sum`.
+
+**Example Usage:**
+
+```
+Input:
+2
+
+Output:
+9
+```
+
+**Explanation:**
+
+- The input is `2`, which represents the value of `K`.
+- The code calculates the GCD for all triples of numbers from `1` to `2`.
+- The GCD of `(1, 1, 1)` is 1.
+- The GCD of `(1, 1, 2)` is 1.
+- The GCD of `(1, 2, 1)` is 1.
+- The GCD of `(1, 2, 2)` is 1.
+- The GCD of `(2, 1, 1)` is 1.
+- The GCD of `(2, 1, 2)` is 1.
+- The GCD of `(2, 2, 1)` is 1.
+- The GCD of `(2, 2, 2)` is 2.
+- The total sum of GCDs is 9, which is the output.

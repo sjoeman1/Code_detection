@@ -1,0 +1,11 @@
+```python
+n = int(input())
+x = list(map(int, input().split()))
+y = list(map(int, input().split()))
+
+# Check if the records can be consistent
+if sum(x) == sum(y) and sum(y) <= sum(x):
+    print("Yes")
+else:
+    print("No")
+```

@@ -1,0 +1,47 @@
+```python
+h, w = map(int, input().split())
+
+a, b = map(int, input().split())
+
+g = [[0] * w for _ in range(h)]
+
+for _ in range(a):
+    x, y = map(int, input().split())
+    g[x][y] = 1
+
+for _ in range(b):
+    x, y = map(int, input().split())
+    g[x][y] = -1
+
+# Find connected components
+components = {}
+def dfs(x, y):
+    if g[x][y] != 1 or x not in components or y not in components:
+        return
+    components[x][y] = True
+    dfs(x-1, y)
+    dfs(x+1, y)
+    dfs(x, y-1)
+    dfs(x, y+1)
+
+for r in range(h):
+    components[r] = {}
+for c in range(w):
+    components[r][c] = False
+
+for x in range(h):
+    for y in range(w):
+        if g[x][y] == 1 and components[x][y] is False:
+            dfs(x, y)
+
+# Print the grid
+print(h, w)
+for r in range(h):
+    s = ""
+    for c in range(w):
+        if g[r][c] == 1:
+            s += "."
+        else:
+            s += "#"
+    print(s)
+```

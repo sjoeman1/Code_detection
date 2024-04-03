@@ -1,0 +1,13 @@
+```python
+a, b, c = map(int, input().split())
+x, y, z = map(int, input().split())
+
+# Calculate the minimum number of spheres that can be transformed
+min_spheres = min(a, b) + min(b, c)
+
+# If the required number of spheres is greater than the minimum number of spheres that can be transformed
+if x > min_spheres or y > min_spheres or z > min_spheres:
+    print("No")
+else:
+    print("Yes")
+```

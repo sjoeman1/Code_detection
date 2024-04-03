@@ -1,0 +1,25 @@
+```python
+n, t = map(int, input().split())
+
+m = 0
+for i in range(n + 1):
+    if t - i * (i - 1) // 2 <= 0:
+        m += 1
+
+print(m)
+```
+
+**Explanation:**
+
+* The code reads two integers, `n` and `t`, representing the number of rows and the target sum, respectively.
+* It iterates over the range `1` to `n + 1`, calculating the sum of the first `i` rows and checking if it is equal to `t - i * (i - 1) // 2`.
+* If the sum is equal, it increments the variable `m`.
+* Finally, the code prints the value of `m`.
+
+**Time Complexity:**
+
+* The code iterates over the range `1` to `n + 1` only once, so the time complexity is O(n).
+
+**Space Complexity:**
+
+* The code uses a constant amount of space regardless of the input size, so the space complexity is O(1).

@@ -1,0 +1,14 @@
+```python
+n = int(input())
+x = list(map(int, input().split()))
+
+x.sort()
+piles = 1
+
+for i in range(len(x)):
+    x[i] -= piles
+
+piles += sum(x)
+
+print(piles)
+```

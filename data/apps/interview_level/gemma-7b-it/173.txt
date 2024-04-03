@@ -1,0 +1,23 @@
+```python
+n, m = map(int, input().split())
+h_dir = input().strip().split(">")
+v_dir = input().strip().split("^")
+
+# Create a 2D list to store the direction of streets
+h_map = [[direction for direction in h_dir] for _ in range(n)]
+v_map = [[direction for direction in v_dir] for _ in range(m)]
+
+# Check if there is a path between any junction and any other junction
+for i in range(n):
+    for j in range(m):
+        # Iterate over all junctions
+        for x in range(n):
+            for y in range(m):
+                # If the junctions are not the same and the directions are valid, then there is a path
+                if i != x and j != y and h_map[i][j] == v_map[x][y] and h_map[i][j] and v_map[x][y]:
+                    print("YES")
+                    exit()
+
+# If no path is found, print NO
+print("NO")
+```

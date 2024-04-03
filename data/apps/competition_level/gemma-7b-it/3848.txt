@@ -1,0 +1,20 @@
+```python
+n, p = map(int, input().split())
+s = input().lower()
+
+def is_palindrome(s):
+    for i in range(len(s) - 1):
+        if s[i] == s[i + 1] and s[i:i + 2] not in palindromes:
+            return False
+    return True
+
+palindromes = ['abc'] + ['abca'] + ['aba'] + ['aab']
+
+for i in range(len(s) - 1, -1, -1):
+    s_i = s[:i] + str(ord(s[i]) - 96) + s[i + 1:]
+    if is_palindrome(s_i) and s_i not in palindromes:
+        print(s_i)
+        exit()
+
+print("NO")
+```

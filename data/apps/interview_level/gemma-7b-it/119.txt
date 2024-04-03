@@ -1,0 +1,19 @@
+```python
+n = int(input())
+
+a = []
+for _ in range(n):
+    l, r = map(int, input().split())
+    a.append([l, r])
+
+ans = False
+
+for i in range(n):
+    for j in range(i, n):
+        if a[i][0] >= a[j][0] and a[i][1] <= a[j][1]:
+            print(i + 1, j + 1)
+            ans = True
+
+if not ans:
+    print(-1, -1)
+```

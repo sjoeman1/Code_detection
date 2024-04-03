@@ -1,0 +1,8 @@
+```python
+S = input().lower()
+
+if S[0].upper() == 'A' and S.count('C') == 1 and S[0:2].islower():
+    print('AC')
+else:
+    print('WA')
+```

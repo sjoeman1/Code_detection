@@ -1,0 +1,49 @@
+```python3
+def solve(n, m, a, x):
+    # Calculate the maximum increase in understanding level for each book.
+    max_increase = np.max(a)
+
+    # Calculate the minimum number of books to buy.
+    num_books = np.ceil(x / max_increase)
+
+    # If the number of books to buy is less than or equal to the number of books available, then the objective is achievable.
+    if num_books <= n:
+        # Calculate the total cost of buying the books.
+        cost = np.sum(np.arange(1, num_books + 1) * c)
+
+        # Return the total cost.
+        return cost
+    else:
+        # Return -1 to indicate that the objective is not achievable.
+        return -1
+
+
+# Read the input data.
+n, m, x, c = map(int, input().split())
+
+# Calculate the answer.
+answer = solve(n, m, a, x)
+
+# Print the answer.
+if answer != -1:
+    print(answer)
+else:
+    print("No solution")
+```
+
+**Explanation:**
+
+* The code calculates the maximum increase in understanding level for each book.
+* It then calculates the minimum number of books to buy.
+* If the number of books to buy is less than or equal to the number of books available, the code calculates the total cost of buying the books.
+* Otherwise, the code returns -1 to indicate that the objective is not achievable.
+
+**Time complexity:**
+
+* The code calculates the maximum increase in understanding level for each book only once, so the time complexity is O(m).
+* The code calculates the minimum number of books to buy in linear time, so the time complexity is O(n).
+* The code calculates the total cost of buying the books in linear time, so the time complexity is O(n).
+
+**Space complexity:**
+
+* The code uses a constant amount of space, regardless of the size of the input data.

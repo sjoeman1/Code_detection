@@ -1,0 +1,29 @@
+```python
+import math
+
+# Read input
+y_1, y_2, y_w, x_b, y_b, r = map(int, input().split())
+
+# Calculate the distance between the ball and the wall
+distance = math.sqrt((x_b - 0)**2 + (y_b - y_w)**2)
+
+# If the ball is not close enough to the wall, it's impossible to score
+if distance > r:
+    print(-1)
+
+# Calculate the angle of incidence and reflection
+theta = math.atan((y_b - y_w) / x_b)
+
+# Calculate the distance from the wall to the goalpost
+distance_to_goal = math.sqrt((x_b - 0)**2 + (y_b - y_2)**2)
+
+# If the ball is not close enough to the goalpost, it's impossible to score
+if distance_to_goal > r:
+    print(-1)
+
+# Calculate the abscissa of the point of aiming
+x_w = x_b - 2 * r * math.sin(theta)
+
+# Print the abscissa of the point of aiming
+print(round(x_w, 8))
+```

@@ -1,0 +1,10 @@
+```python
+n, k = map(int, input().split())
+a = list(map(int, input().split()))
+s = sum(a)
+
+if s <= 8 * n:
+    print("YES")
+else:
+    print("NO")
+```

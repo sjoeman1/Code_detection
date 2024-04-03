@@ -1,0 +1,13 @@
+```python
+a, b, c, n = map(int, input().split())
+n_copybooks = int(n)
+
+# Calculate the number of copybooks that can be bought with the existing copybooks
+k = n_copybooks // 4
+
+# Calculate the minimum amount of rubles to buy the required number of copybooks
+min_rubles = min(a, b, c) * k
+
+# Print the minimum amount of rubles
+print(min_rubles)
+```

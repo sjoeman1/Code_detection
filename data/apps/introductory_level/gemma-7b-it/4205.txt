@@ -1,0 +1,37 @@
+```python
+n = int(input())
+p = list(map(int, input().split()))
+
+# Check if the sequence can be sorted in ascending order
+can_sort = True
+
+# Calculate the difference between each element and its sorted position
+diff = []
+for i in range(len(p)):
+    sorted_pos = i + 1
+    diff.append(sorted_pos - p[i])
+
+# If the maximum difference is more than 1, it is not possible to sort
+if max(diff) > 1:
+    can_sort = False
+
+# Print YES if the sequence can be sorted, NO otherwise
+print("YES" if can_sort else "NO")
+```
+
+**Explanation:**
+
+* The code reads the number of elements `n` and the sequence `p`.
+* It calculates the difference between each element and its sorted position.
+* If the maximum difference is more than 1, it is not possible to sort the sequence.
+* Otherwise, it prints `YES`.
+
+**Time complexity:**
+
+* The code reads the input in linear time complexity.
+* It calculates the difference between each element and its sorted position in linear time complexity.
+* The code checks if the maximum difference is greater than 1 in constant time complexity.
+
+**Space complexity:**
+
+* The code uses a constant amount of space regardless of the size of the input.

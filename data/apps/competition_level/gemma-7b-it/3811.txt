@@ -1,0 +1,37 @@
+```python
+n = int(input())
+
+pairs = []
+for _ in range(n):
+    a, b = map(int, input().split())
+    pairs.append((a, b))
+
+wcd = -1
+for divisor in range(2, max(max(pairs) // 2 + 1) + 1):
+    valid = True
+    for a, b in pairs:
+        if divisor not in range(a, b + 1):
+            valid = False
+    if valid and divisor not in wcd_list:
+        wcd = divisor
+        wcd_list.append(divisor)
+
+print(wcd) if wcd else print(-1)
+```
+
+**Explanation:**
+
+* The code reads the number of pairs and then reads the pairs of integers.
+* It then iterates over the range of possible divisors between 2 and the maximum of the two numbers in each pair.
+* If the divisor divides at least one number in each pair, it checks if it has already been recorded. If it hasn't, it updates the WCD and adds it to the list of recorded divisors.
+* Finally, the code prints the WCD. If there is no WCD, it prints -1.
+
+**Time Complexity:**
+
+* The code iterates over the range of possible divisors only once, so the time complexity is O(max(pairs) // 2).
+* The code checks if a divisor divides a pair in O(1) time, so the time complexity of the loop is O(n).
+* Overall, the time complexity is O(n) where n is the number of pairs.
+
+**Space Complexity:**
+
+* The code uses a constant amount of space regardless of the number of pairs.

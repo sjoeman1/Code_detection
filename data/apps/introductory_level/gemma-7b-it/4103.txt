@@ -1,0 +1,24 @@
+```python
+n, b, a = map(int, input().split())
+s = list(map(int, input().split()))
+
+# Calculate the maximum number of segments the robot can pass
+# using the battery and accumulator optimally
+max_segments = 0
+current_battery = b
+current_accumulator = a
+
+for i in range(n):
+    # If the segment is exposed to sunlight and the robot uses the battery,
+    # increase the accumulator charge and decrease the battery charge
+    if s[i] and current_battery > 0:
+        current_accumulator += 1
+        current_battery -= 1
+    # If the robot uses the accumulator, decrease the accumulator charge
+    elif current_accumulator > 0:
+        current_accumulator -= 1
+    # Update the maximum number of segments the robot can pass
+    max_segments = max(max_segments, current_accumulator)
+
+print(max_segments)
+```

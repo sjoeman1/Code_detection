@@ -1,0 +1,14 @@
+```python
+n, k, m = map(int, input().split())
+t = list(map(int, input().split()))
+
+t.sort()
+
+points = 0
+time = 0
+for i in range(n):
+    points += min(time, t[i])
+    time += t[i]
+
+print(points + min(time, k))
+```

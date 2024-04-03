@@ -1,0 +1,23 @@
+```python
+n, m = map(int, input().split())
+a = [[int(input()) for _ in range(m)] for _ in range(n)]
+b = [[0] * m for _ in range(n)]
+
+operations = 0
+for i in range(n):
+    for j in range(m):
+        if a[i][j] != b[i][j]:
+            operations += 1
+            x, y = i, j
+            b[i][j] = b[i][y] = b[x][y + 1] = b[x + 1][y] = 1
+
+if operations == 0:
+    print(-1)
+else:
+    print(operations)
+    print(operations)
+    for op in range(operations):
+        x, y = map(int, input().split())
+        print(x)
+        print(y)
+```

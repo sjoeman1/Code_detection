@@ -1,0 +1,16 @@
+```python3
+n, m = map(int, input().split())
+a = []
+
+for _ in range(n):
+    a.append(list(input().strip().split()))
+
+ans = -1
+
+for r in range(n):
+    for c in range(m):
+        if a[r][c] == 'B' and (r == 0 or a[r-1][c] == 'W'):
+            ans = min(ans, 1 + a[r][c] - (r == 0))
+
+print(ans)
+```

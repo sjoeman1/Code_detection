@@ -1,0 +1,13 @@
+```python
+import networkx as nx
+
+n = int(input())
+G = nx.Graph()
+g = nx.read_graph(n)
+for i in range(n - 1):
+    x, y = map(int, input().split())
+    G.add_edge(x, y)
+
+pairs = nx.matching(G)
+print(len(pairs) % 10**9 + 7)
+```

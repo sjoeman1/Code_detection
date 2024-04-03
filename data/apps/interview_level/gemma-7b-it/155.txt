@@ -1,0 +1,16 @@
+```python
+n, m, k = map(int, input().split())
+
+# Calculate the number of moves to the center
+moves = 2 * n + m - 2
+
+# Subtract k from the number of moves
+moves -= k
+
+# Calculate the row and column of the cell where Lara will be
+row = 1 + moves // n
+column = 1 + moves % n
+
+# Print the cell number
+print(row, column)
+```

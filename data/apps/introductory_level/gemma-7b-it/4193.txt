@@ -1,0 +1,32 @@
+```python
+import numpy as np
+
+# Read the bingo card
+a = np.array([[int(input().split()[0]), int(input().split()[1]), int(input().split()[2])],
+                   [int(input().split()[3]), int(input().split()[4]), int(input().split()[5])],
+                   [int(input().split()[6]), int(input().split()[7]), int(input().split()[8])]]).reshape(3, 3)
+
+# Read the number of draws
+n = int(input())
+
+# Read the numbers drawn
+b = list(map(int, input().splitlines().split()))
+
+# Check if there is a bingo
+bingo = np.isin(b, a.ravel()).reshape(a.shape)
+
+# Check if there is a row bingo
+if np.any(np.sum(bingo, axis=0) == 3):
+  bingo = True
+
+# Check if there is a column bingo
+if np.any(np.sum(bingo, axis=1) == 3):
+  bingo = True
+
+# Check if there is a diagonal bingo
+if np.any(np.sum(np.flip(bingo, axis=0) == 3, axis=0):
+  bingo = True
+
+# Print Yes if there is a bingo, No otherwise
+print("Yes" if bingo else "No")
+```
