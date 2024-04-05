@@ -1,8 +1,4 @@
 import wandb
-import code_tokenize as ctok
-from nltk.tokenize import word_tokenize
-# import nltk
-# nltk.download('punkt')
 import argparse
 import json
 import pandas as pd
@@ -15,6 +11,9 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
 
 import xgboost as xgb
+
+from utils import tag_comment_tokenizer, hide_comment_tokenizer, tokenize_comment_tokenizer, tokenize_only_comment, \
+    standard_tokenizer
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--dataset', default="results/gemma-7b-it-apps_interview_207.jsonl")
@@ -64,46 +63,6 @@ print(len(data), len(data_labels))
 X_train, X_test, y_train, y_test = train_test_split(data, data_labels, shuffle=True, test_size=0.2, random_state=42)
 
 # create tokenizer
-def tag_comment_tokenizer(text):
-    tokenized = standard_tokenizer(text)
-    tokenized = [token if not is_comment(token) else "#COMMENT#" for token in tokenized]
-    return tokenized
-
-def hide_comment_tokenizer(text):
-    tokenized = standard_tokenizer(text)
-    tokenized = [token for token in tokenized if not is_comment(token)]
-    return tokenized
-
-word_tokenizer = word_tokenize
-def tokenize_comment_tokenizer(text):
-    temp_tokenized = []
-    tokenized = standard_tokenizer(text)
-    for i, token in enumerate(tokenized):
-        if is_comment(token):
-            temp_tokenized += word_tokenizer(token[1:])
-        else:
-            temp_tokenized.append(token)
-    return temp_tokenized
-
-def tokenize_only_comment(text):
-    temp_tokenized = []
-    tokenized = standard_tokenizer(text)
-    for i, token in enumerate(tokenized):
-        if is_comment(token):
-            temp_tokenized += word_tokenizer(token[1:])
-    return temp_tokenized
-def is_comment(token):
-    return token.startswith("#") and not (token == "#NEWLINE#" or token == "#INDENT#" or token == "#DEDENT#")
-
-
-def standard_tokenizer(text):
-    tokenized = ctok.tokenize(text, lang='python', syntax_error="ignore")
-    # convert to string and return
-    tokenized = [str(token) for token in tokenized]
-    return tokenized
-
-
-
 match config['tokenizer']:
     case "tokenize_comment":
         tokenizer = tokenize_comment_tokenizer

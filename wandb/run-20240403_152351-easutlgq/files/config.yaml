@@ -1,0 +1,81 @@
+wandb_version: 1
+
+dataset:
+  desc: null
+  value: results/gemma-7b-it-apps_interview_207.jsonl
+classifier:
+  desc: null
+  value: LR
+_wandb:
+  desc: null
+  value:
+    python_version: 3.10.11
+    cli_version: 0.16.4
+    framework: torch
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    start_time: 1712150631.0
+    t:
+      1:
+      - 1
+      - 5
+      - 33
+      - 53
+      - 55
+      - 95
+      2:
+      - 1
+      - 5
+      - 33
+      - 53
+      - 55
+      - 95
+      3:
+      - 13
+      - 15
+      - 16
+      - 23
+      4: 3.10.11
+      5: 0.16.4
+      8:
+      - 3
+      - 5
+      10:
+      - 5
+      13: windows-amd64
+    viz:
+      feature_importances:
+        id: wandb/feature_importances/v1
+        historyFieldSettings:
+          x-axis: _step
+          key: feature_importances
+      confusion_matrix:
+        id: wandb/confusion_matrix/v1
+        historyFieldSettings:
+          x-axis: _step
+          key: confusion_matrix
+      summary_metrics:
+        id: wandb/metrics/v1
+        historyFieldSettings:
+          x-axis: _step
+          key: summary_metrics
+      class_proportions:
+        id: wandb/class_proportions/v1
+        historyFieldSettings:
+          x-axis: _step
+          key: class_proportions
+      calibration_curve:
+        id: wandb/calibration/v1
+        historyFieldSettings:
+          x-axis: _step
+          key: calibration_curve
+      roc:
+        id: wandb/roc/v1
+        historyFieldSettings:
+          x-axis: _step
+          key: roc
+      precision_recall:
+        id: wandb/pr_curve/v1
+        historyFieldSettings:
+          x-axis: _step
+          key: precision_recall
