@@ -6,7 +6,7 @@ import json
 import argparse
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--model_name", type=str, default="gemma-7b-it",
+parser.add_argument("--model_name", type=str, default="Mixtral-8x7B-Instruct-v0.1",
                     choices=["CodeLlama-70b-Instruct-hf", "gemma-7b-it", "Mixtral-8x7B-Instruct-v0.1"]
                     )
 parser = parser.parse_args()

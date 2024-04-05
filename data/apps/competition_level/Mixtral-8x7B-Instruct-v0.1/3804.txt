@@ -1,0 +1,37 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def power(x, y, mod):
+    res = 1
+    x = x % mod
+    while (y > 0):
+        if (y & 1):
+            res = (res * x) % mod
+            y -= 1
+        x = (x * x) % mod
+        y = y >> 1
+    return res
+
+def solve(n, t):
+    if (t == 1):
+        return n
+    else:
+        ans = power(2, n - 2, mod=1000000007)
+        if (t > n and t <= 2 * n + 1):
+            ans = (ans + (t - n - 1)) % 1000000007
+        return ans
+
+mod = 1000000007
+n, t = map(int, input().split())
+print(solve(n, t))
+```
+
+Explanation:
+
+The problem can be solved using bitwise operations and dynamic programming. The value of the matrix at position (i, j) is (i xor j). The sum of the row (m + 1) can be calculated as the sum of all values from 1 to m (inclusive) xor m. This sum can be calculated using bitwise operations, as shown in the code.
+
+The function `power` calculates the power of a number using modular exponentiation, which is necessary to avoid overflow for large values of n.
+
+The function `solve` calculates the sum of all values from 1 to m (inclusive) xor m. If t is greater than n and less than or equal to 2n + 1, then the function returns the number of such m's. Otherwise, the function returns 0.
+
+The input is taken using the `input()` function and split using the `split()` function. The values are then converted to integers using the `map()` function. The result is printed using the `print()` function.

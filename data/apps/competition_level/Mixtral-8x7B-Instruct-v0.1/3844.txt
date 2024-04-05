@@ -1,0 +1,44 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n = int(input())
+a = list(map(int, input().split()))
+
+# Initialize current and next indices for Conan and Agasa
+cur\_conan, next\_conan, cur\_agasa, next\_agasa = 0, 0, 0, 0
+
+# Loop through the cards
+for i in range(n):
+
+    # If the current card is greater than or equal to the next card for both Conan and Agasa
+    if a[cur\_conan] >= a[next\_conan] and a[cur\_agasa] >= a[next\_agasa]:
+
+        # If the current card is greater than or equal to the next card for Conan
+        if a[cur\_conan] >= a[next\_conan]:
+            # Move to the next card for Conan
+            cur\_conan = next\_conan
+            next\_conan += 1
+
+        # If the current card is greater than or equal to the next card for Agasa
+        if a[cur\_agasa] >= a[next\_agasa]:
+            # Move to the next card for Agasa
+            cur\_agasa = next\_agasa
+            next\_agasa += 1
+
+    # If the current card is less than the next card for both Conan and Agasa
+    elif a[cur\_conan] < a[next\_conan] and a[cur\_agasa] < a[next\_agasa]:
+
+        # If the current card is less than the next card for Conan
+        if a[cur\_conan] < a[next\_conan]:
+            # Move to the next card for Conan
+            cur\_conan += 1
+
+        # If the current card is less than the next card for Agasa
+        if a[cur\_agasa] < a[next\_agasa]:
+            # Move to the next card for Agasa
+            cur\_agasa += 1
+
+    # If the current card is less than the next card for one of the players and greater than or equal to the next card for the other player
+    else:
+        # If the current card is less than the next card for Agasa
+       

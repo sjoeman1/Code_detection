@@ -1,0 +1,48 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def is_vowel(c):
+    return c in 'aeiou'
+
+def find_typo_blocks(word):
+    typos = []
+    current_typo = []
+    current_char = None
+    for char in word:
+        if is_vowel(char):
+            if current_typo:
+                typos.append(current_typo)
+                current_typo = []
+            current_char = char
+        else:
+            if current_char is None or char == current_char:
+                current_char = char
+            else:
+                current_typo.append(char)
+                if len(current_typo) >= 3:
+                    typos.append(current_typo)
+                    current_typo = []
+    if current_typo:
+        typos.append(current_typo)
+    return typos
+
+def insert_spaces(word):
+    typos = find_typo_blocks(word)
+    result = []
+    current_word = []
+    for char in word:
+        current_word.append(char)
+        if find_typo_blocks( ''.join(current_word) ):
+            result.append(''.join(current_word[:-1]))
+            result.append(' ')
+            current_word = [char]
+    result.append(''.join(current_word))
+    return ''.join(result)
+
+word = input()
+print(insert_spaces(word))
+```
+
+The solution first finds all blocks of consonants which can potentially contain typos. Then, it iterates over the word and checks if inserting a space at the current position would result in a valid word without typos. If it does, a space is inserted.
+
+Note that the above solution assumes that the input is a single word. If there are multiple words separated by spaces, the solution would need to be modified accordingly.

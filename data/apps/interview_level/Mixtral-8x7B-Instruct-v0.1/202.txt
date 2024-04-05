@@ -1,0 +1,9 @@
+ Here is a Python3 solution for the problem:
+
+```python
+x1, y1 = map(int, input().split())
+x2, y2 = map(int, input().split())
+print(abs(x2 - x1) + abs(y2 - y1))
+```
+
+This solution works by calculating the absolute difference between the final and initial coordinates for both x and y. The sum of these two values gives the minimal number of steps the robot needs to take to reach the final position.

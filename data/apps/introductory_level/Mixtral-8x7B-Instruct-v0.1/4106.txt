@@ -1,0 +1,23 @@
+ Here is a Python3 solution for the problem:
+```python
+n, k, x = map(int, input().split())
+a = list(map(int, input().split()))
+
+# Check if it's possible to repost at least one picture in each segment of length k
+if x < (n - k + 1) // k:
+    print(-1)
+else:
+    # Greedily repost the kittens with the highest beauty values
+    a.sort(reverse=True)
+    reposted = a[:x]
+    total = sum(reposted)
+    for i in range(x, n - k + 1, k):
+        # If there are not enough reposted kittens in this segment,
+        # repost the kittens with the highest beauty values
+        if sum(reposted[i - x:i]) < k:
+            reposted[i - x:i] = a[n - x:n]
+            total -= sum(reposted[:i - x])
+            total += sum(reposted[i - x:i])
+    print(total)
+```
+The solution first checks if it's possible to repost at least one picture in each segment of length k. If not, it prints -1. Otherwise, it sorts the beauty values in descending order and greedily reposts the kittens with the highest beauty values. If there are not enough reposted kittens in a segment, it reposts the kittens with the highest beauty values. The total sum of the beauty values of the reposted kittens is then calculated and printed.

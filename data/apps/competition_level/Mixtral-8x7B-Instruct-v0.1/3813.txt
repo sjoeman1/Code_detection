@@ -1,0 +1,45 @@
+ Here is a Python3 solution for the problem:
+
+```python
+N = int(input())
+P = list(map(int, input().split()))
+X = list(map(int, input().split()))
+
+# Initialize a dictionary to store the sum of X for each possible color
+color_sum = {0: 0, 1: 0}
+for x in X:
+    color_sum[0] += x
+    color_sum[1] += x
+
+# Define a recursive function to calculate the sum of X for each subtree
+def dfs(node, parent):
+    non_local color_sum
+    # If the node has no children, return the sum for its color
+    if node > N:
+        return color_sum[0], color_sum[1]
+    # Calculate the sum for each possible color
+    sum_black, sum_white = 0, 0
+    for child in (i for i in (node + 1, node + 2, ..., N) if P[i] == node):
+        child_black, child_white = dfs(child, node)
+        sum_black += child_black
+        sum_white += child_white
+    # Update the sum for the current node's color
+    sum_black += color_sum[1] - sum_white
+    sum_white += color_sum[0] - sum_black
+    # If the sums for both colors are equal to X[node], return them
+    if sum_black == X[node - 1] and sum_white == X[node - 1]:
+        color_sum[0] -= X[node - 1]
+        color_sum[1] -= X[node - 1]
+        return X[node - 1], X[node - 1]
+    # Otherwise, return -1 to indicate an impossible allocation
+    return -1, -1
+
+# Call the recursive function and check the result
+result = dfs(1, 0)
+if result[0] == -1:
+    print("IMPOSSIBLE")
+else:
+    print("POSSIBLE")
+```
+
+The solution uses a recursive depth-first search (DFS) algorithm to calculate the

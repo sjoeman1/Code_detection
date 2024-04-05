@@ -1,0 +1,19 @@
+ Here is a Python3 solution for the problem:
+```python
+n = int(input().strip())
+nums = list(map(int, input().strip().split()))
+
+# sort the numbers in increasing order
+nums.sort()
+
+# initialize the maximum size of the beautiful rectangle
+max_size = 0
+
+# try all possible sizes from 1 to sqrt(n)
+for size in range(1, int(n ** 0.5) + 1):
+    # check if the size is valid
+    if n % size != 0:
+        continue
+    
+    # calculate the number of rows and columns
+    rows = size

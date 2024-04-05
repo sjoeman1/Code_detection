@@ -1,0 +1,10 @@
+ Here is a Python3 solution for the problem:
+```python
+n = int(input().strip())
+spectators = []
+for i in range(n):
+    s, a = input().strip().split()
+    a = int(a)
+    if s == "00":
+        continue
+    spectators.append((s, a))

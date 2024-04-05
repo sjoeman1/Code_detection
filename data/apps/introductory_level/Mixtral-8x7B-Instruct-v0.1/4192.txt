@@ -1,0 +1,23 @@
+ Here is a Python3 solution for the problem:
+
+```python
+import math
+
+def main():
+    # Read input
+    d, t, s = map(int, input().split())
+
+    # Calculate time needed to reach the place
+    time_needed = d / s
+
+    # Check if Takahashi will arrive in time
+    if time_needed <= t:
+        print("Yes")
+    else:
+        print("No")
+
+if __name__ == "__main__":
+    main()
+```
+
+This solution reads the input values `d`, `t`, and `s` from Standard Input, calculates the time needed to reach the place by dividing the distance by the speed, and then checks if this time is less than or equal to the planned meeting time `t`. If it is, then Takahashi will arrive in time, so the solution prints "Yes". Otherwise, it prints "No".

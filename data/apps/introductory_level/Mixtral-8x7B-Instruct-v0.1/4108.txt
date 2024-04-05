@@ -1,0 +1,34 @@
+ Here's a Python3 solution for the problem:
+```python
+def can_make_equal(s, t):
+    if s == t:
+        return True
+
+    count_s = [0] * 26
+    count_t = [0] * 26
+
+    for char in s:
+        count_s[ord(char) - ord('a')] += 1
+
+    for char in t:
+        count_t[ord(char) - ord('a')] += 1
+
+    for i in range(26):
+        if count_s[i] % 2 == 1 and count_t[i] % 2 == 0:
+            return False
+        if count_s[i] % 2 == 0 and count_t[i] % 2 == 1:
+            return False
+
+    return True
+
+s = input()
+t = input()
+
+if can_make_equal(s, t):
+    print('Yes')
+else:
+    print('No')
+```
+The idea is to count the number of occurrences of each character in both strings. Then, we check if the difference between the counts of each character is even or odd. If it is odd for one string and even for the other, it is impossible to make them equal. If the difference is odd for both strings, then we can swap the characters that have odd counts to make them equal.
+
+The time complexity of the solution is O(|S| + |T|), as we iterate through both strings once to count the characters. The space complexity is O(1), as we only use a fixed-size array to store the counts.

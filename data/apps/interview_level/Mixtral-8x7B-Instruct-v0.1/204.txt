@@ -1,0 +1,26 @@
+ Here is a Python3 code to solve the problem:
+
+```python
+def gcd(a, b):
+    while b:
+        a, b = b, a % b
+    return a
+
+def find_solutions(a, b, x, y):
+    lcm = a * b // gcd(a, b)
+    max_width = a if a % x == 0 else (a // x + 1) * x
+    max_height = b if b % y == 0 else (b // y + 1) * y
+    count = 0
+    for w in range(x, max_width + 1, x):
+        h = (w * y) // x
+        if h <= b and h >= y and h % y == 0:
+            count += 1
+    return count
+
+a, b, x, y = map(int, input().split())
+print(find_solutions(a, b, x, y))
+```
+
+The function `gcd` calculates the greatest common divisor of two numbers. The function `find_solutions` calculates the number of possible variants of screen width and height that meet the constraints. It calculates the least common multiple of `a` and `b`, and then finds the maximum possible width and height that meet the aspect ratio and the constraints on the screen width and height. Then, it iterates over all possible widths that meet the aspect ratio and the constraints, and calculates the corresponding height as `(w * y) // x`. If the height meets the constraints and is a multiple of `y`, then it increments the count. Finally, it returns the count.
+
+The main part of the code reads the input values of `a`, `b`, `x`, and `y`, and then calls the function `find_solutions` with these values. It prints the result returned by the function.

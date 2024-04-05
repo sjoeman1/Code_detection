@@ -1,0 +1,30 @@
+ Here's a Python3 solution for the problem:
+
+```python
+import sys
+from typing import List
+
+def will_they_agree(n: int, m: int, x: int, y: int, x_cities: List[int], y_cities: List[int]) -> str:
+    # Check if there exists an integer Z that satisfies all three conditions
+    if x < y and x < Z <= y and all(xc < Z for xc in x_cities) and all(yc >= Z for yc in y_cities):
+        return "No War"
+    else:
+        return "War"
+
+def main():
+    # Read input
+    n, m, x, y = map(int, sys.stdin.readline().strip().split())
+    x_cities = list(map(int, sys.stdin.readline().strip().split()))
+    y_cities = list(map(int, sys.stdin.readline().strip().split()))
+
+    # Check if war will break out
+    result = will_they_agree(n, m, x, y, x_cities, y_cities)
+
+    # Print output
+    print(result)
+
+if __name__ == "__main__":
+    main()
+```
+
+This program reads the input from the standard input, checks if there exists an integer Z that satisfies all three conditions, and prints the result accordingly. The `will_they_agree` function checks the conditions and returns "No War" if there is an agreement, otherwise it returns "War".

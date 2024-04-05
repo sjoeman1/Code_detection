@@ -1,0 +1,33 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def find\_leaders(n, m, messages):
+possible\_leaders = set()
+current\_participants = set()
+
+for message in messages:
+action, user\_id = message
+
+if action == '+':
+current\_participants.add(user\_id)
+possible\_leaders.update(current\_participants)
+else:
+current\_participants.remove(user\_id)
+
+return possible\_leaders
+
+n, m = map(int, input().split())
+messages = [input().split() for \_ in range(m)]
+
+possible\_leaders = find\_leaders(n, m, messages)
+
+if possible\_leaders:
+print(len(possible\_leaders))
+print(*sorted(possible\_leaders))
+else:
+print(0)
+```
+
+The function `find_leaders` takes the number of team participants `n`, the number of messages `m`, and a list of `messages` as input. Each message is a list containing the action (log on or log off) and the participant's ID. The function returns a set of possible leaders based on the given conditions.
+
+The script reads the input, processes it, and then calls the `find_leaders` function. It prints the number of possible leaders and their IDs (sorted in ascending order) if there are any. If there are no possible leaders, it prints 0.

@@ -1,0 +1,34 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n = int(input())
+arr = list(map(int, input().split()))
+arr.sort()
+sum_of_positive = 0
+sum_of_negative = 0
+
+# calculate sum of positive and negative numbers
+for i in range(n):
+    sum_of_positive += arr[i]
+    sum_of_negative += arr[-i-1]
+
+# if the sum of positive numbers is less than the sum of negative numbers,
+# swap them and change the sign of the first n elements
+if sum_of_positive < sum_of_negative:
+    arr = arr[::-1]
+    for i in range(n):
+        arr[i] *= -1
+
+# print the result
+print(sum(arr))
+```
+
+The solution works as follows:
+
+1. Read the value of `n` and the array from the input.
+2. Sort the array in non-decreasing order.
+3. Calculate the sum of the first `n` elements (sum of positive numbers) and the sum of the last `n` elements (sum of negative numbers).
+4. If the sum of positive numbers is less than the sum of negative numbers, swap the sums and change the sign of the first `n` elements in the array.
+5. Print the sum of the elements in the array.
+
+The time complexity of the solution is `O(n log n)` (for sorting the array) and the space complexity is `O(1)` (not counting the input and output arrays).

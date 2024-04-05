@@ -1,0 +1,18 @@
+ Here is the Python3 code to solve the problem:
+
+```python
+def main():
+    # Read the input string
+    s = input()
+
+    # Check if the string can be rearranged to form a number with increasing digits
+    if ''.join(sorted(s)) == s:
+        print("Yes")
+    else:
+        print("No")
+
+# Call the main function
+main()
+```
+
+This code works by reading the input string and then sorting its characters in ascending order. If the sorted string is equal to the original string, then the string can be rearranged to form a number with increasing digits. Otherwise, it cannot.

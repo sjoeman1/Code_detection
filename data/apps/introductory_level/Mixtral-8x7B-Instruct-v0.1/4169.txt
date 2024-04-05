@@ -1,0 +1,34 @@
+ Here is a Python3 code that solves the problem:
+```python
+N, M = map(int, input().split())
+
+current_money = 0
+current_buy = 0
+
+for i in range(N):
+    A, B = map(int, input().split())
+    while current_buy < M and current_money < 10**9+1:
+        if current_buy + B <= M:
+            current_buy += B
+            current_money += A*B
+        else:
+            missing = M - current_buy
+            current_buy += missing
+            current_money += A*missing
+    print(current_money)
+    current_money = 0
+    current_buy = 0
+```
+The algorithm uses a greedy approach, by buying as many cans as possible in each store, until `M` cans are bought or there is no more money left. The loop iterates through each store, and for each store, it keeps buying cans until `M` cans are bought or there is no more money left. The variable `current_buy` keeps track of the number of cans bought so far, and `current_money` keeps track of the current amount of money. The loop breaks when `M` cans are bought or there is no more money left. After the loop, the final amount of money spent is printed.
+
+The algorithm runs in O(N) time, where N is the number of stores. The space complexity is O(1), since only a constant number of variables are used.
+
+Note: The input format in the code is slightly different from the one provided in the question. The input format in the code is:
+
+N M
+A\_1 B\_1
+A\_2 B\_2
+...
+A\_N B\_N
+
+where each value is separated by a space and each line is ended by a newline character.

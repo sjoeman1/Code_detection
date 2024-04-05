@@ -1,0 +1,46 @@
+ Here is a Python3 solution for the problem:
+
+```python
+import sys
+
+def max_heapify(arr, i, n):
+    l = 2 * i + 1
+    r = 2 * i + 2
+    max_idx = i
+    if l < n and arr[l] > arr[max_idx]:
+        max_idx = l
+    if r < n and arr[r] > arr[max_idx]:
+        max_idx = r
+    if max_idx != i:
+        arr[i], arr[max_idx] = arr[max_idx], arr[i]
+        max_heapify(arr, max_idx, n)
+
+def min_heapify(arr, i, n):
+    l = 2 * i + 1
+    r = 2 * i + 2
+    min_idx = i
+    if l < n and arr[l] < arr[min_idx]:
+        min_idx = l
+    if r < n and arr[r] < arr[min_idx]:
+        min_idx = r
+    if min_idx != i:
+        arr[i], arr[min_idx] = arr[min_idx], arr[i]
+        min_heapify(arr, min_idx, n)
+
+def heap_sort(arr):
+    n = len(arr)
+    for i in range(n//2 - 1, -1, -1):
+        max_heapify(arr, i, n)
+    for i in range(n-1, -1, -1):
+        arr[0], arr[i] = arr[i], arr[0]
+        max_heapify(arr, 0, i)
+
+def play_war(n, s1, s2):
+    if n == 1:
+        return (0, s1[0])
+    h1 = [0] * (n // 2)
+    h2 = [0] * (n // 2)
+    for i in range(n // 2):
+        h1[i] = s1.pop(0)
+        h2[i] = s2.pop(0)
+    heap_sort(h1

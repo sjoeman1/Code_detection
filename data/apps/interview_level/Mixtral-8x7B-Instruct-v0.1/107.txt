@@ -1,0 +1,30 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def is_divisible_by_64(s):
+    # Count the number of consecutive zeros at the end of the string
+    zeros_count = 0
+    while s[-1] == '0':
+        zeros_count += 1
+        s = s[:-1]
+    
+    # Check if the remaining string represents a number divisible by 64 in binary
+    if int(s, 2) % 8 == 0 and zeros_count >= 3:
+        return True
+    else:
+        return False
+
+
+# Read the input string
+s = input()
+
+# Check if the string can be modified to represent a number divisible by 64
+if is_divisible_by_64(s):
+    print('yes')
+else:
+    print('no')
+```
+
+The `is_divisible_by_64` function checks if a binary string can be modified to represent a number divisible by 64. It does this by first counting the number of consecutive zeros at the end of the string. Then, it checks if the remaining string represents a number that is divisible by 8 in decimal (which is equivalent to being divisible by 64 in binary). If both conditions are satisfied, the function returns `True`. Otherwise, it returns `False`.
+
+The main part of the code reads the input string, checks if it can be modified to represent a number divisible by 64 using the `is_divisible_by_64` function, and prints the answer accordingly.

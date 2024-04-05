@@ -1,0 +1,27 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n = int(input())
+f = list(map(int, input().split()))
+
+# Check if it's possible to find such m, g, h
+if len(set(f)) < len(f):
+    print(-1)
+else:
+    # Create g, h functions
+    m = len(set(f))
+    g = {i: j for i, j in enumerate(sorted(set(f)), 1)}
+    h = {j: i for i, j in g.items()}
+
+    # Print the answer
+    print(m)
+    print(*[g[i] for i in range(1, n+1)])
+    print(*[h[i] for i in range(1, m+1)])
+```
+
+This solution first checks if the function `f` is surjective (i.e., for all `y` in `[n]`, there exists `x` in `[n]` such that `f(x) = y`). If `f` is not surjective, then it's impossible to find `g` and `h` with the required properties. Otherwise, it constructs `g` and `h` as follows:
+
+* `g` maps each `x` in `[n]` to the smallest integer in `[m]` that maps back to `x` under `h` (i.e., `g(x) = min({y in [m] : h(y) = x})`).
+* `h` maps each `y` in `[m]` to the only `x` in `[n]` such that `g(x) = y` (i.e., `h(y) = g^(-1)(y)`).
+
+Finally, it prints the answer in the required format.

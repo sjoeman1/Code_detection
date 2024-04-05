@@ -1,0 +1,32 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def solve(p, k):
+    if p >= k:
+        return -1, []
+    d = 1
+    while (k ** d - k ** (d - 1)) <= p:
+        d += 1
+    p -= (k ** (d - 1))
+    result = [0] * d
+    result[-1] = p
+    for i in range(d - 2, -1, -1):
+        result[i] = min(result[i + 1] * k + p, k - 1)
+        p = result[i + 1] - result[i] // k
+    return d, result
+
+if __name__ == '__main__':
+    p, k = map(int, input().split())
+    d, result = solve(p, k)
+    if d == -1:
+        print(-1)
+    else:
+        print(d)
+        print(*result)
+```
+
+The `solve` function first checks if `p` is greater than or equal to `k`. If it is, then the polynomial does not exist, and the function returns `-1` and an empty list.
+
+If `p` is less than `k`, then the function calculates the degree `d` of the polynomial by finding the smallest integer such that `k^d - k^(d-1)` is greater than or equal to `p`. It then calculates the coefficients of the polynomial in reverse order, starting from the constant term. The constant term is set to `p`, and the other coefficients are calculated recursively using the formula `result[i] = min(result[i+1] * k + p, k - 1)`, where `p` is updated after each iteration to `result[i+1] - result[i] // k`.
+
+Finally, the function returns `d` and the list of coefficients `result`. If `d` is `-1`, then the polynomial does not exist, and the program prints `-1`. Otherwise, the program prints `d` and the coefficients of the polynomial.

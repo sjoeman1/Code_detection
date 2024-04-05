@@ -1,0 +1,8 @@
+ Here is a Python3 program that solves the problem:
+
+```python
+k, a, b = map(int, input().split())
+print( ((b//k) - (a-1)//k) + 1 )
+```
+
+This program first reads the three integers `k`, `a`, and `b` from the input. Then it calculates the number of integers in the range `[a, b]` that are divisible by `k` by subtracting the largest integer less than `a` that is divisible by `k` from the smallest integer greater than or equal to `a` that is divisible by `k`, and adding 1 to the result. The largest integer less than `a` that is divisible by `k` is `(a-1)//k * k`, and the smallest integer greater than or equal to `a` that is divisible by `k` is `a//k * k` if `a` is divisible by `k`, and `(a//k + 1) * k` otherwise. Therefore, the number of integers in the range `[a, b]` that are divisible by `k` is `((b//k) - (a-1)//k) + 1`.

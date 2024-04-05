@@ -1,0 +1,35 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n, x = map(int, input().split())
+x_list = list(map(int, input().split()))
+
+# Sort the city coordinates
+x_list.sort()
+
+# Initialize the left and right pointers
+left = 0
+right = x_list[-1] - x_list[0]
+
+# Binary search for the maximum value of D
+while left < right:
+    mid = (left + right) // 2
+    current = x_list[0]
+
+    # Check if it is possible to visit all cities with the current D
+    for i in range(1, n):
+        if x_list[i] > current + mid:
+            break
+        current = x_list[i]
+
+    if current + mid < x_list[-1]:
+        left = mid + 1
+    else:
+        right = mid
+
+print(right)
+```
+
+This solution uses binary search to efficiently find the maximum value of D. The left pointer is initially set to the smallest possible value (0), and the right pointer is initially set to the maximum possible value (the distance between the first and last cities). The binary search algorithm then repeatedly moves the left and right pointers closer together until they converge on the maximum value of D that allows all cities to be visited.
+
+The algorithm works by checking if it is possible to visit all cities with the current value of D. It does this by starting at the first city and checking if it is possible to reach each subsequent city by moving either forward or backward by the current value of D. If it is not possible to reach the last city with the current value of D, then the left pointer is moved to the right of the current value of D, since a larger value of D is required to visit all cities. Otherwise, the right pointer is moved to the left of the current value of D, since a smaller value of D is sufficient to visit all cities. The algorithm continues until the left and right pointers converge on the maximum value of D that allows all cities to be visited.

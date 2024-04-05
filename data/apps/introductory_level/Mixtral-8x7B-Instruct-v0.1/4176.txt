@@ -1,0 +1,17 @@
+ Here is a Python3 solution for the problem:
+
+```python
+# Read A and B from standard input
+A, B = map(int, input().split())
+
+# Calculate the least common multiple (LCM) of A and B
+# The LCM of two numbers is the smallest positive integer that is divisible by both numbers
+lcm = abs(A * B) // math.gcd(A, B)
+
+# Print the LCM as the answer
+print(lcm)
+```
+
+In this solution, we first read the values of A and B from standard input and convert them to integers. Then, we calculate the least common multiple (LCM) of A and B using the formula `lcm(a, b) = |a * b| / gcd(a, b)`, where `gcd(a, b)` is the greatest common divisor of a and b. Finally, we print the LCM as the answer.
+
+The LCM of A and B represents the smallest number that is divisible by both A and B, so it is the smallest number of snack pieces that can be evenly distributed to the guests in both cases.

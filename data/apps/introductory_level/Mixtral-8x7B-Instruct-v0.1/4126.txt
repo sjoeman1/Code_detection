@@ -1,0 +1,23 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def is\_palindrome(s):
+	return s == s[::-1]
+
+def is\_strong\_palindrome():
+	S = input()
+	N = len(S)
+	if N < 3 or N > 99 or N % 2 == 0:
+		return "No"
+	first\_half = S[:N//2]
+	second\_half = S[N//2 + 1:]
+	return "Yes" if is\_palindrome(first\_half) and is\_palindrome(second\_half) else "No"
+
+print(is\_strong\_palindrome())
+```
+
+The function `is_palindrome` checks if a given string `s` is a palindrome or not. It does this by checking if `s` is equal to `s[::-1]`, which is `s` reversed.
+
+The function `is_strong_palindrome` first checks if the input string `S` satisfies the given constraints. If not, it returns "No". Otherwise, it splits `S` into two halves, `first_half` and `second_half`, and checks if both halves are palindromes using the `is_palindrome` function. If both halves are palindromes, it returns "Yes"; otherwise, it returns "No".
+
+The main code simply reads the input string `S` and calls the `is_strong_palindrome` function to determine if `S` is a strong palindrome or not.

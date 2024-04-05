@@ -1,0 +1,38 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n, k = map(int, input().split())
+a = list(map(int, input().split()))
+
+# Count the frequency of each element in the array
+freq = {}
+for num in a:
+    if num not in freq:
+        freq[num] = 0
+    freq[num] += 1
+
+# Initialize variables to keep track of the current number of equal elements and the number of moves
+current_equal, moves = max(freq.values()), 0
+while current_equal < k:
+    # Find the minimum and maximum frequencies
+    min_freq, max_freq = float('inf'), 0
+    for freq_val in freq.values():
+        min_freq = min(min_freq, freq_val)
+        max_freq = max(max_freq, freq_val)
+
+    # Increase the minimum frequency and decrease the maximum frequency
+    freq[min_freq] -= 1
+    freq[min_freq + 1] += 1
+    freq[max_freq] -= 1
+    freq[max_freq - 1] += 1
+
+    # Update the current number of equal elements
+    current_equal = sum(1 for freq_val in freq.values() if freq_val == max_freq)
+
+    # Increment the number of moves
+    moves += 1
+
+print(moves)
+```
+
+This solution first counts the frequency of each element in the array. It then repeatedly finds the minimum and maximum frequencies in the array and increments the minimum frequency and decrements the maximum frequency until there are at least `k` equal elements in the array. The number of moves required is then printed out.

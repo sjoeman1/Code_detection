@@ -1,0 +1,22 @@
+ Here is the Python3 code to solve the problem:
+
+```python
+# Read the number of cheeses
+n = int(input().strip())
+
+# Initialize a dictionary to store the types of cheese
+cheese_types = {}
+
+# Read the names and types of the cheeses
+for i in range(n):
+    name, typ = input().strip().split()
+    if typ not in cheese_types:
+        cheese_types[typ] = 1
+    else:
+        cheese_types[typ] += 1
+
+# Output the maximum number of cheeses of the same type
+print(max(cheese_types.values()))
+```
+
+This code reads the number of cheeses and then reads the names and types of the cheeses. It stores the types of cheese in a dictionary, where the keys are the types and the values are the number of cheeses of each type. Finally, it prints the maximum number of cheeses of the same type, which is the maximum value in the dictionary.

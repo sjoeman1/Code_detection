@@ -1,0 +1,24 @@
+ Here is a Python3 code that solves the problem:
+```python
+import math
+
+def solve(n):
+    # Place the initial knights in a 10x10 square
+    knights = [(i, j) for i in range(1, 11) for j in range(1, 11)]
+    while len(knights) > n:
+        knights.pop(math.floor(len(knights) / 2))
+    return knights
+
+# Read the input
+n = int(input())
+
+# Solve the problem
+knight_positions = solve(n)
+
+# Print the result
+for knight in knight_positions:
+    print(*knight)
+```
+The `solve` function generates all possible positions for the initial knights in a 10x10 square and then removes the extra knights until the desired number `n` is reached. The result is then printed to the standard output.
+
+Note: This solution assumes that the number of knights `n` is always less than or equal to 100, because the number of possible positions in a 10x10 square is 100. If `n` can be greater than 100, a more sophisticated algorithm would be needed to find the initial placement of the knights.

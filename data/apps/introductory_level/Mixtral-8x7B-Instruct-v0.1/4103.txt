@@ -1,0 +1,40 @@
+ Here is one way to solve the problem using dynamic programming:
+
+```python
+def robot\_walk(n, b, a, s):
+n = int(n)
+b = int(b)
+a = int(a)
+s = list(map(int, s))
+
+# dp[i][j][k] is the maximum number of segments robot can pass
+# starting from 0 to i, with battery charge j and accumulator charge k
+dp = [[[-1 for _k in range(a + 1)] for _j in range(b + 1)] for _i in range(n + 1)]
+
+def max\_segments(i, j, k):
+if i == 0:
+return 0
+if dp[i][j][k] != -1:
+return dp[i][j][k]
+
+if j > 0:
+dp[i][j][k] = max(max\_segments(i - 1, j - 1, k),
+max\_segments(i - 1, j, k) if s[i - 1] == 0 else
+max\_segments(i - 1, j - 1, k + 1))
+else:
+dp[i][j][k] = max\_segments(i - 1, j, k)
+
+if k > 0:
+dp[i][j][k] = max(dp[i][j][k], max\_segments(i - 1, j, k - 1))
+
+dp[i][j][k] += 1
+return dp[i][j][k]
+
+return max\_segments(n, b, a)
+```
+
+The function `robot_walk` takes in the destination point `n`, battery capacity `b`, accumulator capacity `a`, and the array `s` as input and returns the maximum number of segments the robot can pass.
+
+The `max_segments` function calculates the maximum number of segments the robot can pass starting from 0 to `i`, with battery charge `j` and accumulator charge `k`. It uses dynamic programming to store the results of subproblems in the `dp` array.
+
+The function returns the value of `dp[n][b][

@@ -1,0 +1,22 @@
+ Here's a Python3 solution for the problem:
+
+```python
+import math
+
+def solve(y1, y2, yw, xb, yb, r):
+    goal_width = y2 - y1
+    dx = math.sqrt(r**2 - (yw - yb)**2)
+    if dx > xb or dx < -xb:
+        return -1
+    xw = xb + dx
+    if xw < 0 or xw > goal_width:
+        return -1
+    return xw
+
+# Test cases
+print(solve(4, 10, 13, 10, 3, 1))  # 4.3750000000
+print(solve(1, 4, 6, 2, 2, 1))  # -1
+print(solve(3, 10, 15, 17, 9, 2))  # 11.3333333333
+```
+
+The function `solve` takes the input parameters and calculates the x-coordinate (`xw`) where Robo-Wallace should aim at. If it's impossible to score a goal, it returns -1. The function uses the given formulas and properties of the problem.

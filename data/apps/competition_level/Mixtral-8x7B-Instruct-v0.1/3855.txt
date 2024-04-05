@@ -1,0 +1,26 @@
+ Here is a Python3 solution for the problem:
+
+```python
+import math
+
+def min_number_of_packets(n):
+    # Calculate the smallest integer greater than or equal to log base 2 of n
+    num_packets = math.ceil(math.log2(n))
+
+    # Return the smallest integer that is a power of 2 which is greater than or equal to n
+    return int(2 ** num_packets)
+
+# Read the input number
+n = int(input())
+
+# Print the minimum number of packets
+print(min_number_of_packets(n))
+```
+
+The solution works by finding the smallest integer that is a power of 2 which is greater than or equal to n. This is because a power of 2 has the property that any number less than or equal to it can be formed by adding together some (possibly one or all) of its bits.
+
+For example, if n = 6, then the smallest power of 2 that is greater than or equal to n is 8, which has bits 1000. To form 6, we can add together the bits 1, 2, and 3, which correspond to the packets with 1, 2, and 3 coins, respectively.
+
+To find the smallest power of 2 that is greater than or equal to n, we can take the log base 2 of n and round it up to the nearest integer. This is because the log base 2 of a number is the number of bits required to represent that number in binary. By rounding up, we ensure that the resulting number has at least as many bits as n.
+
+The time complexity of this solution is O(log n), which is sufficient for the given input constraints. The space complexity is O(1), as we only use a constant amount of memory to store the input number and the result.

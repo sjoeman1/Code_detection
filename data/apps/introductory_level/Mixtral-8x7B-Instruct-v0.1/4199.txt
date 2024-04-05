@@ -1,0 +1,17 @@
+ Here is a Python3 solution for the problem:
+
+```python
+# Read in the number of friends and the minimum height requirement
+N, K = map(int, input().split())
+
+# Read in the heights of the friends
+heights = list(map(int, input().split()))
+
+# Count the number of friends who can ride the roller coaster
+num_can_ride = sum(h >= K for h in heights)
+
+# Print the result
+print(num_can_ride)
+```
+
+This solution reads in the number of friends and the minimum height requirement from standard input, then reads in the heights of the friends. It uses a list comprehension to create a boolean list indicating which friends can ride the roller coaster, then uses the `sum` function to count the number of `True` values in the list. Finally, it prints the result.

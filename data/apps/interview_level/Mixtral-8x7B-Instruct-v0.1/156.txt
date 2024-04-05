@@ -1,0 +1,39 @@
+ Here is a Python3 solution for the problem:
+
+```python
+import math
+
+def solution():
+    x = int(input())
+    prime_factors = prime\_factors(x)
+    a = 1
+    b = 1
+    for prime in prime\_factors:
+        if prime\_factors[prime] % 2 == 1:
+            a *= prime
+        b *= prime ** (prime\_factors[prime] // 2)
+    print(a, b)
+
+def prime\_factors(n):
+    prime\_factors = {}
+    i = 2
+    while i * i <= n:
+        if n % i:
+            i += 1
+        else:
+            n //= i
+            if i not in prime\_factors:
+                prime\_factors[i] = 1
+            else:
+                prime\_factors[i] += 1
+    if n > 1:
+        if n not in prime\_factors:
+            prime\_factors[n] = 1
+        else:
+            prime\_factors[n] += 1
+    return prime\_factors
+
+solution()
+```
+
+This solution first finds the prime factors of $X$ using the `prime_factors` function. Then, it sets $a$ and $b$ to 1 and iterates over the prime factors. If the power of a prime factor is odd, it multiplies $a$ by that prime factor. Otherwise, it multiplies $b$ by that prime factor raised to half the power. This ensures that $LCM(a, b) = X$ and $max(a, b)$ is minimized.

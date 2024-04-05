@@ -1,0 +1,25 @@
+ Here is a Python3 solution for the problem:
+
+```python
+# Read input
+N, M = map(int, input().split())
+conditions = []
+for _ in range(M):
+    si, ci = map(int, input().split())
+    conditions.append((si, ci))
+
+# Initialize result with -1
+result = -1
+
+# Generate all numbers with N digits
+# and check if they satisfy the conditions
+for i in range(10**(N-1), 10**N):
+    if all((cond[0]-1 == divmod(i, 10**(cond[0]-1))[0] % 10 == cond[1]) for cond in conditions):
+        result = i
+        break
+
+# Print result
+print(result)
+```
+
+This solution reads the input and stores the conditions in a list. Then, it generates all numbers with N digits by iterating from 10^(N-1) to 10^N-1 and checks if each number satisfies the conditions. If it does, the solution updates the result and breaks the loop. Finally, the solution prints the result.

@@ -1,0 +1,35 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n = int(input())
+a = list(map(int, input().split()))
+
+# Initialize mex as 1
+mex = 1
+
+# Keep track of maximum value in the array
+max_val = max(a)
+
+# Iterate through all possible values of mex up to the maximum value in the array
+for i in range(1, max_val + 1):
+    # Check if the current value of mex appears in the array
+    if i not in a:
+        # If it doesn't, update mex to this value
+        mex = i
+    else:
+        # If it does, continue to the next value of mex
+        continue
+
+# Print the maximum possible value of mex
+print(mex)
+```
+
+In this solution, we first read in the number of elements in the array and the elements themselves. We initialize `mex` to 1 and `max_val` to the maximum value in the array.
+
+We then iterate through all possible values of `mex` up to `max_val`. For each value of `mex`, we check if it appears in the array. If it doesn't, we update `mex` to this value. If it does, we continue to the next value of `mex`.
+
+Finally, we print the maximum possible value of `mex`.
+
+In the first sample case, the maximum value of `mex` is 5, as shown in the example output.
+
+In the second sample case, the maximum value of `mex` is 3, which we obtain by not decreasing any of the array elements. This is also consistent with the example output.

@@ -1,0 +1,24 @@
+ Here is a Python3 program that solves the problem:
+
+```python
+import math
+
+# Read the radius from standard input
+r = int(input())
+
+# Calculate the area of the circle with radius r
+area_r = math.pi * (r ** 2)
+
+# Calculate the area of the circle with radius 1
+area_1 = math.pi * (1 ** 2)
+
+# Calculate the ratio of the areas
+ratio = area_r // area_1
+
+# Print the result
+print(ratio)
+```
+
+This program first reads the radius `r` from standard input and converts it to an integer. It then calculates the area of the circle with radius `r` using the formula `pi * r^2`, and the area of the circle with radius 1 using the formula `pi * 1^2`. The ratio of the two areas is then calculated and printed.
+
+Note that the `//` operator is used to perform integer division, which ensures that the result is an integer as required.

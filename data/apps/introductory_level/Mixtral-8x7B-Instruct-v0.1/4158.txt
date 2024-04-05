@@ -1,0 +1,38 @@
+ To solve this problem, we can use a data structure called a segment tree. A segment tree is a binary tree where each node represents an interval of the original array, and stores the maximum power of two that is a distance between any two points in that interval. We can build the segment tree in O(nlogn) time, and query it in O(logn) time to find the maximum power of two that is a distance between any two points in a given interval.
+
+Here's the Python code to solve the problem:
+
+```python
+import sys
+input = sys.stdin.readline
+
+def build_tree(node, start, end, seg_tree):
+    if start == end:
+        seg_tree[node] = {0: -1, 1: start}
+        return
+    mid = (start + end) // 2
+    build_tree(2*node, start, mid, seg_tree)
+    build_tree(2*node+1, mid+1, end, seg_tree)
+    seg_tree[node] = max(seg_tree[2*node], seg_tree[2*node+1], key=lambda x: x[0])
+
+def query(node, start, end, left, right, seg_tree):
+    if end < left or start > right:
+        return -1, -1
+    if left <= start and end <= right:
+        return seg_tree[node]
+    mid = (start + end) // 2
+    res1 = query(2*node, start, mid, left, right, seg_tree)
+    res2 = query(2*node+1, mid+1, end, left, right, seg_tree)
+    if res1[0] == -1:
+        return res2
+    elif res2[0] == -1:
+        return res1
+    else:
+        return max(res1, res2, key=lambda x: x[0])
+
+n = int(input().strip())
+arr = list(map(int, input().strip().split()))
+
+# Sort the array and compute the differences between adjacent elements
+arr.sort()
+diff = [arr[i+1] - arr[i] for i in range(n-1)]

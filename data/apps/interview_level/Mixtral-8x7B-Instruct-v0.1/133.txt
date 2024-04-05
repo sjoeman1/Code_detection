@@ -1,0 +1,26 @@
+ Here is a Python3 solution using dynamic programming to solve the problem:
+```python
+def solve(n, m, mod):
+    dp = [0] * (n + 1)
+    dp[0] = 1
+    for _ in range(m):
+        temp = [0] * (n + 1)
+        for i in range(1, n + 1):
+            for j in range(i, n + 1):
+                temp[j] = (temp[j] + dp[j - i]) % mod
+        dp = temp
+    return dp[n]
+
+n, m = map(int, input().split())
+print(solve(n, m, 1000000007))
+```
+Explanation:
+
+* We use dynamic programming to solve the problem.
+* `dp[i]` represents the number of ways to pack presents for the first `i` kinds of presents.
+* The base case is `dp[0] = 1`, meaning there is only one way to pack presents for no presents.
+* For each box, we try to pack presents for each kind of presents from `1` to `n`.
+* For each kind of presents `i`, we try to pack presents for the next kind of presents from `i` to `n`.
+* For each combination of `i` and `j`, we add `dp[j - i]` to `temp[j]`, meaning we pack presents for the first `j - i` kinds of presents in the previous box, and pack presents for the `i`-th kind of presents in the current box.
+* After trying all combinations for the current box, we update `dp` with `temp`.
+* Finally, we return `dp[n]` as the answer.

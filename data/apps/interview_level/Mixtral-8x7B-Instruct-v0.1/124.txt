@@ -1,0 +1,32 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def canDistributeGrapes(x, y, z, a, b, c):
+    # Check if Andrew can eat enough green grapes
+    if x > a:
+        return False
+
+    # Distribute the green grapes to Andrew first
+    a -= x
+
+    # Check if Dmitry can eat enough grapes excluding black ones
+    if y > a + b:
+        return False
+
+    # Distribute the remaining grapes to Dmitry and Michal
+    return a >= 0 and b >= 0 and c >= z
+
+# Read input
+x, y, z = map(int, input().split())
+a, b, c = map(int, input().split())
+
+# Check if a distribution is possible
+if canDistributeGrapes(x, y, z, a, b, c):
+    print("YES")
+else:
+    print("NO")
+```
+
+The `canDistributeGrapes` function checks if it is possible to distribute grapes so that everyone is happy. It first checks if Andrew can eat enough green grapes. If not, it returns `False`. Then, it distributes the green grapes to Andrew and checks if Dmitry can eat enough grapes excluding black ones. If not, it returns `False`. Finally, it checks if the remaining grapes are enough for Dmitry and Michal. If all checks pass, it returns `True`.
+
+The main part of the code reads the input, calls the `canDistributeGrapes` function, and prints the result.

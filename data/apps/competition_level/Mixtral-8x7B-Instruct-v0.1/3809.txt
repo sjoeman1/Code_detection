@@ -1,0 +1,46 @@
+ Here is a Python3 solution for the problem:
+
+```python
+import sys
+input = sys.stdin.readline
+
+def min_trips(n, k, weights):
+    # Count the number of 50kg people
+    num_50 = sum(1 for w in weights if w == 50)
+
+    # If the total weight of all people exceeds the limit, return -1
+    if sum(weights) > k:
+        return -1, 0
+
+    # If the total weight is equal to the limit, and there are more than one people, return -1
+    if sum(weights) == k and num_50 > 1:
+        return -1, 0
+
+    # If the total weight is equal to the limit, and there is only one 50kg person, return 1
+    if sum(weights) == k and num_50 == 1:
+        return 1, 1
+
+    # If the total weight is less than the limit, and there are only 50kg people, return 1
+    if sum(weights) < k and num_50 == n:
+        return 1, 1
+
+    # If the total weight is less than the limit, and there are only 100kg people, return n/2
+    if sum(weights) < k and num_50 == 0:
+        return n//2, 1
+
+    # If the total weight is less than the limit, and there are both 50kg and 100kg people,
+    # we need to find the minimum number of trips to transport all the 100kg people first,
+    # then transport the 50kg people.
+    trips = n//2
+    while True:
+        if (k - 100*((n-num_50)//2)) < 0:
+            trips += 1
+        else:
+            break
+    return trips, 1
+
+def count_ways(n, k, weights):
+    trips, _ = min_trips(n, k, weights)
+    if trips == -1:
+        return 0, 0
+    dp = [[0]*(10**5 + 1) for

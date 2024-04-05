@@ -1,0 +1,31 @@
+ Here is a possible solution for the problem:
+
+```python
+import collections
+
+def solve():
+    n, m = map(int, input().split())
+    edges = collections.defaultdict(set)
+    for _ in range(m):
+        u, v = map(int, input().split())
+        edges[u - 1].add(v - 1)
+        edges[v - 1].add(u - 1)
+    cur = 0
+    res = []
+    while cur < n - 1:
+        res.append(cur + 1)
+        new = set()
+        for x in edges[cur]:
+            new.update(edges[x])
+            new.discard(cur)
+        new.add(cur)
+        cur = max(new)
+    print(len(res))
+    print(*res)
+
+solve()
+```
+
+The solution uses a set to represent the friends of each guest. At each step, it finds the guest with the largest number of friends who has not been selected yet, and adds him to the result. Then, it updates the sets of friends for all his friends to include all their mutual friends. This process is repeated until all guests are included in the result.
+
+The time complexity of this solution is O(n^3), where n is the number of guests. This is because at each step, it takes O(n) time to find the guest with the largest number of friends, and O(n^2) time to update the sets of friends for all his friends. The space complexity is O(n^2), which is used to store the sets of friends.

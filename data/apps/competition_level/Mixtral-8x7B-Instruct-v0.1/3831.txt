@@ -1,0 +1,42 @@
+ Here is a Python3 solution for the problem:
+```python
+n = int(input().strip())
+street = []
+for _ in range(n):
+    s, g = map(int, input().strip().split())
+    street.append((s, g))
+
+s_i, g_i = zip(*street)
+s_i = list(s_i)
+g_i = list(g_i)
+
+# Initialize result
+res = 0
+for i in range(n):
+    res += g_i[i]
+
+# Initialize road width
+s_i[0] += 1
+s_i[-1] -= 1
+for i in range(1, n):
+    s_i[i] = s_i[i-1]
+
+# Adjust road width
+for i in range(1, n-1):
+    if s_i[i] < min(s_i[i-1], s_i[i+1]) - 1:
+        s_i[i] = min(s_i[i-1], s_i[i+1]) - 1
+        res -= g_i[i]
+
+# Check if solution exists
+if min(s_i[0], s_i[1]) != s_i[0] or max(s_i[-2], s_i[-1]) != s_i[-1]:
+    print(-1)
+else:
+    print(res)
+    print(*s_i)
+```
+Explanation:
+
+* Read the input and store the width of the road and lawn in a list of tuples.
+* Calculate the total width of the lawns.
+* Initialize the road width to the maximum possible value (i.e., the width of the road plus the width of the lawn) for each part of the street.
+* Adjust the road width so that the difference between the width of the road for consecutive parts is at most 1. If the width of the road for a part is less than the minimum of the width of the road for the previous and next parts minus 1, set the width of the road for that part to the minimum of the width of the road for the previous and next parts minus 1, and subtract

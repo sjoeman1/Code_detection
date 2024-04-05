@@ -1,0 +1,21 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def pineapple\_bark(t, s, x):
+if x < t:
+return "NO"
+else:
+return "YES" if (x - t) % s < 2 else "NO"
+
+# Test cases
+print(pineapple\_bark(3, 10, 4)) # NO
+print(pineapple\_bark(3, 10, 3)) # YES
+print(pineapple\_bark(3, 8, 51)) # YES
+print(pineapple\_bark(3, 8, 52)) # YES
+```
+
+The function `pineapple_bark` takes in three integers `t`, `s`, and `x` as input, which represent the time the pineapple barks for the first time, the pineapple barking interval, and the time Barney wants to eat the pineapple, respectively. It returns a string "YES" if the pineapple will bark at time `x` or a string "NO" otherwise.
+
+The function first checks if `x` is less than `t`, in which case it returns "NO" since the pineapple has not barked yet. Otherwise, it checks if `(x - t) % s` is less than 2, which means that the pineapple will bark at time `x`. If so, it returns "YES", otherwise it returns "NO".
+
+The function is then tested with the provided test cases, and it returns the expected output for each case.

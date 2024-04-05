@@ -1,0 +1,29 @@
+ Here is a simple Python3 code that solves the problem:
+
+```python
+# Read the string from standard input
+S = input()
+
+# Replace every character in S with 'x'
+result = ''
+for char in S:
+    result += 'x'
+
+# Print the result
+print(result)
+```
+
+You can also use the `replace()` method of the string class to achieve the same result in a single line:
+
+```python
+# Read the string from standard input
+S = input()
+
+# Replace every character in S with 'x'
+result = S.replace(S, 'x')
+
+# Print the result
+print(result)
+```
+
+In both cases, the program reads a string from standard input, replaces every character in the string with 'x', and prints the result.

@@ -1,0 +1,19 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n = int(input())
+a = list(map(int, input().split()))
+
+even_sum = 0
+odd_sum = 0
+for i in range(n-1):
+    if i % 2 == 0:
+        odd_sum += a[i]
+    else:
+        even_sum += a[i]
+
+good_candies = 0
+if even_sum % 2 == 0:
+    target = even_sum // 2
+    if a[-1] >= target:
+        good_candies += 1

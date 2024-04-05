@@ -1,0 +1,28 @@
+ Here's a solution using Python3 that should work for the problem you described. This solution sorts the list of numbers, computes the sum of the first n elements and the last n elements, and then iterates through the list, rounding each number and updating the sums as necessary. The minimum difference is then computed and printed.
+```python
+import sys
+
+def solve():
+    n = int(sys.stdin.readline())
+    numbers = list(map(float, sys.stdin.readline().split()))
+    if n % 2 == 1:
+        numbers.append(0)
+    numbers += numbers[:n]
+    numbers.sort()
+    sum1 = sum(numbers[:2*n])
+    sum2 = sum(numbers[-2*n:])
+    diff = abs(sum1 - sum2)
+    for i in range(n):
+        sum1 -= numbers[i]
+        sum2 += numbers[i]
+        numbers[i] = int(numbers[i])
+        sum1 += numbers[i]
+        sum2 -= numbers[i]
+        new_diff = abs(sum1 - sum2)
+        if new_diff < diff:
+            diff = new_diff
+    print(diff)
+
+solve()
+```
+Let me know if you have any questions about this solution!

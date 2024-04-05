@@ -1,0 +1,35 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def is_possible(n, a):
+    if n == 1:
+        return a[0] == 0
+
+    for i in range(1, n):
+        if a[i] == 0 and is_possible(i, a[:i]):
+            return True
+
+    return False
+
+def build_expression(n, a):
+    if n == 1:
+        return str(a[0])
+
+    for i in range(1, n):
+        if a[i] == 0 and is_possible(i, a[:i]):
+            return '(' + build_expression(i, a[:i]) + '->' + build_expression(n-i, a[i:]) + ')'
+
+def main():
+    n = int(input())
+    a = list(map(int, input().split()))
+
+    if is_possible(n, a):
+        print("YES")
+        print(build_expression(n, a))
+    else:
+        print("NO")
+
+main()
+```
+
+The `is_possible` function checks if it is possible to place brackets in the expression so that its value was equal to 0. The `build_expression` function builds the logical expression with the required arrangement of brackets. The `main` function reads the input and calls the above functions to get the output.

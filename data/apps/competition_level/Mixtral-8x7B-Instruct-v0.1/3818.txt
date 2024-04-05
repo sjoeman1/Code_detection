@@ -1,0 +1,43 @@
+ Here is a Python3 solution for the problem. The idea is to use dynamic programming to calculate the sum of niceness for all subtrees of each vertex. We can calculate the sum of niceness for the entire tree by summing up the niceness for all subtrees of all vertices.
+
+The time complexity of this solution is O(N), and the space complexity is O(N).
+```python
+import sys
+input = sys.stdin.readline
+
+mod = 10**9 + 7
+
+def dfs(cur, par):
+    w_sum = b_sum = 0
+    w_max = b_max = -1
+    for nxt in tree[cur]:
+        if nxt == par:
+            continue
+        res = dfs(nxt, cur)
+        w_sum += res[0]
+        b_sum += res[1]
+        w_max = max(w_max, res[0])
+        b_max = max(b_max, res[1])
+
+    # if cur has only one child, the niceness is max(w_sum, b_sum)
+    if par == -1:
+        ans = max(w_sum, b_sum)
+    else:
+        # if cur is white, the niceness is max(w_sum + dist(par, cur), b_sum)
+        # if cur is black, the niceness is max(w_sum, b_sum + dist(par, cur))
+        if cur & 1:
+            ans = max(w_sum + dist[par][cur], b_sum)
+        else:
+            ans = max(w_sum, b_sum + dist[par][cur])
+
+    # add the niceness of cur to the niceness of its parent
+    dist[cur][par] = dist[par][cur] = ans
+
+    return (w_sum, b_sum)
+
+N = int(input())
+tree = [[] for _ in range(N)]
+dist = [[-1] * N for _ in range(N)]
+for _ in range(N-1):
+    a, b = map(int, input().split())
+    tree[a-1].append(b-1)

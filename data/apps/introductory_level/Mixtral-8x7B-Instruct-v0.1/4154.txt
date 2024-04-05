@@ -1,0 +1,20 @@
+ Here is a Python3 solution using set operations:
+
+```python
+n, m = map(int, input().split())
+gates = [tuple(map(int, input().split())) for _ in range(m)]
+
+# Initialize a set of all possible ID cards
+ids = set(range(1, n+1))
+
+for l, r in gates:
+    # Compute the intersection of the current set of ID cards and the allowed ID cards for the current gate
+    ids &= {i for i in range(l, r+1)}
+
+# The remaining elements in the set are the ID cards that allow us to pass all the gates alone
+print(len(ids))
+```
+
+This solution works by initializing a set of all possible ID cards, and then iteratively computing the intersection of the current set of ID cards and the allowed ID cards for each gate. The remaining elements in the set after all the iterations are the ID cards that allow us to pass all the gates alone.
+
+The time complexity of this solution is O(m \* n), and the space complexity is O(n).

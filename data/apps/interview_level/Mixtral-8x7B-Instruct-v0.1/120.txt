@@ -1,0 +1,46 @@
+ Here is one possible solution for the problem:
+
+```
+def decode_genome(n, s):
+    # Count the number of each type of nucleotide in the input string
+    counts = {'A': 0, 'C': 0, 'G': 0, 'T': 0}
+    for nucleotide in s:
+        if nucleotide != '?':
+            counts[nucleotide] += 1
+
+    # If all nucleotides are already decoded, return the input string
+    if len(s) - sum(c > 0 for c in counts.values()) == 0:
+        return s
+
+    # If it is not possible to decode the genome, return "==="
+    if len(counts) < 4:
+        return "==="
+
+    # Find the nucleotide type with the fewest representatives
+    min_count = min(counts.values())
+
+    # Replace all '?' with the nucleotide type with the fewest representatives
+    decoded_genome = []
+    for nucleotide in s:
+        if nucleotide == '?':
+            decoded_genome.append(min(counts.keys(), key=(lambda k: counts[k])) )
+            counts[nucleotide] += 1
+        else:
+            decoded_genome.append(nucleotide)
+            counts[nucleotide] -= 1
+
+    # If all counts are equal, return the decoded genome
+    if all(count == min_count for count in counts.values()):
+        return "".join(decoded_genome)
+
+    # If it is not possible to decode the genome, return "==="
+    return "==="
+
+# Test the function
+print(decode_genome(8, "AG?C??CT")) # AGACGTCT
+print(decode_genome(4, "AGCT")) # AGCT
+print(decode_genome(6, "????G?")) # ===
+print(decode_genome(4, "AA??")) # ===
+```
+
+This function first counts the number of occurrences of each type of nucleotide in the input string

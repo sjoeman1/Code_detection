@@ -1,0 +1,8 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def min_moves():
+    n, m = map(int, input().split())
+    matrix = []
+    for _ in range(n):
+        matrix.append(list(map(int, input().split())))

@@ -1,0 +1,38 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def get_finger_movement(number):
+    finger_movement = [(0, 0)]
+    for digit in number:
+        if digit == '0' or digit == '1':
+            dx, dy = 0, 0
+        elif digit == '2' or digit == '3':
+            dx, dy = 1, 0
+        elif digit == '4' or digit == '5':
+            dx, dy = 1, 1
+        elif digit == '6' or digit == '7':
+            dx, dy = 0, 1
+        else:
+            dx, dy = -1, 1
+        finger_movement.append((finger_movement[-1][0] + dx, finger_movement[-1][1] + dy))
+    return finger_movement
+
+def check_unique_finger_movement(n, number):
+    finger_movement = get_finger_movement(number)
+    unique = set()
+    for i in range(10 ** (n - 1), 10 ** n):
+        if i == int(number):
+            continue
+        if get_finger_movement(str(i)) == finger_movement:
+            return False
+    return True
+
+n = int(input())
+number = input()
+if check_unique_finger_movement(n, number):
+    print("YES")
+else:
+    print("NO")
+```
+
+This solution first defines a helper function `get_finger_movement` that takes a number as input and returns a list of tuples representing the finger movements required to input that number. The function `check_unique_finger_movement` takes the length of the input number and the number itself as input and checks if there is any other number with the same finger movements. It does this by generating all possible numbers of the same length, excluding the input number itself, and checking if their finger movements match the input number's finger movements. If there is no other number with the same finger movements, the function returns `True`, indicating that the input number is unique. Otherwise, it returns `False`. Finally, the solution reads the input and

@@ -1,0 +1,29 @@
+ Here is a Python3 solution for the problem:
+
+```python
+import math
+
+def max_divisor(n):
+    for i in range(2, int(math.sqrt(n)) + 1):
+        if n % i == 0:
+            return n // i if i * (n // i) == n else i
+    return 1
+
+def min_tax(n):
+    if n % 2 == 0:
+        return n // 2
+    else:
+        return (n + 1) // 2
+
+n = int(input())
+if n == 2:
+    print(1)
+else:
+    print(min_tax(n))
+```
+
+Explanation:
+
+The `max_divisor` function finds the maximum divisor of a number `n` that is not equal to `n` itself. The `min_tax` function calculates the minimum tax that Mr. Funt has to pay by splitting the number `n` into two parts, `n // 2` and `n // 2` or `(n + 1) // 2` and `(n - 1) // 2` if `n` is odd. This is because the maximum divisor of a number `n` that is not equal to `n` itself is always less than or equal to the square root of `n`. Therefore, by splitting `n` into two parts, one of the parts will always have a maximum divisor less than or equal to the square root of `n`, and the other part will have a maximum divisor greater than or equal to the square root of `n`. This ensures that the tax paid on both parts is minimized.
+
+In the `main` function, we read the input `n` and check if `n` is equal to 2. If `n` is equal to 2, we print 1 as the minimum tax because Mr. Funt cannot split the number into two parts greater than or equal to 2. Otherwise, we print the minimum tax using the `min_tax` function.

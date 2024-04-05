@@ -1,0 +1,25 @@
+ Here's the Python3 code to perform k-rounding of a given positive integer n:
+
+```python
+def k_rounding(n, k):
+    if k == 0:
+        return n
+    else:
+        factor = 10 ** k
+        while n % 10 ** (k - 1) != 0:
+            n += 1
+        return n * factor
+
+# Read input
+n, k = map(int, input().split())
+
+# Perform k-rounding
+result = k_rounding(n, k)
+
+# Print output
+print(result)
+```
+
+This code defines a function `k_rounding` that takes two arguments: `n` and `k`. If `k` is 0, the function simply returns `n`. Otherwise, it finds the smallest multiple of `n` that ends with `k` zeros by repeatedly incrementing `n` by 1 until the last `k - 1` digits are all zeros. The resulting number is then multiplied by `10^k` to get the final k-rounding of `n`.
+
+The code then reads the input, performs the k-rounding using the `k_rounding` function, and prints the result.

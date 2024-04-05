@@ -1,0 +1,46 @@
+ Here's a Python3 solution for the problem:
+
+```python
+import sys
+from collections import defaultdict
+
+def is_valid(x, y, lines):
+    for l in lines:
+        if l[0] == 'v':
+            if y == l[1]:
+                return False
+        elif l[0] == 'h':
+            if x == l[1]:
+                return False
+    return True
+
+def calculate_area(x1, y1, x2, y2, x3, y3):
+    return 0.5 * abs(x1*(y2-y3) + x2*(y3-y1) + x3*(y1-y2))
+
+input = sys.stdin.readlines()
+N, M = map(int, input[0].strip().split())
+
+n_lines = []
+e_lines = []
+for i in range(1, 1+N):
+    a, b, c = map(int, input[i].strip().split())
+    n_lines.append((-1, c, a, b))
+for i in range(1+N, 1+N+M):
+    d, e, f = map(int, input[i].strip().split())
+    e_lines.append((0, d, e, f))
+
+n_lines.sort(key=lambda x: (x[1], x[2]))
+e_lines.sort(key=lambda x: (x[1], x[2]))
+
+vertical_lines = defaultdict(int)
+area = 0
+for line in n_lines:
+    while e_lines and e_lines[0][1] <= line[1]:
+        x1, y1, x2, y2 = e_lines.pop(0)
+        if y1 <= line[1] <= y2:
+            area += calculate_area(x1, line[1], x2, line[1], line[2], line[3])
+            vertical_lines[line[1]] += x2 - x1
+
+    x1, y1, x2, y2 = line
+    if line[1] in vertical_lines:
+        x3 = vertical_

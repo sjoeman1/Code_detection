@@ -1,0 +1,21 @@
+ Here's the Python3 code to solve the problem:
+
+```python
+def price(N, A, B):
+    return A * N + B * len(str(N))
+
+def solve():
+    A, B, X = map(int, input().split())
+    max_int = -1
+    max_price = -1
+    for N in range(1, 10**9 + 1):
+        current_price = price(N, A, B)
+        if current_price <= X and current_price > max_price:
+            max_int = N
+            max_price = current_price
+    print(max_int if max_price != -1 else 0)
+
+solve()
+```
+
+The code defines a helper function `price(N, A, B)` to calculate the price of an integer `N` with given `A` and `B`. The main function `solve()` reads the input, initializes the maximum integer and price to -1, and iterates through all integers from 1 to 10^9. For each integer `N`, it calculates the price and updates the maximum integer and price if the current price is less than or equal to `X` and greater than the current maximum price. Finally, the function prints the maximum integer if the maximum price is not -1, or 0 otherwise.

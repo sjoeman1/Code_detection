@@ -1,0 +1,39 @@
+ Here is a Python3 solution using dynamic programming to solve the problem:
+
+```python
+import sys
+from collections import defaultdict
+
+input = sys.stdin.readline
+
+def min\_cost():
+    n, m, k = map(int, input().split())
+    flights = defaultdict(list)
+    for _ in range(m):
+        d, f, t, c = map(int, input().split())
+        flights[f].append((d, t, c))
+        flights[t].append((d, f, -c))
+    @lru\_cache(maxsize=None)
+    def dp(day, city, prev\_city):
+        if day > k:
+            return float('inf')
+        if day == k and city == 0:
+            return 0
+        res = float('inf')
+        for d, ncity, cost in flights[city]:
+            if ncity == prev\_city:
+                continue
+            res = min(res, dp(d, ncity, city) + cost)
+        return res
+    return dp(1, 0, -1)
+
+print(min\_cost())
+```
+
+The idea is to use a dynamic programming approach to calculate the minimum cost of getting all jury members to Metropolis by a certain day, and then sending them back to their home cities. The `dp` function takes three parameters: `day`, `city`, and `prev_city`. `day` is the current day, `city` is the current city, and `prev_city` is the previous city.
+
+For each city and day, we consider all flights from that city on that day. If the flight goes to a city that is not the previous city, we add the cost of the flight to the minimum cost of getting all jury members to the destination city by the day of the flight. We take the minimum of all such costs, and return it if `day` is equal to `k` and `city` is equal to 0, or if `day` is greater than `k`.
+
+The `lru_cache` decorator is used to memoize the results of the `dp` function to improve performance.
+
+Note that this solution assumes that the input is valid and does not handle edge cases or invalid input.

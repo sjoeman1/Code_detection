@@ -1,0 +1,17 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def count_shichi_go_san(n):
+    count = 0
+    for i in range(753, n+1):
+        if '7' in str(i) and '5' in str(i) and '3' in str(i):
+            count += 1
+    return count
+
+n = int(input())
+print(count_shichi_go_san(n))
+```
+
+This solution works by iterating over all integers between 753 (the smallest Shichi-Go-San number) and `n` (inclusive), and checking if each integer contains the digits 7, 5, and 3. If it does, the count of Shichi-Go-San numbers is incremented. The final count is returned at the end.
+
+Note: This solution assumes that the input `n` is valid, i.e., it is an integer between 1 and 10^9 (inclusive). If this is not the case, you should add error checking code to handle invalid input.

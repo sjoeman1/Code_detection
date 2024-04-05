@@ -1,0 +1,21 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n = int(input())
+p = list(map(int, input().split()))
+
+# Compute the deviation for the original permutation
+deviation = sum(abs(pi - i) for i, pi in enumerate(p))
+
+# Try all possible shifts
+for k in range(1, n):
+    # Compute the shifted permutation
+    q = [p[i % n] for i in range(k, n + k)] + p[:k]
+    
+    # Compute the deviation for the shifted permutation
+    new_deviation = sum(abs(qi - i) for i, qi in enumerate(q))
+    
+    # Update the minimum deviation and the shift if necessary
+    if new_deviation < deviation:
+        deviation = new_deviation
+        shift = k

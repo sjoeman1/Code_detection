@@ -1,0 +1,17 @@
+ Here's the Python3 code to solve the problem:
+
+```python
+# Read the input number
+n = int(input())
+
+# Calculate the number of 1000-yen bills needed
+num_1000_yen_bills = n // 1000
+
+# Calculate the remaining change
+change = n % 1000
+
+# Print the change
+print(change)
+```
+
+This code first reads the input number `n` from Standard Input. It then calculates the number of 1000-yen bills needed to pay for the product by performing integer division (`//`) of `n` by 1000. The remaining change is calculated as the remainder of the division (`%`). Finally, the code prints the change as an integer.

@@ -1,0 +1,54 @@
+ Here is one way to solve the problem using Python:
+
+```python
+def max\_abs\_diff(n, k, tabs):
+n, k = int(n), int(k)
+tabs = list(map(int, tabs.split()))
+
+# Initialize variables to keep track of the number of tabs of each type
+e, s = 0, 0
+for i in range(n):
+if tabs[i] == 1:
+e += 1
+else:
+s += 1
+
+# Initialize the variable to keep track of the maximum absolute difference
+max\_diff = 0
+
+# Iterate through all possible values of b
+for b in range(1, k + 1):
+# Reset the number of tabs of each type to 0
+e, s = 0, 0
+for i in range(n):
+# If the current tab is not a multiple of k or its multiple is greater than n,
+# add the number of tabs of each type that would be kept
+if (i + 1) % k != 0 or (i + 1) // k > n // k:
+if tabs[i] == 1:
+e += 1
+else:
+s += 1
+# Otherwise, add the number of tabs of each type that would be kept if b is chosen
+# as the first tab to be kept
+else:
+j = (i // k) * k
+if tabs[j] == 1:
+e += 1
+else:
+s += 1
+if tabs[i] == 1:
+e += 1
+else:
+s += 1
+
+# Update the maximum absolute difference if necessary
+max\_diff = max(max\_diff, abs(e - s))
+
+return max\_diff
+
+# Test the function with the provided examples
+print(max\_abs\_diff("4 2", "1 1 -1 1")) # 2
+print(max\_abs\_diff("14 3", "-1 1 -1 -1 1 -1 -1 1 -1 -1 1 -1 -1 1")) # 9
+```
+
+The function `max_abs_diff` takes as input the number of tabs `n`, the distance

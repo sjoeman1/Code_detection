@@ -1,0 +1,47 @@
+ Here is a Python3 solution using itertools.combinations to generate all possible pairs of divisors and then checking if they are a weakened common divisor (WCD) for the given list of pairs of integers:
+
+```python
+import itertools
+
+def is_wcd(pairs, div1, div2):
+    for a, b in pairs:
+        if div1 % a and div2 % a or div1 % b and div2 % b:
+            return False
+    return div1 > 1 and div2 > 1
+
+def find_wcd(pairs):
+    n = len(pairs)
+    for div1, div2 in itertools.combinations(range(2, 2*10**9 + 1), 2):
+        if is_wcd(pairs, div1, div2):
+            return div1
+    return -1
+
+n = int(input())
+pairs = [tuple(map(int, input().split())) for _ in range(n)]
+print(find_wcd(pairs))
+```
+
+This solution has a time complexity of O(N \* M^2) where N is the number of pairs and M is the upper bound of the integers in the pairs. This solution can be improved by first finding the greatest common divisor (GCD) of all the numbers in the pairs and then checking only the divisors of the GCD as potential WCDs. This reduces the time complexity to O(N \* G) where G is the greatest common divisor of all the numbers in the pairs.
+
+Here is the improved solution:
+
+```python
+import itertools
+import math
+
+def gcd(a, b):
+    return math.gcd(a, b)
+
+def is_wcd(pairs, div):
+    for a, b in pairs:
+        if div % a and div % b:
+            return False
+    return div > 1
+
+def find_wcd(pairs):
+    n = len(pairs)
+    g = gcd(*itertools.chain(*pairs))
+    for div in range(g, 1, -1):
+        if is_wcd(pairs, div):
+            return div
+   

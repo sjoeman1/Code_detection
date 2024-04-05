@@ -1,0 +1,41 @@
+ Here is a Python3 solution using the shapely library to create and manipulate the polygon and circle. The solution calculates the area of the polygon and subtracts the area of the intersection of the polygon and the circle.
+
+```python
+from math import pi
+from shapely.geometry import Polygon, Point
+from shapely.ops import unary_union, polygonize
+
+def solve():
+    n = int(input().strip())
+    x, y = map(int, input().strip().split())
+    points = []
+    for _ in range(n):
+        x1, y1 = map(int, input().strip().split())
+        points.append((x1, y1))
+    points.append((x, y))
+    polygon = Polygon(points)
+    center = Point(x, y)
+    circle = center.buffer(1e5)
+    intersection = polygon.intersection(circle)
+    if isinstance(intersection, Polygon):
+        intersection_area = intersection.area
+    else:
+        # intersection is a MultiPolygon
+        intersection_area = sum(poly.area for poly in intersection.geoms)
+    polygon_area = polygon.area
+    result = polygon_area - intersection_area
+    print("%.12f" % result)
+
+solve()
+```
+
+In the code, `unary_union` is used to merge the original polygon and the circle if the circle intersects with the polygon at multiple points. `polygonize` is used to split the merged polygon into multiple polygons in case of self-intersection.
+
+Please note that the solution assumes the radius of the circle is 1e5, as mentioned in the problem description. If the actual radius is unknown, the radius value should be replaced with the correct value.
+
+The input format is as follows:
+
+* The first line contains an integer `n` for the number of vertices and two integers `x` and `y` for the center point coordinates.
+* Each of the next `n` lines contains two integers `x1` and `y1` for the polygon vertices in clockwise or counterclockwise order.
+
+The output is the area of the region that will be

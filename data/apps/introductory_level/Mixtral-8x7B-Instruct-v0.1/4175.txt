@@ -1,0 +1,28 @@
+ Here is a Python3 program to solve the problem:
+
+```python
+# Get the number of words and the words themselves
+n = int(input())
+words = [input() for _ in range(n)]
+
+# Initialize an empty set to store the last characters of the words
+last\_chars = set()
+
+# Iterate over the words
+for word in words:
+    # Check if the word was announced before
+    if word in last\_chars:
+        print("No")
+        exit()
+
+    # Add the last character of the word to the set of last characters
+    last\_chars.add(word[-1])
+
+# Check if the first character of the first word is in the set of last characters
+if words[0][0] not in last\_chars:
+    print("No")
+else:
+    print("Yes")
+```
+
+This program first reads the number of words and the words themselves from the standard input. It then initializes an empty set to store the last characters of the words. The program then iterates over the words and checks if the word was announced before by checking if it is in the set of last characters. If it is, the program prints "No" and exits. If it is not, the program adds the last character of the word to the set of last characters. Finally, the program checks if the first character of the first word is in the set of last characters. If it is not, the program prints "No". Otherwise, it prints "Yes".

@@ -1,0 +1,29 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def has\_winning\_strategy(n, s):
+if n == 11:
+return s[0] == '8'
+
+for i in range(1, n-1, 2):
+# check if Vasya can win after choosing the i-th digit
+if not has\_winning\_strategy(n - i - 1, s[i+1:]):
+return True
+
+# if Vasya cannot win after choosing any digit, then Petya has a winning strategy
+return False
+
+n = int(input())
+s = input()
+
+if has\_winning\_strategy(n, s):
+print("YES")
+else:
+print("NO")
+```
+
+The function `has_winning_strategy` checks if Vasya has a winning strategy for a given string `s` of length `n`. If `n` is 11, then Vasya wins if the first digit is 8. Otherwise, for each possible move of Vasya (i.e., removing the i-th digit), the function recursively checks if Petya has a winning strategy for the remaining string. If Petya does not have a winning strategy, then Vasya has a winning strategy.
+
+The main part of the solution reads the input values of `n` and `s`, and then calls the `has_winning_strategy` function to determine if Vasya has a winning strategy. If Vasya has a winning strategy, the program prints "YES", otherwise it prints "NO".
+
+Note that the time complexity of this solution is exponential, as it involves recursive calls for all possible moves of Vasya. This solution may not be efficient enough for very large inputs. However, it should work fine for the given input constraints.

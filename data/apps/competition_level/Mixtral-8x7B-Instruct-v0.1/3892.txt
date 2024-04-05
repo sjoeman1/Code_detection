@@ -1,0 +1,39 @@
+ Here is a Python3 solution for the problem:
+
+```python
+import sys
+from collections import defaultdict
+
+def min\_time\_needed():
+    n, m = map(int, input().strip().split())
+    adj\_list = [[] for _ in range(n + 1)]
+    in\_degree = [0] * (n + 1)
+    candy = defaultdict(int)
+    for _ in range(m):
+        a, b = map(int, input().strip().split())
+        adj\_list[a].append(b)
+        in\_degree[b] += 1
+        candy[b] += 1
+
+    queue = [i for i in range(1, n + 1) if in\_degree[i] == 0]
+    time = [0] * (n + 1)
+
+    while queue:
+        node = queue.pop(0)
+        for neighbor in adj\_list[node]:
+            in\_degree[neighbor] -= 1
+            time[neighbor] = max(time[neighbor], time[node] + 1)
+            if in\_degree[neighbor] == 0:
+                queue.append(neighbor)
+
+    for i in range(1, n + 1):
+        print(time[i] + candy[i], end=" ")
+    print()
+
+if __name__ == "__main__":
+    t = int(input().strip())
+    for _ in range(t):
+        min\_time\_needed()
+```
+
+The solution uses Breadth First Search (BFS) to find the minimum time needed to deliver all candies from each station. It first constructs an adjacency list and calculates the in-degree of each node. It then initializes a queue with nodes having in-degree 0 (i.e., the nodes with no incoming edges). The time taken to reach each node is calculated as the maximum time taken to reach its neighboring nodes plus one. The time taken to deliver the candies at each node is added to the time taken to reach the node. Finally, the solution prints the minimum time needed to deliver all candies from each station.
