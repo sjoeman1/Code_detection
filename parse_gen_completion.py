@@ -5,7 +5,7 @@ from tqdm import tqdm
 
 # add argument for dataset
 parser = argparse.ArgumentParser()
-parser.add_argument('--dataset', default="results/Mixtral-8x7B-Instruct-v0.1-apps_introductory_207.jsonl")
+parser.add_argument('--dataset', default="results/CodeLlama-70b-Instruct-hf-apps_interview_207.jsonl")
 parser.add_argument('--to_parse', default="gen_completion", choices=["gen_completion", "gen_text"])
 args = parser.parse_args()
 
