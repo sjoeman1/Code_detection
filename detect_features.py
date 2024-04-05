@@ -9,14 +9,19 @@ built_in_functions = dir(__builtins__)
 
 from utils import standard_tokenizer, is_comment
 
+from sklearn.svm import SVC
 from sklearn.linear_model import LogisticRegression
+from sklearn.naive_bayes import MultinomialNB
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
 
+import xgboost as xgb
+
 parser = argparse.ArgumentParser()
 parser.add_argument('--dataset', default="results/gemma-7b-it-apps_interview_207.jsonl")
-parser.add_argument('--classifier', default="LR", choices=['SCM', 'LR', 'MNB', 'XGB'])
+parser.add_argument('--classifier', default=""
+                                            "SCM", choices=['SCM', 'LR', 'MNB', 'XGB'])
 args = parser.parse_args()
 # args.ngram_range = tuple(args.ngram_range)
 print(args)
@@ -43,6 +48,10 @@ machine_generated = dataset_df['parsed_codes']
 print(len(human_written), len(machine_generated))
 human_written_labels = [0] * len(human_written)
 machine_generated_labels = [1] * len(machine_generated)
+
+#print average length of the code
+print(np.mean([len(code) for code in human_written]))
+print(np.mean([len(code) for code in machine_generated]))
 
 
 def extract_features(series):
@@ -103,17 +112,29 @@ wandb.log({'data_features': list(data_features.columns)})
 # split the data into training and testing
 X_train, X_test, y_train, y_test = train_test_split(data_features, data_labels, shuffle=True, test_size=0.2, random_state=42)
 
-# train logistic regression on features
-clf = LogisticRegression()
-clf.fit(X_train, y_train)
+match config['classifier']:
+    case "SCM":
+        clf = SVC(kernel='poly', C=10)
+    case "LR":
+        clf = LogisticRegression(max_iter=1000)
+    case "MNB":
+        clf = MultinomialNB()
+    case "XGB":
+        clf = xgb.XGBClassifier(objective='binary:logistic', max_depth=10, n_estimators=180, gamma=1)
+    case _:
+        print("Invalid model name")
+        wandb.finish(exit_code=1)
+        exit(1)
+
 
 # evaluate the model
+clf.fit(X_train, y_train)
 y_pred = clf.predict(X_test)
-y_probas = clf.predict_proba(X_test)
+# y_probas = clf.predict_proba(X_test)
 # print the classification report
 report = classification_report(y_test, y_pred, target_names=labels, output_dict=True)
 print(report)
 wandb.log(report)
-wandb.sklearn.plot_classifier(clf, X_train, X_test, y_train, y_test, y_pred, y_probas, labels, model_name=clf_name, feature_names=data_features.columns)
+# wandb.sklearn.plot_classifier(clf, X_train, X_test, y_train, y_test, y_pred, y_probas, labels, model_name=clf_name, feature_names=data_features.columns)
 
 
