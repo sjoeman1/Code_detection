@@ -1,0 +1,38 @@
+
+
+```python
+def find_message(s, k):
+    if k > len(s):
+        return "Impossible"
+    
+    message = ""
+    i = 0
+    while i < len(s) and len(message) < k:
+        if s[i] != '?' and s[i] != '*':
+            message += s[i]
+            i += 1
+        elif s[i] == '?':
+            if i + 1 < len(s) and s[i + 1] == '*':
+                message += s[i + 2] * 2
+                i += 3
+            else:
+                i += 2
+        else:
+            message += s[i + 1]
+            i += 2
+    
+    if len(message) == k:
+        return message
+    else:
+        return "Impossible"
+```
+
+In this Python 3 code, the `find_message` function takes in two parameters: `s` (the string received in the postcard) and `k` (the required message length). It first checks if `k` is greater than the length of `s`. If it is, the function returns "Impossible" as there is no possible message.
+
+The function then initializes an empty `message` string and an `i` variable to keep track of the current index in the string. It iterates through the string, character by character, until it reaches the end of the string or until the length of the `message` is equal to `k`.
+
+If the current character is not a snowflake or a candy cane, it adds the character to the `message` and increments `i`. If the current character is a candy cane, it checks if the next character is a snowflake. If it is, it adds the character after the snowflake to the `message` twice and increments `i` by 3. If it's not, it increments `i` by 2.
+
+If the current character is a snowflake, it adds the character after the snowflake to the `message` and increments `i` by 2.
+
+After the loop, the function checks if the length of the `message` is equal to

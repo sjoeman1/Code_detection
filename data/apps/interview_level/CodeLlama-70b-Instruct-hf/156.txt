@@ -1,0 +1,35 @@
+
+
+The code for solving the problem is given below:
+
+```python
+# Input the value of X
+X = int(input())
+
+# Initialize a and b to 1
+a = 1
+b = 1
+
+# Check if X is odd or even
+if X % 2 == 0:
+    # If X is even, set a = 1 and b = 2
+    a = 1
+    b = 2
+else:
+    # If X is odd, set a = 1 and b = X
+    a = 1
+    b = X
+
+# Calculate the LCM of a and b
+lcm = (a * b) // gcd(a, b)
+
+# Check if the LCM is equal to X
+if lcm == X:
+    # If it is, print the values of a and b
+    print(a, b)
+else:
+    # If it is not, print a message indicating that no solution exists
+    print("No solution")
+```
+
+The code first takes an integer input from the user, representing the value of $X$. It then initializes variables $a$ and $b$ to 1. If $X$ is even, it sets $a = 1$ and $b = 2$. If $X$ is odd, it sets $a = 1$ and $b = X$. It then calculates the LCM of $a$ and $b$ using the formula $(a * b) // gcd(a, b)$. If the LCM is equal to $X$, it prints the values of $a$ and $b$. Otherwise, it prints a message indicating that no solution exists.

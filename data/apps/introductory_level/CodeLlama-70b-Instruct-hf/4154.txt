@@ -1,0 +1,22 @@
+
+Here is a possible solution in Python 3:
+```py
+n, m = map(int, input().split())
+gates = []
+for i in range(m):
+    gate = tuple(map(int, input().split()))
+    gates.append(gate)
+
+cards = set()
+for gate in gates:
+    for card in range(gate[0], gate[1]+1):
+        cards.add(card)
+
+print(len(cards))
+```
+
+The program first reads the number of ID cards and gates from the input. Then, it reads each gate's range of valid ID cards and stores them in a list.
+
+The `cards` set is used to keep track of the ID cards that can pass through at least one gate. For each gate, it iterates through the range of valid ID cards and adds each card to the `cards` set. Since sets do not allow duplicates, any ID cards that can pass through multiple gates will only be counted once.
+
+Finally, it prints the number of elements in the `cards` set, which is the number of ID cards that can pass through all gates alone.

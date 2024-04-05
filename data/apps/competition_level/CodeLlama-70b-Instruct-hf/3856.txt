@@ -1,0 +1,52 @@
+
+
+Here is the Python 3 code for solving the question:
+
+```
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+
+#
+# Complete the 'minArea' function below.
+#
+# The function is expected to return an INTEGER.
+# The function accepts following parameters:
+#  1. INTEGER n
+#  2. 2D_INTEGER_ARRAY sizes
+#
+
+def minArea(n, sizes):
+    # Write your code here
+    sizes.sort(key=lambda x: x[0] * x[1])
+    w = 0
+    h = 0
+    for i in range(n // 2):
+        w += sizes[i][0]
+        h = max(h, sizes[i][1])
+    for i in range(n - 1, n // 2 - 1, -1):
+        w += sizes[i][1]
+        h = max(h, sizes[i][0])
+    return w * h
+
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    n = int(input().strip())
+
+    sizes = []
+
+    for _ in range(n):
+        sizes.append(list(map(int, input().rstrip().split())))
+
+    result = minArea(n, sizes)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()

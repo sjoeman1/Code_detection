@@ -1,0 +1,21 @@
+
+
+Here is the Python3 code to solve the question:
+
+```
+# Input
+W = int(input())
+cnt = list(map(int, input().split()))
+
+# Calculate the maximum possible weight of a good subset
+max_weight = 0
+for i in range(1, 9):
+    if cnt[i-1] > 0 and i <= W:
+        max_weight = max(max_weight, i)
+
+print(max_weight)
+```
+
+This code takes the input `W` and the `cnt` list as described in the question. It iterates through the `cnt` list from index 0 to 7 (i.e., from `cnt_1` to `cnt_8`), and checks if the current weight (`i`) is less than or equal to `W`. If the condition is met, it updates the `max_weight` variable with the maximum of its current value and `i`. This ensures that `max_weight` will hold the maximum possible weight of a good subset.
+
+Finally, it prints the `max_weight` variable, which is the maximum possible weight of a good subset of items.

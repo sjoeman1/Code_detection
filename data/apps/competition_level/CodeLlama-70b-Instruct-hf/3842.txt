@@ -1,0 +1,42 @@
+
+Here is the Python3 code for solving the question:
+
+```py
+from math import inf
+
+# Input
+n, p, q = map(int, input().split())
+a = [0] * (n + 1)
+b = [0] * (n + 1)
+for i in range(1, n + 1):
+    a[i], b[i] = map(int, input().split())
+
+# Precompute
+ex = [0] * (n + 1)
+money = [0] * (n + 1)
+for i in range(1, n + 1):
+    ex[i] = ex[i - 1] + a[i]
+    money[i] = money[i - 1] + b[i]
+
+# Function to calculate answer
+def solve(need_ex, need_money):
+    if need_ex > p:
+        return inf
+    if need_money > q:
+        return inf
+    if need_ex == need_money == 0:
+        return 0
+    ans = inf
+    for i in range(1, n + 1):
+        ans = min(ans, 1 + solve(max(need_ex - a[i], 0), max(need_money - b[i], 0)))
+    return ans
+
+# Call function
+answer = solve(p, q)
+print(answer)
+
+```
+
+The `solve` function calculates the minimum number of days required to meet the required experience and money. The `ans` variable stores the answer. If the required experience exceeds the maximum experience, the answer is set to infinity. Similarly, if the required money exceeds the maximum money, the answer is set to infinity. If both required experience and money are zero, the answer is set to zero.
+
+The `for` loop iterates through the projects and calculates the minimum number of days required to meet the required experience and money for each project. The `min` function is used to find the minimum number of days required. Finally, the answer is printed.

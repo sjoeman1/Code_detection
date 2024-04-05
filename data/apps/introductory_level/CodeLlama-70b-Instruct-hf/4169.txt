@@ -1,0 +1,34 @@
+
+
+Here is the Python 3 code for solving the problem:
+
+```python
+# Input the number of stores and number of energy drinks needed
+n, m = map(int, input().split())
+# Create a list to store the prices and quantities of energy drinks at each store
+prices, quantities = [], []
+# Iterate through the list of stores and input the price and quantity of energy drinks available
+for _ in range(n):
+    a, b = map(int, input().split())
+    prices.append(a)
+    quantities.append(b)
+# Sort the prices and quantities lists in ascending order
+prices, quantities = zip(*sorted(zip(prices, quantities)))
+# Initialize the minimum amount of money needed
+min_money = 0
+# Iterate through the list of stores
+for price, quantity in zip(prices, quantities):
+    # Calculate the maximum number of energy drinks that can be bought at the current store
+    drinks = min(m, quantity)
+    # Add the cost of the energy drinks to the minimum amount of money needed
+    min_money += drinks * price
+    # Subtract the number of energy drinks bought from the total number needed
+    m -= drinks
+    # If the total number needed becomes 0, break the loop
+    if m == 0:
+        break
+# Print the minimum amount of money needed
+print(min_money)
+```
+
+This code will take input from the user, calculate the minimum amount of money needed to buy the specified number of energy drinks, and output the result.

@@ -1,0 +1,25 @@
+
+Here is the Python 3 code that solves the problem:
+```
+# Input the values of A, B, and K
+A, B, K = map(int, input().split())
+
+# Initialize the number of cookies
+takahashi_cookies = A
+aoki_cookies = B
+
+# Perform the actions K times
+for _ in range(K):
+    # If Takahashi has one or more cookies, eat one of his cookies
+    if takahashi_cookies > 0:
+        takahashi_cookies -= 1
+    # Otherwise, if Aoki has one or more cookies, eat one of Aoki's cookies
+    elif aoki_cookies > 0:
+        aoki_cookies -= 1
+    # If they both have no cookies, do nothing
+
+# Print the numbers of Takahashi's and Aoki's cookies after K actions
+print(takahashi_cookies, aoki_cookies)
+```
+
+This code takes input for A, B, and K from the user. It then initializes the number of cookies for Takahashi and Aoki. The code then performs the actions K times, following the conditions provided. Finally, it prints the number of cookies Takahashi and Aoki have after K actions.

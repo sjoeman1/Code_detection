@@ -1,0 +1,44 @@
+
+
+Here is the Python3 code for the problem:
+
+```python
+#!/usr/bin/python3
+
+# import necessary libraries
+import sys
+from collections import defaultdict
+
+# function to solve the problem
+def solve(n, k, a):
+    # create a dictionary to store the count of numbers in the array
+    d = defaultdict(int)
+    for i in a:
+        d[i] += 1
+    # create a list to store the number of occurences of each number in the array
+    num = []
+    for i in d:
+        num.append(d[i])
+    # sort the list in descending order
+    num.sort(reverse=True)
+    # initialise the result to 0
+    res = 0
+    # iterate through the list
+    for i in num:
+        # if the current number is less than or equal to k, break out of the loop
+        if i <= k:
+            break
+        # calculate the minimum number of operations required to get the current number equal to k
+        res += (i - k)
+    # return the result
+    return res
+
+# input the values of n and k
+n, k = list(map(int, input().split()))
+# input the array a
+a = list(map(int, input().split()))
+# call the solve function and print the result
+print(solve(n, k, a))
+```
+
+The provided code first counts the occurrences of each number in the array. Then, it sorts the occurrences in descending order. Finally, it iterates through the sorted list and calculates the minimum number of operations required to get each number equal to k. The code handles both the easy and hard versions of the problem.

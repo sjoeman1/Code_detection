@@ -1,0 +1,19 @@
+
+
+Here is the Python3 code to solve the problem:
+
+```py
+n = int(input())
+t = input()
+
+def solve(n, t):
+    for d in range(n, 0, -1):
+        t = t[::-1][:d] + t[d:][::-1]
+    return t
+
+print(solve(n, t))
+```
+
+The code first takes the input `n` and `t` from the user. Then, it defines the `solve` function, which takes `n` and `t` as parameters. Inside the function, it iterates over the divisors of `n` in decreasing order. For each divisor `d`, it reverses the substring `s[1...d]` and updates `t`. Finally, it returns `t`.
+
+The code then prints the result of the `solve` function with the given input `n` and `t`.

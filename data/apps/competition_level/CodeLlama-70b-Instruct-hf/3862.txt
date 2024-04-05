@@ -1,0 +1,37 @@
+
+Here is the Python 3 code for solving the problem:
+
+```py
+# Input
+n, k = map(int, input().split())
+a = list(map(int, input().split()))
+
+# Initialize the answer as infinity
+ans = float('inf')
+
+# Loop through all possible combinations of Coke types
+for mask in range(1 << k):
+    # Initialize the total volume and concentration
+    total_volume = 0
+    total_concentration = 0
+    
+    # Check each Coke type
+    for i in range(k):
+        # If the i-th bit of the mask is set, it means the i-th Coke type is used
+        if mask & (1 << i):
+            # Increment the total volume and concentration
+            total_volume += 1
+            total_concentration += a[i]
+    
+    # If the concentration matches the desired value, update the answer
+    if total_concentration == n and total_volume < ans:
+        ans = total_volume
+
+# Print the answer
+if ans == float('inf'):
+    print(-1)
+else:
+    print(ans)
+```
+
+The code first reads the input values for `n` and `k`. Then, it initializes the answer as infinity and starts iterating over all possible combinations of Coke types using bitmasking. For each combination, it calculates the total volume and concentration. If the concentration matches the desired value `n`, it updates the answer with the minimum volume. Finally, it prints the answer or `-1` if it is not possible.

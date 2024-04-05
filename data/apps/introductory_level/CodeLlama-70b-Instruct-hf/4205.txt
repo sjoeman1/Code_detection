@@ -1,0 +1,29 @@
+
+
+In this case, since the sequence p is a permutation of {1, 2, ..., N}, the only way to sort it in ascending order is to swap the first and last elements of the sequence.
+
+Here's the Python 3 code that solves this problem:
+
+```
+def solve(p):
+    N = len(p)
+    if p[0] == N and p[N-1] == 1:
+        return "YES"
+    else:
+        return "NO"
+
+N = int(input())
+p = list(map(int, input().split()))
+
+print(solve(p))
+```
+
+Explanation:
+
+*   The `solve` function takes a list `p` as input and checks if the first and last elements of the list are `N` and `1` respectively.
+*   If they are, it returns "YES" indicating that it is possible to sort the list in ascending order by swapping the first and last elements.
+*   If they are not, it returns "NO" indicating that it is not possible to sort the list in ascending order.
+*   The `N` and `p` are taken as input from the user.
+*   The `solve` function is called with `p` as input and the output is printed.
+
+Please note that this solution assumes that the sequence `p` is a permutation of {1, 2, ..., N} as specified in the problem statement.

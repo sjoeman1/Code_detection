@@ -1,0 +1,50 @@
+
+
+Here is the Python 3 code for solving the problem:
+
+```
+def can_rearrange_statues(n, current_statues, desired_statues):
+    # Check if the number of statues is equal to the number of islands
+    if n != len(current_statues) or n != len(desired_statues):
+        return False
+
+    # Initialize an empty dictionary to store the statues and their positions
+    statues = {}
+
+    # Iterate through the current and desired statues
+    for i in range(n):
+        current_statue = current_statues[i]
+        desired_statue = desired_statues[i]
+
+        # If the current statue is not 0 (i.e., it is a valid statue), add it to the dictionary
+        if current_statue != 0:
+            statues[current_statue] = i
+
+        # If the desired statue is not 0 (i.e., it is a valid statue), check if it is already in the dictionary
+        if desired_statue != 0:
+            if desired_statue not in statues:
+                # If it is not in the dictionary, it means it has not been placed on the pedestal yet
+                return False
+
+            # If it is in the dictionary, check if it is adjacent to the current island
+            if abs(statues[desired_statue] - i) != 1:
+                # If it is not adjacent, it means it cannot be reached by the islanders
+                return False
+
+    # If all checks pass, it is possible to rearrange the statues in the desired order
+    return True
+
+
+if __name__ == "__main__":
+    n = int(input())
+    current_statues = list(map(int, input().split()))
+    desired_statues = list(map(int, input().split()))
+
+    if can_rearrange_statues(n, current_statues, desired_statues):
+        print("YES")
+    else:
+        print("NO")
+
+```
+
+This code takes in the input parameters and checks if it is possible to rearrange the statues in the desired order. If it is possible, it prints "

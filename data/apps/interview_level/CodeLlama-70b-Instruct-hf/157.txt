@@ -1,0 +1,22 @@
+
+Here is the Python 3 code that solves the problem:
+
+```
+# Get the input values
+a = int(input("Enter the number of lemons: "))
+b = int(input("Enter the number of apples: "))
+c = int(input("Enter the number of pears: "))
+
+# Find the maximum number of pears that can be used
+max_pairs = min(b // 2, c // 4)
+
+# Check if it's possible to use any fruits
+if max_pairs == 0:
+    print("0")
+else:
+    # Calculate the maximum total number of fruits
+    max_total = max_pairs * 7
+    print(max_total)
+```
+
+This code prompts the user to input the number of lemons, apples, and pears, then calculates the maximum number of lemons, apples, and pears that can be used based on the ratio. If the maximum number of pears is 0, it means that Nikolay can't use any fruits, and the code prints 0. Otherwise, it calculates the maximum total number of fruits and prints it.

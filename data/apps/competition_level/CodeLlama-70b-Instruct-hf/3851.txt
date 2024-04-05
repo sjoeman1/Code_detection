@@ -1,0 +1,21 @@
+
+Here is the Python3 code for solving the question:
+```python
+def solve(n, k, a, b):
+    x = y = 1
+    for s in range(1, n * k + 1):
+        for l in range(1, n * k + 1):
+            if (s - 1) % k + a == (s + l - 1) % k + b:
+                x = max(x, l)
+                y = min(y, l)
+    return x, y
+
+if __name__ == '__main__':
+    n, k = map(int, input().split())
+    a, b = map(int, input().split())
+    x, y = solve(n, k, a, b)
+    print(x, y)
+```
+The code defines a function `solve` that takes the input values `n`, `k`, `a`, and `b` as parameters. It iterates over all possible values of `s` and `l` and checks if the condition is satisfied. If it is, it updates the values of `x` and `y` accordingly. Finally, it returns `x` and `y`.
+
+The main function reads the input values from the user and calls the `solve` function with them. It then prints the results `x` and `y`.

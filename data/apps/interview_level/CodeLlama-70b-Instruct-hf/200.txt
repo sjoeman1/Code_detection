@@ -1,0 +1,32 @@
+
+
+def get_apple(h_1, h_2, a, b):
+    if h_1 >= h_2:
+        return 0
+    if a <= b:
+        return -1
+
+    d = 0
+    h = h_1
+    while h < h_2:
+        h += a
+        if h >= h_2:
+            return d + 1
+        h -= b
+        if h < h_1:
+            h = h_1
+        d += 1
+
+    return -1
+
+
+if __name__ == '__main__':
+    h_1, h_2 = map(int, input().split())
+    a, b = map(int, input().split())
+
+    days = get_apple(h_1, h_2, a, b)
+
+    if days > 0:
+        print(days)
+    else:
+        print(-1)

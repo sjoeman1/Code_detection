@@ -1,0 +1,31 @@
+
+
+Here is a Python 3 code that solves the question:
+
+```
+def solve(a, b):
+    # initialize the answer as an empty string
+    ans = ""
+    # initialize the index of the current position in string a
+    i = 0
+    # iterate through each character in string b
+    for ch in b:
+        # check if the character is in string a starting from the current index
+        if ch in a[i:]:
+            # if it is, then add it to the answer
+            ans += ch
+            # and update the current index in string a
+            i = a.index(ch, i) + 1
+    # return the answer
+    return ans
+
+# read the input
+a = input()
+b = input()
+# get the answer
+ans = solve(a, b)
+# print the answer
+print(ans if ans else "-")
+```
+
+In this code, the `solve` function takes two strings `a` and `b` as input. It initializes the answer as an empty string, and iterates through each character in string `b`. If the character is found in string `a` starting from the current index, it adds it to the answer and updates the current index in string `a`. The function returns the answer, and the main program reads the input, gets the answer by calling the `solve` function, and prints the answer. If the answer is an empty string, it prints `-` instead.

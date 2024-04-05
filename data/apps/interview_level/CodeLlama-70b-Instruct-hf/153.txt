@@ -1,0 +1,63 @@
+
+
+The provided Python 3 code is:
+
+```py
+# Python 3 program to find the maximum number of points
+# Polycarp can earn in M minutes
+
+# Function to find the maximum number of points Polycarp
+# can earn in M minutes
+def findMaxPoints(n, k, M, t):
+
+    # Initialize a dp array of size M+1
+    dp = [0] * (M + 1)
+
+    # Iterate for all tasks
+    for i in range(n):
+
+        # Initialize the maximum time required to solve
+        # all subtasks of the current task
+        maxTime = 0
+
+        # Iterate for all subtasks of the current task
+        for j in range(k):
+
+            # Find the time required to solve all subtasks
+            # of the current task
+            maxTime += t[j]
+
+            # Check if the current subtask can be solved in
+            # M minutes
+            if (maxTime <= M):
+
+                # Update the dp array for all possible times
+                for time in range(M, maxTime - 1, -1):
+
+                    # Update the dp array
+                    dp[time] = max(dp[time], dp[time - t[j]] + 1)
+
+    # Return the maximum number of points Polycarp can earn
+    return dp[M] + n
+
+# Driver code
+if __name__ == '__main__':
+
+    # Number of tasks
+    n = 3
+
+    # Number of subtasks in each task
+    k = 4
+
+    # Total time in minutes
+    M = 11
+
+    # Time required to solve each subtask
+    t = [1, 2, 3, 4]
+
+    print("Maximum number of points Polycarp can earn is",
+          findMaxPoints(n, k, M, t))
+
+```
+
+This code uses a dynamic programming approach to solve the problem. It initializes an array `dp` of size `M+1` to store the maximum number of points Polycarp can earn in `M` minutes. For each task, it iterates over all subtasks and updates `dp` for

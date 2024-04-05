@@ -1,0 +1,33 @@
+1.  Define the required variables and read the input.
+
+```python
+D = int(input())  # number of difficulties
+G = int(input())  # target score
+problems = [[] for _ in range(D + 1)]  # store the problems
+
+for i in range(1, D + 1):
+    p, c = map(int, input().split())
+    problems[i] = [p, c]
+```
+
+2.  Define a function to solve the problem.
+
+```python
+def solve(problems, G):
+    res = 0
+    for i in range(D, 0, -1):
+        p, c = problems[i]
+        if G >= c:
+            res += (G // c) * p
+            G %= c
+    return res
+```
+
+3.  Call the function and print the result.
+
+```python
+result = solve(problems, G)
+print(result)
+```
+
+This code defines the required variables and reads the input. Then, it defines a function to solve the problem by iterating through the difficulties from highest to lowest. For each difficulty, it checks if the target score is greater than or equal to the perfect bonus. If it is, it calculates the number of problems that can be solved to obtain the perfect bonus, adds them to the result, and updates the target score. Finally, it prints the result.

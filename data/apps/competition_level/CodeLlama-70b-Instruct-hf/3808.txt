@@ -1,0 +1,35 @@
+
+
+Here is the Python3 code to solve the problem:
+
+```py
+# Read the length of the sequence
+n = int(input())
+
+# Read the sequence
+s = input()
+
+# Count the number of opening and closing brackets
+open_count = 0
+close_count = 0
+
+for c in s:
+    if c == '(':
+        open_count += 1
+    else:
+        close_count += 1
+
+# If the difference between the number of opening and closing brackets is not 1, then the sequence is not correct
+if abs(open_count - close_count) > 1:
+    print("No")
+
+# If the sequence is correct, then it is solvable
+elif open_count == close_count:
+    print("Yes")
+
+# If the difference is 1, then the sequence can be made correct by moving at most one bracket
+else:
+    print("Yes")
+```
+
+This code first reads the length of the sequence and then reads the sequence itself. It then counts the number of opening and closing brackets in the sequence. If the difference between the number of opening and closing brackets is not 1, then the sequence is not correct. If the sequence is correct, then it is solvable. If the difference is 1, then the sequence can be made correct by moving at most one bracket.

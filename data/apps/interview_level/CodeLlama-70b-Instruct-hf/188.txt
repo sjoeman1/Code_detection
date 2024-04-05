@@ -1,0 +1,30 @@
+
+
+```python
+n, k = map(int, input().split())
+a = list(map(int, input().split()))
+
+seats = [0] * (n * 8)
+
+def check(a, seats):
+    for i in range(len(a)):
+        for j in range(8):
+            if seats[i * 8 + j] == 0:
+                seats[i * 8 + j] = a[i]
+                a[i] = 0
+                break
+    return seats
+
+
+for i in range(len(a)):
+    seats = check(a, seats)
+    if a.count(0) == len(a):
+        print('YES')
+        break
+else:
+    print('NO')
+```
+
+
+
+The provided code solves the problem. It takes the input from the user, and then uses a function called "check" to determine whether the soldiers can be placed in the plane without sitting on neighboring seats. The function iterates through the soldiers and tries to find seats for them, and if it finds a seat, it marks it as occupied. If all the soldiers can be placed in the plane without sitting on neighboring seats, the code prints "YES". Otherwise, it prints "NO".

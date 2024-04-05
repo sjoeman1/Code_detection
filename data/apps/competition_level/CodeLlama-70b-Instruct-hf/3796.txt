@@ -1,0 +1,58 @@
+1. Import the necessary libraries
+
+```python
+import sys
+from collections import defaultdict
+```
+
+2. Define the function `solve` that takes a list of integers as input and returns the maximum number of cells and the beautiful rectangle itself.
+
+```python
+def solve(arr):
+    n = len(arr)
+    values = defaultdict(int)
+    # Count the frequency of each value
+    for i in range(n):
+        values[arr[i]] += 1
+    # Find the maximum value and its frequency
+    max_value = max(values, key=values.get)
+    max_freq = values[max_value]
+    # Initialize the number of cells and the beautiful rectangle
+    max_cells = 0
+    max_rectangle = []
+    # Iterate through all possible combinations of rows and columns
+    for i in range(1, max_freq + 1):
+        for j in range(1, n + 1):
+            if i * j > max_cells:
+                # Check if the rectangle is beautiful
+                if all(values[arr[k]] >= j for k in range(i * j)):
+                    max_cells = i * j
+                    max_rectangle = [[arr[k] for k in range(j * i, j * i + j)] for _ in range(i)]
+    return max_cells, max_rectangle
+```
+
+3. Read the input from `stdin` and call the `solve` function.
+
+```python
+n = int(sys.stdin.readline())
+arr = list(map(int, sys.stdin.readline().split()))
+max_cells, max_rectangle = solve(arr)
+```
+
+4. Print the output, i.e., the maximum number of cells and the beautiful rectangle.
+
+```python
+print(max_cells)
+print(len(max_rectangle), len(max_rectangle[0]))
+for row in max_rectangle:
+    print(' '.join(map(str, row)))
+```
+
+Here is the complete code:
+
+```python
+import sys
+from collections import defaultdict
+
+def solve(arr):
+    n = len(arr)

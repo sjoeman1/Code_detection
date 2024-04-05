@@ -1,0 +1,31 @@
+
+
+Here is the Python3 code for solving the question:
+
+```
+# Function to perform the k-rounding of n
+def k_rounding(n, k):
+    # Initialize the value of x
+    x = 10 ** k
+
+    # Check if the number is divisible by x
+    if n % x == 0:
+        return n
+
+    # If not, increase the value of x
+    x *= 10
+
+    # Repeat until x is divisible by n
+    while n % x != 0:
+        x += 10 ** k
+
+    return x
+
+# Take input from the user
+n, k = map(int, input().split())
+
+# Calculate the k-rounding of n
+result = k_rounding(n, k)
+
+# Print the result
+print(result)

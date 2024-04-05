@@ -1,0 +1,38 @@
+👨‍💻 Here's a Python3 solution:
+
+```py
+def canBeEqual(S, T):
+    if len(S) != len(T):
+        return False
+
+    char_counts = {}
+    for char in S:
+        if char not in char_counts:
+            char_counts[char] = 0
+        char_counts[char] += 1
+
+    for char in T:
+        if char not in char_counts or char_counts[char] == 0:
+            return False
+        char_counts[char] -= 1
+
+    return True
+
+S = input()
+T = input()
+result = canBeEqual(S, T)
+if result:
+    print("Yes")
+else:
+    print("No")
+```
+
+Here's how it works:
+
+1. The `canBeEqual` function takes two strings `S` and `T` as input.
+2. We first check if the length of `S` and `T` are equal. If they are not, we return `False` as `S` and `T` cannot be equal.
+3. We create a dictionary `char_counts` to store the count of each character in `S`.
+4. We iterate through `S` and for each character, we check if it is already present in `char_counts`. If it is not, we initialize it with a value of `0`. Then, we increment the count of that character.
+5. We then iterate through `T` and for each character, we check if it is present in `char_counts`. If it is not, or if its count is `0`, we return `False` as it means that the character is not present in `S`. Otherwise, we decrement the count of that character.
+6. If we reach the end of the function without returning `False`, it means that all characters in `T` are present in `S` with the same count. Therefore, we return `True`.
+7. Finally, we take user input for `S` and `T`, call the `canBeEqual` function, and print the result accordingly.

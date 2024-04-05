@@ -1,0 +1,25 @@
+
+
+Here is the Python 3 code that solves the problem:
+
+```
+def solve(s):
+    a, b, c = s.count('a'), s.count('b'), s.count('c')
+    return 'YES' if a == b or b == c or c == a or c == a == b else 'NO'
+
+s = input()
+print(solve(s))
+```
+
+This code defines a function `solve` that takes a string `s` as input. It counts the number of occurrences of the letters 'a', 'b', and 'c' in the string and stores them in the variables `a`, `b`, and `c`, respectively.
+
+The function then checks if any of the following conditions is true:
+
+1.  The number of 'a' is equal to the number of 'b'
+2.  The number of 'b' is equal to the number of 'c'
+3.  The number of 'c' is equal to the number of 'a'
+4.  The number of 'c' is equal to both the number of 'a' and 'b'
+
+If any of these conditions is true, the function returns "YES". Otherwise, it returns "NO".
+
+Finally, the code reads the input string from the user and calls the `solve` function with it. The result of the function call is printed to the console.

@@ -1,0 +1,25 @@
+
+Here is a Python3 program that solves the question:
+```py
+# Read the input
+p, k = map(int, input().split())
+
+# Check if the polynomial exists
+if p >= k:
+    print(-1)
+    exit(0)
+
+# Find the coefficients
+degree = 0
+coefficients = []
+while p > 0:
+    coefficient = p % k
+    coefficients.append(coefficient)
+    p = (p - coefficient) // k
+    degree += 1
+
+# Output the result
+print(degree)
+print(" ".join(map(str, coefficients[::-1])))
+```
+This program reads the input `p` and `k`, checks if the polynomial exists, and then finds the coefficients of the polynomial. Finally, it outputs the result.

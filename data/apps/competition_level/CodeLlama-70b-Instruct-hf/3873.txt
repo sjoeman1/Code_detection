@@ -1,0 +1,21 @@
+
+
+The problem is asking you to determine whether it is possible to swap all pairs of positions in a permutation so that the permutation stays the same. If it is possible, you need to find a way to do it.
+
+Here's a Python 3 code that solves the problem:
+
+```python
+# Input the size of the permutation
+n = int(input())
+
+# Check if the permutation size is odd or even
+if n % 2 == 0:
+    print("NO")
+else:
+    print("YES")
+    # For odd permutation size, print the swaps in reverse order
+    for i in range(n-1, 0, -1):
+        print(i, i-1)
+```
+
+This code will solve the problem and provide the required output.

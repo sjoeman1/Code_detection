@@ -1,0 +1,25 @@
+
+Here is the Python 3 code that solves the problem:
+
+```py
+import sys
+
+def solve(x, y, l, r):
+    if x == y:
+        return 0
+
+    ans = 0
+    for a in range(64):
+        for b in range(64):
+            n = pow(x, a) + pow(y, b)
+            if n > r:
+                break
+            if n >= l:
+                ans = max(ans, b + a)
+    return ans
+
+x, y, l, r = map(int, sys.stdin.readline().split())
+print(solve(x, y, l, r))
+```
+
+This code uses a brute-force approach to find all possible combinations of `a` and `b` that satisfy the condition `n = x^a + y^b` within the given limits. For each combination, it checks if the resulting `n` is within the interval `[l, r]` and updates the maximum length of the Golden Age accordingly.

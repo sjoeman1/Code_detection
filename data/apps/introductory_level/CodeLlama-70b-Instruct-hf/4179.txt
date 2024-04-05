@@ -1,0 +1,33 @@
+
+
+Here is the Python 3 code to solve the question:
+
+```python
+#!/usr/bin/env python3
+
+# Read the input from the standard input
+N, M, C = map(int, input().split())
+B = list(map(int, input().split()))
+
+# Initialize the count of codes that correctly solve this problem
+count = 0
+
+# Iterate over the N codes
+for _ in range(N):
+    # Read the characteristics of the current code
+    A = list(map(int, input().split()))
+
+    # Calculate the sum of A_i * B_i for all i
+    sum_A_B = 0
+    for i in range(M):
+        sum_A_B += A[i] * B[i]
+
+    # Check if the current code correctly solves this problem
+    if sum_A_B + C > 0:
+        count += 1
+
+# Print the number of codes that correctly solve this problem
+print(count)
+```
+
+The provided code reads the input from the standard input and calculates the sum of `A_i * B_i` for all `i` and checks if the sum plus `C` is greater than 0. If it is, it increments the count of codes that correctly solve the problem. Finally, it prints the count of codes that correctly solve this problem.

@@ -1,0 +1,18 @@
+
+
+Here is the Python 3 code that solves the problem:
+
+```
+# Get input from the user
+A, B = map(int, input().split())
+
+# Check if A and B are between 1 and 9
+if 1 <= A <= 9 and 1 <= B <= 9:
+    # Calculate A * B and print the result
+    print(A * B)
+else:
+    # Print -1 if A or B are not between 1 and 9
+    print(-1)
+```
+
+This code first takes the input `A` and `B` from the user and then checks if they are between 1 and 9. If they are, it calculates `A * B` and prints the result. Otherwise, it prints `-1`.

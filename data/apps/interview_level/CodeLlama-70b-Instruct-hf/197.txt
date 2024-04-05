@@ -1,0 +1,55 @@
+
+
+ The probability of having no inversions in the problem order is:
+
+$$\frac{\binom{n}{l_1}\binom{n-l_1}{l_2}\cdots\binom{l_n-l_{n-1}}{l_n}}{\binom{n}{l_1}\binom{n}{l_2}\cdots\binom{n}{l_n}}$$
+
+where $\binom{n}{k}$ is the binomial coefficient.
+
+However, since the denominator can be very large, we need to calculate the numerator and denominator separately and then find their ratio modulo $998244353$.
+
+Here's the Python 3 code to solve this problem:
+
+```python
+from math import factorial
+
+def mod_inverse(a, m):
+    b = m
+    x0, x1 = 0, 1
+    if m == 1:
+        return 0
+    while a > 1:
+        q = a // m
+        a, m = m, a % m
+        x0, x1 = x1 - q * x0, x0
+    if x1 < 0:
+        x1 += b
+    return x1
+
+def binomial(n, k, p):
+    if k < 0 or k > n:
+        return 0
+    if k == 0 or k == n:
+        return 1
+    num = den = 1
+    for i in range(1, k + 1):
+        num = (num * (n - i + 1)) % p
+        den = (den * i) % p
+    return (num * mod_inverse(den, p)) % p
+
+n = int(input())
+
+li = []
+ri = []
+
+for i in range(n):
+    l, r = map(int, input().split())
+    li.append(l)
+    ri.append(r)
+
+numerator = 1
+denominator = 1
+
+for i in range(n):
+    numerator = (numerator * binomial(n - i, li[i], 998244353)) % 998244353
+   

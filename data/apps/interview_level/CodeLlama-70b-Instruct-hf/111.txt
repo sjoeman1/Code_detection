@@ -1,0 +1,20 @@
+
+Here's a Python 3 code that solves the problem:
+
+```python
+def kth_smallest_divisor(n, k):
+    divisors = []
+    for i in range(1, int(n**0.5) + 1):
+        if n % i == 0:
+            divisors.append(i)
+            if i != n // i:
+                divisors.append(n // i)
+    divisors.sort()
+    return divisors[k - 1] if k <= len(divisors) else -1
+
+if __name__ == "__main__":
+    n, k = map(int, input().split())
+    print(kth_smallest_divisor(n, k))
+```
+
+The code works by first finding all divisors of `n` and storing them in a list `divisors`. It then sorts the list and returns the `kth` smallest divisor if it exists. If not, it returns -1.

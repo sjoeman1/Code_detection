@@ -1,0 +1,46 @@
+
+
+Here is the Python 3 code for solving the question:
+
+```python
+def check_doublets(N, dice_rolls):
+    # Initialize a counter to count the number of consecutive doublets
+    doublet_count = 0
+
+    # Iterate through the dice rolls
+    for i in range(N):
+        # Check if the current roll is a doublet
+        if dice_rolls[i][0] == dice_rolls[i][1]:
+            # Increment the doublet count
+            doublet_count += 1
+        else:
+            # Reset the doublet count
+            doublet_count = 0
+
+        # If the doublet count is greater than or equal to 3,
+        # we have found at least three consecutive doublets
+        if doublet_count >= 3:
+            return True
+
+    # If we reach this point, no triple doublets were found
+    return False
+
+# Read the number of dice rolls
+N = int(input())
+
+# Initialize an empty list to store the dice rolls
+dice_rolls = []
+
+# Read the dice rolls
+for _ in range(N):
+    D1, D2 = map(int, input().split())
+    dice_rolls.append([D1, D2])
+
+# Check if triple doublets occurred
+if check_doublets(N, dice_rolls):
+    print("Yes")
+else:
+    print("No")
+```
+
+This code first reads the input values for N and the dice rolls. Then, it iterates through the dice rolls and checks if the current roll is a doublet. If it is, it increments a counter for consecutive doublets. If the current roll is not a doublet, it resets the counter. If the counter reaches 3 or more, it means that triple doublets occurred, and the code prints "Yes". If the loop ends without finding triple doublets, it prints "No".

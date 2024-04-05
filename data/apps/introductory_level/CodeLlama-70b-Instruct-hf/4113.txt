@@ -1,0 +1,30 @@
+
+Here is the Python 3 code that solves the problem:
+```
+# Input the value of N from the user
+N = int(input())
+
+# Initialize the result to False
+result = False
+
+# Iterate over all possible combinations of cakes and doughnuts
+for cakes in range(N // 4 + 1):
+    for doughnuts in range(N // 7 + 1):
+        if cakes * 4 + doughnuts * 7 == N:
+            result = True
+            break
+
+# Print the result
+if result:
+    print("Yes")
+else:
+    print("No")
+```
+
+Explanation of the code:
+
+1.  The code starts by reading the value of N from the user using the `input()` function.
+2.  It initializes the result to `False`, assuming that there is no way to buy cakes and doughnuts for exactly N dollars.
+3.  It iterates over all possible combinations of cakes and doughnuts, using nested for loops.
+4.  For each combination, it checks if the total cost (cakes \* 4 + doughnuts \* 7) equals N. If it does, it sets the result to `True` and breaks out of the loops.
+5.  Finally, it prints "Yes" if the result is `True`, indicating that there is a way to buy cakes and doughnuts for exactly N dollars, or "No" if the result is `False`, indicating that there is no way to do so.

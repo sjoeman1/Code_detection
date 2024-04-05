@@ -1,0 +1,22 @@
+
+
+Here is the Python3 code that solves the question:
+
+```python
+# Input
+b = int(input())
+g = int(input())
+n = int(input())
+
+# Calculate the minimum number of decks
+min_decks = n + 1 - min(b, g)
+
+# Output
+print(min_decks)
+```
+
+In this code:
+
+* We take input for the number of boys, girls, and participants.
+* Calculate the minimum number of decks as `n + 1 - min(b, g)`.
+* Output the minimum number of decks.

@@ -1,0 +1,36 @@
+
+ Here is the Python 3 code to solve the question:
+
+```
+# Get input
+S = input()
+K = int(input())
+
+# Initialize variables
+length = len(S)
+repeats = 0
+
+# Calculate the number of repeats
+while 2**repeats * length <= 5 * 10**15:
+    repeats += 1
+
+# Calculate the length of the string after 5 * 10**15 days
+total_length = 2**repeats * length
+
+# Find the character at the K-th position
+for i in range(length):
+    if 2**repeats * i + 1 <= K <= 2**repeats * (i + 1):
+        char = S[i]
+        break
+
+# Print the result
+print(char)
+```
+
+This code works as follows:
+
+1.  It takes the input S and K from the user.
+2.  It calculates the number of repeats required to reach the length of the string after 5 \times 10^{15} days.
+3.  It calculates the total length of the string after 5 \times 10^{15} days.
+4.  It finds the character at the K-th position by iterating through the characters in S and comparing the indices.
+5.  It prints the character at the K-th position.

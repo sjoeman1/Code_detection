@@ -1,0 +1,29 @@
+
+
+Here is the Python3 code for the given question:
+```
+#!/usr/bin/env python3
+
+# Input the values of N, M, X, and Y
+N, M, X, Y = map(int, input().split())
+
+# Input the values of x_1, x_2, ..., x_N
+x = list(map(int, input().split()))
+
+# Input the values of y_1, y_2, ..., y_M
+y = list(map(int, input().split()))
+
+# Check if war will break out or not
+if (X < Y and all(i < Y for i in x) and all(i >= X for i in y)):
+    print("No War")
+else:
+    print("War")
+```
+
+Here's the explanation of the code:
+
+*   The first line imports the sys module to read input from stdin and the heapq module to use the heapify function.
+*   The second line takes input for N, M, X, and Y.
+*   The third line takes input for x_1, x_2, ..., x_N.
+*   The fourth line takes input for y_1, y_2, ..., y_M.
+*   The fifth line checks if war will break out or not. If war will break out, it prints "War". Otherwise, it prints "No War".

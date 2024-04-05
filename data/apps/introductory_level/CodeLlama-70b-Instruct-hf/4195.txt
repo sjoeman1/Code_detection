@@ -1,0 +1,25 @@
+
+
+Here is the Python3 code to solve the question:
+
+```python
+# Read input
+D, N = map(int, input().split())
+
+# If D is 0, find the N-th smallest integer that can be divided by 100 exactly 0 times
+if D == 0:
+    result = N
+
+# If D is 1, find the N-th smallest integer that can be divided by 100 exactly 1 times
+elif D == 1:
+    result = 100 * N
+
+# If D is 2, find the N-th smallest integer that can be divided by 100 exactly 2 times
+elif D == 2:
+    result = 10000 * N
+
+# Print the result
+print(result)
+```
+
+The code reads the input `D` and `N` from the user, and then determines the result based on the value of `D`. If `D` is 0, the code finds the N-th smallest integer that can be divided by 100 exactly 0 times. If `D` is 1, it finds the N-th smallest integer that can be divided by 100 exactly 1 times. If `D` is 2, it finds the N-th smallest integer that can be divided by 100 exactly 2 times. Finally, it prints the result.

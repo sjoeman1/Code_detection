@@ -1,0 +1,26 @@
+
+
+Here is the Python3 code for the given question:
+
+```python
+# Take input from user
+n = int(input("Enter the number of shift: "))
+s = input("Enter the string: ")
+
+# Create a dictionary for mapping of alphabets
+alphabets = {chr(ord('A') + i): chr(ord('A') + (i + n) % 26) for i in range(26)}
+
+# Shift each character of the string
+result = ''.join([alphabets[char] for char in s])
+
+# Print the resulting string
+print("Resultant string:", result)
+```
+
+
+
+The first line takes the input for the number of shifts, N, and the second line takes the input for the string, S.
+
+The alphabets dictionary is created to map each alphabet to its shifted value. The resultant string is created by joining the shifted characters.
+
+Finally, the resultant string is printed.

@@ -1,0 +1,39 @@
+
+Here is the Python3 code for solving the question:
+
+```python
+n = int(input())
+
+x = list(map(int, input().split()))
+y = list(map(int, input().split()))
+
+for i in range(n):
+    if x[i] == y[i]:
+        continue
+    elif x[i] < y[i]:
+        print("No")
+        break
+    elif x[i] > y[i]:
+        for j in range(n):
+            if y[j] == x[i] - 1 and x[j] == y[j] + 1:
+                x[i] -= 1
+                x[j] += 1
+                break
+        else:
+            print("No")
+            break
+else:
+    print("Yes")
+```
+
+In the code, we first take input for the number of piles, $n$. Then, we take input for the stones in the first array, $x$, and the stones in the second array, $y$.
+
+We then iterate through the elements of the first array, $x$, and check if the corresponding element in the second array, $y$, is equal to the element in $x$. If they are equal, we move on to the next element.
+
+If the element in $y$ is greater than the element in $x$, we print "No" and break out of the loop.
+
+If the element in $y$ is less than the element in $x$, we iterate through the elements of the second array, $y$, and check if there is an element with a value of $x[i] - 1$ and an element with a value of $y[i] + 1$. If we find such elements, we update the values in $x$ and $y$ accordingly.
+
+If we don't find such elements, we print "No" and break out of the loop.
+
+If we don't break out of the loop, we print "Yes".

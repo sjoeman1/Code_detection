@@ -1,0 +1,47 @@
+
+Here is a Python 3 code that solves the problem:
+
+```python
+# import required modules
+import sys
+from collections import defaultdict
+
+# read input
+n, m = map(int, input().split())
+pairs = [tuple(map(int, input().split())) for _ in range(m)]
+
+# create a graph
+friends = defaultdict(set)
+for a, b in pairs:
+    friends[a].add(b)
+    friends[b].add(a)
+
+# function to find the minimum number of steps required
+def min_steps():
+    n_steps = 0
+    selected = []
+    while True:
+        # find the person with the maximum number of friends
+        person = max(friends, key=lambda x: len(friends[x]))
+        selected.append(person)
+        # introduce all friends of the selected person to each other
+        for a in friends[person]:
+            for b in friends[person]:
+                if a != b:
+                    friends[a].add(b)
+                    friends[b].add(a)
+        n_steps += 1
+        # check if all pairs of guests are friends
+        if all(a in friends[b] for a in range(1, n + 1) for b in range(1, n + 1)):
+            break
+    return n_steps, selected
+
+# calculate the minimum number of steps and the selected guests
+n_steps, selected = min_steps()
+
+# print the output
+print(n_steps)
+print(*selected)
+```
+
+This code will take the input, create a graph representing the friendship relationships, and then find the minimum number of steps required to make all pairs of guests friends. It will then print the output as specified.

@@ -1,0 +1,27 @@
+
+
+Here is the Python 3 code for solving this problem:
+
+```py
+import math
+
+def get_max_blocks_and_volume(m):
+    if m <= 6:
+        return m, m
+    k = int(math.floor(m ** (1.0/3.0)))
+    k_cube = k ** 3
+    max_blocks = k + (m - k_cube) // (k - 1)
+    max_volume = k_cube + (m - k_cube) * k
+    return max_blocks, max_volume
+
+if __name__ == "__main__":
+    m = int(input())
+    max_blocks, max_volume = get_max_blocks_and_volume(m)
+    print(max_blocks, max_volume)
+```
+
+This code defines a function `get_max_blocks_and_volume(m)` that takes an input `m` and returns the maximum number of blocks and the maximum volume `X` that result in the maximum number of blocks. The function first checks if `m` is less than or equal to 6. If it is, it simply returns `m` as the maximum number of blocks and `m` as the maximum volume. This is because if `m` is small, the greedy approach of always adding the largest block that fits will result in the maximum number of blocks.
+
+If `m` is greater than 6, the function calculates the value of `k` as the largest cube root of `m`. It then calculates `k_cube` as `k` cubed. The maximum number of blocks is calculated by adding `k` (the number of blocks of size `k`) and the number of blocks of size `k-1` that fit in the remaining volume `(m - k_cube) // (k - 1)`. The maximum volume is calculated by adding `k_cube` to the total volume of the blocks of size `k-1`.
+
+The function then returns the maximum number of blocks and the maximum volume. The code in the `if __name__ == "__main__"` block takes an input `m`, calls the `get_max_blocks_and_volume(m)` function, and prints the maximum

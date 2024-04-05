@@ -1,0 +1,27 @@
+
+
+Here is the Python 3 code to solve the problem:
+
+```
+# Read the input from stdin
+n, x = map(int, input().split())
+L = list(map(int, input().split()))
+
+# Initialize the D_i sequence
+D = [0]
+
+# Calculate D_i
+for i in range(n + 1):
+    D.append(D[i] + L[i])
+
+# Count the number of bounces with coordinates less than or equal to X
+count = 0
+for i in range(n + 1):
+    if D[i] <= x:
+        count += 1
+
+# Print the result
+print(count)
+```
+
+The code reads the input from standard input in the given format. It then initializes the D_i sequence with the starting value of 0. Then, it calculates D_i using the provided formula. Finally, it counts the number of bounces with coordinates less than or equal to X and prints the result.

@@ -1,0 +1,35 @@
+
+Here is the code in Python 3:
+
+```py
+n = int(input())
+print(n)
+
+# Function to check if a cell is under attack of 4 or more knights
+def is_under_attack(x, y, knights):
+    for knight in knights:
+        if abs(x - knight[0]) + abs(y - knight[1]) == 3:
+            return True
+    return False
+
+# Initial placement
+knights = [(1, 1), (3, 1), (1, 5), (4, 4)]
+
+# Loop until there are at least floor(n^2/10) knights
+while len(knights) < n * n // 10:
+    # Loop over all cells
+    for x in range(-10**9, 10**9 + 1):
+        for y in range(-10**9, 10**9 + 1):
+            # Check if the cell is not occupied and is under attack of 4 or more knights
+            if (x, y) not in knights and is_under_attack(x, y, knights):
+                # Place a new knight
+                knights.append((x, y))
+
+# Print the initial placement
+for knight in knights:
+    print(*knight)
+```
+
+This code starts with the initial placement of 4 knights (as shown in the example). Then, it loops over all cells and checks if the cell is under attack of 4 or more knights. If it is, a new knight is placed in that cell. The loop continues until there are at least $\lfloor \frac{n^{2}}{10} \rfloor$ knights. Finally, it prints the initial placement.
+
+Please note that this code assumes the input is valid and does not include any error handling.

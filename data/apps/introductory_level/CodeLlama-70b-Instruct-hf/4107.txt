@@ -1,0 +1,33 @@
+
+
+Here is the Python 3 code for solving the problem:
+
+```python
+def min_cost_of_connecting(n, k, s):
+    # n is the number of rooms, k is the range of router, s is the string of rooms with a router spot
+    routers = []
+    for i in range(n):
+        if s[i] == '1':
+            routers.append(i)
+    # routers is a list of rooms with a router spot
+
+    dp = [0] * (n + 1)
+    for i in range(1, n + 1):
+        dp[i] = dp[i - 1] + i
+    # dp[i] is the minimum cost of connecting rooms from 1 to i
+
+    for router in routers:
+        for i in range(router + k + 1, n + 1):
+            dp[i] = min(dp[i], dp[max(0, i - k - 1)] + router + 1)
+    # dp[i] is updated to consider the cost of placing a router in room router and connecting rooms from router + k + 1 to i
+
+    return dp[n]
+
+
+n, k = map(int, input().split())
+s = input().strip()
+
+print(min_cost_of_connecting(n, k, s))
+```
+
+This code defines a function `min_cost_of_connecting` that takes the number of rooms `n`, the range of the router `k`, and the string `s` indicating rooms with a router spot. The function computes the minimum cost of connecting all rooms to the internet and returns the result. The main program reads the input data, computes the minimum cost, and prints the result.

@@ -1,0 +1,29 @@
+
+
+Here is the Python 3 code for solving the question:
+
+```py
+def shiritori(n, words):
+    seen = set()
+    for i in range(n):
+        if words[i] in seen or (i >= 1 and words[i][0] != words[i - 1][-1]):
+            return "No"
+        seen.add(words[i])
+    return "Yes"
+
+n = int(input())
+words = []
+for _ in range(n):
+    words.append(input())
+
+print(shiritori(n, words))
+```
+
+In this code:
+
+1.  The `shiritori` function takes `n` (the number of words) and `words` (the list of words) as input.
+2.  It initializes an empty set called `seen` to keep track of the words that have been announced before.
+3.  It iterates through the words, checking if the current word is in the `seen` set (indicating a duplicate) or if the first character of the current word does not match the last character of the previous word (indicating a violation of the rule). If either condition is met, the function returns "No".
+4.  If the loop completes without finding any violations, the function returns "Yes".
+5.  The input is taken from the user, and the `shiritori` function is called with the input values.
+6.  The result is printed to the console.

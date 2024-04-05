@@ -1,0 +1,46 @@
+
+
+The following Python 3 code solves the problem:
+
+```
+# Function to find the minimal number of piles
+def find_min_piles(boxes):
+    # Create an empty list to store the strength of each box
+    strengths = []
+
+    # Iterate through the boxes and add their strengths to the list
+    for box in boxes:
+        strengths.append(box[1])
+
+    # Sort the list in ascending order
+    strengths.sort()
+
+    # Initialize the number of piles to 0
+    num_piles = 0
+
+    # Iterate through the strengths list
+    for i in range(len(strengths)):
+        # Check if the strength is greater than or equal to the number of piles
+        if strengths[i] >= num_piles:
+            # If so, increment the number of piles
+            num_piles += 1
+
+    # Return the number of piles
+    return num_piles
+
+# Main function
+if __name__ == "__main__":
+    # Read the number of boxes from the input
+    n = int(input())
+
+    # Read the strengths of the boxes from the input
+    boxes = list(map(int, input().split()))
+
+    # Find the minimal number of piles
+    min_piles = find_min_piles(boxes)
+
+    # Print the result
+    print(min_piles)
+```
+
+This code reads the input, finds the strength of each box, sorts the strengths in ascending order, and then iterates through the strengths to find the minimal number of piles.

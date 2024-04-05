@@ -80,8 +80,9 @@ async def main():
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--difficulty", type=str, default="competition", choices=["introductory", "interview", "competition"])
-    parser.add_argument("--model_name", type=str, default="Mixtral-8x7B-Instruct-v0.1",
+    parser.add_argument("--difficulty", type=str,
+                        default="competition", choices=["introductory", "interview", "competition"])
+    parser.add_argument("--model_name", type=str, default="CodeLlama-70b-Instruct-hf",
                         choices=["CodeLlama-70b-Instruct-hf", "gemma-7b-it", "Mixtral-8x7B-Instruct-v0.1"]
                         )
     # parser.add_argument("--regenerate_path", type=str, default="results/CodeLlama-70b-Instruct-hf-apps_competition.jsonl", help="path to the jsonl file containing the samples")

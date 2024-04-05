@@ -1,0 +1,37 @@
+
+ Here is the Python3 code for solving the problem:
+
+```python
+# Takahashi's initial deposit
+takahashi = 100
+
+# Input the desired balance
+x = int(input())
+
+# Initialize the number of years to 0
+years = 0
+
+# Loop until Takahashi's balance reaches or exceeds x
+while takahashi < x:
+    # Increase the number of years
+    years += 1
+    # Calculate the interest earned in the current year
+    interest = takahashi // 100
+    # Add the interest to Takahashi's balance
+    takahashi += interest
+
+# Print the number of years it takes for Takahashi's balance to reach x or above
+print(years)
+```
+
+Here is a step-by-step explanation of the code:
+
+1.  **Initialization**: We set Takahashi's initial deposit to 100 yen and initialize the number of years to 0.
+2.  **Input**: We take input from the user for the desired balance, `x`.
+3.  **Loop**: We use a while loop to keep updating Takahashi's balance until it reaches or exceeds `x`.
+4.  **Calculating Interest**: For each year, we calculate the interest earned by dividing Takahashi's balance by 100 and discarding any fractional yen.
+5.  **Updating Balance**: We add the interest to Takahashi's balance for each year.
+6.  **Incrementing Years**: If Takahashi's balance is still less than `x`, we increment the number of years by 1.
+7.  **Printing Result**: After the loop terminates, we print the number of years it took for Takahashi's balance to reach `x` or above.
+
+This code will solve the problem and produce the desired output.

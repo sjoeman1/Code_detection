@@ -1,0 +1,29 @@
+
+ Here is the Python 3 code for solving the question: Find the minimum prime number greater than or equal to X.
+
+```python
+def is_prime(num):
+    if num <= 1:
+        return False
+    for i in range(2, int(num**0.5) + 1):
+        if num % i == 0:
+            return False
+    return True
+
+def find_min_prime(X):
+    while True:
+        if is_prime(X):
+            return X
+        X += 1
+
+if __name__ == "__main__":
+    X = int(input())
+    print(find_min_prime(X))
+```
+
+This code defines two functions:
+
+1.  `is_prime(num)`: This function checks if a given number is prime or not. It returns True if the number is prime and False otherwise.
+2.  `find_min_prime(X)`: This function iteratively checks each number starting from X, and returns the first prime number it finds.
+
+In the main code block, we take the input X from the user and call the `find_min_prime` function with X as the argument. The function returns the minimum prime number greater than or equal to X, which is then printed to the console.

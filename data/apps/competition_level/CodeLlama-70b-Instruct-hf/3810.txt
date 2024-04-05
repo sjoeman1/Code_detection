@@ -1,0 +1,24 @@
+
+ Here is the code in Python 3:
+
+```python
+from math import gcd
+from collections import Counter
+
+def get_max_piles(n, boxes):
+    dp = [0] * (n + 1)
+    dp[0] = 1
+    cnt = Counter(boxes)
+    for i in range(n):
+        for j in range(i + 1, n):
+            if gcd(boxes[i], boxes[j]) == boxes[i]:
+                dp[j] += dp[i]
+    return max(dp)
+
+n = int(input())
+boxes = list(map(int, input().split()))
+res = get_max_piles(n, boxes)
+print(res % (10**9 + 7))
+```
+
+The `get_max_piles` function uses dynamic programming to calculate the number of possible piles with the maximum number of boxes. It returns the maximum number of piles, which is then printed after being modulo by `10^9 + 7`.

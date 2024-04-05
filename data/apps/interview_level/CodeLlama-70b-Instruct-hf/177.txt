@@ -1,0 +1,25 @@
+
+
+Here is the Python 3 code for solving the problem:
+
+```py
+def find_digit(k):
+    num_digits = 1
+    while k > 9 * num_digits * (num_digits + 1) / 2:
+        k -= 9 * num_digits * (num_digits + 1) / 2
+        num_digits += 1
+    m = (k - 1) // num_digits + 1
+    return str(m * 10 ** (num_digits - 1) + (k - 1) % num_digits)[-1]
+
+
+k = int(input())
+print(find_digit(k))
+```
+
+In this code, the `find_digit` function calculates the $k$-th digit of the infinite sequence. It first calculates the number of digits of the first number, which is 1. If $k$ is greater than the total number of digits, it increases the number of digits and continues this process until $k$ is less than the total number of digits.
+
+The code then calculates the value of $m$, which is the number whose digit we need to find. It uses the formula $(k - 1) \div num\_digits + 1$ to calculate $m$.
+
+Finally, the code returns the digit by converting $m$ to a string, taking the last digit, and returning it.
+
+Please note that this code will work only for small values of $k$ ($k \le 10000$), as it uses a recursive approach, which can cause memory issues for larger values of $k$.

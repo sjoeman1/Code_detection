@@ -1,0 +1,39 @@
+
+ 
+Here is the Python 3 code for the solution:
+
+```
+from collections import defaultdict, deque
+
+def build_graph(n, edges):
+    graph = defaultdict(list)
+    for u, v in edges:
+        graph[u].append(v)
+    return graph
+
+def bfs(graph, start):
+    queue = deque([start])
+    visited = set([start])
+    while queue:
+        node = queue.popleft()
+        for neighbor in graph[node]:
+            if neighbor not in visited:
+                queue.append(neighbor)
+                visited.add(neighbor)
+    return visited
+
+def solve(n, m, s, edges):
+    graph = build_graph(n, edges)
+    reachable = bfs(graph, s)
+    return n - len(reachable)
+
+if __name__ == "__main__":
+    n, m, s = map(int, input().split())
+    edges = []
+    for _ in range(m):
+        edges.append(tuple(map(int, input().split())))
+    result = solve(n, m, s, edges)
+    print(result)
+```
+
+In this code, the `build_graph` function builds a graph from the input data. The `bfs` function performs a breadth-first search from the capital city to find all the reachable cities. The `solve` function calculates the difference between the total number of cities and the number of reachable cities. The `main` function reads the input data and calls the `solve` function to find the answer.

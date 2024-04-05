@@ -1,0 +1,21 @@
+
+
+Here is the Python3 code for solving the problem:
+
+```python
+def solve(x, k):
+    # The expected number of dresses is the product of x and the probability that a dress survives each month
+    expected_dresses = x
+    for _ in range(k):
+        expected_dresses *= 0.75
+    return round(expected_dresses)
+
+# Read the input
+x, k = map(int, input().split())
+
+# Calculate the expected number of dresses
+result = solve(x, k)
+
+# Print the result
+print(result)
+```

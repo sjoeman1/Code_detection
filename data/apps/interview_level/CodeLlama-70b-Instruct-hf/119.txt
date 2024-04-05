@@ -1,0 +1,35 @@
+
+Here is the Python 3 code for solving the problem:
+
+```python
+# Read the number of segments
+n = int(input())
+
+# Create a list to store the segments
+segments = []
+
+# Read the segments
+for _ in range(n):
+    l, r = map(int, input().split())
+    segments.append([l, r])
+
+# Create a flag to indicate if a pair is found
+found = False
+
+# Iterate through the segments
+for i in range(n):
+    # Check if the current segment is within another segment
+    for j in range(n):
+        if i != j and segments[i][0] >= segments[j][0] and segments[i][1] <= segments[j][1]:
+            print(i + 1, j + 1)
+            found = True
+            break
+    if found:
+        break
+
+# If no pair is found, print -1 -1
+if not found:
+    print(-1, -1)
+```
+
+This code uses a nested loop to check if each segment is within another segment. If a pair is found, it prints the indices of the segments and breaks out of the loop. If no pair is found, it prints -1 -1.

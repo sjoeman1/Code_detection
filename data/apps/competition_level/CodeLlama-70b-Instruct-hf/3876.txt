@@ -1,0 +1,53 @@
+
+
+This is a simple graph theory problem. We need to find the number of perfect matchings in a given tree. A perfect matching is a matching in which every vertex is matched. The number of perfect matchings in a tree can be found using the Tutte matrix. The Tutte matrix is a matrix whose ijth entry is the number of perfect matchings in the tree in which the vertices i and j are not matched.
+
+Here is the Python 3 code to solve the problem:
+
+```py
+import sys
+from collections import defaultdict
+
+# Read the input
+N = int(input())
+edges = []
+for i in range(N - 1):
+    x, y = map(int, input().split())
+    edges.append((x, y))
+
+# Construct the graph
+graph = defaultdict(set)
+for u, v in edges:
+    graph[u].add(v)
+    graph[v].add(u)
+
+# Construct the Tutte matrix
+tutte_matrix = [[0] * (N + 1) for _ in range(N + 1)]
+for u in range(1, N + 1):
+    for v in range(1, N + 1):
+        if u == v:
+            continue
+        if u in graph[v]:
+            continue
+        # Construct a subtree by removing the edge (u, v)
+        graph[u].remove(v)
+        graph[v].remove(u)
+        # Use depth-first search to find the size of each component
+        visited = set()
+        def dfs(node):
+            visited.add(node)
+            for neighbor in graph[node]:
+                if neighbor not in visited:
+                    dfs(neighbor)
+        dfs(1)
+        # Calculate the number of perfect matchings in the subtree
+        num_matchings = 1
+        for component_size in visited:
+            num_matchings *= (component_size - 1)
+        # Update the Tutte matrix entry
+        tutte_matrix[u][v] = num_matchings
+        # Restore the graph
+        graph[u].add(v)
+        graph[v].add(u)
+
+#

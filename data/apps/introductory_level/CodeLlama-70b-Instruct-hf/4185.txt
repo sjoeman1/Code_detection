@@ -1,0 +1,22 @@
+
+
+Here is the Python3 code for solving the given problem:
+
+```
+def solution(n, m, matrix):
+    count = 0
+    for i in range(n):
+        for j in range(m):
+            if matrix[i][j] != i * m + j + 1:
+                count += 1
+    return count
+
+
+n, m = map(int, input().split())
+matrix = []
+for _ in range(n):
+    matrix.append(list(map(int, input().split())))
+print(solution(n, m, matrix))
+```
+
+This code reads the input, where `n` is the number of rows and `m` is the number of columns. It then reads the matrix and calculates the number of cells that are not in the correct position. Finally, it prints the count.

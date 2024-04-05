@@ -1,0 +1,30 @@
+
+Here is a Python 3 code that solves the question:
+
+```py
+n = int(input())
+weights = list(map(int, input().split()))
+
+weights.sort()
+
+team_size = 1
+
+i = 0
+j = n - 1
+
+while i < j:
+    if weights[j] - weights[i] > 1:
+        j -= 1
+    else:
+        team_size += 1
+        j -= 1
+        i += 1
+
+print(team_size)
+```
+
+The code first reads the input values for $n$ and the weights of the boxers. It then sorts the weights in ascending order.
+
+The code then iterates through the sorted weights, starting from the smallest and the largest weights. If the difference between the two weights is greater than 1, it decreases the index of the largest weight by 1, as this weight cannot be used. Otherwise, it increases the team size by 1, as both the current smallest and largest weights can be used.
+
+Finally, it prints the maximum possible size of the team.

@@ -1,0 +1,27 @@
+
+
+Here is the Python 3 code to solve the question:
+
+```
+n = int(input())
+problems = list(map(int, input().split()))
+
+total_problems = sum(problems)
+half_problems = total_problems // 2
+
+solved_problems = 0
+
+for i in range(n):
+    solved_problems += problems[i]
+
+    if solved_problems >= half_problems:
+        print(i + 1)
+        break
+
+```
+
+The code first reads the number of days, `n`, from the input. Then, it reads the number of problems to be solved on each day and stores them in the `problems` list.
+
+It calculates the total number of problems and the half of the total problems. Then, it iterates through the `problems` list, adding the number of problems solved on each day to the `solved_problems` variable. If the `solved_problems` exceeds the half of the total problems, it prints the current day's index and breaks out of the loop.
+
+Note that the index starts from 1, so we need to add 1 to the index of the day when printing the result.

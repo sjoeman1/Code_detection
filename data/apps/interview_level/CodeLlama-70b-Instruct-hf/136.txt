@@ -1,0 +1,31 @@
+
+
+The provided question can be solved using the following Python 3 code:
+
+```py
+# Read input for a
+a = input()
+
+# Read input for b
+b = input()
+
+# Remove leading zeroes from a
+a = a.lstrip("0")
+
+# Remove leading zeroes from b
+b = b.lstrip("0")
+
+# Check if a and b are equal
+if a == b:
+    print("=")
+
+# Check if a is greater than b
+elif len(a) > len(b) or (len(a) == len(b) and a > b):
+    print(">")
+
+# Check if a is less than b
+else:
+    print("<")
+```
+
+This code handles the input and output as specified in the question. It also takes into account the case where leading zeroes are allowed and should be ignored.

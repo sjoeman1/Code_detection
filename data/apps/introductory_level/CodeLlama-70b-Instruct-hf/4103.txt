@@ -1,0 +1,31 @@
+🤖 Here is the Python3 code for solving the question:
+
+```python
+def robot_walk(n, b, a, s):
+    max_steps = 0
+    curr_steps = 0
+    for i in range(n):
+        if s[i] == 1:
+            if b > 0:
+                curr_steps += 1
+                b -= 1
+                a += 1
+            else:
+                curr_steps = 0
+        else:
+            if a > 0:
+                curr_steps += 1
+                a -= 1
+            else:
+                curr_steps = 0
+        max_steps = max(max_steps, curr_steps)
+    return max_steps
+
+if __name__ == "__main__":
+    n, b, a = map(int, input().split())
+    s = list(map(int, input().split()))
+    result = robot_walk(n, b, a, s)
+    print(result)
+```
+
+This code defines a function `robot_walk` that takes the inputs `n`, `b`, `a`, and `s` and returns the maximum number of segments the robot can pass. It iterates through the array `s` and checks if the current segment is exposed to sunlight. If it is, it decreases the battery's charge `b` and increases the accumulator's charge `a`. If the segment is not exposed to sunlight, it decreases the accumulator's charge `a`. The function keeps track of the maximum number of segments the robot can pass and returns it.

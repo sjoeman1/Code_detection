@@ -1,0 +1,46 @@
+
+
+Python 3 code for the above problem:
+```
+def findConvexHullArea(points):
+    def cross(o, a, b):
+        return (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0])
+
+    points.sort()
+    lower = []
+    for p in points:
+        while len(lower) >= 2 and cross(lower[-2], lower[-1], p) <= 0:
+            lower.pop()
+        lower.append(p)
+
+    upper = []
+    for p in reversed(points):
+        while len(upper) >= 2 and cross(upper[-2], upper[-1], p) <= 0:
+            upper.pop()
+        upper.append(p)
+
+    return abs(cross(lower[0], lower[1], upper[0]))
+
+
+def solve(N, points):
+    mod = 998244353
+    ans = 0
+    for i in range(N):
+        for j in range(i + 1, N):
+            for k in range(j + 1, N):
+                for l in range(k + 1, N):
+                    if findConvexHullArea([points[i], points[j], points[k], points[l]]) > 0:
+                        ans += 2 ** (3 - 1)
+    return ans % mod
+
+
+N = int(input())
+points = []
+for _ in range(N):
+    x, y = map(int, input().split())
+    points.append([x, y])
+
+print(solve(N, points))
+```
+
+In this code, the `findConvexHullArea` function is used to calculate the area of the convex hull formed by the four points. If the area is positive, then it means that the points form a convex polygon. The `solve` function then calculates the scores for all possible sets of four points and returns the sum of the scores modulo 998244353.

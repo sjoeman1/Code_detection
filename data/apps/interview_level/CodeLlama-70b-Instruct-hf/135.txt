@@ -1,0 +1,23 @@
+
+
+Here is the Python3 code for the question:
+
+```
+def check_remainders(n, k):
+    remainders = set()
+    for i in range(1, k + 1):
+        remainder = n % i
+        if remainder in remainders:
+            return "No"
+        remainders.add(remainder)
+    return "Yes"
+
+
+if __name__ == "__main__":
+    n, k = map(int, input().split())
+    print(check_remainders(n, k))
+```
+
+In this code, we define a function `check_remainders` that takes `n` and `k` as input parameters. Inside the function, we create an empty set `remainders` to store the remainders. We iterate from `i = 1` to `k + 1` and calculate the remainder `n % i`. If the remainder is already present in the `remainders` set, it means there are two numbers `i` and `j` that have the same remainder. In this case, we return "No". Otherwise, we add the remainder to the `remainders` set. If we finish the loop without returning "No", it means all the remainders are distinct, so we return "Yes".
+
+In the main function, we take the input `n` and `k`, and call the `check_remainders` function with them. The function returns "Yes" or "No" depending on the result, and we print it.

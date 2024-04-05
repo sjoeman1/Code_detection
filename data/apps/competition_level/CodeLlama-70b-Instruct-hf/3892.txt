@@ -1,0 +1,30 @@
+
+
+ Here is the Python 3 code that solves the problem:
+
+```py
+# input
+n, m = map(int, input().split())
+a = list(map(int, input().split()))
+b = list(map(int, input().split()))
+
+# find the shortest path from every station to every other station
+dist = [[float('inf')] * n for _ in range(n)]
+for i in range(n): dist[i][i] = 0
+for i in range(m): dist[a[i] - 1][b[i] - 1] = 1
+for k in range(n):
+    for i in range(n):
+        for j in range(n):
+            dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j])
+
+# compute the minimum time needed for each station
+ans = [0] * n
+for i in range(n):
+    for j in range(n):
+        ans[i] = max(ans[i], dist[i][j])
+
+# output
+print(*ans)
+```
+
+The provided Python 3 code solves the Toy Train problem. It takes input from the user, calculates the shortest path from every station to every other station, and then computes the minimum time needed for each station. Finally, it outputs the result.

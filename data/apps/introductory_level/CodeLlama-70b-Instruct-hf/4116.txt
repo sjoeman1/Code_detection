@@ -1,0 +1,27 @@
+
+
+ 
+
+ Here is the Python 3 code to solve the problem:
+
+```
+def can_represent_as_product(n):
+    for i in range(1, 10):
+        for j in range(1, 10):
+            if i * j == n:
+                return True
+    return False
+
+
+if __name__ == "__main__":
+    n = int(input())
+
+    if can_represent_as_product(n):
+        print("Yes")
+    else:
+        print("No")
+```
+
+This code defines a function `can_represent_as_product` that takes an integer `n` as input. It then loops through all possible pairs of integers between 1 and 9 (inclusive) and checks if any of the products equal `n`. If it finds a pair that works, it returns `True`. If it doesn't find any, it returns `False`.
+
+In the main part of the code, it takes an input `n`, calls the `can_represent_as_product` function with that input, and prints "Yes" if it returns `True`, and "No" if it returns `False`.

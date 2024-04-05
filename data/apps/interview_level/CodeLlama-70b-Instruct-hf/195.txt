@@ -1,0 +1,25 @@
+
+
+Here's the Python 3 code that solves the question:
+
+```py
+def count_students(A, B, C, N):
+    # Check if a distribution of N students exists in which A students visited BugDonalds, B — BeaverKing, C — both of the restaurants and at least one student is left home (it is known that Vasya didn't pass the exam and stayed at home).
+    # Output one integer — amount of students (including Vasya) who did not pass the exam.
+    if N < A + B - C:
+        return -1  # Impossible distribution
+    else:
+        return N - A - B + C + 1  # Count of students who didn't pass the exam, including Vasya
+
+
+# Input
+A, B, C, N = map(int, input().split())
+
+# Output
+print(count_students(A, B, C, N))
+
+```
+
+This code defines a function `count_students` that takes four parameters (`A`, `B`, `C`, `N`) and checks if a distribution of `N` students exists in which `A` students visited BugDonalds, `B` visited BeaverKing, `C` visited both of the restaurants, and at least one student is left home (it is known that Vasya didn't pass the exam and stayed at home). If such a distribution exists, it returns the number of students (including Vasya) who did not pass the exam. If such a distribution does not exist, it returns `-1`.
+
+The code then reads the input and calls the `count_students` function with the input values. The output is printed.

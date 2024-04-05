@@ -1,0 +1,31 @@
+
+```python
+from collections import deque
+
+def solve(n, A):
+    A.sort()
+    A = deque(A)
+    result = []
+
+    while A:
+        curr_student = A.popleft()
+        while result and result[-1] == curr_student:
+            result.pop()
+            curr_student -= 1
+        result.append(curr_student)
+
+    return result
+
+
+if __name__ == '__main__':
+    n = int(input())
+    A = list(map(int, input().split()))
+    result = solve(n, A)
+    print(' '.join(map(str, result)))
+```
+
+This code solves the problem by using a deque (double-ended queue) data structure.
+
+It first sorts the input array A in ascending order. Then, it iterates through the sorted array and checks the current student number. If the student number is equal to the last student number in the result array, it means that student has already entered the classroom, so it is removed from the result array. This is done until the student number is not equal to the last student number in the result array. Finally, the current student number is appended to the result array.
+
+The code prints the result array after the loop is finished.

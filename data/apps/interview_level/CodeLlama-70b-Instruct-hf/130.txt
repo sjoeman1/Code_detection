@@ -1,0 +1,48 @@
+
+
+
+Here's a Python 3 code that solves the problem:
+
+```
+# This function returns the number of cells to be painted black to form a square
+def minimum_painted_cells(n, m, grid):
+    # Initialize the number of cells to be painted with -1
+    painted_cells = -1
+    
+    # Iterate over all possible square sizes
+    for size in range(1, min(n, m) + 1):
+        # Initialize a counter for black cells in the current size square
+        black_cells = 0
+        # Iterate over all rows and columns
+        for i in range(n):
+            for j in range(m):
+                # Check if the current cell is within the square
+                if i < size and j < size:
+                    # Increase the black cells counter if the cell is black
+                    if grid[i][j] == 'B':
+                        black_cells += 1
+                else:
+                    # Increase the black cells counter if the cell is white
+                    if grid[i][j] == 'W':
+                        black_cells += 1
+        # Update the minimum number of painted cells if necessary
+        if painted_cells == -1 or black_cells < painted_cells:
+            painted_cells = black_cells
+    
+    # Return the minimum number of painted cells
+    return painted_cells
+
+# Read the input
+n, m = map(int, input().split())
+grid = []
+for _ in range(n):
+    grid.append(input())
+
+# Calculate the minimum number of cells to be painted
+painted_cells = minimum_painted_cells(n, m, grid)
+
+# Print the output
+print(painted_cells)
+```
+
+This code first defines a function `minimum_painted_cells` that takes the number of rows `n`, the number of columns `m`, and the grid of cells `grid` as input. It iterates over all possible square sizes from 1 to the minimum of `n` and `m`, and for each size, it counts the number of black cells inside the square and the number of white cells outside the

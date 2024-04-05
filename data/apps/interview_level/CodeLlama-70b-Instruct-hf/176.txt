@@ -1,0 +1,23 @@
+
+
+Here's a Python 3 solution for the question:
+
+```python
+def count_k_divisible_numbers(k, a, b):
+    # If k is 1, then all numbers in the range [a, b] are k-divisible
+    if k == 1:
+        return b - a + 1
+    # If k is negative, take the absolute value of k
+    k = abs(k)
+    # Calculate the count of k-divisible numbers
+    count = (b // k) - (a - 1) // k
+    return count
+
+# Read input from stdin
+k, a, b = map(int, input().split())
+# Calculate and print the result
+result = count_k_divisible_numbers(k, a, b)
+print(result)
+```
+
+This code defines a function `count_k_divisible_numbers` that takes three parameters: `k`, `a`, and `b`. It checks if `k` is 1, and if so, it returns the number of integers in the range `[a, b]` (as all integers are divisible by 1). If `k` is not 1, it takes the absolute value of `k` and calculates the count of k-divisible numbers using the formula `(b // k) - (a - 1) // k`. The code then reads input from stdin and calls the `count_k_divisible_numbers` function with the input values, storing the result in the `result` variable. Finally, it prints the result.

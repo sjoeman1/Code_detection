@@ -1,0 +1,50 @@
+
+
+The following Python 3 code should solve the question:
+
+```python
+n, m = map(int, input().split())
+hor_dir = input()
+ver_dir = input()
+
+def is_valid(n, m, hor_dir, ver_dir):
+    if n < 2 or m < 2:
+        return False
+
+    for i in range(1, n - 1):
+        if hor_dir[i] == '>':
+            for j in range(m):
+                if ver_dir[j] == '^':
+                    return False
+        if hor_dir[i] == '<':
+            for j in range(m):
+                if ver_dir[j] == 'v':
+                    return False
+
+    for i in range(m):
+        if ver_dir[i] == '^':
+            for j in range(1, n - 1):
+                if hor_dir[j] == '>':
+                    return False
+        if ver_dir[i] == 'v':
+            for j in range(1, n - 1):
+                if hor_dir[j] == '<':
+                    return False
+
+    return True
+
+if is_valid(n, m, hor_dir, ver_dir):
+    print("YES")
+else:
+    print("NO")
+```
+
+This code defines a function `is_valid` that takes the number of horizontal streets `n`, the number of vertical streets `m`, the horizontal direction pattern `hor_dir`, and the vertical direction pattern `ver_dir` as input.
+
+It then checks if `n` or `m` is less than 2. If so, it returns `False` as the street direction patterns are invalid.
+
+It then iterates through each horizontal street and checks if the traffic direction is east to west (`>`). If it is, it checks each vertical street and returns `False` if any of them have a direction of north to south (`^`).
+
+It then iterates through each horizontal street and checks if the traffic direction is west to east (`<`). If it is, it checks each vertical street and returns `False` if any of them have a direction of south to north (`v`).
+
+It then iterates through each vertical

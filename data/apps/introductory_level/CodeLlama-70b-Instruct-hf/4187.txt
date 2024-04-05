@@ -1,0 +1,19 @@
+
+
+
+```python
+n = int(input())
+a = list(map(int, input().split()))
+max_rest = 0
+current_rest = 0
+for i in range(n):
+    if a[i] == 1:
+        current_rest += 1
+    else:
+        max_rest = max(max_rest, current_rest)
+        current_rest = 0
+max_rest = max(max_rest, current_rest)
+print(max_rest)
+```
+
+In this code, we first read the input `n` and the schedule `a`. Then we iterate over the schedule and count the number of consecutive rest hours. If we encounter a working hour, we update the `max_rest` to the maximum of the current longest rest and the current consecutive rest. Finally, we print the `max_rest`.

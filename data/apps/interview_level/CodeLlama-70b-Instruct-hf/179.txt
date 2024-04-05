@@ -1,0 +1,46 @@
+
+
+The task is to find the number of permutations of size n that contain x at position pos and for which the given implementation of the binary search algorithm finds x (returns true).
+
+
+
+Here's the Python3 code to solve this problem:
+
+```
+# n: length of the permutation
+# x: number to search
+# pos: required position of x
+def count_permutations(n, x, pos):
+    # Initialize result as 0
+    result = 0
+
+    # Find the number of permutations where x is at position pos
+    for i in range(n - pos):
+        result += (n - pos) * factorial(n - pos - 1)
+
+    # Subtract the number of permutations where x is not at position pos
+    result -= (n - pos) * factorial(n - pos - 1)
+
+    # Return the result modulo 10^9+7
+    return result % (10 ** 9 + 7)
+
+# Calculate factorial
+def factorial(n):
+    result = 1
+    for i in range(1, n + 1):
+        result *= i
+    return result
+
+# Main program
+if __name__ == '__main__':
+    # Read input from the user
+    n, x, pos = map(int, input().split())
+
+    # Call the function to count permutations
+    result = count_permutations(n, x, pos)
+
+    # Print the result
+    print(result)
+```
+
+The function `count_permutations` calculates the number of permutations where x is at position pos. It uses the formula `(n - pos) * factorial(n - pos - 1)` to calculate the number of permutations where x is at position pos. Then, it subtracts `(n - pos) * factorial(n - pos - 1)` to remove the number of permutations where x is not at position pos. Finally, it returns the result modulo 10^9+7. The `factorial` function calculates the factorial of a given number.

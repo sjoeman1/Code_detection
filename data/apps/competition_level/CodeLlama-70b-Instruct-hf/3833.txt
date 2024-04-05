@@ -1,0 +1,51 @@
+
+
+Here is the Python3 code that solves the problem:
+
+```py
+# Input:
+s = input()
+t = input()
+
+# Find the number of 0s and 1s in s.
+n0 = s.count('0')
+n1 = s.count('1')
+
+# Check if the number of 0s and 1s in s is not the same as in t.
+if n0 != t.count('0') or n1 != t.count('1'):
+    print('No solution')
+
+# Otherwise, find the longest common substring of s and t.
+else:
+    # Initialize the longest common substring to an empty string.
+    lcs = ''
+
+    # Iterate through all possible substrings of s.
+    for i in range(len(s)):
+        for j in range(i + 1, len(s) + 1):
+            # Check if the current substring is a common substring of s and t.
+            if s[i:j] in t and len(s[i:j]) > len(lcs):
+                lcs = s[i:j]
+
+    # Check if the longest common substring is not found.
+    if lcs == '':
+        print('No solution')
+
+    # Otherwise, rearrange the schedule according to the longest common substring.
+    else:
+        schedule = ''
+
+        # Repeat the longest common substring until the number of 0s and 1s matches.
+        while n0 > 0 or n1 > 0:
+            for c in lcs:
+                schedule += c
+                if c == '0':
+                    n0 -= 1
+                else:
+                    n1 -= 1
+
+        print(schedule)
+
+```
+
+This code solves the problem by finding the longest common substring between the input strings $s$ and $t$, and then repeating this substring until the number of 0s and 1s matches. If no common substring is found, it prints "No solution".

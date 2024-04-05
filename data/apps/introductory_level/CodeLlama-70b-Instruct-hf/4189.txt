@@ -1,0 +1,36 @@
+
+
+Here is the Python3 code for solving the question:
+
+```py
+def find_number_of_hard_cheeses(cheeses):
+    count = 0
+    for cheese in cheeses:
+        if cheese[1] == "hard":
+            count += 1
+    return count
+
+
+# Take input for the number of cheeses
+num_cheeses = int(input())
+
+# Initialize an empty list to store the cheeses
+cheeses = []
+
+# Take input for each cheese
+for _ in range(num_cheeses):
+    cheese = input().split()
+    cheeses.append(cheese)
+
+# Call the function to find the number of hard cheeses
+num_hard_cheeses = find_number_of_hard_cheeses(cheeses)
+
+# Print the result
+print(num_hard_cheeses)
+```
+
+This code defines a function `find_number_of_hard_cheeses` that takes a list of cheeses as input. It iterates through each cheese in the list and checks if its type is "hard". If it is, it increments the count of hard cheeses. Finally, it returns the count.
+
+The main program takes input for the number of cheeses and initializes an empty list to store the cheeses. It then takes input for each cheese, splits it into a list containing the name and type, and appends it to the list of cheeses.
+
+After taking all the input, it calls the `find_number_of_hard_cheeses` function with the list of cheeses as the argument and stores the result in the `num_hard_cheeses` variable. It then prints the result.

@@ -1,0 +1,41 @@
+
+
+The solution is as follows:
+
+```
+def solve(n, b):
+    a = []
+    primes = []
+    for i in range(2, 2750131 + 1):
+        if is_prime(i):
+            primes.append(i)
+    for i in range(n):
+        if b[i] in primes:
+            a.append(b[i])
+        else:
+            a.append(b[i + n])
+    return a
+
+
+def is_prime(x):
+    if x <= 1:
+        return False
+    if x == 2:
+        return True
+    if x % 2 == 0:
+        return False
+    for i in range(3, int(x ** 0.5) + 1, 2):
+        if x % i == 0:
+            return False
+    return True
+
+
+n = int(input())
+b = list(map(int, input().split()))
+result = solve(n, b)
+print(" ".join(map(str, result)))
+```
+
+The code first creates a list of primes from 2 to 2750131 (the 199999th prime number) and stores it in the `primes` list. Then, it iterates through the first `n` elements of `b` and checks if the element is in `primes`. If it is, it adds the element to the `a` list. Otherwise, it adds the element from `b` at position `i + n` to the `a` list. Finally, it returns the `a` list.
+
+The `is_prime` function checks if a number is prime. It returns `True` if the number is prime and `False` otherwise.

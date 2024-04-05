@@ -1,0 +1,42 @@
+
+Here's the Python 3 code to solve the problem:
+
+```python
+def solve(n, a):
+    even_sum = 0
+    odd_sum = 0
+    count = 0
+    for i in range(n):
+        if i % 2 == 0:
+            even_sum += a[i]
+        else:
+            odd_sum += a[i]
+    for j in range(n - 1):
+        if j % 2 == 0:
+            even_sum -= a[j]
+            odd_sum += a[j]
+        else:
+            odd_sum -= a[j]
+            even_sum += a[j]
+        if even_sum == odd_sum:
+            count += 1
+    return count
+
+if __name__ == "__main__":
+    n = int(input())
+    a = list(map(int, input().split()))
+    result = solve(n, a)
+    print(result)
+```
+
+The first function, `solve`, takes `n` and `a` as parameters. It initializes two variables `even_sum` and `odd_sum` to store the sum of weights of candies eaten on even and odd days, respectively. `count` is initialized to 0 and will be used to count the number of good candies.
+
+The first loop iterates through the `a` list and calculates the initial sum of weights of candies eaten on even and odd days.
+
+The second loop iterates through the `a` list again. For each iteration, it checks if the current index is even or odd. If even, it subtracts the weight of the current candy from `even_sum` and adds it to `odd_sum`. If odd, it subtracts the weight of the current candy from `odd_sum` and adds it to `even_sum`.
+
+At the end of each iteration, it checks if `even_sum` and `odd_sum` are equal. If they are, it increments `count` by 1.
+
+The `solve` function returns the value of `count`.
+
+The `if __name__ == "__main__"` block takes input from the user, calls the `solve` function, and

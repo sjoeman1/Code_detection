@@ -1,0 +1,46 @@
+
+
+To solve this problem, we can use the following Python 3 code:
+
+```python
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+# Define a function to count the number of ways to split a stick
+def count_ways(n):
+    # Initialize a dictionary to store the count for each length
+    count = {}
+    
+    # Calculate the number of ways for each length
+    for i in range(1, n // 2 + 1):
+        for j in range(i, n // 2 + 1):
+            if i * j == n:
+                if i not in count:
+                    count[i] = 0
+                if j not in count:
+                    count[j] = 0
+                count[i] += 1
+                count[j] += 1
+    
+    # Initialize the number of ways to 0
+    ways = 0
+    
+    # Calculate the number of ways by iterating through the dictionary
+    for length, count in count.items():
+        ways += count * (count - 1) // 2
+    
+    # Return the number of ways
+    return ways
+
+# Read the input
+n = int(input())
+
+# Calculate and print the number of ways
+print(count_ways(n))
+```
+
+This code defines a function `count_ways` that takes the length of the stick as input and returns the number of ways to split it into four parts.
+
+The function calculates the number of ways for each length and stores them in a dictionary. It then iterates through the dictionary and calculates the number of ways by taking the product of the count for each length.
+
+Finally, it returns the number of ways.
+
+The program reads the input `n` and calls the `count_ways` function to calculate and print the number of ways to split the stick.

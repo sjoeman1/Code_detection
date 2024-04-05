@@ -1,0 +1,36 @@
+
+
+Here is the Python 3 code to solve the question:
+
+```python
+# Read the input data
+n, m, k = map(int, input().split())
+a, b = map(int, input().split())
+
+# Define a function to calculate the distance between two flats
+def dist(i, j):
+    # Calculate the distance in the current block
+    d1 = abs(i // m - j // m)
+    d2 = abs(i % m - j % m)
+    d = d1 + d2
+    # Calculate the distance on the ring
+    r = min(abs(i // (m * k) - j // (m * k)), abs(n - abs(i // (m * k) - j // (m * k))))
+    # Calculate the total distance
+    return d + r * (2 * k + 1)
+
+# Find the shortest distance
+ans = 10**18
+for i in range(n * m * k):
+    ans = min(ans, dist(i, a - 1) + dist(i, b - 1))
+
+# Output the result
+print(ans * 15 + 10)
+```
+
+This code first reads the input data, which are the number of buildings (n), floors (m), and apartments per floor (k), as well as the apartment numbers of Edward (a) and Natasha (b).
+
+Then, it defines a function called `dist` to calculate the distance between two apartments. This function calculates the distance in the current block, then the distance on the ring, and finally the total distance.
+
+The code then finds the shortest distance by iterating through all possible apartments and calculating the distance between them and the apartments of Edward and Natasha.
+
+Finally, it outputs the result, which is the shortest distance multiplied by 15 (for the elevator and stairs) plus 10 (for the time it takes to get on the elevator).

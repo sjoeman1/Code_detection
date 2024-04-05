@@ -1,0 +1,51 @@
+
+Here is the Python3 code for solving the question:
+
+```
+import sys
+
+# Function to convert an integer to a Brainfuck code that outputs it
+def convert_int_to_bf(num):
+    # Initialize the Brainfuck code
+    bf_code = ""
+    # Loop through the digits of the integer
+    for digit in str(num):
+        # Add the required number of + signs to increase the cell value by the digit
+        bf_code += "+" * int(digit)
+        # Append a . to output the cell value
+        bf_code += "."
+    return bf_code
+
+# Function to generate the Brainfuck code for the expression
+def generate_bf_code(expression):
+    # Split the expression into operands and operators
+    operands = expression.split("+")
+    # Initialize the Brainfuck code
+    bf_code = ""
+    # Loop through the operands
+    for operand in operands:
+        # Convert the operand to Brainfuck code
+        bf_code += convert_int_to_bf(operand)
+        # Append a > to move to the next cell
+        bf_code += ">"
+    # Append a < to move back to the first cell
+    bf_code += "<"
+    # Loop through the operands
+    for operand in operands:
+        # Append a [<->-] to subtract the current cell value from the result cell
+        bf_code += "[<->-]"
+        # Append a < to move back to the previous cell
+        bf_code += "<"
+    # Append a +++++++++++++++++++++++++++++++++++++++++++++++++. to output the result
+    bf_code += "++++++++++++++++++++++++++++++++++++++++++++++++."
+    return bf_code
+
+# Read the input expression from stdin
+expression = sys.stdin.readline().strip()
+# Generate the Brainfuck code for the expression
+bf_code = generate_bf_code(expression)
+# Print the Brainfuck code
+print(bf_code)
+```
+
+This code takes an

@@ -1,0 +1,20 @@
+
+Here's the Python 3 code that solves the problem:
+
+```python
+def calculate_ways(n, m):
+    # Calculate the number of ways to pack the presents
+    ways = 1
+    for i in range(m):
+        ways = (ways * (n + i)) % (10**9 + 7)
+    return ways
+
+# Take the input
+n, m = map(int, input().split())
+
+# Calculate and print the result
+result = calculate_ways(n, m)
+print(result)
+```
+
+This code first calculates the number of ways to pack the presents using the given formula and then prints the result.

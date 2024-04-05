@@ -1,0 +1,54 @@
+
+Here's the Python 3 code to solve the question:
+
+```python
+# Input
+n, k = map(int, input().split())
+a = list(map(int, input().split()))
+
+# Initialize variables
+min_value = min(a)
+max_value = max(a)
+
+# Calculate the number of minimum and maximum elements
+min_count = sum(1 for i in a if i == min_value)
+max_count = sum(1 for i in a if i == max_value)
+
+# If the array already has at least k equal elements, output 0
+if min_count >= k or max_count >= k:
+    print(0)
+
+# If k is greater than the length of the array, output -1
+elif k > n:
+    print(-1)
+
+# If the minimum and maximum values are the same, output -1
+elif min_value == max_value:
+    print(-1)
+
+# Otherwise, calculate the minimum number of moves required
+else:
+    moves = 0
+
+    # If the minimum count is less than k
+    if min_count < k:
+        # Increase the minimum value to make k - min_count equal elements
+        moves += k - min_count
+
+        # Decrease the maximum value by 1 for each additional element needed
+        moves += max(0, k - min_count - max_count)
+
+    # If the maximum count is less than k
+    else:
+        # Decrease the maximum value to make k - max_count equal elements
+        moves += k - max_count
+
+        # Increase the minimum value by 1 for each additional element needed
+        moves += max(0, k - max_count - min_count)
+
+    print(moves)
+```
+
+This code first reads the input values for `n` and `k`, as well as the array `a`. It then calculates the minimum and maximum values in the array, as well as the number of occurrences of these values.
+
+It checks if the array already has at least `k` equal elements or if `k` is greater than the length of the array. If either of these conditions is met, the code outputs 0 or -1, respectively.

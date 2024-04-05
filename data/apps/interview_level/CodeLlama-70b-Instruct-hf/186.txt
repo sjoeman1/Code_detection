@@ -1,0 +1,35 @@
+
+
+I understand the problem and will provide you with a Python 3 solution. Here's the code:
+
+```python
+# Read the input
+n, m = map(int, input().split())
+
+# Initialize the maximum height to 0
+max_height = 0
+
+# Check if n or m is 0
+if n == 0 or m == 0:
+    max_height = 2 * n + 3 * m
+
+# If both n and m are non-zero
+else:
+    # Calculate the maximum height for n = 1 and m = 1
+    max_height = 6
+
+    # Check if n > 1
+    if n > 1:
+        # Increment max_height by 2 * (n - 1)
+        max_height += 2 * (n - 1)
+
+    # Check if m > 1
+    if m > 1:
+        # Increment max_height by 3 * (m - 1)
+        max_height += 3 * (m - 1)
+
+# Print the maximum height
+print(max_height)
+```
+
+This code will take the input for n and m, and calculate the maximum height based on the conditions provided in the problem.
