@@ -1,0 +1,23 @@
+```python
+t = int(input())
+
+for _ in range(t):
+    a, b, c = map(int, input().split())
+
+    # Calculate the minimum number of operations
+    res = min(abs(a - b) + abs(b - c), abs(a - c) + abs(c - b))
+
+    # Print the minimum number of operations
+    print(res)
+
+    # Print the triple
+    print(a, b, c)
+    print()
+```
+
+**Explanation:**
+
+* The code reads the number of test cases and for each test case, reads the three integers $a$, $b$, and $c$.
+* It calculates the minimum number of operations required to obtain three integers $A$, $B$, and $C$ such that $B$ is divisible by $A$ and $C$ is divisible by $B$.
+* The minimum number of operations is the minimum of the absolute difference between $a$ and $b$, and the absolute difference between $b$ and $c$.
+* The code prints the minimum number of operations and the triple $A$, $B$, and $C$.

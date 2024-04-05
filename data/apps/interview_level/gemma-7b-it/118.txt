@@ -1,0 +1,8 @@
+```python
+t, s, x = map(int, input().split())
+
+if (x - t) % s == 0 or (x - t) // s * s + t == x:
+    print("YES")
+else:
+    print("NO")
+```

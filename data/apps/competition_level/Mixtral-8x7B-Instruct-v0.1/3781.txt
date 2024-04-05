@@ -1,0 +1,32 @@
+ To solve this problem, we can use dynamic programming to determine the winner for each possible configuration of the bags and dishes. At each step, we have two options: move coins from a bag to a dish, or remove coins from a dish. We can represent the state of the game as a pair (b, d), where b is a list of the number of coins in each bag, and d is the number of coins on the dish.
+
+To determine the winner for a given state (b, d), we can consider the two possible moves and recursively calculate the winner for the resulting states. If the maximum number of coins that Taro can move is greater than or equal to the number of coins on the dish, then Taro can move all of the coins from a bag to the dish, leaving Jiro with the resulting state. Otherwise, Taro can only remove coins from the dish, leaving Jiro with the resulting state.
+
+We can use memoization to store the results of previous calculations and avoid redundant work. The following is a Python3 implementation of this approach:
+```
+def solve():
+  T = int(input().strip())
+  for t in range(T):
+    N = int(input().strip())
+    a = list(map(int, input().strip().split()))
+    b = [0] * N
+    d = 0
+    @lru_cache(maxsize=None)
+    def winner(b, d):
+      if all(x == 0 for x in b):
+        if d == 0:
+          return 'First'
+        else:
+          return 'Second'
+      else:
+        if max(b) >= d:
+          return winner([x - max(b) for x in b], d + max(b))
+        else:
+          return winner(b, d - 1)
+    print(winner(b, d))
+
+solve()
+```
+This implementation uses the `functools.lru_cache` decorator to automatically memoize the `winner` function. The `winner` function takes as input the current state of the game (bags and dish) and returns the winner of the game if both players play optimally. The `solve` function reads the input and calls the `winner` function for each test case.
+
+This implementation has

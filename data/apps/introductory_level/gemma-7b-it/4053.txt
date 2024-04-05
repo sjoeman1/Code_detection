@@ -1,0 +1,34 @@
+```python
+n = int(input())
+s = ""
+
+for _ in range(n):
+    s += input().strip()
+
+prefixes = []
+suffixes = []
+
+for i in range(1, n):
+    prefixes.append(s[:i])
+    suffixes.append(s[i:])
+
+guess = input().split()
+
+ans = ""
+
+for i in range(len(guess)):
+    if prefixes[i] in guess or suffixes[i] in guess:
+        ans += "P"
+    else:
+        ans += "S"
+
+print(ans)
+```
+
+**Explanation:**
+
+* Read the length of the string `n`, and then read the `2n-2` lines of prefixes and suffixes.
+* Store the prefixes and suffixes in separate lists.
+* Read the `guess` list, which contains the list of strings that Ivan has informed you about.
+* For each string in `guess`, check if it is a prefix or a suffix of any string in the `prefixes` or `suffixes` lists. If it is, add a 'P' to the answer. Otherwise, add an 'S'.
+* Print the answer.

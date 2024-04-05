@@ -1,0 +1,30 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def find\_sequence(n, k):
+if n == 0 and k == 0:
+return "Yes", []
+if n > 0 and k == 1:
+return "Yes", [int(math.log2(n))]
+if (n & (n - 1)) != 0 or k == 0 or k > n or (n & (1 << k)) == 0:
+return "No", []
+res = [0] * k
+i = k - 1
+while n != 0:
+res[i] = int(math.log2(n))
+n -= 1 << res[i]
+i -= 1
+return "Yes", res[::-1]
+
+n, k = map(int, input().split())
+ans, res = find\_sequence(n, k)
+print(ans)
+if ans == "Yes":
+print(*res)
+```
+
+The function `find_sequence` takes two arguments `n` and `k` and returns a tuple of two elements, where the first element is a string "Yes" if there exists a sequence of length `k` that satisfies the given conditions, and "No" otherwise. The second element of the tuple is the lexicographically largest sequence of length `k` that satisfies the given conditions.
+
+The function first checks some trivial cases and then uses bit manipulation and binary logarithm to find the sequence. If `n` is a power of 2, then the sequence consists of `k` copies of `log2(n)`. In general, the function first finds the most significant bit in the binary representation of `n` and subtracts `2^{res[i]}` from `n` until `n` becomes 0. The function then constructs the sequence `res` by storing the values of `res[i]` in reverse order.
+
+The main part of the code reads the input values of `n` and `k`, calls the `find_sequence` function, and prints the result. If the first element of the tuple returned by `find_sequence` is "Yes", then the second element is printed as the required sequence. Otherwise, "No" is printed.

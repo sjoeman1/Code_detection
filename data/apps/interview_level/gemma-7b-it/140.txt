@@ -1,0 +1,17 @@
+```python
+n, m = map(int, input().split())
+
+x, s = []
+for _ in range(n):
+    x.append(int(input()))
+    s.append(int(input()))
+
+# Calculate the minimum coins needed
+coins = float('inf')
+for i in range(n):
+    l = x[i] - s[i]
+    r = x[i] + s[i]
+    coins = min(coins, abs(l) + abs(r) - 1)
+
+print(int(coins))
+```

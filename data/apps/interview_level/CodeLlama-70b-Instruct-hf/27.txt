@@ -1,0 +1,34 @@
+
+
+This is the code for solving the problem:
+
+```
+n = int(input())
+s = input()
+prefix = ""
+min_steps = 0
+for c in s:
+    if c in prefix:
+        break
+    prefix += c
+    min_steps += 1
+steps = min_steps
+for i in range(len(prefix), len(s)):
+    steps += 1
+    if 2 * steps < len(s):
+        min_steps = steps
+print(min_steps)
+```
+
+This code works as follows:
+
+*   It reads the input string `s` and the length `n` of the string.
+*   It initializes the `prefix` variable as an empty string and `min_steps` as 0.
+*   It iterates over each character `c` in the string `s`.
+*   If the character `c` is already present in the `prefix`, it breaks out of the loop.
+*   If the character `c` is not present in the `prefix`, it adds the character to the `prefix` and increments `min_steps` by 1.
+*   It initializes the `steps` variable to `min_steps`.
+*   It iterates over the remaining characters of the string `s` from the end of the `prefix` to the end of the string.
+*   For each character, it increments `steps` by 1.
+*   If `2 * steps` is less than the length of the string `s`, it updates `min_steps` to `steps`.
+*   Finally, it prints the value of `min_steps`.

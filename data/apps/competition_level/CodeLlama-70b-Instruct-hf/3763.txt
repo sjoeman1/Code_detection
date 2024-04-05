@@ -1,0 +1,40 @@
+
+ Here is the Python 3 code that solves the problem:
+
+```
+import math
+import itertools
+
+def calculate_average_guests(n, sizes, p):
+    total_guests = 0
+    total_permutations = 0
+
+    # Generate all possible permutations of guests
+    for perm in itertools.permutations(sizes):
+        total_permutations += 1
+
+        # Check if each guest can fit in the table
+        table_length = 0
+        guests_in = 0
+        for size in perm:
+            if table_length + size <= p:
+                table_length += size
+                guests_in += 1
+            else:
+                break
+
+        total_guests += guests_in
+
+    return total_guests / total_permutations
+
+# Inputs
+n = int(input())
+sizes = [int(x) for x in input().split()]
+p = int(input())
+
+# Calculate and output the average number of guests
+average = calculate_average_guests(n, sizes, p)
+print(average)
+```
+
+The code defines a function `calculate_average_guests` that takes the number of guests (`n`), the sizes of each guest, and the length of the table (`p`) as input. It generates all possible permutations of the guests using the `itertools.permutations` function. For each permutation, it checks if each guest can fit in the table, and if so, adds them to the count of guests in the table. After going through all permutations, it calculates the average number of guests by dividing the total guests by the total permutations. The code then prints the result.

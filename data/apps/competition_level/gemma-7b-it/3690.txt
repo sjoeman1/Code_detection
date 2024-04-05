@@ -1,0 +1,29 @@
+```python
+h, m, s, t_1, t_2 = map(int, input().split())
+
+# Calculate the time difference
+time_diff = t_2 - t_1
+
+# If the time difference is greater than the number of hours, it's not possible to prepare the contest on time
+if time_diff > h:
+    print("NO")
+else:
+    print("YES")
+```
+
+**Explanation:**
+
+* The input consists of five integers: `h`, `m`, `s`, `t_1`, and `t_2`.
+* `h` is the number of hours, `m` is the number of minutes, and `s` is the number of seconds.
+* `t_1` is Misha's position on the clock face, and `t_2` is the target time.
+* If the time difference between `t_1` and `t_2` is greater than the number of hours, it is not possible to prepare the contest on time.
+* Otherwise, it is possible to prepare the contest on time.
+
+**Time Complexity:**
+
+* The code calculates the time difference in constant time.
+* The code then checks if the time difference is greater than the number of hours in constant time.
+
+**Space Complexity:**
+
+* The code uses a constant amount of space regardless of the input size.

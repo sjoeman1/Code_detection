@@ -1,0 +1,16 @@
+```python
+n, k = map(int, input().split())
+
+mod = 10**9 + 7
+
+# Calculate the cost of having x people
+cost = lambda x: x ** k
+
+# Calculate the sum of costs over all non-empty subsets
+total_cost = 0
+for i in range(1, n + 1):
+    total_cost += cost(i)
+
+# Print the total cost
+print(total_cost % mod)
+```

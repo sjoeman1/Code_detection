@@ -1,0 +1,40 @@
+
+Here is the Python 3 code to solve the given problem:
+
+```
+# Read the input from the user
+a1, b1, a2, b2, L, R = map(int, input().split())
+
+# Initialize the answer
+ans = 0
+
+# Check if the condition is satisfied
+if a1 * a2 > 0:
+    if (a1 * b2 - a2 * b1) % (a1 - a2) == 0:
+        x0 = (a1 * b2 - a2 * b1) // (a1 - a2)
+        if L <= x0 <= R:
+            ans += 1
+
+# If the condition is not satisfied
+else:
+    if a1 > 0:
+        a1, b1, a2, b2 = a2, b2, a1, b1
+
+    x1 = (L - b1) // a1
+    x2 = (R - b1) // a1
+
+    while (a1 * x1 + b1) < L:
+        x1 += 1
+
+    while (a1 * x2 + b1) > R:
+        x2 -= 1
+
+    ans = x2 - x1 + 1
+
+# Print the answer
+print(ans)
+```
+
+The code first reads the input from the user and then initializes the answer variable. If the condition `a1 * a2 > 0` is satisfied, it checks if `(a1 * b2 - a2 * b1) % (a1 - a2) == 0`. If this is true, it calculates the value of `x0` and checks if `L <= x0 <= R`. If this condition is also satisfied, it increments the answer by 1.
+
+If the condition `a1 * a2 > 0` is not satisfied, it swaps `a1` and `b1` with `a2` and `b2` if `a1 > 0`. Then, it calculates the values of `x1` and `x2` using the given formulas. It then increments `x1` until `a1 * x1 + b1` is greater than or equal to `L`, and decrements `x2` until

@@ -1,0 +1,50 @@
+
+
+Here is the Python3 code for the question:
+
+```
+def number_of_sequences(n, T, songs):
+    # Create a dictionary to store the count of each genre
+    genres = {}
+    for song in songs:
+        if song[1] not in genres:
+            genres[song[1]] = 0
+        genres[song[1]] += 1
+    
+    # Initialize the dp array
+    dp = [[[0 for _ in range(len(genres) + 1)] for _ in range(T + 1)] for _ in range(n + 1)]
+    
+    # Initialize the base cases
+    for genre in genres:
+        dp[0][0][genre] = 1
+    
+    # Populate the dp array
+    for i in range(1, n + 1):
+        for j in range(T + 1):
+            for genre in genres:
+                dp[i][j][genre] += dp[i - 1][j][genre]
+                if j - songs[i - 1][0] >= 0:
+                    dp[i][j][genre] += dp[i - 1][j - songs[i - 1][0]][genre]
+                if songs[i - 1][1] != genre:
+                    dp[i][j][genre] -= dp[i - 1][j - songs[i - 1][0]][genre]
+    
+    # Calculate the total number of sequences
+    total = 0
+    for genre in genres:
+        total += dp[n][T][genre]
+    
+    return total
+
+# Read the input
+n, T = map(int, input().split())
+songs = []
+for _ in range(n):
+    t, g = map(int, input().split())
+    songs.append([t, g])
+
+# Calculate and print the result
+result = number_of_sequences(n, T, songs)
+print(result)
+```
+
+The code reads the input and calls the `number_of_sequences` function to calculate the number of

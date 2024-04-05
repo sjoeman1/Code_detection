@@ -1,0 +1,40 @@
+
+Here is the Python3 code to solve the question:
+
+```python
+def calculate_days(c, v_0, v_1, a, l):
+    # Initialize variables
+    current_page = 0
+    days_needed = 0
+    daily_read = v_0
+
+    # Check if Mister B can finish the book on the first day
+    if c <= v_0:
+        return 1
+
+    # Calculate the number of days needed
+    while current_page < c:
+        # Increment the days needed
+        days_needed += 1
+
+        # Calculate the number of pages to read
+        if daily_read + a <= v_1:
+            daily_read += a
+        else:
+            daily_read = v_1
+        read_pages = daily_read - l
+
+        # Update the current page
+        current_page += read_pages
+
+    return days_needed
+
+# Read the input
+c, v_0, v_1, a, l = map(int, input().split())
+
+# Calculate and print the number of days needed
+days_needed = calculate_days(c, v_0, v_1, a, l)
+print(days_needed)
+```
+
+This code defines a function `calculate_days` that takes the five input parameters (c, v_0, v_1, a, and l) and calculates the number of days needed for Mister B to finish the book. It uses a while loop to simulate the reading process, incrementing the number of days needed and calculating the number of pages to read each day. If Mister B's reading speed exceeds the maximum reading speed (v_1), it is set to v_1. Finally, it prints the number of days needed to finish the book.

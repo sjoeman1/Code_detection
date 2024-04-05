@@ -1,0 +1,22 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def gcd(a, b):
+    while b:
+        a, b = b, a % b
+    return a
+
+def lcm(a, b):
+    return a * b // gcd(a, b)
+
+def minimal_perimeter(a, b):
+    l = lcm(a, b)
+    return 2 * (l // a + l // b) * a
+
+a, b = map(int, input().split())
+print(minimal_perimeter(a, b))
+```
+
+The solution is based on the observation that the minimal perimeter can be achieved when the colored tiles form a rectangle with sides `l // a` and `l // b` where `l` is the least common multiple of `a` and `b`. The perimeter is then `2 * (l // a + l // b) * a`.
+
+The function `gcd(a, b)` calculates the greatest common divisor of `a` and `b` using Euclid's algorithm, and `lcm(a, b)` calculates the least common multiple of `a` and `b` as `a * b` divided by their greatest common divisor.

@@ -1,0 +1,25 @@
+```python
+s = input().strip()
+
+# Check if the input string is an accordion
+accordion = bool(s.match("\[:.*:\]"))
+
+# If it is not an accordion, print -1
+if not accordion:
+    print(-1)
+
+# Otherwise, find the maximum length of the result
+else:
+    # Calculate the length of the shortest possible accordion
+    min_length = len(s) - s.count(")") - s.count("[") - 2
+
+    # Print the maximum length of the result
+    print(min_length)
+```
+
+**Explanation:**
+
+* The code first checks if the input string `s` is an accordion. It uses the `match()` method to see if the string matches the regular expression for an accordion.
+* If `s` is not an accordion, it prints -1.
+* Otherwise, it calculates the length of the shortest possible accordion by subtracting the number of closing brackets and opening brackets from the length of `s`.
+* The code then prints the maximum length of the result.

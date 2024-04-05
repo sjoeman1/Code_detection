@@ -1,0 +1,47 @@
+
+
+Here is a Python 3 code that solves the problem:
+
+```
+a, b = map(int, input().split())
+
+# We need to make sure that a and b are positive integers
+if a < 0 or b < 0:
+    raise ValueError("Both a and b must be positive integers.")
+
+# The sum of a and b must be even
+if (a + b) % 2 == 1:
+    raise ValueError("The sum of a and b must be even.")
+
+# Find the largest square that fits within the rectangle
+max_square_size = min(a, b)
+
+# Calculate the perimeter of the largest square
+perimeter = 4 * max_square_size
+
+# Subtract the remaining tiles from a and b
+a -= max_square_size
+b -= max_square_size
+
+# Calculate the perimeter of the remaining rectangle
+perimeter += 2 * (a + b)
+
+# Print the final perimeter
+print(perimeter)
+```
+
+This code assumes that the input is in the format `a b`, where `a` is the number of tiles red marker should color and `b` is the number of tiles blue marker should color.
+
+The code first checks if both `a` and `b` are positive integers. If they are not, it raises a `ValueError` exception.
+
+Next, it checks if the sum of `a` and `b` is even. If it is not, it means that it is not possible to form a rectangle with an odd number of tiles. In this case, it raises a `ValueError` exception.
+
+Then, it finds the largest square that fits within the rectangle. This is done by finding the minimum of `a` and `b`.
+
+It calculates the perimeter of the largest square by multiplying the square's side length by 4.
+
+After that, it subtracts the square's side length from both `a` and `b`.
+
+Finally, it calculates the perimeter of the remaining rectangle by adding twice the sum of the remaining `a` and `b` to the perimeter.
+
+The code prints the final perimeter as the output.

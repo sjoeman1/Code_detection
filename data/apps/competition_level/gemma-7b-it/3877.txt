@@ -1,0 +1,15 @@
+```python
+n, l, r = map(int, input().split())
+
+a = list(map(int, input().split()))
+
+a = sorted(a)
+
+res = 0
+for i in range(l-1, r):
+    x = a[i]
+    a[i] = a[i] // 2 + a[i] % 2
+    res += a[i]
+
+print(res)
+```

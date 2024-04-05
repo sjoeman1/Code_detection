@@ -1,0 +1,32 @@
+```python
+n = int(input())
+a = list(map(int, input().split()))
+
+# Create a graph
+graph = [set() for _ in range(n)]
+for i in range(n):
+    for j in range(n):
+        if a[i] & a[j] != 0:
+            graph[i].add(j)
+
+# Find the shortest cycle
+cycle_length = -1
+visited = set()
+for i in range(n):
+    if i in visited:
+        continue
+    visited.add(i)
+    for j in graph[i]:
+        if j in visited:
+            cycle_length = min(cycle_length, abs(i - j))
+
+# Print the shortest cycle length
+print(cycle_length) if cycle_length != -1 else print(-1)
+```
+
+**Explanation:**
+
+* The code reads the number of nodes $n$ and the $n$ integer numbers $a_1, $a_2, \dots, $a_n$.
+* It creates a graph where nodes $i$ and $j$ are connected if $a_i$ AND $a_j\neq 0.
+* The code then searches for the shortest cycle in the graph using the Floyd-Warshall algorithm.
+* If no cycle is found, the code prints -1. Otherwise, the code prints the length of the shortest cycle.

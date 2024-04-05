@@ -1,0 +1,28 @@
+ Here is a Python3 solution that uses dynamic programming to solve the problem:
+
+```python
+mod = 10**9 + 7
+dp = [0]*(10**8 + 1)
+dp[0] = 1
+
+def calc(s):
+    if dp[s] != 0:
+        return dp[s]
+    res = 0
+    for i in range(1, 10):
+        if s < i:
+            break
+        res += calc(s - i)
+        res %= mod
+    dp[s] = res
+    return res
+
+S = int(input())
+print(calc(S))
+```
+
+The solution uses a dynamic programming array `dp` to store the number of pairs that sum up to a given number. The base case is `dp[0] = 1`, since there is only one pair `(1, 1)` that sums up to `0`.
+
+The function `calc(s)` calculates the number of pairs that sum up to `s` by considering all possible values of the last digit `i` in the range `[1, 9]`. If `s` is less than `i`, then the current value of `s` cannot be reached by adding `i` to the sum, so we break out of the loop. Otherwise, we add the number of pairs that sum up to `s - i` to the result, and take the result modulo `10^9 + 7` to prevent overflow. The result is stored in `dp[s]` and returned.
+
+Finally, we call `calc(S)` to get the answer and print it.

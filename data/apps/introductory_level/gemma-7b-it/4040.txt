@@ -1,0 +1,25 @@
+```python
+n, m, d = map(int, input().split())
+c = list(map(int, input().split()))
+c.sort()
+
+if sum(c) > n:
+    print("NO")
+else:
+    print("YES")
+    a = [0] * n
+    p = 1
+    for i in range(m):
+        a[c[i]:c[i] + 1] = p
+        p += 1
+
+    print(*a)
+```
+
+**Explanation:**
+
+* We read the input and calculate the total length of platforms and the maximum jump distance.
+* If the total length of platforms exceeds the width of the river, we print "NO".
+* Otherwise, we print "YES" and the array `a` of length `n`.
+* The sequence of jumps we perform is to move platforms to the left or right until they are contiguous and then jump to the platform that is furthest to the right.
+* The array `a` has a contiguous subsegment of length `c[i]` for each platform, and the leftmost position of the platform is greater than the rightmost position of the previous platform.

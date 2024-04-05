@@ -1,0 +1,61 @@
+
+
+Here is the Python 3 code for the given problem:
+
+```python
+def min_changes(n, moves, x, y):
+    # Initialize the length of the changed subsegment
+    length = 0
+
+    # Initialize the position of the robot
+    robot_x, robot_y = 0, 0
+
+    # Initialize the starting and ending indices of the changed subsegment
+    start_index = -1
+    end_index = -1
+
+    # Iterate through the moves
+    for i in range(n):
+        # Update the robot's position based on the move
+        if moves[i] == 'U':
+            robot_y += 1
+        elif moves[i] == 'D':
+            robot_y -= 1
+        elif moves[i] == 'L':
+            robot_x -= 1
+        else:
+            robot_x += 1
+
+        # Check if the robot's position matches the target position
+        if robot_x == x and robot_y == y:
+            # If the robot's position matches the target position, update the start and end indices of the changed subsegment
+            if start_index == -1:
+                start_index = i
+            end_index = i
+
+    # Check if the robot's position matches the target position
+    if robot_x == x and robot_y == y:
+        # If the robot's position matches the target position, calculate the length of the changed subsegment
+        length = end_index - start_index + 1
+
+    return length
+
+
+# Read input
+n = int(input())
+moves = input()
+x, y = map(int, input().split())
+
+# Calculate the minimum length of the changed subsegment
+length = min_changes(n, moves, x, y)
+
+# Print the result
+if length == 0:
+    print(0)
+elif length > 0:
+    print(length)
+else:
+    print(-1)
+```
+
+This code defines a function `min_changes` that takes the number of moves (`n`), the moves (`moves`), and the target position (`x` and `y`). The function simulates the robot's movements and calculates the length of

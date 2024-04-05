@@ -1,0 +1,11 @@
+```python
+q = int(input())
+
+for _ in range(q):
+    n, a, b = map(int, input().split())
+    l = n
+    c = a - b
+    m = l // c
+    r = l % c
+    print(m * a + r * b)
+```

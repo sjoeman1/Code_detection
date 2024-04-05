@@ -1,0 +1,36 @@
+```python
+def base_minus_two(n):
+    # Check if n is 0
+    if n == 0:
+        return "0"
+
+    # Initialize the result string
+    result = ""
+
+    # Iterate over the digits of n in reverse order
+    while n:
+        # Calculate the digit of n modulo 2
+        digit = n % 2
+
+        # Convert the digit to a string
+        digit_str = str(digit)
+
+        # Append the digit to the result string
+        result += digit_str
+
+        # Divide n by 2 to remove the digit
+        n //= 2
+
+    # Return the result string
+    return result
+
+
+# Get the input
+n = int(input())
+
+# Find the base -2 representation of n
+base_minus_two_rep = base_minus_two(n)
+
+# Print the base -2 representation
+print(base_minus_two_rep)
+```

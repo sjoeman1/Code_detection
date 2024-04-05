@@ -1,0 +1,20 @@
+ Here is a Python3 solution for the problem:
+```python
+n = int(input().strip())
+a = list(map(int, input().strip().split()))
+
+left_min = a[0]
+left_min_index = 0
+
+min_distance = float('inf')
+
+for i in range(1, n):
+    if a[i] < left_min:
+        left_min = a[i]
+        left_min_index = i
+    elif a[i] - left_min < min_distance:
+        min_distance = a[i] - left_min
+
+print(min_distance)
+```
+The solution iterates through the array and keeps track of the current minimum and its index. For each element, if it is smaller than the current minimum, it updates the minimum and its index. If the difference between the current element and the minimum is smaller than the current minimum distance, it updates the minimum distance. Finally, it prints the minimum distance.

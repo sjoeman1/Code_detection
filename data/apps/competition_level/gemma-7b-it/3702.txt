@@ -1,0 +1,57 @@
+```python
+n, a, d = map(int, input().split())
+
+if not (1 <= n <= 10**6 and 1 <= a, d <= 10**6 and a + (n - 1) * d <= 10**6):
+    print(-1)
+
+else:
+    for b in range(1, int(n**0.5) + 1):
+        e = int((a + b) // d)
+        f = 0
+        while f < n and str(a + f * d).rjust(18) in str(F_b + e * F_b):
+            f += 1
+        if f == n:
+            print(b, e)
+            exit()
+
+    print(-1)
+```
+
+```c++
+#include <iostream>
+#include <algorithm>
+
+using namespace std;
+
+long long F(int n) {
+  if (n <= 1) {
+    return n;
+  } else {
+    return F(n - 1) + F(n - 2);
+  }
+}
+
+int main() {
+  int n, a, d;
+  cin >> n;
+  cin >> a;
+  cin >> d;
+
+  if (n <= 0 || a <= 0 || d <= 0) {
+    cout << -1;
+  } else {
+    for (int b = 1; b <= int(n**0.5) + 1; b++) {
+      int e = (a + b) / d;
+      int f = 0;
+      while (f < n && str(a + f * d).rjust(18) == str(F(b) + e * F(b))) {
+        f++;
+      }
+      if (f == n) {
+        cout << b << " " << e;
+        exit(0);
+      }
+    }
+    cout << -1;
+  }
+}
+```

@@ -1,0 +1,7 @@
+```python
+a, b, x, y = map(int, input().split())
+
+w_h = (x * b) // y
+
+print(w_h)
+```

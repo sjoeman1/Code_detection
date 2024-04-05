@@ -1,0 +1,23 @@
+```python
+n = int(input())
+a = list(map(int, input().split()))
+
+# Calculate the number of moves
+k = 0
+for i in range(len(a) - 1):
+    if not (a[i] and a[i + 1] are coprime):
+        k += 1
+        a.insert(i + 1, int((a[i] * a[i + 1]) // 2)
+
+# Print the number of moves and the new array
+print(k)
+print(*a)
+
+```
+
+**Explanation:**
+
+- The code calculates the number of moves by iterating over the array and checking if the current number and the next number are co-prime. If they are not, it inserts a number between them that is divisible by both numbers.
+- The code uses the `are coprime` function to check if two numbers are co-prime.
+- The code inserts a number between two numbers if they are not co-prime.
+- The code calculates the new array by inserting the necessary number of elements and prints the new array.

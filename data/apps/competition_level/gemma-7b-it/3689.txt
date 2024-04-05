@@ -1,0 +1,20 @@
+```python
+n, k = map(int, input().split())
+x = int(input())
+
+a = str(x).split('.')
+a_int = int(a[0])
+a_dec = int(a[1])
+
+# Find the number of digits in the smallest beautiful integer
+m = 1 + (a_dec - 1) // k
+
+# Create the smallest beautiful integer
+y = a_int * 10 ** (m - 1) + a_dec % k
+
+# Print the number of digits in y
+print(m)
+
+# Print the digits of y
+print(str(y).zfill(m))
+```

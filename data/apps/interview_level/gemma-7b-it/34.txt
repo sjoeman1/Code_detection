@@ -1,0 +1,15 @@
+```python
+n, a, b = map(int, input().split())
+
+# Calculate the maximum number of pieces that can be put on each plate
+x = min(a, b) // n
+
+# Print the maximum number of pieces
+print(x)
+```
+
+**Explanation:**
+
+* The input is read and the variables n, a, and b are assigned.
+* The maximum number of pieces that can be put on each plate is calculated by dividing the minimum of a and b by n and assigning it to x.
+* The maximum number of pieces is printed.

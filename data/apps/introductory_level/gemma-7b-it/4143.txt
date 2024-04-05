@@ -1,0 +1,12 @@
+```python3
+import sys
+
+# Read input
+n, a, b, c, d, e = map(int, sys.stdin.read().splitlines())
+
+# Calculate the minimum time required
+time = 1 + (n - 3) // a + (n - 3 - 2) // b + (n - 3 - 2) // c + (n - 3 - 2) // d + (n - 3 - 2) // e
+
+# Print the minimum time
+print(time)
+```

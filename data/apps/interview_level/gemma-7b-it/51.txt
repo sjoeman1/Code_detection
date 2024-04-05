@@ -1,0 +1,11 @@
+```python
+import re
+
+t = input().strip()
+
+if re.search(r"((\w+)\1+)", t):
+    print("YES")
+    print(re.search(r"((\w+)\1+", t).group(1))
+else:
+    print("NO")
+```

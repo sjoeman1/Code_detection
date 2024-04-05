@@ -1,0 +1,22 @@
+```python
+n, T = map(int, input().split())
+a = list(map(int, input().split()))
+
+# Calculate the prefix sum and find the maximum length of the non-decreasing sequence
+prefix_sum = []
+length = 1
+for i in range(n):
+    prefix_sum.append(a[i] - i)
+    for j in range(i):
+        if prefix_sum[i] - prefix_sum[j] >= 0:
+            length = max(length, 1 + 1)
+
+print(length)
+```
+
+**Explanation:**
+
+* We calculate the prefix sum of the array a to find the sum of the first i elements.
+* We iterate over the array and find the maximum length of the non-decreasing sequence that can be formed from the first i elements.
+* The length of the non-decreasing sequence is the maximum of the current length and 1 plus the length of the non-decreasing sequence that can be formed from the first i-1 elements.
+* Finally, we print the length of the longest non-decreasing sequence.

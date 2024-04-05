@@ -1,0 +1,21 @@
+```python
+N = int(input())
+h = list(map(int, input().split()))
+
+h_k = dict()
+for i in range(N):
+    h_k[i+1] = h[i]
+
+operations = 0
+for i in range(1, N+1):
+    operations += abs(h_k[i] - h_k[i-1])
+
+print(operations)
+```
+
+**Explanation:**
+
+- The code reads the number of flowers `N`, the heights of each flower `h`, and creates a dictionary `h_k` to store the heights of each flower at its index.
+- It then iterates over the range from 1 to `N` and calculates the difference between the height of the flower at index `i` and the height of the flower at index `i-1`.
+- The total number of operations is then calculated by summing the absolute value of each difference.
+- Finally, the total number of operations is printed.

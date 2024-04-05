@@ -1,0 +1,30 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def hanoi\_min\_cost(t, n):
+costs = [[0 for _ in range(3)] for _ in range(n)]
+costs[0] = [t[0][1], t[0][2], 0]
+
+for i in range(1, n):
+for j in range(3):
+costs[i][j] = min(costs[i-1][k] + t[k][j] for k in range(3) if k != j)
+
+return costs[n-1][2]
+
+if **name** == '**main**':
+t = [[0, 1, 1], [1, 0, 1], [1, 1, 0]]
+n = 3
+print(hanoi\_min\_cost(t, n))
+
+t = [[0, 2, 2], [1, 0, 100], [1, 2, 0]]
+n = 3
+print(hanoi\_min\_cost(t, n))
+
+t = [[0, 2, 1], [1, 0, 100], [1, 2, 0]]
+n = 5
+print(hanoi\_min\_cost(t, n))
+```
+
+The solution uses dynamic programming to calculate the minimum cost of moving n disks from the first rod to the third rod. The costs array is used to store the minimum cost to reach a certain state. The state is represented by the number of disks on each rod. The initial state is given by the input, with all n disks on the first rod. The final state is the state with all n disks on the third rod.
+
+The algorithm starts by calculating the minimum cost to reach the states with 1 disk on each rod. This is done by adding the cost of moving the disk from the first rod to the other rods. Then, for each i from 2 to n, the algorithm calculates the minimum cost to reach the states with i disks on each rod. This is done by taking the minimum cost to reach the states with i-1 disks on each rod, and adding the cost of moving the i-th disk from one

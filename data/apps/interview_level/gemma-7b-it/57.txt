@@ -1,0 +1,21 @@
+```python
+import math
+
+n = int(input())
+
+x_y = []
+for _ in range(n):
+    x, y = map(int, input().split().strip().split())
+    x_y.append((x, y))
+
+# Calculate the determinant of the matrix formed by the coordinates
+det = x_y[0][0] * x_y[1][1] - x_y[0][1] * x_y[1][0]
+
+# If the determinant is 0, the area cannot be uniquely determined
+if det == 0:
+    print(-1)
+else:
+    # Calculate the area of the rectangle
+    area = abs(det) / 2
+    print(area)
+```

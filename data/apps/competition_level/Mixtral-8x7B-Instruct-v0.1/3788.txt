@@ -1,0 +1,32 @@
+ To solve this problem, we need to check if it is possible to form a binary search tree with the given conditions. A binary search tree is a binary tree where for each node, all nodes in its left subtree have values less than the node, and all nodes in its right subtree have values greater than the node.
+
+We can use a recursive approach to build the tree. For each node, we try to place it as the left child of its parent, and then try to place it as the right child of its parent. We continue this process until we have placed all the nodes. If we are able to place all the nodes without violating the given conditions, then we can print "Yes", otherwise, we print "No".
+
+Here's the Python3 code for the above approach:
+
+```python
+import sys
+input = sys.stdin.readline
+
+def gcd(a, b):
+    return a if b == 0 else gcd(b, a % b)
+
+def make_tree(nodes, start, end, parent):
+    if start > end:
+        return None
+    mid = (start + end) // 2
+    node = TreeNode(nodes[mid])
+    node.parent = parent
+    if parent:
+        if parent.left and gcd(parent.left.val, node.val) > 1:
+            parent.left = node
+            make_tree(nodes, start, mid - 1, node)
+            make_tree(nodes, mid + 1, end, node)
+        elif parent.right and gcd(parent.right.val, node.val) > 1:
+            parent.right = node
+            make_tree(nodes, start, mid - 1, node)
+            make_tree(nodes, mid + 1, end, node)
+    else:
+        # this is the root node
+        make_tree(nodes, start, mid - 1, node)
+        make_tree(nodes, mid + 1, end, node)

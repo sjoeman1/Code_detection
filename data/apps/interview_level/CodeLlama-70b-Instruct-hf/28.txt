@@ -1,0 +1,36 @@
+
+
+Here is the Python3 code to solve the question:
+
+```
+def read_input():
+    n = int(input())
+    files = []
+    for _ in range(n):
+        name, type = input().split()
+        files.append((name, type))
+    return files
+
+def write_response(files):
+    examples = [file for file in files if file[1] == '1']
+    tests = [file for file in files if file[1] == '0']
+
+    commands = []
+    for i in range(len(examples)):
+        commands.append(f'move {examples[i][0]} {i+1}')
+    for i in range(len(tests)):
+        commands.append(f'move {tests[i][0]} {len(examples) + i+1}')
+
+    print(len(commands))
+    for command in commands:
+        print(command)
+
+def main():
+    files = read_input()
+    write_response(files)
+
+if __name__ == '__main__':
+    main()
+```
+
+This code reads the input, splits it into examples and tests, generates the move commands, and prints the required output.

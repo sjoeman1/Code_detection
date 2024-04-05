@@ -1,0 +1,16 @@
+```python3
+N, X = map(int, input().split())
+
+L = list(map(int, input().split()))
+
+ bounces = 0
+current_position = 0
+
+for i in range(N):
+    L_i = int(L[i])
+    if current_position + L_i > X:
+        boosts = 1
+    current_position += L_i
+
+print(boosts)
+```

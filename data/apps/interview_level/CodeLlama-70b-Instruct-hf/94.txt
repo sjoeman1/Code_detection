@@ -1,0 +1,37 @@
+
+
+Here is the Python 3 code for solving the problem:
+
+```python
+def solve(n, k):
+    # Find the minimum decimal number so that by converting it to the system with the base n he will get the number k
+    # Convert k to base-10
+    k = int(k, n)
+    # Initialize result
+    result = 0
+    # Iterate from 0 to k
+    for x in range(k + 1):
+        # Convert x to base-n
+        x_base_n = str(base_repr(x, n))
+        # Check if x_base_n is equal to k
+        if x_base_n == k:
+            # If so, return x
+            return x
+    # If no match is found, return -1
+    return -1
+
+# Input the base and number
+n = int(input())
+k = input()
+
+# Call the solve function
+result = solve(n, k)
+
+# Print the result
+if result == -1:
+    print("No such number exists")
+else:
+    print(result)
+```
+
+This code takes two inputs, the base n and the number k. It then converts k to base-10. It iterates from 0 to k and converts each value to base-n. If it finds a match, it returns the value. If no match is found, it returns -1.

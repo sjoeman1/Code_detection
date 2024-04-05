@@ -1,0 +1,35 @@
+ Here is one way to solve the problem using Python 3:
+
+```python
+def max\_bourles(n, m, r, s, b):
+buy\_prices = sorted(s)
+sell\_prices = sorted(b)
+i, j, result = 0, 0, r
+while i < n and j < m:
+if buy\_prices[i] <= sell\_prices[j]:
+# we can buy and sell, so we do it
+quantity = result // buy\_prices[i]
+result += quantity * (sell\_prices[j] - buy\_prices[i])
+i += 1
+j += 1
+else:
+# we can't sell yet, so we move to the next buy price
+i += 1
+return result
+
+# read input
+n, m, r = map(int, input().split())
+s = list(map(int, input().split()))
+b = list(map(int, input().split()))
+
+# compute and print the result
+print(max\_bourles(n, m, r, s, b))
+```
+
+The `max_bourles` function takes as input the number of buying opportunities `n`, the number of selling opportunities `m`, the current number of bourles `r`, the buying prices `s`, and the selling prices `b`. It returns the maximum number of bourles that can be held after the evening.
+
+The function first sorts the buying and selling prices in non-decreasing order. Then, it iterates over the buying and selling prices, and at each step, it checks if it is possible to buy and sell shares at the current prices. If it is, it computes the maximum number of shares that can be bought and sold, and updates the result accordingly. If it is not, it moves to the next buying price.
+
+Finally, the function reads the input, computes the result using the `max_bourles` function, and prints the result.
+
+Note that this solution assumes that the input is valid, i.e., `n`, `m`, and `r` are positive integers, and the buying and selling prices are positive integers not greater than 1000. If this is not the case, the function may not work correctly.

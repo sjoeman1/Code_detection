@@ -1,0 +1,9 @@
+```python
+m, d = map(int, input().split())
+
+# Calculate the number of columns
+cols = 7 + (m - 1) // 7
+
+# Print the number of columns
+print(cols)
+```

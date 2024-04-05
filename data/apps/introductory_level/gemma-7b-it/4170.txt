@@ -1,0 +1,16 @@
+```python3
+n = int(input("Number of squares: "))
+h = list(map(int, input("Heights of squares: ").split()))
+
+# Calculate the maximum number of moves
+max_moves = 0
+current_height = h[0]
+
+for i in range(1, n):
+    if h[i] <= current_height:
+        max_moves += 1
+    else:
+        current_height = h[i]
+
+print(max_moves)
+```

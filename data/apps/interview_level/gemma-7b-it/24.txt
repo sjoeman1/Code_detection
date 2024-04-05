@@ -1,0 +1,39 @@
+```python
+def valid(board, x, y):
+    # Check horizontal
+    for i in range(10):
+        if board[x][i] == board[x][y] and board[x][i] != '.':
+            return True
+
+    # Check vertical
+    for j in range(10):
+        if board[j][y] == board[x][y] and board[j][y] != '.':
+            return True
+
+    # Check diagonal
+    dx, dy = -1, 1
+    for i in range(x, 10, dx):
+        for j in range(y, 10, dy):
+            if board[i][j] == board[x][y] and board[i][j] != '.':
+                return True
+
+    # No winning line found
+    return False
+
+
+board = [['.', 'X', 'O', 'X', '.', 'X', '.', 'O', 'X', 'O', '.'],
+ ['.', 'O', 'O', 'O', 'O', 'X', 'O', 'X', 'O', '.']]
+
+if valid(board, 0, 1):
+    print('YES')
+else:
+    print('NO')
+```
+
+**Explanation:**
+
+The function `valid` takes a 2D list `board` as input, representing the playing field. It checks if there is a winning line for Alice, which is a line of length 5 or more of her crosses.
+
+The function first checks for a horizontal win, then a vertical win, and finally a diagonal win. If any of these conditions are met, it returns `True`, otherwise `False`.
+
+If `valid` returns `True`, it means that Alice can win in one turn, and the output is `YES`. Otherwise, it means that Alice cannot win in one turn, and the output is `NO`.

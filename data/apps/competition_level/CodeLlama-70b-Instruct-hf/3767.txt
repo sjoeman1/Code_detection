@@ -1,0 +1,57 @@
+
+
+Here's the Python3 code that solves the problem:
+
+```python
+from heapq import heappush, heappop
+
+# Read the number of bottles
+n = int(input())
+
+# Read the amount of soda remaining in each bottle
+a = list(map(int, input().split()))
+
+# Read the volume of each bottle
+b = list(map(int, input().split()))
+
+# Initialize a list to store the remaining soda in each bottle
+soda = []
+
+# Iterate through each bottle
+for i in range(n):
+    # Calculate the remaining soda in the bottle
+    remaining = b[i] - a[i]
+    # If there is remaining soda, add it to the list
+    if remaining > 0:
+        heappush(soda, (remaining, i))
+
+# Initialize the number of bottles to store the soda
+k = len(soda)
+
+# Initialize the time to pour the soda
+t = 0
+
+# While there are more than one bottle in the list
+while len(soda) > 1:
+    # Get the bottle with the least remaining soda
+    (min_soda, min_index) = heappop(soda)
+    
+    # Get the bottle with the most remaining soda
+    (max_soda, max_index) = heappop(soda)
+    
+    # Calculate the amount of soda to pour from the max bottle to the min bottle
+    pour = min(max_soda, b[min_index] - min_soda)
+    
+    # Update the time to pour the soda
+    t += pour
+    
+    # Update the amount of soda in the max bottle
+    max_soda -= pour
+    
+    # If there is remaining soda in the max bottle, add it back to the list
+    if max_soda > 0:
+        heappush(soda, (max_soda, max_index))
+    
+    # If the min bottle is not full, add it back to the list
+    if min_soda + pour < b[min_index]:
+        heappush

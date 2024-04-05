@@ -1,0 +1,55 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def max\_divisible\_sum(n, m, k, a):
+    # Initialize the maximum sum and current sum
+    max\_sum = 0
+    current\_sum = 0
+
+    # Iterate over each row
+    for i in range(n):
+        # Sort the row in non-decreasing order
+        a[i] = sorted(a[i])
+
+        # Initialize the left and right pointers
+        left = 0
+        right = m - 1
+
+        # Iterate until left is less than or equal to right
+        while left <= right:
+            # Calculate the middle index and element
+            mid = (left + right) // 2
+            mid\_elem = a[i][mid]
+
+            # If the middle element is not divisible by k,
+            # increment the current sum by the largest possible value
+            if mid\_elem % k != 0:
+                current\_sum += mid\_elem + (m - mid - 1) // 2 \* k
+                right = mid - 1
+            else:
+                # Otherwise, check if adding the middle element to the current sum
+                # would yield a sum divisible by k
+                if (current\_sum + mid\_elem) % k == 0:
+                    # If so, we can add the middle element to the current sum
+                    # and continue searching to the left
+                    current\_sum += mid\_elem
+                    right = mid - 1
+                else:
+                    # If not, we cannot add the middle element to the current sum,
+                    # so we continue searching to the right
+                    left = mid + 1
+
+        # Update the maximum sum if the current sum is greater
+        max\_sum = max(max\_sum, current\_sum)
+
+        # Reset the current sum to zero for the next row
+        current\_sum = 0
+
+    return max\_sum
+
+n, m, k = map(int, input().split())
+a = []
+for _ in range(n):
+    a.append(list(map(int, input().split())))
+
+print(max\_divisible\_sum(n

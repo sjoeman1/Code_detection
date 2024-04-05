@@ -1,0 +1,19 @@
+
+```python
+w, m = map(int, input().split())
+
+def solve(w, m):
+    if m == 0:
+        return "YES"
+    if m % w == 0:
+        return "YES"
+    if m % w == 1:
+        return "YES"
+    if m % w == w - 1:
+        return "YES"
+    return "NO"
+
+print(solve(w, m))
+```
+
+This is a simple Python3 code that solves the question. The `solve` function takes in two parameters `w` and `m` where `w` is the number defining the masses of the weights and `m` is the mass of the item. It first checks if `m` is divisible by `w` and returns "YES" if it is. If not, it checks if `m` modulo `w` is equal to 1, `w-1` or 0 and returns "YES" if it is. Otherwise, it returns "NO". The `map` function is used to read two integers from the input and store them in the variables `w` and `m`. Finally, the `solve` function is called with `w` and `m` as parameters and the result is printed.

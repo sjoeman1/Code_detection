@@ -1,0 +1,24 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def has\_palindrome\_subsequence(a):
+for i in range(len(a)):
+for j in range(i, len(a)):
+for k in range(j, len(a)):
+if a[i:j+1] == a[j:k+1][::-1]:
+return True
+return False
+
+t = int(input().strip())
+for _ in range(t):
+n = int(input().strip())
+a = list(map(int, input().strip().split()))
+if has\_palindrome\_subsequence(a):
+print("YES")
+else:
+print("NO")
+```
+
+The function `has_palindrome_subsequence` checks if a given array `a` has a palindrome subsequence of length at least 3. It does this by iterating over all possible subsequences of `a` and checking if any of them is a palindrome. A subsequence `a[i:j+1]` is a palindrome if it is equal to its reverse `a[j:k+1][::-1]`.
+
+The main part of the solution reads the input and calls `has_palindrome_subsequence` for each test case. If the function returns `True`, then the answer is "YES", otherwise it is "NO".

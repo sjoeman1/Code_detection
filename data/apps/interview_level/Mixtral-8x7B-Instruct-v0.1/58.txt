@@ -1,0 +1,21 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n = int(input())
+a = int(input())
+b = int(input())
+
+# Calculate the total length of the sides of the frames
+total_length = 2 * 2 * a + 2 * b
+
+# Calculate the number of wooden bars needed
+num_bars = total_length // n
+
+# If there is any leftover length, add one more bar
+if total_length % n != 0:
+    num_bars += 1
+
+print(num_bars)
+```
+
+The solution first calculates the total length of the sides of the frames for two doors, which is `2 * 2 * a` for the four vertical sides and `2 * b` for the two horizontal sides. Then, it calculates the number of wooden bars needed to make the frames by dividing the total length by the length of each wooden bar, `n`. If there is any leftover length, the solution adds one more bar to the total. Finally, the solution prints the number of wooden bars needed.

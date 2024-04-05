@@ -1,0 +1,19 @@
+```python
+n, m = map(int, input().split())
+a = list(map(int, input().split()))
+
+caff_sum = sum(a)
+pages_written = 0
+days = 1
+
+while pages_written < m:
+    cups_drunk = min(caff_sum, pages_written + 1)
+    pages_written += cups_drunk - pages_written
+    caff_sum -= cups_drunk
+    days += 1
+
+if pages_written < m:
+    print(-1)
+else:
+    print(days)
+```

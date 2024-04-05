@@ -1,0 +1,32 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def solve(a00, a01, a10, a11):
+    # Check if the given numbers are possible
+    if a00 + a01 + a10 + a11 != 1 or a00 + a01 != a10 + a11:
+        return "Impossible"
+
+    # Initialize the string with the required number of 00
+    s = '0' * a00 + '1'
+
+    # Add the required number of 01
+    s += '0' * (a01 - a00) + '1'
+
+    # Add the required number of 10
+    s += '0' * (a10 - a01)
+
+    # Add the required number of 11
+    s += '1' * a11
+
+    return s
+
+# Read the input numbers
+a00, a01, a10, a11 = map(int, input().split())
+
+# Print the solution
+print(solve(a00, a01, a10, a11))
+```
+
+The solution checks if the given numbers are possible and if so, constructs the string accordingly. The string is initialized with `a00` number of `00` and then modified to have `a01` number of `01`, `a10` number of `10` and `a11` number of `11`. The string is then returned as the solution.
+
+Note that the solution assumes that the input numbers are non-negative and do not exceed 10^9. If this is not the case, you should add error checking to the solution.

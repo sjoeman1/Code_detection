@@ -1,0 +1,11 @@
+```python3
+n = int(input())
+
+a = list(map(int, input().splitlines()))
+
+if len(set(a)) != n or n % 2 != 0:
+    print("NO")
+else:
+    print("YES")
+    print(sorted(set(a))[-2], sorted(set(a))[-1])
+```

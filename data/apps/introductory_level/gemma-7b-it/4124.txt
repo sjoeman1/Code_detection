@@ -1,0 +1,13 @@
+```python
+s = input().strip().lower()
+t = input().strip().lower()
+
+s_len = len(s)
+t_len = len(t)
+
+# Calculate the minimum number of moves
+moves = abs(s_len - t_len) + min(s_len, t_len)
+
+# Print the result
+print(moves)
+```

@@ -1,0 +1,36 @@
+ Here is a Python3 solution using math library to calculate the angle between vectors:
+
+```python
+import math
+
+def calculate_angle(v1, v2):
+    dot_product = v1[0] * v2[0] + v1[1] * v2[1]
+    magnitude_v1 = math.sqrt(v1[0] ** 2 + v1[1] ** 2)
+    magnitude_v2 = math.sqrt(v2[0] ** 2 + v2[1] ** 2)
+    angle_rad = math.acos(dot_product / (magnitude_v1 * magnitude_v2))
+    angle_deg = math.degrees(angle_rad)
+    return angle_deg % 180
+
+n = int(input().strip())
+vectors = []
+for i in range(n):
+    x, y = map(int, input().strip().split())
+    vectors.append((x, y))
+
+min_angle = 180
+min_vectors = None
+for i in range(n):
+    for j in range(i + 1, n):
+        angle = calculate_angle(vectors[i], vectors[j])
+        if angle < min_angle:
+            min_angle = angle
+            min_vectors = (i + 1, j + 1)
+
+print(*min_vectors)
+```
+
+The solution first reads the number of vectors `n` and then reads each vector as a pair of `x` and `y` coordinates. It stores all vectors in a list called `vectors`. Then, it calculates the angle between each pair of vectors using the `calculate_angle` function. The function calculates the dot product of the vectors and their magnitudes, and then uses the arccosine function to get the angle in radians. It then converts the angle to degrees and takes the modulo of 180 to ensure that the angle is non-oriented.
+
+The solution keeps track of the pair of vectors with the minimal non-oriented angle using the `min_vectors` variable. If the current angle is smaller than the current minimum angle, it updates the minimum angle and the pair of vectors.
+
+Finally, the solution

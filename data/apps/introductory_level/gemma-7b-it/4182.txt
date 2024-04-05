@@ -1,0 +1,14 @@
+```python
+N, M, X, Y = map(int, input().split())
+
+x_list = list(map(int, input().split()))
+y_list = list(map(int, input().split()))
+
+x_set = set(x_list)
+y_set = set(y_list)
+
+if X < Y and X in x_set and Y in y_set:
+    print("No War")
+else:
+    print("War")
+```

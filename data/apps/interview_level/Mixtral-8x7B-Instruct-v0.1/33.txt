@@ -1,0 +1,12 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def gcd(a, b):
+    while b:
+        a, b = b, a % b
+    return a
+
+def solve(a1, b1, a2, b2, l, r):
+    # Calculate the greatest common divisor
+    g = gcd(a1, a2)
+    a1 //= g

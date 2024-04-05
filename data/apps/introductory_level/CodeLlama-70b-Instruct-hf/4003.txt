@@ -1,0 +1,56 @@
+
+
+Here is the Python3 code for the problem:
+
+```python
+# Read the input
+n = int(input())
+a = list(map(int, input().split()))
+
+# Initialize variables
+left_lengths = [0] * n
+right_lengths = [0] * n
+lengths = [0] * n
+
+# Calculate the length of the longest increasing subsequence
+# that ends at the leftmost position
+left_lengths[0] = 1
+for i in range(1, n):
+    left_lengths[i] = 1
+    for j in range(i):
+        if a[j] < a[i]:
+            left_lengths[i] = max(left_lengths[i], left_lengths[j] + 1)
+
+# Calculate the length of the longest increasing subsequence
+# that ends at the rightmost position
+right_lengths[n - 1] = 1
+for i in range(n - 2, -1, -1):
+    right_lengths[i] = 1
+    for j in range(n - 1, i, -1):
+        if a[j] > a[i]:
+            right_lengths[i] = max(right_lengths[i], right_lengths[j] + 1)
+
+# Calculate the length of the longest increasing subsequence
+# that ends at the position i
+for i in range(n):
+    lengths[i] = left_lengths[i] + right_lengths[i] - 1
+
+# Find the maximum length and its index
+max_length = max(lengths)
+max_index = lengths.index(max_length)
+
+# Calculate the sequence of moves
+sequence = ""
+for i in range(max_index, -1, -1):
+    sequence += "L"
+    for j in range(n - 1, i, -1):
+        if a[j] > a[i]:
+            sequence += "R"
+            break
+
+# Output the result
+print(max_length)
+print(sequence[::-1])
+```
+
+In this code, we first read the input, which consists of the number of elements

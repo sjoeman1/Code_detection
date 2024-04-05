@@ -1,0 +1,31 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def convert\_to\_base\_n(num, base):
+n = ""
+while num:
+digit = int(num % base)
+num //= base
+n += str(digit)
+return n[::-1]
+
+def find\_min\_decimal(base, k):
+k = str(k)
+length = len(k)
+power = 1
+for i in range(length):
+power *= base
+result = 0
+for i in range(length):
+result += int(k[i]) \* power
+power //= base
+return result
+
+base = int(input())
+k = int(input())
+print(find\_min\_decimal(base, k))
+```
+
+The `convert_to_base_n` function converts a decimal number to a number in a given base. The `find_min_decimal` function finds the minimum decimal number that converts to the given number `k` in the base `base`. It does this by initializing a result variable to 0, then iterating over the digits of `k` from left to right, multiplying the current digit by the base raised to the power of its position, and adding it to the result. The power is then updated to be the base raised to the power of one less than the current position. Finally, the result is returned.
+
+In the main part of the code, the base and k are read from the input, and the minimum decimal number is printed using the `find_min_decimal` function.

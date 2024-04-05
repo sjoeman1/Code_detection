@@ -1,0 +1,12 @@
+```python
+n = int(input())
+for _ in range(n):
+    t = int(input())
+    dir = input().strip()
+    if dir == "South" and t > 0:
+        print("NO")
+    elif dir == "North" and t > 0:
+        print("NO")
+    else:
+        print("YES")
+```

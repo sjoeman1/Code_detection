@@ -1,0 +1,66 @@
+
+Here is the Python 3 code for solving the question:
+
+```python
+# Input the number of oranges and apples
+x, y = map(int, input().split())
+
+# Check if the number of oranges and apples is 1
+if x == 1 and y == 1:
+    print("Impossible")
+    exit()
+
+# Initialize the answer string
+ans = ""
+
+# Check if the number of oranges is even
+if x % 2 == 0:
+    # Calculate the number of 'A's
+    num_a = x // 2
+
+    # Calculate the number of 'B's
+    num_b = y - num_a
+
+    # Calculate the number of 'A's to print
+    if num_a > 1:
+        ans += str(num_a)
+    ans += 'A'
+
+    # Calculate the number of 'B's to print
+    if num_b > 1:
+        ans += str(num_b)
+    ans += 'B'
+
+    # Print the answer
+    print(ans)
+
+# Check if the number of apples is even
+elif y % 2 == 0:
+    # Calculate the number of 'B's
+    num_b = y // 2
+
+    # Calculate the number of 'A's
+    num_a = x - num_b
+
+    # Calculate the number of 'B's to print
+    if num_b > 1:
+        ans += str(num_b)
+    ans += 'B'
+
+    # Calculate the number of 'A's to print
+    if num_a > 1:
+        ans += str(num_a)
+    ans += 'A'
+
+    # Print the answer
+    print(ans)
+
+# Check if the number of oranges is odd
+elif x % 2 == 1:
+    # Calculate the number of 'B's
+    num_b = y - (x + 1) // 2
+
+    # Calculate the number of 'A's
+    num_a = x - num_b
+
+    # Calculate the number of 'B's to print

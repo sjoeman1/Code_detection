@@ -1,0 +1,35 @@
+```python
+a, b, l, r = map(int, input().split())
+
+s = ""
+
+# Calculate the number of different letters in the first a letters of the string
+num_different_letters = set(s[:a])
+
+# Append b letters to the string
+s += ''.join(set(s) & set(s[:a]) | set(['a' * b])
+
+# Calculate the number of different letters in the segment from position l to position r
+min_different_letters = len(set(s[l-1:r]))
+
+print(min_different_letters)
+```
+
+**Explanation:**
+
+* The program reads the input data: `a`, `b`, `l`, and `r`.
+* It calculates the number of different letters in the first `a` letters of the string `s` using a set and `len(set())`.
+* It appends `b` letters to the string `s` by creating a set of the first `a` letters and adding `b` copies of each letter to the set.
+* It calculates the number of different letters in the segment from position `l` to position `r` using a set of the characters in the segment.
+* Finally, the program prints the minimum number of different letters in the segment.
+
+**Time complexity:**
+
+* The program calculates the number of different letters in the first `a` letters of the string `s` in constant time.
+* The program appends `b` letters to the string `s` in constant time.
+* The program calculates the number of different letters in the segment from position `l` to position `r` in constant time.
+* Overall, the program has a time complexity of O(a + b + r).
+
+**Space complexity:**
+
+* The program uses a constant amount of space regardless of the input size.

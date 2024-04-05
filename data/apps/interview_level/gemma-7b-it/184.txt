@@ -1,0 +1,13 @@
+```python
+l, r, a = map(int, input().split())
+
+# calculate the maximum number of players for each hand
+left_players = l + a // 2
+right_players = r + a // 2
+
+# find the maximum team size
+team_size = min(left_players, right_players)
+
+# print the team size
+print(team_size)
+```

@@ -1,0 +1,26 @@
+ Here is a possible Python3 solution for the problem:
+
+```python
+n = int(input())
+s = input()
+
+last = {}
+color = 1
+for c in s:
+    if c not in last or last[c] != color:
+        last[c] = color
+    else:
+        color += 1
+        last[c] = color
+
+print(color)
+for c in s:
+    print(last[c], end=' ')
+print()
+```
+
+This solution first colors the characters in the string with different colors, trying to minimize the number of colors used. It does this by iterating over the string and using a dictionary `last` to keep track of the last color used for each character. If the current character has not been seen before or it was seen with a different color, it is assigned the current color. Otherwise, it is assigned the next color.
+
+After coloring the characters, the solution prints the number of colors used and the coloring itself. The coloring is printed as a space-separated list of colors, where the $i$-th color corresponds to the $i$-th character in the input string.
+
+Note that this solution does not check if the colored string can be sorted by swapping neighboring characters. This is because the problem statement guarantees that it is always possible to sort the string using at most $n$ colors. Therefore, the solution only needs to minimize the number of colors used.

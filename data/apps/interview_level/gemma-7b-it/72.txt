@@ -1,0 +1,32 @@
+```python
+n = int(input())
+
+# Read Kuro's, Shiro's and Katie's ribbons
+kuro_ribbon = input().strip()
+shiro_ribbon = input().strip()
+katie_ribbon = input().strip()
+
+# Calculate the beauty of each ribbon
+kuro_beauty = max(1, (kuro_ribbon.count(kuro_ribbon[0]) - 1)
+shiro_beauty = max(1, (shiro_ribbon.count(shiro_ribbon[0]) - 1)
+katie_beauty = max(1, (katie_ribbon.count(katie_ribbon[0]) - 1)
+
+# Determine the winner
+if kuro_beauty > shiro_beauty and kuro_beauty > katie_beauty:
+    winner = "Kuro"
+elif shiro_beauty > kuro_beauty and shiro_beauty > katie_beauty:
+    winner = "Shiro"
+elif katie_beauty > kuro_beauty and katie_beauty > shiro_beauty:
+    winner = "Katie"
+else:
+    winner = "Draw"
+
+# Print the winner
+print(winner)
+```
+
+**Explanation:**
+
+* The code reads the number of turns `n` and the ribbons of Kuro, Shiro and Katie.
+* It calculates the beauty of each ribbon by counting the number of occurrences of the first character and subtracting 1.
+* The code then determines the winner based on the beauty of their ribbons. If the beauty of Kuro's ribbon is greater than the beauty of Shiro's and Katie's ribbons, Kuro wins. If the beauty of Shiro's ribbon is greater than the beauty of Kuro's and Katie's ribbons, Shiro wins. If the beauty of Katie's ribbon is greater than the beauty of Kuro's and Shiro's ribbons, Katie wins. If the beauty of all three ribbons is the same, the game ends in a draw.

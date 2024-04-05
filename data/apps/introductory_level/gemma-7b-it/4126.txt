@@ -1,0 +1,27 @@
+```python
+s = input().lower()
+n = len(s)
+mid = (n - 1) // 2
+
+# Check if S is a palindrome
+if s == s.lower():
+    isPalindrome = True
+else:
+    isPalindrome = False
+
+# Check if the first half of S is a palindrome
+firstHalf = s[:mid]
+if firstHalf == firstHalf.lower():
+    isPalindrome = True
+
+# Check if the second half of S is a palindrome
+secondHalf = s[mid + 1:]
+if secondHalf == secondHalf.lower():
+    isPalindrome = True
+
+# If all conditions are met, print Yes
+if isPalindrome:
+    print("Yes")
+else:
+    print("No")
+```

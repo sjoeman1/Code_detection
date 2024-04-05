@@ -1,0 +1,19 @@
+```python
+n = int(input())
+a = list(map(int, input().split()))
+
+# Create a dictionary to store the rightmost occurrence of each element
+rightmost_occurrence = {}
+
+# Iterate over the array and update the dictionary
+for i in range(len(a)):
+    if a[i] not in rightmost_occurrence:
+        rightmost_occurrence[a[i]] = i
+
+# Print the number of unique elements
+x = len(rightmost_occurrence)
+
+# Print the unique elements
+print(x)
+print(*sorted(rightmost_occurrence.keys())[:x])
+```

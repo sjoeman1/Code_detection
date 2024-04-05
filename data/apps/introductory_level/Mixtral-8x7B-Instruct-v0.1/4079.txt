@@ -1,0 +1,24 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n = int(input().strip())
+
+for _ in range(n):
+    s = input().strip()
+    alphabet = [False]*26
+    prev = -1
+    for c in s:
+        pos = ord(c) - ord('a')
+        if alphabet[pos]:
+            print("No")
+            break
+        alphabet[pos] = True
+        if prev != -1 and pos != prev+1:
+            print("No")
+            break
+        prev = pos
+    else:
+        print("Yes")
+```
+
+This solution reads the number of strings to process from the input, and then for each string, it initializes a boolean array `alphabet` to keep track of which letters have been seen. It also keeps track of the previous letter position. If at any point it encounters a letter that has already been seen, or if there is a gap in the sequence of letter positions, it prints "No" and moves on to the next string. If it finishes checking the entire string without encountering any problems, it prints "Yes".

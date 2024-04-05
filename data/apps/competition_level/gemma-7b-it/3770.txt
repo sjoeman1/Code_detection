@@ -1,0 +1,35 @@
+```python
+import networkx as nx
+
+# Read input
+n, m = map(int, input().split())
+a = list(map(int, input().split()))
+b = list(map(int, input().split()))
+graph = nx.Graph()
+graph.add_nodes(range(1, n + 1))
+graph.add_edges(list(map(tuple, input().split().repeat(m))))
+
+# Calculate the cost of deleting each vertex
+cost = dict(zip(graph.nodes, a))
+
+# Calculate the score of each connected component
+score = 0
+components = nx.connected_components(graph)
+for component in components:
+    score += abs(sum(b[i] for i in component) - sum(cost[i] for i in component))
+
+# Calculate Snuke's profit
+profit = score - sum(cost.values())
+
+# Print the maximum profit
+print(profit)
+```
+
+**Explanation:**
+
+1. Read input data including the number of vertices `N`, edges `M`, and the costs `A_i` and scores `B_i` for each vertex, as well as the edges `U_i` and `V_i`.
+2. Create a graph `graph` using the `networkx` library.
+3. Calculate the cost of deleting each vertex and store it in the `cost` dictionary.
+4. Calculate the score of each connected component by summing the absolute value of the sum of `B_i` for each vertex in the component minus the sum of `A_i` for each vertex in the component.
+5. Calculate Snuke's profit by summing the score of each connected component minus the total cost of deleting vertices.
+6. Print the maximum profit.

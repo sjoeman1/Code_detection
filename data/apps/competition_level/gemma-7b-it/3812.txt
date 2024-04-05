@@ -1,0 +1,15 @@
+```python
+s, t = input().split()
+n = int(input())
+
+a, b = map(int, s.split())
+c, d = map(int, t.split())
+
+operations = min(abs(a - c), abs(b - d))
+
+print(operations)
+for i in range(operations):
+    print(a, b)
+    a, b = a - 1, b + 1
+
+```

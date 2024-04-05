@@ -1,0 +1,26 @@
+```python
+import sys
+
+n = int(sys.stdin.readline())
+
+c_aa, c_ab, c_ba, c_bb = sys.stdin.readline().split()
+
+a_cnt, b_cnt = 0, 0
+
+for i in c_aa + c_ab + c_ba + c_bb:
+    if i == 'A':
+        a_cnt += 1
+    elif i == 'B':
+        b_cnt += 1
+
+ans = (a_cnt - b_cnt + b_cnt - a_cnt) % (10**9 + 7)
+
+print(ans)
+```
+
+**Explanation:**
+
+- The number of operations to insert a character between the i-th and (i+1)-th characters is equal to the number of characters between the i-th and (i+1)-th characters that are different from the inserted character.
+- Therefore, the number of strings that can be s when Snuke has done the operations is equal to the number of operations to insert the character c_aa, c_ab, c_ba, or c_bb between the i-th and (i+1)-th characters, multiplied by the number of characters that are different from the inserted character.
+- The number of operations to insert a character between the i-th and (i+1)-th characters is equal to the minimum of a_cnt and b_cnt, where a_cnt is the number of characters A in the substring of s between the i-th and (i+1)-th characters, and b_cnt is the number of characters B in the substring of s between the i-th and (i+1)-th characters.
+- Finally, the number of strings that can be s when Snuke has done the operations is equal to the number of operations to insert the character c_aa, c_ab, c_ba, or c_bb between the i-th and (i+1)-th characters, multiplied by the number of characters that are different from the inserted character, modulo (10**9+7).

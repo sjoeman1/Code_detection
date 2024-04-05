@@ -1,0 +1,25 @@
+```python
+n = int(input())
+a = list(map(int, input().split()))
+
+gcd_dict = {}
+for i in a:
+    gcd = gcd_dict.get(i, 0)
+    if gcd:
+        gcd_dict[i] = gcd
+    else:
+        gcd_dict[i] = i
+
+groups = []
+for i in a:
+    gcd_i = gcd_dict[i]
+    if gcd_i == 1:
+        groups.append(i)
+
+if groups:
+    print("YES")
+    print(*groups)
+    print(*[2] * len(groups))
+else:
+    print("NO")
+```

@@ -1,0 +1,33 @@
+```python
+n = int(input())
+f = list(map(int, input().split()))
+
+# Find the two zeros and store their indices
+zeros = [i for i, x in enumerate(f) if x == 0]
+zero_indices = zeros
+
+# Calculate the number of gifts each friend will receive
+nf = []
+for i in range(n):
+    nf.append(f[i] if f[i] else zero_indices[0])
+
+# Print the answer
+print(*nf)
+```
+
+**Explanation:**
+
+- The code reads the number of friends `n` and the list of their gift preferences `f`.
+- It finds the two zeros in the `f` list and stores their indices in `zero_indices`.
+- It calculates the number of gifts each friend will receive `nf` based on their preference and the stored zero indices.
+- Finally, the code prints the `nf` list.
+
+**Time Complexity:**
+
+- The code reads the input in linear time.
+- It searches for the zeros in the `f` list in linear time.
+- The code calculates the number of gifts for each friend in linear time.
+
+**Space Complexity:**
+
+- The code uses a constant amount of space regardless of the input size.

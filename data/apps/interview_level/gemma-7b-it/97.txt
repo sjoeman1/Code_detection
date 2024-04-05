@@ -1,0 +1,19 @@
+```python
+import math
+
+n, m, x, y, v_x, v_y = map(int, input().split())
+
+# Calculate the ball's trajectory
+vx_t = v_x
+vy_t = v_y
+
+# Check if the ball will fall into a pocket
+if abs(vx_t) == abs(v_y):
+    # The ball will fall into a corner pocket
+    pocket_x = int(x)
+    pocket_y = int(y)
+    print(pocket_x, pocket_y)
+else:
+    # The ball will move indefinitely
+    print(-1)
+```

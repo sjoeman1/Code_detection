@@ -1,0 +1,25 @@
+```python
+n, m = map(int, input().split())
+a, b = [int(input().split()) for _ in range(m)]
+
+graph = {i: set() for i in range(n)}
+for i in range(m):
+    graph[a[i]].add(b[i])
+
+dist = {i: float('inf') for i in range(n)}
+dist[0] = 0
+
+queue = [(0, 0)]
+
+for time, station in sorted(queue):
+    if dist[station] != float('inf'):
+        continue
+
+    for neighbor in graph[station]:
+        new_dist = time + 1
+        if new_dist < dist[neighbor]:
+            dist[neighbor] = new_dist
+            queue.append((new_dist, neighbor))
+
+print(*(dist[i] for i in range(n)))
+```

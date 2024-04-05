@@ -1,0 +1,27 @@
+```python
+n, q = map(int, input().split())
+
+l, r = []
+for _ in range(q):
+    l.append(int(input().split()[0]))
+    r.append(int(input().split()[1]))
+
+l.sort()
+r.sort()
+
+ans = 0
+curr = 0
+for i in range(len(l)):
+    if l[i] >= curr:
+        curr = r[i]
+        ans += 1
+
+print(ans)
+```
+
+**Explanation:**
+
+1. Sort the list `l` and `r` in ascending order.
+2. Iterate over the sorted list `l` and keep track of the current section `curr` that has been painted.
+3. If the current section `curr` is greater than or equal to the section `l[i]` being painted, update `curr` to `r[i]` and increment `ans`.
+4. Finally, print `ans`.

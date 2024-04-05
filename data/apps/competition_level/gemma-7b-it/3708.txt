@@ -1,0 +1,39 @@
+```python
+import numpy as np
+
+n, m = map(int, input().split())
+volcano_loc = np.array([[int(x) for x in input().split()] for _ in range(m)])
+
+if not volcano_loc.size:
+    print(-1)
+
+grid_size = np.sqrt(n)
+distance = np.inf * np.ones((int(grid_size), int(grid_size)))
+distance[0][0] = 0
+
+direction = np.array([[1, 0], [0, 1]])
+
+for r in range(grid_size):
+    for c in range(grid_size):
+        if distance[r][c] != np.inf and (r, c) not in volcano_loc.T:
+            for d in direction:
+                new_r, new_c = r + d[0], c + d[1]
+                if 0 <= new_r < grid_size and 0 <= new_c < grid_size and distance[new_r][new_c] == np.inf:
+                    distance[new_r][new_c] = distance[r][c] + 1
+
+min_time = distance[grid_size - 1][grid_size - 1]
+
+if min_time != np.inf:
+    print(min_time)
+else:
+    print(-1)
+```
+
+**Explanation:**
+
+* The code reads the number of rows and columns in the desert and the number of volcanoes.
+* It then reads the coordinates of each volcano.
+* It creates a 2D array called distance to store the minimum time to reach each cell. The distance is initialized to infinity for all cells except cell (1, 1), which is set to 0.
+* The code defines a 2D array called direction to store the possible directions in which Iahub can travel.
+* It iterates over the rows and columns of the desert and calculates the minimum time to reach each cell. It considers the direction in which Iahub can travel and makes sure that he does not go to a cell that is occupied by a volcano.
+* The code stores the minimum time to reach cell (n, n) in min_time. If min_time is infinity, it means that there is no path to the final cell.

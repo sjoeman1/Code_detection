@@ -1,0 +1,14 @@
+```python
+k, a, b = map(int, input().split())
+
+if a + b < k or a + b <= k:
+    print(-1)
+else:
+    print(a // k)
+```
+
+**Explanation:**
+
+* The maximum number of sets that can be played is equal to the number of points scored by Misha divided by k, as each set is won by one point.
+* If the total number of points scored is less than or equal to k, it is impossible to play the required number of sets.
+* Therefore, we check if the total number of points scored is greater than the required number of points to win a set and if it is, we print the maximum number of sets that can be played.

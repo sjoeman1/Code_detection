@@ -1,0 +1,25 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def max\_profit(n, k, a):
+i, j, profit, cur\_sum = 0, 0, 0, 0
+days = [0] * k
+while i < n:
+cur\_sum = max(a[i], cur\_sum)
+profit += cur\_sum
+if (i - j + 1) == k:
+days[j] = i - j + 1
+j += 1
+cur\_sum -= a[j] if j < i else 0
+i += 1
+
+return profit, days
+
+n, k = map(int, input().split())
+a = list(map(int, input().split()))
+profit, days = max\_profit(n, k, a)
+print(profit)
+print(*days)
+```
+
+The solution uses a sliding window approach to keep track of the maximum sum subarray of size `k`. At each step, it updates the current sum, the maximum sum subarray, and the distribution of problems. The function `max_profit` returns the maximum profit and the distribution of problems. Finally, the solution prints the maximum profit and the distribution of problems.

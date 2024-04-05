@@ -1,0 +1,27 @@
+```python3
+a, b = map(int, input().split())
+print(a + b)
+```
+
+**Explanation:**
+
+1. **Read input:** Reads two integers `a` and `b` from the input, separated by a single space.
+2. **Convert to int:** Converts the input to integers using `map(int, input().split())` and stores them in variables `a` and `b`.
+3. **Sum:** Adds `a` and `b` using the `+` operator and prints the result.
+
+**Example Usage:**
+
+```
+python3 solution.py
+5 14
+19
+381 492
+873
+```
+
+**Output:**
+
+```
+19
+873
+```

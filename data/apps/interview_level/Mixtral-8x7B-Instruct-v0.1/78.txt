@@ -1,0 +1,29 @@
+ Here is a Python3 solution using dynamic programming to solve the problem. The idea is to use a 3D array `dp[i][j][k]` to store the number of valid playlists ending with song `i` (0-indexed), with total duration `j`, and the last genre being `k`.
+
+We can iterate over each song and update the `dp` array based on its duration and genre. If the current song's genre is different from the previous genre, we can simply add its contribution to the total duration. Otherwise, we need to skip this song and move on to the next song. The base case is when the total duration is 0, in which case there is only 1 valid playlist (an empty one).
+
+Finally, we can return the sum of `dp[n-1][T][g]` for all valid genres `g` (1-indexed), since we don't care about the last genre of the playlist. Note that we need to take the modulo `10^9 + 7` throughout the computation to avoid overflow.
+
+Here is the Python3 code:
+
+```python
+MOD = 10**9 + 7
+
+def solve(n, T, songs):
+    dp = [[[0] * 4 for _ in range(T+1)] for _ in range(n)]
+    for g in range(1, 4):
+        dp[0][0][g] = 1
+
+    for i, (t, g) in enumerate(songs):
+        for j in range(1, T+1):
+            for k in range(1, 4):
+                if g == k:
+                    dp[i+1][j][k] = dp[i][j][k]
+                else:
+                    dp[i+1][j][k] = (dp[i+1][j][k] + dp[i][j-t][k] + dp[i][j-t][g]) % MOD
+
+    return sum(dp[n-1][T][g] for g in range(1, 4)) % MOD
+
+if __name__ == "__main__":
+    n, T = map(int, input().split())
+    songs = [tuple(

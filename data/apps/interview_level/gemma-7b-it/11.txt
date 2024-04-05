@@ -1,0 +1,41 @@
+```python
+n, a, b, p, q = map(int, input().split())
+
+# Calculate the multiples of a and b
+multiples_a = [i for i in range(1, int(n**0.5) + 1) if i % a == 0]
+multiples_b = [i for i in range(1, int(n**0.5) + 1) if i % b == 0]
+
+# Find the common multiples
+common_multiples = set(multiples_a) & set(multiples_b)
+
+# Count the number of painted tiles
+num_painted = len(common_multiples)
+
+# Calculate the total number of chocolates
+s = p * num_painted + q * (n - num_painted)
+
+# Print the answer
+print(s)
+```
+
+```c++
+long long n, a, b, p, q;
+
+cin >> n >> a >> b >> p >> q;
+
+// Calculate the multiples of a and b
+vector<long long> multiples_a = multiples(n, a);
+vector<long long> multiples_b = multiples(n, b);
+
+// Find the common multiples
+vector<long long> common_multiples = findCommonMultiples(multiples_a, multiples_b);
+
+// Count the number of painted tiles
+long long num_painted = common_multiples.size();
+
+// Calculate the total number of chocolates
+long long s = p * num_painted + q * (n - num_painted);
+
+// Print the answer
+cout << s;
+```

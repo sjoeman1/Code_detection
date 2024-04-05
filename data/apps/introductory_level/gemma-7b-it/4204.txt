@@ -1,0 +1,11 @@
+```python3
+S = input().strip()
+K = int(input())
+
+def transform(s):
+    mapping = {num: str(num * num * num) for num in range(1, 10)}
+    return ''.join([''.join(mapping[num]) for num in s.split()]
+
+s = transform(S)
+print(s[K - 1])
+```

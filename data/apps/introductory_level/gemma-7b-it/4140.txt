@@ -1,0 +1,16 @@
+```python
+n = int(input())
+s = input().strip()
+
+# Count the number of adjacent pairs of tiles with the same color
+num_pairs = 0
+for i in range(n-1):
+    if s[i] == s[i+1]:
+        num_pairs += 1
+
+# Calculate the minimum number of tiles to repaint
+min_repaint = num_pairs
+
+# Print the minimum number of tiles to repaint
+print(min_repaint)
+```

@@ -1,0 +1,56 @@
+
+
+The provided question requires us to determine whether a ball will fall into a pocket or not. If it will, we have to find out which pocket it will fall into. The question provides a diagram with four pockets at the corners of a rectangular table. The ball is initially positioned at a point $(x, y)$ and moves along a line parallel to one of the axes or at a $45^\circ$ angle to them.
+
+To solve this problem, we can use the following Python 3 code:
+
+```
+# Input
+n, m, x, y, v_x, v_y = map(int, input().split())
+
+# Initialize the pocket coordinates
+pockets = [(0, 0), (n, 0), (0, m), (n, m)]
+
+# Check if the ball is moving horizontally
+if v_y == 0:
+    if v_x > 0:
+        # Check if the ball will hit the right pocket
+        if y == 0:
+            print(n, 0)
+        else:
+            print(n, m)
+    else:
+        # Check if the ball will hit the left pocket
+        if y == 0:
+            print(0, 0)
+        else:
+            print(0, m)
+
+# Check if the ball is moving vertically
+elif v_x == 0:
+    if v_y > 0:
+        # Check if the ball will hit the top pocket
+        if x == 0:
+            print(0, m)
+        else:
+            print(n, m)
+    else:
+        # Check if the ball will hit the bottom pocket
+        if x == 0:
+            print(0, 0)
+        else:
+            print(n, 0)
+
+# Check if the ball is moving diagonally
+else:
+    # Calculate the slope and intercept of the ball's trajectory
+    slope = v_y / v_x
+    intercept = y - slope * x
+
+    # Initialize the coordinates of the intersection points
+    x_intersect = None
+    y_intersect = None
+
+    # Check if the ball will hit the left or right pocket
+    if v_x > 0:
+        x

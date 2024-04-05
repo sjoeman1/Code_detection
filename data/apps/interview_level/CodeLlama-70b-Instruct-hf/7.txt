@@ -1,0 +1,29 @@
+
+Here's the Python3 code to solve the question:
+
+```
+def sparrow_eats_grain(n, m):
+    if n == 0:
+        return 1
+    if m == 0:
+        return n
+    day = 1
+    while n > 0:
+        n += m - n
+        n -= day
+        if n < 0:
+            n = 0
+        day += 1
+    return day
+
+
+n, m = map(int, input().split())
+day = sparrow_eats_grain(n, m)
+print(day)
+```
+
+The `sparrow_eats_grain` function takes the inputs `n` and `m`, which represent the capacity of the barn and the number of grains brought each day, respectively. The function checks if `n` is 0, which means the barn is empty from the start. If `n` is 0, it returns 1, as the barn is already empty. If `m` is 0, it means no grains are brought, so the function returns `n`, which is the number of days until the barn is empty.
+
+The function starts with `day` set to 1, representing the first day. While `n` is greater than 0, the number of grains brought is added to the barn, and then the number of sparrows that day is subtracted. If `n` becomes less than 0, it is set to 0, representing an empty barn. The function then increments `day` and repeats the process until `n` is 0.
+
+The inputs `n` and `m` are taken from the user, and the `sparrow_eats_grain` function is called with those inputs. The function returns the number of days until the barn is empty, which is stored in the `day` variable. The `day` variable is then printed.

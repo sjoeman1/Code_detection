@@ -1,0 +1,42 @@
+ Here is a Python3 solution using BFS (Breadth-first search) to find the shortest path from the starting point to the treasure, and then turning enough number of free cells into impassable forests to make the shortest path longer than the total number of cells in the grid.
+
+```python
+import sys
+from collections import deque
+
+def min_turn_to_diamond(n, m, grid):
+    # Find the shortest path using BFS
+    q = deque([(1, 1, 0)])
+    visited = set()
+    while q:
+        x, y, steps = q.popleft()
+        if x == n and y == m:
+            return steps
+        if (x, y) in visited:
+            continue
+        visited.add((x, y))
+        for dx, dy in ((1, 0), (0, 1)):
+            nx, ny = x + dx, y + dy
+            if 0 < nx <= n and 0 < ny <= m and grid[nx - 1][ny - 1] == '.':
+                q.append((nx, ny, steps + 1))
+
+    # If no path is found, return 0
+    return 0
+
+def main():
+    n, m = map(int, input().split())
+    grid = [input() for _ in range(n)]
+    # Calculate the minimum number of cells to turn into impassable forests
+    num_to_turn = min_turn_to_diamond(n, m, grid) - n * m + 1
+    # Print the result
+    print(num_to_turn)
+
+if __name__ == '__main__':
+    main()
+```
+
+The algorithm works as follows:
+
+1. BFS is used to find the shortest path from the starting point to the treasure. The BFS algorithm starts at the starting point, and at each step, it visits the neighboring cells in the grid. When it reaches the treasure, it returns the number of steps taken.
+2. If no path is found, the function `min_turn_to_diamond` returns 0.
+3. The minimum number of cells to turn into impassable

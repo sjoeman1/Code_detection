@@ -1,0 +1,72 @@
+
+
+Here's the Python 3 code for solving the question:
+
+```python
+from math import gcd
+
+for _ in range(int(input())):
+    a, b, c = map(int, input().split())
+    if a == b == c:
+        print(0)
+        print(a, b, c)
+        continue
+
+    gcd_ab = gcd(a, b)
+    gcd_bc = gcd(b, c)
+    gcd_ac = gcd(a, c)
+    if gcd_ab == 1:
+        a, b = b, a
+        gcd_ab = gcd(a, b)
+    if gcd_ab == 1:
+        print(-1)
+        continue
+
+    if gcd_bc == 1:
+        b, c = c, b
+        gcd_bc = gcd(b, c)
+    if gcd_bc == 1:
+        print(-1)
+        continue
+
+    if gcd_ac == 1:
+        a, c = c, a
+        gcd_ac = gcd(a, c)
+    if gcd_ac == 1:
+        print(-1)
+        continue
+
+    if a % gcd_ab != 0 or b % gcd_ab != 0 or c % gcd_bc != 0:
+        print(-1)
+        continue
+
+    if a == b:
+        if c % b == 0:
+            print(0)
+            print(a, b, c)
+            continue
+        else:
+            print(-1)
+            continue
+
+    if b == c:
+        if a % b == 0:
+            print(0)
+            print(a, b, c)
+            continue
+        else:
+            print(-1)
+            continue
+
+    if a == c:
+        if b % a == 0:
+            print(0)
+            print(a, b, c)
+            continue
+        else:
+            print(-1)
+            continue
+
+    # if a < b < c
+    # find the smallest d = b * k such that d % a == 0
+   

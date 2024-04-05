@@ -1,0 +1,21 @@
+
+Here's the Python 3 code for solving this problem:
+
+```python
+def check_balls(balls):
+    balls.sort()
+    for i in range(len(balls) - 2):
+        if balls[i] + 2 >= balls[i+2]:
+            return True
+    return False
+
+n = int(input())
+balls = list(map(int, input().split()))
+
+if check_balls(balls):
+    print("YES")
+else:
+    print("NO")
+```
+
+This code will solve the problem.

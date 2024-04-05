@@ -1,0 +1,33 @@
+```python3
+# Read the input
+n = int(input())
+
+# Check if N can be represented as the product of two integers between 1 and 9
+is_representable = False
+for i in range(1, 10):
+    for j in range(1, 10):
+        product = i * j
+        if product == n:
+            is_representable = True
+
+# Print the result
+if is_representable:
+    print("Yes")
+else:
+    print("No")
+```
+
+**Explanation:**
+
+* The code reads the input integer `N`.
+* It iterates over the range `(1, 10)` for `i` and `j`, calculating the product `product = i * j`.
+* If the product is equal to `N`, it sets `is_representable` to `True`.
+* Finally, it prints "Yes" if `is_representable` is `True`, otherwise prints "No".
+
+**Time complexity:**
+
+* The code iterates over the range `(1, 10)` twice, so the time complexity is O(100).
+
+**Space complexity:**
+
+* The code uses a constant amount of space, regardless of the input size.

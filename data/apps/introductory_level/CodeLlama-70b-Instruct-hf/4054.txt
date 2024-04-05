@@ -1,0 +1,43 @@
+
+
+Here is the Python3 code to solve the problem:
+
+```python
+# input
+n = int(input())
+q = list(map(int, input().split()))
+
+# compute the p_1
+p_1 = sum(q) + n
+
+# check if p_1 is not in the range [1, n]
+if p_1 < 1 or p_1 > n:
+    print(-1)
+    exit(0)
+
+# compute the p_2
+p_2 = p_1 - q[0]
+
+# check if p_2 is not in the range [1, n]
+if p_2 < 1 or p_2 > n:
+    print(-1)
+    exit(0)
+
+# compute the rest of the permutation
+p = [p_1, p_2]
+for i in range(1, n - 1):
+    p_next = p[i] - q[i]
+    if p_next < 1 or p_next > n or p_next in p:
+        print(-1)
+        exit(0)
+    p.append(p_next)
+
+# print the permutation
+print(*p)
+```
+
+The code first reads the input values `n` and `q` from the user. It then calculates the value of `p_1` based on the sum of `q` and `n`. It checks if `p_1` is within the range `[1, n]` and if not, it prints `-1` and exits. If `p_1` is within the range, it calculates `p_2` and checks if it is within the range `[1, n]`. If `p_2` is not within the range, it prints `-1` and exits.
+
+If `p_2` is within the range, the code calculates the remaining elements of the permutation `p` by iterating over `q` and calculating `p_next` as `p[i] - q[i]`. If `p_next` is not within the range `[1, n]` or already exists in `p`, it prints `-1` and exits.
+
+If all the calculations are successful, the code prints the permutation `p`.

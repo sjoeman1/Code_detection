@@ -1,0 +1,10 @@
+ Here is a Python3 solution for the problem:
+```python
+def is_regular_bracket_sequence(cnt: list) -> int:
+    # Calculate total number of open and close brackets
+    open_brackets = cnt[0] + cnt[2]
+    close_brackets = cnt[1] + cnt[3]
+
+    # Check if total number of open and close brackets are equal
+    if open_brackets != close_brackets:
+        return 

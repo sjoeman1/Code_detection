@@ -1,0 +1,12 @@
+```python
+n, c0, c1 = map(int, input().split())
+
+# Calculate the minimum cost of each letter
+min_cost = c0 + c1
+
+# Calculate the total cost of the alphabet
+total_cost = n * min_cost
+
+# Print the total cost
+print(total_cost)
+```

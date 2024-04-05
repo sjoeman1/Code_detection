@@ -1,0 +1,26 @@
+ Here is the Python3 code to solve the problem:
+
+```python
+# Read input
+n = int(input())
+files = [input().split() for _ in range(n)]
+
+# Initialize variables
+examples = [f for f, t in files if t == '1']
+regulars = [f for f, t in files if t == '0']
+
+# Create script
+script = ['move %s %d' % (f, i+1) for i, f in enumerate(regulars)]
+script += ['move %s %d' % (f, i+1) for i, f in enumerate(examples)]
+
+# Print minimum number of lines
+print(len(script))
+
+# Print script
+for line in script:
+    print(line)
+```
+
+The code first reads the input and separates the examples and regular tests into two separate lists. It then creates the script by first renaming all regular tests to consecutive integers starting from the end of the list of examples. After that, it renames all examples to consecutive integers starting from 1.
+
+Finally, the code prints the minimum number of lines in the script and the script itself.

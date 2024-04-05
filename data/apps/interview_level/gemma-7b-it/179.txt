@@ -1,0 +1,26 @@
+```python
+n, x, pos = map(int, input().split())
+
+def valid(a, x, pos):
+  return a[pos] == x and BinarySearch(a, x)
+
+def BinarySearch(a, x):
+  left = 0
+  right = len(a) - 1
+  while left < right:
+    middle = (left + right) // 2
+    if a[middle] <= x:
+      left = middle + 1
+    else:
+      right = middle
+  return a[left] == x
+
+res = 0
+for i in range(n + 1):
+  a = list(range(1, i + 1))
+  a[pos] = x
+  if valid(a, x, pos):
+    res += 1
+
+print(res % (10**9 + 7))
+```

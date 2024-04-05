@@ -1,0 +1,31 @@
+```python
+n, m = map(int, input().split())
+s = []
+for _ in range(n):
+    s.append(input().strip())
+
+# Create a grid of free cells
+free = [[True] * m for _ in range(n)]
+
+# Mark cells with forests as impassable
+for r in range(n):
+    for c in range(m):
+        if s[r][c] == "#":
+            free[r][c] = False
+
+# Calculate the minimum number of cells to turn impassable
+k = 0
+for r in range(n):
+    for c in range(m):
+        if free[r][c] and (r, c) != (1, 1) and (r, c) != (n, m):
+            k += 1
+
+print(k)
+```
+
+**Explanation:**
+
+1. **Read input:** Read the size of the island and the island itself, represented by a grid of characters.
+2. **Create a grid of free cells:** Iterate over the island and mark cells with forests as impassable.
+3. **Calculate the minimum number of cells to turn impassable:** Iterate over the island and count the number of free cells that are not $(1, 1)$ or $(n, m)$. This is the minimum number of cells to turn impassable.
+4. **Print the result:** Print the minimum number of cells to turn impassable.

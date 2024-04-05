@@ -1,0 +1,19 @@
+```python
+a = int(input())
+s = str(input())
+
+s_list = list(s)
+b = [[int(s_list[i:i+2]) for i in range(len(s) - 1)]
+
+ans = 0
+for i in range(len(b)):
+    for j in range(len(b[0])):
+        sum = 0
+        for k in range(i, len(b)):
+            for l in range(j, len(b[0])):
+                sum += b[k][l]
+        if sum == b[i][j]:
+            ans += 1
+
+print(ans)
+```

@@ -1,0 +1,13 @@
+```python
+n = int(input())
+s = input().strip()
+
+ stones = 0
+for i in range(n):
+    if s[i] == '-':
+        stones -= 1
+    else:
+        stones += 1
+
+print(stones)
+```

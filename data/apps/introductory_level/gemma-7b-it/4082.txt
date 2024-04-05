@@ -1,0 +1,25 @@
+```python
+n = int(input())
+a = list(map(int, input().split()))
+
+# Calculate the maximum length of the increasing subarray
+# using Kadane's algorithm
+max_length = 1
+curr_length = 1
+for i in range(1, n):
+    for j in range(i):
+        if a[j] < a[i]:
+            curr_length = max(curr_length, 1 + max_length)
+    max_length = max(max_length, curr_length)
+
+# Print the maximum length of the increasing subarray
+print(max_length)
+```
+
+**Explanation:**
+
+* The algorithm calculates the maximum length of the increasing subarray using Kadane's algorithm.
+* The algorithm iterates over the array and maintains a current length of the increasing subarray.
+* The current length is updated if the length of the increasing subarray is greater than the current length.
+* The maximum length of the increasing subarray is updated if the current length is greater than the maximum length.
+* Finally, the maximum length of the increasing subarray is printed.

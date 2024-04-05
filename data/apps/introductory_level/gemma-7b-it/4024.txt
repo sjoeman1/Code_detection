@@ -1,0 +1,37 @@
+```python
+n, k = map(int, input().split())
+s = input().lower()
+
+# Calculate the prefix sum of the character counts
+ps = []
+s_dict = {}
+for i in range(n):
+    s_dict[s[i]] = s_dict.get(s[i], 0) + 1
+    ps.append(s_dict[s[i]] - 1)
+
+# Find the minimum cost
+min_cost = float('inf')
+for i in range(k):
+    if ps[i] >= 0:
+        min_cost = min(min_cost, i + ps[i])
+
+# Print the result
+if min_cost == float('inf'):
+    print -1
+else:
+    print min_cost
+```
+
+**Explanation:**
+
+1. **Calculate the prefix sum of character counts:** We need to know the number of occurrences of each character in the string. To do this, we calculate the prefix sum of character counts.
+2. **Find the minimum cost:** For each character, we can delete it and add the character count to the set. To minimize the cost, we need to find the minimum cost of deleting the characters that are necessary to add to the set. This cost is the minimum of the current position of the character and the character count.
+3. **Print the result:** If it is impossible to obtain the set of size $k$, we print -1. Otherwise, we print the minimum cost.
+
+**Time complexity:**
+
+The time complexity of this algorithm is O(n) where n is the length of the string.
+
+**Space complexity:**
+
+The space complexity of this algorithm is O(n) where n is the length of the string.

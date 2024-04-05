@@ -1,0 +1,34 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n, m, d = map(int, input().split())
+c = list(map(int, input().split()))
+
+platforms = [0] + [sum(c[:i]) for i in range(1, m+1)] + [n+1]
+
+dp = [0] * (m+1)
+dp[-1] = 1
+for i in range(m, -1, -1):
+    for j in range(1, d+1):
+        if i+j < m+1 and platforms[i+j] - platforms[i] <= d:
+            dp[i] |= dp[i+j]
+
+if dp[0]:
+    a = [0] * (n+1)
+    i = 0
+    for j in range(1, m+1):
+        if dp[j]:
+            for k in range(platforms[j], platforms[j+1]):
+                a[k] = j
+            i = platforms[j+1]
+    print('YES')
+    print(''.join(map(str, a[1:])))
+else:
+    print('NO')
+```
+
+The solution uses dynamic programming to determine if it is possible to reach the right bank of the river. The `dp` array stores whether it is possible to reach the `i`-th platform from the right bank of the river. The `platforms` array stores the starting and ending positions of each platform.
+
+The solution iterates over the platforms from right to left and for each platform, it checks if it is possible to reach it from any of the platforms to its right by jumping a distance of at most `d`. If it is possible, then the current platform can be reached as well.
+
+If it is possible to reach the left bank of the river (i.e., `dp[0]` is `True`), then the solution constructs the array `a` by iterating over the platforms from left to right and filling in the corresponding indices of the platforms in `a`. Finally, the solution prints `YES` and the array `a` (excluding the first element, which is always `0`). Otherwise, it prints `NO`.

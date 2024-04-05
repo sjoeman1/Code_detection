@@ -1,0 +1,13 @@
+```python
+n, k = map(int, input().split())
+
+# Create a list to store the number of stones on each manhole
+stones = list(int(input().split()) for _ in range(n))
+
+# Calculate the minimum number of moves
+moves = stones[k - 1] + 1  # Move to the first stone on the k-th manhole
+moves += sum(stones[0:k - 1])  # Pick up all stones from the first k - 1 manholes
+moves += sum(stones[k - 1:])  # Pick up all stones from the remaining manholes
+
+print(moves)
+```

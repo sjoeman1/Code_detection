@@ -1,0 +1,23 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n = int(input())
+lights = list(map(int, input().split()))
+
+# Initialize the count of disturbed people
+disturbed = 0
+
+# Iterate over the lights, excluding the first and last ones
+for i in range(1, n-1):
+    # Check if the current flat is dark and the adjacent ones are bright
+    if lights[i] == 0 and lights[i-1] == 1 and lights[i+1] == 1:
+        # If so, increment the count of disturbed people
+        disturbed += 1
+
+# Print the minimum number of lights that need to be turned off
+print(disturbed)
+```
+
+This solution works by iterating over the array of lights, excluding the first and last ones. For each light, it checks if the current flat is dark and the adjacent ones are bright. If so, it increments the count of disturbed people. Finally, it prints the minimum number of lights that need to be turned off, which is equal to the count of disturbed people.
+
+Note that this solution assumes that the input is valid and does not contain any error handling or input validation.

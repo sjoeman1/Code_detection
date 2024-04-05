@@ -1,0 +1,25 @@
+```python3
+n = int(input())
+a = list(map(int, input().split()))
+
+# Check if all possible values of x and y contradict with the information about your path
+if not (all((a[i] == a[i - 1] + y(i - 1) for i in range(1, n)) and all((a[i] == a[i] + 1) or (a[i] == a[i] - 1) for i in range(n))):
+    print("NO")
+else:
+    print("YES")
+    x, y = solve(a)
+    print(x)
+    print(y)
+```
+
+```python3
+def solve(a):
+    n = len(a)
+    mx = a[0]
+    my = a[0] // n
+    for i in range(1, n):
+        if a[i] - a[i - 1] == 1:
+            mx = max(mx, i)
+            my = min(my, i // n)
+    return mx, my
+```

@@ -1,0 +1,24 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n = int(input())
+a = list(map(int, input().split()))
+
+left, right = 0, 0
+for i in range(n):
+    if i > 0:
+        left = max(left, a[i-1])
+    if i < n-1:
+        right = max(right, a[i+1])
+    if a[i] < left or a[i] < right:
+        print("NO")
+        exit()
+
+print("YES")
+```
+
+The solution works by checking if there is any part of the wall that is lower than its neighboring parts. If such a part is found, then Vova cannot complete the wall. Otherwise, Vova can complete the wall by adding bricks to the parts that have the same height as their neighbors.
+
+The variable `left` keeps track of the maximum height of the left neighboring part, and the variable `right` keeps track of the maximum height of the right neighboring part. For each part of the wall, the solution checks if its height is less than the maximum height of its left and right neighboring parts. If it is, then Vova cannot complete the wall.
+
+If the solution does not find any part of the wall that is lower than its neighboring parts, then it prints "YES" to indicate that Vova can complete the wall.

@@ -1,0 +1,23 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def gcd(a, b):
+    while b:
+        a, b = b, a % b
+    return a
+
+def make_resistor(a, b):
+    if gcd(a, b) != 1:
+        a, b = a // gcd(a, b), b // gcd(a, b)
+    if a == 1:
+        return b
+    res = a // b + 1
+    a = a - res * b
+    return make_resistor(a, b) + res
+
+a, b = map(int, input().split())
+result = make_resistor(a, b)
+print(result)
+```
+
+The `gcd` function calculates the greatest common divisor of two numbers. The `make_resistor` function calculates the minimum number of resistors required to make a resistor with resistance `a/b`. It first simplifies the fraction by dividing both `a` and `b` by their greatest common divisor. If `a` is 1, it returns `b` because a resistor with unit resistance `R_0` is already available. Otherwise, it calculates the resistance of the resistor to be added to the existing resistors. It then recursively calls the `make_resistor` function with the new values of `a` and `b`. The result is the sum of the resistors required for the previous resistors and the resistor to be added.

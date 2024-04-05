@@ -1,0 +1,50 @@
+ Here is a possible Python3 solution for the problem:
+
+```python
+import heapq
+
+def min_blows(n, x, d, h):
+    # Create a heap to store the types of blows
+    heap = [(d[i], -h[i]) for i in range(n)]
+    heapq.heapify(heap)
+
+    # Count the number of blows
+    count = 0
+    while x > 0:
+        # Get the type of blow with the smallest d and largest h
+        d_, h_ = heapq.heappop(heap)
+        
+        # Calculate the new number of heads
+        new_x = max(0, x - d_)
+        
+        # Update the number of heads that the current blow can decrease
+        if new_x > 0:
+            d_[0] = min(d_[0], new_x)
+            
+        # Update the heap
+        heapq.heappush(heap, (d_, -h_))
+        
+        # Increase the number of blows
+        count += 1
+        
+        # Update the number of heads
+        x = new_x + h_
+        
+    # If all the heads are defeated, return the number of blows
+    if x == 0:
+        return count
+    # Otherwise, return -1
+    else:
+        return -1
+
+t = int(input().strip())
+for _ in range(t):
+    n, x = map(int, input().strip().split())
+    d = list(map(int, input().strip().split()))
+    h = list(map(int, input().strip().split()))
+    print(min_blows(n, x, d, h))
+```
+
+This solution uses a min-heap to store the types of blows. At each step, it pops the type of blow with the smallest `d` and the largest `h`, and updates the number of heads that the current blow can decrease. It then pushes the updated blow back to the heap and increments the number of blows. The process continues until all the heads are defeated or the number of heads becomes negative. In the latter case, the function returns -1.
+
+The time complexity of this solution is

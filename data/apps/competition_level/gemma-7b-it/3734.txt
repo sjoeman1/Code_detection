@@ -1,0 +1,28 @@
+```python
+import calendar
+
+def check_days(day1, day2):
+    # Create a dictionary to store the days of the week
+    days_dict = {"monday": 1, "tuesday": 2, "wednesday": 3, "thursday": 4, "friday": 5, "saturday": 6, "sunday": 7}
+
+    # Get the number of the first day of the month for the given year
+    month_start = calendar.monthrange(2023, 1)[0]
+
+    # Check if the first day of the month is equal to day1
+    if days_dict[day1] == month_start:
+        # Get the number of the first day of the next month
+        next_month_start = calendar.monthrange(2023, 2)[0]
+
+        # Check if the first day of the next month is equal to day2
+        if days_dict[day2] == next_month_start:
+            return "YES"
+
+    return "NO"
+
+# Read the input
+day1 = input().lower()
+day2 = input().lower()
+
+# Check if the desired situation is possible
+print(check_days(day1, day2))
+```

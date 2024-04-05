@@ -1,0 +1,16 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def max_smallest_piece(n, m, k):
+    if k >= n*m or k%2 == 0 or (n*m-k)%2 == 1:
+        return -1
+    return (n*m - k) ** 2 // (4*k)
+
+if __name__ == '__main__':
+    n, m, k = map(int, input().split())
+    print(max_smallest_piece(n, m, k))
+```
+
+The solution is based on the observation that the smallest piece will always be a 2x2 square, and that the cuts will divide the chocolate into groups of squares. The formula `(n*m - k) ** 2 // (4*k)` calculates the maximum number of 2x2 squares that can be created by making `k` cuts on a `n`x`m` chocolate bar.
+
+The function `max_smallest_piece` returns -1 if it's impossible to cut the chocolate into the required number of pieces, or if the number of cuts is even or if the number of cuts is not a multiple of the number of squares in the smallest piece.

@@ -1,0 +1,54 @@
+ Here is a solution using Python 3 that you can use to solve the problem:
+
+```python
+import sys
+from collections import defaultdict
+
+def solve():
+    n = int(input().strip())
+    edges = defaultdict(list)
+    for i in range(n-1):
+        a, b = map(int, input().strip().split())
+        edges[a].append(b)
+        edges[b].append(a)
+
+    # Perform a depth-first search from node 1
+    visited = set()
+    stack = [1]
+    parent = {1: None}
+    while stack:
+        node = stack.pop()
+        visited.add(node)
+        for neighbor in edges[node]:
+            if neighbor not in visited:
+                parent[neighbor] = node
+                stack.append(neighbor)
+
+    # Find the leaf node that is farthest from node 1
+    leaf = max(set(range(1, n+1)) - set(parent.keys()), key=lambda x: depth(x))
+    # Find the nearest common ancestor of nodes leaf and n
+    ancestor = ancestor(leaf, n)
+
+    print(depth(leaf) + depth(n) + 1)
+    print(1, n, ancestor)
+
+def depth(node, current_depth=0, parent=None):
+    if parent is None:
+        parent = 1
+    for neighbor in edges[node]:
+        if neighbor != parent:
+            return 1 + depth(neighbor, current_depth+1, node)
+    return current_depth
+
+def ancestor(node1, node2):
+    while node1 != node2:
+        if depth(node1) > depth(node2):
+            node1 = parent[node1]
+        else:
+            node2 = parent[node2]
+    return node1
+
+solve()
+```
+
+This solution first performs a depth-first search from node 1 to compute the depth of each node and to build the `parent` dictionary that maps each node to its parent in the tree. Then, it finds the leaf node that is farthest from node 1 and computes the nearest common ancestor of the leaf

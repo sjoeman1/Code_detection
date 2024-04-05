@@ -1,0 +1,35 @@
+```python
+n, k = map(int, input().split())
+k_base = int(input())
+
+# Calculate the minimum decimal number to get k in the system with base n
+x = 0
+base = 1
+while k // base:
+    digit = k // base
+    k %= base
+    x += digit * base**(base-1)
+    base *= n
+
+print(x)
+```
+
+**Explanation:**
+
+* The program reads the number of base n and the number k.
+* It calculates the minimum decimal number x that will get k in the system with base n.
+* It iteratively calculates the digits of x, starting from the highest digit.
+* For each digit, it calculates the product of the digit with the base raised to the power of the number of digits that have already been calculated.
+* The product is added to x.
+* The program stops when the number of digits in k has been calculated.
+* The final value of x is printed.
+
+**Time complexity:**
+
+* The program calculates the number of digits in k, which takes O(k) time.
+* It then iterates over the digits of k, which takes O(k) time.
+* Therefore, the overall time complexity is O(k).
+
+**Space complexity:**
+
+* The program uses a constant amount of space regardless of the size of the input.

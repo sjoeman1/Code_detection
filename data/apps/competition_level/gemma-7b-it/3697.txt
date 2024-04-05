@@ -1,0 +1,34 @@
+```python
+n, k, m, a = map(int, input().split())
+g = list(map(int, input().split()))
+
+# Calculate the number of votes for each candidate
+votes = {}
+for i in range(a):
+    votes[g[i]] += 1
+
+# Sort candidates by number of votes, then time of last vote
+candidates = sorted(votes.keys(), key=lambda candidate: (-votes[candidate], candidate))
+
+# Determine the outcome for each candidate
+outcomes = []
+for i in range(n):
+    if votes[candidates[i]] >= k:
+        outcomes.append(1)
+    elif votes[candidates[i]] == k - 1:
+        outcomes.append(2)
+    else:
+        outcomes.append(3)
+
+# Print the outcomes
+print(*outcomes)
+```
+
+**Explanation:**
+
+* The code reads the input data, including the number of candidates, seats in the parliament, the number of Berland citizens, and the number of citizens who already voted.
+* It then reads the sequence of votes for each citizen.
+* It calculates the number of votes for each candidate and stores it in the `votes` dictionary.
+* The candidates are sorted by the number of votes, then by the time of last vote.
+* The outcome for each candidate is determined based on whether they have enough votes to be elected, or if they have a chance to be elected.
+* The outcomes are printed.

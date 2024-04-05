@@ -1,0 +1,26 @@
+```python
+def isIsomorphic(s, t):
+    # Create a dictionary to store the character mappings
+    mappings = {}
+    for i in s:
+        if i not in mappings:
+            mappings[i] = 0
+        mappings[i] += 1
+
+    for i in t:
+        if i not in mappings:
+            mappings[i] = 0
+        mappings[i] -= 1
+
+    # Check if the character mappings are equal
+    return all(mappings[c] == mappings[c'] for c, c' in zip(mappings.keys(), mappings.values()))
+
+
+s = input().lower()
+t = input().lower()
+
+if isIsomorphic(s, t):
+    print("Yes")
+else:
+    print("No")
+```

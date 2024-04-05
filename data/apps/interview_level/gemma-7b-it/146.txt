@@ -1,0 +1,9 @@
+```python
+n, k = map(int, input().split())
+a = list(map(int, input().split()))
+
+s = sum(a)
+e = sum(a) - sum(a[::k])
+
+print(abs(e - s))
+```

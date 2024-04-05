@@ -1,0 +1,13 @@
+```python3
+n = int(input())
+v = list(map(int, input().split()))
+
+# Check if the sequence is already /\/\/\/
+is_valid = (len(set(v)) == 2) and all(v[i] == v[i+2] for i in range(len(v) - 2))
+
+# If the sequence is not valid, find the minimum number of elements to replace
+min_replace = min(set(v) - set(v[2::2]))
+
+# Print the minimum number of elements to replace
+print(min_replace)
+```

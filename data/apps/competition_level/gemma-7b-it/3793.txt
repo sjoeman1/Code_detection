@@ -1,0 +1,30 @@
+```python
+import sys
+
+def solve():
+    n = int(sys.stdin.readline())
+    if n == 0:
+        print("NO")
+        return
+
+    lines = []
+    for _ in range(n):
+        lines.append(list(map(int, sys.stdin.readline().strip().split(" "))))
+
+    # Check if the input is valid
+    valid = True
+    for line in lines:
+        if len(line) != 3 or any(abs(x) > 1e6 for x in line):
+            valid = False
+
+    # If input is valid, find a solution
+    if valid:
+        for i in range(n):
+            print(" ".join(str(sorted(line[0:3])) + "\n")
+        print("YES")
+    else:
+        print("NO")
+
+
+solve()
+```

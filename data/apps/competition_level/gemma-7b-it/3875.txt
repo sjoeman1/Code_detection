@@ -1,0 +1,18 @@
+```python
+import random
+
+n = int(input())
+a = list(map(int, input().split()))
+
+# Calculate the expected length of the longest increasing subsequence
+expected_length = 0
+for i in range(n):
+    a_i = int(a[i])
+    expected_length += a_i - 1
+
+# Calculate the modulo of the expected length
+expected_length %= 1000000007
+
+# Print the expected length
+print(expected_length)
+```

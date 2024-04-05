@@ -1,0 +1,24 @@
+
+Here is the Python 3 code for solving the problem:
+
+```python
+def find_winner(n):
+    if n % 4 == 0:
+        return "Petya"
+    else:
+        return "Vasya"
+
+if __name__ == "__main__":
+    n = int(input())
+    winner = find_winner(n)
+    print(winner)
+```
+
+This code works as follows:
+
+*   It defines a function `find_winner(n)` that takes the number `n` as input.
+*   Inside the function, if `n` is a multiple of 4, it returns "Petya" as the winner because in this case, Petya can always choose the second number and win.
+*   If `n` is not a multiple of 4, it returns "Vasya" as the winner because in this case, Vasya can always choose the first number and win.
+*   Finally, the main part of the code takes the input `n` from the user and calls the `find_winner(n)` function to find the winner.
+
+This code should provide the correct output for the given problem.

@@ -1,0 +1,33 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def min\_seconds(n, pos, l, r):
+if l == 1 and r == n:
+return 0
+
+# Initialize the number of closed tabs to the left and right of the cursor
+left, right = 0, 0
+if l > 1:
+left = l - 1
+if r < n:
+right = n - r
+
+# Move the cursor to the leftmost or rightmost unclosed tab
+if pos < l:
+pos = l - left
+elif pos > r:
+pos = r + right
+
+# Compute the minimum number of seconds required to close all the tabs outside the segment [l, r]
+return pos - l + r - pos + max(left, right)
+
+# Read the input
+n, pos, l, r = map(int, input().split())
+
+# Print the result
+print(min\_seconds(n, pos, l, r))
+```
+
+The solution is based on the observation that Luba can always move the cursor to the leftmost or rightmost unclosed tab (i.e., the tab with the smallest or largest index that is not yet closed) without wasting any time. Once the cursor is at the leftmost or rightmost unclosed tab, Luba can close all the tabs to the left or to the right of the cursor, respectively, in one second. Therefore, the minimum number of seconds required to close all the tabs outside the segment [l, r] is equal to the distance between the current position of the cursor and the left endpoint of the segment [l, r], plus the distance between the current position of the cursor and the right endpoint of the segment [l, r], plus the maximum number of tabs that need to be closed to the left or to the right of the cursor, whichever is greater.
+
+The solution first initializes the number of closed tabs to the left and right of the cursor, and then moves the cursor to the leftmost or rightmost unclosed tab, depending on its current position. Finally, the solution computes and prints the minimum number of seconds required to close all the tabs outside the segment [l, r].

@@ -1,0 +1,38 @@
+```python
+n, m = map(int, input().split())
+
+# Create a graph to represent the friendships
+graph = {i: set() for i in range(1, n + 1)}
+for u, v in map(int, input().split()):
+    graph[u].add(v)
+    graph[v].add(u)
+
+# Calculate the minimum number of steps
+steps = 0
+visited = set()
+
+# Iterate over the graph to find the minimum number of steps
+for i in range(1, n + 1):
+    if i not in visited:
+        bfs(i, graph, visited)
+        steps += 1
+
+# Print the minimum number of steps and the guests selected at each step
+print(steps)
+print(visited)
+```
+
+**Explanation:**
+
+- The code reads the input, creates a graph to represent the friendships, and calculates the minimum number of steps required to make all pairs of guests friends.
+- The code uses a set called visited to keep track of the guests who have already been visited.
+- The code iterates over the graph to find the minimum number of steps, visiting each guest only once.
+- The code calculates the minimum number of steps and prints the guests selected at each step.
+
+**Time complexity:**
+
+- The code iterates over the graph only once, so the time complexity is O(n) where n is the number of guests.
+
+**Space complexity:**
+
+- The code uses a set of size n, so the space complexity is O(n).

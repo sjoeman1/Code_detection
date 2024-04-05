@@ -1,0 +1,21 @@
+```python
+n = int(input())
+k1 = int(input())
+k1_cards = list(map(int, input().split()))
+k2 = int(input())
+k2_cards = list(map(int, input().split()))
+
+# Calculate the number of fights
+num_fights = k1 + k2 - 1
+
+# Check if the game will end
+if sum(k1_cards) != sum(k2_cards):
+  # Game won't end
+  print(-1)
+else:
+  # Calculate the winner
+  winner = 2 if sum(k1_cards) - sum(k2_cards) > 0 else 1
+
+  # Print the number of fights and the winner
+  print(num_fights, winner)
+```

@@ -1,0 +1,52 @@
+```python
+n = int(input())
+s = input().strip()
+
+# Create a dictionary to store the denied employees for each side
+denied_depublicans = set()
+denied_remocrats = set()
+
+# Track whether an employee has already made their statement
+made_statements = set()
+
+# Store the order in which employees will make their statements
+statement_order = []
+
+# Store the outcome of the vote
+outcome = None
+
+# Loop over the employees in the order they will make their statements
+for i in range(n):
+    statement_order.append(i)
+
+# Loop over the employees making their statements
+for i in statement_order:
+    # If the employee has already made their statement or is denied, they skip their turn
+    if i in made_statements or i in denied_depublicans or i in denied_remocrats:
+        continue
+
+    # Get the employee's faction
+    faction = s[i]
+
+    # If the employee is from the depublicans faction, they deny the vote of an employee from the remocrats faction
+    if faction == 'D':
+        remocrat_to_deny = statement_order[i - 1]
+        denied_remocrats.add(remocrat_to_deny)
+
+    # If the employee is from the remocrats faction, they deny the vote of an employee from the depublicans faction
+    elif faction == 'R':
+        democrat_to_deny = statement_order[i - 1]
+        denied_depublicans.add(democrat_to_deny)
+
+    # Mark that the employee has made their statement
+    made_statements.add(i)
+
+# Once all employees have made their statements, the remaining employee votes
+if statement_order[-1] not in denied_depublicans:
+    outcome = 'D'
+else:
+    outcome = 'R'
+
+# Print the outcome of the vote
+print(outcome)
+```

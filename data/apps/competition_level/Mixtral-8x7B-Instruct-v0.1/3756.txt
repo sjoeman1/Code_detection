@@ -1,0 +1,37 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n, t = map(int, input().split())
+grade = input()
+
+# Initialize the maximum grade and the current position
+max_grade = grade
+curr_pos = n - 2
+
+# Loop through the remaining seconds
+for _ in range(t):
+    # If the current position is already the most significant digit after the decimal point, break
+    if curr_pos == -1:
+        break
+
+    # Get the current digit and the next digit
+    digit, next_digit = int(grade[curr_pos + 1]), int(grade[curr_pos + 2])
+
+    # If the next digit is 5 or more, increment the current digit and set the next digits to 0
+    if next_digit >= 5:
+        grade = grade[:curr_pos + 1] + str(digit + 1) + '0' * (n - curr_pos - 2)
+        max_grade = max(max_grade, grade)
+
+    # If the next digit is less than 5, just set the next digits to 0
+    else:
+        grade = grade[:curr_pos + 1] + '0' * (n - curr_pos - 1)
+
+    # Move to the next position
+    curr_pos -= 1
+
+print(max_grade)
+```
+
+This solution works by iterating through the remaining seconds and rounding the grade appropriately. At each step, we check if the next digit is 5 or more, and if so, we increment the current digit and set the next digits to 0. If the next digit is less than 5, we simply set the next digits to 0. We also keep track of the maximum grade we have seen so far, and print it at the end.
+
+This solution has a time complexity of O(t), where t is the number of remaining seconds, since we iterate through the remaining seconds once. The space complexity is O(n), where n is the length of the grade, since we store the grade as a string.

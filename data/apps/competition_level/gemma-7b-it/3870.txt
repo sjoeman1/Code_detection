@@ -1,0 +1,24 @@
+```python3
+n, m = map(int, input().split())
+
+j_cards = []
+for _ in range(n):
+    position, strength = input().split()
+    j_cards.append({"position": position, "strength": int(strength)})
+
+c_cards = [int(strength) for strength in input().split()]
+
+c_cards.sort()
+
+damage = 0
+for card in c_cards:
+    if card not in used_cards:
+        used_cards.append(card)
+        if j_cards[0]["position"] == "ATK":
+            damage += card - j_cards[0]["strength"]
+        elif j_cards[0]["position"] == "DEF":
+            damage += card - j_cards[0]["strength"]
+            j_cards.pop(0)
+
+print(damage)
+```

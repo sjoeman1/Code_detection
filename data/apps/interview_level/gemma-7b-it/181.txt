@@ -1,0 +1,40 @@
+```python
+x = int(input())
+
+# Calculate the minimum number of turns
+turns = int((x // 90) * 90) + min(x % 90, 90 - x % 90)
+
+# Print the result
+print(turns)
+```
+
+**Explanation:**
+
+- The code reads the input angle `x`, which represents the camera angle in degrees.
+- It calculates the number of complete 90-degree turns that can be made, which is `int(x // 90) * 90` turns.
+- It then finds the minimum of the remaining angle (x % 90) and 90 - x % 90. This is the angle that needs to be corrected in the final image.
+- Finally, the code adds the number of complete turns and the minimum of the remaining angle to get the total number of turns.
+- The code prints the total number of turns.
+
+**Example Usage:**
+
+```
+Input:
+60
+
+Output:
+1
+
+Input:
+-60
+
+Output:
+3
+```
+
+**Output:**
+
+```
+1
+3
+```

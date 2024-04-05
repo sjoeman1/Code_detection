@@ -1,0 +1,30 @@
+```python
+import networkx as nx
+
+n, m = map(int, input().split())
+x = int(input())
+
+G = nx.Graph()
+G.add_nodes(range(1, n + 1))
+for i in range(m):
+    u, v, w = map(int, input().split())
+    G.add_edge(u, v, weight=w)
+
+T = nx.spanning_tree(G)
+w_t = sum(T.edges["weight"])
+
+ans = 0
+if w_t - x >= 0:
+    ans = (w_t - x) // x + 1
+
+print(ans)
+```
+
+**Explanation:**
+
+- The code reads the input and creates a graph G.
+- It then calculates a spanning tree T of G.
+- The weight of T is stored in w_t.
+- If w_t - x is greater than or equal to 0, it means that there is a way to paint the edges such that the condition is met.
+- The number of ways to paint the edges is calculated as (w_t - x) // x + 1.
+- The answer is printed.

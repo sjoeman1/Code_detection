@@ -1,0 +1,6 @@
+ Here is a Python3 solution for the problem:
+```python
+n = int(input())
+segments = []
+for i in range(n):
+    l, r = map(int, input().split())

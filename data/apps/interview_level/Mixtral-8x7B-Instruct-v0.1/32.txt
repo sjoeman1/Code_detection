@@ -1,0 +1,29 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n = int(input())
+x, y = 0, 0 # current position
+for _ in range(n):
+    t, d = map(str, input().split())
+    t = int(t)
+    if d == 'South':
+        if y == 0:
+            print('NO')
+            exit()
+        y -= t
+    elif d == 'North':
+        if y == 20000:
+            print('NO')
+            exit()
+        y += t
+    elif d == 'East':
+        x += t
+    elif d == 'West':
+        x -= t
+if x != 0 or y != 0:
+    print('NO')
+else:
+    print('YES')
+```
+
+The code first reads the number of instructions `n` and initializes the current position `x, y` to `0, 0` which corresponds to the North Pole. Then, for each instruction, it reads the length `t` and direction `d` and updates the current position accordingly. If the direction is 'South' and the current position is already on the North Pole, it prints 'NO' and exits the program. Similarly, if the direction is 'North' and the current position is already on the South Pole, it prints 'NO' and exits the program. If the direction is 'East' or 'West', it simply updates the current position `x`. At the end, if the current position is not equal to `0, 0`, it prints 'NO', otherwise 'YES'.

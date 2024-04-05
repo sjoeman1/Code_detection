@@ -1,0 +1,31 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n, k = map(int, input().split())
+x = input()
+
+# Calculate the length of the repeating pattern
+pattern_len = (n - 1) // k + 1
+
+# Calculate the number of digits in the result
+m = (len(x) - 1) % k + pattern_len
+
+# Calculate the repeating pattern
+pattern = x[-pattern_len:]
+
+# Extend the pattern if necessary
+pattern = pattern * ((n - 1) % k + 1)
+
+# Check if the pattern needs to be shifted
+if (n - 1) % k >= 0:
+    pattern = pattern[k - (n - 1) % k:]
+
+# Add leading zeros if necessary
+x = pattern.zfill(m)
+
+# Print the result
+print(m)
+print(x)
+```
+
+The solution first calculates the length of the repeating pattern of digits based on the value of `k`. It then calculates the number of digits in the result `m` and calculates the repeating pattern itself. If the pattern needs to be shifted to the right, it does so. Finally, it adds leading zeros if necessary and prints the result.

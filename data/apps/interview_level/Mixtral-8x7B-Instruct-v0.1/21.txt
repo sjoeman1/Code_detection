@@ -1,0 +1,31 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n = int(input())
+a = list(map(int, input().split()))
+
+# Find the index of the minimum and maximum elements
+min_index = a.index(1)
+max_index = a.index(n)
+
+# Calculate the distance between the minimum and maximum elements
+distance = abs(min_index - max_index)
+
+# Perform the swap to maximize the distance
+if min_index < max_index:
+    a[min_index], a[max_index - 1] = a[max_index - 1], a[min_index]
+else:
+    a[min_index], a[max_index + 1] = a[max_index + 1], a[min_index]
+
+# Calculate the new distance between the minimum and maximum elements
+new_distance = abs(a.index(1) - a.index(n))
+
+# Print the maximum possible distance
+print(max(distance, new_distance))
+```
+
+The solution first reads the input values and finds the index of the minimum and maximum elements in the array. It then calculates the initial distance between the minimum and maximum elements.
+
+To maximize the distance, the solution swaps the minimum element with the element immediately before or after the maximum element, depending on the initial positions of the minimum and maximum elements.
+
+Finally, the solution calculates the new distance between the minimum and maximum elements and prints the maximum of the initial and new distances.

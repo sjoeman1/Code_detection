@@ -1,0 +1,20 @@
+```python
+b_1, q, l, m = map(int, input().split())
+a = list(map(int, input().split()))
+
+# Calculate the number of terms that can be written
+def count_terms(b_1, q, l):
+    # Calculate the maximum number of terms
+    max_terms = int((l - b_1) // q) + 1
+
+    # If the number of terms is finite, return the number of terms
+    if max_terms is not None:
+        return max_terms
+
+    # Otherwise, return "inf"
+    else:
+        return "inf"
+
+# Print the number of terms that can be written
+print(count_terms(b_1, q, l))
+```

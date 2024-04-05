@@ -1,0 +1,16 @@
+```python
+n, k = map(int, input().split())
+s = input().strip()
+
+c = 0
+for i in range(n):
+    if s[i] == '1':
+        c += i + 1
+
+r = 0
+for i in range(n):
+    if s[i] == '1':
+        r += max(1, i - k)
+
+print(c + r)
+```

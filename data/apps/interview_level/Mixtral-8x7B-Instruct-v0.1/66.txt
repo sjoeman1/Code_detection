@@ -1,0 +1,27 @@
+ Here is a Python3 solution for the problem:
+
+```python
+from fractions import Fraction
+
+def gcd(a, b):
+    while b:
+        a, b = b, a % b
+    return a
+
+def lcm(a, b):
+    return a * b // gcd(a, b)
+
+def get_fraction(t, w, b):
+    l = lcm(w, b)
+    num = min(t - l // w, t - l // b) + 1
+    den = t
+    if num == 0:
+        return str(0)
+    g = gcd(num, den)
+    return str(Fraction(num // g, den // g))
+
+t, w, b = map(int, input().split())
+print(get_fraction(t, w, b))
+```
+
+The solution first calculates the least common multiple (LCM) of `w` and `b`. Then, it finds the length of the racetrack `t` that results in a tie, which is any multiple of the LCM that is less than or equal to `t`. The number of such lengths is `min(t - l // w, t - l // b) + 1`, and the total number of possible lengths of the racetrack is `t + 1`. The probability is then the ratio of the number of ties to the total number of lengths, which is reduced to lowest terms using the `gcd` function. The `Fraction` class from the `fractions` module is used to ensure that the output is in irreducible form.

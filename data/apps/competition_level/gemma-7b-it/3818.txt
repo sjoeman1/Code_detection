@@ -1,0 +1,42 @@
+```python
+N = int(input())
+
+# Create a tree
+graph = [[] for _ in range(N)]
+for i in range(N-1):
+    a, b = map(int, input().split())
+    graph[a].append(b)
+    graph[b].append(a)
+
+# Calculate the distance between two vertices in a tree
+def distance(node1, node2):
+    if node1 == node2:
+        return 0
+    distance1 = distance(node1, node2)
+    distance2 = distance(node2, node1)
+    return 1 + min(distance1, distance2)
+
+# Calculate the niceness of a way of painting the graph
+def niceness(painting):
+    white_distance = 0
+    black_distance = 0
+    for i in range(N):
+        if painting[i] == 1:
+            for j in graph[i]:
+                if painting[j] == 2:
+                    white_distance = max(white_distance, distance(i, j))
+    for i in range(N):
+        if painting[i] == 2:
+            for j in graph[i]:
+                if painting[j] == 1:
+                    black_distance = max(black_distance, distance(i, j))
+    return max(white_distance, black_distance)
+
+# Calculate the sum of the nicenesses of all ways of painting the graph
+total_niceness = 0
+for painting in range(2**N):
+    total_niceness += niceness(painting)
+
+# Print the total niceness
+print(total_niceness % (10**9 + 7))
+```

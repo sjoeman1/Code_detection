@@ -1,0 +1,29 @@
+ Here is a Python3 solution for the problem:
+
+```python
+import math
+
+def lcm(x, y):
+    return (x * y) // math.gcd(x, y)
+
+n = int(input())
+a = list(map(int, input().split()))
+
+min_lcm = float('inf')
+indices = (-1, -1)
+
+for i in range(n):
+    for j in range(i + 1, n):
+        current_lcm = lcm(a[i], a[j])
+        if current_lcm < min_lcm:
+            min_lcm = current_lcm
+            indices = (i + 1, j + 1)
+
+print(*indices)
+```
+
+This solution uses the `lcm` function which takes two numbers and returns their least common multiple. The function uses the formula `lcm(x, y) = (x * y) // gcd(x, y)`, where `gcd` is the greatest common divisor of `x` and `y`.
+
+The solution then iterates over all pairs of indices `i` and `j`, calculates the least common multiple of `a[i]` and `a[j]`, and updates the minimum `lcm` and corresponding indices if the current `lcm` is smaller.
+
+Finally, the solution prints the indices `i` and `j` corresponding to the minimum `lcm`.

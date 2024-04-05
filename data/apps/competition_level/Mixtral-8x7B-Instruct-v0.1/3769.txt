@@ -1,0 +1,35 @@
+ Here is a Python3 solution for the problem:
+
+```python
+import sys
+input = sys.stdin.readline
+
+def power(x, y, p):
+    res = 1
+    x = x % p
+    while y > 0:
+        if y & 1:
+            res = (res * x) % p
+        y = y >> 1
+        x = (x * x) % p
+    return res
+
+def solve(p, k):
+    if k == 0:
+        if p == 1:
+            return 1
+        else:
+            return 0
+    else:
+        return power(k, p - 1, p) * (p - 1) % (10**9 + 7)
+
+p, k = map(int, input().strip().split())
+print(solve(p, k))
+```
+
+Explanation:
+
+* The function `power(x, y, p)` calculates `x^y % p` using modular exponentiation.
+* The function `solve(p, k)` calculates the number of distinct functions `f` that satisfy the given functional equation.
+* If `k` is 0, then there is only one function `f` that satisfies the equation, which is `f(0) = 0` and `f(x) = 0` for all other `x`'s.
+* If `k` is not 0, then we can calculate the number of distinct functions `f` by considering the possible values of `f(1)`. For each possible value of `f(1)`, say `a`, we can determine the value of `f(x)` for all other `x`'s using the functional equation. Specifically, we have `f(k^(i-1) * 1) = k * a * (k^(i-1) - 1) / (k - 1)` for all `i` from `1` to `p-1`. We can then check if this value of `f(x)` is valid (i.e., it is an integer between `0` and `p-1` inclusive) for all `x`'s. The total number of distinct functions `f

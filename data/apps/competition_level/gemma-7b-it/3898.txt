@@ -1,0 +1,26 @@
+```python
+n = int(input())
+a = list(map(int, input().split()))
+b = list(map(int, input().split()))
+
+# Create a dictionary to store the connections between islands
+connections = {i: [] for i in range(n)}
+for i in range(n):
+    connections[a[i]].append(i)
+
+# Check if the desired order can be achieved
+is_possible = True
+for i in range(n):
+    if b[i] != 0 and connections[i] != [0]:
+        for j in connections[i]:
+            if b[j] == 0 and j != 0:
+                connections[j].remove(i)
+                connections[i].append(j)
+                b[j] = 0
+                break
+    else:
+        is_possible = False
+
+# Print the answer
+print("YES" if is_possible else "NO")
+```

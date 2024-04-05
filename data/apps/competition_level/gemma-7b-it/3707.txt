@@ -1,0 +1,22 @@
+```python
+n, t, k, d = map(int, input().split())
+
+if (n - 1) * t <= k * t:
+    print("YES")
+else:
+    print("NO")
+```
+
+**Explanation:**
+
+* The time needed to bake n cakes is equal to (n - 1) * t minutes.
+* The time needed to bake k cakes with one oven is k * t minutes.
+* If (n - 1) * t is less than or equal to k * t, then it is reasonable to build the second oven. Otherwise, it is not.
+
+**Time complexity:**
+
+* The time complexity of this code is O(1), as it reads and processes the input in constant time.
+
+**Space complexity:**
+
+* The space complexity of this code is O(1), as it uses a constant amount of space regardless of the input size.

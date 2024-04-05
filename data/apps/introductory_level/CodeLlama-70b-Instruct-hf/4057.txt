@@ -1,0 +1,45 @@
+
+
+Here is a possible Python 3 code for solving the question:
+
+```
+def rock_paper_scissors(n, a1, a2, a3, b1, b2, b3):
+    # Find the minimum number of rounds Alice can win
+    min_win = 0
+    for i in range(a1):
+        for j in range(b2):
+            min_win += 1
+    for i in range(a2):
+        for j in range(b3):
+            min_win += 1
+    for i in range(a3):
+        for j in range(b1):
+            min_win += 1
+
+    # Find the maximum number of rounds Alice can win
+    max_win = 0
+    for i in range(a1):
+        for j in range(b1):
+            max_win += 1
+    for i in range(a2):
+        for j in range(b2):
+            max_win += 1
+    for i in range(a3):
+        for j in range(b3):
+            max_win += 1
+
+    return min_win, max_win
+
+# Read the input
+n = int(input())
+a1, a2, a3 = map(int, input().split())
+b1, b2, b3 = map(int, input().split())
+
+# Call the function and print the output
+min_win, max_win = rock_paper_scissors(n, a1, a2, a3, b1, b2, b3)
+print(min_win, max_win)
+```
+
+This code will take the input from the user and then calculate the minimum and maximum number of rounds Alice can win. It uses a brute force approach to count the number of wins. For the minimum number of wins, it checks all possible combinations where Alice wins and Bob loses, and for the maximum number of wins, it checks all possible combinations where Alice and Bob win the same number of rounds.
+
+Please note that this code is not optimized for efficiency, and it may not be suitable for large input values.

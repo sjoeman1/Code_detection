@@ -1,0 +1,30 @@
+```python
+n = int(input())
+a = list(map(int, input().split()))
+
+# Find the index of the nearest zero to each element
+d = []
+for i in range(len(a)):
+    min_distance = float('inf')
+    for j in range(len(a)):
+        if a[j] == 0 and abs(i - j) < min_distance:
+            min_distance = abs(i - j)
+    d.append(min_distance)
+
+print(*d)
+```
+
+**Explanation:**
+
+* The code reads the number of elements n and the array a.
+* It iterates over the array and finds the nearest zero for each element.
+* The distance to the nearest zero is stored in the d list.
+* The final d list is printed.
+
+**Time complexity:**
+
+* The code iterates over the array only once, so the time complexity is O(n).
+
+**Space complexity:**
+
+* The code uses a constant amount of space, regardless of the size of the array.

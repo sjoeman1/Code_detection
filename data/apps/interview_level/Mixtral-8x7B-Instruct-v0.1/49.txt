@@ -1,0 +1,19 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def kth_digit():
+    num = 1
+    while True:
+        for digit in str(num):
+            yield digit
+            num += 1
+
+k = int(input())
+print(next(itertools.islice(kth_digit(), k-1, k)))
+```
+
+This solution uses a generator function `kth_digit` to generate each digit of the infinite sequence one by one. It starts by yielding the digits of the number 1, then 2, then 3, and so on. To find the k-th digit, it uses the `itertools.islice` function to advance the generator to the (k-1)-th digit and then yields and prints the next digit.
+
+Note that the solution uses 1-based indexing, as specified in the problem statement. The input value of k should be adjusted accordingly.
+
+Also note that this solution may not be efficient enough for very large values of k, as it needs to generate all the digits before k. However, it should work for the given input range of k ($1 \le k \le 10^{12}$).

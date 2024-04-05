@@ -1,0 +1,12 @@
+```python
+a, b = input().split()
+a_l, b_l = len(a.split()) // 2, len(b.split()) // 2
+
+a_1, a_2 = a.split()
+b_1, b_2 = b.split()
+
+if (a_1 == b_1 and a_2 == b_2) or (a_1 == b_2 and a_2 == b_1):
+  print("YES")
+else:
+  print("NO")
+```

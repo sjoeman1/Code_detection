@@ -1,0 +1,19 @@
+
+```python
+def solve(a, b, c):
+    days = 0
+    if a > 0:
+        days += 3
+    if b > 0:
+        days += 2
+    if c > 0:
+        days += 1
+    return days
+
+
+if __name__ == '__main__':
+    a, b, c = map(int, input().split())
+    print(solve(a, b, c))
+```
+
+This code will solve the problem by calculating the maximum number of days the cat can eat without additional food purchases, if Polycarp chooses the day of the week to start his trip optimally.

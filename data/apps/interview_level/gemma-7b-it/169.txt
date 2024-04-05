@@ -1,0 +1,10 @@
+```python
+n = int(input())
+a, b, c = map(int, input().split())
+
+# Calculate the maximum number of liters of kefir that Kolya can drink
+l = n // b - n // a
+
+# Return the maximum number of liters of kefir
+print(l)
+```

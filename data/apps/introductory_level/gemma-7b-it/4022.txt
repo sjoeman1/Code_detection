@@ -1,0 +1,35 @@
+```python
+n = int(input())
+
+segments = []
+for _ in range(n):
+    l, r = map(int, input().split())
+    segments.append((l, r))
+
+segments.sort()
+
+# Remove one segment
+segments.pop(0)
+
+# Calculate the intersection
+intersection = max(range(segments[0][0], segments[-1][1] + 1))
+
+# Print the length of the intersection
+print(intersection)
+```
+
+**Explanation:**
+
+1. **Sort the segments** in ascending order based on their left endpoints.
+2. **Remove one segment** from the sorted list.
+3. **Calculate the intersection** of the remaining segments using the `max` function on the range between the left endpoint of the first segment and the right endpoint of the last segment.
+4. **Print the length of the intersection.**
+
+**Time Complexity:**
+
+* Sorting the segments takes O(nlogn) time, where n is the number of segments.
+* Calculating the intersection takes O(n) time, where n is the number of segments.
+
+**Space Complexity:**
+
+* The algorithm uses an additional list `segments` to store the segments, which has a space complexity of O(n).

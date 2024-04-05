@@ -1,0 +1,29 @@
+```python
+a, b = map(int, input().split())
+
+# Calculate the minimum price that satisfies the condition
+min_price = -1
+for price in range(1, int((b + 1) ** 0.5) + 1):
+    tax_8 = price * 0.08
+    tax_10 = price * 0.1
+    if int(tax_8).equals(tax_8) and int(tax_10).equals(tax_10):
+        min_price = price
+
+# Print the minimum price
+print(min_price)
+```
+
+**Explanation:**
+
+- The code reads the consumption tax rate (8% and 10%) and the amount of consumption tax levied on the product (A and B yen).
+- It calculates the minimum price that satisfies the condition by iterating over the range from 1 to the square root of B, rounded up.
+- For each price, it calculates the amount of consumption tax at 8% and 10%. If the amounts of consumption tax are equal to the given amounts, the price is added to the minimum price list.
+- Finally, the code prints the minimum price in the list.
+
+**Time Complexity:**
+
+- The code iterates over the range from 1 to the square root of B, so the time complexity is O(sqrt(B)).
+
+**Space Complexity:**
+
+- The code uses a constant amount of space, regardless of the input size.

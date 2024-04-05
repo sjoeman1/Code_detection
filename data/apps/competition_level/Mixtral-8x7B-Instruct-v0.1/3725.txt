@@ -1,0 +1,40 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def modular_inverse(a, m):
+    for x in range(1, m):
+        if (a * x) % m == 1:
+            return x
+    return -1
+
+def solve():
+    m = int(input().strip())
+    h1, a1 = map(int, input().strip().split())
+    x1, y1 = map(int, input().strip().split())
+    h2, a2 = map(int, input().strip().split())
+    x2, y2 = map(int, input().strip().split())
+
+    if (x1 == 1 and y1 == 0 and h1 != a1) or (x2 == 1 and y2 == 0 and h2 != a2):
+        return -1
+
+    inv_x1 = modular_inverse(x1, m)
+    if inv_x1 == -1:
+        return -1
+    cycles_xaniar = (a1 - h1) * inv_x1 % m
+
+    inv_x2 = modular_inverse(x2, m)
+    if inv_x2 == -1:
+        return -1
+    cycles_abol = (a2 - h2) * inv_x2 % m
+
+    if cycles_xaniar == 0 and cycles_abol == 0:
+        return -1
+
+    return min(cycles_xaniar, cycles_abol)
+
+print(solve())
+```
+
+This solution first calculates the modular inverse of `x1` and `x2` using the extended Euclidean algorithm. Then, it calculates the number of cycles it takes for Xaniar and Abol to reach their respective target heights. If either of these numbers is 0, it means that the height will never reach the target. Finally, it returns the minimum of the two cycle lengths.
+
+The modular inverse of `a` modulo `m` is an integer `x` such that `(a * x) % m == 1`. It is calculated using the extended Euclidean algorithm, which finds the greatest common divisor of `a` and `m`, as well

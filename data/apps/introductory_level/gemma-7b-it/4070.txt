@@ -1,0 +1,25 @@
+## Answer
+
+The solution to this riddle is to find the ceiling of the square root of n. Here's the Python code:
+
+```python
+import math
+
+n = int(input())
+print(int(math.ceil(math.sqrt(n))))
+```
+
+**Explanation:**
+
+1. Read the input integer n.
+2. Calculate the square root of n using the math.sqrt function.
+3. Use the math.ceil function to round up the square root to the nearest integer.
+4. Convert the rounded-up integer to an int and print it.
+
+**Time complexity:**
+
+The code calculates the square root of n only once, so the time complexity is O(1).
+
+**Space complexity:**
+
+The code uses a constant amount of space regardless of the input size, so the space complexity is O(1).

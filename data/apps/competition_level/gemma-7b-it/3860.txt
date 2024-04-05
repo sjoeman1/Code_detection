@@ -1,0 +1,8 @@
+```python
+b, g, n = map(int, input().split())
+
+# Calculate the minimum number of decks
+m = int((n - g) // b) + 1
+
+print(m)
+```

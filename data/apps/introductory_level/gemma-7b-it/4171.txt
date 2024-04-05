@@ -1,0 +1,15 @@
+```python3
+n, k = map(int, input().split())
+a = list(map(int, input().split()))
+
+a.sort()
+operations = 0
+equal_count = 0
+
+for i in range(len(a)):
+    a[i] //= 2
+    operations += a[i] - equal_count
+    equal_count += 1 if a[i] else 0
+
+print(operations)
+```

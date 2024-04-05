@@ -1,0 +1,14 @@
+```python
+n, pos, l, r = map(int, input().split())
+
+a = max(l - 1, 0)
+b = min(r, n) - 1
+
+print(min(abs(pos - a) + abs(b - pos) + 1, abs(pos - a) + abs(b - pos) + 1))
+```
+
+**Explanation:**
+
+* Calculate the minimum and maximum indices of the unclosed tabs, `a` and `b`, respectively.
+* Calculate the minimum number of seconds required to close all tabs outside the segment [l, r], which is the sum of the absolute differences between the current position and `a`, and `b`, plus 1.
+* Print the minimum number of seconds.

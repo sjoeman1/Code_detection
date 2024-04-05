@@ -1,0 +1,28 @@
+
+
+Here is the Python 3 code that solves the problem:
+
+```
+# Function to calculate the number of pairs with median m
+def countPairs(a, n, m):
+    # Count the occurrence of m in the array
+    count = a.count(m)
+    # Calculate the number of pairs with median m
+    return count * (count - 1) // 2
+
+# Driver code
+n, m = map(int, input().split())
+a = list(map(int, input().split()))
+ans = countPairs(a, n, m)
+print(ans)
+```
+
+This code works by first reading the input, which consists of two integers, `n` and `m`. `n` represents the length of the sequence, and `m` represents the required value of the median.
+
+The second line of input is read and split into a list of integers, `a`.
+
+The `countPairs` function is defined, which takes the input list `a`, the length `n`, and the required median `m`. It counts the number of occurrences of `m` in the list using the `count` method.
+
+Then, it calculates the number of pairs with median `m` by multiplying the count of `m` by the count of `m` minus one, divided by two. This is because each occurrence of `m` can be paired with all other occurrences of `m` to form a pair with median `m`.
+
+Finally, the `countPairs` function is called with the input values, and the result is printed.

@@ -1,0 +1,8 @@
+```python3
+N, M, K, L = map(int, input().split())
+
+if K > N or L > M:
+    print("-1")
+else:
+    print(min(K, L - 1))
+```

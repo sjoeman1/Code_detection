@@ -1,0 +1,14 @@
+```python
+a, b, c = map(int, input().split())
+
+# Find the maximum number of fruits that can be used
+ lemons = a // 1
+apples = b // 2
+pears = c // 4
+
+# Calculate the total number of fruits that can be used
+total_fruits = lemons + apples + pears
+
+# Print the total number of fruits
+print(total_fruits)
+```

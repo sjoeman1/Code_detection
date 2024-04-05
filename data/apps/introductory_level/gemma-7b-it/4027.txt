@@ -1,0 +1,21 @@
+```python
+n = int(input())
+a = list(map(int, input().split()))
+
+a.sort()
+
+sum_a = sum(a)
+mid = sum_a // 2
+
+ans = abs(sum_a - 2 * mid)
+
+print(ans)
+```
+
+**Explanation:**
+
+1. Read the number of elements $n$ and the sequence of $n$ integers.
+2. Sort the sequence in ascending order.
+3. Calculate the total sum of the sequence, $sum_a$, and the midpoint, $mid$, of the sum.
+4. Calculate the absolute difference between $sum_a$ and 2 times $mid$. This is the minimum possible value of $|sum(A) - sum(B)|$.
+5. Print the result.

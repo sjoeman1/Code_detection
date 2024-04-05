@@ -1,0 +1,41 @@
+
+
+In the first example, the substring "aba" can be removed from "bbaba" to obtain "bb", and "bb" is a subsequence of "bb". The length of the removed substring is 3.
+
+In the second example, the substring "aa" can be removed from "baaba" to obtain "bab", and "ab" is a subsequence of "bab". The length of the removed substring is 2.
+
+In the third example, no substring needs to be removed from "abcde" as "abcde" is already a subsequence of itself. The length of the removed substring is 0.
+
+In the fourth example, the substring "sdf" can be removed from "asdfasdf" to obtain "aafa", and "fasd" is a subsequence of "aafa". The length of the removed substring is 3.
+
+Here is the Python 3 code to solve the problem:
+
+```
+# Function to find the length of the longest common subsequence
+def lcs(s1, s2):
+    n = len(s1)
+    m = len(s2)
+    lcs = [[0 for _ in range(m + 1)] for _ in range(n + 1)]
+
+    for i in range(1, n + 1):
+        for j in range(1, m + 1):
+            if s1[i - 1] == s2[j - 1]:
+                lcs[i][j] = lcs[i - 1][j - 1] + 1
+            else:
+                lcs[i][j] = max(lcs[i - 1][j], lcs[i][j - 1])
+
+    return lcs[n][m]
+
+
+# Function to find the length of the longest substring that can be removed
+def max_removable_length(s, t):
+    n = len(s)
+    m = len(t)
+    lcs_len = lcs(s, t)
+
+    # If the LCS is equal to the length of the smaller string,
+    # then no substring needs to be removed
+    if lcs_len == min(n, m):
+        return 0
+
+    #

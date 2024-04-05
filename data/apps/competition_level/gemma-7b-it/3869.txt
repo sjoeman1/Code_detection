@@ -1,0 +1,10 @@
+```python
+import math
+
+w, h, alpha = map(int, input().split())
+alpha = float(alpha)
+
+area = w * h * math.sin(math.radians(alpha)) / 2
+
+print(area)
+```

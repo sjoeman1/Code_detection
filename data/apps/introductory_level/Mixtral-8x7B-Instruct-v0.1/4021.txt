@@ -1,0 +1,34 @@
+ Here is the Python3 code to solve the problem:
+
+```python
+# Read the input integer
+a = int(input())
+
+# Calculate the output integer
+output = 0
+while (2**output < a):
+    output += 1
+
+# Print the output integer
+print(output)
+```
+
+This code reads an integer `a` from the input, then calculates the smallest non-negative integer `output` such that `2**output` is greater than or equal to `a`. The code then prints the value of `output`.
+
+Explanation of the code:
+
+* The first line reads an integer `a` from the input using the `input()` function and the `int()` function.
+* The next line initializes the variable `output` to 0.
+* The `while` loop calculates the smallest integer `output` such that `2**output` is greater than or equal to `a`.
+* The final line prints the value of `output`.
+
+Example run:
+
+Suppose the input is `4`. Then:
+
+* The first line reads the integer `4` from the input.
+* The variable `output` is initialized to 0.
+* The `while` loop executes with `output` equal to 0. Since `2**0` is not greater than or equal to `4`, the loop increments `output` to 1.
+* The `while` loop executes with `output` equal to 1. Since `2**1` is not greater than or equal to `4`, the loop increments `output` to 2.
+* The `while` loop executes with `output` equal to 2. Since `2**2` is equal to `4`, the loop terminates.
+* The final line prints the value of `output`, which is 2.

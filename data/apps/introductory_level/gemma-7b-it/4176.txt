@@ -1,0 +1,9 @@
+```python
+A, B = map(int, input().split())
+
+# Find the minimum number of pieces that can be evenly distributed to the guests in both of the cases
+min_pieces = min(A, B) * min(A, B)
+
+# Print the minimum number of pieces
+print(min_pieces)
+```

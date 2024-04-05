@@ -1,0 +1,32 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n, k = map(int, input().split())
+s = input()
+
+# Calculate the number of occurrences of each character in the string
+char_counts = {c: s.count(c) for c in set(s)}
+
+# If the number of characters is less than the desired set size, it's impossible
+if len(char_counts) < k:
+    print(-1)
+    exit()
+
+# Calculate the minimum cost to include each character in the set
+costs = [n - char_count for char_count in char_counts.values()]
+cost = sum(costs[:k])
+
+# Try to reduce the cost by removing extra occurrences of characters
+for i in range(k, len(char_counts)):
+    cost = min(cost, cost + costs[i] - (costs[i] - costs[i-k]))
+
+print(cost)
+```
+
+The solution works by first counting the number of occurrences of each character in the string. If the number of characters is less than the desired set size, it's impossible to obtain a set of the desired size.
+
+Next, the solution calculates the minimum cost to include each character in the set, which is the length of the string minus the number of occurrences of the character. The total cost is the sum of the costs of the first `k` characters.
+
+Finally, the solution tries to reduce the cost by removing extra occurrences of characters. For each character, it calculates the cost of including the character in the set, which is the cost of the character minus the cost of the previous occurrence of the character. The solution then chooses the minimum cost between the current cost and the cost with the extra occurrence of the character removed.
+
+The solution prints the final cost.

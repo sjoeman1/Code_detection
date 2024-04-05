@@ -1,0 +1,55 @@
+
+Here is the Python3 code that solves the question:
+
+```
+# Read the input
+n, k = map(int, input().split())
+p = list(map(int, input().split()))
+
+# Initialize the array b
+b = []
+
+# Initialize the stack s
+s = []
+
+# Push the first k elements of p to s
+for i in range(k):
+    s.append(p[i])
+
+# Initialize the index i
+i = k
+
+# While s is not empty
+while s:
+    # Append the top element of s to b
+    b.append(s.pop())
+
+    # While s is not empty and the top element of s is less than the element at index i
+    while s and s[-1] < p[i]:
+        # Pop the top element from s and append it to b
+        b.append(s.pop())
+
+    # If i is less than n
+    if i < n:
+        # Push the element at index i to s
+        s.append(p[i])
+
+        # Increment i
+        i += 1
+
+# If b is not sorted in non-descending order
+if b != sorted(b):
+    # Print -1
+    print(-1)
+else:
+    # Print the elements of b separated by spaces
+    print(*b)
+```
+
+The code first reads the input n and k, where n is the size of the desired permutation and k is the number of elements given. Then, it reads the first k elements of the permutation p.
+
+The code initializes the array b and the stack s. It then pushes the first k elements of p to s.
+
+The code then initializes the index i and sets it to k. While s is not empty, it appends the top element of s to b. It also checks if the top element of s is less than the element at index i. If it is, it pops the top element from s and appends it to b. If i is less than n, it pushes the element at index i to s and increments i.
+
+Finally, the code checks if b is not sorted in non-descending order. If it is not, it prints -1. Otherwise, it prints the elements

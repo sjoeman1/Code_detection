@@ -1,0 +1,45 @@
+
+Here is a Python 3 code for solving the question:
+
+```python
+#!/usr/bin/python3
+
+import sys
+
+def get_matrix(n, k):
+    if n*(n+1)//2 < k:
+        return -1
+    if k == 0:
+        return [[0]*n for _ in range(n)]
+    if n == 1:
+        return [[1]]
+    matrix = [[0]*n for _ in range(n)]
+    for i in range(n):
+        for j in range(i, n):
+            if i == j:
+                matrix[i][j] = 1
+                k -= 1
+            elif k > 0:
+                matrix[i][j] = matrix[j][i] = 1
+                k -= 2
+            if k == 0:
+                break
+        if k == 0:
+            break
+    return matrix
+
+if __name__ == "__main__":
+    input = sys.stdin.read()
+    data = list(map(int, input.split()))
+    n, k = data[0:2]
+    matrix = get_matrix(n, k)
+    if matrix != -1:
+        for row in matrix:
+            print(" ".join(map(str, row)))
+    else:
+        print(-1)
+```
+
+
+
+This code uses a `get_matrix` function to calculate the matrix based on the input `n` and `k` values. It first checks if the input values are valid and returns -1 if they are not. Then, it initializes a matrix filled with zeros. It iterates through each row and column, placing ones in the diagonal and symmetric positions. It decrements `k` for each one placed, and breaks out of the loop if `k` reaches zero. Finally, it returns the matrix or -1 if no matrix exists. The `if __name__ == "__main__"` block reads input from `stdin`, parses the values, and calls the `get_matrix` function. If the matrix exists, it prints the rows with spaces between the values; otherwise, it prints -1.

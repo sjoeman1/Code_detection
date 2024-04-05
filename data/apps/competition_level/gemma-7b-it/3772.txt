@@ -1,0 +1,18 @@
+```python
+a, b = map(int, input().split())
+
+# Find the number of resistors needed to make an element with resistance a/b
+res = 1
+while res * R_0 < b:
+    res += 1
+
+# Print the answer
+print(res)
+```
+
+**Explanation:**
+
+- The code reads the input integers `a` and `b`.
+- It calculates the number of resistors needed to make an element with resistance `a/b` using the formula `res = 1 + (b - 1) // R_0`.
+- The formula calculates the number of resistors needed to make an element with resistance `a/b` as the number of resistors needed to make an element with resistance `b` minus 1, divided by `R_0`.
+- The code then prints the answer.

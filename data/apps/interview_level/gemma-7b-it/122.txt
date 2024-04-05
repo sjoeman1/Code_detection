@@ -1,0 +1,12 @@
+```python
+n = int(input())
+a = list(map(int, input().split()))
+
+s = sum(a)
+m = sum(a[0:2])
+
+if m * 2 == s:
+    print("YES")
+else:
+    print("NO")
+```

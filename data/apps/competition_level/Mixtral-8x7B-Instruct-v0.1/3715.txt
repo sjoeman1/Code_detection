@@ -1,0 +1,41 @@
+ Here is a Python3 solution for the problem:
+```python
+def min_rest_days(n, a):
+    rest_days = 0
+    prev_activity = -1
+
+    for i in range(n):
+        # If neither gym is open nor contest is carried out, Vasya can rest
+        if a[i] == 0:
+            rest_days += 1
+            prev_activity = -1
+            continue
+
+        # If gym is open and contest is carried out, Vasya can choose either
+        if a[i] == 3:
+            if prev_activity != 3:
+                rest_days += 1
+                prev_activity = 3
+            else:
+                prev_activity = 0
+
+        # If gym is open but no contest, Vasya must do sport
+        elif a[i] == 2:
+            prev_activity = 2
+
+        # If contest is carried out but no gym, Vasya must write the contest
+        elif a[i] == 1:
+            if prev_activity != 1:
+                rest_days += 1
+                prev_activity = 1
+            else:
+                prev_activity = 0
+
+    return rest_days
+
+n = int(input())
+a = list(map(int, input().split()))
+
+print(min_rest_days(n, a))
+```
+The solution uses a dynamic programming approach, keeping track of the previous activity (doing sport or writing the contest) and checking if it is possible for Vasya to rest on the current day based on the previous activity. If neither the gym is open nor the contest is carried out, Vasya can rest. If the gym is open and the contest is carried out, Vasya can choose either to rest or to do the activity. If the gym is open but no contest, Vasya must do sport. If the contest is carried out but no gym, Vasya must write the contest. The function returns the minimum number of rest days.

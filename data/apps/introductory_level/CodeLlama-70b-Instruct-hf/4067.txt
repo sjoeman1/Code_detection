@@ -1,0 +1,29 @@
+
+
+This is a problem that requires a dynamic programming approach to solve. Here is the Python 3 code that solves the problem:
+
+```python
+# Input
+n, r = map(int, input().split())
+house = list(map(int, input().split()))
+
+# Dynamic Programming
+dp = [1000000000 for _ in range(n)]
+dp[0] = 0
+
+for i in range(1, n):
+    for j in range(max(0, i-2*r+1), i+1):
+        if house[j] == 1:
+            dp[i] = min(dp[i], dp[j] + 1)
+
+# Output
+print(dp[-1] if dp[-1] != 1000000000 else -1)
+```
+
+The code first reads the input consisting of the number of elements in the array `n`, the value of heaters `r`, and the Vova's house description as a list of 0s and 1s (`house`).
+
+It then initializes the dynamic programming table `dp` with a large value (1000000000) for all positions in the house. The `dp` table is used to store the minimum number of heaters needed to warm up the house up to a given position. The initial position (position 0) is set to 0, as it is already warmed up by the heater at that position.
+
+The code then iterates through all positions in the house (`for i in range(1, n)`), starting from the second position (position 1). For each position `i`, it checks the positions `j` from `max(0, i-2*r+1)` to `i` (inclusive). This range corresponds to the positions that can be warmed up by the heaters in the range `[pos - r + 1; pos + r - 1]` for a heater at position `pos`.
+
+If a heater is present at position `j` (`if house[j] == 1`), the code updates the `dp` table for position `i` by taking the minimum of the current value and the value at position `j` plus 1 (since switching on

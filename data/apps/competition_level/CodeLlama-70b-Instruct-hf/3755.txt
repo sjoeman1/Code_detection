@@ -1,0 +1,42 @@
+
+
+Here is the Python 3 code to solve the problem:
+
+```python
+def solve(n, a):
+    # Initialize the answer and the number of operations.
+    answer = 0
+    num_ops = 0
+    # Create a stack to store the current sequence.
+    stack = a[:]
+    # Perform the operations until the stack has only one element.
+    while len(stack) > 1:
+        # Find the maximum element and its index.
+        max_elem = max(stack)
+        max_idx = stack.index(max_elem)
+        # If the maximum element is at either end of the sequence, delete it.
+        if max_idx == 0 or max_idx == len(stack) - 1:
+            del stack[max_idx]
+        # If the maximum element is not at either end of the sequence, replace it with the sum of the two elements that are adjacent to it. Then, delete those two elements.
+        else:
+            stack[max_idx] = stack[max_idx - 1] + stack[max_idx + 1]
+            del stack[max_idx + 1]
+            del stack[max_idx - 1]
+        # Update the answer and the number of operations.
+        answer = max(answer, max_elem)
+        num_ops += 1
+    # Print the answer and the number of operations.
+    print(answer)
+    print(num_ops)
+    # Print the indices of the chosen elements.
+    for i in range(num_ops):
+        print(i + 1)
+
+# Read input from Standard Input.
+n = int(input())
+a = list(map(int, input().split()))
+# Call the solve function.
+solve(n, a)
+```
+
+This code reads the input from Standard Input, performs the operations until the sequence has only one element, and prints the maximum possible value of the final element, the number of operations, and the indices of the chosen elements.

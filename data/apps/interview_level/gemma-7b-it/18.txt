@@ -1,0 +1,33 @@
+```python
+s = input().strip()
+s_len = len(s)
+t = ""
+u = ""
+
+for i in range(s_len):
+    if s[0] == s[i]:
+        t += s[i]
+        s = s[1:]
+    elif s[i] == s[s_len-1]:
+        u += s[i]
+        s = s[0:s_len-1]
+
+print(u)
+```
+
+**Explanation:**
+
+1. Read the input string `s`.
+2. Initialize two empty strings `t` and `u`.
+3. Iterate over the string `s` and perform the following operations:
+   - If the first character of `s` is equal to the character at the current position, append the character to the end of `t`.
+   - If the character at the end of `t` is equal to the character at the current position, append the character to the end of `u`.
+4. Print the resulting string `u`.
+
+**Time Complexity:**
+
+- The loop iterates over the string `s` only once, so the time complexity is O(n) where `n` is the length of `s`.
+
+**Space Complexity:**
+
+- The program uses a constant amount of space regardless of the length of `s`, so the space complexity is O(n) where `n` is the length of `s`.

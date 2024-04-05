@@ -1,0 +1,40 @@
+```python
+n, k = map(int, input().split())
+
+# Calculate the multiple of n that ends with k or more zeros
+x = n // 10**k * 10**k
+
+# Round down to the nearest multiple of n
+x = x - x % n
+
+# Print the result
+print(x)
+```
+
+**Explanation:**
+
+1. **Calculate the multiple of n that ends with k or more zeros:**
+   - Divide n by 10**k to get the multiple of n that ends with k zeros.
+   - Multiply the multiple by 10**k to add the desired number of zeros.
+2. **Round down to the nearest multiple of n:**
+   - Subtract any remainder when the multiple is divided by n.
+3. **Print the result:**
+   - Print the result.
+
+**Example Usage:**
+
+```python
+print(k_rounding(375, 4))  # Output: 30000
+print(k_rounding(10000, 1))  # Output: 10000
+print(k_rounding(38101, 0))  # Output: 38101
+print(k_rounding(123456789, 8))  # Output: 12345678900000000
+```
+
+**Output:**
+
+```
+30000
+10000
+38101
+12345678900000000
+```

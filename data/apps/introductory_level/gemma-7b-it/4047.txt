@@ -1,0 +1,32 @@
+```python
+n = int(input())
+x = list(map(int, input().split()))
+
+x.sort()
+
+# Calculate the minimum coins required to move all chips to the same coordinate
+coins = 0
+current_position = x[0]
+for i in range(1, n):
+    coins += abs(current_position - x[i])
+    current_position = x[i]
+
+print(coins)
+```
+
+**Explanation:**
+
+* We first sort the list of chip coordinates in ascending order.
+* We then keep track of the current position of the first chip.
+* For each subsequent chip, we calculate the number of coins required to move it to the current position of the first chip.
+* We add the number of coins required for each chip to the total number of coins required.
+* Finally, we print the total number of coins required.
+
+**Time Complexity:**
+
+* The time complexity of this algorithm is O(n) where n is the number of chips.
+* We iterate over the list of chip coordinates only once.
+
+**Space Complexity:**
+
+* The space complexity of this algorithm is O(1) since we use a constant amount of space regardless of the number of chips.

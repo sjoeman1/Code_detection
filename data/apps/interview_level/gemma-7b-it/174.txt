@@ -1,0 +1,10 @@
+```python
+n = int(input())
+a = list(map(int, input().split()))
+
+if sum(a) == 0:
+    print("NO")
+else:
+    print("YES")
+    print("".join(["(" + str(a[i]) + ")->" if i else str(a[i]) + ")" for i in range(len(a))))
+```

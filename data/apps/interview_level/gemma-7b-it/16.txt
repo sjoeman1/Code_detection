@@ -1,0 +1,17 @@
+```python
+import sys
+
+def is_regular(s):
+    # Check if the string is balanced
+    if s.count("(") == s.count(")") and s.count(")") >= s.count("("):
+        return True
+    else:
+        return False
+
+cnt_1, cnt_2, cnt_3, cnt_4 = map(int, sys.stdin.read().splitlines())
+
+if is_regular("(" * cnt_1 + ")" * cnt_2 + "(" * cnt_3 + "))" * cnt_4):
+    print(1)
+else:
+    print(0)
+```

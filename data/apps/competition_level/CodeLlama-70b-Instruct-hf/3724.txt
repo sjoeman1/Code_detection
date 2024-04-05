@@ -1,0 +1,24 @@
+
+Here is the Python 3 code for solving the given problem:
+
+```
+def solve(S):
+    n = len(S)
+    cnt = [0] * 3
+    for i in range(n):
+        cnt[ord(S[i]) - ord('A')] += 1
+    res = (cnt[0] * cnt[1] + cnt[0] * cnt[2] + cnt[1] * cnt[2]) % (10**9 + 7)
+    for i in range(n - 1):
+        cnt[ord(S[i]) - ord('A')] -= 1
+        if S[i] != S[i + 1]:
+            res += (cnt[0] * cnt[1] + cnt[0] * cnt[2] + cnt[1] * cnt[2]) % (10**9 + 7)
+    return res % (10**9 + 7)
+
+
+if __name__ == '__main__':
+    N = int(input())
+    S = input()
+    print(solve(S))
+```
+
+This code takes the input `N` and `S`, calculates the number of distinct strings that S can be after zero or more operations, and prints the count modulo (10^9+7).

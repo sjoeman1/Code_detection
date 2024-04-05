@@ -1,0 +1,12 @@
+```python
+n, a, b = map(int, input().split())
+
+# Calculate the total length of wood needed for each door frame
+total_length = 2 * a + b
+
+# Divide the total length of wood by the length of each bar to find the number of bars needed
+num_bars = total_length // n
+
+# Print the number of bars needed
+print(num_bars)
+```

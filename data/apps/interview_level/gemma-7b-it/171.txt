@@ -1,0 +1,12 @@
+```python
+s = input().strip()
+
+# Define password complexity requirements
+requirements = (len(s) >= 5) and (bool(any(char.isupper() for char in s)) or False) and (bool(any(char.islower() for char in s)) or False) and (bool(any(char.isdigit() for char in s)) or False)
+
+# Print the result
+if requirements:
+    print("Correct")
+else:
+    print("Too weak")
+```

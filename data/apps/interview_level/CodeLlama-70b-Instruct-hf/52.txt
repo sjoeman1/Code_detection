@@ -1,0 +1,49 @@
+
+
+The following Python 3 code solves the question:
+
+```python
+# Read the input number of games
+n = int(input())
+
+# Check if the number of games is valid
+if n < 1 or n > (10**18):
+    print(-1)
+else:
+    # Initialize an empty list to store the possible number of teams
+    team_list = []
+
+    # Iterate through all possible number of teams from 1 to 10^18
+    for teams in range(1, 10**18 + 1):
+        # Initialize a variable to store the number of games played
+        games_played = 0
+
+        # Run the tournament simulation
+        while teams > 1:
+            # If the number of teams is even, simulate pairwise games
+            if teams % 2 == 0:
+                games_played += teams // 2
+                teams //= 2
+            # If the number of teams is odd, simulate a round-robin tournament
+            else:
+                games_played += teams * (teams - 1) // 2
+                break
+
+        # Check if the total number of games played is equal to the input
+        if games_played == n:
+            team_list.append(teams)
+
+    # Check if any possible number of teams was found
+    if len(team_list) > 0:
+        # Sort the list in ascending order
+        team_list.sort()
+
+        # Print each possible number of teams
+        for teams in team_list:
+            print(teams)
+    else:
+        # If no possible number of teams was found, print -1
+        print(-1)
+```
+
+This code first reads the input number of games (n). It then checks if the number is valid (between 1 and 10^18). If the number is valid, it initializes an empty list to store the possible number of teams. It then iterates through all possible number of teams from 1 to 10^18. For each number of teams, it initializes a variable to store the number of games played and simulates the tournament. If the number of teams is even, it simulates pairwise games. If the number of teams is

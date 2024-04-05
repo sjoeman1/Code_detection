@@ -1,0 +1,14 @@
+```python
+n = int(input())
+a = list(map(int, input().split()))
+
+# Calculate the maximum number of doublings and triblings for each bid
+max_double = max(a) // 2
+max_triple = max(a) // 3
+
+# Check if the bid can be made equal
+is_equal = all(a[i] + max_double * 2 or a[i] + max_triple * 3 == max(a) for i in range(len(a)))
+
+# Print the answer
+print("Yes" if is_equal else "No")
+```

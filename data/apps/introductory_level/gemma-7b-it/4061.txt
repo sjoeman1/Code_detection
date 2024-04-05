@@ -1,0 +1,15 @@
+```python
+s = input().strip()
+t = input().strip()
+
+# Find the maximum length of the substring that can be removed
+# such that t is still a subsequence of s
+max_len = 0
+for i in range(len(s)):
+    # Check if the substring s[i:i+1] is a subsequence of t
+    if s[i:i+1] in t and max_len < i+1:
+        max_len = i+1
+
+# Print the maximum length of the substring that can be removed
+print(max_len)
+```

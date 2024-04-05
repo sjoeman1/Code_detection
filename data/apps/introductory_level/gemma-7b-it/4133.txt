@@ -1,0 +1,53 @@
+```python3
+import sys
+
+def solve(name):
+    # Check if the golorp is impossible to feed
+    if not is_golorp_feedable(name):
+        return "false"
+
+    # Get the lexicographically smallest sequence of variable values
+    sequence = get_smallest_sequence(name)
+
+    # Return the sequence
+    return " ".join(str(x) for x in sequence)
+
+# Check if the golorp is impossible to feed
+def is_golorp_feedable(name):
+    # Check if the name is valid
+    if not is_valid_golorp_name(name):
+        return False
+
+    # Check if the number of variables necessary to feed the golorp is greater than the number of variables in the sequence
+    return len(get_num_variables(name)) <= len(get_sequence(name))
+
+# Get the lexicographically smallest sequence of variable values
+def get_smallest_sequence(name):
+    # Get the sequence of variable values for the golorp
+    sequence = get_sequence(name)
+
+    # Sort the sequence in lexicographic order
+    sequence.sort()
+
+    # Return the sequence
+    return sequence
+
+# Get the number of variables necessary to feed the golorp
+def get_num_variables(name):
+    # Get the shape of the golorp's jaws
+    jaw_shape = get_jaw_shape(name)
+
+    # Return the number of variables necessary to feed the golorp
+    return len(jaw_shape)
+
+# Get the sequence of variable values for the golorp
+def get_sequence(name):
+    # Get the golorp's name and extract the sequence of variable values
+    sequence = get_golorp_sequence(name)
+
+    # Return the sequence
+    return sequence
+
+# Print the answer
+print(solve(sys.stdin.read().strip()))
+```

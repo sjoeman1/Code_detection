@@ -1,0 +1,21 @@
+```python
+n, k = map(int, input().split())
+s = input().strip()
+
+# Calculate the total number of moves
+moves = 0
+for i in range(n-k+1):
+    if s[i] != s[i+k]:
+        moves += 1
+
+# Check if the total number of moves exceeds 10^9
+if moves > 1e9:
+    print("once again")
+else:
+    # Check if Tokitsukaze will win
+    if s.startswith(s[0] * k) or s.endswith(s[n-1] * k):
+        print("tokitsukaze")
+    # Otherwise, Quailty will win
+    else:
+        print("quailty")
+```

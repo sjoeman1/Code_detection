@@ -1,0 +1,33 @@
+
+
+Here is the Python 3 code for the given problem:
+
+```
+def is_diverse(s):
+    if len(s) == 1:
+        return True
+    for i in range(len(s) - 1):
+        if ord(s[i]) + 1 != ord(s[i + 1]):
+            return False
+    return True
+
+def process_strings(strings):
+    for s in strings:
+        if is_diverse(s):
+            print("Yes")
+        else:
+            print("No")
+
+n = int(input())
+strings = []
+for _ in range(n):
+    strings.append(input())
+
+process_strings(strings)
+```
+
+The code first defines a function `is_diverse` which checks if a string is diverse or not. It iterates through the string and checks if the ASCII values of consecutive characters are consecutive. If they are not, it returns `False`. Otherwise, it returns `True`.
+
+The `process_strings` function iterates through the list of strings and prints "Yes" if the string is diverse and "No" if it is not.
+
+The `main` function takes the number of strings as input, reads the strings, and processes them using the `process_strings` function.

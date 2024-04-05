@@ -1,0 +1,7 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def is\_valid\_accordion(accordion):
+	return len(accordion) >= 3 and accordion[0] == '[' and accordion[-1] == ']' and accordion.count(':') == 2
+
+def max\_accordion\_length(s):

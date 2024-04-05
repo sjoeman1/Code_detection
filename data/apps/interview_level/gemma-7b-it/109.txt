@@ -1,0 +1,15 @@
+```python
+import random
+
+n, m, r, k = map(int, input().split())
+
+# Calculate the maximum number of fishes that can be caught in a given position
+def calculate_fish_count(x, y):
+    return min(r, x) * min(r, y)
+
+# Calculate the expected number of caught fishes
+expected_fish_count = k / (n - r + 1) * (m - r + 1) * calculate_fish_count(n, m)
+
+# Print the expected number of caught fishes
+print(expected_fish_count)
+```

@@ -1,0 +1,16 @@
+```python
+N, K = map(int, input().split())
+A = list(map(int, input().split()))
+
+# Calculate the maximum possible divisor
+max_divisor = 0
+for i in range(N):
+    a_i = A[i]
+    for j in range(i, N):
+        a_j = A[j]
+        if a_i + 1 > a_j and a_i + 1 not in A:
+            max_divisor = max(max_divisor, a_i + 1)
+
+# Print the maximum divisor
+print(max_divisor)
+```

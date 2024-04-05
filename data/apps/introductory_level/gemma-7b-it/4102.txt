@@ -1,0 +1,10 @@
+```python
+n = int(input())
+
+s = str(n)
+
+if len(s) <= 10 and s.isdigit() and int(s) % 11 == 0:
+    print("Yes")
+else:
+    print("No")
+```

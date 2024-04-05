@@ -1,0 +1,12 @@
+```python
+n = int(input())
+m = int(input())
+a = list(map(int, input().split()))
+b = list(map(int, input().split()))
+
+if sum(a) <= m and sum(b) <= m:
+    f = (m - sum(a)) // sum(b)
+    print(f)
+else:
+    print(-1)
+```

@@ -1,0 +1,19 @@
+```python
+import sys
+
+t = [[0] * 3 for _ in range(3)]
+n = int(sys.stdin.readline())
+
+for i in range(n):
+    t[0][i] = int(sys.stdin.readline())
+
+c = 2 ** n - 1
+print(c)
+```
+
+**Explanation:**
+
+* The problem is to calculate the minimum cost of solving SmallY's puzzle, which is the same as the minimum number of moves required to solve the Tower of Hanoi puzzle.
+* The cost of moving a disk from rod i to rod j is t_{ij} units of money.
+* The minimum number of moves required to solve a Tower of Hanoi puzzle is 2^{n} - 1, where n is the number of disks.
+* Therefore, the minimum cost of solving SmallY's puzzle is also 2^{n} - 1.

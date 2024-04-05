@@ -1,0 +1,15 @@
+```python
+a, b, m = map(int, input().split())
+
+# Calculate the number of distinct integers the frog can reach from position k
+def f(k):
+    return min(k, a) - max(0, k - b) + 1
+
+# Calculate the sum of f(i) for i from 0 to m
+sum = 0
+for i in range(m + 1):
+    sum += f(i)
+
+# Print the sum
+print(sum)
+```

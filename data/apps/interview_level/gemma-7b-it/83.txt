@@ -1,0 +1,36 @@
+```python
+n = int(input())
+a = list(map(int, input().split()))
+
+# Calculate the required number of positive numbers
+required_positives = int((n + 1) // 2)
+
+# Iterate over possible values of d and check if the condition is met
+for d in range(-1000, 1001):
+    count = 0
+    for num in a:
+        if num / d > 0:
+            count += 1
+    if count >= required_positives:
+        print(d)
+        exit()
+
+# If no valid d is found, print 0
+print(0)
+```
+
+**Explanation:**
+
+* The code reads the number of elements $n$ and the array $a$.
+* It calculates the required number of positive numbers, which is $\lceil\frac{n}{2}\rceil$.
+* It iterates over possible values of $d$ and checks if the condition is met.
+* If the condition is met, the value of $d$ is printed and the program exits.
+* If no valid $d$ is found, $0 is printed.
+
+**Time complexity:**
+
+* The code iterates over the array only once, so the time complexity is O(n).
+
+**Space complexity:**
+
+* The code uses a constant amount of space regardless of the size of the input.

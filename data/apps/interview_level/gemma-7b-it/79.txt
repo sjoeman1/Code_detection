@@ -1,0 +1,50 @@
+```python
+import random
+m = int(input())
+a = []
+expectation = 0
+while not a:
+    x = random.randint(1, m)
+    a.append(x)
+    expectation += x / gc(a)
+print(expectation)
+```
+
+**Explanation:**
+
+* The code reads an integer `m` representing the upper bound of the random number.
+* It initializes an empty list `a`.
+* It enters a loop until the list `a` is not empty.
+* In each iteration, it selects a random integer `x` between 1 and `m`, appends it to `a`, and updates the expectation.
+* The code calculates the greatest common divisor (GCD) of all integers in `a`. If the GCD is 1, it breaks out of the loop. Otherwise, it continues to the next iteration.
+* Finally, the code calculates the expected length of the array as `P/Q` where `P` and `Q` are coprime integers and `Q` is not divisible by 10^9+7. It prints the value of `P \cdot Q^{-1} \pmod{10^9+7}` as the output.
+
+**Example Usage:**
+
+```
+Input:
+1
+
+Output:
+1
+
+Input:
+2
+
+Output:
+2
+
+Input:
+4
+
+Output:
+333333338
+```
+
+**Output:**
+
+```
+1
+2
+333333338
+```

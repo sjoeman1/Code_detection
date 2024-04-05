@@ -1,0 +1,49 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def min\_elements\_to\_purchase():
+n, m, q = map(int, input().split())
+elements = set()
+for _ in range(q):
+r, c = map(int, input().split())
+elements.add((r, c))
+
+# Add elements in the first row
+for c in range(1, m + 1):
+if (1, c) not in elements:
+elements.add((1, c))
+q += 1
+
+# Add elements in the last column
+for r in range(2, n + 1):
+if (r, m) not in elements:
+elements.add((r, m))
+q += 1
+
+# Add elements in the first column
+for r in range(2, n + 1):
+if (r, 1) not in elements:
+elements.add((r, 1))
+q += 1
+
+# Check if all elements are available
+if len(elements) == n * m:
+print(0)
+return
+
+# Add remaining elements
+for r in range(2, n + 1):
+for c in range(2, m + 1):
+if (r, c) not in elements:
+q += 1
+
+print(q)
+```
+
+The solution first reads the input values `n`, `m`, and `q`. It then creates a set `elements` to store the elements that the scientists already have. The set is used to avoid duplicate elements and to easily check if an element is already in the set.
+
+Next, the solution adds the elements in the first row, last column, and first column if they are not already in the `elements` set. This is because these elements can be obtained by fusion with the elements in the first column, last row, and first row, respectively.
+
+After adding these elements, the solution checks if all elements are already in the `elements` set. If so, it prints `0` and returns. Otherwise, it adds the remaining elements to the `elements` set and prints the total number of elements that need to be purchased.
+
+The time complexity of this solution is O(n \* m), which is sufficient for the given constraints. The space complexity is O(n \*

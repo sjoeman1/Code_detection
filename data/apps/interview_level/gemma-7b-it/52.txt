@@ -1,0 +1,20 @@
+```python
+import math
+
+n = int(input())
+
+if n % 2 == 0:
+    m = int(n // 2)
+    print(m)
+    print(m)
+else:
+    print(-1)
+```
+
+**Explanation:**
+
+* The number of games played in each stage is always even, so the number of teams remaining at each stage is always even.
+* When the number of teams remaining is odd, the tournament ends.
+* Therefore, the number of teams to invite is the number of teams that will leave an even number of teams remaining at each stage until the final stage.
+* The number of games played in each stage is equal to the number of teams remaining in that stage.
+* So, the total number of games played is equal to the sum of the number of games played in each stage, which is equal to the number of teams invited.

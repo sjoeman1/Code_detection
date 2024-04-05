@@ -1,0 +1,13 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n = int(input().strip())
+a = list(map(int, input().strip().split()))
+
+sorted_a = sorted(a)
+min_instability = min(sorted_a[-1] - sorted_a[0], sorted_a[-2] - sorted_a[1])
+
+print(min_instability)
+```
+
+The solution sorts the array and calculates the instability for two cases: when the maximum and minimum elements are adjacent, and when they are not adjacent. The minimum of these two values is the answer.

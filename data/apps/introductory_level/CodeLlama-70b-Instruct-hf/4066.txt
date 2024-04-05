@@ -1,0 +1,14 @@
+
+
+import collections
+
+n = int(input())
+coins = list(map(int, input().split()))
+
+counts = collections.Counter(coins)
+
+count = 0
+for coin, freq in counts.items():
+    count += freq
+
+print(count)

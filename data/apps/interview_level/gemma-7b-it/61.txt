@@ -1,0 +1,19 @@
+```python
+n, bx = map(int, input().split())
+x = int("".join(str(int(x_i) // bx ** i for i, x_i in enumerate(reversed(map(int, input().split())))))
+
+m, by = map(int, input().split())
+y = int("".join(str(int(y_i) // by ** i for i, y_i in enumerate(reversed(map(int, input().split())))))
+
+print("<" if x < y else ">" if x > y else "=")
+```
+
+**Explanation:**
+
+* Read the number of digits `n` and base `bx` of number `X`.
+* Read the digits of `X` (in the order from most significant to least significant).
+* Convert the digits of `X` to integers and calculate its value in base `bx`.
+* Read the number of digits `m` and base `by` of number `Y`.
+* Read the digits of `Y` (in the order from most significant to least significant).
+* Convert the digits of `Y` to integers and calculate its value in base `by`.
+* Compare the values of `X` and `Y` and print the appropriate symbol.

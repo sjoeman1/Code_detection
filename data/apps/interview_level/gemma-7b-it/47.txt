@@ -1,0 +1,31 @@
+```python
+n, x = map(int, input().split())
+a = list(map(int, input().split()))
+
+# Calculate the maximum subarray sum
+max_sum = 0
+for i in range(n):
+    max_sum = max(max_sum, a[i] + (a[i-1] if i else 0))
+
+# Calculate the beauty of the array after multiplying all values in a consecutive subarray by x
+beauty = max_sum - x if max_sum - x > 0 else 0
+
+# Print the beauty
+print(beauty)
+```
+
+**Explanation:**
+
+1. Calculate the maximum subarray sum `max_sum` using Kadane's algorithm.
+2. If `max_sum` is greater than `x`, subtract `x` from `max_sum` to get the beauty of the array after multiplying all values in a consecutive subarray by `x`. Otherwise, the beauty is 0.
+3. Print the beauty.
+
+**Time Complexity:**
+
+* Calculating `max_sum` takes O(n) time, where n is the length of the array.
+* Finding the maximum subarray sum is a linear operation, so it takes O(n) time.
+* Therefore, the overall time complexity is O(n).
+
+**Space Complexity:**
+
+* The algorithm uses a constant amount of space, regardless of the size of the array.

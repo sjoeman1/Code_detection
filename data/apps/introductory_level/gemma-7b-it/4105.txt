@@ -1,0 +1,30 @@
+```python
+n, k = map(int, input().split())
+
+if n * k < 2:
+    print("NO")
+else:
+    print("YES")
+
+    b = list(int)
+    g = list(int)
+
+    for _ in range(n):
+        b.append(int(input().split()[0]))
+        g.append(int(input().split()[1]))
+
+    flag = 0
+
+    for i in range(n):
+        for j in range(i, n):
+            if b[i] == b[j] and g[i] == g[j]:
+                flag = 1
+
+    if flag:
+        print("NO")
+    else:
+        print("YES")
+
+        for i in range(n):
+            print(b[i], g[i])
+```

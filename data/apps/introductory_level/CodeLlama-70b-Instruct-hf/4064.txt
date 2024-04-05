@@ -1,0 +1,30 @@
+
+```python
+# function to find the minimum number of lights to turn off
+def minimum_lights_off(n, arr):
+    # initialize the count of disturbed people
+    count = 0
+    
+    # loop through the array
+    for i in range(1, n - 1):
+        # check if the person in the current flat is disturbed
+        if arr[i - 1] == 1 and arr[i] == 0 and arr[i + 1] == 1:
+            count += 1
+    
+    # return the minimum number of lights to turn off
+    return count
+
+# read the input
+n = int(input())
+arr = list(map(int, input().split()))
+
+# calculate the minimum number of lights to turn off
+min_lights_off = minimum_lights_off(n, arr)
+
+# print the result
+print(min_lights_off)
+```
+
+
+
+This code defines a function `minimum_lights_off` that takes two arguments: `n`, the number of flats, and `arr`, the array of light states. The function iterates through the array, checking if each person is disturbed. If a person is disturbed, the count is incremented. Finally, the minimum number of lights to turn off is returned. The function is called with the input values and the result is printed.

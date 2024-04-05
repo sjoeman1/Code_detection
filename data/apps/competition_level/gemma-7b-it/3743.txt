@@ -1,0 +1,15 @@
+```python
+n = int(input())
+
+# Calculate the maximum number of colors
+max_colors = 1
+
+# Iterate over the range from 2 to the square root of n
+for i in range(2, int(n ** 0.5) + 1):
+    # If the remainder when n is divided by i is 0, add i to the list of divisors
+    if n % i == 0:
+        max_colors = max(max_colors, i)
+
+# Print the maximum number of colors
+print(max_colors)
+```

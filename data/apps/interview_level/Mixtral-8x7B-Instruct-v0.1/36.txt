@@ -1,0 +1,49 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def move(n: int) -> tuple[int, int]:
+    direction = 0  # 0: right, 1: down-right, 2: down-left, 3: up-left, 4: up, 5: up-right
+    x, y = 0, 0
+
+    for _ in range(n):
+        if direction == 0:
+            if y % 2 == 0:
+                x += 1
+            else:
+                x += 2
+            y += 1
+            direction = 1
+        elif direction == 1:
+            y += 1
+            direction = 2
+        elif direction == 2:
+            if y % 2 == 0:
+                x -= 1
+            else:
+                x -= 2
+            y += 1
+            direction = 3
+        elif direction == 3:
+            y -= 1
+            direction = 4
+        elif direction == 4:
+            if y % 2 == 0:
+                x += 1
+            else:
+                x -= 1
+            y -= 1
+            direction = 5
+        elif direction == 5:
+            y -= 1
+            direction = 0
+
+    return x, y
+
+n = int(input())
+x, y = move(n)
+print(x, y)
+```
+
+The function `move` takes an integer `n` as input and returns a tuple of two integers `(x, y)` representing Ayrat's coordinates after `n` moves. The function uses a variable `direction` to keep track of the current direction of movement, and updates `x` and `y` accordingly. The direction is updated in a circular fashion (0 -> 1 -> 2 -> 3 -> 4 -> 5 -> 0) after each move.
+
+The input is read from standard input using the `input` function, converted to an integer using the `int` function, and passed to the `move` function. The output is printed to standard output using the `print` function.

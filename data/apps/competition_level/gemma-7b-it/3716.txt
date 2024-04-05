@@ -1,0 +1,33 @@
+```python
+n = int(input())
+
+# Find the maximum LCM of three numbers not greater than n
+max_lcm = 0
+
+# Iterate over all numbers from 1 to n
+for i in range(1, int(n**0.5) + 1):
+    # Check if i is divisible by each of the three numbers
+    if i % 3 == 0 and i % 5 == 0 and i % 7 == 0:
+        # If i is the maximum LCM, update it
+        if max_lcm < i:
+            max_lcm = i
+
+# Print the maximum LCM
+print(max_lcm)
+```
+
+**Explanation:**
+
+* The code reads an integer `n`, which represents the upper bound for the three numbers.
+* It iterates over all numbers from 1 to the square root of `n`.
+* For each number `i`, it checks if it is divisible by 3, 5, and 7. If it is, then it means that `i` is the LCM of the three numbers.
+* If the LCM is greater than the maximum LCM seen so far, it updates the maximum LCM.
+* Finally, the code prints the maximum LCM.
+
+**Time Complexity:**
+
+* The code iterates over the numbers from 1 to `n`, so the time complexity is O(n).
+
+**Space Complexity:**
+
+* The code uses a constant amount of space, regardless of the input size.

@@ -1,0 +1,20 @@
+```python
+N, M = map(int, input().split())
+A = list(map(int, input().split()))
+
+# Sort the assignments by completion days
+A.sort()
+
+# Calculate the maximum number of days to hang out
+days_to_complete = 0
+days_to_hang_out = 0
+for i in range(len(A)):
+    days_to_complete += A[i]
+    days_to_hang_out = max(days_to_hang_out, days_to_complete - A[i])
+
+# If all assignments can be completed, print the number of days to hang out
+if days_to_complete == M:
+    print(days_to_hang_out)
+else:
+    print(-1)
+```

@@ -1,0 +1,12 @@
+```python
+c, v_0, v_1, a, l = map(int, input().split())
+
+v_total = v_0
+days = 1
+
+while v_total < c:
+    v_total += a
+    days += 1
+
+print(days)
+```

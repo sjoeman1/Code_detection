@@ -1,0 +1,11 @@
+```python
+n, k = map(int, input().split())
+s = input().strip()
+
+g, t = s.find('G'), s.find('T')
+
+if (g-t) % k == 0 and s[g-k] == '.':
+    print('YES')
+else:
+    print('NO')
+```

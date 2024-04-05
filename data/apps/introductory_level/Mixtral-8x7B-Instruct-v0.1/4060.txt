@@ -1,0 +1,37 @@
+ Here is a Python3 solution for the problem:
+
+```python
+import sys
+
+def is_regular(s):
+    stack = []
+    for c in s:
+        if c == '(':
+            stack.append(c)
+        elif stack and stack[-1] == '(':
+            stack.pop()
+        else:
+            stack.append(c)
+    return not stack
+
+def solve(n, s):
+    ans = 0
+    for i in range(n):
+        if s[i] == '(':
+            s_new = s[:i] + ')' + s[i+1:]
+        else:
+            s_new = s[:i] + '(' + s[i+1:]
+        if is_regular(s_new):
+            ans += 1
+    return ans
+
+if __name__ == '__main__':
+    input = sys.stdin.readline
+    n = int(input().strip())
+    s = input().strip()
+    print(solve(n, s))
+```
+
+The solution consists of two functions: `is_regular` and `solve`. The `is_regular` function checks if a given bracket sequence is regular or not. It uses a stack to keep track of the number of opening brackets. If at any point, the stack becomes empty or the stack top contains a closing bracket, then the sequence is not regular.
+
+The `solve` function calculates the number of positions in the input sequence where changing the bracket type results in a regular sequence. It iterates over each position in the sequence and checks whether changing the bracket type at that position results in a regular sequence using the `is_regular` function. The function returns the number of such positions.

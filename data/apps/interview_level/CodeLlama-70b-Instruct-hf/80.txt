@@ -1,0 +1,26 @@
+
+
+Here's the Python 3 code to solve the question:
+
+```python
+def gcd(a, b):
+    while b:
+        a, b = b, a % b
+    return a
+
+def lcm(a, b):
+    return a * b // gcd(a, b)
+
+def solve(l, r, x, y):
+    count = 0
+    for i in range(l, r + 1):
+        for j in range(i, r + 1):
+            if gcd(i, j) == x and lcm(i, j) == y:
+                count += 1
+    return count
+
+l, r, x, y = map(int, input().split())
+print(solve(l, r, x, y))
+```
+
+This code defines two functions `gcd` and `lcm` to calculate the greatest common divisor and least common multiple of two numbers, respectively. The `solve` function takes the input parameters `l`, `r`, `x`, and `y` and iterates through all possible pairs of integers from `l` to `r` inclusive. For each pair, it checks if their GCD and LCM match the given values `x` and `y`. If they do, it increments the `count` variable. The `solve` function returns the final count, which is printed in the main code.

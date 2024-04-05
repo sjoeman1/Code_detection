@@ -1,0 +1,26 @@
+
+
+Here is the code:
+
+```
+# Read input
+n, h, l, r = map(int, input().split())
+a = list(map(int, input().split()))
+
+# Initialize the number of good sleeping times
+good_sleeping_times = 0
+
+# Iterate through the sleeping times
+for i in range(n):
+    # Check if the current sleeping time is good
+    if l <= (a[i] - 1) % h <= r:
+        good_sleeping_times += 1
+    # Check if the previous sleeping time is good
+    if l <= a[i] % h <= r:
+        good_sleeping_times += 1
+
+# Print the maximum number of good sleeping times
+print(good_sleeping_times)
+```
+
+This code will read the input and calculate the maximum number of good sleeping times. It will then print the result.

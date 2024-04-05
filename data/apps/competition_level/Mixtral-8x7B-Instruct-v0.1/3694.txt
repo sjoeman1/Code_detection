@@ -1,0 +1,36 @@
+ Here is a Python3 solution using dynamic programming to solve the problem:
+```python
+import sys
+
+def can_tokitsukaze_win(n, a):
+    # dp[i] is True if Tokitsukaze can win when there are i piles left
+    dp = [False] * (n + 1)
+    dp[0] = True
+    for i in range(n):
+        for j in range(i, -1, -1):
+            # Check if there are two piles with the same number of stones
+            # after Tokitsukaze removes a stone from the j-th pile.
+            if a[j] > 1 and a[i] == a[j - 1]:
+                break
+            dp[i + 1] = dp[i + 1] or dp[j]
+            if not dp[i + 1]:
+                break
+        else:
+            # Tokitsukaze can win if there is at least one valid move
+            break
+    return dp[n]
+
+def main():
+    n = int(input().strip())
+    a = list(map(int, input().strip().split()))
+    if can_tokitsukaze_win(n, a):
+        print("sjfnb")
+    else:
+        print("cslnb")
+
+if __name__ == "__main__":
+    main()
+```
+The function `can_tokitsukaze_win` takes two arguments: `n` and `a`, where `n` is the number of piles and `a` is a list of integers representing the number of stones in each pile. The function returns `True` if Tokitsukaze can win the game, and `False` otherwise.
+
+The function uses dynamic programming to keep track of whether Tokitsukaze can win the game when there are `i` piles left. The base case is when there are no piles left, in which case Tokitsukaze can win. For each pile `j` in the current state, the function checks if there are two piles with the same number of stones after Tokitsukaze removes a stone from the `j`-th pile. If there are, the function breaks out of the inner loop and returns `False` because Tok

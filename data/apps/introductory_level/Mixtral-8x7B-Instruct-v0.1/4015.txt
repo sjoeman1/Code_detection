@@ -1,0 +1,26 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def game23(n, m):
+    if n == m:
+        return 0
+    if n == 1:
+        return -1
+    if m % 2 == 0 and m % 3 == 0:
+        return game23(n, m // 6) + 1
+    if m % 2 == 0:
+        return game23(n, m // 2) + 1
+    if m % 3 == 0:
+        return game23(n, m // 3) + 1
+    return -1
+
+# Read input numbers
+n, m = map(int, input().split())
+
+# Print the result
+print(game23(n, m))
+```
+
+The function `game23` takes two arguments `n` and `m`, and returns the minimum number of moves required to transform `n` into `m`, or `-1` if it is impossible. The function first checks if `n` and `m` are equal, in which case no moves are required. If `n` is 1, then it is impossible to transform it into `m`. If `m` is divisible by both 2 and 3, then we can transform `n` into `m` in `game23(n, m // 6) + 1` moves. If `m` is only divisible by 2 or 3, then we can transform `n` into `m` in `game23(n, m // 2) + 1` or `game23(n, m // 3) + 1` moves, respectively. If `m` is not divisible by 2 or 3, then it is impossible to transform `n` into `m`.
+
+The main part of the code reads the input numbers `n` and `m`, and prints the result of `game23(n, m)`.

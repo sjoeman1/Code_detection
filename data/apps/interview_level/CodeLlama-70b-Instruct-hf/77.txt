@@ -1,0 +1,26 @@
+
+```py
+
+from collections import Counter
+
+def find_subsequence_sum(arr):
+    n = len(arr)
+    cnt = Counter()
+    for i in range(n):
+        for j in range(i, n):
+            cnt[sum(arr[i:j + 1])] += 1
+    max_sum = 0
+    for k in cnt:
+        if k % 2 == 1 and k > max_sum:
+            max_sum = k
+    return max_sum
+
+if __name__ == '__main__':
+    n = int(input())
+    arr = list(map(int, input().split()))
+    print(find_subsequence_sum(arr))
+```
+
+
+
+This code defines a function `find_subsequence_sum` that takes a list of integers as input. It uses a `Counter` object to count the frequency of each possible sum of subsequences. It then iterates through the counts and finds the maximum odd sum. The function returns the maximum odd sum. The `if __name__ == '__main__':` block reads the input, converts it to a list of integers, and prints the result of the `find_subsequence_sum` function.

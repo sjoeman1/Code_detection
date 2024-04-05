@@ -1,0 +1,32 @@
+```python
+def winning(board):
+    # Check rows
+    for r in range(4):
+        if board[r][0] == board[r][1] == board[r][2] == board[r][3] == board[r][0]:
+            return True
+
+    # Check columns
+    for c in range(4):
+        if board[0][c] == board[1][c] == board[2][c] == board[3][c] == board[0][c]:
+            return True
+
+    # Check diagonals
+    if board[0][0] == board[1][1] == board[2][2] == board[3][3] == board[0][0]:
+        return True
+    elif board[0][3] == board[1][2] == board[2][1] == board[3][0] == board[0][3]:
+        return True
+
+    # If all else fails, it's a draw
+    return False
+
+
+board = [['.', 'x', '.', '.'],
+ [.o, 'o', '.', '.'],
+ ['x', '.', '.', '.'],
+ ['.', 'o', 'x', '.']]
+
+if winning(board):
+    print("YES")
+else:
+    print("NO")
+```

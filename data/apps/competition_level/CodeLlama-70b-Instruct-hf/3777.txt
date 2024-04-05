@@ -1,0 +1,65 @@
+
+
+ Here is a Python3 code that solves the question:
+```py
+#!/usr/bin/env python3
+
+from collections import defaultdict
+from sys import stdin, setrecursionlimit
+
+setrecursionlimit(10 ** 6)
+
+
+def find(parent, i):
+    if parent[i] == i:
+        return i
+    parent[i] = find(parent, parent[i])
+    return parent[i]
+
+
+def union(parent, rank, i, j):
+    iroot = find(parent, i)
+    jroot = find(parent, j)
+
+    if rank[iroot] < rank[jroot]:
+        parent[iroot] = jroot
+    elif rank[iroot] > rank[jroot]:
+        parent[jroot] = iroot
+    else:
+        parent[jroot] = iroot
+        rank[iroot] += 1
+
+
+def get_answer(n, m, x, edges):
+    parent = [i for i in range(n + 1)]
+    rank = [0] * (n + 1)
+
+    for i in range(m):
+        u, v, w = edges[i]
+        if w == 0:
+            union(parent, rank, u, v)
+
+    components = defaultdict(list)
+    for i in range(1, n + 1):
+        components[find(parent, i)].append(i)
+
+    dp = [0] * (x + 1)
+    for root in components:
+        dp[0] += 1
+        for i in range(1, x + 1):
+            dp[i] += dp[i - 1]
+
+        for v, w in components[root]:
+            if w == 1:
+                for i in range(x, 0, -1):
+                    dp[i] -= dp[i - 1]
+
+    return dp[x]
+
+
+if __name__ == '__main__':
+    n, m = map(int, input().split())
+    x = int(input())
+
+    edges = []
+    for _ in range

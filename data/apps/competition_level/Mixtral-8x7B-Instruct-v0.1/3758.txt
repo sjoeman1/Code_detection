@@ -1,0 +1,34 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n = int(input())
+field = input()
+
+left_most_packman, right_most_packman = -1, -1
+for i in range(n):
+    if field[i] == 'P':
+        if left_most_packman == -1:
+            left_most_packman = i
+        right_most_packman = i
+
+# move all packmen to the leftmost packman position
+time = 0
+while left_most_packman > 0:
+    left_most_packman -= 1
+    time += 1
+    right_most_packman = min(n-1, right_most_packman-1)
+    if field[right_most_packman] == '*':
+        field = field[:right_most_packman] + '.' + field[right_most_packman+1:]
+
+# eat asterisks from right to left
+time += 1
+while right_most_packman < n-1:
+    right_most_packman += 1
+    time += 1
+    if field[right_most_packman] == '*':
+        field = field[:right_most_packman] + '.' + field[right_most_packman+1:]
+
+print(time)
+```
+
+The solution first finds the positions of the leftmost and rightmost packmen on the field. Then, it moves all packmen to the leftmost packman position in the minimum time possible by decreasing the leftmost packman position and increasing the rightmost packman position simultaneously. After that, it eats all asterisks from right to left by increasing the rightmost packman position until all asterisks are eaten. The total time is then printed.

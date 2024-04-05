@@ -1,0 +1,33 @@
+
+
+ The code for this problem is as follows:
+
+```
+n = int(input())
+a = list(map(int, input().split()))
+a.sort()
+
+# Storing the difference between the maximum and minimum elements in the array in a list
+diff = [a[i] - a[i - 1] for i in range(1, n)]
+
+# Finding the index of the minimum value in the diff list
+idx = diff.index(min(diff))
+
+# Calculating the minimum possible instability
+min_instability = min(a[n - 1] - a[idx + 1], a[idx] - a[0])
+
+print(min_instability)
+```
+
+Explanation:
+
+*   We first read the number of elements in the array, n, and the elements of the array, a, from the input.
+*   We then sort the array, a, in ascending order.
+*   We create a list, diff, which stores the difference between the maximum and minimum elements in the array.
+*   We find the index of the minimum value in the diff list.
+*   We calculate the minimum possible instability by taking the minimum of two cases:
+
+    *   If we remove the element at the index found in the previous step, the minimum possible instability is the difference between the largest element in the array and the element next to the element to be removed.
+    *   If we remove the element at the index found in the previous step, the minimum possible instability is the difference between the element next to the element to be removed and the smallest element in the array.
+
+*   Finally, we print the minimum possible instability.

@@ -1,0 +1,18 @@
+```python
+n, a, b, c = map(int, input().split())
+
+l = list(map(int, input().splitlines()))
+
+# Calculate the minimum MP needed
+mp = float('inf')
+for i in range(n):
+    l_i = l[i]
+    if l_i >= 2 and l_i - 1 < mp:
+        mp = l_i - 1
+
+# Calculate the total MP needed
+total_mp = min(mp, 10) + 1
+
+# Print the total MP needed
+print(total_mp)
+```

@@ -1,0 +1,27 @@
+```python
+n, s = map(int, input().split())
+
+# Number of rows and seat number
+r = n
+s_seat = s - 1
+
+# Number of seconds to serve passengers in each row
+time_per_row = 6
+
+# Number of rows served before Vasya's row
+num_rows_served = 0
+
+# Number of seconds Vasya has to wait
+waiting_time = 0
+
+# Iterate over the rows to find the number of rows served before Vasya's row
+while num_rows_served < r:
+    num_rows_served += 2
+    waiting_time += time_per_row
+
+# Add the time to serve passengers in Vasya's row
+waiting_time += s_seat
+
+# Print the waiting time
+print(waiting_time)
+```

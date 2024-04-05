@@ -1,0 +1,17 @@
+```python
+a, b, c, d = map(int, input().split())
+
+if a + b + c + d == 0:
+    print("NO")
+else:
+    print("YES")
+    print(a + b + c + d)
+    print(*(0) * a + (1) * b + (2) * c + (3) * d)
+```
+
+**Explanation:**
+
+- The code reads the input and stores the number of numbers for each category in variables `a`, `b`, `c`, and `d`.
+- If the total number of numbers is 0, it prints "NO".
+- Otherwise, it prints "YES" and the beautiful sequence.
+- The sequence is constructed by adding `a` numbers of 0, `b` numbers of 1, `c` numbers of 2, and `d` numbers of 3, in the order specified in the input.

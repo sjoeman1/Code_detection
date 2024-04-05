@@ -1,0 +1,26 @@
+```python
+n, q = map(int, input().split())
+
+operations = []
+for _ in range(q):
+    a, b = input().split()
+    operations.append((a, b))
+
+# Create a dictionary to store the number of ways to get a from each string
+ways = {}
+
+# Iterate over the operations and update the dictionary
+for a, b in operations:
+    if a not in ways:
+        ways[a] = 0
+    ways[a] += 1
+
+# Find the number of ways to get a from the initial string
+ans = 0
+for i in range(n):
+    s = ''.join(['a' * i] + ['b'] * (n - i))
+    if s in ways and ways[s] > 0:
+        ans += ways[s]
+
+print(ans)
+```

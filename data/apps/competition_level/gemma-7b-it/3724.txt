@@ -1,0 +1,36 @@
+```python
+n = int(input())
+s = input()
+
+# Create a dictionary to store the number of distinct strings for each prefix
+distinct_strings = {}
+
+# Iterate over the string to find the number of distinct strings for each prefix
+for i in range(n):
+    prefix = s[:i+1]
+    if prefix not in distinct_strings:
+        distinct_strings[prefix] = 1
+    else:
+        distinct_strings[prefix] += 1
+
+# Calculate the total number of distinct strings
+total_distinct_strings = sum(distinct_strings.values())
+
+# Print the number of distinct strings modulo (10^9+7)
+print(total_distinct_strings % (10**9 + 7))
+```
+
+**Explanation:**
+
+- The code iterates over the string S and creates a dictionary to store the number of distinct strings for each prefix.
+- The key of the dictionary is the prefix, and the value is the number of distinct strings for that prefix.
+- The code calculates the total number of distinct strings by summing the values in the dictionary.
+- The total number of distinct strings is then printed modulo (10^9+7).
+
+**Time complexity:**
+
+- The code iterates over the string S only once, so the time complexity is O(n), where n is the length of the string.
+
+**Space complexity:**
+
+- The code uses a dictionary to store the number of distinct strings for each prefix, so the space complexity is O(n).
