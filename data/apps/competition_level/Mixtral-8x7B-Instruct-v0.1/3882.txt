@@ -1,0 +1,26 @@
+ Here is a Python3 solution for the problem:
+
+```python
+import sys
+input = sys.stdin.readline
+
+mod = 1000000007
+
+def power(x, y):
+    res = 1
+    while y > 0:
+        if y % 2:
+            res = (res * x) % mod
+            y -= 1
+        x = (x * x) % mod
+        y //= 2
+    return res
+
+n = int(input().strip())
+
+print((power(2, n * n) - power(2, n) - n + 1) % mod)
+```
+
+The solution uses the principle of inclusion-exclusion. The number of symmetric and transitive relations on a set of size `n` is `2^(n^2)`. We need to subtract the number of equivalence relations, which is equal to `2^n` (since each subset of `A` defines an equivalence relation), and add back the number of reflexive relations (i.e. relations that contain all pairs `(a, a)` for `a` in `A`), which is `2^(n^2 - n)`. However, we want to count only the relations that are not reflexive, so we subtract `2^n` one more time. The result is then taken modulo `10^9 + 7`.
+
+The function `power(x, y)` calculates `x^y` using modular exponentiation.

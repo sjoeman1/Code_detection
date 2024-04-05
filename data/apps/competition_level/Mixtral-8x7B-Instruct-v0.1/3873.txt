@@ -1,0 +1,25 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def is_possible(n):
+    if n % 2 == 0:
+        return False
+    return True
+
+def solve(n):
+    if not is_possible(n):
+        print("NO")
+        return
+    print("YES")
+    for i in range(1, n):
+        for j in range(i+1, n+1):
+            print(i, j)
+
+# Test cases
+solve(3)
+solve(1)
+```
+
+The `is_possible` function checks if it is possible to swap all pairs of positions so that the permutation stays the same. If the size of the permutation `n` is even, then it is not possible to do that. Otherwise, it is possible.
+
+The `solve` function first checks if it is possible to swap all pairs of positions using the `is_possible` function. If it is not possible, then it prints "NO" and returns. Otherwise, it prints "YES" and then prints all possible pairs of positions where the swaps can be performed.

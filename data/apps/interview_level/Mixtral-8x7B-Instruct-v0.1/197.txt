@@ -1,0 +1,36 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def power(x, y, p):
+    res = 1
+    x = x % p
+    while (y > 0):
+        if (y & 1):
+            res = (res * x) % p
+        y = y >> 1
+        x = (x * x) % p
+    return res
+
+def invmod(x, y):
+    return power(x, y - 2, y)
+
+def solve(n, l, r):
+    dp = [[0] * (r + 1) for _ in range(n)]
+    dp[0][l[0]] = 1
+    for i in range(1, n):
+        for j in range(l[i], r[i] + 1):
+            dp[i][j] = sum(dp[i - 1][k] for k in range(l[i - 1], j + 1))
+        dp[i][r[i]] %= 998244353
+    ans = 0
+    for i in range(r[n - 1], l[n - 1] - 1, -1):
+        ans = (ans + dp[n - 1][i]) % 998244353
+    ans = (ans * invmod(n, 998244353)) % 998244353
+    return ans
+
+n = int(input())
+l = list(map(int, input().split()))
+r = list(map(int, input().split()))
+print(solve(n, l, r))
+```
+
+The solution uses dynamic programming to calculate the number of valid orders and then calculates the probability using the modular inverse. The `power` function calculates `x^y % p` and the `invmod` function calculates the multiplicative inverse of `x` modulo `y`. The `solve` function calculates the number of valid orders and returns the probability as an integer modulo `998244353`.

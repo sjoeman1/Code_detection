@@ -1,0 +1,23 @@
+ Here is a Python3 code that can solve the problem:
+
+```python
+import math
+
+def min_positive_x(a, b):
+    if b % 2 == 1 or a % 2 == 1:
+        return -1
+    x = b / (2 * (a // 2 - 1))
+    return x if x > 0 else -1
+
+if __name__ == "__main__":
+    a, b = map(int, input().split())
+    result = min_positive_x(a, b)
+    print("{:.15f}".format(result))
+```
+
+Explanation:
+
+* The function `min_positive_x` takes two integers `a` and `b` as input and returns the minimum positive value of `x` that satisfies the given condition or `-1` if no such `x` exists.
+* If `b` is odd or `a` is odd, then there is no such `x` that can make the y-coordinates of all the points in the polyline equal to `x` or `0`. So we return `-1` in this case.
+* If both `b` and `a` are even, then we can express `x` in terms of `a` and `b` as `x = b / (2 * (a // 2 - 1))`. Here, `a // 2` is the number of line segments in the polyline, and each line segment has a slope of `1/x` or `-1/x`. Therefore, the total change in the y-coordinate from the start point to the end point of the polyline is `b`, and the total horizontal distance covered is `2 * (a // 2 - 1) * x`. Setting these two quantities equal to each other gives us the expression for `x`.
+* We check if `x` is positive or not. If `x` is non-positive, then we return `-1`. Otherwise, we return `x` with 15 decimal places using the `format` function.

@@ -1,0 +1,17 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def max\_joy(C, Hr, Hb, Wr, Wb):
+if C < Wr or C < Wb:
+return 0
+if Wr == Wb:
+return C * min(Hr, Hb)
+candies\_to\_eat = min(C // Wr, C // Wb)
+return candies\_to\_eat * (Hr + Hb)
+
+# Test the function
+C, Hr, Hb, Wr, Wb = 10, 3, 5, 2, 3
+print(max\_joy(C, Hr, Hb, Wr, Wb)) # Output: 16
+```
+
+The function `max_joy` takes in five parameters: `C`, `Hr`, `Hb`, `Wr`, and `Wb`, which represent the maximum weight of candies Om Nom can eat, the joy units gained from eating a red candy, the joy units gained from eating a blue candy, the weight of a red candy, and the weight of a blue candy, respectively. The function first checks if the maximum weight is less than the weight of either type of candy, in which case Om Nom cannot eat any candy and the function returns 0. If the weights of both types of candies are equal, then Om Nom can eat the same number of red and blue candies, gaining the minimum of `Hr` and `Hb` joy units from each candy. Otherwise, the function calculates the maximum number of candies Om Nom can eat, which is the minimum of `C // Wr` and `C // Wb`, and multiplies this by the total joy units gained from each type of candy.

@@ -1,0 +1,24 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def min_deletions(a, b):
+    j = 0
+    for char in a:
+        while j < len(b) and b[j] != char:
+            j += 1
+        if j == len(b):
+            return '-'
+        j += 1
+    return b[:j]
+
+# Read input strings
+a = input()
+b = input()
+
+# Compute and print the result
+print(min_deletions(a, b))
+```
+
+The function `min_deletions` takes two strings `a` and `b` as input. It iterates through the characters in `a` and for each character, it finds the minimum number of consecutive characters to remove from `b` so that the current character in `a` becomes a subsequence of `b`. If at any point, it is not possible to make the current character in `a` a subsequence of `b`, it returns '-'.
+
+The main part of the code reads the input strings `a` and `b` and calls the `min_deletions` function with these strings. The result is then printed to the console.

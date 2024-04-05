@@ -1,0 +1,28 @@
+ Here is a Python3 solution for the problem:
+
+```python
+import math
+
+def min_norm(a, b):
+    # calculate the norm of A
+    norm_A = max(abs(a[0]), abs(a[1]), abs(b[0]), abs(b[1]))
+
+    # if A is already degenerate, then the answer is 0
+    if a[0]*b[1] - a[1]*b[0] == 0:
+        return 0
+
+    # calculate the determinant of A
+    det_A = a[0]*b[1] - a[1]*b[0]
+
+    # the minimum possible norm of A - B is the absolute value of the determinant
+    return abs(det_A)
+
+# read input
+a = list(map(int, input().split()))
+b = list(map(int, input().split()))
+
+# print the result
+print(min_norm(a, b))
+```
+
+The solution first calculates the norm of the input matrix A. If A is already degenerate, then the answer is 0. Otherwise, the solution calculates the determinant of A and returns its absolute value as the minimum possible norm of A - B. The determinant of a 2x2 matrix can be calculated as `a[0]*b[1] - a[1]*b[0]`.

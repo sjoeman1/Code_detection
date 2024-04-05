@@ -1,0 +1,21 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def countTrailingZeros(n, b):
+    # Calculate the number of trailing zeros in n! in base b
+    count = 0
+    while n > 0:
+        n, temp = divmod(n, b)
+        count += temp // 5
+    return count
+
+# Read input numbers
+n, b = map(int, input().split())
+
+# Print the result
+print(countTrailingZeros(n, b))
+```
+
+The solution uses a helper function `countTrailingZeros` to count the number of trailing zeros in `n!` in base `b`. The function works by repeatedly dividing `n` by `b` and counting the number of times the remainder is divisible by 5. This is because each factorial contains a number of trailing zeros equal to the number of times 10 can be divided by 5, and 10 can be written as 2 x 5. So, we only need to count the number of times 5 can be divided from `n` and its factors.
+
+The main part of the solution reads the input numbers `n` and `b`, calls the `countTrailingZeros` function with these numbers, and prints the result.

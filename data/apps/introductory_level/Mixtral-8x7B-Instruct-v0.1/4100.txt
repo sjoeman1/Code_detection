@@ -1,0 +1,25 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n, k, q = map(int, input().split())
+scores = [k] * n
+for _ in range(q):
+    a = int(input()) - 1
+    scores[0] += 1
+    for i in range(1, n):
+        scores[i] -= 1
+        if scores[i] < 0:
+            scores[i] = 0
+            if scores[i] == 0 and scores[a] > 0:
+                scores[0] -= 1
+                if scores[0] < 0:
+                    scores[0] = 0
+    scores[a] += 1
+for i in scores:
+    if i > 0:
+        print('Yes')
+    else:
+        print('No')
+```
+
+The solution uses a list `scores` to keep track of the scores of each player. The initial score of each player is set to `k`. For each question, the score of the player who answered correctly is increased by 1, and the score of every other player is decreased by 1. If a player's score becomes negative, it is set to 0. If the score of the player who answered correctly becomes 0, and the score of the previous player who answered correctly is greater than 0, the score of the previous player is decreased by 1. Finally, for each player, if their score is greater than 0, it is printed that they survived, otherwise, it is printed that they were eliminated.

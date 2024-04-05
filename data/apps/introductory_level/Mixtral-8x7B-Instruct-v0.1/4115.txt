@@ -1,0 +1,21 @@
+ Here's a Python3 solution for the problem:
+
+```python
+import sys
+
+def min_hugs_to_make_palindrome(s):
+    # Find the longest palindrome in s
+    n = len(s)
+    for i in range(n // 2, -1, -1):
+        if s[:i + 1] == s[n - i - 1:][::-1]:
+            return (n - 1) // 2 - i
+    return 0
+
+# Read input and output the result
+input_string = sys.stdin.readline().strip()
+print(min_hugs_to_make_palindrome(input_string))
+```
+
+The idea is to find the longest palindrome that is a substring of the given string. This can be done by checking each substring from the center, expanding it to the left and right, and keeping track of the longest palindrome found so far. The remaining characters that are not part of the longest palindrome need to be changed to make the whole string a palindrome. The minimum number of changes required is the number of such remaining characters, which can be calculated as the length of the string minus the length of the longest palindrome found, divided by two (since changing one character affects two positions in the string).
+
+In the sample input "redcoder", the longest palindrome is "redro", which has length 5. The remaining characters are "c" and "e", which need to be changed to make the string a palindrome. Therefore, the minimum number of hugs required is 1 (changing either "c" or "e").

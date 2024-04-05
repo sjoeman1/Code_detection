@@ -1,0 +1,50 @@
+ Here is a Python3 solution for the problem:
+
+```python
+import sys
+from collections import defaultdict
+
+def solve():
+    N = int(sys.stdin.readline())
+    a = list(map(int, sys.stdin.readline().split()))
+
+    # Initialize a dictionary to count the number of occurrences of each value in a.
+    count = defaultdict(int)
+    for num in a:
+        count[num] += 1
+
+    # Initialize the result list with an empty list for each value in a.
+    result = [[] for _ in a]
+
+    # Sort the values in a in increasing order.
+    sorted_a = sorted(count.keys())
+
+    # Perform the operations.
+    for i in range(len(sorted_a) - 1):
+        # Find the smallest value in a that is greater than the current value.
+        j = i
+        while j < len(sorted_a) and sorted_a[j] <= sorted_a[i] + 1:
+            j += 1
+
+        # If there is no value greater than the current value, add the current value to itself.
+        if j == len(sorted_a):
+            result[sorted_a[i]].append((sorted_a[i], sorted_a[i]))
+            count[sorted_a[i]] += 1
+            count[sorted_a[i] + 1] -= 1
+            continue
+
+        # Add the current value to the smallest value greater than it.
+        result[sorted_a[i]].append((sorted_a[i], sorted_a[j]))
+        count[sorted_a[i]] += 1
+        count[sorted_a[j]] -= 1
+
+    # Print the result.
+    print(len(result))
+    for x, y in result:
+        print(x, y)
+
+if __name__ == "__main__":
+    solve()
+```
+
+This solution first counts the number of occurrences of each value in the input sequence `a` using a dictionary. It then sorts the values in `a` in increasing order and initializes a result list with an

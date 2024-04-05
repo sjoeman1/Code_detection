@@ -1,0 +1,38 @@
+ Here is a Python3 solution for the problem:
+
+```python
+# Read in the number of squares
+n = int(input())
+
+# Read in the heights of the squares
+squares = list(map(int, input().split()))
+
+# Initialize a variable to keep track of whether it's possible to rearrange the squares
+possible = True
+
+# Initialize the previous square's height
+prev = squares[0]
+
+# Iterate over the remaining squares
+for square in squares[1:]:
+    # If the current square's height is less than the previous square's height
+    if square < prev:
+        # If the previous square's height is 1 (the minimum possible height)
+        if prev == 1:
+            # Set possible to False, since we can't decrease the height of the previous square any further
+            possible = False
+        else:
+            # Decrease the previous square's height by 1
+            prev -= 1
+    else:
+        # Update the previous square's height to the current square's height
+        prev = square
+
+# Print the answer
+if possible:
+    print("Yes")
+else:
+    print("No")
+```
+
+This solution works by iterating over the squares from left to right, and keeping track of the previous square's height. If the current square's height is less than the previous square's height, we check if the previous square's height is already 1 (the minimum possible height). If it is, then it's impossible to rearrange the squares to be non-decreasing, so we set the `possible` variable to `False`. Otherwise, we decrease the previous square's height by 1. If the current square's height is greater than or equal to the previous square's height, we simply update the previous square's height to the current square's height. At the end, we print the answer based on the value of the `possible` variable.

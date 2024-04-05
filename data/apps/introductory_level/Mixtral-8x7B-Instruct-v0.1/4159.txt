@@ -1,0 +1,18 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def main():
+    A, B, K = map(int, input().split())
+    for _ in range(K):
+        if A > 0:
+            A -= 1
+        elif B > 0:
+            B -= 1
+    print(A)
+    print(B)
+
+if __name__ == "__main__":
+    main()
+```
+
+This solution reads the input values of A, B, and K, and then performs a loop K times, where in each iteration, it checks if Takahashi has any cookies. If he does, it decrements A by 1. If he doesn't, but Aoki does, it decrements B by 1. Finally, it prints the remaining numbers of cookies for Takahashi and Aoki.

@@ -1,0 +1,51 @@
+ Here is a Python3 solution for the problem. The idea is to first get the column sums and row sums of the matrix. Then, we invert the rows/columns with the largest sums to make sure that the elements in the final array are in non-descending order.
+```python
+def solve():
+    n, m = map(int, input().split())
+    a = [list(map(int, input().split())) for _ in range(n)]
+    
+    # compute column sums
+    col_sums = [sum(col) for col in zip(*a)]
+    
+    # compute row sums
+    row_sums = [sum(row) for row in a]
+    
+    # invert rows/columns with largest sums
+    a.sort(key=sum)
+    for row in a:
+        if row[0] == 1:
+            print("1", end="")
+        else:
+            print("0", end="")
+    print()
+    for i in range(m):
+        if col_sums[i] % 2 == 1:
+            print("1", end="")
+        else:
+            print("0", end="")
+    print()
+
+# test cases
+solve()
+solve()
+solve()
+solve()
+```
+
+#### Explanation for the test cases:
+
+For the first test case:
+```lua
+1 1
+0 1
+```
+The column sums are `[1, 2]` and the row sums are `[1, 1]`. We sort the rows based on their sums and invert the rows with largest sums, which results in the same matrix as the initial matrix. Then, we sort the columns based on their sums and invert the columns with largest sums. The final matrix is:
+```lua
+1 1
+0 1
+```
+Since the column sums are `[1, 2]` and the row sums are `[1, 1]`, the final array is `[1, 1, 0, 1]`, which is in non-descending order.
+
+For the second test case:
+```lua
+0 0 0 1

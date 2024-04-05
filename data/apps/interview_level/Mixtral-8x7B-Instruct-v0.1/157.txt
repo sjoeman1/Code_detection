@@ -1,0 +1,21 @@
+ Here is one way to solve the problem in Python:
+
+```python
+a = int(input())
+b = int(input())
+c = int(input())
+
+# Calculate the maximum number of sets of fruits that can be used
+max_sets = min(a, b // 2, c // 4)
+
+# Calculate the total number of fruits that can be used
+total_fruits = max_sets * (1 + 2 + 4)
+
+print(total_fruits)
+```
+
+This code first reads the number of lemons, apples, and pears from the user. It then calculates the maximum number of sets of fruits that can be used by taking the minimum of the number of lemons, half the number of apples, and a quarter of the number of pears. This is because the number of apples and pears must be twice and four times the number of lemons, respectively.
+
+Next, the code calculates the total number of fruits that can be used by multiplying the maximum number of sets by the sum of 1, 2, and 4 (the number of lemons, apples, and pears in each set).
+
+Finally, the code prints the total number of fruits that can be used.

@@ -25,11 +25,10 @@ parser.add_argument('--ngram_range', default=(1, 4), type=tuple, nargs=2)
 parser.add_argument('--tokenizer', default='comment_only',
                     choices=['tokenize_comment', 'tag_comment', 'hide_comment', 'standard_tokenizer', 'comment_only'])
 args = parser.parse_args()
-# args.ngram_range = tuple(args.ngram_range)
 print(args)
 
 clf_name = args.classifier
-dataset_name = args.dataset.split('/')[-1].split('.')[0]
+dataset_name = args.dataset.split('/')[-1][:-6]
 run_name = f"{dataset_name}_{clf_name}"
 
 # load the dataset

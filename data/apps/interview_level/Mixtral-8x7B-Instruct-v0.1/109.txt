@@ -1,0 +1,34 @@
+ To solve this problem, we need to place the `k` fishes in the pond such that no matter where we place the scoop-net, we maximize the expected number of fishes caught.
+
+First, let's calculate the total number of possible positions to place the scoop-net. This is equal to `(n - r + 1) * (m - r + 1)`.
+
+Next, for each cell in the pond, let's calculate the number of positions the scoop-net can be placed such that the cell is inside the scoop-net. This is equal to `(r - 1)^2`.
+
+Therefore, to maximize the expected number of fishes caught, we should place the fishes in the `k` cells that have the highest number of positions the scoop-net can be placed such that the cell is inside the scoop-net.
+
+Here's the Python3 code to solve the problem:
+
+```python
+def max\_expected\_fishes(n, m, r, k):
+n, m, r, k = map(int, [n, m, r, k])
+
+# Calculate the total number of possible positions to place the scoop-net
+total\_positions = (n - r + 1) * (m - r + 1)
+
+# Create a list to store the number of positions the scoop-net can be placed
+# such that the cell is inside the scoop-net
+cell\_positions = [(r - 1)**2 for _ in range(n*m)]
+
+# Place the fishes in the k cells with the highest number of positions
+# the scoop-net can be placed such that the cell is inside the scoop-net
+fishes = [cell\_positions.pop(max\_index) for _ in range(k)]
+
+# Calculate the maximum possible expected number of caught fishes
+max\_expected = sum(fishes) / total\_positions
+
+# Return the maximum possible expected number of caught fishes
+return max\_expected
+
+# Test the function
+print(max\_expected\_fishes(3, 3, 2, 3)) # 2.0000000000
+print(max\_expected\_fishes(12

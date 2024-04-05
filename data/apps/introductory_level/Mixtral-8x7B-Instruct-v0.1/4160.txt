@@ -1,0 +1,24 @@
+ Here is a Python3 solution for the problem:
+
+```python
+# Read the input value
+X = int(input())
+
+# Initialize the balance and the year
+balance = 100
+year = 0
+
+# Calculate the number of years it takes for the balance to reach X or above
+while balance < X:
+    balance += balance * 0.01  # Add interest
+    year += 1                 # Increase the year
+
+# Print the result
+print(year)
+```
+
+This program reads the input value `X` and initializes the balance to 100 yen and the year to 0. Then, it enters a loop that continues until the balance reaches `X` or above. In each iteration of the loop, the program adds the interest to the balance and increments the year. Finally, the program prints the number of years it takes for the balance to reach `X` or above.
+
+Note that the interest is calculated by multiplying the balance by 0.01 (which is the decimal representation of the annual interest rate of 1%). This is because the interest is compounded annually, which means that it is added to the balance at the end of each year.
+
+Also note that the program discards any fraction of less than one yen, as specified in the problem statement. This is done implicitly by using integer arithmetic throughout the program. For example, when the balance is 100 yen and the interest is 1 yen, the program adds 1 to the balance, resulting in a balance of 101 yen instead of 100.99 yen.

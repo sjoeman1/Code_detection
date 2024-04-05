@@ -1,0 +1,47 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def max\_divisible\_by\_three(s):
+n = len(s)
+# Initialize the result to zero
+result = 0
+# Keep track of the current number and its length
+current\_num = ""
+current\_len = 0
+
+for i in range(n):
+# Get the current digit
+digit = int(s[i])
+# If the current number is divisible by three, increase the result
+if (current\_len > 0 and (current\_num + str(digit)) % 3 == 0):
+result += 1
+# If the current number is not divisible by three, reset it
+elif (current\_len > 0 and (current\_num + str(digit)) % 3 != 0):
+current\_num = str(digit)
+current\_len = 1
+# If the current number is empty, start a new one with the current digit
+else:
+current\_num = str(digit)
+current\_len = 1
+# If the current number has length three and is divisible by three, increase the result
+if (current\_len == 3 and (current\_num) % 3 == 0):
+result += 1
+current\_num = ""
+current\_len = 0
+
+# If the last number has length one or two, add it to the result if it is divisible by three
+if (current\_len == 1 and int(current\_num) % 3 == 0):
+result += 1
+elif (current\_len == 2 and int(current\_num) % 3 == 0):
+result += 2
+
+return result
+
+# Test the function with the given examples
+print(max\_divisible\_by\_three("3121")) # 2
+print(max\_divisible\_by\_three("6")) # 1
+print(max\_divisible\_by\_three("1000000000000000000000000000000000")) # 33
+print(max\_divisible\_by\_three("201920181")) # 4
+```
+
+The

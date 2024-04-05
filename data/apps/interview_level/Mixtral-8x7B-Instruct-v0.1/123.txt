@@ -1,0 +1,50 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def can_form_non_increasing_seq():
+    n, k = map(int, input().split())
+    a = list(map(int, input().split()))
+    b = list(map(int, input().split()))
+
+    # sort the elements in b
+    b.sort()
+
+    # initialize the number of zeros in a
+    zero_count = 0
+
+    # initialize a list to keep track of the unused elements in b
+    unused_b = set(b)
+
+    # iterate over the elements in a from right to left
+    for i in range(n - 1, -1, -1):
+        # if the current element is zero
+        if a[i] == 0:
+            # if there are no unused elements in b
+            if not unused_b:
+                # we cannot form a non-increasing sequence
+                return "No"
+            # get the smallest unused element in b
+            next_b = unused_b.pop()
+        # if the current element is not zero
+        else:
+            # set next_b to the current element
+            next_b = a[i]
+
+        # for each element in b that is greater than next_b
+        for j in range(len(b) - 1, -1, -1):
+            # if the element is unused and greater than next_b
+            if b[j] > next_b and j not in unused_b:
+                # we cannot form a non-increasing sequence
+                return "No"
+            # if the element is unused and equal to next_b
+            elif b[j] == next_b and j not in unused_b:
+                # mark the element as used
+                unused_b.remove(b[j])
+
+    # we can form a non-increasing sequence
+    return "Yes"
+
+print(can_form_non_increasing_seq())
+```
+
+This solution first sorts the elements in b and then iterates over the elements in a from right to left. For each zero in a, it checks if there are any unused elements in b that are smaller than the

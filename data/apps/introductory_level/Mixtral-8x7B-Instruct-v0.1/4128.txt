@@ -1,0 +1,21 @@
+ Here is a Python3 solution using the formula for the number of solutions of a linear Diophantine equation:
+
+```python
+def distribute_candies(n):
+    count = 0
+    for a in range(1, n // 2 + 1):
+        b = n - a
+        if a > b:
+            count += 1
+    return count
+
+t = int(input().strip())
+for _ in range(t):
+    n = int(input().strip())
+    result = distribute_candies(n)
+    print(result)
+```
+
+This solution runs in O(n) time, where n is the number of candies. The formula used is based on the fact that the number of solutions of the equation `n = a + b` in positive integers `a` and `b` is equal to `n - 1`, since `a` can take any value from 1 to `n-1`, and `b` is then determined by `b = n - a`. However, in this problem, the additional condition `a > b` is given, so we need to count only the solutions where `a > b`, which is half of the total number of solutions. Therefore, the final answer is `(n - 1) // 2`.
+
+Note that this formula only works when `n` is positive. If `n` is zero or negative, then there are no solutions that satisfy the given conditions, so the answer is 0.

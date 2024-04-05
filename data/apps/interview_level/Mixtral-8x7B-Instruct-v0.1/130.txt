@@ -1,0 +1,27 @@
+ Here is a possible solution for the problem:
+
+```python
+n, m = map(int, input().split())
+a = []
+for _ in range(n):
+    a.append(list(input()))
+
+# try all possible sizes of the square
+for k in range(min(n, m)):
+    # check if there is a square of size k
+    for i in range(n - k + 1):
+        for j in range(m - k + 1):
+            if a[i][j] == 'B' and all([a[x][y] == 'B' for x in range(i, i + k) for y in range(j, j + k)]):
+                # if there is, print the number of cells to be painted and exit
+                print(n * m - (k ** 2))
+                exit()
+
+# if no square is found, print -1
+print(-1)
+```
+
+This solution tries all possible sizes of the square, from `1` to the minimum of `n` and `m`. For each size, it checks if there is a square of that size in the grid. If there is, it prints the number of cells to be painted and exits. If no square is found, it prints `-1`.
+
+The function `all` is used to check if all elements of a list are equal to `'B'`. The function `exit` is used to exit the program immediately.
+
+Note that this solution has a time complexity of O(n^3 \* m^3), which may be too slow for large inputs. A more efficient solution would be to use a two-dimensional prefix sum array to count the number of black cells in any rectangular region of the grid, and then use this information to check for the existence of a square in O(n^2 \* m^2) time. However, this would require a more complex implementation.

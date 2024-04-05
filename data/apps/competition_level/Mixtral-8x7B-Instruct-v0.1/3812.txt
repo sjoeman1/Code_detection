@@ -1,0 +1,45 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def solve(s, t):
+    a_s, b_s, a_t, b_t = 0, 0, 0, 0
+    for c in s:
+        if c == 'a':
+            a_s += 1
+        else:
+            b_s += 1
+    for c in t:
+        if c == 'a':
+            a_t += 1
+        else:
+            b_t += 1
+    if a_s == 0 or b_t == 0:
+        # if s contains only b or t contains only a, no operations are needed
+        return 0, []
+    elif a_t == 0 or b_s == 0:
+        # if t contains only b or s contains only a, swap the whole strings
+        return 1, [len(s), 0]
+    else:
+        # find the first index where s and t differ
+        for i in range(min(len(s), len(t))):
+            if s[i] != t[i]:
+                break
+        # swap the prefixes of s and t up to the found index
+        return 1, [i, i]
+
+# read input
+s = input()
+t = input()
+
+# solve the problem
+n, ops = solve(s, t)
+
+# print the result
+print(n)
+for a, b in ops:
+    print(a, b)
+```
+
+The `solve` function takes two strings `s` and `t` as input, and returns a tuple `(n, ops)` where `n` is the number of operations and `ops` is a list of tuples representing the operations. Each tuple in `ops` contains two integers: the length of the prefix of `s` to swap, and the length of the prefix of `t` to swap.
+
+The `solve` function first counts the number of a's and b's in `s` and `t`, and then uses this information to determine the number of operations and the corresponding operations. If `s` contains only b or `t` contains only a, no operations are needed. If `t` contains

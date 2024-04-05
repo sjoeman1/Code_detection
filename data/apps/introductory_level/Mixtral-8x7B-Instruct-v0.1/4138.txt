@@ -1,0 +1,10 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def get_digit(k):
+    i, digit = 1, 1
+    while True:
+        if k <= i:
+            return digit - 1 + (k - 1) // i
+        i += 1
+        digit += 1

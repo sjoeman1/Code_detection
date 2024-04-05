@@ -1,0 +1,38 @@
+ Here is a Python3 solution for the problem:
+```python
+import math
+
+def is_prime(n):
+    if n < 2:
+        return False
+    for i in range(2, int(math.sqrt(n)) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+def solve():
+    n = int(input().strip())
+    b = list(map(int, input().strip().split()))
+    a = [0]*n
+    vis = [False]*len(b)
+    for i in range(0, 2*n, 2):
+        if not is_prime(b[i]):
+            a[b[i+1]-1] = b[i]
+        else:
+            vis[b[i]-1] = True
+    prime_count = sum(vis)
+    primes = [i for i in range(2, 2*n+1) if vis[i-1]]
+    for i in range(n - prime_count):
+        a[primes[i]-1] = primes[i]
+    print(*a)
+
+solve()
+```
+The solution first reads the number of elements `n` and the array `b` from the input. Then, it initializes an array `a` of size `n` and a boolean array `vis` of size `2n` to mark the visited elements.
+
+The solution then iterates over the elements of `b` with a step of 2, and for each pair of elements `b[i]` and `b[i+1]`, it does the following:
+
+* If `b[i]` is not a prime number, it sets the `b[i+1]-1`-th element of `a` to `b[i]`.
+* If `b[i]` is a prime number, it sets the `b[i]-1`-th element of `vis` to `True`.
+
+After this iteration, the solution calculates the number of prime numbers in `b` by summing the elements of `vis`. It then initializes an array `primes` of size `prime_count` to store the indices of the prime numbers in `

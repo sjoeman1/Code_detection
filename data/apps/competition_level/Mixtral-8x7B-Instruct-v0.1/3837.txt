@@ -1,0 +1,58 @@
+ Here is a possible solution using Python 3:
+
+```python
+import heapq
+
+def min_days(n, m, s, a, b, c):
+    # Sort the bugs in decreasing order of complexity
+    a.sort(reverse=True)
+
+    # Create a heap to store the students in increasing order of their ability levels
+    min_heap = [(b[i], i) for i in range(n)]
+    heapq.heapify(min_heap)
+
+    # Initialize the number of passes given to the students
+    passes_given = 0
+
+    # Initialize the result list with -1 for each bug
+    result = [-1] * m
+
+    # Iterate over the bugs
+    for i in range(m):
+        # If the heap is empty, we cannot fix the current bug
+        if not min_heap:
+            return "NO"
+
+        # Get the student with the minimum ability level from the heap
+        _, student = heapq.heappop(min_heap)
+
+        # If the student's ability level is less than the bug's complexity
+        if b[student] < a[i]:
+            # Add the bug's complexity to the heap
+            heapq.heappush(min_heap, (b[student], student))
+            # If the heap is not empty, continue to the next bug
+            if min_heap:
+                continue
+            else:
+                return "NO"
+
+        # Fix the current bug by the student
+        result[i] = student + 1
+
+        # Add the student's pass requirement to the total passes given
+        passes_given += c[student]
+
+        # If the total passes given exceeds the limit, return "NO"
+        if passes_given > s:
+            return "NO"
+
+    return "YES\n" + " ".join(map(str, result))
+
+# Read the input
+n, m, s = map(int, input().split())
+a = list(map(int, input().split()))
+b = list(map(int, input().split()))
+c = list(map(int, input().split()))
+
+# Call the function and print the result
+print(min

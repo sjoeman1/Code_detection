@@ -1,0 +1,22 @@
+ Here is a Python3 code that can solve the problem:
+
+```python
+n, m = map(int, input().split())
+
+city = sorted([list(map(int, input().split())) for _ in range(m)], key=lambda x: x[1])
+
+pref\_count = {i: 0 for i in range(1, n+1)}
+id\_num = []
+
+for y, p in city:
+pref\_count[p] += 1
+id\_num.append(str(p).zfill(6) + str(pref\_count[p]).zfill(6))
+
+print('\n'.join(id\_num))
+```
+
+This code first reads the input values of `n` and `m` and sorts the list of cities by the year of establishment. Then, it creates a dictionary `pref_count` to count the number of cities established in each prefecture. It also creates an empty list `id_num` to store the ID numbers of all the cities.
+
+For each city in the sorted list, it increments the count of the corresponding prefecture in `pref_count` and appends the ID number of the city to `id_num`. The ID number is obtained by concatenating the six-digit prefecture number (with leading zeros if necessary) and the six-digit city number (also with leading zeros if necessary).
+
+Finally, the code prints out the ID numbers in the required format, separated by newlines.

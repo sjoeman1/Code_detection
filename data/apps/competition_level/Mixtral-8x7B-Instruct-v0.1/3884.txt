@@ -1,0 +1,40 @@
+ Here is a Python3 solution for the problem:
+
+```python
+import math
+
+def min\_fuel():
+    n = int(input().strip())
+    m = float(input().strip())
+    a = list(map(int, input().strip().split()))
+    b = list(map(int, input().strip().split()))
+
+    takeoff = [m / i for i in a]
+    landing = [m / j for j in b]
+
+    min\_fuel\_needed = math.inf
+
+    for i in range(n):
+        takeoff\_fuel = takeoff[i]
+        landing\_fuel = landing[(i + 1) % n]
+
+        if takeoff\_fuel < landing\_fuel:
+            fuel\_needed = takeoff\_fuel
+        else:
+            fuel\_needed = landing\_fuel
+
+        min\_fuel\_needed = min(min\_fuel\_needed, fuel\_needed)
+
+        m -= fuel\_needed
+
+    if m > 0:
+        min\_fuel\_needed = -1
+
+    print("{:.12f}".format(min\_fuel\_needed))
+
+min\_fuel()
+```
+
+This solution first calculates the amount of fuel needed to take off from each planet and land on each planet. It then iterates through each planet and calculates the minimum fuel needed to take off from that planet and land on the next planet. It keeps track of the minimum fuel needed so far and subtracts that amount from the total mass of the rocket. If there is any remaining mass after all the iterations, the solution prints -1, indicating that it is not possible to make the trip. Otherwise, it prints the minimum fuel needed.
+
+Note that the solution formats the output to 12 decimal places to satisfy the requirement that the answer be correct to within an absolute or relative error of 10^-6.

@@ -1,0 +1,26 @@
+ Here's a Python3 solution for the problem:
+
+```python
+def gcd(a, b):
+    while b:
+        a, b = b, a % b
+    return a
+
+def min_seconds(x, y):
+    if x % 3 != y % 3:
+        return -1
+    g = gcd(x, y)
+    x //= g
+    y //= g
+    return (x - y) // 3
+
+if __name__ == "__main__":
+    x, y = map(int, input().split())
+    result = min_seconds(x, y)
+    if result != -1:
+        print(result)
+    else:
+        print("Impossible")
+```
+
+This solution first calculates the greatest common divisor (gcd) of x and y to make sure the side lengths remain integers throughout the process. Then, it checks if the remainder of x and y when divided by 3 are equal. If not, it's impossible to obtain an equilateral triangle of side length y from x within the given constraints. Finally, it calculates the minimum number of seconds required and prints the result.

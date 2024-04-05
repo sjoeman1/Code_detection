@@ -1,0 +1,28 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def can_standardize_puppies():
+    n = int(input())
+    s = input()
+
+    count = {}
+    for c in s:
+        count[c] = count.get(c, 0) + 1
+
+    # If there is only one color, then all puppies are already standardized
+    if len(count) == 1:
+        print("Yes")
+        return
+
+    # Check if there are at least two puppies of each color
+    for num_puppies in count.values():
+        if num_puppies == 1:
+            print("No")
+            return
+
+    print("Yes")
+
+can_standardize_puppies()
+```
+
+The solution first counts the number of puppies for each color using a dictionary. If there is only one color, then all puppies are already standardized. Otherwise, it checks if there are at least two puppies of each color. If not, then it is impossible to recolor the puppies. If yes, then it is possible to standardize the puppies. The solution prints "Yes" or "No" accordingly.

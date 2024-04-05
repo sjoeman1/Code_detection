@@ -1,0 +1,52 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def polycarp_game(n, nums):
+    # Step 1: Find the largest number that is a power of 2 or a multiple of 3
+    max_num = max(nums)
+    while max\_num % 2 == 0 and max\_num // 2 in nums:
+        max\_num //= 2
+    while max\_num % 3 == 0 and max\_num // 3 in nums:
+        max\_num //= 3
+
+    # Step 2: Build the sequence starting from the largest number
+    result = [max\_num]
+    while max\_num != 1:
+        if max\_num % 3 == 0:
+            max\_num //= 3
+        else:
+            max\_num *= 2
+        result.append(max\_num)
+
+    # Step 3: Check if the resulting sequence matches the given sequence
+    if result == nums:
+        return result
+
+    # Step 4: Find the index of the first number that is different from the given sequence
+    for i in range(len(result)):
+        if result[i] != nums[i]:
+            break
+
+    # Step 5: Swap the first number with the different number
+    nums[0], nums[i] = nums[i], nums[0]
+    return nums
+
+# Read input
+n = int(input())
+nums = list(map(int, input().split()))
+
+# Solve the problem
+result = polycarp_game(n, nums)
+
+# Print the result
+print(*result)
+```
+
+The solution consists of four main steps:
+
+1. Find the largest number in the sequence that is a power of 2 or a multiple of 3.
+2. Build the sequence starting from the largest number, by repeatedly dividing by 3 or multiplying by 2.
+3. Check if the resulting sequence matches the given sequence.
+4. If not, find the index of the first number that is different from the given sequence, and swap the first number with the different number.
+
+The function `polycarp_game` implements these steps and returns the

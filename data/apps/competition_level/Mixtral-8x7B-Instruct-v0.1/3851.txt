@@ -1,0 +1,5 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n, k = map(int, input().split())
+a, b = map(int, input().split())

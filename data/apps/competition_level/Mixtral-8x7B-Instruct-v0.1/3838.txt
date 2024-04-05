@@ -1,0 +1,8 @@
+ Here is a Python3 solution for the problem:
+
+```python
+import sys
+from collections import deque
+
+def apply_permutation(perm, q):
+    return [perm[q[i] - 1] for i in range(len(perm))]

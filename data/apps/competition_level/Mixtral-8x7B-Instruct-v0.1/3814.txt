@@ -1,0 +1,29 @@
+ Here is a Python3 solution for the problem:
+
+```python
+import sys
+input = sys.stdin.buffer.readline
+
+def power(x, y, p):
+    res = 1
+    x = x % p
+    while (y > 0):
+        if (y & 1):
+            res = (res * x) % p
+        y = y >> 1
+        x = (x * x) % p
+    return res
+
+def solve(n, m):
+    ans = power(2, n, m) - 1
+    ans = (ans % m + m) % m
+    return ans
+
+if __name__=="__main__":
+    n, m = map(int, input().split())
+    print(solve(n, m))
+```
+
+Explanation:
+
+The problem can be solved using combinatorial mathematics. The number of ways to choose a subset of a set with N elements is 2^N. However, we need to subtract the cases where some toppings are not included in any bowl of ramen. These cases can be calculated as (2^(N-1) - 1), since there is only one such case (all toppings are excluded). But, we also need to subtract this value from the total number of cases, because it should not be counted. So, the answer is 2^N - 2^(N-1) + 1. However, we need to calculate this value modulo M, where M is a prime number. This can be done using the modular exponentiation algorithm, which is implemented in the `power` function. The `solve` function takes N and M as input and returns the answer.

@@ -1,0 +1,21 @@
+ Here is a Python3 solution for the problem:
+
+```python
+s = input()
+a, b, c = 0, 0, 0
+for i in s:
+    if i == 'a':
+        a += 1
+    elif i == 'b':
+        b += 1
+    else:
+        c += 1
+if a == 0 or b == 0:
+    print("NO")
+elif (c - a >= 0 and b >= c - a + 1) or (c - b >= 0 and a >= c - b + 1):
+    print("YES")
+else:
+    print("NO")
+```
+
+The solution works by iterating through the string and counting the number of occurrences of each character. If there are no 'a' or no 'b', then it is impossible to obtain the string in the given way, so we print "NO". Otherwise, we check if the number of 'c' is greater than or equal to the number of 'a' or 'b' and if the difference between the number of 'c' and 'a' or 'b' is less than or equal to 1. If this condition is satisfied, then we print "YES", otherwise we print "NO".

@@ -1,0 +1,28 @@
+ Here's a Python3 solution using dynamic programming to solve the problem. The key idea is to compute the parity of the number of piles and the total number of cows for each remaining pile size, since Kevin's move changes the parity while Nicky's move preserves it.
+```python
+def lieges_of_legendre():
+    n, k = map(int, input().split())
+    a = list(map(int, input().split()))
+
+    # Initialize the dynamic programming table
+    dp = [[0, 0] for _ in range(sum(a) + 1)]
+    dp[0][0] = 1  # Kevin wins if there are no cows left
+
+    # Compute the dynamic programming table
+    for i in range(n):
+        for j in range(sum(a) - a[i], -1, -1):
+            dp[j + a[i]][i % 2] += dp[j][(i + 1) % 2]
+
+    # Check if Nicky or Kevin wins
+    if dp[-1][0] == 0:
+        print("Kevin")
+    else:
+        print("Nicky")
+
+
+if __name__ == "__main__":
+    lieges_of_legendre()
+```
+The code first reads in the input values for `n`, `k`, and the initial pile sizes `a`. It then initializes a dynamic programming table `dp` with two entries for each possible total number of cows `j` from `0` to `sum(a)`. The first entry `dp[j][0]` represents the number of ways Kevin can end up with a total of `j` cows, while the second entry `dp[j][1]` represents the number of ways Nicky can end up with a total of `j` cows.
+
+The code then computes the dynamic programming table by iterating over each pile `i` and each possible total number of cows `j`. For each `j`, it updates the corresponding entries `dp[j + a[i]][i % 2]` to include the previous entries `dp[j][(i + 1) % 2]` since Kevin's move changes the parity and Nicky'

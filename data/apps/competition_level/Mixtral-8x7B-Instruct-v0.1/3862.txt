@@ -1,0 +1,37 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def min_volume(n, k, a):
+    # Sort the concentrations in non-decreasing order
+    a.sort()
+    total\_volume = 0
+    for i in range(k):
+        # Find the maximum volume of i-th Coke type that doesn't exceed n
+        volume = min(n - total\_volume, a[i])
+        total\_volume += volume
+        if total\_volume == n:
+            return int(total\_volume)
+    # If we couldn't reach the desired concentration, return -1
+    return -1
+
+# Read input
+n, k = map(int, input().split())
+a = list(map(int, input().split()))
+
+# Call the function
+result = min\_volume(n, k, a)
+
+# Print output
+print(result)
+```
+
+The solution works as follows:
+
+1. It first sorts the concentrations in non-decreasing order.
+2. It then initializes the total volume to 0 and iterates over the sorted concentrations.
+3. For each concentration, it finds the maximum volume of that type that doesn't exceed n.
+4. It then adds that volume to the total volume.
+5. If the total volume becomes equal to n, it returns the total volume.
+6. If the loop finishes and the total volume is still less than n, it returns -1.
+
+The time complexity of this solution is O(k \* log(k)) and the space complexity is O(k).

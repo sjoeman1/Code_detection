@@ -1,0 +1,35 @@
+ Here is a possible solution using a depth-first search (DFS) algorithm to find connected components and a breadth-first search (BFS) algorithm to find the shortest path between two cells. The idea is to first find all connected components of 0s and 1s, and then check if it is possible to change some cells to make all connected components of the same values form rectangles. If it is possible, we can use BFS to find the shortest path between two cells in the same connected component, and then change the cells along this path to make it a rectangle.
+
+```python
+import collections
+
+def dfs(i, j, grid, visited, val):
+    if i < 0 or i >= n or j < 0 or j >= m or visited[i][j] or grid[i][j] != val:
+        return
+    visited[i][j] = True
+    dfs(i+1, j, grid, visited, val)
+    dfs(i-1, j, grid, visited, val)
+    dfs(i, j+1, grid, visited, val)
+    dfs(i, j-1, grid, visited, val)
+
+n, m, k = map(int, input().split())
+grid = [list(map(int, input().split())) for _ in range(n)]
+
+# find connected components
+visited = [[False]*m for _ in range(n)]
+components = []
+for i in range(n):
+    for j in range(m):
+        if not visited[i][j]:
+            component = []
+            dfs(i, j, grid, visited, grid[i][j])
+            component.append((i, j))
+            for x, y in component:
+                visited[x][y] = len(components) + 1
+            components.append(component)
+
+# check if it is possible to make all connected components of the same values form rectangles
+for i in range(len(components)):
+    for j in range(i+1, len(components)):
+        if grid[components[i][0][0]][components[i][0][1]] == grid[components[j][0][0]][components[j][0][1]]:
+           

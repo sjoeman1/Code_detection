@@ -1,0 +1,23 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n, s = map(int, input().split())
+v = list(map(int, input().split()))
+
+v.sort(reverse=True)
+
+current_volume = 0
+for i in range(n):
+    current_volume += v[i]
+    if current_volume >= s:
+        print(v[i])
+        break
+else:
+    print(-1)
+```
+
+The solution starts by reading the input values `n` and `s` and the list of keg volumes `v`. It then sorts the list of keg volumes in descending order.
+
+Next, it initializes a variable `current_volume` to keep track of the current volume of kvass poured. It then iterates over the sorted list of keg volumes, adding the volume of each keg to `current_volume`. If `current_volume` becomes greater than or equal to `s`, it prints the volume of the current keg and breaks out of the loop.
+
+If the loop completes without `current_volume` becoming greater than or equal to `s`, it means that it is not possible to pour a glass of `s` liters of kvass, so it prints `-1`.

@@ -1,0 +1,11 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def min_cost(n, a, b):
+    if n == 0:
+        return 0
+    elif n < a and n < b:
+        return n
+    elif a <= b:
+        return min(a + min_cost(n - a, a, b), b + min_cost(n - b, a, b))
+    else:

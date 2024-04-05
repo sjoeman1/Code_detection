@@ -1,0 +1,6 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def min\_time(n, m, k, a, b):
+n, m, k = map(int, (n, m, k))
+a, b = map(int, (a, b))

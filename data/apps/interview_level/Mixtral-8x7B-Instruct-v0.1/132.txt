@@ -1,0 +1,29 @@
+ Here is a Python3 solution for the problem:
+```python
+n = int(input())
+angles = list(map(int, input().split()))
+angles.sort()
+
+diff = angles[-1] - angles[0]
+for i in range(1, n, 2):
+    diff = min(diff, 360 - (angles[-1] - angles[i]))
+    diff = min(diff, angles[i] - angles[0])
+
+print(diff)
+```
+Explanation:
+
+* First, we read the number of pieces and their angles.
+* Then we sort the angles in non-decreasing order.
+* We initialize the difference as the difference between the largest and the smallest angle.
+* Then we iterate over the sorted angles with a step of 2, i.e. we consider every second angle.
+* For each angle, we calculate two possible differences: the difference between the largest angle and the current angle, and the difference between the current angle and the smallest angle.
+* We take the minimum of the calculated differences and the current value of the difference.
+* Finally, we print the calculated difference.
+
+The time complexity of the solution is O(n \* log(n)), where n is the number of pieces. The space complexity is O(n) due to the additional space required for the sorted array of angles.
+
+The solution works as follows:
+
+* For the first sample, the sorted angles are [90, 90, 90, 90]. The difference is initialized as 90 - 90 = 0. The first difference is 360 - 90 = 270, and the second difference is 90 - 90 = 0. We take the minimum of the calculated differences and the current value of the difference, i.e. 0.
+* For the second sample, the sorted angles are [100, 100, 160]. The difference is initialized as 160 - 100 = 60. The first difference is 360 - 160 = 200, and the second difference is 100 - 100 = 0. We take the minimum of the calculated differences and the current value of the difference, i.

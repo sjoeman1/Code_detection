@@ -1,0 +1,39 @@
+ Here is a Python3 solution for the problem:
+
+```python
+import sys
+
+def solve():
+    n = int(input().strip())
+    a = list(map(int, input().strip().split()))
+
+    # Initialize minimum cost and optimal t for each possible value of t
+    min_cost = [float('inf')] * 101
+    min_cost[max(a)] = 0
+
+    # Iterate over each stick
+    for i in range(n):
+        # Iterate over each possible value of t
+        for t in range(101):
+            # Calculate the cost of changing stick i to be almost good for t
+            cost = abs(a[i] - t)
+
+            # If changing stick i to be almost good for t results in a lower cost than the current minimum cost for t,
+            # update the minimum cost and optimal t for t
+            if cost + min_cost[t] < min_cost[max(0, t - 1), max(t + 1)]:
+                min_cost[max(0, t - 1), max(t + 1)] = cost + min_cost[t]
+
+    # Find the minimum cost and optimal t over all possible values of t
+    min_cost_all = min(min_cost)
+    optimal_t = min_cost.index(min_cost_all)
+
+    # Print the minimum cost and optimal t
+    print(optimal_t, min_cost_all)
+
+if __name__ == "__main__":
+    solve()
+```
+
+The solution uses dynamic programming to find the minimum cost and optimal t for each possible value of t. It first initializes the minimum cost for each possible value of t to infinity, except for the maximum value of a stick, which is set to 0 since no changes are needed for such sticks. It then iterates over each stick and calculates the cost of changing the stick to be almost good for each possible value of t. If the new cost is lower than the current minimum cost for t, it updates the minimum cost and optimal t for t. Finally, it finds the minimum cost and optimal t over all possible values of t and prints them.
+
+The solution runs in O(n \* t) time and

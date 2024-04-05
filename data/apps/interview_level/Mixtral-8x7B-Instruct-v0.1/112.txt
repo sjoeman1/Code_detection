@@ -1,0 +1,59 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def max\_number(n, cubes):
+n = int(n)
+cubes = [list(map(int, cube.split())) for cube in cubes]
+
+avail\_digits = [set() for _ in range(10)]
+for cube in cubes:
+for digit in cube:
+avail\_digits[digit].add(cube.index(digit))
+
+max\_num = 0
+for i in range(1, 10):
+if i not in avail\_digits[i]:
+continue
+
+for j in range(i + 1, 10):
+if j not in avail\_digits[j]:
+continue
+
+for k in range(j + 1, 10):
+if k not in avail\_digits[k]:
+continue
+
+# We have found 3 digits that are available on the cubes
+# Now we check if we can form a number using these digits
+
+# Sort the indices of the cubes containing the digits
+indices = sorted([avail\_digits[i].pop(), avail\_digits[j].pop(), avail\_digits[k].pop()])
+
+# Try all possible rotations
+for rotation in range(6):
+# Try all possible positions for the first digit
+for pos\_first in range(4 - rotation):
+# Try all possible positions for the second digit
+for pos\_second in range(3 - rotation):
+
+num = 0
+# Construct the number
+num = 100 * cubes[indices[0]][rotation + pos\_first] + \
+10 * cubes[indices[1]][rotation + pos\_second + pos\_first] + \
+cubes[indices[2]][rotation + pos\_first + pos\_second]
+
+max\_num = max(max\_num, num)
+
+return max\_num
+
+# Read input
+n = input()
+cubes = []
+for _ in range(n):
+cubes.append(input())
+
+# Print output
+print(max\_number(n, cubes))
+```
+
+The solution first constructs a list of

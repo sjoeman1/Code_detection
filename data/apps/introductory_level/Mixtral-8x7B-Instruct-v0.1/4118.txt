@@ -1,0 +1,17 @@
+ Here is the Python3 code to solve the problem:
+
+```python
+# Read input values for A and B
+A, B = map(int, input().split())
+
+# Check if Takahashi can calculate A * B
+if 1 <= A <= 9 and 1 <= B <= 9:
+    result = A * B
+else:
+    result = -1
+
+# Print the result
+print(result)
+```
+
+In this code, we first read the input values for A and B using the `input()` function and the `split()` method. Then, we check if both A and B are between 1 and 9 (inclusive) using the `if` statement. If both A and B satisfy the condition, we calculate the product and assign it to the `result` variable. Otherwise, we assign -1 to the `result` variable. Finally, we print the `result` variable to get the desired output.

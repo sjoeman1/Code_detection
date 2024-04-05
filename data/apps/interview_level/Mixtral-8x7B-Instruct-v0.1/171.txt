@@ -1,0 +1,25 @@
+ Here is a Python3 code that can solve the problem:
+```python
+import re
+
+def check_password(password):
+    if len(password) < 5:
+        return "Too weak"
+    elif not re.search(r'[A-Z]', password) or not re.search(r'[a-z]', password) or not re.search(r'\d', password):
+        return "Too weak"
+    else:
+        return "Correct"
+
+# Test the function
+password = input()
+print(check_password(password))
+```
+Explanation:
+
+* The function `check_password` takes a string `password` as input and returns "Correct" if the password meets all the conditions, and "Too weak" otherwise.
+* The first condition is checked using the `len` function.
+* The other three conditions are checked using regular expressions.
+* The `re.search` function returns a match object if there is a match anywhere in the string, and `None` otherwise.
+* If any of the conditions are not met, the function immediately returns "Too weak".
+* If all the conditions are met, the function returns "Correct".
+* The last two lines of the code take user input for the password and print the result of the function.

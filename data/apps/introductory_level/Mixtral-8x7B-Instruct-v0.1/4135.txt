@@ -1,0 +1,20 @@
+ Here is a Python3 solution for the problem:
+
+```python
+import math
+
+def reverse(s, start, end):
+    return s[start:end][::-1]
+
+def is_palindrome(s, start, end):
+    return s[start:end] == reverse(s, start, end)
+
+def find_original_string(n, t):
+    s = ["?"] * n
+    i = n
+    while i > 0:
+        for d in range(i, 0, -1):
+            if is_palindrome(t, 0, d):
+                for j in range(d):
+                    s[j] = t[d-1-j]
+              

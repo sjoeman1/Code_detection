@@ -1,0 +1,7 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n, m = map(int, input().split())
+stars = []
+for _ in range(n):
+    stars.append(input())

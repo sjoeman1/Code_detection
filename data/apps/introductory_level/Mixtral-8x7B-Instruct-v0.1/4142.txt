@@ -1,0 +1,27 @@
+ Here is the Python3 code to solve the problem:
+
+```python
+s = input()
+
+if len(s) > 100 or len(s) < 1:
+    print("No")
+    exit()
+
+for i in range(len(s)):
+    if i % 2 == 0:
+        if s[i] not in ['L', 'U', 'D']:
+            print("No")
+            exit()
+    else:
+        if s[i] not in ['R', 'U', 'D']:
+            print("No")
+            exit()
+
+print("Yes")
+```
+
+This code first checks if the length of the input string is within the given constraints. If not, it immediately prints "No" and exits.
+
+Then, it iterates through each character in the string and checks if it is in the correct position (odd or even) and if it is a valid character ('L', 'R', 'U', or 'D'). If any character does not meet these conditions, it prints "No" and exits.
+
+If the code reaches the end of the loop, it prints "Yes" to indicate that the string is easily playable.

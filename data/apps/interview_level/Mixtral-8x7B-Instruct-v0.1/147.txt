@@ -1,0 +1,25 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def min\_cost(n, c0, c1):
+if n == 1:
+return min(c0, c1)
+
+dp = [[0] * (n + 1) for _ in range(2)]
+
+for i in range(1, n + 1):
+dp[0][i] = dp[1][i - 1] + c0
+dp[1][i] = dp[0][i - 1] + c1
+
+for i in range(2, n + 1):
+dp[0][i] = min(dp[0][i], dp[1][i - 1] + c0)
+for i in range(2, n + 1):
+dp[1][i] = min(dp[1][i], dp[0][i - 1] + c1)
+
+return min(dp[0][n], dp[1][n])
+
+n, c0, c1 = map(int, input().split())
+print(min\_cost(n, c0, c1))
+```
+
+The solution uses dynamic programming to minimize the cost of the alphabet. The `dp` array is a 2D array where `dp[i][j]` represents the minimum cost of encoding the first `i` letters with `j` as the last bit. The solution then iterates over the `dp` array and updates the minimum cost by considering the last bit as either `0` or `1`. The final answer is the minimum of `dp[0][n]` and `dp[1][n]`.

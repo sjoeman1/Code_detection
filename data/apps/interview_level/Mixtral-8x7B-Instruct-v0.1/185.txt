@@ -1,0 +1,41 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n, k = map(int, input().split())
+stones = [0] * n
+moves = 0
+
+# Move to the first manhole if Nastya is not already there
+if k != 1:
+    for _ in range(k - 1):
+        stones[0] += 1
+        moves += 1
+
+# Move to the last manhole and pick the coin
+for _ in range(n - k + 1):
+    while stones[n - 1] != 0:
+        stones[n - 2] += 1
+        stones[n - 1] -= 1
+        moves += 1
+
+    stones[n - 1] += 1
+    moves += 1
+    stones[0] -= 1
+    moves += 1
+
+# Move back to the first manhole and pick the coin
+for _ in range(k - 1):
+    while stones[0] != 0:
+        stones[1] += 1
+        stones[0] -= 1
+        moves += 1
+
+    stones[0] += 1
+    moves += 1
+
+print(moves)
+```
+
+This solution works by having Nastya move to the last manhole, picking up the coin there, and then moving back to the first manhole, picking up the coin there. At each step, Nastya moves to the neighboring manhole and throws any stones from the manhole she is leaving to the neighboring manhole. If there are no stones on the manhole Nastya is leaving, she can pick up the coin and close the manhole.
+
+The solution first moves Nastya to the first manhole if she is not already there, then moves her to the last manhole, and then moves her back to the first manhole. The number of moves is calculated and printed at the end.

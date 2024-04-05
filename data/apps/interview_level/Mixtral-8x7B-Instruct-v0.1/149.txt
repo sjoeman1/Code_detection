@@ -1,0 +1,32 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def is\_unlucky(x, y, n):
+for a in range(1 + int(n**0.5)):
+for b in range(1 + int(n**0.5)):
+if a*a + b*b == n:
+return True
+return False
+
+def golden\_age(x, y, l, r):
+n = l
+while is\_unlucky(x, y, n):
+n += 1
+if n > r:
+return 0
+
+res = 0
+while n <= r:
+res += 1
+n += 1
+while n <= r and not is\_unlucky(x, y, n):
+n += 1
+return res
+
+x, y, l, r = map(int, input().split())
+print(golden\_age(x, y, l, r))
+```
+
+The function `is_unlucky` checks if a given year `n` is unlucky or not by checking if it can be represented as `x^a + y^b` for some non-negative integers `a` and `b`.
+
+The function `golden_age` finds the maximum length of The Golden Age which starts no earlier than the year `l` and ends no later than the year `r`. It does this by first finding the smallest unlucky year `n` starting from `l`, and then counting the number of consecutive golden years until it reaches an unlucky year or exceeds `r`. The function returns `0` if all years in the interval `[l, r]` are unlucky.
