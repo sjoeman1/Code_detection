@@ -16,12 +16,12 @@ from utils import tag_comment_tokenizer, hide_comment_tokenizer, tokenize_commen
     standard_tokenizer
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--dataset', default="results/gemma-7b-it-apps_interview_207.jsonl")
-parser.add_argument('--classifier', default="XGB", choices=['SCM', 'LR', 'MNB', 'XGB'])
+parser.add_argument('--dataset', default="results/CodeLlama-70b-Instruct-hf-apps_competition_207.jsonl")
+parser.add_argument('--classifier', default="MNB", choices=['SCM', 'LR', 'MNB', 'XGB'])
 parser.add_argument('--max_features', default=8000, type=int)
-parser.add_argument('--vectorizer', default='CountVectorizer', choices=['TfidfVectorizer', 'CountVectorizer'])
+parser.add_argument('--vectorizer', default='TfidfVectorizer', choices=['TfidfVectorizer', 'CountVectorizer'])
 parser.add_argument('--ngram_range', default=(1, 4), type=tuple, nargs=2)
-parser.add_argument('--tokenizer', default='comment_only',
+parser.add_argument('--tokenizer', default='tag_comment',
                     choices=['tokenize_comment', 'tag_comment', 'hide_comment', 'standard_tokenizer', 'comment_only'])
 args = parser.parse_args()
 print(args)
@@ -34,7 +34,7 @@ run_name = f"{dataset_name}_{clf_name}"
 with open(args.dataset, 'r') as f:
     dataset = [json.loads(line) for line in f.readlines()]
 
-wandb.init(project='Code_Detection', config=args, name=run_name, tags= [dataset_name.split('_')[1], dataset_name.split('_')[0]])
+wandb.init(project='Code_Detection', config=args, name=run_name, tags= [dataset_name.split('_')[1], dataset_name.split('_')[0], 'V1'])
 config = wandb.config
 
 
@@ -77,10 +77,10 @@ match config['tokenizer']:
     case _:
         print("Invalid tokenizer name")
 
-# test the tokenizer
-train_ = df['parsed_codes'][2]
-print(train_)
-print(tokenize_comment_tokenizer(train_))
+# # test the tokenizer
+# train_ = df['parsed_codes'][2]
+# print(train_)
+# print(tokenize_comment_tokenizer(train_))
 
 match config['vectorizer']:
     case "CountVectorizer":
