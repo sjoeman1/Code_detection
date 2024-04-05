@@ -1,0 +1,9 @@
+```python
+n = int(input())
+a = list(map(int, input().split()))
+s = sum(a)
+if s % 2 == 0 and all(x in range(1, int(s/2) + 1) for x in a):
+    print("YES")
+else:
+    print("NO")
+```

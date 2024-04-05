@@ -1,0 +1,17 @@
+```python
+n = int(input())
+a = list(map(int, input().split()))
+
+# Calculate the maximal number of consecutive hours of rest
+max_rest = 0
+current_rest = 0
+for i in range(n):
+    if a[i] == 0:
+        current_rest += 1
+    else:
+        max_rest = max(max_rest, current_rest)
+        current_rest = 0
+
+# Print the maximal number of continuous hours during which Polycarp rests
+print(max_rest)
+```

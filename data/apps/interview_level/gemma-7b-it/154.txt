@@ -1,0 +1,25 @@
+```python
+import math
+
+def numTrees(n):
+    def dfs(h, n):
+        if h >= n:
+            return 0
+
+        # Calculate the number of perfect balanced striped trees for a given height and number of nodes
+        return dfs(h + 1, n) + 2 * dfs(h, n - 1)
+
+    return int((dfs(0, n) - 1) % 998244353)
+
+
+print(numTrees(4))
+print(numTrees(3))
+```
+
+**Explanation:**
+
+* The function `numTrees` calculates the number of perfectly balanced striped binary search trees with $n$ vertices.
+* The function uses a recursive approach to calculate the number of perfect balanced striped trees for a given height and number of nodes.
+* The function calculates the number of perfect balanced striped trees for a given height and number of nodes by doubling the number of perfect balanced striped trees for a given height and number of nodes one less and adding one perfect balanced striped tree for a given height and number of nodes.
+* The function calculates the total number of perfectly balanced striped binary search trees by subtracting 1 from the number of perfect balanced striped trees for a given height and number of nodes and taking the modulo of 998244353.
+* The function returns the total number of perfectly balanced striped binary search trees.

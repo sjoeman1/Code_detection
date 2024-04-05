@@ -1,0 +1,16 @@
+```python3
+n = int(input())
+
+# Calculate the minimum number of cakes and doughnuts to buy to reach N dollars
+cakes = 4
+doughnuts = 7
+min_cakes = n // cakes
+min_doughnuts = n // doughnuts
+
+# If the number of cakes or doughnuts is greater than the minimum,
+# then there is a way to buy exactly N dollars
+if min_cakes * cakes >= n or min_doughnuts * doughnuts >= n:
+  print("Yes")
+else:
+  print("No")
+```

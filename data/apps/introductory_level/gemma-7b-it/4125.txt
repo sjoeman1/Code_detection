@@ -1,0 +1,30 @@
+```python
+N, X = map(int, input().split())
+
+x_list = list(map(int, input().split()))
+
+x_set = set(x_list)
+
+D_max = 0
+
+for d in range(1, int(X**0.5) + 1):
+    visited = set()
+    current_position = X
+    while current_position not in visited:
+        visited.add(current_position)
+        current_position += d
+    if visited == x_set:
+        D_max = d
+
+print(D_max)
+```
+
+**Explanation:**
+
+* The code reads the number of cities `N`, the position of the starting point `X`, and the list of positions `x_list` of each city.
+* It creates a set `x_set` of the positions of the cities.
+* It iterates over the range `1` to the square root of `X` to find the maximum value of `D`.
+* For each `D`, it creates a set `visited` to keep track of the visited positions.
+* It starts from position `X` and moves in steps of `D`, marking each visited position in `visited`.
+* If the set of visited positions is equal to `x_set`, it means all cities have been visited. The value of `D` is updated if necessary.
+* Finally, the maximum value of `D` is printed.

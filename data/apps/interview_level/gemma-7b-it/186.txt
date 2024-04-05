@@ -1,0 +1,7 @@
+```python
+n, m = map(int, input().split())
+
+h = max(n * 2, m * 3)
+
+print(h)
+```

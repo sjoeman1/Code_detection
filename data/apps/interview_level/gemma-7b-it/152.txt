@@ -1,0 +1,31 @@
+```python
+n, m, k = map(int, input().split())
+
+x, s = map(int, input().split())
+
+a = list(map(int, input().split()))
+b = list(map(int, input().split()))
+c = list(map(int, input().split()))
+d = list(map(int, input().split()))
+
+a.sort()
+b.sort()
+c.sort()
+d.sort()
+
+# Calculate the minimum time to prepare n potions
+time = x * n
+mana = 0
+
+# Use the first spell if it's available
+if b[0] <= s:
+    time -= a[0]
+    mana += b[0]
+
+# Use the second spell if it's available
+if c[0] <= n and d[0] <= mana:
+    time -= c[0]
+    mana += d[0]
+
+print(time)
+```

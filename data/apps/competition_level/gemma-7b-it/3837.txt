@@ -1,0 +1,14 @@
+```python3
+n, m, s = map(int, input().split())
+
+a = list(map(int, input().split()))
+b = list(map(int, input().split()))
+c = list(map(int, input().split()))
+
+if sum(c) > s:
+    print("NO")
+else:
+    print("YES")
+    print(*(b.index(max) for max in a])
+
+```

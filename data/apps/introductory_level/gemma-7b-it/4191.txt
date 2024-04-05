@@ -1,0 +1,13 @@
+```python
+# Read the input
+a = int(input())
+b = int(input())
+c = int(input())
+d = int(input())
+
+# Calculate the XOR of the four numbers
+xor_sum = (a ^ b) & (c ^ d)
+
+# Print the result
+print(xor_sum)
+```

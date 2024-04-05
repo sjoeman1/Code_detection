@@ -1,0 +1,12 @@
+```python
+x1, y1 = map(int, input().split())
+x2, y2 = map(int, input().split())
+
+dx = abs(x2 - x1)
+dy = abs(y2 - y1)
+
+# Minimum steps to get to the finish position
+min_steps = min(dx, dy) + max(dx, dy)
+
+print(min_steps)
+```

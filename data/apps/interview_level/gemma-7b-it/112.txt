@@ -1,0 +1,15 @@
+```python
+n = int(input())
+cubes = []
+for _ in range(n):
+    cubes.append(list(map(int, input().split())))
+
+x = 0
+for i in range(n):
+    for j in range(6):
+        num = cubes[i][j]
+        if num != 0:
+            x = max(x, 10**i + num)
+
+print(x if x else 0)
+```

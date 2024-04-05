@@ -1,0 +1,13 @@
+```python
+N = int(input())
+A = list(map(int, input().split()))
+
+# Find the maximum possible greatest common divisor
+max_gcd = 0
+for i in range(N):
+    gcd = __gcd(max_gcd, A[i])
+    max_gcd = gcd
+
+# Print the maximum possible greatest common divisor
+print(max_gcd)
+```

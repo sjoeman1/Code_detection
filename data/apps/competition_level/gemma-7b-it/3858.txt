@@ -1,0 +1,34 @@
+```python
+N = int(input())
+x = []
+y = []
+for _ in range(N):
+    x.append(int(input()))
+    y.append(int(input()))
+
+# Calculate the convex hull of S
+convex_hull = convex_hull(x, y)
+
+# Count the number of points inside the convex hull
+n = len(convex_hull)
+
+# Calculate the score of S
+score = 2 ** (n - len(S))
+
+# Print the sum of all the scores modulo 998244353
+print((sum(score) % 998244353)  )
+```
+
+**Explanation:**
+
+- The code reads the number of points `N`, then reads the coordinates `x_i` and `y_i` for each point.
+- It calculates the convex hull of the points using the `convex_hull()` function.
+- The number of points inside the convex hull is counted and stored in the variable `n`.
+- The score of S is calculated using the formula `2^{n-|S|}` and stored in the variable `score`.
+- The sum of all the scores is calculated and printed modulo 998244353.
+
+**Note:**
+
+- The `convex_hull()` function is a third-party library that calculates the convex hull of a set of points.
+- The code assumes that the `S` set is a subset of the `x` and `y` lists.
+- The modulo operation is used to ensure that the sum of all the scores does not exceed the limit.

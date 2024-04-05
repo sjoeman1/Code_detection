@@ -1,0 +1,12 @@
+```python3
+N = int(input())
+
+A = list(map(int, input().split()))
+B = list(map(int, input().split()))
+
+total_monsters = 0
+for i in range(N):
+    total_monsters += min(A[i], B[i])
+
+print(total_monsters)
+```

@@ -1,0 +1,9 @@
+```python
+n, k = map(int, input().split())
+a, b = map(int, input().split())
+
+x = min(int((a - b + k) // k)
+y = max(int((a - b + k) // k)
+
+print(x, y)
+```

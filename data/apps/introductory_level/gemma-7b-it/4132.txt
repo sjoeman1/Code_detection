@@ -1,0 +1,25 @@
+```python3
+import random
+
+n = int(input())
+a = list(map(int, input().split()))
+
+# Calculate the minimum health of the last monster
+min_health = 0
+alive_monsters = set(a)
+
+while len(alive_monsters) > 1:
+    # Select two random alive monsters
+    monster1 = random.choice(alive_monsters)
+    monster2 = random.choice(alive_monsters)
+
+    # Reduce the health of the monster attacked by the amount equal to the current health of the monster attacking
+    a[monster2] -= a[monster1]
+
+    # If the health of the monster attacked is 0, remove it from the alive monsters
+    if a[monster2] == 0:
+        alive_monsters.remove(monster2)
+
+# Print the minimum health of the last monster
+print(a[max(alive_monsters)])
+```

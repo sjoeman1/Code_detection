@@ -1,0 +1,19 @@
+```python3
+# Read the number of test cases
+num_test_cases = int(input())
+
+# Initialize the answer variable
+answer = 0
+
+# Iterate over the test cases
+for _ in range(num_test_cases):
+    # Read the input
+    n = int(input())
+
+    # Check if the input is equal to 1 or 7
+    if n == 1 or n == 7:
+        answer = 1
+
+# Print the answer
+print(answer)
+```

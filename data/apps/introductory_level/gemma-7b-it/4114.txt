@@ -1,0 +1,22 @@
+```python3
+N = int(input())
+
+# Store the coordinates and altitudes
+x = []
+y = []
+h = []
+
+# Read the coordinates and altitudes
+for i in range(N):
+    x.append(int(input()))
+    y.append(int(input()))
+    h.append(int(input()))
+
+# Calculate the center coordinates and height
+c_x = (sum(x) // N)
+c_y = (sum(y) // N)
+h_p = max(h) - abs(x[0] - c_x) - abs(y[0] - c_y)
+
+# Print the center coordinates and height
+print(c_x, c_y, h_p)
+```

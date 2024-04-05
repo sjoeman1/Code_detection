@@ -1,0 +1,11 @@
+```python
+n = int(input())
+print(int((n*(n-1)*(n-2)) // 6) % (10**9 + 7))
+```
+
+**Explanation:**
+
+- The number of binary relations over a set of size n that are symmetric and transitive, but not reflexive is given by the formula: n*(n-1)*(n-2) // 6.
+- This is because there are n choices for the first element, n-1 choices for the second element, and n-2 choices for the third element. The total number of pairs is therefore n*n-1*n-2.
+- The number of reflexive relations is n. Therefore, the number of binary relations over a set of size n that are symmetric and transitive, but not reflexive is n*(n-1)*(n-2) // 6 - n = n*(n-1)*(n-2) // 6.
+- The output is printed modulo 10^9 + 7 to ensure that the answer is within the desired range.

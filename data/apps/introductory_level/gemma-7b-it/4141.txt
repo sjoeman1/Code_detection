@@ -1,0 +1,13 @@
+```python
+N = int(input())
+A = list(map(int, input().split()))
+
+approved = True
+for num in A:
+    if num % 2 == 0 and (num % 3 == 0 or num % 5 == 0):
+        pass
+    else:
+        approved = False
+
+print("APPROVED" if approved else "DENIED")
+```

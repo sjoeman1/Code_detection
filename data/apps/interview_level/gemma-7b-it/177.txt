@@ -1,0 +1,12 @@
+```python3
+k = int(input())
+
+# Convert the number to a string
+num_str = str(123456789101112131415161718192021222324252627282930313233343536)
+
+# Find the k-th digit
+digit = int(num_str[k-1])
+
+# Print the digit
+print(digit)
+```

@@ -1,0 +1,22 @@
+```python3
+a, b, x = map(int, input().split())
+
+# Calculate the number of digits in a number
+def d(n):
+    count = 0
+    while n // 10:
+        n //= 10
+        count += 1
+    return count
+
+# Calculate the maximum number of yen that Takahashi can afford
+max_yen = x // (a * 10 + b * d(x))
+
+# If no integer can be bought, print 0
+if max_yen == 0:
+    print(0)
+
+# Otherwise, print the maximum number of yen that Takahashi can afford
+else:
+    print(max_yen)
+```

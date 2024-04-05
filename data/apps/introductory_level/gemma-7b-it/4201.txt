@@ -1,0 +1,32 @@
+```python
+H, W, K = map(int, input().split())
+
+grid = []
+for _ in range(H):
+    grid.append(list(input().strip()))
+
+cnt = 0
+for i in range(H):
+    for j in range(W):
+        if grid[i][j] == '#':
+            cnt += 1
+
+res = 0
+for r in range(H):
+    black = 0
+    for c in range(W):
+        if grid[r][c] == '#':
+            black += 1
+    if black == K:
+        res += 1
+
+for c in range(W):
+    black = 0
+    for r in range(H):
+        if grid[r][c] == '#':
+            black += 1
+    if black == K:
+        res += 1
+
+print(res)
+```

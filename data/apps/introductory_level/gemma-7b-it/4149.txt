@@ -1,0 +1,21 @@
+```python
+n = int(input())
+b = list(map(int, input().split()))
+
+# Calculate the prime factors of each element in b
+prime_factors = {}
+for i in b:
+    for p in range(2, int(i**0.5) + 1):
+        if i % p == 0 and p not in prime_factors:
+            prime_factors[p] = True
+
+# Find the primes in b and their factors
+primes = [p for p in prime_factors.keys() if prime_factors[p]]
+a = set(primes)
+
+# Create an array a from the set of primes
+a_list = list(a)
+
+# Print the array a
+print(*a_list)
+```

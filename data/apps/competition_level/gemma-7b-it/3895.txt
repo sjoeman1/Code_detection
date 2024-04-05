@@ -1,0 +1,16 @@
+```python
+n = int(input())
+f = list(map(int, input().split()))
+
+# Check if solution is possible
+if not f[0] == 1 or max(f) > n:
+    print(-1)
+else:
+    m = max(f)
+    g = list(set(f))
+    h = list(set(range(m)))
+
+    print(m)
+    print(*g)
+    print(*h)
+```

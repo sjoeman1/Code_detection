@@ -1,0 +1,25 @@
+```python
+n, k = map(int, input().split())
+w = list(map(int, input().split()))
+
+w.sort()
+
+total_weight = sum(w)
+
+if total_weight > k:
+    print(-1)
+    print(0)
+else:
+    rides = 0
+    ways = 0
+    i = 0
+    for j in range(n):
+        if w[i] == 50 and total_weight - w[i] <= k:
+            rides += 1
+            total_weight -= w[i]
+            ways += 1
+        i += 1
+
+    print(rides)
+    print(ways // 1000000007)
+```

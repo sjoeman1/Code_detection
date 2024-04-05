@@ -1,0 +1,25 @@
+```python
+t = int(input())
+
+for _ in range(t):
+    n = int(input())
+    s = input().strip()
+
+    # Calculate the number of returnable rooms
+    returnable_rooms = 0
+    for i in range(n):
+        # If the belt is clockwise, the room is returnable if the snake is not in the first room
+        if s[i] == '>':
+            if i == 0 and s[n-1] != '-':
+                returnable_rooms += 1
+        # If the belt is anticlockwise, the room is returnable if the snake is not in the last room
+        elif s[i] == '<':
+            if i == n-1 and s[0] != '-':
+                returnable_rooms += 1
+        # If the belt is off, the room is returnable if the snake is not in the first or last room
+        elif s[i] == '-':
+            if i != 0 and i != n-1:
+                returnable_rooms += 1
+
+    print(returnable_rooms)
+```

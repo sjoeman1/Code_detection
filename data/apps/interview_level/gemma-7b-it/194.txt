@@ -1,0 +1,30 @@
+```python
+n, a, b = map(int, input().split())
+
+t = list(map(int, input().split()))
+
+# Create a dictionary to store the number of available seats for each table
+available_seats = {1: a, 2: b}
+
+# Iterate over the groups of people
+for i in t:
+    # If the group consists of one person
+    if i == 1:
+        # If there is a vacant seat at a one-seater table, seat the person there
+        if available_seats[1] > 0:
+            available_seats[1] -= 1
+        # Otherwise, deny service
+        else:
+            print("DENIED")
+    # If the group consists of two people
+    elif i == 2:
+        # If there is a vacant seat at a two-seater table, seat the person there
+        if available_seats[2] > 0:
+            available_seats[2] -= 1
+        # Otherwise, deny service
+        else:
+            print("DENIED")
+
+# Print the total number of people the restaurant denies service to
+print(sum(available_seats.values()))
+```

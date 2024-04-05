@@ -1,0 +1,12 @@
+```python
+import random
+
+n = int(input())
+p = list(map(float, input().split()))
+
+p.sort()
+
+m = int(sum(p) / 2)
+
+print(sum(p[:m]) / sum(p))
+```

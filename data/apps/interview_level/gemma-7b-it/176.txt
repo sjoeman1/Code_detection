@@ -1,0 +1,17 @@
+```python3
+k, a, b = map(int, input().split())
+
+# Calculate the number of multiples of k between a and b
+num_divisibles = int((b // k - a // k) * k)
+
+# Print the number of k-divisible numbers
+print(num_divisibles)
+```
+
+**Explanation:**
+
+* Read the input values k, a, and b.
+* Calculate the integer division of b by k and a by k using the // operator.
+* Subtract the integer division of a by k from the integer division of b by k.
+* Multiply the result by k to get the number of multiples of k between a and b.
+* Print the number of k-divisible numbers.

@@ -1,0 +1,15 @@
+```python3
+import sys
+
+# Read the number of sides
+n = int(sys.stdin.readline())
+
+# Read the side lengths
+l = list(map(int, sys.stdin.readline().split()))
+
+# Check if the longest side is shorter than the sum of the other sides
+is_valid = l[0] < sum(l[1:]).  # l[0] is the longest side length, l[1:] is the sum of the other side lengths
+
+# Print Yes or No
+print("Yes" if is_valid else "No")
+```

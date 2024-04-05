@@ -1,0 +1,12 @@
+```python3
+n, k = map(int, input().split())
+
+remainders = set()
+for i in range(1, k + 1):
+    remainders.add(n % i)
+
+if len(remainders) == k:
+    print("Yes")
+else:
+    print("No")
+```

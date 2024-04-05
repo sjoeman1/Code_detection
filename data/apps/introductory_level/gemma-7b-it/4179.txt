@@ -1,0 +1,36 @@
+```python
+N, M, C = map(int, input().split())
+
+B = list(map(int, input().split()))
+A = []
+
+for _ in range(N):
+    a = list(map(int, input().split()))
+    A.append(a)
+
+res = 0
+for i in range(N):
+    sum = 0
+    for j in range(M):
+        sum += A[i][j] * B[j]
+    if sum + C > 0:
+        res += 1
+
+print(res)
+```
+
+**Explanation:**
+
+- The code reads the number of codes (N), the number of integers in each code (M), and the value C.
+- It then reads the M integers B_1, ..., B_M and the M integers A_{i1}, ..., A_{iM} for each code.
+- It calculates the sum of A_{i1} B_1, ..., A_{iM} B_M for each code and checks if the sum is greater than C.
+- If the sum is greater than C, the code increments the variable "res".
+- Finally, the number of codes that correctly solve the problem is printed.
+
+**Time Complexity:**
+
+- The code reads input data in a linear fashion, so the time complexity is O(N) where N is the number of codes.
+
+**Space Complexity:**
+
+- The code uses a constant amount of space regardless of the input size, so the space complexity is O(1).

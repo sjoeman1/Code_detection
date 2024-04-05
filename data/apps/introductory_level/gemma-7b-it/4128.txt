@@ -1,0 +1,12 @@
+```python3
+t = int(input())
+
+for _ in range(t):
+    n = int(input())
+    if n % 2 != 0:
+        print(0)
+    else:
+        a = n // 2
+        b = n - a
+        print(1)
+```

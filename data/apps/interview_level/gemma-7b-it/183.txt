@@ -1,0 +1,8 @@
+```python
+n, k, m = map(int, input().split())
+
+x = str(int(n) * k)
+y = str(int(x[-1]) * k)
+
+print(int(y) % m)
+```

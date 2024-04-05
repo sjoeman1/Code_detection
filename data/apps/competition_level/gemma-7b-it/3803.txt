@@ -1,0 +1,21 @@
+```python
+hp_y, att_y, def_y = map(int, input().split())
+hp_m, att_m, def_m = map(int, input().split())
+h, a, d = map(int, input().split())
+
+# Calculate the damage dealt by Yang and the monster per second
+damage_y = max(0, att_y - def_m)
+damage_m = max(0, att_m - def_y)
+
+# Calculate the number of bitcoins needed to win
+cost_y = hp_m - hp_y
+cost_a = damage_y * a
+cost_d = damage_y * d
+
+# Update the cost if needed
+cost = min(cost_a, cost_d)
+cost = min(cost, h)
+
+# Print the cost
+print(cost)
+```

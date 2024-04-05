@@ -1,0 +1,35 @@
+```python3
+def longestCommonSubsequence(s1, s2, virus):
+    # Create a dictionary to store the longest common subsequence length
+    longest_common_subsequence_length = {}
+
+    # Calculate the length of the longest common subsequence between s_1 and s_2
+    longest_common_subsequence_length[s1, s2] = 0
+
+    # Iterate over the length of s_1
+    for i in range(len(s1) + 1):
+        # Iterate over the length of s_2
+        for j in range(len(s2) + 1):
+            # If the length of the longest common subsequence is greater than the length of the longest common subsequence stored in the dictionary,
+            # update the length of the longest common subsequence stored in the dictionary
+            if longest_common_subsequence_length[s1[:i], s2[:j]] > longest_common_subsequence_length[s1, s2]:
+                longest_common_subsequence_length[s1, s2] = longest_common_subsequence_length[s1[:i], s2[:j]] + 1
+
+    # If the length of the longest common subsequence is greater than 0, return the longest common subsequence
+    if longest_common_subsequence_length[s1, s2] > 0:
+        return ''.join(set(longest_common_subsequence(s1, s2, virus).intersection(set(s1) & set(s2)))
+    else:
+        return 0
+
+
+# Read the input
+s1 = input().strip()
+s2 = input().strip()
+virus = input().strip()
+
+# Find the longest common subsequence of s_1 and s_2 without virus as a substring
+longest_common_subsequence = longestCommonSubsequence(s1, s2, virus)
+
+# Print the longest common subsequence
+print(longest_common_subsequence)
+```

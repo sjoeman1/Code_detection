@@ -1,0 +1,13 @@
+```python
+def numberOfCubes(s):
+    n = len(s)
+    cubes = 0
+    for i in range(n):
+        if s[i] == '0' and s[i-1] == '1':
+            cubes += 1
+    return cubes
+
+
+s = input()
+print(numberOfCubes(s))
+```

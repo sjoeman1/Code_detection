@@ -1,0 +1,17 @@
+```python
+n = int(input())
+a = list(map(int, input().split()))
+
+# Check if the wall can be completed
+can_complete = (max(a) - min(a)) % 2 == 0 and all(a[i] == a[i-1] for i in range(2, len(a)))
+
+# Print YES/NO
+print("YES" if can_complete else "NO")
+```
+
+**Explanation:**
+
+* The code reads the number of parts in the wall `n` and then reads the initial heights of each part `a`.
+* It calculates the maximum and minimum heights in the wall and checks if the difference between them is divisible by 2. This is because Vova can only put bricks horizontally or vertically, so the difference between the maximum and minimum heights must be divisible by 2 for him to complete the wall.
+* If the difference is divisible by 2 and all parts of the wall have the same height, it means that Vova can complete the wall. Otherwise, it is not possible.
+* The code prints "YES" if the wall can be completed and "NO" otherwise.

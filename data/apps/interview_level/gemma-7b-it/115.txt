@@ -1,0 +1,11 @@
+```python
+r, s, p = map(int, input().split())
+
+# Calculate the probability of each species being the only survivor
+rock_prob = r / (r + s + p)
+scissors_prob = s / (r + s + p)
+paper_prob = p / (r + s + p)
+
+# Print the probabilities
+print(rock_prob, scissors_prob, paper_prob)
+```

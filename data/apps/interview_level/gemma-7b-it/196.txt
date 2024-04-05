@@ -1,0 +1,15 @@
+```python
+x, k = map(int, input().split())
+
+# Calculate the number of dresses in the end of the year
+num_ dresses = x * 2 ** (k - 1)
+
+# Subtract the dress eaten by the wardrobe
+num_ dresses_remaining = num_ dresses - num_ dresses // 2
+
+# Find the expected number of dresses
+expected_num_ dresses = num_ dresses_remaining // 2
+
+# Print the result
+print(expected_num_ dresses)
+```

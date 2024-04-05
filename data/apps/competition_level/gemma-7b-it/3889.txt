@@ -1,0 +1,17 @@
+```python
+n = int(input())
+s = input().lower()
+
+# Count the occurrences of each color
+color_counts = {}
+for i in s:
+    if i not in color_counts:
+        color_counts[i] = 0
+    color_counts[i] += 1
+
+# Check if it is possible to standardize all the puppies
+if min(color_counts.values()) >= 2:
+    print("Yes")
+else:
+    print("No")
+```

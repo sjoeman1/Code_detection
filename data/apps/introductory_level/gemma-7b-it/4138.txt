@@ -1,0 +1,9 @@
+```python
+q = int(input())
+
+for _ in range(q):
+    k = int(input())
+    s = str(bin(k).replace("0b", ""))
+    x = int(s[-1])
+    print(x)
+```

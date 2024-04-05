@@ -1,0 +1,15 @@
+```python
+n, k = map(int, input().split())
+c = list(map(int, input().split()))
+
+c.sort()
+sum = 0
+dp = set()
+
+for i in range(len(c)):
+    sum += c[i]
+    dp.add(sum - k)
+
+print(len(dp))
+print(*sorted(dp))
+```

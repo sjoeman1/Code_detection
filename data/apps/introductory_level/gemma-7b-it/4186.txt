@@ -1,0 +1,19 @@
+```python3
+n = int(input())
+a = list(map(int, input().split()))
+
+a.sort()
+total = 0
+teams = 0
+
+for i in range(len(a)):
+    a[i] += teams
+    total += a[i]
+    teams += 1
+
+    if teams == n // 2:
+        print(total)
+        exit()
+
+print("No solution")
+```

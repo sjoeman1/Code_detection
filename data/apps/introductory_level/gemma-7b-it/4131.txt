@@ -1,0 +1,20 @@
+```python3
+N, M = map(int, input().split())
+
+prefectures = {}
+cities = {}
+
+for _ in range(M):
+    P, Y = map(int, input().split())
+    if P not in prefectures:
+        prefectures[P] = []
+    prefectures[P].append(Y)
+
+for i in sorted(prefectures):
+    cities[i] = sorted(prefectures[i])
+
+for i, city in enumerate(cities):
+    num_cities = len(cities[i])
+    id_num = str(prefectures[i][0]) + str(i + 1).zfill(6)
+    print(id_num)
+```

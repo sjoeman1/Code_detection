@@ -1,0 +1,23 @@
+```python
+n, k = map(int, input().split())
+
+a = list(map(int, input().split()))
+
+a.sort()
+
+total_a = sum(a)
+
+if total_a < n:
+    print(-1)
+else:
+    ans = 0
+    current_a = 0
+    for i in range(len(a)):
+        current_a += a[i]
+        ans += 1
+
+        if current_a >= n:
+            break
+
+    print(ans)
+```

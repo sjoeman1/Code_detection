@@ -1,0 +1,32 @@
+```python
+def parse_rebus(rebus):
+    n = int(rebus.split("=")[-1])
+    nums = rebus.split("=")
+    nums.pop()
+    nums = [int(x) for x in nums]
+
+    # Check if the rebus has a solution
+    if not is_valid(nums, n):
+        return "Impossible"
+
+    # Find a valid rebus
+    res = find_solution(nums, n)
+
+    # Return the solution
+    return "Possible\n" + str(res)
+
+def is_valid(nums, n):
+    total = 0
+    for i in nums:
+        total += i
+
+    return total == n
+
+def find_solution(nums, n):
+    for i in range(1, n + 1):
+        nums.append(i)
+        if is_valid(nums, n):
+            return nums
+
+    return "No solution found"
+```

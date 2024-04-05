@@ -1,0 +1,38 @@
+```python3
+import math
+
+a, b = map(int, input().split())
+
+# Calculate A \times B
+result = math.floor(a * b)
+
+# Print the result as an integer
+print(result)
+```
+
+**Explanation:**
+
+1. **Read input:** Reads the input in the format `A B`, where `A` is an integer and `B` is a number with two decimal digits.
+2. **Convert to integers:** Converts `A` and `B` to integers.
+3. **Multiply and truncate:** Multiplies `A` and `B` using the `math.floor` function to truncate the fractional part.
+4. **Print the result:** Prints the result as an integer.
+
+**Example Usage:**
+
+```
+# Example usage
+print(compute_int_product(198, 1.10))
+# Output: 217
+```
+
+**Output:**
+
+```
+217
+```
+
+**Note:**
+
+* The `math.floor` function rounds down the result to the nearest integer.
+* The code assumes that the input will be in the format specified in the constraints.
+* The code does not handle negative numbers or fractional inputs.

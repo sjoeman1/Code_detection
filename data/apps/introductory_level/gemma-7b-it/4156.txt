@@ -1,0 +1,18 @@
+```python
+n, w = map(int, input().split())
+a = list(map(int, input().split()))
+
+# Check if the total number of passengers exceeds the bus capacity
+total_passengers = sum(a)
+if total_passengers > w:
+    print(0)
+else:
+    # Calculate the number of ways to have passengers in the bus before the first stop
+    ways = 0
+    for i in range(w + 1):
+        # Check if the number of passengers in the bus before the first stop is equal to i
+        if sum(a[:1]) == i:
+            ways += 1
+    # Print the number of ways
+    print(ways)
+```

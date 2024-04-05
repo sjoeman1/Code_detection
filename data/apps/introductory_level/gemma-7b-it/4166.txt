@@ -1,0 +1,27 @@
+```python
+N, M = map(int, input().split())
+
+s_list = []
+c_list = []
+
+for _ in range(M):
+    s, c = map(int, input().split())
+    s_list.append(s)
+    c_list.append(c)
+
+# Find the smallest integer satisfying the conditions
+result = -1
+for i in range(1, 10**N):
+    num = i
+    digits = str(num).split('.')
+    num_digits = len(digits) - 1
+    if num_digits == N and all(str(num // d) == str(s_list[i-1]) for i, d in enumerate(reversed(digits)) and num % 10**(num_digits-1) == c_list[i-1]:
+        result = num
+        break
+
+# Print the answer
+if result != -1:
+    print(result)
+else:
+    print(-1)
+```

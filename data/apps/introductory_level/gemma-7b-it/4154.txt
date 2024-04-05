@@ -1,0 +1,29 @@
+```python3
+N, M = map(int, input().split())
+
+L = []
+R = []
+for _ in range(M):
+    l, r = map(int, input().split())
+    L.append(l)
+    R.append(r)
+
+# Create a dictionary to store the number of cards that allow us to pass each gate
+cards_needed = {}
+for i in range(1, N+1):
+    cards_needed[i] = 0
+
+# Calculate the number of cards that allow us to pass each gate
+for i in range(M):
+    cards_needed[L[i]] += 1
+    cards_needed[R[i]] -= 1
+
+# Find the number of ID cards that allow us to pass all the gates alone
+num_cards = 0
+for i in cards_needed.keys():
+    if cards_needed[i] == M:
+        num_cards += 1
+
+# Print the number of ID cards that allow us to pass all the gates alone
+print(num_cards)
+```

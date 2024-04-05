@@ -1,0 +1,15 @@
+```python
+n = int(input())
+a = list(map(int, input().split()))
+
+# Calculate the sum of weights of candies eaten in even and odd days
+even_sum = 0
+odd_sum = 0
+for i in range(n):
+    even_sum += a[i] if i % 2 == 0 else odd_sum += a[i]
+
+# Find the number of candies that make the sum of weights of candies eaten in even and odd days equal
+good_candies = sum(1 for i, w in enumerate(a) if w == even_sum - odd_sum and i != n-1)
+
+print(good_candies)
+```

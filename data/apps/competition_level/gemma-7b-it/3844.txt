@@ -1,0 +1,13 @@
+```python
+n = int(input())
+a = list(map(int, input().split()))
+
+a.sort()
+
+# If the first player wins
+if a[-1] - a[0] >= 2:
+  print("Conan")
+# Otherwise, the second player wins
+else:
+  print("Agasa")
+```

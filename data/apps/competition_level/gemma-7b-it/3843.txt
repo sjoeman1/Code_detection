@@ -1,0 +1,28 @@
+```python
+n, m = map(int, input().split())
+
+# Calculate the maximum number of digits for hours and minutes
+max_hours_digits = int(n.bit_length()) - 1
+max_minutes_digits = int(m.bit_length()) - 1
+
+# Calculate the number of pairs with distinct digits
+num_pairs = 0
+for hours in range(1, max_hours_digits + 1):
+    for minutes in range(1, max_minutes_digits + 1):
+        # Convert hours and minutes to base 7
+        hours_base_7 = str(hours).zfill(hours_digits)
+        minutes_base_7 = str(minutes).zfill(minutes_digits)
+
+        # Check if all digits are distinct
+        is_distinct = True
+        for i in range(len(hours_base_7)):
+            for j in range(len(minutes_base_7)):
+                if hours_base_7[i] == minutes_base_7[j]:
+                    is_distinct = False
+
+        # Count the number of pairs with distinct digits
+        if is_distinct:
+            num_pairs += 1
+
+print(num_pairs)
+```

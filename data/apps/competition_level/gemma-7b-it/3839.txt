@@ -1,0 +1,35 @@
+```python
+n = int(input())
+
+x = 1
+y = 1
+
+knights = 1
+
+board = [[0] * 11 for _ in range(11)]
+
+board[x][y] = knights
+
+while True:
+    found = False
+    for r in range(1, 11):
+        for c in range(1, 11):
+            if board[r][c] == 0 and (
+                (r-1, c) in knights or
+                (r+1, c) in knights or
+                (r, c-1) in knights or
+                (r, c+1) in knights
+            ):
+                board[r][c] = knights
+                knights += 1
+                found = True
+
+    if not found:
+        break
+
+print(knights)
+for i in range(knights):
+    print(x, y)
+    x += 1
+    y += 1
+```

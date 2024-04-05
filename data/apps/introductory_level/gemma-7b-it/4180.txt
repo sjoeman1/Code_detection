@@ -1,0 +1,13 @@
+```python
+# Read the number of yen
+n = int(input())
+
+# Calculate the number of 1000-yen bills to use
+num_bills = n // 1000
+
+# Calculate the change
+change = n - num_bills * 1000
+
+# Print the amount of change
+print(change)
+```
