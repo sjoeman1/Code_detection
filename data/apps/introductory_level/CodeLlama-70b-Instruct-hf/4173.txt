@@ -1,0 +1,25 @@
+
+
+Here's the Python3 code for solving the question:
+
+```python
+def min_money_to_buy(n, a, b):
+    min_burles = 0
+    # Check if n is odd or even
+    if n % 2 == 0:
+        min_burles = n // 2 * b
+    else:
+        min_burles = (n // 2 * b) + a
+
+    return min_burles
+
+q = int(input())
+
+for _ in range(q):
+    n, a, b = map(int, input().split())
+    print(min_money_to_buy(n, a, b))
+```
+
+This code defines a function `min_money_to_buy` that calculates the minimum amount of burles needed to buy `n` liters of water using `a` burles for a 1-liter bottle and `b` burles for a 2-liter bottle. The function first checks if `n` is odd or even. If `n` is even, it calculates the minimum amount of burles as `n // 2 * b`. If `n` is odd, it calculates the minimum amount of burles as `(n // 2 * b) + a`.
+
+The code then takes the input `q`, the number of queries. It then loops `q` times, taking input `n`, `a`, and `b` for each query. It calls the `min_money_to_buy` function with these values and prints the result.

@@ -1,0 +1,39 @@
+
+
+This is a solution to the problem. I've provided explanations for each line of code.
+
+```
+def rebus(rebus):
+    # Split the rebus into a list of terms
+    terms = rebus.split()
+
+    # Define a function to check if the solution is valid
+    def is_valid(terms):
+        # Replace question marks with integers from 1 to n
+        for i in range(len(terms)):
+            if terms[i] == '?':
+                for j in range(1, n + 1):
+                    terms[i] = str(j)
+                    if eval(''.join(terms)) == n:
+                        return True
+                terms[i] = '?'
+        return False
+
+    # Iterate through all terms
+    for term in terms:
+        # Check if the term is an integer
+        if term.isdigit():
+            n = int(term)
+            break
+
+    # Check if the solution is valid
+    if is_valid(terms):
+        return "Possible"
+    else:
+        return "Impossible"
+
+# Example rebus
+rebus = "? + ? - ? + ? + ? = 42"
+
+# Output the solution
+print(rebus(rebus))

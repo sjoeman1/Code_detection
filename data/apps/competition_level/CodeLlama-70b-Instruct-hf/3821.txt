@@ -1,0 +1,31 @@
+
+
+Here is the Python 3 code to solve this problem:
+
+```python
+from math import *
+from fractions import Fraction
+import sys
+
+def prob(a):
+    n = len(a)
+    b = [0]*(n+1)
+    b[0] = 1
+    for p in a:
+        for j in range(n,-1,-1):
+            b[j] *= (1-p)
+            if j > 0:
+                b[j] += b[j-1] * p
+    best = 0
+    for i in range(n+1):
+        best = max(best, b[i])
+    return best
+
+
+n = int(input())
+a = [Fraction(x) for x in input().split()]
+
+print(prob(a))
+```
+
+This code uses the `prob` function to calculate the probability that Andrey will not get upset. The function takes an array of probabilities as input and returns the probability that Andrey will not get upset. The `b` array is used to store the probability of getting 0, 1, 2, ..., n problems. The `best` variable is used to store the maximum probability that Andrey will not get upset. The output is the maximum probability that Andrey will not get upset.

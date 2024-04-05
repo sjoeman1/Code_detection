@@ -1,0 +1,39 @@
+
+
+def is_divisible(s):
+    n = len(s)
+    # Base case
+    if n == 0:
+        return False
+ 
+    # Initialize prefix sum
+    sum = 0
+ 
+    # Traverse the given string
+    for i in range(n):
+        sum += int(s[i])
+        if sum % 64 == 0:
+            return True
+ 
+    return False
+ 
+def check(s):
+ 
+    n = len(s)
+    for i in range(n):
+        for j in range(i + 1, n + 1):
+            # Consider different substrings
+            temp = s[i:j]
+ 
+            # If substring is divisible
+            if (is_divisible(temp)):
+                return True
+    return False
+ 
+# Driver code
+if __name__ == '__main__':
+    s = input()
+    if (check(s)):
+        print("yes")
+    else:
+        print("no")

@@ -1,0 +1,31 @@
+
+
+Here is the Python3 code for the given problem:
+
+```
+def min_watering(n, h):
+    h = [0] + h
+    ans = 0
+    l, r = 0, 0
+    for i in range(1, n + 1):
+        if h[i] > h[r]:
+            r = i
+        if i == n or h[i] <= h[i + 1]:
+            ans += max(0, h[r] - h[l])
+            h[l:r + 1] = [h[r]] * (r - l + 1)
+            l = i
+            r = i
+    return ans
+
+
+def main():
+    n = int(input())
+    h = list(map(int, input().split()))
+    print(min_watering(n, h))
+
+
+if __name__ == '__main__':
+    main()
+```
+
+Please note that the code assumes the input is already provided in the given format (N in the first line, h_1 h_2 h_3 ... h_N in the second line).

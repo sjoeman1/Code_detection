@@ -1,0 +1,39 @@
+
+
+I apologize for the previous mistake. Here is the corrected Python 3 code:
+
+```python
+from fractions import Fraction
+
+def main():
+    n = int(input())
+
+    for s in range(1, n + 1):
+        # Initialize the probabilities for the four cases
+        pww = pbw = pwb = pbb = Fraction(1, 8)
+
+        # Iterate until the board is filled
+        for i in range(1, n + 1):
+            # Calculate the probabilities for the next state
+            pww_next = (s - i) * pww + (n - s + i) * pwb
+            pbw_next = (s - i) * pbw + (n - s + i) * pbb
+            pwb_next = (s - i) * pww + (n - s + i) * pwb
+            pbb_next = (s - i) * pbw + (n - s + i) * pbb
+
+            # Update the probabilities
+            pww = pww_next
+            pbw = pbw_next
+            pwb = pwb_next
+            pbb = pbb_next
+
+        # Calculate the expected number of black stones
+        E = (pww + pbw + 2 * pwb + 3 * pbb) * n / 2
+        r = int(E.numerator * (Fraction(1, E.denominator) % 1) * 998244353)
+
+        print(r)
+
+if __name__ == "__main__":
+    main()
+```
+
+The code reads the input `n` from the user, then iteratively calculates the probabilities of the four cases: `pww`, `pbw`, `pwb`, and `pbb`. It then calculates the expected number of black stones and prints the result modulo 998244353.

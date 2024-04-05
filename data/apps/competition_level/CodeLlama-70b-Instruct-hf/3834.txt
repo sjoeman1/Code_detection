@@ -1,0 +1,50 @@
+
+
+In this problem, we need to find if it is possible to change the values of at most k cells in the table such that each connected component of the same values forms a rectangle with sides parallel to the sides of the table.
+
+Here's a Python 3 code that solves the problem:
+
+```python
+def solve(n, m, k, a):
+    rows = []
+    for i in range(n):
+        rows.append(a[i])
+    cols = []
+    for j in range(m):
+        col = []
+        for i in range(n):
+            col.append(a[i][j])
+        cols.append(col)
+    components = []
+    for i in range(n):
+        for j in range(m):
+            if a[i][j] == 0:
+                continue
+            found = False
+            for component in components:
+                for x, y in component:
+                    if (i > 0 and a[i - 1][j] == 1 and (i - 1, j) in component) or (j > 0 and a[i][j - 1] == 1 and (i, j - 1) in component) or (i + 1 < n and a[i + 1][j] == 1 and (i + 1, j) in component) or (j + 1 < m and a[i][j + 1] == 1 and (i, j + 1) in component):
+                        component.append((i, j))
+                        found = True
+                        break
+                if found:
+                    break
+            if not found:
+                components.append([(i, j)])
+    for component in components:
+        if len(component) == 1:
+            continue
+        w = h = 0
+        for x, y in component:
+            w = max(w, x)
+            h = max(h, y)
+        w += 1
+        h += 1
+        if len(component) != w * h:
+            return -1
+    return k - len(components)
+
+
+def main():
+    n, m, k = map(int, input().split())
+    a =

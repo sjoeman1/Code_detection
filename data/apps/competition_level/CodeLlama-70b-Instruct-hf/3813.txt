@@ -1,0 +1,60 @@
+
+
+Here is the Python 3 code for solving the problem:
+```python
+# Function to determine if allocating colors and weights is possible
+def is_possible(N, P, X):
+    # Create a graph as an adjacency list
+    graph = [[] for _ in range(N + 1)]
+    for i in range(2, N + 1):
+        graph[P[i - 1]].append(i)
+
+    # Initialize the visited array
+    visited = [False] * (N + 1)
+
+    # Recursive function to check if it is possible to allocate colors and weights
+    def dfs(node):
+        # Mark the current node as visited
+        visited[node] = True
+
+        # Initialize the weight of each color
+        white_weight = 0
+        black_weight = 0
+
+        # Iterate over the children of the current node
+        for child in graph[node]:
+            if not visited[child]:
+                # Recursively call the dfs function for the child node
+                white_weight += dfs(child)
+
+        # Calculate the weight of the other color
+        black_weight = X[node] - white_weight
+
+        # Check if the weight of the other color is non-negative
+        if black_weight < 0:
+            return -1
+
+        # Return the weight of the current node's white color
+        return white_weight
+
+    # Check if it is possible to allocate colors and weights
+    if dfs(1) == -1:
+        return False
+    else:
+        return True
+
+# Main function
+if __name__ == "__main__":
+    # Read the input from the user
+    N = int(input())
+    P = list(map(int, input().split()))
+    X = list(map(int, input().split()))
+
+    # Check if it is possible to allocate colors and weights
+    if is_possible(N, P, X):
+        print("POSSIBLE")
+    else:
+        print("IMPOSSIBLE")
+```
+
+In this code, the `is_possible` function checks if it is possible to allocate colors and weights to the vertices so that the condition is satisfied. The `

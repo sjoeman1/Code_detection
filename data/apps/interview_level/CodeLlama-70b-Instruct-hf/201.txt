@@ -1,0 +1,29 @@
+
+
+The following Python 3 code solves the problem:
+
+```python
+# This code takes the input as a single line of 5 integers, separated by spaces
+# The input is then split into the required variables
+input_line = input().split()
+C = int(input_line[0])
+H_r = int(input_line[1])
+H_b = int(input_line[2])
+W_r = int(input_line[3])
+W_b = int(input_line[4])
+
+# Calculate the maximum number of candies that can be eaten
+max_candies = C // (W_r + W_b)
+
+# Calculate the maximum joy units that can be obtained by eating a single candy type
+max_joy_r = max_candies * H_r
+max_joy_b = max_candies * H_b
+
+# Calculate the maximum joy units that can be obtained by eating both candy types
+max_joy_both = (C // W_r) * H_r + (C // W_b) * H_b
+
+# Print the maximum of the three calculated values
+print(max(max_joy_r, max_joy_b, max_joy_both))
+```
+
+The code takes the input as a single line of 5 integers, separated by spaces. It then calculates the maximum number of candies that can be eaten, the maximum joy units that can be obtained by eating a single candy type, and the maximum joy units that can be obtained by eating both candy types. Finally, it prints the maximum of these three calculated values.

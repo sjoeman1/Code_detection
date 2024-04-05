@@ -1,0 +1,26 @@
+
+
+Here's a Python 3 code that solves the question:
+
+```
+n = int(input())
+arr = list(map(int, input().split()))
+
+sum_arr = sum(arr)
+if sum_arr % 2 == 0:
+    target = sum_arr // 2
+    prefix_sum = 0
+    for i, num in enumerate(arr):
+        prefix_sum += num
+        if prefix_sum == target:
+            print('YES')
+            break
+    else:
+        print('NO')
+else:
+    print('NO')
+```
+
+The code starts by taking the input for the array size and the array elements. It then calculates the sum of the array elements and checks if it is divisible by 2. If it is not divisible by 2, then the answer is NO.
+
+If the sum of the array elements is divisible by 2, the code calculates the target sum (half of the total sum). It then iterates through the array elements, calculating the prefix sum. If at any point, the prefix sum equals the target sum, it means that the array can be divided into two equal parts. In this case, the code prints YES and breaks out of the loop. If the loop finishes without breaking, it means that the array cannot be divided into two equal parts, and the code prints NO.

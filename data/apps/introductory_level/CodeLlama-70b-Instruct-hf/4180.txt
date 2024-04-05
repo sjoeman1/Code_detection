@@ -1,0 +1,22 @@
+
+
+Here is the Python3 code for solving the problem:
+
+```
+# Input the cost of the product in yen
+N = int(input())
+
+# Initialize the change to zero
+change = 0
+
+# Calculate the number of 1000-yen bills required
+bills = N // 1000
+
+# Calculate the amount of change (remainder)
+change = N - (bills * 1000)
+
+# Print the amount of change as an integer
+print(change)
+```
+
+This code will take the input `N`, calculate the number of 1000-yen bills required, and then calculate the amount of change. The change is then printed as an integer.

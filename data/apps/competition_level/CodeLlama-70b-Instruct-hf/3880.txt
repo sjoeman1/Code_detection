@@ -1,0 +1,26 @@
+
+
+Here's the Python 3 code to solve the problem:
+
+```py
+# Get the input
+n = int(input())
+arr = list(map(int, input().split()))
+
+# Initialize the sum of the elements
+sum_elements = 0
+
+# Calculate the sum of the elements
+for element in arr:
+    sum_elements += element
+
+# Check if the sum is positive or negative
+if sum_elements > 0:
+    # If the sum is positive, the maximum sum is obtained by changing the sign of the first n elements
+    print(sum_elements - 2 * sum(arr[:n]))
+else:
+    # If the sum is negative, the maximum sum is obtained by not changing the sign of any element
+    print(sum_elements)
+```
+
+This code first reads the input `n` and the array `arr`. Then, it calculates the sum of the elements in the array. If the sum is positive, it changes the sign of the first `n` elements, and calculates the maximum sum. If the sum is negative, it does not change the sign of any element, and prints the sum.

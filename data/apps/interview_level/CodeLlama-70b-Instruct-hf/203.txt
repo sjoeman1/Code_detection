@@ -1,0 +1,63 @@
+
+
+Here is the Python3 code to solve the question:
+
+```python
+n = int(input())
+employees = input()
+
+# Create a list to store the order of denials
+denials = [0] * n
+
+# Create a list to store the order of voting
+voting_order = []
+
+# Initialize the number of depublicans and remocrats
+depublicans = 0
+remocrats = 0
+
+# Initialize the number of depublicans and remocrats who can vote
+depublicans_can_vote = 0
+remocrats_can_vote = 0
+
+# Initialize the number of depublicans and remocrats who have been denied from voting
+depublicans_denied = 0
+remocrats_denied = 0
+
+# Iterate through the employees
+for i in range(n):
+    # Check if the employee is a depublican
+    if employees[i] == 'D':
+        depublicans += 1
+
+        # Check if the employee can vote
+        if denials[i] == 0:
+            depublicans_can_vote += 1
+    else:
+        remocrats += 1
+
+        # Check if the employee can vote
+        if denials[i] == 0:
+            remocrats_can_vote += 1
+
+    # Check if the employee denies someone from voting
+    if i != n - 1:
+        # Check if the next employee is a depublican
+        if employees[i + 1] == 'D':
+            denials[i + 1] += 1
+            depublicans_denied += 1
+        else:
+            denials[i + 1] += 1
+            remocrats_denied += 1
+
+# Iterate through the employees again
+for i in range(n):
+    # Check if the employee can vote
+    if denials[i] == 0:
+        voting_order.append(i + 1)
+
+# Print the voting order
+print("Voting order:", voting_order)
+
+# Check if there is only one depublican who can vote
+if depublicans_can_vote == 1

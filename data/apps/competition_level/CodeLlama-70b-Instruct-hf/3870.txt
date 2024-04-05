@@ -1,0 +1,51 @@
+
+
+```python
+# Python 3 code to solve the above problem
+
+# Function to calculate the maximum damage that can be done to Jiro
+def calculateDamage(n, m, Jiro, Ciel):
+    # Sort the cards of Jiro and Ciel
+    Jiro.sort()
+    Ciel.sort()
+    damage = 0
+
+    # Iterate through the cards of Jiro
+    for i in range(n):
+        # If the card is of type ATK, then
+        # the Ciel's card with maximum strength
+        # can be used to attack
+        if Jiro[i][0] == "ATK":
+            if Ciel:
+                damage += max(Ciel[-1] - Jiro[i][1], 0)
+                Ciel.pop()
+            else:
+                damage += Jiro[i][1]
+        # If the card is of type DEF, then
+        # the Ciel's card with maximum strength
+        # can be used to attack
+        else:
+            if Ciel and Ciel[-1] > Jiro[i][1]:
+                damage += 0
+                Ciel.pop()
+    return damage
+
+# Driver code
+if __name__ == "__main__":
+    n, m = map(int, input().split())
+    Jiro = []
+
+    # Input the cards of Jiro
+    for i in range(n):
+        Jiro.append(list(map(int, input().split())))
+
+    Ciel = []
+
+    # Input the cards of Ciel
+    for i in range(m):
+        Ciel.append(int(input()))
+
+    print(calculateDamage(n, m, Jiro, Ciel))
+```
+
+Please note that this code may not be optimal or the most efficient. It's a basic solution to help you understand the problem.

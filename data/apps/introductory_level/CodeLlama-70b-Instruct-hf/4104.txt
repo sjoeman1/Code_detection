@@ -1,0 +1,34 @@
+
+
+The code for the problem is as follows:
+
+```python
+# Function to evaluate the arithmetic expression and reproduce the bug
+def evaluate_expression(expression):
+    # Split the expression into operands and operators
+    operands = expression.split('+')
+    result = 0
+    for operand in operands:
+        if '-' in operand:
+            # Split the operand into sub-operands and subtract each from result
+            sub_operands = operand.split('-')
+            for sub_operand in sub_operands:
+                result -= int(sub_operand)
+        else:
+            # Add the operand to the result
+            result += int(operand)
+    return result
+
+# Read the input from the user
+expression = input()
+
+# Evaluate the expression and reproduce the bug
+result = evaluate_expression(expression)
+
+# Print the result
+print(result)
+```
+
+The code first splits the expression into operands and operators. It then iterates over the operands, subtracts each operand from the result if it contains a minus sign, and adds the operand to the result if it does not contain a minus sign.
+
+The bug is reproduced because the code subtracts each operand from the result even if the operator is a plus sign, which is incorrect. This bug is intentional to simulate the behavior of the reference solution.

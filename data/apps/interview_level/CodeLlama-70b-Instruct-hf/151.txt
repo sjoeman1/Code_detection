@@ -1,0 +1,50 @@
+
+
+Here is the Python 3 code that provides the functionality you requested:
+
+```python
+import re
+
+# Function to check if a block of consonants has all letters the same
+def all_letters_same(block):
+    return len(set(block)) == 1
+
+# Function to check if a word has typos
+def has_typos(word):
+    # Regular expression to match blocks of consonants (without vowels)
+    consonants_regex = re.compile(r'[^aeiou]+')
+    # Find all blocks of consonants in the word
+    consonants_blocks = re.findall(consonants_regex, word)
+    # Check if any of the blocks has at least three consonants and all letters the same
+    for block in consonants_blocks:
+        if len(block) >= 3 and not all_letters_same(block):
+            return True
+    return False
+
+# Function to insert spaces to remove typos
+def remove_typos(word):
+    # Initialize a list to store the result
+    result = []
+    # Regular expression to match blocks of consonants (without vowels)
+    consonants_regex = re.compile(r'[^aeiou]+')
+    # Find all blocks of consonants in the word
+    consonants_blocks = re.findall(consonants_regex, word)
+    # Iterate over each block
+    for block in consonants_blocks:
+        # If a block has at least three consonants and all letters the same
+        if len(block) >= 3 and not all_letters_same(block):
+            # Insert a space before the block
+            word = word.replace(block, ' ' + block)
+    # Append the modified word to the result list
+    result.append(word)
+    return result
+
+# Read the input
+word = input()
+# Check if the word has typos
+if has_typos(word):
+    # If there are typos, remove them and print the result
+    result = remove_typos(word)
+    print(result[0])
+else:
+    # If there are no typos,

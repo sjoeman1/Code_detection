@@ -1,0 +1,32 @@
+
+
+Here is the Python 3 code for solving the problem:
+
+```
+import sys
+from math import sqrt
+
+def is_square(n):
+    root = int(sqrt(n))
+    return root * root == n
+
+def find_triple(n):
+    if n % 2 == 0:
+        m = (n // 2) ** 2 - 1
+        if is_square(m):
+            return int(sqrt(m)), n // 2
+    else:
+        m = (n ** 2 - 1) // 2
+        if is_square(m):
+            return int(sqrt(m)), (n ** 2 - 1) // 2
+    return -1, -1
+
+n = int(input())
+m, k = find_triple(n)
+if m == -1 and k == -1:
+    print(-1)
+else:
+    print(m, k)
+```
+
+This code reads the input value n from the user, then calls the find_triple function to find the corresponding Pythagorean triple. If a valid triple is found, it prints the values of m and k, otherwise it prints -1.

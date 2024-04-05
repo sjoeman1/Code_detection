@@ -1,0 +1,38 @@
+
+
+Here's a Python 3 code that solves the problem:
+
+```
+import math
+
+# Function to check if a number is a perfect square
+def is_perfect_square(num):
+    if num < 0:
+        return False
+    return (int(math.sqrt(num))) ** 2 == num
+
+# Function to find the largest number in the array that is not a perfect square
+def largest_not_perfect_square(arr):
+    largest_num = -1  # Initialize the largest number to -1
+    for num in arr:
+        if not is_perfect_square(num) and num > largest_num:
+            largest_num = num  # Update the largest number if a larger non-perfect square is found
+    return largest_num
+
+# Read the number of elements in the array
+n = int(input())
+# Read the array elements
+arr = list(map(int, input().split()))
+
+# Call the function to find the largest number in the array that is not a perfect square
+largest_num = largest_not_perfect_square(arr)
+
+# Print the result
+print(largest_num)
+```
+
+The code defines a function `is_perfect_square` to check if a number is a perfect square. It takes an integer `num` as input and returns `True` if it is a perfect square or `False` otherwise.
+
+The `largest_not_perfect_square` function takes an array as input and iterates through each element. If the element is not a perfect square and is larger than the current largest number, it updates the largest number. Finally, it returns the largest number that is not a perfect square.
+
+The main function reads the input, calls the `largest_not_perfect_square` function, and prints the result.

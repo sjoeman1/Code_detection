@@ -1,0 +1,43 @@
+
+
+In this problem, we need to find the minimum difference between angles of two sectors that will go to Vasya and Petya. Each sector is a continuous segment of the pizza circle.
+
+Here is the Python 3 code that solves the problem:
+
+```
+# Function to find the minimum difference between angles of sectors
+def min_difference(a):
+    n = len(a)
+    # Initialize the minimum difference as the maximum possible value
+    min_diff = 360
+    # Sort the angles in ascending order
+    a.sort()
+    # Traverse the array from the first element to the last
+    for i in range(n):
+        # Calculate the difference between the angles of two sectors
+        diff = abs(a[i] - a[n-1-i])
+        # Update the minimum difference if a smaller value is found
+        if diff < min_diff:
+            min_diff = diff
+    # If the array contains 180 degrees, then the minimum difference is 0
+    if 180 in a:
+        min_diff = 0
+    # Return the minimum difference
+    return min_diff
+
+# Main function
+if __name__ == "__main__":
+    n = int(input())
+    a = list(map(int, input().split()))
+    result = min_difference(a)
+    print(result)
+```
+
+The `min_difference` function takes an array of angles `a` as input and calculates the minimum difference between angles of two sectors.
+
+*   We sort the angles in ascending order to ensure that the adjacent sectors are placed side by side.
+*   We traverse the array from the first element to the last, calculating the difference between the angles of two sectors.
+*   We update the minimum difference if a smaller value is found.
+*   If the array contains 180 degrees, then the minimum difference is 0.
+
+The main function reads the number of pieces and the angles of each piece. It then calls the `min_difference` function to calculate the minimum difference and prints the result.

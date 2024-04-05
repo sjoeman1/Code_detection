@@ -1,0 +1,39 @@
+
+
+The given problem can be solved using Python 3 as follows:
+
+```python
+def solve(n, k, x, beauty):
+    dp = [[0 for _ in range(x+1)] for _ in range(n)]
+    dp[0][0] = 0
+    dp[0][1] = beauty[0]
+
+    for i in range(1, n):
+        for j in range(x+1):
+            dp[i][j] = dp[i-1][j]
+            if j >= 1:
+                dp[i][j] = max(dp[i][j], dp[i-1][j-1] + beauty[i])
+            if i >= k:
+                dp[i][j] = max(dp[i][j], dp[i-k][j])
+
+    return dp[n-1][x]
+
+if __name__ == "__main__":
+    n, k, x = map(int, input().split())
+    beauty = list(map(int, input().split()))
+
+    ans = solve(n, k, x, beauty)
+    if ans == 0:
+        print(-1)
+    else:
+        print(ans)
+```
+
+In the code above, we define a function `solve` that takes the number of pictures `n`, the minimum length of segment `k`, the number of pictures to repost `x`, and an array `beauty` containing the beauty values of each picture.
+
+We initialize a two-dimensional array `dp` with zeros, where `dp[i][j]` represents the maximum sum of beauty values of reposted pictures for the first `i` pictures with `j` reposts.
+
+We iterate over `i` from `1` to `n-1`. For each `i`, we iterate over `j` from `0` to `x`. We update `dp[i][j]` by considering three possible cases:
+
+1.  We don't repost the `i`-th picture, so `dp[i][j]` remains the same as `dp[i-1][j]`.
+2.  We repost the `i`-th picture, so `dp[i

@@ -1,0 +1,19 @@
+
+
+Here is the Python3 code to solve the question:
+
+```
+from math import gcd
+n = int(input())
+a = list(map(int, input().split()))
+k = 0
+for i in range(n-1):
+    if gcd(a[i], a[i+1]) != 1:
+        k += 1
+        a.insert(i+1, 1)
+print(k)
+for i in range(n+k):
+    print(a[i], end=" ")
+```
+
+In this code, we first read the number of elements in the array n and then the elements of the array a. Then, we initialize k to 0. We iterate through the array and check if the GCD of any two adjacent elements is not 1. If it is not 1, then we increase k by 1 and insert 1 at the next index of the array. Finally, we print k and the new array.

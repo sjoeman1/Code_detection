@@ -1,0 +1,28 @@
+
+
+The Python code for solving this problem is as follows:
+
+```py
+def get_wall_x(y_1, y_2, y_w, x_b, y_b, r):
+    if y_w >= y_1 and y_w <= y_2:
+        return -1  # The wall is inside the goal
+    if y_w < y_b:
+        return -1  # The ball is behind the wall
+
+    x_w = x_b + (r * (y_w - y_b)) / (y_w - y_1)
+    return x_w
+
+
+if __name__ == "__main__":
+    y_1, y_2, y_w, x_b, y_b, r = map(int, input().split())
+    x_w = get_wall_x(y_1, y_2, y_w, x_b, y_b, r)
+
+    if x_w == -1:
+        print(x_w)
+    else:
+        print(f"{x_w:.12f}")
+```
+
+The `get_wall_x` function calculates the abscissa (x-coordinate) of the point on the wall to which Robo-Wallace should aim. It takes the input parameters `y_1, y_2, y_w, x_b, y_b, r` and returns the calculated value of `x_w`.
+
+The main function takes the input parameters from the user, calls the `get_wall_x` function, and prints the result.

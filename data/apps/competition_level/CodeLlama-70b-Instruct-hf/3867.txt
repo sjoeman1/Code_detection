@@ -1,0 +1,69 @@
+
+Here is the Python 3 code for the given problem:
+
+```
+from collections import deque
+
+
+def check_bfs_order(n, edges, order):
+    # Create an adjacency list to store the edges.
+    graph = [[] for _ in range(n + 1)]
+
+    # Add the edges to the adjacency list.
+    for edge in edges:
+        graph[edge[0]].append(edge[1])
+        graph[edge[1]].append(edge[0])
+
+    # Initialize a queue and mark all nodes as unvisited.
+    queue = deque([1])
+    visited = [False] * (n + 1)
+
+    # Initialize an index to keep track of the order.
+    index = 0
+
+    # Perform the BFS traversal.
+    while queue:
+        # Extract the current vertex from the queue.
+        current = queue.popleft()
+
+        # Check if the current vertex matches the next element in the order.
+        if current != order[index]:
+            return False
+
+        # Increment the index.
+        index += 1
+
+        # Mark the current vertex as visited.
+        visited[current] = True
+
+        # Iterate through all neighbors of the current vertex.
+        for neighbor in graph[current]:
+            # If the neighbor is not visited, add it to the queue.
+            if not visited[neighbor]:
+                queue.append(neighbor)
+
+    # Check if all vertices have been visited.
+    if index != n:
+        return False
+
+    return True
+
+
+# Main function to run the program.
+def main():
+    # Read the number of nodes in the tree.
+    n = int(input())
+
+    # Initialize the edges list.
+    edges = []
+
+    # Read the edges of the tree.
+    for _ in range(n - 1):
+        x, y = map(int, input().split())
+        edges.append([x, y])
+
+    # Read the BFS order.
+    order = list(map(int, input().split()))
+
+    # Check if the order is valid.
+    if check_bfs_order(n, edges

@@ -1,0 +1,43 @@
+
+
+Here is the Python3 code that solves the problem:
+
+```python
+def solve(n, a, b, c):
+    # Initialize the cost
+    cost = 0
+    # If n is already divisible by 4, no need to buy anything
+    if n % 4 == 0:
+        return 0
+    # Calculate the number of copybooks required to make n divisible by 4
+    required = 4 - (n % 4)
+    # Initialize the cost of buying required number of copybooks
+    cost_required = required * a
+    # Check if buying a pack of 2 copybooks is cheaper
+    cost_required = min(cost_required, required // 2 * b + required % 2 * a)
+    # Check if buying a pack of 3 copybooks is cheaper
+    cost_required = min(cost_required, required // 3 * c + (required % 3) // 2 * b + (required % 3) % 2 * a)
+    # Return the minimum cost
+    return cost_required
+
+# Input
+n, a, b, c = map(int, input().split())
+# Output
+print(solve(n, a, b, c))
+```
+
+This code uses a function `solve` that takes 4 parameters `n, a, b, c` and returns the minimum cost.
+
+The function first checks if `n` is already divisible by 4. If so, it returns 0.
+
+If `n` is not divisible by 4, it calculates the number of copybooks required to make `n` divisible by 4 (`4 - (n % 4)`).
+
+It then calculates the cost of buying that number of copybooks (`required * a`).
+
+It then checks if buying a pack of 2 copybooks is cheaper than buying the required number of individual copybooks. If it is, it updates the cost accordingly.
+
+It then checks if buying a pack of 3 copybooks is cheaper than buying the required number of individual copybooks or packs of 2 copybooks. If it is, it updates the cost accordingly.
+
+Finally, it returns the minimum cost.
+
+The code then takes input for

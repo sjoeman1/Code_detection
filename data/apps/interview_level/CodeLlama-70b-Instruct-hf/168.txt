@@ -1,0 +1,27 @@
+
+```python
+def min_stones(n, s):
+    stones = 0
+    min_stones = 0
+
+    for operation in s:
+        if operation == '-':
+            stones -= 1
+        else:
+            stones += 1
+
+        min_stones = min(min_stones, stones)
+
+    return min_stones
+
+
+if __name__ == '__main__':
+    n = int(input())
+    s = input()
+
+    result = min_stones(n, s)
+
+    print(result)
+```
+
+This Python 3 code defines a function `min_stones` that takes two arguments: `n`, the number of operations, and `s`, the string of operations. It initializes two variables, `stones` and `min_stones`, to 0. It then iterates through the string `s` and performs the operations on the `stones` variable. If the operation is "-", it subtracts 1 from `stones`, and if the operation is "+", it adds 1 to `stones`. After each operation, it updates `min_stones` to the minimum value of `min_stones` and `stones`. Finally, it returns the minimum number of stones after all operations.

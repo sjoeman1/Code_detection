@@ -1,0 +1,46 @@
+
+
+In the code below, we define a function called `min_exchanges` that takes in the number of students `n`, and the performance of each student in the two groups `a` and `b`.
+
+The function calculates the number of students in each group who have each academic performance level (1-5). It then calculates the difference between the number of students in each group for each performance level.
+
+The function then determines the minimum number of exchanges required to equalize the number of students in each group with the same academic performance. If it's not possible to equalize the groups, it returns -1.
+
+```python
+from collections import Counter
+
+def min_exchanges(n, a, b):
+    # Calculate the number of students in each group with each academic performance level
+    group_a_count = Counter(a)
+    group_b_count = Counter(b)
+    
+    # Calculate the difference between the number of students in each group for each performance level
+    diff_count = {key: group_a_count[key] - group_b_count[key] for key in group_a_count}
+    
+    # Determine the minimum number of exchanges required to equalize the number of students in each group
+    min_exchanges = 0
+    for key, value in diff_count.items():
+        if value % 2 != 0:
+            return -1
+        min_exchanges += value // 2
+    
+    return min_exchanges
+
+# Test the function with the provided example inputs
+n = 4
+a = [5, 4, 4, 4]
+b = [5, 5, 4, 5]
+print(min_exchanges(n, a, b))
+
+n = 6
+a = [1, 1, 1, 1, 1, 1]
+b = [5, 5, 5, 5, 5, 5]
+print(min_exchanges(n, a, b))
+
+n = 1
+a = [5]
+b = [3]
+print(min_exchanges(n, a, b))
+
+n = 9
+a = [3, 2, 5

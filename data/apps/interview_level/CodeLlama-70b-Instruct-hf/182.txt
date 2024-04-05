@@ -1,0 +1,50 @@
+
+
+Here is the Python 3 code:
+
+```py
+def can_get_spheres(a, b, c, x, y, z):
+    if a >= x and b >= y and c >= z:
+        return True
+
+    if a >= 2:
+        a -= 2
+        c += 1
+        if can_get_spheres(a, b, c, x, y, z):
+            return True
+        a += 2
+        c -= 1
+
+    if b >= 2:
+        b -= 2
+        c += 1
+        if can_get_spheres(a, b, c, x, y, z):
+            return True
+        b += 2
+        c -= 1
+
+    if c >= 2:
+        c -= 2
+        a += 1
+        if can_get_spheres(a, b, c, x, y, z):
+            return True
+        a -= 1
+        c += 2
+
+    return False
+
+
+a, b, c = map(int, input().split())
+x, y, z = map(int, input().split())
+
+if can_get_spheres(a, b, c, x, y, z):
+    print("Yes")
+else:
+    print("No")
+```
+
+This code defines a function `can_get_spheres` that recursively checks if the magician can obtain the required number of spheres. It takes the initial number of spheres (`a`, `b`, `c`) and the required number of spheres (`x`, `y`, `z`) as parameters.
+
+The function checks if the magician already has the required number of spheres. If not, it tries to transform two spheres of the same color into one sphere of another color, and then checks if the magician can obtain the required number of spheres with the transformed spheres.
+
+The code then reads the input and calls the `can_get_spheres` function with the input values. If the function returns `True`, the code prints "Yes". Otherwise, it prints "No".

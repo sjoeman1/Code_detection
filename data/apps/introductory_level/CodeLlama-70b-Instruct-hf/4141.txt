@@ -1,0 +1,27 @@
+
+
+Here's the Python 3 code for solving the question:
+
+```py
+def check_entry(numbers):
+    for num in numbers:
+        if num % 2 == 0 and (num % 3 != 0 and num % 5 != 0):
+            return "DENIED"
+    return "APPROVED"
+
+
+# Get the input
+N = int(input())
+A = list(map(int, input().split()))
+
+# Check if the immigrant should be allowed entry
+result = check_entry(A)
+
+# Print the result
+print(result)
+
+```
+
+The code first defines a function `check_entry` that takes a list of numbers as input. It then iterates through each number in the list and checks if it is an even number that is not divisible by 3 or 5. If such a number is found, it returns "DENIED" indicating that the immigrant should not be allowed entry. If no such number is found, it returns "APPROVED" indicating that the immigrant should be allowed entry.
+
+The code then gets the input from the user, converts the numbers into a list, and passes it to the `check_entry` function. The result of the function is stored in the `result` variable, which is then printed to the console.

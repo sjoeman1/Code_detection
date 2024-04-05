@@ -1,0 +1,39 @@
+
+Here is the Python3 code to solve the question:
+
+```py
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+import math
+
+# Function to calculate the digit at a given position in the sequence
+def getDigit(n):
+    # Calculate the block number
+    block_num = int(math.floor(math.sqrt(2 * n)))
+    
+    # Calculate the block size
+    block_size = block_num * (block_num + 1) // 2
+    
+    # Calculate the position within the block
+    pos_within_block = n - block_size
+    
+    # Calculate the digit at the position
+    digit = str(block_num)[pos_within_block - 1]
+    
+    return digit
+
+# Read the number of queries
+q = int(input())
+
+# Process each query
+for _ in range(q):
+    # Read the query
+    n = int(input())
+    
+    # Get the digit at the position
+    digit = getDigit(n)
+    
+    # Print the digit
+    print(digit)
+```
+
+This code defines a function `getDigit` to calculate the digit at a given position in the sequence. It first calculates the block number and block size using the formulas provided in the problem statement. Then, it calculates the position within the block and extracts the digit at that position from the corresponding block number. Finally, it reads the number of queries, processes each query by calling the `getDigit` function, and prints the result.

@@ -1,0 +1,20 @@
+
+
+Here is the Python 3 code for solving the problem:
+
+```py
+def solve(x1, y1, x2, y2):
+    dx = abs(x1 - x2)
+    dy = abs(y1 - y2)
+    return 2 * (dx + dy) - 1
+
+
+n = int(input())
+
+for i in range(n):
+    x1, y1 = map(int, input().split())
+    x2, y2 = map(int, input().split())
+    print(solve(x1, y1, x2, y2))
+```
+
+The code first reads the number of test cases, `n`, from the input. For each test case, it reads the coordinates of the starting point and the flag. It then calls the `solve` function to compute the minimal path length. The `solve` function calculates the horizontal and vertical distances between the starting point and the flag. It then returns the length of the minimal path by adding the horizontal and vertical distances and subtracting 1.

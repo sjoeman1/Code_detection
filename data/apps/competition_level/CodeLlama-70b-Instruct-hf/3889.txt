@@ -1,0 +1,28 @@
+
+
+def standardize(n, s):
+    # Create a dictionary to store the colors and their frequency
+    colors = {}
+    
+    # Initialize the frequency of each color to 0
+    for i in range(97, 123):
+        colors[chr(i)] = 0
+    
+    # Iterate through the string and count the frequency of each color
+    for char in s:
+        colors[char] += 1
+    
+    # Check if there is at least one puppy of each color
+    if all(colors.values()):
+        return "Yes"
+    else:
+        return "No"
+
+
+# Sample Inputs
+n = 6
+s = "aabddc"
+
+# Call the function and print the result
+result = standardize(n, s)
+print(result)

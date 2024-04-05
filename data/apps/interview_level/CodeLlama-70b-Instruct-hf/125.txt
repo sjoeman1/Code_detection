@@ -1,0 +1,36 @@
+
+Here's the Python 3 code to solve the question:
+```
+def is_accident_possible(lights):
+    # Check if there are any green lights for left or straight lanes
+    # in the same part as the green pedestrian light
+    for part in lights:
+        if part[0] == 1 or part[1] == 1:
+            if part[3] == 1:
+                return True
+
+    # Check if there are any green lights for right lanes
+    # in the next part as the green pedestrian light
+    for i in range(4):
+        if lights[i][2] == 1:
+            if lights[(i+1)%4][3] == 1:
+                return True
+
+    return False
+
+# Read the input
+lights = []
+for _ in range(4):
+    line = input().split()
+    lights.append([int(num) for num in line])
+
+# Check if an accident is possible
+if is_accident_possible(lights):
+    print("YES")
+else:
+    print("NO")
+```
+
+This code defines a function `is_accident_possible` that takes a list of lists representing the lights for each part as input. The function checks if there are any green lights for left or straight lanes in the same part as the green pedestrian light, or if there are any green lights for right lanes in the next part as the green pedestrian light. If any of these conditions are met, it returns `True`, indicating that an accident is possible. If none of these conditions are met, it returns `False`.
+
+The main code block then reads the input, converts each line into a list of integers, and stores them in a list called `lights`. It then calls the `is_accident_possible` function with `lights` as the argument and prints "YES" if the function returns `True`, or "NO" if it returns `False`.

@@ -1,0 +1,20 @@
+
+
+```python
+n, m = input().split()
+n = int(n)
+m = int(m)
+
+stars = []
+
+for i in range(n):
+    line = input()
+    for j in range(m):
+        if line[j] == "*":
+            stars.append((i, j))
+
+min_side = max(max(stars, key=lambda x: x[0])[0], max(stars, key=lambda x: x[1])[1]) + 1
+print(min_side)
+```
+
+This Python code reads the input data, finds the coordinates of all the stars, and then calculates the maximum row and column numbers among the stars. It adds 1 to this value to account for the fact that the kxk square should be able to cover the stars, not just touch them. Finally, it prints the calculated value as the minimum possible side length of the square.

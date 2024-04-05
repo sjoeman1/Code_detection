@@ -1,0 +1,29 @@
+
+Here is the Python3 code for solving the question:
+
+```python
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+import re
+
+# Read input from STDIN
+password = input()
+
+# Check if password meets all conditions
+if len(password) >= 5 and re.search(r"[A-Z]", password) and re.search(r"[a-z]", password) and re.search(r"[0-9]", password):
+    print("Correct")
+else:
+    print("Too weak")
+```
+
+The code starts by importing the `re` module, which is used for regular expression matching.
+
+Next, it reads the password input from STDIN using the `input()` function.
+
+Then, it checks if the password meets all the conditions using the `if` statement. The conditions are:
+
+1. The password length is at least 5 characters (`len(password) >= 5`).
+2. The password contains at least one large English letter (`re.search(r"[A-Z]", password)`).
+3. The password contains at least one small English letter (`re.search(r"[a-z]", password)`).
+4. The password contains at least one digit (`re.search(r"[0-9]", password)`).
+
+If all the conditions are met, it prints "Correct" to STDOUT. Otherwise, it prints "Too weak" to STDOUT.

@@ -1,0 +1,27 @@
+
+Here's the Python 3 code that solves the problem:
+
+```
+def calculate_expected_caught_fishes(n, m, r, k):
+    # Calculate the number of possible positions for the scoop-net
+    num_possible_positions = (n - r + 1) * (m - r + 1)
+
+    # Calculate the number of cells that can be occupied by fishes
+    num_occupiable_cells = (n - r + 1) * (m - r + 1)
+
+    # Calculate the expected number of caught fishes
+    expected_caught_fishes = k * num_possible_positions / num_occupiable_cells
+
+    return expected_caught_fishes
+
+# Read the input
+n, m, r, k = map(int, input().split())
+
+# Calculate the expected number of caught fishes
+expected_caught_fishes = calculate_expected_caught_fishes(n, m, r, k)
+
+# Print the result
+print(expected_caught_fishes)
+```
+
+The code first calculates the number of possible positions for the scoop-net and the number of cells that can be occupied by fishes. Then it calculates the expected number of caught fishes using the formula provided in the problem statement. Finally, it prints the expected number of caught fishes.

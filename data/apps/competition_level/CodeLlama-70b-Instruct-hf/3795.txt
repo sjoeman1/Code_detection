@@ -1,0 +1,37 @@
+
+
+Here is the Python 3 code for solving the question:
+
+```python
+def get_min_rubles(n, d, e):
+    # Calculate the number of dollars and euros that can be bought
+    dollars = n // d
+    euros = n // e
+
+    # Calculate the minimum number of rubles after buying dollar and euro bills
+    min_rubles = min(n % d, n % e)
+
+    # Check if there are any dollar or euro bills that can be bought
+    if dollars > 0 or euros > 0:
+        # Find the number of rubles after buying dollar and euro bills
+        rubles_after_buy = n - (dollars * d + euros * e)
+
+        # Update the minimum number of rubles if necessary
+        min_rubles = min(min_rubles, rubles_after_buy)
+
+    # Return the minimum number of rubles
+    return min_rubles
+
+# Read input
+n = int(input())
+d = int(input())
+e = int(input())
+
+# Calculate and print the minimum number of rubles
+min_rubles = get_min_rubles(n, d, e)
+print(min_rubles)
+```
+
+The code defines a function `get_min_rubles` that takes the initial sum `n`, the price of one dollar `d`, and the price of one euro `e` as input. It calculates the number of dollars and euros that can be bought using the initial sum. Then, it calculates the minimum number of rubles after buying dollar and euro bills. If there are no dollar or euro bills that can be bought, it returns the minimum number of rubles as the remainder of the initial sum divided by the price of either dollar or euro. Otherwise, it returns the minimum number of rubles as the minimum of the remainder of the initial sum divided by the price of either dollar or euro, and the number of rubles after buying dollar and euro bills.
+
+The main code block reads input for the initial sum `n`, the price of one dollar `d`, and the price of one euro `e`.

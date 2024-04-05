@@ -1,0 +1,50 @@
+
+```py
+# Python3 code
+
+# Function to find minimum time required to prepare potions
+def minTime(n, m, k, x, s, a, b, c, d):
+  # Check if the number of manapoints is 
+  # less than the required amount
+  if(s < x):
+    return -1
+  # Sort the spells in ascending order
+  for i in range(m):
+    a[i], b[i] = b[i], a[i]
+  for i in range(k):
+    c[i], d[i] = d[i], c[i]
+  # Initialize the minimum time required
+  # to prepare potions
+  minTime = 2**31
+  # Traverse through the spells of first type
+  for i in range(m):
+    if(b[i] > s):
+      break
+    s -= b[i]
+    x = a[i]
+    # Check if the number of potions required
+    # is less than or equal to the number of
+    # potions that can be prepared instantly
+    if(n <= c[0]):
+      return min(minTime, n * x)
+    # Traverse through the spells of second type
+    for j in range(k):
+      if(d[j] > s):
+        break
+      s -= d[j]
+      # Check if the number of potions required
+      # is less than or equal to the number of
+      // potions that can be prepared instantly
+      if(n <= c[j]):
+        return min(minTime, j * x + (n - c[j]) * x)
+  return minTime
+
+# Driver code
+if __name__ == "__main__":
+  n, m, k = map(int, input().split())
+  x, s = map(int, input().split())
+  a = list(map(int, input().split()))
+  b = list(map(int, input().split()))
+  c = list(map(int, input().split()))
+  d = list(map(int, input().split()))
+  print(minTime(n, m, k, x, s, a

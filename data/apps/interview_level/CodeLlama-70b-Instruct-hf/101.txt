@@ -1,0 +1,26 @@
+
+
+Here is the Python 3 code for solving the problem:
+
+```python
+# Input the values of n, a, and b
+n = int(input())
+a = int(input())
+b = int(input())
+
+# Check if it's possible to buy Ber-Cola and Bars bars
+if n % a == 0 or n % b == 0 or (n - a) % b == 0 or (n - b) % a == 0:
+    print("YES")
+    if n % a == 0:
+        print(n // a, 0)
+    elif n % b == 0:
+        print(0, n // b)
+    elif (n - a) % b == 0:
+        print(1, (n - a) // b)
+    else:
+        print(0, (n - b) // a)
+else:
+    print("NO")
+```
+
+This code will take the input values of n, a, and b, and then check if it's possible to buy Ber-Cola and Bars bars using the given constraints. If it's possible, it will print the necessary x and y values. If it's not possible, it will print "NO".

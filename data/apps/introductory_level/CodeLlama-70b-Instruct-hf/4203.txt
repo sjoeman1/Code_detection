@@ -1,0 +1,19 @@
+
+
+Here is the Python 3 code to solve the problem:
+
+```python
+s = input()
+
+if s[0] == 'A' and s[2] == 'C' and s[-2] == 'C' and s.count('C') == 1:
+    for i in range(3, len(s) - 2):
+        if s[i] in 'ABC':
+            print('WA')
+            break
+    else:
+        print('AC')
+else:
+    print('WA')
+```
+
+In this code, we first take the input string `s` and check if the first character is 'A', the third character is 'C', and the second to last character is also 'C'. If these conditions are satisfied, we then iterate over the characters from the third character to the second to last character (inclusive) and check if any of them are 'A', 'B', or 'C'. If any of them are, we print 'WA' and break out of the loop. Otherwise, we print 'AC'. If any of the initial conditions are not satisfied, we print 'WA'.

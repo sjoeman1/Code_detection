@@ -1,0 +1,42 @@
+
+
+
+
+Here is the Python 3 code for the question:
+
+```
+# Function to calculate the GCD of two numbers
+def gcd(a, b):
+    while b:
+        a, b = b, a % b
+    return a
+
+# Function to calculate the maximum possible GCD
+def maximumGCD(N, A):
+    # Initialize the maximum GCD as 1
+    maxGCD = 1
+
+    # Find the GCD of all pairs of integers in the array
+    for i in range(N):
+        for j in range(i + 1, N):
+            maxGCD = max(maxGCD, gcd(A[i], A[j]))
+
+    # Iterate over all integers from 1 to 10^9
+    for k in range(1, 1000000000):
+        # Check if the integer k divides all integers in the array
+        if all(a % k == 0 for a in A):
+            # If k divides all integers, update the maximum GCD
+            maxGCD = max(maxGCD, k)
+
+    # Return the maximum possible GCD
+    return maxGCD
+
+# Read the input
+N = int(input())
+A = list(map(int, input().split()))
+
+# Calculate and print the maximum possible GCD
+print(maximumGCD(N, A))
+```
+
+The code first calculates the maximum GCD of all pairs of integers in the array. Then, it iterates over all integers from 1 to 10^9 and checks if each integer divides all integers in the array. If it does, it updates the maximum GCD. Finally, it prints the maximum possible GCD.

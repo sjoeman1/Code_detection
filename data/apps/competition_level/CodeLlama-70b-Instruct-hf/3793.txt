@@ -1,0 +1,29 @@
+
+Here is the Python3 code that solves the question:
+
+```python
+def is_cube(lines):
+    # Check if the given lines represent a cube.
+    points = []
+    for line in lines:
+        points.append(tuple(map(int, line.split())))
+    for i in range(len(points)):
+        for j in range(i + 1, len(points)):
+            diff = [points[i][k] - points[j][k] for k in range(3)]
+            if diff not in points:
+                return False
+    return True
+
+lines = []
+for _ in range(8):
+    lines.append(input())
+
+if is_cube(lines):
+    print("YES")
+    for line in lines:
+        print(line)
+else:
+    print("NO")
+```
+
+This code takes 8 lines as input, each containing three space-separated integers representing the coordinates of a vertex of the cube. Then it calls the `is_cube` function to check if the given lines represent a cube. If they do, it prints "YES" and the original coordinates. Otherwise, it prints "NO".

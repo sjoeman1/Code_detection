@@ -1,0 +1,36 @@
+
+
+Here's the Python 3 code to solve the problem:
+
+```
+def check_grape_distribution(x, y, z, a, b, c):
+    # Check if the number of green grapes is sufficient for Andrew
+    if x > a:
+        return "NO"
+
+    # Check if the number of green and purple grapes is sufficient for Dmitry
+    if y > a + b:
+        return "NO"
+
+    # Check if the number of grapes (green, purple, or black) is sufficient for Michal
+    if z > a + b + c:
+        return "NO"
+
+    # If all checks pass, it is possible to distribute grapes to make everyone happy
+    return "YES"
+
+
+if __name__ == "__main__":
+    # Read the input
+    x, y, z = map(int, input().split())
+    a, b, c = map(int, input().split())
+
+    # Call the function to check the grape distribution
+    result = check_grape_distribution(x, y, z, a, b, c)
+
+    # Print the result
+    print(result)
+
+```
+
+This code takes the input values for `x`, `y`, `z`, `a`, `b`, and `c` and passes them to the `check_grape_distribution` function. The function checks if the number of grapes is sufficient for each person based on their preferences. If any of the checks fail, it returns "NO" indicating that it is not possible to distribute grapes to make everyone happy. If all checks pass, it returns "YES".

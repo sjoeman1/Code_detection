@@ -1,0 +1,22 @@
+
+
+Here is the Python3 code that solves the problem:
+
+```
+# Python3 code
+n, m = map(int, input().split())
+
+while True:
+    if n == 0 or m == 0:
+        break
+    elif n >= 2 * m:
+        n -= 2 * m
+    elif m >= 2 * n:
+        m -= 2 * n
+    else:
+        break
+
+print(n, m)
+```
+
+This code first takes the input of the two integers, n and m, from the user. It then enters an infinite loop. In the loop, it checks if either n or m is equal to 0. If so, the loop breaks. Otherwise, it checks if n is greater than or equal to 2 times m. If it is, it subtracts 2 times m from n. If not, it checks if m is greater than or equal to 2 times n. If it is, it subtracts 2 times n from m. If neither of these conditions is met, the loop breaks. After the loop, it prints the values of n and m.

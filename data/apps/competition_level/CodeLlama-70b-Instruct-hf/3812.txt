@@ -1,0 +1,47 @@
+
+
+Here's a Python3 code that solves the question:
+
+```
+# input strings
+s = input()
+t = input()
+
+# function to count number of 'a' and 'b'
+def count(st):
+    return st.count('a'), st.count('b')
+
+# function to check if the strings are already appropriate
+def is_appropriate(st1, st2):
+    return (count(st1)[0] == len(st1) and count(st2)[1] == len(st2)) or (count(st2)[0] == len(st2) and count(st1)[1] == len(st1))
+
+# function to find the minimum number of operations to make the strings appropriate
+def min_operations(st1, st2):
+    if is_appropriate(st1, st2):
+        return 0
+    if st1[0] == 'a' and st2[-1] == 'b':
+        return 1 + min_operations(st2, st1)
+    if st1[0] == 'b' and st2[-1] == 'a':
+        return 1 + min_operations(st1[1:], st2[:-1])
+    if st1[0] == 'a':
+        return 1 + min_operations(st1[1:], st2)
+    return 1 + min_operations(st1, st2[:-1])
+
+# find the minimum number of operations
+num_operations = min_operations(s, t)
+
+# print the number of operations
+print(num_operations)
+
+# print the operations
+for i in range(num_operations):
+    print(f'1 {len(s) - i}')
+```
+
+The code works by counting the number of 'a' and 'b' in each string, checking if the strings are already appropriate, and finding the minimum number of operations to make the strings appropriate.
+
+The code starts by taking input for the two strings `s` and `t`.
+
+Then, it defines a function `count` to count the number of 'a' and 'b' in a given string.
+
+Next, it defines a function `is

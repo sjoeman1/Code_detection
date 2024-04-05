@@ -1,0 +1,40 @@
+
+
+
+
+Here's the Python 3 code for solving the question:
+
+```python
+N, M = map(int, input().split())
+
+# Create a dictionary to store the condition
+conditions = {}
+
+for _ in range(M):
+    s_i, c_i = map(int, input().split())
+    conditions[s_i] = c_i
+
+# Initialize the answer to -1
+answer = -1
+
+# Generate all possible numbers with N digits
+for i in range(10**N):
+    # Convert the number to a string
+    number = str(i)
+
+    # Check if the number has exactly N digits
+    if len(number) == N:
+        # Check if the number satisfies all conditions
+        valid = True
+        for s_i, c_i in conditions.items():
+            if int(number[s_i-1]) != c_i:
+                valid = False
+                break
+
+        # If the number satisfies all conditions, update the answer
+        if valid:
+            answer = i
+            break
+
+# Print the answer
+print(answer)

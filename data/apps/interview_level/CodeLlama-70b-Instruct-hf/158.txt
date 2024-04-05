@@ -1,0 +1,27 @@
+
+
+This is a solution to the problem using Python 3:
+
+```
+# Input
+n = int(input())
+a = list(map(int, input().split()))
+
+# Divide the players into two teams
+team1 = a[:n]
+team2 = a[n:]
+
+# Sort the teams in ascending order
+team1.sort()
+team2.sort()
+
+# Check if the players from the first team in every pair win
+if all(team1[i] > team2[i] for i in range(n)):
+    print("YES")
+else:
+    print("NO")
+```
+
+This code takes the input as two lines. The first line contains the number of players n, and the second line contains 2n integers representing the ratings of the players.
+
+The code then divides the players into two teams, team1 and team2. It sorts the teams in ascending order and checks if the players from the first team in every pair win. If all the players from the first team win, it prints "YES", otherwise it prints "NO".

@@ -1,0 +1,39 @@
+
+
+ 
+
+ Here is the Python3 code for the problem:
+
+```
+def untangle(wire_sequence):
+    n = len(wire_sequence)
+    # Initialize the number of crossings to 0
+    crossings = 0
+
+    for i in range(n):
+        # If the current wire is '+' and the previous wire is '-',
+        # increment the number of crossings
+        if wire_sequence[i] == '+' and i > 0 and wire_sequence[i-1] == '-':
+            crossings += 1
+
+    # If the number of crossings is odd, the wires cannot be untangled
+    if crossings % 2 == 1:
+        return False
+    else:
+        return True
+
+# Read the input wire sequence
+wire_sequence = input()
+
+# Call the function to determine if the wires can be untangled
+can_be_untangled = untangle(wire_sequence)
+
+# Print the output
+if can_be_untangled:
+    print("Yes")
+else:
+    print("No")
+
+```
+
+The code defines a function `untangle` that takes the wire sequence as input. It iterates through the sequence and counts the number of crossings where the current wire is '+' and the previous wire is '-'. If the number of crossings is odd, the wires cannot be untangled, and the function returns `False`. Otherwise, it returns `True`. The function is then called with the input wire sequence, and the result is printed as the output.

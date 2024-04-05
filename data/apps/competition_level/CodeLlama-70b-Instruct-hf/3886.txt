@@ -1,0 +1,35 @@
+
+Here is the Python 3 code for the question:
+
+```python
+# Input
+q = int(input())
+
+# Function to generate the f(i) strings
+def generate_strings(i):
+    if i == 0:
+        return "What are you doing at the end of the world? Are you busy? Will you save us?"
+    else:
+        return "What are you doing while sending " + '"' + generate_strings(i-1) + '"' + "? Are you busy? Will you send " + '"' + generate_strings(i-1) + '"' + "?"
+
+# Function to find the kth character of f(n)
+def find_kth_char(n, k):
+    f_n = generate_strings(n)
+    if k > len(f_n):
+        return '.'
+    else:
+        return f_n[k-1]
+
+# Process queries
+for _ in range(q):
+    n, k = map(int, input().split())
+    print(find_kth_char(n, k), end="")
+
+print()
+```
+
+The code starts by taking input for the number of queries, `q`. Then, it defines a function `generate_strings(i)` to generate the `f_i` strings. This function recursively generates the `f_i` strings using the given pattern.
+
+Next, it defines a function `find_kth_char(n, k)` to find the `kth` character of `f_n`. This function checks if `k` is within the length of `f_n`. If it is, it returns the character at the `kth` index. Otherwise, it returns a period (`.`).
+
+The code then processes the queries, taking `n` and `k` as input and calling `find_kth_char(n, k)` to find the answer. The answer is printed at the end of each query.

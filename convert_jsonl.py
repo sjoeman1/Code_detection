@@ -6,7 +6,7 @@ import json
 import argparse
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--model_name", type=str, default="gemma-7b-it",
+parser.add_argument("--model_name", type=str, default="CodeLlama-70b-Instruct-hf",
                     choices=["CodeLlama-70b-Instruct-hf", "gemma-7b-it", "Mixtral-8x7B-Instruct-v0.1"]
                     )
 parser = parser.parse_args()
@@ -26,7 +26,7 @@ for directory in os.listdir('data/apps'):
             # get the txt file in the gemma-7b-it folder with the current problem_id if it exists
             if not os.path.isfile(f'data/apps/{directory}/{parser.model_name}/{problem_id}.txt'):
                 continue
-            with open(f'data/apps/{directory}/{parser.model_name}/{problem_id}.txt', 'r') as txt_f:
+            with open(f'data/apps/{directory}/{parser.model_name}/{problem_id}.txt', 'r', encoding='utf-8') as txt_f:
                 gen_completion = txt_f.read()
 
             # write the question and the gold_completion and gen completion to a jsonl file

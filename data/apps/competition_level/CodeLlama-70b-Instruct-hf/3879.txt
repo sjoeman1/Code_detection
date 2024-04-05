@@ -1,0 +1,46 @@
+
+
+Here is the Python 3 code for solving the problem:
+
+```python
+# Define the function to check if the jackpot is possible
+def check_jackpot(n, a):
+    # Initialize the variables for the number of doubled and tripled bids
+    doubled = 0
+    tripled = 0
+    # Check if the first player has already tripled his bid
+    if a[0] % 3 == 0:
+        tripled += 1
+    # Iterate through the list of bids from the second player to the last
+    for i in range(1, n):
+        # Check if the current player has already doubled his bid
+        if a[i] % 2 == 0:
+            doubled += 1
+        # Check if the current player has already tripled his bid
+        if a[i] % 3 == 0:
+            tripled += 1
+    # Check if the number of doubled bids is less than the number of players - 1
+    if doubled < n - 1:
+        return "No"
+    # Check if the number of tripled bids is less than the number of players - 2
+    if tripled < n - 2:
+        return "No"
+    # Check if the first player's bid is divisible by 3
+    if a[0] % 3 != 0:
+        return "No"
+    # If all the checks pass, return "Yes"
+    return "Yes"
+
+# Read the number of players n from the input
+n = int(input())
+# Read the list of bids a from the input
+a = list(map(int, input().split()))
+
+# Call the check_jackpot function and print the result
+result = check_jackpot(n, a)
+print(result)
+```
+
+This code defines a function `check_jackpot` that takes the number of players `n` and the list of bids `a` as input. It then checks if the bids can be made equal by using the rules provided in the problem statement. If the bids can be made equal, the function returns "Yes", otherwise it returns "No".
+
+The function first checks if the first player's bid is tripled. If

@@ -1,0 +1,68 @@
+
+Here is the Python3 code for solving the question:
+
+```python
+# Read input
+x1, y1 = map(int, input().split())
+x2, y2 = map(int, input().split())
+n = int(input())
+
+# Create a list to store the lines
+lines = []
+
+# Store the lines in the list
+for _ in range(n):
+    a, b, c = map(int, input().split())
+    lines.append([a, b, c])
+
+# Define a function to check if two lines intersect
+def intersect(line1, line2):
+    a1, b1, c1 = line1
+    a2, b2, c2 = line2
+    return a1 * b2 - a2 * b1 != 0
+
+# Define a function to check if a point lies on a line
+def lies_on(point, line):
+    x, y = point
+    a, b, c = line
+    return a * x + b * y + c == 0
+
+# Define a function to get the number of blocks
+def count_blocks():
+    # Initialize a set to store the visited lines
+    visited = set()
+
+    # Initialize a list to store the blocks
+    blocks = []
+
+    # Iterate over all the lines
+    for i, line in enumerate(lines):
+        # Check if the line is already visited
+        if i in visited:
+            continue
+
+        # Initialize a list to store the adjacent lines
+        adjacent = [i]
+
+        # Find all the adjacent lines
+        for j in range(i + 1, len(lines)):
+            if intersect(line, lines[j]):
+                adjacent.append(j)
+
+        # Mark all the adjacent lines as visited
+        visited.update(adjacent)
+
+        # Add a block to the list
+        blocks.append(adjacent)
+
+    return len(blocks)
+
+# Define a function to get the number of steps to reach the university
+def get_steps():
+    # Initialize a set to store the visited blocks
+    visited = set()
+
+    # Initialize a queue for BFS
+    queue = [(x1, y1)]
+
+    # Perform BFS to find the

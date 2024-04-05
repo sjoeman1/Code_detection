@@ -1,0 +1,40 @@
+
+
+Here's the Python3 code that solves the problem:
+
+```python
+def count_sequences(n):
+    # Initialize the dp array
+    dp = [[0] * 10 for _ in range(n + 1)]
+
+    # Initialize the base cases
+    for i in range(10):
+        dp[1][i] = 1
+
+    # Dynamic programming
+    for length in range(2, n + 1):
+        for digit in range(10):
+            # If the digit is not 0 or 9, then the count is the sum of the counts of all digits in the previous length
+            if digit != 0 and digit != 9:
+                dp[length][digit] = sum(dp[length - 1])
+            # If the digit is 0, then the count is the sum of the counts of all digits except 0 in the previous length
+            elif digit == 0:
+                dp[length][digit] = sum(dp[length - 1][1:])
+            # If the digit is 9, then the count is the sum of the counts of all digits except 9 in the previous length
+            else:
+                dp[length][digit] = sum(dp[length - 1][:9])
+
+    # Sum up the counts for all digits in the final length
+    result = sum(dp[n]) % (10**9 + 7)
+    return result
+
+if __name__ == "__main__":
+    # Read the input from stdin
+    n = int(input())
+    # Calculate the result
+    result = count_sequences(n)
+    # Print the result
+    print(result)
+```
+
+The code works by using dynamic programming to calculate the number of valid sequences of length `n`. It initializes a 2D array `dp` to store the number of valid sequences ending with each digit for each length. It then iterates over each length from 2 to `n` and updates the counts for each digit based on the counts for the previous length. Finally, it sums up the counts for all digits in the final length to get the total number of valid sequences.

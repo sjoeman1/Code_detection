@@ -1,0 +1,35 @@
+
+
+ Here is the Python 3 code that solves the problem:
+
+```python
+from math import factorial
+
+def combination(n, r):
+    if n < r:
+        return 0
+    return factorial(n) // factorial(r) // factorial(n-r)
+
+def expected_length(N, A):
+    ans = 0
+    for k in range(1, N+1):
+        cnt = 0
+        for i in range(1, k+1):
+            cnt += combination(k, i)
+        for i in range(k+1, N+1):
+            cnt += combination(i-1, k)
+        ans += k * cnt
+    return ans
+
+def main():
+    N = int(input())
+    A = list(map(int, input().split()))
+    ans = expected_length(N, A)
+    ans = ans % 1000000007
+    print(ans)
+
+if __name__ == '__main__':
+    main()
+```
+
+This code defines a function `combination` that calculates the combination of `n` and `r`. The `expected_length` function calculates the expected length of the longest increasing subsequence. The `main` function reads the input, calculates the expected length, and prints the answer modulo 1000000007.

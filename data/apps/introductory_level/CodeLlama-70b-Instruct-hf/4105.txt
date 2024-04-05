@@ -1,0 +1,28 @@
+
+Here's a possible solution in Python 3:
+
+```py
+n, k = map(int, input().split())
+
+if n > 2 * k:
+    print("NO")
+else:
+    print("YES")
+
+    for i in range(1, n + 1):
+        print(i, 2 * i % (k + 1) + 1)
+```
+
+This solution uses the fact that the color of a person's costume can be represented by an integer from 1 to k, inclusive. The color of the person's costume is related to the position of the pair in the line. The color of the person's costume is related to the position of the pair in the line.
+
+The color of the woman's costume is determined based on the color of the man's costume. The woman's costume color is 2 times the man's costume color modulo k + 1. This ensures that the color of the woman's costume is different from the color of the man's costume in the same pair.
+
+The color of the man's costume is determined based on the position of the pair in the line. The man's costume color is 2 times the position of the pair modulo k + 1. This ensures that the color of the man's costume is different from the color of the woman's costume in the same pair.
+
+The color of the man's costume is also different from the color of the man's costume in the previous pair. This is because the color of the man's costume is determined by the position of the pair in the line, and the position of the pair is different from the previous pair.
+
+This solution ensures that the color of the man's costume is different from the color of the man's costume in the previous pair, and the color of the woman's costume is different from the color of the woman's costume in the previous pair.
+
+This solution ensures that the color of the man's costume is different from the color of the woman's costume in the same pair.
+
+In the case where n is greater than 2k, it is not possible to find a suitable color choosing because there are not enough unique

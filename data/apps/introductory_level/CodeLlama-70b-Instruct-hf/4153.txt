@@ -1,0 +1,49 @@
+
+
+```python
+#!/usr/bin/env python3
+
+import sys
+
+def main():
+    # Read input from standard input
+    s = input()
+
+    n = len(s)
+    # Initialize the stack
+    stack = []
+    # Initialize the answer
+    answer = 0
+
+    # Iterate through the string s
+    for i in range(n):
+        # If the current character is 0
+        if s[i] == '0':
+            # Push i into the stack
+            stack.append(i)
+        # If the current character is 1
+        else:
+            # Increment the answer by 1
+            answer += 1
+            # If the stack is not empty
+            if stack:
+                # Pop the top element from the stack
+                top = stack.pop()
+                # If the top element is not the last element in the stack
+                if top != n-1:
+                    # Push the current index i into the stack
+                    stack.append(i)
+
+    # If the stack is not empty
+    if stack:
+        # Add the length of the stack to the answer
+        answer += len(stack)
+
+    # Print the answer
+    print(answer)
+
+if __name__ == '__main__':
+    main()
+```
+
+This code uses a stack to solve the problem. It iterates through the string `s`, pushing the indices of the `0`s into the stack. When it encounters a `1`, it removes two adjacent cubes, and the cubes on top of them fall down. This is simulated by popping the top of the stack and adding `1` to the answer. If the stack is not empty, it pushes the current index `i` into the stack. If the stack is not empty after the loop, it adds the length of the stack to the answer.

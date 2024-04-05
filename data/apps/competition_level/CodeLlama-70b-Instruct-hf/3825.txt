@@ -1,0 +1,32 @@
+
+```python
+# Function to calculate the number of distinct integers that can be represented using n roman digits exactly
+def roman_digits(n):
+    # Base cases
+    if n == 1:
+        return 4
+    if n == 2:
+        return 10
+    
+    # Recursive case
+    return roman_digits(n-1) + roman_digits(n-2)
+
+# Main function
+if __name__ == '__main__':
+    # Read the input
+    n = int(input())
+    
+    # Call the function to calculate the number of distinct integers
+    result = roman_digits(n)
+    
+    # Print the result
+    print(result)
+```
+
+
+
+This code defines a function `roman_digits` that takes an integer `n` as input and returns the number of distinct integers that can be represented using `n` roman digits exactly. The function uses a recursive approach to calculate the result.
+
+The base cases for `n = 1` and `n = 2` are defined explicitly. For larger values of `n`, the function recursively calls itself with `n-1` and `n-2`, which allows it to build the solution from smaller subproblems.
+
+In the main function, the input is read, and the `roman_digits` function is called with the input value. The result is then printed.

@@ -1,0 +1,28 @@
+
+
+Here is the Python 3 code that solves the problem:
+
+```
+def find_winner(n, cards):
+    cards.sort()
+    conan_turn = True
+    while cards:
+        if conan_turn:
+            cards.pop()
+            if cards and cards[-1] < cards[-2]:
+                cards.pop()
+        else:
+            if len(cards) == 1:
+                return "Agasa"
+            cards.pop()
+        conan_turn = not conan_turn
+    return "Conan"
+
+n = int(input())
+cards = list(map(int, input().split()))
+
+winner = find_winner(n, cards)
+print(winner)
+```
+
+This code first sorts the cards in ascending order. Then, it alternates between Conan's and Agasa's turns. During each turn, the player chooses the highest card and removes it. If there are multiple cards with the same value, only the first card is removed. If a player cannot make a move, they lose. The function returns the winner's name.

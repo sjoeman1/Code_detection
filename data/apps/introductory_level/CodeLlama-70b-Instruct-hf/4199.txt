@@ -1,0 +1,17 @@
+
+
+Here is the Python3 code for the given problem:
+
+```
+N, K = map(int, input().split())
+heights = list(map(int, input().split()))
+
+count = 0
+for height in heights:
+    if height >= K:
+        count += 1
+
+print(count)
+```
+
+The code first reads the input for the number of friends (N) and the minimum height required to ride the roller coaster (K). It then reads the heights of each friend into a list called `heights`. It iterates through the list and counts the number of friends who are at least K centimeters tall. Finally, it prints the count.

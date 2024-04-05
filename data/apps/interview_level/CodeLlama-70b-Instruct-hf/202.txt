@@ -1,0 +1,33 @@
+
+```python
+def min_steps(x1, y1, x2, y2):
+    # Calculate the absolute difference between the start and finish x coordinates
+    dx = abs(x2 - x1)
+    # Calculate the absolute difference between the start and finish y coordinates
+    dy = abs(y2 - y1)
+
+    # If dx == dy, then the optimal path is a zig-zag diagonal.
+    # In this case, the number of steps is the same as the difference in either coordinate.
+    if dx == dy:
+        return dx
+
+    # If dx != dy, then the optimal path is a combination of horizontal, vertical, and diagonal steps.
+    # Calculate the number of diagonal steps that can be taken.
+    # This is the minimum of the differences in x and y coordinates.
+    diag = min(dx, dy)
+
+    # Calculate the remaining horizontal or vertical steps.
+    # This is the absolute difference between the differences in x and y coordinates.
+    remaining = abs(dx - dy)
+
+    # The total number of steps is the sum of the diagonal steps and the remaining steps.
+    return diag + remaining
+
+
+if __name__ == '__main__':
+    x1, y1 = [int(x) for x in input().split()]
+    x2, y2 = [int(x) for x in input().split()]
+    print(min_steps(x1, y1, x2, y2))
+```
+
+In this code, we first calculate the absolute differences between the start and finish x and y coordinates. Then, we check if the differences are equal. If they are, we return the difference as the number of steps. If they are not equal, we calculate the number of diagonal steps that can be taken (which is the minimum of the differences) and the remaining horizontal or vertical steps (which is the absolute difference between the differences). Finally, we return the sum of the diagonal steps and the remaining steps.

@@ -1,0 +1,57 @@
+
+
+Here is the Python 3 code that solves the problem:
+
+```
+# Function to determine the leader of the team
+def find_leader(n, m, messages):
+    # Initialize a list to store the presence of each person
+    presence = [0] * (n + 1)
+    # Initialize the number of leaders
+    leaders = 0
+    # Initialize a list to store the leader ids
+    leader_ids = []
+
+    # Iterate through all the messages
+    for message in messages:
+        # Split the message into a list
+        message = message.split()
+        # Check if the message is a log on event
+        if message[0] == '+':
+            # Increment the presence of the person
+            presence[int(message[1])] += 1
+            # Check if the person is present at the meeting
+            if presence[int(message[1])] == 1:
+                # Increment the number of leaders
+                leaders += 1
+        # Check if the message is a log off event
+        else:
+            # Decrement the presence of the person
+            presence[int(message[1])] -= 1
+            # Check if the person is not present at the meeting
+            if presence[int(message[1])] == 0:
+                # Decrement the number of leaders
+                leaders -= 1
+
+    # Check if there is no leader
+    if leaders == 0:
+        # Print the number of leaders
+        print(0)
+    # Check if there is at least one leader
+    else:
+        # Print the number of leaders
+        print(leaders)
+        # Iterate through the presence list
+        for i in range(1, len(presence)):
+            # Check if the person is a leader
+            if presence[i] == 1:
+                # Append the person's id to the leader_ids list
+                leader_ids.append(i)
+        # Print the leader_ids list in increasing order
+        print(' '.join(str(i) for i in sorted(leader_ids)))
+
+
+# Main function
+if __name__ == "__main__":
+    # Take input for n and m
+    n, m = map(int, input().split

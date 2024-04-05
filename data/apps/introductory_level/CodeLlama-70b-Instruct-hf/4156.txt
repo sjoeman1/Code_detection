@@ -1,0 +1,39 @@
+
+
+ Here is the Python 3 code for the given problem:
+
+```py
+# The number of bus stops and bus capacity
+n, w = map(int, input().split())
+
+# The sequence of numbers recorded by the video system
+a = list(map(int, input().split()))
+
+# Dynamic programming array
+dp = [0] * (w + 1)
+
+# Base case
+dp[0] = 1
+
+# Loop through all bus stops
+for i in range(n):
+    for j in range(w, -1, -1):
+        # Update the number of possible ways
+        dp[j] = (dp[j] + dp[max(j - a[i], 0)]) % 1000000007
+
+# Print the number of possible ways
+print(dp[0])
+```
+
+Here's a step-by-step explanation of the code:
+
+1.  We read the input for the number of bus stops and bus capacity.
+2.  We read the input for the sequence of numbers recorded by the video system.
+3.  We initialize a dynamic programming array `dp` with size `w + 1`, where `w` is the bus capacity.
+4.  We set the base case `dp[0] = 1`. This means that there is only one way to have 0 passengers in the bus before the first bus stop.
+5.  We loop through all bus stops, starting from the first bus stop.
+6.  For each bus stop, we loop through the number of passengers in the bus from `w` to 0 in reverse order.
+7.  We update the number of possible ways `dp[j]` to have `j` passengers in the bus before the current bus stop by adding the number of possible ways `dp[max(j - a[i], 0)]` to have `j - a[i]` passengers in the bus before the previous bus stop.
+8.  We take the maximum of `j - a[i]` and 0 to avoid negative values.
+9.  We take the modulo of 1,000,000,007 to avoid overflow.
+10. We print the number of possible ways `dp[0]` to have 0
