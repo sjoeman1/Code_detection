@@ -1,7 +1,7 @@
 # preprocess the csv file so that the integers have 3 decimals and the names are preprocessed
 import pandas as pd
 
-df_name = "feature_SCM_wandb_export_2024-04-05T15_09_13.810+02_00.csv"
+df_name = "MNB_Tokenizer_wandb_export_2024-04-09T11_43_20.269+02_00.csv"
 df = pd.read_csv(df_name)
 print(df)
 df = df.round(3)
