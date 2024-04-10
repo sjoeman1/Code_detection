@@ -16,12 +16,13 @@ from utils import tag_comment_tokenizer, hide_comment_tokenizer, tokenize_commen
     standard_tokenizer
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--dataset', default="results/gemma-7b-it-apps_competition80-20_207.jsonl")
-parser.add_argument('--classifier', default="MNB", choices=['SCM', 'LR', 'MNB', 'XGB'])
+parser.add_argument('--dataset', default="results/gemma-7b-it-apps")
+parser.add_argument('--difficulty', default="interview", choices=["introductory", "interview", "competition"])
+parser.add_argument('--classifier', default="LR", choices=['SCM', 'LR', 'MNB', 'XGB'])
 parser.add_argument('--max_features', default=8000, type=int)
 parser.add_argument('--vectorizer', default='TfidfVectorizer', choices=['TfidfVectorizer', 'CountVectorizer'])
 parser.add_argument('--ngram_range', default=(1, 4), type=tuple, nargs=2)
-parser.add_argument('--tokenizer', default='comment_only',
+parser.add_argument('--tokenizer', default='tokenize_comment',
                     choices=['tokenize_comment', 'tag_comment', 'hide_comment', 'standard_tokenizer', 'comment_only'])
 args = parser.parse_args()
 print(args)
@@ -30,37 +31,68 @@ clf_name = args.classifier
 dataset_name = args.dataset.split('/')[-1][:-6]
 run_name = f"{dataset_name}_{clf_name}"
 
-# load the dataset
-with open(args.dataset, 'r') as f:
-    dataset = [json.loads(line) for line in f.readlines()]
+# load the introductory, interview and competition datasets
+with open(args.dataset + '_introductory_207.jsonl', 'r') as introductory_f:
+    introductory = [json.loads(line) for line in introductory_f.readlines()]
+with open(args.dataset + '_interview_207.jsonl', 'r') as interview_f:
+    interview = [json.loads(line) for line in interview_f.readlines()]
+with open(args.dataset + '_competition_207.jsonl', 'r') as competition_f:
+    competition = [json.loads(line) for line in competition_f.readlines()]
 
-wandb.init(project='Code_Detection_Comments', config=args, name=run_name, tags= [dataset_name.split('_')[1], dataset_name.split('_')[0], 'V1'])
+wandb.init(project='Code_Detection_full_dataset', config=args, name=run_name)
 config = wandb.config
 
 
-# create dataframe
-df = pd.DataFrame(dataset)
+# create dataframe for each dataset
+introductory_df = pd.DataFrame(introductory)
+interview_df = pd.DataFrame(interview)
+competition_df = pd.DataFrame(competition)
+
 #remove rows with # CANNOT PARSE
-df = df[~df['parsed_codes'].str.startswith("# CANNOT")]
-print(df)
-human_written = df['gold_completion']
-machine_generated = df['parsed_codes']
-print(len(human_written), len(machine_generated))
-human_written_labels = [0] * len(human_written)
-machine_generated_labels = [1] * len(machine_generated)
+introductory_df = introductory_df[~introductory_df['parsed_codes'].str.startswith("# CANNOT")]
+interview_df = interview_df[~interview_df['parsed_codes'].str.startswith("# CANNOT")]
+competition_df = competition_df[~competition_df['parsed_codes'].str.startswith("# CANNOT")]
 
-# combine the two lists
+# print the dataset
+print(introductory_df)
+print(interview_df)
+print(competition_df)
 
-# human_written and machine_generated are lists of strings
-data = human_written._append(machine_generated, ignore_index=True)
-print(data)
-data_labels = human_written_labels + machine_generated_labels
+# create labels
 labels = ['human_written', 'machine_generated']
+introductory_human_written = introductory_df['gold_completion']
+introductory_machine_generated = introductory_df['parsed_codes']
+introductory_human_written_labels = [0] * len(introductory_human_written)
+introductory_machine_generated_labels = [1] * len(introductory_machine_generated)
 
-print(len(data), len(data_labels))
+interview_human_written = interview_df['gold_completion']
+interview_machine_generated = interview_df['parsed_codes']
+interview_human_written_labels = [0] * len(interview_human_written)
+interview_machine_generated_labels = [1] * len(interview_machine_generated)
 
-# split the data into training and testing
-X_train, X_test, y_train, y_test = train_test_split(data, data_labels, shuffle=True, test_size=0.2, random_state=42)
+competition_human_written = competition_df['gold_completion']
+competition_machine_generated = competition_df['parsed_codes']
+competition_human_written_labels = [0] * len(competition_human_written)
+competition_machine_generated_labels = [1] * len(competition_machine_generated)
+
+# split in train and test set
+X_train_introductory, X_test_introductory, y_train_introductory, y_test_introductory = train_test_split(introductory_human_written._append(introductory_machine_generated, ignore_index=True), introductory_human_written_labels + introductory_machine_generated_labels, shuffle=True, test_size=0.2, random_state=42)
+X_train_interview, X_test_interview, y_train_interview, y_test_interview = train_test_split(interview_human_written._append(interview_machine_generated, ignore_index=True), interview_human_written_labels + interview_machine_generated_labels, shuffle=True, test_size=0.2, random_state=42)
+X_train_competition, X_test_competition, y_train_competition, y_test_competition = train_test_split(competition_human_written._append(competition_machine_generated, ignore_index=True), competition_human_written_labels + competition_machine_generated_labels, shuffle=True, test_size=0.2, random_state=42)
+
+# combine the train datasets
+X_train = X_train_introductory._append(X_train_interview)._append(X_train_competition, ignore_index=True)
+y_train = y_train_introductory + y_train_interview + y_train_competition
+
+if args.difficulty == 'introductory':
+    X_test = X_test_introductory
+    y_test = y_test_introductory
+elif args.difficulty == 'interview':
+    X_test = X_test_interview
+    y_test = y_test_interview
+else:
+    X_test = X_test_competition
+    y_test = y_test_competition
 
 # create tokenizer
 match config['tokenizer']:
