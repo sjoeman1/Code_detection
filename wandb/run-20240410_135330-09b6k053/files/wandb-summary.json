@@ -1,0 +1,1 @@
+{"fit_time": 0.0021854400634765624, "score_time": 0.006329011917114258, "test_accuracy": 0.8707317073170732, "test_precision_macro": 0.8838409960935809, "test_recall_macro": 0.8707317073170732, "test_f1_macro": 0.86922351853633, "test_roc_auc": 0.9671624033313504, "_timestamp": 1712750013.231055, "_runtime": 2.936600923538208, "_step": 0, "_wandb": {"runtime": 2}}

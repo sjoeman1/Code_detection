@@ -1,3 +1,5 @@
+import numpy as np
+
 import wandb
 import argparse
 import json
@@ -9,6 +11,7 @@ from sklearn.naive_bayes import MultinomialNB
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
+from sklearn.model_selection import cross_validate, cross_val_predict
 
 import xgboost as xgb
 
@@ -16,13 +19,14 @@ from utils import tag_comment_tokenizer, hide_comment_tokenizer, tokenize_commen
     standard_tokenizer
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--dataset', default="results/gemma-7b-it-apps_competition80-20_207.jsonl")
+parser.add_argument('--dataset', default="results/gemma-7b-it-apps_competition_207.jsonl")
 parser.add_argument('--classifier', default="MNB", choices=['SCM', 'LR', 'MNB', 'XGB'])
 parser.add_argument('--max_features', default=8000, type=int)
 parser.add_argument('--vectorizer', default='TfidfVectorizer', choices=['TfidfVectorizer', 'CountVectorizer'])
 parser.add_argument('--ngram_range', default=(1, 4), type=tuple, nargs=2)
-parser.add_argument('--tokenizer', default='comment_only',
+parser.add_argument('--tokenizer', default='tokenize_comment',
                     choices=['tokenize_comment', 'tag_comment', 'hide_comment', 'standard_tokenizer', 'comment_only'])
+parser.add_argument('--cv_folds', default=5, type=int)
 args = parser.parse_args()
 print(args)
 
@@ -34,7 +38,7 @@ run_name = f"{dataset_name}_{clf_name}"
 with open(args.dataset, 'r') as f:
     dataset = [json.loads(line) for line in f.readlines()]
 
-wandb.init(project='Code_Detection_Comments', config=args, name=run_name, tags= [dataset_name.split('_')[1], dataset_name.split('_')[0], 'V1'])
+wandb.init(project='Code_Detection_CV', config=args, name=run_name, tags= [dataset_name.split('_')[1], dataset_name.split('_')[0], 'V1'])
 config = wandb.config
 
 
@@ -59,8 +63,7 @@ labels = ['human_written', 'machine_generated']
 
 print(len(data), len(data_labels))
 
-# split the data into training and testing
-X_train, X_test, y_train, y_test = train_test_split(data, data_labels, shuffle=True, test_size=0.2, random_state=42)
+X_train, y_train = data, data_labels
 
 # create tokenizer
 match config['tokenizer']:
@@ -93,7 +96,7 @@ match config['vectorizer']:
         exit(1)
 
 X_train = vectorizer.fit_transform(X_train)
-X_test = vectorizer.transform(X_test)
+# X_test = vectorizer.transform(X_test)
 
 match config['classifier']:
     case "SCM":
@@ -109,26 +112,29 @@ match config['classifier']:
         wandb.finish(exit_code=1)
         exit(1)
 
-clf.fit(X_train, y_train)
-y_pred = clf.predict(X_test)
-if not config['classifier'] == "SCM":
-    y_probas = clf.predict_proba(X_test)
+scoring = ['accuracy', 'precision_macro', 'recall_macro', 'f1_macro', 'roc_auc']
+scores = cross_validate(clf, X_train, y_train, scoring=scoring, cv=config.cv_folds)
+# y_pred = cross_val_predict(clf, X_train, y_train, cv=config.cv_folds)
 
 
-# print the classification report
-report = classification_report(y_test, y_pred, target_names=labels, output_dict=True)
-print(report)
-wandb.log(report)
+# # print the classification report
+# report = classification_report(y_test, y_pred, target_names=labels, output_dict=True)
+# print(report)
+print(scores)
+
+avg_scores = {key: np.mean(value) for key, value in scores.items()}
+print(avg_scores)
+wandb.log(avg_scores)
 
 
-wandb.sklearn.plot_confusion_matrix(y_test, y_pred, labels)
-wandb.sklearn.plot_learning_curve(clf, X_train, y_train)
-wandb.sklearn.plot_class_proportions(y_train, y_test, labels)
-wandb.sklearn.plot_calibration_curve(clf, X_train, y_train, config['classifier'])
-wandb.sklearn.plot_confusion_matrix(y_test, y_pred, labels)
-wandb.sklearn.plot_summary_metrics(clf, X_train, y_train, X_test, y_test)
-
-if not config['classifier'] == "SCM":
-    wandb.sklearn.plot_roc(y_test, y_probas, labels)
-    wandb.sklearn.plot_feature_importances(clf, vectorizer.get_feature_names_out())
+# wandb.sklearn.plot_confusion_matrix(y_test, y_pred, labels)
+# wandb.sklearn.plot_learning_curve(clf, X_train, y_train)
+# wandb.sklearn.plot_class_proportions(y_train, y_test, labels)
+# wandb.sklearn.plot_calibration_curve(clf, X_train, y_train, config['classifier'])
+# wandb.sklearn.plot_confusion_matrix(y_test, y_pred, labels)
+# wandb.sklearn.plot_summary_metrics(clf, X_train, y_train, X_test, y_test)
+#
+# if not config['classifier'] == "SCM":
+#     wandb.sklearn.plot_roc(y_test, y_probas, labels)
+#     wandb.sklearn.plot_feature_importances(clf, vectorizer.get_feature_names_out())
 
