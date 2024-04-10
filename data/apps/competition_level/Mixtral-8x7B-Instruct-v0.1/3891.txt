@@ -1,0 +1,25 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n, m = map(int, input().split())
+board = []
+for i in range(n):
+    board.append(list(input()))
+
+for i in range(n):
+    for j in range(m):
+        if board[i][j] == 'B':
+            is_odd = ((n - i - 1) % 2 == 1) or ((i + 1) % 2 == 1) or ((m - j - 1) % 2 == 1) or ((j + 1) % 2 == 1)
+            if is_odd:
+                r = i + (1 - (n - i - 1) % 2) // 2
+                c = j + (1 - (m - j - 1) % 2) // 2
+                print(r, c)
+                exit()
+```
+
+This solution first reads the table dimensions and initializes an empty board. Then, it iterates over each cell in the board, and if it finds a black cell, it checks if the side length of the square is odd. If it is, it calculates the center of the square using the formulas:
+
+* `r = i + (1 - (n - i - 1) % 2) // 2`: this formula calculates the row number of the center. If the number of rows of the black square is odd, then the center row is the middle row. If the number of rows of the black square is even, then the center row is the middle row minus or plus one, depending on whether the black square is on the top or bottom half of the table.
+* `c = j + (1 - (m - j - 1) % 2) // 2`: this formula calculates the column number of the center. It is similar to the formula for the row number, but for the columns.
+
+Finally, it prints the center coordinates and exits the program.

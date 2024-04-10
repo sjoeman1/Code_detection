@@ -1,0 +1,24 @@
+ Here is a Python3 solution for the problem:
+
+```python
+import sys
+from math import comb
+
+def expected\_max\_dots(m, n):
+sum\_of\_expectations = 0
+for i in range(1, m + 1):
+sum\_of\_expectations += i * (comb(n, n - i + 1) / comb(n + m - 1, m - 1))
+return sum\_of\_expectations
+
+if __name__ == '__main__':
+input\_line = input().strip().split()
+m, n = int(input\_line[0]), int(input\_line[1])
+result = expected\_max\_dots(m, n)
+print("{0:.12f}".format(result))
+```
+
+The solution calculates the expected value of the maximum number of dots after tossing the dice n times. The idea is to iterate over all possible numbers of dots from 1 to m, and for each number of dots, calculate the probability of getting this number of dots or more in n tosses, and then multiply it by the number of dots. The expected value is then the sum of these products.
+
+The probability of getting a specific number of dots or more in n tosses is calculated using combinations. The number of ways to get a specific number of dots or more in n tosses is equal to the number of ways to choose the positions of this number of dots or more in the sequence of n tosses, which is equal to the number of combinations of n + m - 1 elements taken m - 1, divided by the number of combinations of n elements taken n - 1 (which is equal to 1).
+
+Finally, the solution prints the result with 12 decimal places to meet the requirement of the problem.

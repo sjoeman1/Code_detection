@@ -1,0 +1,48 @@
+ Here is a Python3 solution that uses a flood-fill algorithm to find the frame:
+```
+def find_frame(n, m, screen):
+    for i in range(n):
+        for j in range(m):
+            if screen[i][j] == 'w':
+                frame = flood_fill(n, m, i, j, screen, [])
+                if frame is not None:
+                    return frame
+    return [-1]
+
+def flood_fill(n, m, i, j, screen, frame):
+    if i < 0 or i >= n or j < 0 or j >= m:
+        return None
+    if screen[i][j] == '.':
+        return None
+    screen[i][j] = '+'
+    frame.append((i, j))
+    flood_fill(n, m, i + 1, j, screen, frame)
+    flood_fill(n, m, i - 1, j, screen, frame)
+    flood_fill(n, m, i, j + 1, screen, frame)
+    flood_fill(n, m, i, j - 1, screen, frame)
+    w, h = 1, 1
+    for x, y in frame:
+        w = max(w, x + 1 - x)
+        h = max(h, y + 1 - y)
+    if w == h:
+        return screen
+    return None
+
+n, m = map(int, input().split())
+screen = []
+for _ in range(n):
+    screen.append(list(input().strip()))
+print(*screen, sep='\n')
+frame = find_frame(n, m, screen)
+if frame[0] == -1:
+    print(-1)
+else:
+    for i in range(n):
+        for j in range(m):
+            if frame[1][i][j] == '+':
+                print('+', end='')
+            else:
+                print(screen[i][j], end='')
+        print()
+```
+The `find_frame` function takes the screen as input and returns the frame if it exists. It does this by iterating over

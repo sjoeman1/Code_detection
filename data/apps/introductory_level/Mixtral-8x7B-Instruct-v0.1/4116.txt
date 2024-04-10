@@ -1,0 +1,13 @@
+ Here is a simple Python3 program that can solve the problem:
+
+```python
+N = int(input())
+for i in range(1, 10):
+    if N % i == 0 and N // i in range(1, 10):
+        print('Yes')
+        break
+else:
+    print('No')
+```
+
+This program first reads an integer `N` from the standard input. Then it checks for each integer `i` in the range from 1 to 9 (inclusive) whether `N` is divisible by `i` and whether the quotient `N // i` is also in the same range. If such an `i` is found, the program prints `Yes` and breaks out of the loop. If no such `i` is found, the program prints `No`.

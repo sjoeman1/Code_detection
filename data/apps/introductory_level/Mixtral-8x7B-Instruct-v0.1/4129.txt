@@ -1,0 +1,51 @@
+ Here is a Python3 solution using Depth First Search (DFS) to find the minimum number of new roads needed to make all the cities reachable from the capital:
+
+```python
+from collections import defaultdict
+
+def minimum_new_roads(n, m, s, roads):
+    # Create an adjacency list to represent the graph
+    graph = defaultdict(list)
+    for u, v in roads:
+        graph[u].append(v)
+
+    # Initialize visited set and stack
+    visited = set()
+    stack = [s]
+
+    # Initialize the number of new roads to 0
+    new_roads = 0
+
+    while stack:
+        # Get the current city
+        city = stack.pop()
+
+        # If the city has not been visited
+        if city not in visited:
+            # Mark the city as visited
+            visited.add(city)
+
+            # If the city is not in the graph (not reachable from the capital)
+            if city not in graph:
+                # Add a new road to the capital
+                graph[s].append(city)
+                new_roads += 1
+
+            # Add the neighbors of the city to the stack
+            for neighbor in graph[city]:
+                stack.append(neighbor)
+
+    # Return the number of new roads
+    return new_roads
+
+# Test the function
+n, m, s = 9, 9, 1
+roads = [(1, 2), (1, 3), (2, 3), (1, 5), (5, 6), (6, 1), (1, 8), (9, 8), (7, 1)]
+print(minimum_new_roads(n, m, s, roads))  # Output: 3
+
+n, m, s = 5, 4, 5
+roads = [(1, 2), (2, 3), (3, 4), (4, 1)]
+print(minimum_new_roads(n, m, s, roads))  # Output: 1
+```
+
+The `minimum_new_roads` function takes as input the number of cities

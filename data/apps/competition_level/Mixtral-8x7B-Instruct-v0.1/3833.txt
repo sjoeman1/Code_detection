@@ -1,0 +1,5 @@
+ Here is a Python3 solution for the problem:
+```python
+def max_sub_string(s, t):
+    # Calculate the number of 0s and 1s in t
+    t_zeros = t.count('0')

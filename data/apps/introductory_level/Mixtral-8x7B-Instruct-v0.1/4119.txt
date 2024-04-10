@@ -1,0 +1,31 @@
+ Here is a Python3 solution for the problem:
+
+```python
+import sys
+from collections import defaultdict
+
+def min_moves():
+    N, M = map(int, input().split())
+    X = list(map(int, input().split()))
+    pos = defaultdict(int)
+    for x in X:
+        pos[x] += 1
+    cur, moves = max(X), 0
+    while pos:
+        if cur not in pos:
+            cur = 1 if cur == max(pos) else -1
+        else:
+            moves += abs(cur - list(pos.keys())[0])
+            pos[cur] -= 1
+            if pos[cur] == 0:
+                del pos[cur]
+        cur += cur
+    print(moves)
+
+if __name__ == "__main__":
+    min_moves()
+```
+
+The algorithm works by keeping track of the current position `cur` and the number of moves `moves`. It initializes `cur` to the maximum of the initial positions, so that it can move towards the minimum position. Then, it iterates through the positions, and for each position, it calculates the number of moves required to reach that position from the current position, and adds it to the total number of moves. If there are multiple pieces at the same position, it only moves one of them, and removes it from the set of positions. The algorithm terminates when all pieces have been moved.
+
+The algorithm has a time complexity of O(M), as it iterates through the positions once. The space complexity is O(N), as it stores the positions of all pieces.

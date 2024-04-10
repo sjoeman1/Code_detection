@@ -1,0 +1,45 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def min\_cost(n, k, s):
+    # Initialize cost as sum of all room numbers
+    cost = sum(i for i in range(1, n + 1))
+
+    # Initialize left and right pointers
+    left, right = 0, 0
+
+    # Iterate through the string
+    for i in range(n):
+        # If there is no spot for a router in the current room
+        if s[i] == '0':
+            continue
+
+        # Calculate the left and right indices
+        left = max(0, i - k)
+        right = min(n, i + k)
+
+        # Update cost by subtracting the cost of connecting
+        # the range covered by the router and adding the cost
+        # of the router itself
+        cost -= (sum(range(left, i)) - (i - left) * left)
+        cost += i
+
+    return cost
+
+# Read input
+n, k = map(int, input().split())
+s = input()
+
+# Print output
+print(min_cost(n, k, s))
+```
+
+The solution works as follows:
+
+1. We initialize the cost as the sum of all room numbers, which is the maximum cost if we connect each room directly.
+2. We iterate through the string `s` and check if there is a spot for a router in the current room.
+3. If there is a spot, we calculate the left and right indices of the range covered by the router.
+4. We update the cost by subtracting the cost of connecting the range covered by the router and adding the cost of the router itself.
+5. Finally, we print the updated cost.
+
+The time complexity of this solution is O(n), where n is the number of rooms. The space complexity is O(1), as we are not using any additional space.

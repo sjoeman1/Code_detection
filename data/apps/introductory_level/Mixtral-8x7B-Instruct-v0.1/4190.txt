@@ -1,0 +1,29 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n = int(input())
+a = list(map(int, input().split()))
+b = list(map(int, input().split()))
+
+count = [0]*n
+for x in b:
+    count[x] += 1
+
+c = [0]*n
+for i in range(n):
+    while count[i] == 0:
+        i += 1
+    c[i] = a[i]
+    count[i] -= 1
+    j = (a[i] + i) % n
+    while count[j] == n:
+        j = (j + 1) % n
+    c[i], c[j] = c[j], c[i]
+    count[j] += 1
+
+print(*c)
+```
+
+This solution first counts the number of occurrences of each number in array `b` using the `count` list. Then, it iterates over the elements of `a` and `b` simultaneously. For each `i`, it finds the smallest non-negative integer `j` such that `count[j]` is not equal to `n`. It then sets `c[i]` to `a[i]` and `c[j]` to the current value of `c[i]`. Finally, it decrements `count[i]` and increments `count[j]` to reflect the change in the number of occurrences of `i` and `j` in `b`.
+
+The solution then prints the resulting array `c`. Note that we use the `*` operator to unpack the list `c` into separate arguments to the `print` function, which prints each element of `c` separated by a space.

@@ -1,0 +1,37 @@
+ Here is a Python3 solution for the problem:
+```python
+def find_matrix_size(n, a):
+    # Initialize the maximum and minimum possible values of x and y
+    x_max, x_min, y_max, y_min = 1, 1, n, 1
+
+    for i in range(1, n):
+        # Calculate the difference between two adjacent elements
+        diff = a[i] - a[i - 1]
+        
+        # Update the minimum and maximum possible values of x and y
+        x_min = max(x_min, 1 + (diff - 1) // n)
+        x_max = min(x_max, 1 + (diff - 1) % n)
+        y_min = max(y_min, 1 + (diff - 1) % n)
+        y_max = min(y_max, 1 + (diff - 1) // n)
+
+        # If x_max is less than x_min or y_max is less than y_min,
+        # then there is no possible matrix size that satisfies the condition
+        if x_max < x_min or y_max < y_min:
+            return "NO"
+
+    # If x_min and x_max are equal and y_min and y_max are equal,
+    # then there is a unique matrix size that satisfies the condition
+    if x_min == x_max and y_min == y_max:
+        return "YES\n{} {}".format(x_min, y_min)
+
+    # If x_min and x_max are equal, then there are multiple possible matrix sizes
+    # that satisfies the condition
+    if x_min == x_max:
+        return "YES\n{} {}".format(x_min, y_min if y_min <= y_max else y_max)
+
+    # If y_min and y_max are equal, then there are multiple possible matrix sizes
+    # that satisfies the condition
+    if y_min == y_max:
+        return "YES\n{} {}".format(x_min if x_min <= x_max else x_max, y_min)
+
+    #

@@ -1,0 +1,35 @@
+ Here is a Python3 solution using the math library to calculate the area of the intersection of two rotated rectangles:
+
+```python
+import math
+
+def solve():
+    w, h, alpha = map(int, input().split())
+    alpha = math.radians(alpha)
+
+    # coordinates of the vertices of the first rectangle
+    x1, y1 = -w/2, -h/2
+    x2, y2 = w/2, h/2
+
+    # rotate the vertices of the first rectangle by angle alpha
+    x1_rot = x1 * math.cos(alpha) - y1 * math.sin(alpha)
+    y1_rot = x1 * math.sin(alpha) + y1 * math.cos(alpha)
+    x2_rot = x2 * math.cos(alpha) - y2 * math.sin(alpha)
+    y2_rot = x2 * math.sin(alpha) + y2 * math.cos(alpha)
+
+    # calculate the coordinates of the vertices of the second rectangle
+    x3 = -w/2 * math.cos(alpha) - h/2 * math.sin(alpha)
+    y3 = -w/2 * math.sin(alpha) + h/2 * math.cos(alpha)
+    x4 = w/2 * math.cos(alpha) - h/2 * math.sin(alpha)
+    y4 = w/2 * math.sin(alpha) + h/2 * math.cos(alpha)
+
+    # calculate the intersection area using cross product
+    area = abs(x1_rot * (y2_rot - y4) + x2_rot * (y3 - y2_rot) + x3 * (y1_rot - y3) + x4 * (y4 - y1_rot)) / 2
+
+    print("%.6f" % area)
+
+if __name__ == '__main__':
+    solve()
+```
+
+The solution calculates the coordinates of the vertices of the first rectangle and rotates them by angle alpha. Then, it calculates the coordinates of the vertices of the second rectangle using the rotation matrix. Finally, it calculates the intersection area using the cross product of the vectors formed by

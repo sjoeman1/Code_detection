@@ -1,0 +1,41 @@
+ Here is a Python3 code that solves the problem:
+
+```python
+s = input()
+
+# Check if the first character is 'A'
+if s[0] != 'A':
+    print('WA')
+    exit()
+
+# Check if the third character is 'C'
+if s[2] != 'C':
+    print('WA')
+    exit()
+
+# Check if 'C' appears only once between the third character and the second to last character
+c_count = 0
+for c in s[2:-2]:
+    if c == 'C':
+        c_count += 1
+if c_count != 1:
+    print('WA')
+    exit()
+
+# Check if all other characters are lowercase
+for c in s[1:]:
+    if c != 'C' and c.isupper():
+        print('WA')
+        exit()
+
+# If all checks pass, print 'AC'
+print('AC')
+```
+
+The code first checks if the first character of the input string `s` is 'A' and if the third character is 'C'. If either of these checks fails, the code prints 'WA' and exits.
+
+Next, the code checks if 'C' appears only once between the third character and the second to last character of the string. It does this by initializing a counter `c_count` to zero and then iterating over the characters in the string (excluding the first two and last two characters). If a character is 'C', the counter is incremented. If the counter is not equal to 1 after iterating over all the characters, the code prints 'WA' and exits.
+
+Finally, the code checks if all other characters in the string (excluding the first two and last two characters) are lowercase. It does this by iterating over the characters in the string (excluding the first two) and checking if each character is 'C' or if it is an uppercase letter. If any character is not 'C' and is an uppercase letter, the code prints 'WA' and exits.
+
+If all checks pass, the code prints 'AC'.

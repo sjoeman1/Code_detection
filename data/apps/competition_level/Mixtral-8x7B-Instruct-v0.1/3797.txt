@@ -1,0 +1,41 @@
+ Here is a Python3 solution using dynamic programming to solve the problem:
+
+```python
+import sys
+from functools import lru_cache
+mod = 10**9 + 7
+
+def solve(N, M, l, r, x):
+    @lru_cache(maxsize=None)
+    def dp(i, prev_color):
+        if i == N + 1:
+            return 1
+        if i in r:
+            if dp(i + 1, prev_color).count(x[r.index(i)]) == x[r.index(i)]:
+                return dp(i + 1, prev_color)
+            else:
+                return 0
+        res = 0
+        for color in range(1, 4):
+            if color != prev_color:
+                res += dp(i + 1, color)
+                res %= mod
+        return res
+
+    return dp(1, 0)
+
+def main():
+    N, M = map(int, sys.stdin.readline().strip().split())
+    l, r, x = [], [], []
+    for _ in range(M):
+        t = list(map(int, sys.stdin.readline().strip().split()))
+        l.append(t[0])
+        r.append(t[1])
+        x.append(t[2])
+    print(solve(N, M, l, r, x))
+
+if __name__ == '__main__':
+    main()
+```
+
+The `solve` function calculates the number of ways to paint the squares with the given conditions. The `dp` function is a helper function that calculates the number of ways to paint the squares from the `i`-th square to the end, given the previous color. The `solve` function calls `dp` function with the first square and previous color 0. The `dp` function checks if the current square is in the range of any condition, and if so, checks if the number of occurrences of the current color in the range matches the condition. If not, it returns 0. Otherwise, it calculates the number of ways to paint the squares from the `i

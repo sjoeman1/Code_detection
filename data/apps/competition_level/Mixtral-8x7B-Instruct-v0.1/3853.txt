@@ -1,0 +1,24 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n = int(input().strip())
+sizes = []
+for _ in range(n):
+    k, a = map(int, input().strip().split())
+    sizes.append((k, a))
+
+sizes.sort(key=lambda x: x[0])
+
+curr\_size = 0
+for k, a in sizes:
+    if 2**k <= curr\_size:
+        continue
+    else:
+        curr\_size = 2**(k+1) - 1
+
+print(sizes[-1][0] + 1)
+```
+
+The solution sorts the sizes based on the value of k and then iterates over the sorted list. For each size, it checks if a box of that size can fit in the current smallest box. If it can, it continues to the next size. If it can't, it updates the current smallest box to be the next power of 2 larger than the current size.
+
+Finally, it prints the value of k+1 for the last size in the list, which is the smallest value of k such that a box of size 2^k can fit all the given boxes.

@@ -1,0 +1,16 @@
+Name,tokenizer,accuracy,macro avg.f1-score,macro avg.precision,macro avg.recall
+Gemma-7b Competition,tokenize_comment,0.817,0.816,0.844,0.831
+Gemma-7b Competition,tag_comment,0.793,0.79,0.843,0.811
+Gemma-7b Competition,standard_tokenizer,0.756,0.752,0.809,0.775
+Gemma-7b Competition,hide_comment,0.768,0.765,0.815,0.786
+Gemma-7b Competition,comment_only,0.634,0.606,0.776,0.667
+Gemma-7b Interview,tokenize_comment,0.928,0.927,0.925,0.93
+Gemma-7b Interview,tag_comment,0.867,0.867,0.876,0.88
+Gemma-7b Interview,standard_tokenizer,0.855,0.855,0.867,0.869
+Gemma-7b Interview,hide_comment,0.855,0.855,0.867,0.869
+Gemma-7b Interview,comment_only,0.518,0.451,0.737,0.574
+Gemma-7b Introductory,tokenize_comment,0.747,0.742,0.805,0.765
+Gemma-7b Introductory,tag_comment,0.711,0.701,0.787,0.731
+Gemma-7b Introductory,standard_tokenizer,0.699,0.684,0.802,0.722
+Gemma-7b Introductory,hide_comment,0.711,0.701,0.787,0.731
+Gemma-7b Introductory,comment_only,0.542,0.468,0.75,0.578

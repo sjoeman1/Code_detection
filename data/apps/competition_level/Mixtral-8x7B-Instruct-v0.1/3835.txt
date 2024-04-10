@@ -1,0 +1,20 @@
+ Here is a Python3 solution for the problem:
+```python
+n = int(input())
+M = [list(map(int, input().split())) for _ in range(n)]
+
+a = [0] * n
+for i in range(n):
+    for j in range(n):
+        if i != j:
+            a[i] = a[i] * a[j] // M[i][j] if a[i] != 0 else M[i][j]
+
+for i in range(n):
+    print(a[i], end=" ")
+print()
+```
+The solution starts by reading the input values, the size of the multiplication table and its elements. Then, it initializes an array `a` of zeros with size `n`. For each row `i` in the table, it iterates over all columns `j` and computes the value of `a[i]` as the product of `a[i]` and `a[j]` divided by the element `M[i][j]` if `a[i]` is already non-zero, or just assigns the value of `M[i][j]` to `a[i]` otherwise.
+
+Finally, the solution prints the resulting array `a` in a single line, as required by the problem statement.
+
+Note that the solution assumes that the input is valid and that there are no division-by-zero errors. In practice, you may want to add additional error checking to ensure that the input is valid.

@@ -1,0 +1,35 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def min\_exchanges(n, a, b):
+for key in range(1, 6):
+# Count the number of students with performance key in each group
+a\_count = sum(1 for x in a if x == key)
+b\_count = sum(1 for x in b if x == key)
+# If the counts are not equal, return -1 if this is the first group
+# or the absolute difference if it's the second group
+if a\_count != b\_count:
+if key == 1:
+return -1
+else:
+return abs(a\_count - b\_count)
+# If we made it here, all groups have the same number of students
+return 0
+
+# Read input
+n = int(input())
+a = list(map(int, input().split()))
+b = list(map(int, input().split()))
+
+# Compute and print the result
+result = min\_exchanges(n, a, b)
+print(result)
+```
+
+The `min_exchanges` function takes as input the number of students `n` in each group, and two lists `a` and `b` of academic performances of the students in each group. It returns the minimum number of exchanges required to balance the number of students with each performance in the two groups.
+
+The function first counts the number of students with each performance in group A and group B. If the counts are not equal for a performance, it checks if this is the first performance (with key 1). If it is, then it is impossible to balance the groups and the function returns -1. Otherwise, it computes the absolute difference between the counts and returns it.
+
+If the function makes it through all performances without returning, then all groups have the same number of students and the function returns 0.
+
+The main part of the program reads the input and calls the `min_exchanges` function with the input, then prints the result.

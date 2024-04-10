@@ -1,0 +1,52 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def binary\_search(a, x):
+left = 0
+right = len(a)
+while left < right:
+middle = (left + right) // 2
+if a[middle] <= x:
+left = middle + 1
+else:
+right = middle
+if left > 0 and a[left - 1] == x:
+return True
+return False
+
+MOD = 1000000007
+def solve(n, x, pos):
+# Edge case when x is at the correct position
+if pos == n-1 and x == n:
+return 1
+# Edge case when x is at the first position
+if pos == 0 and x == 1:
+return 1
+# Edge case when x is not in the array
+if x > n or x == 1 and pos != 0:
+return 0
+
+# Calculate the number of valid permutations
+dp = [0] \* (n+1)
+dp[0] = 1
+for i in range(1, n+1):
+# If x is smaller than i, it should be at the left side of i
+if i >= x:
+dp[i] = (dp[i] + dp[i-x-1]) % MOD
+# If x is greater than i, it should be at the right side of i
+dp[i] = (dp[i] + dp[i-1] - dp[min(i-x, 0)] + MOD) % MOD
+
+# Check if x can be found by binary search
+for i in range(pos+1, n):
+if a[i] == x and binary\_search(a[:i], x):
+return dp[i]
+return 0
+
+n, x, pos = map(int, input().split())
+a = list(range(1, n+1))
+print(solve(n, x, pos))
+```
+
+The solution uses dynamic programming to calculate the number of valid permutations. The state `dp[i]` represents the number of valid permutations ending with `i`. We initialize `dp[0]` to 1 and iterate over the remaining states.
+
+For each

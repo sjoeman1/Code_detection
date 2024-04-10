@@ -1,0 +1,34 @@
+ Here's the Python3 code to find the base -2 representation of a given integer N:
+
+```python
+def base_2_representation(N):
+    if N == 0:
+        return "0"
+    result = ""
+    is_negative = N < 0
+    if is_negative:
+        N = -N
+    while N != 0:
+        rem = N % (-2)
+        if rem < 0:
+            rem += 2
+            N += 1
+        result += str(rem)
+        N //= -2
+    if is_negative:
+        result = "-" + result[1:]
+    return result[::-1]
+
+N = int(input())
+print(base_2_representation(N))
+```
+
+This code defines a function `base_2_representation` that takes an integer `N` as input and returns its base -2 representation as a string. The function first checks if `N` is 0 and returns "0" if that's the case. Otherwise, it initializes an empty string `result` to store the base -2 representation.
+
+The function then checks if `N` is negative, and if so, it negates `N` and sets the `is_negative` flag to `True`. The function then repeatedly calculates the remainder of `N` divided by -2, using the `%` operator, and appends the remainder to `result`. If the remainder is negative, it is added to 2 and 1 is added to `N` to ensure that the remainder is always 0 or 1.
+
+The function then divides `N` by -2 using the `//` operator to get the next digit of the base -2 representation. This process is repeated until `N` is 0.
+
+Finally, if `N` was originally negative, the function prefixes the result with a "-" sign to get the final base -2 representation. The result is then reversed using the `[::-1]` slice notation before being returned.
+
+The main part of the code reads the input integer `N` from Standard Input and calls the `base_2_representation` function to get its base -2 representation. The result is then printed to Standard Output.

@@ -1,0 +1,44 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def solve\_rebus(rebus):
+n = int(rebus.split("=")[1])
+ops = rebus.split("=")[0].split("+") + rebus.split("=")[0].split("-")
+values = set(range(1, n+1))
+
+for value in values:
+values -= set([value])
+if not consistent\_subset(ops, values, n - value):
+return "Impossible"
+return "Possible\n" + " + ".join(str(x) for x in ([n] + list(values))) + " = " + str(n)
+
+def consistent\_subset(ops, values, target):
+if not ops:
+return target == 0
+if len(ops) == 1:
+op = ops[0]
+if op == "+":
+return target in values
+if op == "-":
+return target == values.pop()
+left\_ops, right\_ops = split\_ops(ops)
+left\_values = values.copy()
+if not consistent\_subset(left\_ops, left\_values, target):
+return False
+return consistent\_subset(right\_ops, values, target - sum(left\_values))
+
+def split\_ops(ops):
+for i in range(1, len(ops)):
+if ops[i] in {"+", "-"}:
+return ops[:i], ops[i:]
+return ops, []
+
+rebus = input()
+print(solve\_rebus(rebus))
+```
+
+The solution first parses the input string and extracts the target number `n` and the list of arithmetic operations `ops`. It initializes a set of possible values for the question marks to be the set of integers from 1 to `n`.
+
+The solution then iterates over the possible values, removing the current value from the set of possible values and checking if there exists a consistent subset of the remaining values that sums to `n - value`. If such a subset exists, then the solution returns "Possible" along with the rebus with question marks replaced by the chosen values. Otherwise, if no such subset exists for any of the possible values, the solution returns "Impossible".
+
+The `cons

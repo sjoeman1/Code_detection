@@ -1,0 +1,42 @@
+ Here is a Python3 solution for the problem:
+
+```python
+import sys
+input = sys.stdin.readline
+
+MOD = 1000000007
+
+def pow_mod(a, b):
+    res = 1
+    while b > 0:
+        if b % 2 == 1:
+            res = res * a % MOD
+        a = a * a % MOD
+        b //= 2
+    return res
+
+def solve():
+    n, k = map(int, input().split())
+    a = list(map(int, input().split()))
+    cnt = [0] * 2
+    for x in a:
+        cnt[x] += 1
+    if cnt[0] < k or cnt[1] < k:
+        print(0)
+        return
+    ans = pow_mod(2, k)
+    if n - 2 * k > 0:
+        ans = (ans - pow_mod(2, k) + MOD) % MOD
+    cnt[1] -= k
+    ans = ans * pow_mod(cnt[0], MOD - 2) % MOD
+    ans = ans * pow_mod(cnt[1], MOD - 2) % MOD
+    print(ans)
+
+solve()
+```
+
+The idea behind the solution is to first calculate the number of ways to choose $k$ pairs of indices to swap. Then subtract the number of ways that result in the array having a "peak" (i.e. two consecutive $1$s) in the first $n-2k$ positions. Finally, divide by the number of ways to arrange the $0$s and $1$s in the array.
+
+The number of ways to choose $k$ pairs of indices to swap is $2^k$, since each pair can be chosen in 2 ways.
+
+The number of ways to arrange the $0$s and $1$s in the array is given by the multinomial coefficient ${n \choose a_1, a_2, \ldots, a_m} = \frac{n!}{a_1! a_2! \ldots a_m!}$, where $a_i$ is the number of occurrences of

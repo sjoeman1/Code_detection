@@ -1,0 +1,18 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n = int(input())
+a = list(map(int, input().split()))
+
+total\_problems = sum(a)
+half\_way = total\_problems // 2
+current\_problems = 0
+
+for i in range(n):
+	current\_problems += a[i]
+	if current\_problems >= half\_way:
+		print(i+1)
+		break
+```
+
+This program first reads the number of days `n` and the list of problems to be solved each day `a`. Then it calculates the total number of problems to be solved `total_problems`, and the number of problems needed to reach the equator `half_way`. It then iterates over the list `a`, keeping track of the total number of problems solved so far `current_problems`. When `current_problems` reaches or exceeds `half_way`, it prints the current day index `i+1` and breaks out of the loop.

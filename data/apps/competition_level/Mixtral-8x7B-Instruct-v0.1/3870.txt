@@ -1,0 +1,29 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def max\_damage(n, jiro\_cards, m, ciel\_cards):
+n, m = map(int, input().split())
+jiro\_cards = [list(map(int, input().split())) for \_ in range(n)]
+ciel\_cards = list(map(int, input().split()))
+
+jiro\_cards.sort(key=lambda x: (-x[1], x[0] == "ATK"))
+ciel\_cards.sort(reverse=True)
+damage = 0
+for c in ciel\_cards:
+for j in jiro\_cards:
+if j[0] == "DEF" or c >= j[1]:
+jiro\_cards.remove(j)
+damage += c - j[1] if j[0] == "ATK" else c
+break
+return damage
+
+print(max\_damage(2, [["ATK", 2000], ["DEF", 1700]], 3, [2500, 2500, 2500]))
+print(max\_damage(3, [["ATK", 10], ["ATK", 100], ["ATK", 1000]], 4, [1, 11, 101, 1001]))
+print(max\_damage(2, [["DEF", 0], ["ATK", 0]], 4, [0, 0, 1, 1]))
+```
+
+The solution sorts both Jiro and Ciel's cards by strength in descending order and position (ATK first). Then, for each Ciel's card, it finds the first Jiro's card that can be attacked, and calculates the damage. The function returns the total damage after all Ciel's cards have been considered.
+
+In the first example, Ciel's cards have the same strength, so the solution attacks the "ATK 2000" card first, then the "DEF 1700" card, and finally the remaining Jiro's card.
+
+In the second example, Ciel's cards have different strengths, so the solution attacks the

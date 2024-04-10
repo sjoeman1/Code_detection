@@ -1,0 +1,22 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def gcd(a, b):
+    while b:
+        a, b = b, a % b
+    return a
+
+def find_path_length(x1, y1, x2, y2):
+    g = gcd(abs(x2 - x1), abs(y2 - y1))
+    x_diff = (x2 - x1) // g
+    y_diff = (y2 - y1) // g
+    return 2 * (abs(x_diff) + abs(y_diff)) - (x_diff != 0) - (y_diff != 0)
+
+x1, y1 = map(int, input().split())
+x2, y2 = map(int, input().split())
+print(find_path_length(x1, y1, x2, y2))
+```
+
+The solution uses the fact that the path length is equal to twice the sum of the absolute differences of the coordinates, minus 1 if the difference along the x-axis is non-zero, and minus 1 if the difference along the y-axis is non-zero. The reason for this is that the quadcopter can move along one axis for free, without increasing the path length.
+
+The function `gcd` calculates the greatest common divisor of two numbers, which is used to simplify the differences of the coordinates. The simplified differences are then used to calculate the path length.

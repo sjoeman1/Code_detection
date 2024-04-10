@@ -1,0 +1,26 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n, L = map(int, input().split())
+costs = list(map(int, input().split()))
+
+# Initialize the minimum cost to buy L liters of lemonade
+min\_cost = float('inf')
+
+# Iterate through all possible volumes that can be obtained by combining
+# different types of bottles
+for i in range(1, 1 << n):
+    volume = sum(costs[j] * (i & (1 << j)) for j in range(n)) - 1
+
+    # If the current volume is greater than or equal to L, update the minimum cost
+    if volume >= L:
+        min\_cost = min(min\_cost, volume)
+
+print(min\_cost)
+```
+
+The solution uses dynamic programming to find the minimum cost to obtain at least L liters of lemonade. We iterate through all possible volumes that can be obtained by combining different types of bottles. For each volume, we calculate the corresponding cost by taking the sum of the costs of the bottles that are included in the current combination. If the current volume is greater than or equal to L, we update the minimum cost if the current cost is less than the current minimum cost.
+
+Note that we use the bitwise AND operator to check whether the current bottle type is included in the current combination. We initialize a variable `i` to 1 and then iterate through all possible combinations by incrementing `i` by 1. For each combination, we use the bitwise AND operator to check whether the current bottle type is included. If `i` has a 1 at the j-th position, then the j-th bottle type is included in the current combination.
+
+Finally, we print the minimum cost to obtain at least L liters of lemonade.

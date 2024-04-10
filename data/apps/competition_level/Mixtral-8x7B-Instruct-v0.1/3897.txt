@@ -1,0 +1,40 @@
+ Here is a Python3 solution for the problem:
+
+```python
+import sys
+input = sys.stdin.readline
+
+mod = 1000000007
+fac = [1] * 501
+fac_inv = [1] * 501
+fac[0] = fac_inv[0] = 1
+inv2 = pow(2, mod - 2, mod)
+for i in range(1, 501):
+    fac[i] = (fac[i - 1] * i) % mod
+    fac_inv[i] = pow(fac[i], mod - 2, mod)
+
+def C(n, k):
+    if k > n or k < 0:
+        return 0
+    return (fac[n] * fac_inv[k] * fac_inv[n - k]) % mod
+
+def solve(n, a):
+    if n == 1:
+        return 1
+    cnt = [0] * (10**9 + 1)
+    for x in a:
+        cnt[x] += 1
+    ans = 0
+    for x in cnt:
+        if x == 0:
+            continue
+        y = (pow(x, n, mod) - 1) * inv2 % mod
+        ans = (ans + y * C(n - 1, x - 1)) % mod
+    return ans
+
+n = int(input())
+a = list(map(int, input().split()))
+print(solve(n, a))
+```
+
+The solution uses dynamic programming to precompute the factorials and their inverses modulo 1000000007. Then, it computes the number of ways to decompose the given number `m` into `n` ordered positive integers by iterating over all possible values of the first multiplier, and using the stars and bars technique to count the number of ways to distribute the remaining multipliers among the given factors. The final answer is the sum of the number of ways to decompose the given number into `n` ordered positive integers for all possible values of the first multiplier.

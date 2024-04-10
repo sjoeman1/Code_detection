@@ -1,0 +1,34 @@
+ Here's a Python3 code snippet that will solve the problem you described:
+
+```python
+import math
+
+def is_prime(n):
+    if n <= 1:
+        return False
+    if n == 2:
+        return True
+    if n % 2 == 0:
+        return False
+    sqrt_n = math.isqrt(n)
+    for i in range(3, sqrt_n + 1, 2):
+        if n % i == 0:
+            return False
+    return True
+
+def find_min_prime_ge(x):
+    if x < 2:
+        return 2
+    while True:
+        if is_prime(x):
+            return x
+        x += 1
+
+# Read input from Standard Input
+X = int(input())
+
+# Print the minimum prime number greater than or equal to X
+print(find_min_prime_ge(X))
+```
+
+The `is_prime` function checks whether a given integer `n` is prime or not. The `find_min_prime_ge` function finds the minimum prime number greater than or equal to `x` using the `is_prime` function. Finally, the script reads the input `X` from Standard Input and prints the minimum prime number greater than or equal to `X`.

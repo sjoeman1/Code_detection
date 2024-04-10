@@ -1,0 +1,34 @@
+ Here is a Python3 solution using dynamic programming to solve the problem:
+```python
+import sys
+
+def solve():
+    N = int(sys.stdin.readline())
+    A = list(map(int, sys.stdin.readline().split()))
+    B = list(map(int, sys.stdin.readline().split()))
+
+    # Initialize dp array
+    dp = [0] * (N + 2)
+
+    # Calculate maximum number of monsters that can be defeated
+    for i in range(N - 1, -1, -1):
+        dp[i] = max(dp[i + 1], dp[i + 2])
+        dp[i] = max(dp[i], B[i])
+        dp[i] += A[i]
+
+    # Print the result
+    print(dp[0])
+
+solve()
+```
+The solution reads the input from standard input and stores the number of towns `N`, the number of monsters attacking each town `A`, and the number of monsters that each hero can defeat `B` in three separate lists.
+
+Then, it initializes a dynamic programming array `dp` of size `N + 2`, where `dp[i]` represents the maximum number of monsters that can be defeated starting from the `i`-th town. The base case is `dp[N + 1] = 0` and `dp[N] = B[N - 1]`.
+
+The solution then iterates over the towns from `N - 1` to `0` and updates the `dp` array for each town `i` as follows:
+
+* `dp[i] = max(dp[i + 1], dp[i + 2])`: This represents the maximum number of monsters that can be defeated starting from the `i + 1`-th or `i + 2`-th town.
+* `dp[i] = max(dp[i], B[i])`: This represents the number of monsters that the `i`-th hero can defeat.
+* `dp[i] += A[i]`: This adds the number of monsters attacking the `i`-th town to `dp[i]`.
+
+Fin

@@ -1,0 +1,19 @@
+ Here is a Python3 solution for the problem:
+
+```python
+N = int(input())
+A = list(map(int, input().split()))
+
+for a in A:
+    if a % 2 == 0 and (a % 3 != 0 and a % 5 != 0):
+        print("DENIED")
+        exit()
+
+print("APPROVED")
+```
+
+The program first reads the number of integers `N` from the input and then reads the integers themselves, storing them in a list `A`.
+
+Then, the program iterates over the elements of `A`, checking if each even number is divisible by 3 or 5. If it finds an even number that is not divisible by 3 or 5, it prints "DENIED" and exits the program.
+
+If the program finishes iterating over `A` without finding any such number, it prints "APPROVED".

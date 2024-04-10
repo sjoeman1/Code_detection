@@ -1,0 +1,38 @@
+ Here is a Python3 solution for the problem:
+
+```python
+import sys
+input = sys.stdin.readline
+
+MOD = 1000000007
+
+def power(a, b):
+    result = 1
+    while b > 0:
+        if b % 2 == 1:
+            result = (result * a) % MOD
+        a = (a * a) % MOD
+        b //= 2
+    return result
+
+def solve(n, k):
+    if k == 1:
+        return power(n, n - 1)
+    elif k == 2:
+        return (n * (n - 1) * (n - 2)) % MOD
+    else:
+        return (power(k, n - k + 1) - (k - 1) - power(k - 1, n - k + 1) + (k - 2)) % MOD
+
+n, k = map(int, input().strip().split())
+print(solve(n, k))
+```
+
+The solution uses dynamic programming to calculate the number of ways to fulfill the conditions. The `solve` function takes `n` and `k` as input and returns the number of ways to write the numbers on the houses' plaques.
+
+If `k` is 1, the penguin can only walk to house number 1 from house number 1, so the answer is `(n-1)!` (the factorial of `n-1`).
+
+If `k` is 2, the penguin can walk to house number 1 from house number 1 or from any house with a plaque containing 1. The answer is `n * (n - 1) * (n - 2)`.
+
+If `k` is greater than 2, the answer is `(k^(n-k+1) - (k-1) - (k-1)^(n-k+1) + (k-2)) % MOD`.
+
+The time complexity of the solution is `O(k)` and the space complexity is `O(1)`.

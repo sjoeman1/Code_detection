@@ -1,0 +1,10 @@
+Name,accuracy,macro avg.f1-score,macro avg.precision,macro avg.recall
+CodeLlama-70b Competition,0.853,0.853,0.856,0.856
+CodeLlama-70b Interview,0.904,0.903,0.904,0.902
+CodeLlama-70b Introductory,0.855,0.855,0.855,0.856
+Mixtral-8x7B Competition,0.867,0.867,0.876,0.88
+Mixtral-8x7B Interview,0.891,0.891,0.893,0.891
+Mixtral-8x7B Introductory,0.843,0.843,0.858,0.858
+Gemma-7b Competition,0.793,0.79,0.843,0.811
+Gemma-7b Interview,0.867,0.867,0.876,0.88
+Gemma-7b Introductory,0.711,0.701,0.787,0.731

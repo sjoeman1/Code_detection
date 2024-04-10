@@ -1,8 +1,4 @@
 import wandb
-import code_tokenize as ctok
-from nltk.tokenize import word_tokenize
-# import nltk
-# nltk.download('punkt')
 import argparse
 import json
 import pandas as pd
@@ -16,27 +12,29 @@ from sklearn.metrics import classification_report
 
 import xgboost as xgb
 
+from utils import tag_comment_tokenizer, hide_comment_tokenizer, tokenize_comment_tokenizer, tokenize_only_comment, \
+    standard_tokenizer
+
 parser = argparse.ArgumentParser()
-parser.add_argument('--dataset', default="results/gemma-7b-it-apps_interview_207.jsonl")
-parser.add_argument('--classifier', default="XGB", choices=['SCM', 'LR', 'MNB', 'XGB'])
+parser.add_argument('--dataset', default="results/gemma-7b-it-apps_competition80-20_207.jsonl")
+parser.add_argument('--classifier', default="MNB", choices=['SCM', 'LR', 'MNB', 'XGB'])
 parser.add_argument('--max_features', default=8000, type=int)
-parser.add_argument('--vectorizer', default='CountVectorizer', choices=['TfidfVectorizer', 'CountVectorizer'])
+parser.add_argument('--vectorizer', default='TfidfVectorizer', choices=['TfidfVectorizer', 'CountVectorizer'])
 parser.add_argument('--ngram_range', default=(1, 4), type=tuple, nargs=2)
 parser.add_argument('--tokenizer', default='comment_only',
                     choices=['tokenize_comment', 'tag_comment', 'hide_comment', 'standard_tokenizer', 'comment_only'])
 args = parser.parse_args()
-# args.ngram_range = tuple(args.ngram_range)
 print(args)
 
 clf_name = args.classifier
-dataset_name = args.dataset.split('/')[-1].split('.')[0]
+dataset_name = args.dataset.split('/')[-1][:-6]
 run_name = f"{dataset_name}_{clf_name}"
 
 # load the dataset
 with open(args.dataset, 'r') as f:
     dataset = [json.loads(line) for line in f.readlines()]
 
-wandb.init(project='Code_Detection', config=args, name=run_name, tags= [dataset_name.split('_')[1], dataset_name.split('_')[0]])
+wandb.init(project='Code_Detection_Comments', config=args, name=run_name, tags= [dataset_name.split('_')[1], dataset_name.split('_')[0], 'V1'])
 config = wandb.config
 
 
@@ -65,46 +63,6 @@ print(len(data), len(data_labels))
 X_train, X_test, y_train, y_test = train_test_split(data, data_labels, shuffle=True, test_size=0.2, random_state=42)
 
 # create tokenizer
-def tag_comment_tokenizer(text):
-    tokenized = standard_tokenizer(text)
-    tokenized = [token if not is_comment(token) else "#COMMENT#" for token in tokenized]
-    return tokenized
-
-def hide_comment_tokenizer(text):
-    tokenized = standard_tokenizer(text)
-    tokenized = [token for token in tokenized if not is_comment(token)]
-    return tokenized
-
-word_tokenizer = word_tokenize
-def tokenize_comment_tokenizer(text):
-    temp_tokenized = []
-    tokenized = standard_tokenizer(text)
-    for i, token in enumerate(tokenized):
-        if is_comment(token):
-            temp_tokenized += word_tokenizer(token[1:])
-        else:
-            temp_tokenized.append(token)
-    return temp_tokenized
-
-def tokenize_only_comment(text):
-    temp_tokenized = []
-    tokenized = standard_tokenizer(text)
-    for i, token in enumerate(tokenized):
-        if is_comment(token):
-            temp_tokenized += word_tokenizer(token[1:])
-    return temp_tokenized
-def is_comment(token):
-    return token.startswith("#") and not (token == "#NEWLINE#" or token == "#INDENT#" or token == "#DEDENT#")
-
-
-def standard_tokenizer(text):
-    tokenized = ctok.tokenize(text, lang='python', syntax_error="ignore")
-    # convert to string and return
-    tokenized = [str(token) for token in tokenized]
-    return tokenized
-
-
-
 match config['tokenizer']:
     case "tokenize_comment":
         tokenizer = tokenize_comment_tokenizer
@@ -119,10 +77,10 @@ match config['tokenizer']:
     case _:
         print("Invalid tokenizer name")
 
-# test the tokenizer
-train_ = df['parsed_codes'][2]
-print(train_)
-print(tokenize_comment_tokenizer(train_))
+# # test the tokenizer
+# train_ = df['parsed_codes'][2]
+# print(train_)
+# print(tokenize_comment_tokenizer(train_))
 
 match config['vectorizer']:
     case "CountVectorizer":

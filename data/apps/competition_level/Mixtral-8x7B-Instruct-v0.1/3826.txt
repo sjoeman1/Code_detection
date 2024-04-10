@@ -1,0 +1,24 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n = int(input().strip())
+a = list(map(int, input().strip().split()))
+
+count = {}
+min_len = float('inf')
+for i in range(n):
+    for j in range(i, n):
+        cur_count = {}
+        for k in range(i, j+1):
+            if a[k] in cur_count:
+                break
+            cur_count[a[k]] = 1
+        else:
+            min_len = min(min_len, j-i+1)
+
+print(min_len)
+```
+
+The solution iterates over all possible subsegments of the input array and counts the number of occurrences of each element in the subsegment using a dictionary. If all elements are distinct, the size of the subsegment is added to a minimum length variable. The minimum length variable will hold the answer at the end.
+
+The time complexity of the solution is O(n^3) due to the nested loops. This solution may not be efficient enough for larger inputs. However, it should work for the given constraints (n <= 2000).

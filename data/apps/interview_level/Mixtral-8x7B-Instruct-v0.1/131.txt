@@ -1,0 +1,5 @@
+ Here is a Python3 solution for the problem:
+```python
+def main():
+    n = int(input().strip())
+    x = list(map(int, input().strip().split()))

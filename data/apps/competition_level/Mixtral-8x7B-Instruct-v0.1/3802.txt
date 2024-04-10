@@ -1,0 +1,36 @@
+ Here is a Python3 solution for the problem:
+```python
+def lcs(s1, s2, virus):
+    dp = [[[-1] * (len(virus)+1) for _ in range(len(s2)+1)] for _ in range(len(s1)+1)]
+    def _lcs(i, j, k):
+        if i == 0 or j == 0 or k == len(virus):
+            return 0
+        if dp[i][j][k] != -1:
+            return dp[i][j][k]
+        if s1[i-1] == s2[j-1] and s1[i-1] != virus[k-1]:
+            dp[i][j][k] = max(_lcs(i-1, j-1, k), _lcs(i-1, j, k+1)) + 1
+        else:
+            dp[i][j][k] = max(_lcs(i-1, j, k), _lcs(i, j-1, k))
+        return dp[i][j][k]
+    res = _lcs(len(s1), len(s2), 0)
+    if res == 0:
+        return "0"
+    else:
+        ans = []
+        i, j, k = len(s1), len(s2), 0
+        while i > 0 and j > 0 and k < len(virus):
+            if dp[i][j][k] == _lcs(i-1, j-1, k+1) + 1:
+                if s1[i-1] == s2[j-1] and s1[i-1] != virus[k]:
+                    ans.append(s1[i-1])
+                i -= 1
+                j -= 1
+                k += 1
+            elif dp[i][j][k] == _lcs(i-1, j, k+1):
+                i -= 1
+            else:
+                j -= 1
+        return "".join(ans[::-1])
+
+# Read input
+s1 = input()
+s

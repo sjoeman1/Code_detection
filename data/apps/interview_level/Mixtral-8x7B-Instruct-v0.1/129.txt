@@ -1,0 +1,14 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def min\_coins():
+    n, m, k, l = map(int, input().split())
+    if l > n or (n - k) % m != 0:
+        print(-1)
+        return
+    print((n - k) // m)
+
+min\_coins()
+```
+
+The solution first reads the input values `n`, `m`, `k`, and `l`. Then, it checks if the number of new coins `l` is greater than the total number of coins `n` or if the difference between the total number of coins and the number of coins Ivan already has is not divisible by the number of friends `m`. If either of these conditions is true, the function prints `-1` and returns. Otherwise, it calculates and prints the minimum number of coins one friend can gift to satisfy all the conditions, which is the difference between the total number of coins and the number of coins Ivan already has, divided by the number of friends.

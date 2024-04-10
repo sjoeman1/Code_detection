@@ -1,0 +1,34 @@
+ Here is a Python3 solution using a simple iterative approach. The idea is to iterate through each room and check if it is returnable. A room is considered returnable if the parity of the number of clockwise and anticlockwise belts encountered while traversing the circle from that room and returning to it is the same.
+
+We can keep track of the parity of the number of clockwise and anticlockwise belts encountered while traversing the circle using two variables `cw` and `acw` respectively. We initialize both these variables to 0.
+
+For each room, we reset the parity variables `cw` and `acw` to 0. Then, we iterate through the circle of rooms, incrementing `cw` if the belt is clockwise and decrementing it if the belt is anticlockwise. Similarly, we increment `acw` if the belt is anticlockwise and decrement it if the belt is clockwise.
+
+At the end of the iteration, if both `cw` and `acw` are 0, then the room is returnable. We can keep a counter to count the number of returnable rooms.
+
+Finally, we print the counter for each test case.
+
+Note that we handle the case where the conveyor belt is off by considering it as neither clockwise nor anticlockwise.
+```python
+def count_returnable_rooms(n, s):
+    def is_returnable(i):
+        cw, acw = 0, 0
+        for j in range(i, n + i):
+            if s[j % n] == '>':
+                cw += 1
+            elif s[j % n] == '<':
+                acw += 1
+        return cw % 2 == acw % 2
+
+    return sum(is_returnable(i) for i in range(n))
+
+t = int(input().strip())
+for _ in range(t):
+    n = int(input().strip())
+    s = input().strip()
+    print(count_returnable_rooms(n, s))
+```
+Time complexity: O(n^2)
+Space complexity: O(1)
+
+Note that the time complexity can be improved to O(n

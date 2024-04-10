@@ -1,0 +1,35 @@
+ Here's the Python3 code to solve the problem:
+
+```python
+# Read the number of test cases
+T = int(input().strip())
+
+# Process each test case
+for t in range(T):
+    # Read the number of bounces and the maximum coordinate
+    N, X = map(int, input().strip().split())
+
+    # Read the distances between the bounces
+    Li = list(map(int, input().strip().split()))
+
+    # Initialize the current coordinate to 0
+    current = 0
+
+    # Initialize the count of bounces at most X to 0
+    count = 0
+
+    # Loop through each bounce
+    for i in range(N + 1):
+        # If the current coordinate is at most X
+        if current <= X:
+            # Increase the count by 1
+            count += 1
+
+        # Move to the next coordinate
+        current += Li[i] if i < N else 0
+
+    # Print the count of bounces at most X
+    print(count)
+```
+
+This code reads the number of test cases and processes each test case by reading the number of bounces, the maximum coordinate, and the distances between the bounces. It then initializes the current coordinate to 0 and the count of bounces at most X to 0. Then, it loops through each bounce, checks if the current coordinate is at most X, and increases the count by 1 if it is. Finally, it moves to the next coordinate and prints the count of bounces at most X.

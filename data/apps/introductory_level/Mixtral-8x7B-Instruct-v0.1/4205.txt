@@ -1,0 +1,30 @@
+ Here is a Python3 solution for the problem:
+
+```python
+N = int(input())
+p = list(map(int, input().split()))
+
+# Check if the sequence is already sorted
+if p == sorted(p):
+    print("YES")
+else:
+    # Check if there is a pair (i, j) such that p[i] > p[j] and i < j
+    can_sort = False
+    for i in range(N-1):
+        for j in range(i+1, N):
+            if p[i] > p[j]:
+                can_sort = True
+                break
+        if can_sort:
+            break
+
+    # Print the answer
+    if can_sort:
+        print("YES")
+    else:
+        print("NO")
+```
+
+The solution first checks if the sequence is already sorted in ascending order. If it is, then the answer is "YES". Otherwise, it checks if there is a pair (i, j) such that p[i] > p[j] and i < j. If such a pair exists, then the sequence can be sorted in ascending order by swapping p[i] and p[j], so the answer is "YES". Otherwise, the answer is "NO".
+
+Note that this solution assumes that the input is valid (i.e., N is between 2 and 50, and p is a permutation of {1, 2, ..., N}). If the input is not guaranteed to be valid, then additional error checking will be needed.

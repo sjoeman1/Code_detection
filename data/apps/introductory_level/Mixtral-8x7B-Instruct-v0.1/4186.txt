@@ -1,0 +1,44 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n = int(input())
+a = list(map(int, input().split()))
+
+# Initialize the minimum number of problems to be solved
+min_problems = 0
+
+# Find the maximum and minimum skill values
+max_skill = max(a)
+min_skill = min(a)
+
+# Calculate the range of skill values
+skill_range = max_skill - min_skill + 1
+
+# If the range is odd, then there is no way to form teams
+if skill_range % 2 != 0:
+    print(-1)
+
+# Otherwise, calculate the minimum number of problems to be solved
+else:
+    # Calculate the number of students with the maximum skill value
+    max_students = a.count(max_skill)
+
+    # Calculate the number of students with the minimum skill value
+    min_students = a.count(min_skill)
+
+    # Add half of the difference between the maximum and minimum skill values
+    # to the minimum number of problems to be solved for each student with
+    # the maximum skill value
+    min_problems += (max_students * (skill_range // 2))
+
+    # Subtract the number of students with the maximum skill value from
+    # the total number of students, and add half of the difference between
+    # the maximum and minimum skill values to the minimum number of
+    # problems to be solved for each student with the minimum skill value
+    min_problems += (n - max_students) * (skill_range // 2)
+
+    # Print the minimum number of problems to be solved
+    print(min_problems)
+```
+
+The solution works by first finding the maximum and minimum skill values among the students. If the range of skill values is odd, then it is impossible to form teams with students of equal skill, so we print -1. Otherwise, we calculate the number of students with the maximum and minimum skill values, and add half of the difference between the maximum and minimum skill values to the minimum number of problems to be solved for each student with the maximum skill value. Then, we subtract the number of students with the maximum skill value from the total number of students, and add half of the

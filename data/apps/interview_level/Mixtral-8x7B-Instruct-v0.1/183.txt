@@ -1,0 +1,39 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def solve(n, k, m):
+    # Initialize result as 0
+    res = 0
+
+    # Loop through all numbers from 1 to 10^n-1
+    for x in range(1, 10**n):
+        # Initialize y as x
+        y = x
+
+        # Check if the remainder of y divided by k is 0
+        while y % k != 0:
+            # Remove the last digit from y
+            y = int(str(y)[:-1])
+
+            # If y becomes 0, break the loop
+            if y == 0:
+                break
+
+        # If the loop did not break, add the number of digits in x
+        # to the result
+        if y != 0:
+            res += 1
+
+    # Return the result modulo m
+    return res % m
+
+# Read input values
+n, k, m = map(int, input().split())
+
+# Print the result
+print(solve(n, k, m))
+```
+
+This solution works by looping through all numbers from 1 to 10^n-1, checking for each number if there exists an integer y that satisfies the given conditions. If such a y is found, it is added to the result. Finally, the result is returned modulo m.
+
+Note that the solution assumes that the input values are valid, i.e., n is between 1 and 1000, k is between 1 and 100, and m is between 1 and 10^9. If this is not the case, the solution may not work correctly.

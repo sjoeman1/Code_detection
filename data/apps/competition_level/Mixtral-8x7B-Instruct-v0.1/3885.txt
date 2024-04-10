@@ -1,0 +1,19 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def min\_cost\_to\_visit\_all\_schools(n):
+if n == 1:
+return 0
+cost = 0
+i = 1
+while True:
+cost = (cost + i) % (n + 1)
+if cost == 0:
+return min\_cost\_to\_visit\_all\_schools(n - 1)
+i += 1
+
+n = int(input())
+print(min\_cost\_to\_visit\_all\_schools(n))
+```
+
+The function `min_cost_to_visit_all_schools` calculates the minimum cost to visit all schools using dynamic programming. The base case is when there is only 1 school, in which case the cost is 0. For n > 1, the function calculates the cost of visiting the first school and then recursively calculates the minimum cost to visit the remaining (n-1) schools. The cost of visiting the first school is calculated as `(cost + i) % (n + 1)`, where `cost` is the cost to visit all previous schools and `i` is the current school number. The function continues to calculate the cost for increasing values of `i` until it finds a cost of 0, which is the minimum cost to visit all schools. The function then returns the minimum cost to visit the remaining (n-1) schools. The main part of the code reads the value of n from the input and then calls the function to calculate and print the minimum cost to visit all schools.

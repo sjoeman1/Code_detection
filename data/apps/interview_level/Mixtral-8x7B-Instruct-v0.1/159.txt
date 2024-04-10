@@ -1,0 +1,44 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n = int(input().strip())
+a = list(map(int, input().strip().split()))
+
+# Initialize result and current co-prime number
+result = 0
+curr = a[0]
+
+# Initialize list of co-prime numbers
+co_primes = [1]
+
+# Iterate through the array
+for i in range(1, n):
+    # If current number is not co-prime with previous number
+    if gcd(curr, a[i]) > 1:
+        # Find the smallest co-prime number greater than the current number
+        while True:
+            result += 1
+            if gcd(co_primes[-1], a[i]) == 1:
+                co_primes.append(a[i])
+                break
+            co_primes.append(co_primes[-1] + 1)
+    else:
+        # If current number is co-prime with previous number, add it to the list of co-primes
+        co_primes.append(a[i])
+        curr = a[i]
+
+# Print the result and the co-prime array
+print(result)
+print(*co_primes)
+```
+
+This solution first initializes the result as 0 and the current co-prime number as the first element of the array. It then initializes a list of co-prime numbers, which starts with 1. The solution then iterates through the array, and for each number, it checks if it is co-prime with the previous number. If it is not, then it finds the smallest co-prime number greater than the current number and adds it to the list of co-prime numbers. If it is, then it simply adds it to the list of co-prime numbers. At the end, it prints the result and the list of co-prime numbers.
+
+The `gcd` function used in this solution is the greatest common divisor function, which can be implemented as follows:
+
+```python
+def gcd(a, b):
+    while b:
+        a, b = b, a % b
+    return a
+```

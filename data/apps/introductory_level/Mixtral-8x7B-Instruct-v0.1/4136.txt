@@ -1,0 +1,14 @@
+ Here is a simple Python3 solution for the problem:
+
+```python
+# Get input
+a, b = map(int, input().split())
+
+# Calculate sum
+sum = a + b
+
+# Print output
+print(sum)
+```
+
+This program first reads two integers from the input, separated by a space, and stores them in the variables `a` and `b`. It then calculates the sum of these two numbers and stores it in the variable `sum`. Finally, it prints the sum as the output.

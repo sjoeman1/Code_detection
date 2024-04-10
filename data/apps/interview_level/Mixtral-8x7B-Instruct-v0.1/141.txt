@@ -1,0 +1,30 @@
+ Here is a Python3 solution using dynamic programming to solve the problem:
+
+```python
+def max\_good\_subset\_weight():
+    W = int(input())
+    weights = list(map(int, input().split()))
+    n = len(weights)
+
+    # Initialize the dp array with all values set to 0
+    dp = [[0 for _ in range(W + 1)] for _ in range(n + 1)]
+
+    # The base case: when there are no items
+    for w in range(W + 1):
+        dp[0][w] = 0
+
+    # Fill in the dp array
+    for i in range(1, n + 1):
+        for w in range(W + 1):
+            if w >= weights[i - 1]:
+                dp[i][w] = max(dp[i - 1][w], dp[i - 1][w - weights[i - 1]] + weights[i - 1])
+            else:
+                dp[i][w] = dp[i - 1][w]
+
+    # The answer is the value in the bottom-right corner of the dp array
+    return dp[n][W]
+
+print(max\_good\_subset\_weight())
+```
+
+This solution works by creating a 2D dynamic programming array `dp` where `dp[i][w]` represents the maximum possible weight of a good subset of items that can be formed using the first `i` items and has a total weight not exceeding `w`. The solution then iterates over each item and each possible weight, and updates the value of `dp[i][w]` based on the previous row of the array. The final answer is the value in the bottom-right corner of the array, which represents the maximum possible weight of a good subset of items using all of the given items.

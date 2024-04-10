@@ -1,0 +1,49 @@
+ Here is a Python3 code that can be used to solve the problem:
+
+```python
+def min_cost(N, M, C, A):
+    # Initialize the minimum cost to infinity
+    min_cost = float('inf')
+
+    # Iterate over all possible values for the understanding level X
+    for X in range(0, 101):
+        # Initialize the current cost and the current level of understanding
+        cost = 0
+        cur\_level = [0] * M
+
+        # Iterate over all the books
+        for i in range(1, N+1):
+            # Initialize the number of new algorithms learned from the current book
+            new\_algo = 0
+
+            # Check if the current book can help Takahashi learn any new algorithms
+            for j in range(M):
+                if cur\_level[j] + A[i][j] > X:
+                    continue
+                new\_algo += 1
+
+            # If the current book cannot help Takahashi learn any new algorithms, skip it
+            if new\_algo == 0:
+                continue
+
+            # Calculate the cost of buying the current book
+            cost += C[i-1]
+
+            # Update the level of understanding for all the algorithms that can be learned from the current book
+            for j in range(M):
+                if cur\_level[j] + A[i][j] > X:
+                    continue
+                cur\_level[j] += A[i][j]
+
+            # If Takahashi can learn all the algorithms with a lower cost, update the minimum cost
+            if all(lvl >= X for lvl in cur\_level):
+                min\_cost = min(min\_cost, cost)
+
+    # If the minimum cost is still infinity, it means that it is not possible for Takahashi to achieve his objective
+    if min\_cost == float('inf'):
+        return -1
+    else:
+        return min\_cost
+```
+
+This function takes as input the number of algorithms `M`, the number of books `N`, the prices of the books `C`, and the increase in understanding level for each algorithm `A`. It returns the minimum amount of money needed for Takahashi

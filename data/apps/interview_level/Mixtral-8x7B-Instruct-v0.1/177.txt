@@ -1,0 +1,22 @@
+ Here is a Python3 solution for the problem:
+```python
+def kth_digit():
+    num = 1
+    digit_count = {1: 1}
+    while True:
+        for i in str(num):
+            if i not in digit_count:
+                digit_count[i] = 0
+            digit_count[i] += 1
+            if len(digit_count) >= k:
+                print(digit_count[i] // (len(str(num)) // 9))
+                return
+        num += 1
+
+kth_digit()
+```
+The solution uses a dictionary to keep track of the count of each digit. It starts by initializing the dictionary with the first digit, `1`. Then, it iterates over the digits of each number, updating the count of each digit in the dictionary. If the number of unique digits in the dictionary reaches `k`, it calculates and prints the `k`-th digit and returns.
+
+The function `kth_digit` is then called to start the process.
+
+Note that this solution assumes that the input `k` is valid. If the input is not in the range `[1, 10000]`, the function will enter an infinite loop. To handle this, you can add input validation before calling `kth_digit`.

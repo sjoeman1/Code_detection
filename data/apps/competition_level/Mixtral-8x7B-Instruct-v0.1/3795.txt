@@ -1,0 +1,33 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def min_remaining_rubles(n, d, e):
+    # Initialize the minimum remaining rubles as the initial sum
+    min_remaining = n
+
+    # Check all possible combinations of dollar and euro bills
+    for d_bill in [1, 2, 5, 10, 20, 50, 100]:
+        for e_bill in [5, 10, 20, 50, 100, 200]:
+            # Calculate the remaining rubles after buying one set of bills
+            remaining = n - min(d * d_bill, e * e_bill)
+
+            # Update the minimum remaining rubles if necessary
+            min_remaining = min(min_remaining, remaining)
+
+    # Return the minimum remaining rubles
+    return min_remaining
+
+# Read the input values
+n = int(input())
+d = int(input())
+e = int(input())
+
+# Print the minimum number of rubles Andrew can have
+print(min_remaining_rubles(n, d, e))
+```
+
+This solution uses a dynamic programming approach to check all possible combinations of dollar and euro bills and find the one that results in the minimum number of remaining rubles. The function `min_remaining_rubles` takes the initial sum `n`, the price of one dollar `d`, and the price of one euro `e` as input and returns the minimum number of rubles that Andrew can have after buying dollar and euro bills.
+
+The function initializes the minimum remaining rubles as the initial sum and then checks all possible combinations of dollar and euro bills. For each combination, the function calculates the remaining rubles after buying one set of bills and updates the minimum remaining rubles if necessary.
+
+Finally, the function returns the minimum remaining rubles, which is the minimum number of rubles that Andrew can have after buying dollar and euro bills.

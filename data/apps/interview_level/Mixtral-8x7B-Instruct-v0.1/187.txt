@@ -1,0 +1,40 @@
+ Here is one way to solve the problem using Python:
+
+```python
+n = int(input())
+nums = set(map(int, input().split()))
+
+for num in nums:
+    if num * 2 == n:
+        print("YES")
+        print(num, num)
+        break
+    elif num * 2 > n and num not in nums - {num for num in nums if num * 2 <= n}:
+        print("YES")
+        print(num, list(nums - {num})[0])
+        break
+else:
+    print("NO")
+```
+
+This code first reads the number of cards `n` and the list of numbers on the cards. It then checks if there is a number `num` that appears exactly `n / 2` times in the list. If so, it prints "YES" and the number that Petya and Vasya should choose.
+
+If not, it checks if there is a number `num` that appears at least once and such that `num * 2 > n` and `(n - num)` does not appear in the list. If so, it prints "YES" and the number that Petya should choose and the number that Vasya should choose.
+
+If neither of these conditions is satisfied, it prints "NO".
+
+Here is how the code works on the given examples:
+
+Example 1:
+
+* `n` is 4
+* `nums` is the set `{11, 27}`
+* The code checks if there is a number that appears exactly 2 times in the list. It finds that `11` appears 2 times, so it prints "YES" and the numbers `11` and `27`
+
+Example 2:
+
+* `n` is 2
+* `nums` is the set `{6, 6}`
+* The code checks if there is a number that appears exactly 1 time in the list. It does not find such a number, so it checks if there is a number that appears at least once and such that `num * 2 > n` and `(n - num)` does not appear in the list. It does not find such a number, so it prints "NO"
+
+Example

@@ -1,0 +1,30 @@
+ Here is the Python3 code to solve the problem:
+
+```python
+facts = {
+    1: 8848,
+    2: 958,
+    3: 12766,
+    4: 6695,
+    5: 1100,
+    6: 807,
+    7: 31962,
+    8: 238,
+    9: 25,
+    10: 134,
+    11: 10000,
+    12: 154103,
+    13: 1642,
+    14: 106,
+    15: 663268,
+    16: 665000
+}
+
+# Read input
+n = int(input())
+
+# Output the corresponding fact or 0 if not found
+print(facts.get(n, 0))
+```
+
+This code defines a dictionary `facts` that maps the input values to the corresponding facts. It then reads the input value `n`, and prints the corresponding fact using the `get` method of the dictionary, which returns the value for the given key if it exists, and `0` otherwise.

@@ -1,0 +1,27 @@
+ Here is a Python3 code that solves the problem:
+```python
+import math
+
+def min_time(n, p, q, a, b):
+    dp = [[math.inf] * (p + 1) for _ in range(n + 1)]
+    dp[0][0] = 0
+    for i in range(1, n + 1):
+        for j in range(p + 1):
+            for k in range(min(j // a[i - 1], q // b[i - 1]) + 1):
+                dp[i][j] = min(dp[i][j], dp[i - 1][max(0, j - a[i - 1] * k)] + k)
+    return dp[n][p] / q
+
+n, p, q = map(int, input().split())
+a = list(map(int, input().split()))
+b = list(map(int, input().split()))
+
+print(min_time(n, p, q, a, b))
+```
+Explanation:
+
+* We use dynamic programming to solve this problem.
+* The state `dp[i][j]` represents the minimum number of days required to get `j` experience points after working on the first `i` projects.
+* We initialize `dp[0][0]` to 0, meaning that we can get 0 experience points in 0 days.
+* For each project `i`, we consider all possible number of days `k` that we work on it, up to `min(j // a[i - 1], q // b[i - 1])`, which is the maximum number of days we can work on the project such that we get at least `j` experience points and earn at least `q` dollars.
+* For each `k`, we update `dp[i][j]` to be the minimum of its current value and `dp[i - 1][max(0, j - a[i - 1] * k)] + k`, which represents the minimum number of days required to get `j` experience points after working on the first `i` projects.
+* Finally, we return `dp[n][p] / q`, which represents the minimum number of

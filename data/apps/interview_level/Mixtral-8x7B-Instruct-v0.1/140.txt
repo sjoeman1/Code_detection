@@ -1,0 +1,41 @@
+ Here is a Python3 solution for the problem:
+```python
+def min_coins_needed(n, m, antennas):
+    # Sort the antennas by their right endpoint
+    antennas.sort(key=lambda x: x[0] + x[1])
+
+    # Initialize the minimum coins needed to cover the interval [1, m]
+    min_coins = 0
+
+    # Initialize the current right endpoint of the covered interval
+    current_right = 0
+
+    # Iterate over the antennas
+    for antenna in antennas:
+        # If the left endpoint of the antenna is greater than the current right endpoint
+        if antenna[0] > current_right:
+            # We need to increment the scope of some antenna to cover the interval [current_right + 1, antenna[0] - 1]
+            # The minimum number of coins needed to do this is equal to the length of this interval
+            min_coins += antenna[0] - current_right - 1
+
+        # Update the current right endpoint to the maximum between the current right endpoint and the right endpoint of the antenna
+        current_right = max(current_right, antenna[0] + antenna[1])
+
+    # Return the minimum number of coins needed to cover the interval [1, m]
+    return min_coins
+
+# Read the number of test cases
+T = int(input().strip())
+
+# Iterate over the test cases
+for t in range(T):
+    # Read the number of antennas and the length of the street
+    n, m = map(int, input().strip().split())
+
+    # Read the positions and scopes of the antennas
+    antennas = [tuple(map(int, input().strip().split())) for _ in range(n)]
+
+    # Compute and print the minimum number of coins needed to modernize the street
+    print(min_coins_needed(n, m, antennas))
+```
+The solution first sorts the antennas by their right endpoint, then iterates over them and updates the current right endpoint of the covered interval. If the left endpoint of the current antenna is greater than the current right endpoint, then we need to increment the scope of some antenna

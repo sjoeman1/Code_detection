@@ -1,0 +1,27 @@
+ Here is a Python3 solution for the problem:
+
+```python
+import math
+
+def is\_perfect\_square(n):
+if n < 0:
+return False
+root = math.isqrt(n)
+return root*root == n
+
+n = int(input())
+a = list(map(int, input().split()))
+
+max\_not\_perfect\_square = max(a)
+for num in a:
+if not is\_perfect\_square(num) and num > max\_not\_perfect\_square:
+max\_not\_perfect\_square = num
+
+print(max\_not\_perfect\_square)
+```
+
+This program first reads the number of elements in the array `n` and the array `a` itself. Then, it defines a helper function `is_perfect_square(n)` that checks if a number `n` is a perfect square. The function calculates the square root of `n` using `math.isqrt(n)` and checks if the result multiplied by itself is equal to `n`. If it is, then `n` is a perfect square, otherwise it is not.
+
+Next, the program initializes the variable `max_not_perfect_square` to the maximum value in the array. It then iterates through the array and checks for each number if it is not a perfect square and greater than the current value of `max_not_perfect_square`. If it is, then `max_not_perfect_square` is updated to this number.
+
+Finally, the program prints the value of `max_not_perfect_square`, which is the largest number in the array that is not a perfect square.

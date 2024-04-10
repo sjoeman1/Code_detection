@@ -1,0 +1,39 @@
+ Here is a Python3 solution for the problem:
+
+```python
+from collections import defaultdict, deque
+
+def is\_valid\_bfs(n, edges, sequence):
+queue = deque([1])
+used = [False] * (n + 1)
+parents = defaultdict(int)
+used[1] = True
+i = 0
+while queue:
+if sequence[i] != queue[0]:
+return "No"
+i += 1
+for v in edges[queue[0]]:
+if not used[v]:
+parents[v] = queue[0]
+used[v] = True
+queue.append(v)
+queue.popleft()
+if i < n - 1:
+continue
+for i in range(1, n + 1):
+if sequence[n - 1] == i and parents[i] != sequence[n - 2]:
+return "No"
+return "Yes"
+
+n = int(input())
+edges = defaultdict(list)
+for _ in range(n - 1):
+x, y = map(int, input().split())
+edges[x].append(y)
+edges[y].append(x)
+sequence = list(map(int, input().split()))
+print(is\_valid\_bfs(n, edges, sequence))
+```
+
+The solution uses a BFS traversal of the tree to build up the parents dictionary, which stores the parent node for each node in the tree. The solution then checks if the sequence can be obtained by a BFS traversal by checking if the parent of each node in the sequence is its previous node. If the parent is not the previous node, then the sequence is not a valid BFS traversal. If the loop completes without finding an invalid sequence, then the sequence is a valid BFS traversal.

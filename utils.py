@@ -1,7 +1,9 @@
+import code_tokenize as ctok
 import openai
 import re
 import six
 import spacy
+from nltk import word_tokenize
 from nltk.stem.porter import PorterStemmer
 import ast
 from zss import Node
@@ -139,6 +141,10 @@ def parse_code_snippet(prompt, raw_o):
         gen = raw_o.split("```")[1].strip()
         if gen.startswith("python"):
             gen = gen[len("python") :].strip()
+        if gen.startswith("python3"):
+            gen = gen[len("python3") :].strip()
+        if gen.startswith("py"):
+            gen = gen[len("py") :].strip()
         if gen.startswith(prompt.strip()):
             suf = gen.split(prompt.strip())[-1]
             suf = remove_eos(suf)
@@ -190,3 +196,48 @@ def tree_edit_distance( code1, code2 ):
     distance = simple_distance(zss_tree1, zss_tree2)
     return distance
 
+
+def tag_comment_tokenizer(text):
+    tokenized = standard_tokenizer(text)
+    tokenized = [token if not is_comment(token) else "#COMMENT#" for token in tokenized]
+    return tokenized
+
+
+def hide_comment_tokenizer(text):
+    tokenized = standard_tokenizer(text)
+    tokenized = [token for token in tokenized if not is_comment(token)]
+    return tokenized
+
+
+word_tokenizer = word_tokenize
+
+
+def tokenize_comment_tokenizer(text):
+    temp_tokenized = []
+    tokenized = standard_tokenizer(text)
+    for i, token in enumerate(tokenized):
+        if is_comment(token):
+            temp_tokenized += word_tokenizer(token[1:])
+        else:
+            temp_tokenized.append(token)
+    return temp_tokenized
+
+
+def tokenize_only_comment(text):
+    temp_tokenized = []
+    tokenized = standard_tokenizer(text)
+    for i, token in enumerate(tokenized):
+        if is_comment(token):
+            temp_tokenized += word_tokenizer(token[1:])
+    return temp_tokenized
+
+
+def is_comment(token):
+    return token.startswith("#") and not (token == "#NEWLINE#" or token == "#INDENT#" or token == "#DEDENT#")
+
+
+def standard_tokenizer(text):
+    tokenized = ctok.tokenize(text, lang='python', syntax_error="ignore")
+    # convert to string and return
+    tokenized = [str(token) for token in tokenized]
+    return tokenized

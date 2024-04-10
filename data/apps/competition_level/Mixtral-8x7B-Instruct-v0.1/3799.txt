@@ -1,0 +1,24 @@
+ Here is a Python3 solution for the problem:
+
+```python
+import sys
+
+def win():
+    s = input()
+    a, b = 0, 1
+    while b < len(s):
+        if s[a] == s[b]:
+            return "Second" if b-a > 1 else "First"
+        a, b = a+1, b+1
+    return "First"
+
+print(win())
+```
+
+The function `win()` takes no input. It reads the input string from the standard input and calculates the winner of the game.
+
+The function uses two pointers `a` and `b` to traverse the string `s`. At each step, if the characters at positions `a` and `b` are equal, the function checks if the distance between `a` and `b` is greater than 1. If it is, then Aoki can remove the character at position `(a+b)//2`, making it impossible for Takahashi to make a move, and the function returns "Second". If the distance is 1 or less, then Takahashi can remove the character at position `a`, making it impossible for Aoki to make a move, and the function returns "First".
+
+If the function traverses the entire string without finding any pair of equal characters, then Takahashi can always make a move, and the function returns "First".
+
+The function prints the winner of the game to the standard output and terminates.

@@ -1,0 +1,29 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n = int(input())
+coins = list(map(int, input().split()))
+
+# Check if the game can be finished
+if max(coins) > sum(coins) // n:
+    print(-1)
+else:
+    # Calculate the minimum number of moves
+    moves = 0
+    while sum(coins) > 0:
+        moves += 1
+        new_coins = [0] * n
+        for i in range(n):
+            if i + 1 < n:
+                new_coins[i] = max(coins[i], coins[i+1], coins[i+2]) - coins[i]
+            else:
+                new_coins[i] = max(coins[i], coins[i+1]) - coins[i]
+        coins = new_coins
+    print(moves)
+```
+
+The solution first checks if the game can be finished by comparing the maximum number of coins in a chest to the average number of coins per chest. If the maximum is greater than the average, then the game cannot be finished, and the program prints -1. Otherwise, the program calculates the minimum number of moves required to finish the game.
+
+The program keeps track of the number of moves in the `moves` variable. In each move, the program calculates the new number of coins in each chest based on the current number of coins. The program then updates the `coins` list with the new number of coins. The program repeats this process until all the chests are empty, at which point the program prints the number of moves.
+
+The time complexity of this solution is O(n^2), where n is the number of chests. The space complexity is O(n), which is required to store the number of coins in each chest.

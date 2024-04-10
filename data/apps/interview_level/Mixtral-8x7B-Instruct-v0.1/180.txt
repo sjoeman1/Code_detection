@@ -1,0 +1,6 @@
+ Here is a Python3 code that can solve the problem:
+
+```python
+import itertools
+
+def can_encode(s, k):

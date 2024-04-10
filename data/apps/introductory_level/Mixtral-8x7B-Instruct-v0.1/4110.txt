@@ -1,0 +1,34 @@
+ Here is a Python3 code that can solve the problem:
+
+```python
+def min\_problems\_to\_solve():
+\(
+D, G = map(int, input().split())
+perfect\_bonuses = [0]
+points = [0]
+for \_ in range(D):
+\(
+pi, ci = map(int, input().split())
+perfect\_bonuses.append(ci)
+points.append(pi)
+\)
+running\_sum = 0
+for i in range(D, 0, -1):
+\(
+running\_sum += points[i] \* (G // perfect\_bonuses[i])
+if running\_sum >= G:
+\(
+return G // perfect\_bonuses[i] + (running\_sum - G) // points[i]
+\)
+\)
+
+print(min\_problems\_to\_solve())
+```
+
+The code first reads the input values of `D` and `G` and initializes the lists `perfect_bonuses` and `points` to store the perfect bonuses and points for each problem respectively.
+
+The function `min_problems_to_solve()` calculates the minimum number of problems that Takahashi needs to solve in order to have a total score of `G` or more points. It starts by calculating the running sum of the points that can be earned by solving problems with the maximum possible perfect bonus. If this sum is already greater than or equal to `G`, then Takahashi can earn the perfect bonus for that problem and return the number of problems needed to achieve this.
+
+Otherwise, the function iterates through the problems in decreasing order of their points and calculates the minimum number of problems needed to earn a total score of `G` or more. For each problem, it adds the product of its points and the number of times its perfect bonus can be earned to the running sum. If the running sum is greater than or equal to `G`, then Takahashi can earn the perfect bonus for that problem and return the number of problems needed to achieve this.
+
+Finally, the code prints the minimum number of problems that Takahashi needs to solve in order to have a total score of `G` or more points.

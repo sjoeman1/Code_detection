@@ -1,0 +1,20 @@
+ Here is the Python3 code to solve the problem:
+
+```python
+def check\_accident():
+for _ in range(int(input())):
+roads = [list(map(int, input().split())) for _ in range(4)]
+for i in range(4):
+if roads[i][3] == 1:
+# check if any of the corresponding car lights are green
+if roads[i][0] == 1 or roads[(i+1)%4][1] == 1 or roads[(i+2)%4][2] == 1:
+return "YES"
+return "NO"
+
+# Test cases
+print(check\_accident())
+print(check\_accident())
+print(check\_accident())
+```
+
+This code first reads the number of test cases. Then, for each test case, it reads the configuration of the traffic lights for each road part. It checks if any pedestrian light is green and if any corresponding car light is also green. If yes, then an accident is possible and it returns "YES". If it finishes checking all road parts without finding any accident, then it returns "NO".

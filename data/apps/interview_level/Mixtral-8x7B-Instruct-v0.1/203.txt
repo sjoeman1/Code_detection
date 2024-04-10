@@ -1,0 +1,50 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n = int(input())
+votes = list(input())
+
+# Keep track of the number of eligible voters in each faction
+d, r = 0, 0
+for v in votes:
+    if v == 'D':
+        d += 1
+    else:
+        r += 1
+
+# Simulate the voting process
+while d + r > 1:
+    # Count the number of eligible voters in the next round
+    d_next, r_next = 0, 0
+    
+    # Go through the voters in order
+    for i in range(n):
+        v = votes[i]
+        
+        # If this voter is eligible, add to the count for their faction
+        if v != '.':
+            if v == 'D':
+                d_next += 1
+            else:
+                r_next += 1
+            
+            # The voter becomes ineligible
+            votes[i] = '.'
+    
+    # The faction with more eligible voters in the next round wins
+    if d_next > r_next:
+        d, r = d_next, 0
+    elif d_next < r_next:
+        d, r = 0, r_next
+    else:
+        # If there's a tie, the depublicans win
+        d, r = d_next, 0
+
+# Output the result
+if d > 0:
+    print('D')
+else:
+    print('R')
+```
+
+The solution keeps track of the number of eligible voters in each faction, then simulates the voting process by going through the voters in order and updating the number of eligible voters in each faction for the next round. The faction with more eligible voters in the next round wins, except in the case of a tie, in which case the depublicans win. The solution outputs 'D' if the depublicans win and 'R' if the remocrats win.

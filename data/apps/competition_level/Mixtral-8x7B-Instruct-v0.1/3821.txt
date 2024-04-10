@@ -1,0 +1,35 @@
+ Here is one possible solution for the problem:
+
+```python
+import bisect
+
+def solve():
+    n = int(input())
+    p = list(map(float, input().split()))
+
+    # Sort the probabilities in non-increasing order
+    p.sort(reverse=True)
+
+    # Initialize the answer as the probability of the most reliable friend
+    ans = p[0]
+
+    # Calculate the probability of getting exactly one problem from the first two friends
+    if n >= 2:
+        ans = ans * (1 - p[1]) + p[1]
+
+    # Calculate the probability of getting exactly one problem from any two adjacent friends
+    for i in range(2, n):
+        ans = max(ans, p[i] * (1 - p[i-1]), p[i-1] * (1 - p[i]))
+
+    # Print the answer with the required precision
+    print(f"{ans:.12f}")
+
+# Run the solve function
+solve()
+```
+
+This solution works by first sorting the probabilities in non-increasing order. Then, it calculates the probability of getting exactly one problem from the first two friends, which is the probability of the most reliable friend multiplied by the probability that the second friend fails to come up with a problem, plus the probability of the second friend coming up with a problem.
+
+Next, the solution calculates the probability of getting exactly one problem from any two adjacent friends. This is done by considering the two friends as a pair, and calculating the probability of getting exactly one problem from this pair. The maximum probability is taken between the probability of the first friend failing and the probability of the second friend failing.
+
+Finally, the solution prints the answer with the required precision. The time complexity of this solution is O(n), where n is the number of friends, since it involves sorting the probabilities and iterating over them once.

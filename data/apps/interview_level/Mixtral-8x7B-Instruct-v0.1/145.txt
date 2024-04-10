@@ -1,0 +1,19 @@
+ Here is a Python3 solution for the problem:
+
+```python
+# Get the user name from the input
+user_name = input()
+
+# Calculate the number of distinct characters in the user name
+num_distinct_chars = len(set(user_name))
+
+# Determine the gender of the user by the hero's method
+if num_distinct_chars % 2 == 0:
+    print("CHAT WITH HER!")
+else:
+    print("IGNORE HIM!")
+```
+
+This solution first reads the user name from the input using the `input()` function. It then calculates the number of distinct characters in the user name by converting the user name to a set, which automatically removes any duplicate characters. Since the size of a set is equal to the number of distinct elements it contains, the number of distinct characters can be obtained by calling the `len()` function on the set.
+
+Finally, the solution determines the gender of the user by checking the parity of the number of distinct characters. If the number is even, it prints "CHAT WITH HER!". Otherwise, it prints "IGNORE HIM!".

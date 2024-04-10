@@ -1,0 +1,37 @@
+ Here is a Python3 solution for the problem:
+
+```python
+import sys
+from collections import defaultdict
+
+def can_form_triangle(L: list) -> int:
+    N = len(L)
+    count = 0
+    lengths = defaultdict(int)
+
+    # Count the frequency of each length
+    for l in L:
+        lengths[l] += 1
+
+    # Iterate over all possible lengths
+    for l in lengths:
+        # Check if there are at least two other lengths that can form a triangle with this length
+        if lengths[l] < 2:
+            continue
+        for other in set(lengths.keys()) - {l}:
+            # Triangle inequality: |a - b| < c < a + b
+            if other < l - l or other > 2 * l:
+                continue
+            count += lengths[l] * (lengths[other] - (other == l)) // 2
+    return count
+
+if __name__ == "__main__":
+    input = sys.stdin.readline
+    N = int(input().strip())
+    L = list(map(int, input().strip().split()))
+    print(can_form_triangle(L))
+```
+
+The solution works by counting the frequency of each length in the input list `L`. It then iterates over each length `l` and checks if there are at least two other lengths that can form a triangle with `l`. The triangle inequality is used to filter out lengths that cannot form a triangle. Finally, the solution counts the number of ways to choose three lengths that can form a triangle and prints the result.
+
+The time complexity of this solution is O(N^2), where N is the length of the input list `L`. The space complexity is O(N) due to the use of a dictionary to store the frequency of each length.

@@ -1,0 +1,49 @@
+ Here is a solution using Python 3 that reads the input from standard input and outputs the result to standard output:
+
+```python
+import sys
+
+# Read the number of squares
+N = int(sys.stdin.readline())
+
+# Read the heights of the squares
+heights = list(map(int, sys.stdin.readline().split()))
+
+# Initialize the maximum number of moves
+max_moves = 0
+
+# Initialize the current height
+current_height = heights[0]
+
+# Initialize the number of moves
+moves = 0
+
+# Iterate over the squares
+for height in heights:
+    # If the current square has a smaller height
+    if height < current_height:
+        # Continue to the next square
+        continue
+    # If the current square has the same height
+    elif height == current_height:
+        # Add 1 to the number of moves
+        moves += 1
+    # If the current square has a larger height
+    else:
+        # Update the maximum number of moves
+        max_moves = max(max_moves, moves)
+        # Reset the number of moves
+        moves = 1
+        # Update the current height
+        current_height = height
+
+# Update the maximum number of moves
+max_moves = max(max_moves, moves)
+
+# Print the maximum number of moves
+print(max_moves)
+```
+
+This solution uses a single pass through the input to find the maximum number of moves. It keeps track of the current height and the number of moves since the last change in height. Whenever the height increases, it checks if the current number of moves is greater than the maximum number of moves seen so far. If it is, it updates the maximum number of moves. At the end, it prints the maximum number of moves.
+
+The solution has a time complexity of O(N) and a space complexity of O(1), where N is the number of squares. It reads the input from standard input using the `sys.stdin` object and writes the output to standard output using the `print` function.

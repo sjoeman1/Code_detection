@@ -1,0 +1,28 @@
+ Here is a Python3 solution for the problem:
+
+```python
+# Read the amount N from the input
+N = int(input())
+
+# Initialize two variables to keep track of the total cost of cakes and doughnuts
+cake_cost = 0
+donut_cost = 0
+
+# Try to find a solution by iterating over all possible values of cakes and donuts
+for cakes in range(N // 4 + 1):
+    donuts = N - cakes * 4
+    if donuts % 7 == 0 and donuts >= 0:
+        cake_cost = cakes
+        donut_cost = donuts
+        break
+
+# Print the solution
+if cake_cost * 4 + donut_cost == N:
+    print("Yes")
+else:
+    print("No")
+```
+
+The solution works by iterating over all possible values of cakes that can be bought, and computing the corresponding number of donuts that can be bought. If the number of donuts is a multiple of 7 and is non-negative, then we have found a solution. Otherwise, we continue the iteration.
+
+Finally, we check if the total cost of the cakes and donuts is equal to N, and print the answer accordingly.

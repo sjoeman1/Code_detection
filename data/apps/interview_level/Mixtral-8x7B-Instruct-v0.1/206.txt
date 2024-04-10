@@ -1,0 +1,37 @@
+ Here is a Python3 solution for the problem:
+```python
+def solve(m, a, b):
+    # Initialize the result as 0
+    result = 0
+
+    # Create a set to store the distinct integers reachable from 0
+    reachable = {0}
+
+    # Initialize the current maximum reachable integer as 0
+    max_reach = 0
+
+    # Iterate from 1 to m
+    for i in range(1, m + 1):
+
+        # Try to extend the reach of the frog using a jump
+        new_reach = reachable | {x + a for x in reachable} | {x - b for x in reachable}
+
+        # Update the reachable set and maximum reach
+        reachable = new_reach
+        max_reach = max(max_reach, max(new_reach))
+
+        # Add the number of distinct integers reachable so far to the result
+        result += max_reach - i + 1
+
+    # Return the result
+    return result
+
+# Read the input
+m, a, b = map(int, input().split())
+
+# Print the result
+print(solve(m, a, b))
+```
+The idea is to iteratively extend the reach of the frog from 0 using jumps of lengths $a$ and $-b$, and keep track of the number of distinct integers reachable so far. The reach of the frog is defined as the maximum integer it can reach from 0 without jumping outside the interval $[0, x]$. At each step, we extend the reach of the frog using jumps of lengths $a$ and $-b$, and update the reachable set and maximum reach accordingly. We then add the number of distinct integers reachable so far to the result. Finally, we return the result.
+
+The time complexity of this solution is $O(m \cdot \max(a, b))$, and the space complexity is $O(\min(a, b) \cdot m)$. The time complexity can be improved to $O(m \cdot \log(\max(a, b)))$ using binary search instead of iterating over all integers in the reachable set, but this would require a more complex implementation.

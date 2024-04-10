@@ -1,0 +1,16 @@
+ Here is a Python3 solution for the problem:
+
+```python
+d, n = map(int, input().split())
+
+if d == 0:
+    print(n)
+else:
+    # Calculate the N-th number that is divisible by 100^d
+    # Since the numbers are divisible by 100^d, we can just calculate the number of multiples of 100^d in the range [1, 100*100*...*100] (D times)
+    # We can calculate the number of multiples of 100^d in the range [1, 100*100*...*100] by using the formula: (last - first) // 100^d + 1
+    # Then, we can find the N-th number by multiplying the quotient of (N-1) to 100^d and adding the first number (which is 1)
+    print(1 + (100**d * (n - 1)))
+```
+
+This solution first reads the input values for `d` and `n`. If `d` is 0, it simply prints `n` as the output. Otherwise, it calculates the N-th number that is divisible by 100^d using the formula mentioned in the comments. The formula calculates the number of multiples of 100^d in the range [1, 100*100*...*100] (D times) and then finds the N-th number by multiplying the quotient of (N-1) to 100^d and adding the first number (which is 1). The result is then printed as the output.
