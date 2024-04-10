@@ -141,6 +141,10 @@ def parse_code_snippet(prompt, raw_o):
         gen = raw_o.split("```")[1].strip()
         if gen.startswith("python"):
             gen = gen[len("python") :].strip()
+        if gen.startswith("python3"):
+            gen = gen[len("python3") :].strip()
+        if gen.startswith("py"):
+            gen = gen[len("py") :].strip()
         if gen.startswith(prompt.strip()):
             suf = gen.split(prompt.strip())[-1]
             suf = remove_eos(suf)
