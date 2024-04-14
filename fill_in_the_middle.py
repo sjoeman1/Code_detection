@@ -6,7 +6,7 @@ import argparse
 import tqdm
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--dataset', default="results/gemma-7b-it-apps_interview.jsonl")
+parser.add_argument('--dataset', default="results/gemma-7b-it-apps_introductory.jsonl")
 parser.add_argument('--batch_size', default=4, type=int)
 parser.add_argument('--mask_lines', default=4, type=int)
 parser.add_argument("--gpu", type=str, default="2")
