@@ -6,7 +6,7 @@ import argparse
 import tqdm
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--dataset', default="results/gemma-7b-it-apps_introductory.jsonl")
+parser.add_argument('--dataset', default="results/CodeLlama-70b-Instruct-hf-apps_introductory.jsonl")
 parser.add_argument('--batch_size', default=4, type=int)
 parser.add_argument('--mask_lines', default=4, type=int)
 parser.add_argument("--gpu", type=str, default="2")
@@ -17,6 +17,8 @@ args = parser.parse_args()
 output_file = f'results/{args.dataset.split("/")[1]}_FIM_human_{args.run}_line_{args.mask_lines}.jsonl'
 with open(args.dataset, 'r') as f:
     dataset = [json.loads(line) for line in f.readlines()]
+    # remove cannot parse code snippets
+    dataset = [x for x in dataset if not x['parsed_codes'].startswith('# CANNOT')]
 
 print(args)
 print(torch.__version__)
