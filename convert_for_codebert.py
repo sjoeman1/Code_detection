@@ -81,7 +81,7 @@ def get_human_samples(data, data_labels, df):
     human_written = df['gold_completion']
     human_written_labels = [0] * len(human_written)
     data = data._append(human_written, ignore_index=True)
-    data_labels = human_written_labels + [1] * len(data)
+    data_labels = data_labels + human_written_labels
     return data, data_labels
 
 
