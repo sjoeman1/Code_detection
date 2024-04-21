@@ -1,0 +1,1 @@
+{"columns": ["Predicted", "Actual", "Count"], "data": [["human_written", "human_written", 9], ["human_written", "machine_generated", 13], ["machine_generated", "human_written", 0], ["machine_generated", "machine_generated", 90]]}
