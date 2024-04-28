@@ -31,8 +31,10 @@ def convert_for_codebert(input_file):
     df = df[~df['parsed_codes'].str.startswith("# CANNOT")]
 
 
-    machine_generated = df['parsed_codes']
+    machine_generated = df[['problem_id', 'question', 'parsed_codes']].copy()
     machine_generated_labels = [1] * len(machine_generated)
+
+
 
     # combine the two lists
     print(len(machine_generated))
@@ -78,7 +80,7 @@ def convert_for_codebert(input_file):
 
 
 def get_human_samples(data, data_labels, df):
-    human_written = df['gold_completion']
+    human_written = df[['problem_id', 'question', 'gold_completion']].copy()
     human_written_labels = [0] * len(human_written)
     data = data._append(human_written, ignore_index=True)
     data_labels = data_labels + human_written_labels
@@ -88,11 +90,18 @@ def get_human_samples(data, data_labels, df):
 def write_to_file(X, y, labels, difficulty,  original_input_file, output_file):
     with open(output_file, "a") as f:
         for i in range(len(X)):
-            f.write(json.dumps({"code": X[i],
+            try:
+                code = X['parsed_codes'][i]
+            except:
+                code = X['gold_completions'][i]
+
+            f.write(json.dumps({"code": code,
                                 "label": y[i],
                                 "label_name": labels[y[i]],
                                 "difficulty": difficulty,
-                                "original_source": original_input_file}) + "\n")
+                                "original_source": original_input_file,
+                                "problem_id": X['problem_id'][i],
+                                "question": X['question'][i]}) + "\n")
 
 
 for file in os.listdir("results"):
