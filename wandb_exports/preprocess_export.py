@@ -1,7 +1,7 @@
 # preprocess the csv file so that the integers have 3 decimals and the names are preprocessed
 import pandas as pd
 
-df_name = "MNB_Tokenizer_wandb_export_2024-04-09T11_43_20.269+02_00.csv"
+df_name = "CodeBERT-Classifierwandb_export_2024-04-28T22_11_26.964+02_00.csv"
 df = pd.read_csv(df_name)
 print(df)
 df = df.round(3)
@@ -26,7 +26,7 @@ def rename(name):
 df['Name'] = df['Name'].apply(rename)
 
 # rename columns
-df = df.rename({"Name": "Dataset", "macro avg.f1-score": "f1-score", "macro avg.precision": "precision", "macro avg.recall": "recall"})
+# df = df.rename({"Name": "Dataset", "macro avg.f1-score": "f1-score", "macro avg.precision": "precision", "macro avg.recall": "recall"})
 
 print(df)
 # save df

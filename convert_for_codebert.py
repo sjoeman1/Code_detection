@@ -101,8 +101,18 @@ def write_to_file(X, y, labels, difficulty,  original_input_file, output_file):
                                 "problem_id": str(X['problem_id'][i]),
                                 "question": X['question'][i]}) + "\n")
 
+files = ['gemma-7b-it-apps_competition_207.jsonl',
+         'gemma-7b-it-apps_interview_207.jsonl',
+         'gemma-7b-it-apps_introductory_207.jsonl',
+         'CodeLlama-70b-Instruct-hf-apps_competition_207.jsonl',
+         'CodeLlama-70b-Instruct-hf-apps_interview_207.jsonl',
+         'CodeLlama-70b-Instruct-hf-apps_introductory_207.jsonl',
+         'Mixtral-8x7B-Instruct-v0.1-apps_competition_207.jsonl',
+         'Mixtral-8x7B-Instruct-v0.1-apps_interview_207.jsonl',
+         'Mixtral-8x7B-Instruct-v0.1-apps_introductory_207.jsonl']
 
-for file in os.listdir("results"):
+# for file in os.listdir("results")[::-1]:
+for file in files:
     if not file.endswith("207.jsonl"):
         continue
     input_file = os.path.join("results", file)
