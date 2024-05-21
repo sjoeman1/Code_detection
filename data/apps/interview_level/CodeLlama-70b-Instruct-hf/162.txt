@@ -1,0 +1,35 @@
+
+
+Here is the Python3 code for solving the question:
+
+```python
+#input
+n, k = map(int, input().split())
+a = list(map(int, input().split()))
+
+#sorting the list in ascending order
+a.sort()
+
+#initializing a variable to keep track of the number of hours
+hours = 0
+
+#initializing a variable to keep track of the length of the garden that has been watered
+watered = 0
+
+#looping through the list of buckets
+for i in range(n):
+    #checking if the garden has been fully watered
+    if watered >= k:
+        break
+    #checking if the current bucket can water the remaining part of the garden
+    if a[i] + watered <= k:
+        #increasing the number of hours
+        hours += 1
+        #increasing the length of the garden that has been watered
+        watered += a[i]
+
+#printing the minimum number of hours required to water the garden
+print(hours)
+```
+
+The code takes input for the number of buckets (n) and the length of the garden (k). Then it takes input for the length of each bucket (a). It sorts the list of buckets in ascending order. It initializes a variable to keep track of the number of hours (hours) and the length of the garden that has been watered (watered). It loops through the list of buckets and checks if the garden has been fully watered. If it has, it breaks out of the loop. If it hasn't, it checks if the current bucket can water the remaining part of the garden. If it can, it increases the number of hours and the length of the garden that has been watered. Finally, it prints the minimum number of hours required to water the garden.

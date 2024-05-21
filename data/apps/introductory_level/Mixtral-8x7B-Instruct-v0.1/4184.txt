@@ -1,0 +1,33 @@
+ Here is a Python3 solution for the problem:
+
+```python
+# Read in the number of weights
+N = int(input().strip())
+
+# Read in the weights
+weights = list(map(int, input().strip().split()))
+
+# Sort the weights
+weights.sort()
+
+# Initialize the minimum difference
+min_diff = 101 * N  # A large number that is guaranteed to be larger than the answer
+
+# Iterate through the possible values of T
+for T in range(1, N):
+    # Calculate the sum of the weights in the first group
+    S1 = sum(weights[:T])
+
+    # Calculate the sum of the weights in the second group
+    S2 = sum(weights[T:])
+
+    # Update the minimum difference if necessary
+    min_diff = min(min_diff, abs(S1 - S2))
+
+# Print the minimum difference
+print(min_diff)
+```
+
+The solution works by first reading in the number of weights and the weights themselves. It then sorts the weights in ascending order, since this makes it easy to calculate the sum of the weights in each group. The solution then iterates through all possible values of T, calculating the sum of the weights in each group and the absolute difference between the sums. The minimum difference is updated if necessary. Finally, the minimum difference is printed out.
+
+The time complexity of the solution is O(N^2), since there are N possible values of T and it takes O(N) time to calculate the sum of the weights in each group. However, this is fast enough for the given constraints. The space complexity is O(N), since we need to store the weights and the sums of the weights in each group.

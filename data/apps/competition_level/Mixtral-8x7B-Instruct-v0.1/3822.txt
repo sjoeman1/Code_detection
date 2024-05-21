@@ -1,0 +1,39 @@
+ Here is one way to solve the problem using Python:
+
+```python
+from math import ceil, sqrt
+
+def min\_time(n, l, v1, v2, k):
+	# Time for all pupils to go by bus
+	t\_bus = l / v2
+
+	# Time for all pupils to go by foot
+	t\_walk = l / v1
+
+	# Number of bus rides needed
+	num\_bus\_rides = ceil(n / k)
+
+	# Total time for all bus rides
+	t\_total\_bus = num\_bus\_rides * t\_bus
+
+	# Time for the last pupils in the last ride
+	t\_last\_bus\_ride = (n % k) * l / v2
+
+	# Time for the rest of the pupils in the last ride
+	t\_rest\_last\_bus\_ride = (k - (n % k)) * t\_walk
+
+	# Total time
+	t\_total = t\_total_bus + t\_last\_bus\_ride + t\_rest\_last\_bus\_ride
+
+	return t\_total
+
+# Read input
+n, l, v1, v2, k = map(int, input().split())
+
+# Print result
+print("{:.12f}".format(min\_time(n, l, v1, v2, k)))
+```
+
+This code first calculates the time it would take for all pupils to go by bus, and the time it would take for all pupils to go by foot. Then it calculates the number of bus rides needed, and the total time for all bus rides. It then calculates the time for the last pupils in the last ride, and the time for the rest of the pupils in the last ride. Finally, it adds these times together to get the total time.
+
+The "{:.12f}".format() is used to format the float number to have 12 digits after the decimal point.

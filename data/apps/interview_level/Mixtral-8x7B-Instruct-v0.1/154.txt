@@ -1,0 +1,36 @@
+ This problem is a complex one, and it requires dynamic programming to solve it. Here is a Python3 solution that uses dynamic programming to find the number of perfectly balanced striped binary search trees with n vertices:
+```python
+mod = 998244353
+fac = [0]*1000005
+inv = [0]*1000005
+fac[0] = inv[0] = 1
+for i in range(1, 1000005):
+    fac[i] = fac[i-1]*i%mod
+    inv[i] = pow(fac[i], mod-2, mod)
+
+def C(n, k):
+    if k > n or k < 0:
+        return 0
+    return fac[n]*inv[k]*inv[n-k]%mod
+
+dp = [0]*(1000005)
+dp[0] = 1
+parity = 1
+for i in range(1, 1000005):
+    dp[i] = dp[i-1]*2%mod
+    if i&1:
+        parity = -parity
+    dp[i] = (dp[i] + dp[i//2]*C(i, i//2)*parity%mod)%mod
+
+n = int(input())
+print(dp[n])
+```
+Explanation:
+
+First, we calculate the factorial and its inverse up to 10^6 using the formula `fac[i] = fac[i-1]*i%mod` and `inv[i] = pow(fac[i], mod-2, mod)`.
+
+Then, we define a function `C(n, k)` to calculate the binomial coefficient using the formula `fac[n]*inv[k]*inv[n-k]%mod`.
+
+We initialize the dynamic programming array `dp` with 1 and set the parity to 1.
+
+Then, we iterate over the array `dp` and calculate the number of perfectly balanced striped binary search trees with i vertices. If the current vertex has an odd number of vertices, we toggle the parity. We add the product of `dp[i//2

@@ -1,0 +1,29 @@
+
+
+Here is the Python 3 code for solving the question:
+
+```
+def base_minus_two(N):
+    if N == 0:
+        return "0"
+    if N < 0:
+        return "-" + base_minus_two(-N)
+    result = ""
+    while N > 0:
+        result = str(N % 2) + result
+        N //= -2
+    return result
+
+def main():
+    N = int(input())
+    print(base_minus_two(N))
+
+if __name__ == "__main__":
+    main()
+```
+
+In this code, the function `base_minus_two` takes an integer `N` as input and returns its base -2 representation as a string. It first checks if `N` is 0, in which case it returns "0". If `N` is negative, it appends a "-" sign to the base -2 representation of the absolute value of `N`.
+
+If `N` is a positive integer, the function constructs the base -2 representation by repeatedly dividing `N` by -2 and appending the remainder to the result string. Finally, it returns the constructed string as the base -2 representation of `N`.
+
+In the `main` function, it reads the input `N` from standard input and prints the base -2 representation of `N` using the `base_minus_two` function.

@@ -1,0 +1,62 @@
+
+
+```python
+from functools import reduce
+
+# Read the number of pairs
+n = int(input())
+
+# Initialize an empty list to store the pairs
+pairs = []
+
+# Read the pairs and store them in the list
+for i in range(n):
+    a, b = map(int, input().split())
+    pairs.append([a, b])
+
+# Function to calculate the GCD of two numbers
+def gcd(a, b):
+    while b:
+        a, b = b, a % b
+    return a
+
+# Function to calculate the LCM of two numbers
+def lcm(a, b):
+    return a * b // gcd(a, b)
+
+# Function to calculate the WCD of the pairs
+def weakened_common_divisor(pairs):
+    # Calculate the LCM of the first pair
+    lcm_value = lcm(pairs[0][0], pairs[0][1])
+
+    # Calculate the LCM of the remaining pairs
+    for i in range(1, len(pairs)):
+        lcm_value = lcm(lcm_value, pairs[i][0])
+        lcm_value = lcm(lcm_value, pairs[i][1])
+
+    # Initialize the WCD to 2
+    wcd = 2
+
+    # Check if the WCD exists for the LCM
+    while wcd <= lcm_value:
+        for pair in pairs:
+            if wcd % pair[0] == 0 or wcd % pair[1] == 0:
+                continue
+            else:
+                break
+        else:
+            break
+        wcd += 1
+
+    # If the WCD exists, return it, else return -1
+    if wcd <= lcm_value:
+        return wcd
+    else:
+        return -1
+
+# Calculate the WCD of the pairs and print the result
+result = weakened_common_divisor(pairs)
+print(result)
+```
+
+This code implements the solution for the problem using the concepts of the greatest common divisor (GCD) and the lowest common multiple (LCM). The GCD and LCM are calculated using the

@@ -1,0 +1,21 @@
+ Here's the Python3 code to solve the problem:
+
+```python
+# Read input
+N, M = map(int, input().split())
+A = list(map(int, input().split()))
+
+# Calculate total votes
+total_votes = sum(A)
+
+# Calculate the minimum number of votes an item must have
+min_votes = total_votes // (4 * M)
+
+# Check if M popular items can be selected
+if any(v > min_votes for v in A):
+    print("Yes")
+else:
+    print("No")
+```
+
+This code reads the input values of N, M, and A, calculates the total number of votes, and determines the minimum number of votes an item must have to be selected. It then checks if any item has more votes than the minimum and prints "Yes" or "No" accordingly.

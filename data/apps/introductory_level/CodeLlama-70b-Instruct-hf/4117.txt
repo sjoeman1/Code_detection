@@ -1,0 +1,23 @@
+
+ Here is the Python 3 code to solve the question:
+```python
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+n = int(input())
+sticks = list(map(int, input().split()))
+
+count = 0
+
+for i in range(n):
+    for j in range(i+1, n):
+        for k in range(j+1, n):
+            if sticks[i] != sticks[j] and sticks[i] != sticks[k] and sticks[j] != sticks[k]:
+                if sticks[i] + sticks[j] > sticks[k] and sticks[i] + sticks[k] > sticks[j] and sticks[j] + sticks[k] > sticks[i]:
+                    count += 1
+
+print(count)
+```
+This code reads the number of sticks N from the first line of input. It then reads the lengths of the sticks L_1, L_2, ..., L_N from the second line of input and stores them in a list.
+
+The code then iterates through all possible combinations of three sticks (i, j, k) where 1 <= i < j < k <= N. For each combination, it checks if the lengths of the sticks are all different and if they can form a triangle. If both conditions are satisfied, it increments the count.
+
+Finally, it prints the count of ways to choose three of the sticks with different lengths that can form a triangle.

@@ -1,0 +1,30 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def split_string(s):
+    # If the string length is odd, split it into two parts of different size
+    if len(s) % 2 != 0:
+        return (s[:len(s)//2], s[len(s)//2+1:])
+    return (s[:len(s)//2], s[len(s)//2:])
+
+def are_strings_equivalent(a, b):
+    # If strings are equal, they are equivalent
+    if a == b:
+        return True
+    # Split strings into two halves
+    a1, a2 = split_string(a)
+    b1, b2 = split_string(b)
+    # Check if strings can be rearranged to be equivalent
+    return (are_strings_equivalent(a1, b1) and are_strings_equivalent(a2, b2)) or (are_strings_equivalent(a1, b2) and are_strings_equivalent(a2, b1))
+
+# Read input strings
+string1 = input()
+string2 = input()
+# Check if strings are equivalent and print the result
+if are_strings_equivalent(string1, string2):
+    print("YES")
+else:
+    print("NO")
+```
+
+The solution defines two functions: `split_string` and `are_strings_equivalent`. The first function takes a string as input and returns two halves of the string. If the string length is odd, it splits it into two parts of different size. The second function checks if two strings are equivalent based on the given definition. It first checks if the strings are equal, if yes, they are equivalent. If not, it splits the strings into two halves and recursively checks if the halves are equivalent in the required ways. If it finds a match, it returns True, else it returns False. The main part of the solution reads the input strings and calls the `are_strings_equivalent` function to check if the strings are equivalent and prints the result.

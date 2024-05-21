@@ -1,0 +1,26 @@
+
+Here is the Python3 code:
+
+```py
+from fractions import gcd
+from functools import reduce
+
+def lcm(a, b):
+    return a * b // gcd(a, b)
+
+n = int(input())
+t = [int(input()) for _ in range(n)]
+
+result = reduce(lcm, t)
+print(result)
+```
+
+The code above solves the problem by finding the least common multiple (LCM) of all the input numbers. The LCM is the smallest positive integer that is a multiple of all the input numbers.
+
+The `lcm` function calculates the LCM of two numbers using the formula `lcm(a, b) = a * b / gcd(a, b)`.
+
+The `gcd` function calculates the greatest common divisor (GCD) of two numbers using the `fractions` module.
+
+The `reduce` function is used to apply the `lcm` function to all the input numbers, finding the LCM of all the numbers.
+
+Finally, the result is printed.

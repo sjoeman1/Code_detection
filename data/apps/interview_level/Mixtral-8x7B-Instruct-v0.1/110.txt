@@ -1,0 +1,30 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n = int(input())
+a = list(map(int, input().split()))
+
+# Find the index of the smallest (in absolute value) non-zero element
+index = 0
+min_val = abs(a[0])
+for i in range(1, n):
+    if abs(a[i]) < min_val and a[i] != 0:
+        min_val = abs(a[i])
+        index = i
+
+# Multiply all elements by -1, except for the smallest non-zero element
+for i in range(n):
+    if i != index:
+        a[i] = -a[i]
+
+print(*a)
+```
+
+The solution works as follows:
+
+1. First, we find the index of the smallest (in absolute value) non-zero element in the array.
+2. Then, we multiply all elements by -1, except for the smallest non-zero element.
+
+This way, we ensure that the product of all elements is maximized. The reason is that when we multiply a negative number by -1, it becomes positive, and when we multiply a positive number by -1, it becomes negative. So, by multiplying all elements by -1, except for the smallest non-zero element, we make all the negative numbers positive, and the smallest non-zero number negative. This results in the maximum possible product of all elements.
+
+Note that if the array contains only zeroes, then the product is already maximized, and we can simply print the array as it is.

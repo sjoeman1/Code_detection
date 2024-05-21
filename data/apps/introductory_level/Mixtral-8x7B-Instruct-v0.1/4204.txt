@@ -1,0 +1,47 @@
+ To solve this problem, we can notice that the string will eventually become a repetition of the digits 1 to 9, in order, and then repeating. We can calculate the length of this repeating sequence, and then use the value of K to determine which character in the sequence we need to output.
+
+Here is the Python code to solve the problem:
+
+```python
+def calculate_sequence_length(n: int) -> int:
+    # Calculate the length of the repeating sequence of digits
+    length = 0
+    current = 1
+    while current <= n:
+        length += 1
+        current *= 10
+    for digit in range(2, 10):
+        current = 0
+        for _ in range(digit):
+            current += 10 ** length
+        length *= digit
+    return length
+
+def main():
+    string, k = input().split()
+    k = int(k)
+
+    sequence_length = calculate_sequence_length(9)
+    sequence_index = (5 * 10 ** 15) % sequence_length
+
+    # Calculate the K-th character in the sequence
+    character_index = k % sequence_length
+    current_index = sequence_index
+    current_char = "1"
+    for _ in range(character_index):
+        current_index = (current_index + 1) % sequence_length
+        if current_index == 0:
+            current_char = "1"
+        else:
+            current_digit = current_index % 10
+            current_char = str(current_digit) * current_index
+
+    print(current_char)
+
+if __name__ == "__main__":
+    main()
+```
+
+The `calculate_sequence_length` function calculates the length of the repeating sequence of digits. It does this by first calculating the length of the sequence for the digit 1, then multiplying that length by each digit from 2 to 9 to get the length of the sequence for each digit.
+
+The `main` function reads the input, calculates the index of the sequence that corresponds to the day after 5 \* 10^15 days, and then calculates the

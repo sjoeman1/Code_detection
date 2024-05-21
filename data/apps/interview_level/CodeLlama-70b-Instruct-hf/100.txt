@@ -1,0 +1,43 @@
+
+
+Here is the Python 3 code for the problem:
+
+```py
+# Input the size of the monitor
+n, m = map(int, input().split())
+
+# Initialize a matrix to store the screen
+screen = [list(input()) for _ in range(n)]
+
+# Check if the screen is empty
+if all(all(pixel == '.' for pixel in row) for row in screen):
+    print(-1)
+
+# Find the coordinates of the white pixels
+white_pixels = [(i, j) for i in range(n) for j in range(m) if screen[i][j] == 'w']
+
+# Find the optimal frame size
+optimal_size = min(abs(x1 - x2) + abs(y1 - y2) + 1 for (x1, y1), (x2, y2) in combinations(white_pixels, 2))
+
+# Initialize a matrix to store the frame
+frame = [[0] * m for _ in range(n)]
+
+# Iterate over the white pixels
+for x, y in white_pixels:
+    # Update the frame if the distance to the white pixel is less than or equal to the optimal size
+    for i in range(x - optimal_size + 1, x + optimal_size):
+        for j in range(y - optimal_size + 1, y + optimal_size):
+            if 0 <= i < n and 0 <= j < m:
+                frame[i][j] = 1
+
+# Print the screen with the frame
+for i in range(n):
+    for j in range(m):
+        if screen[i][j] == 'w' or frame[i][j] == 1:
+            print('w', end='')
+        elif frame[i][j] == 0:
+            print('.', end='')
+    print()
+```
+
+This code will take the input, calculate the frame size, and then print the screen with the frame. It will print -1 if the frame doesn't exist.

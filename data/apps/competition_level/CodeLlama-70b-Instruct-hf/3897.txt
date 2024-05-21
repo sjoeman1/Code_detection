@@ -1,0 +1,55 @@
+
+
+ Here's a Python 3 code that solves the problem:
+
+```py
+#!/usr/bin/env python3
+
+# Function to calculate the number of distinct decompositions of a number
+# into n ordered positive integers
+def count_decompositions(number, n):
+    # Initialize an empty list to store the results
+    results = []
+    # Start with the smallest possible decomposition
+    start = [number // n] * n
+    # Append the starting decomposition to the results list
+    results.append(start)
+    # Initialize a flag to indicate if we have reached the end
+    done = False
+    # Loop until we have reached the end
+    while not done:
+        # Initialize a flag to indicate if we have made any changes
+        changed = False
+        # Loop through the decomposition in reverse order
+        for i in range(n - 1, 0, -1):
+            # Check if the current decomposition can be increased
+            if start[i - 1] + 1 <= start[i]:
+                # Increase the decomposition
+                start[i - 1] += 1
+                start[i] -= 1
+                # Mark the change flag as True
+                changed = True
+                break
+        # If no changes were made, we have reached the end
+        if not changed:
+            done = True
+        else:
+            # Reverse the decomposition to get the smallest possible
+            # decomposition with the updated values
+            start = start[:i] + list(reversed(start[i:]))
+            # Append the new decomposition to the results list
+            results.append(start)
+    # Calculate the number of distinct decompositions
+    num_decompositions = len(set(map(tuple, results)))
+    # Return the number of distinct decompositions modulo 1000000007
+    return num_decompositions % 1000000007
+
+# Read the input
+n = int(input())
+numbers = list(map(int, input().split()))
+# Calculate the product of the numbers
+number = 1
+for i in numbers:
+    number *= i
+# Call the function to calculate the number of distinct decompositions
+result = count_decompositions

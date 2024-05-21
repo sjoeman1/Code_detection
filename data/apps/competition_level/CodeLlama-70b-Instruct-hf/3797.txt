@@ -1,0 +1,38 @@
+
+
+Here is the Python 3 code to solve the question:
+
+```python
+def solve(N, M, conditions):
+    mod = 1000000007
+    dp = [0] * (N + 1)
+    dp[0] = 1
+
+    for i in range(1, N + 1):
+        for l, r, x in conditions:
+            if i >= l and i <= r:
+                dp[i] = (dp[i] * x) % mod
+            elif i > r:
+                dp[i] = (dp[i] * 3) % mod
+
+    return dp[N]
+
+N, M = map(int, input().split())
+conditions = []
+for i in range(M):
+    l, r, x = map(int, input().split())
+    conditions.append((l, r, x))
+
+ans = solve(N, M, conditions)
+print(ans)
+```
+
+The code is pretty straightforward. It uses a dynamic programming approach to solve the problem.
+
+In the `solve` function, we initialize an array `dp` to keep track of the number of ways to paint the squares. We start with 1 way to paint 0 squares.
+
+For each square, we iterate through the conditions and check if the square is within the range. If it is, we multiply the number of ways by the number of colors in the condition. If it is not, we multiply the number of ways by 3.
+
+Finally, we return the number of ways to paint the last square.
+
+The constraints on N and M are relatively small, so we can afford to use a brute-force approach.

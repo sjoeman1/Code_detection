@@ -1,0 +1,25 @@
+
+
+Here is the Python 3 code that solves the problem:
+
+```python
+n = int(input())
+ticket = input()
+
+def is_lucky_ticket(ticket):
+    for i in range(1, len(ticket)):
+        sum1 = sum(map(int, ticket[:i]))
+        sum2 = sum(map(int, ticket[i:]))
+        if sum1 == sum2:
+            return True
+    return False
+
+if is_lucky_ticket(ticket):
+    print("YES")
+else:
+    print("NO")
+```
+
+The code starts by reading the number of digits `n` and the ticket as a string. It then defines a function `is_lucky_ticket` that takes the ticket as input. This function uses a loop to iterate over all possible segment sizes, starting from 1 to the length of the ticket. Inside the loop, it calculates the sum of the first segment (`sum1`) and the sum of the second segment (`sum2`). If the sums are equal, it returns `True`, indicating that the ticket is lucky. If the loop finishes without finding any equal sums, it returns `False`.
+
+Finally, the code calls the `is_lucky_ticket` function with the input ticket and prints "YES" if the ticket is lucky, or "NO" otherwise.

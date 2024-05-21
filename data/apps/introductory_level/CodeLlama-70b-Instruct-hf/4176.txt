@@ -1,0 +1,18 @@
+
+Here's the Python 3 code for the problem:
+
+```python
+# Takes in input from user
+A, B = map(int, input().split())
+
+# Minimum number of pieces for A guests
+min_A = (A * (A + 1)) // 2
+
+# Minimum number of pieces for B guests
+min_B = (B * (B + 1)) // 2
+
+# Prints the minimum number of pieces
+print(min_A + min_B)
+```
+
+This code takes in the input from the user, calculates the minimum number of pieces for both A and B guests, and then prints the total minimum number of pieces.

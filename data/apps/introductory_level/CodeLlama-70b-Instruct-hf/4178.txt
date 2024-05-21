@@ -1,0 +1,23 @@
+
+ Here is a Python3 code for solving the question:
+```
+def nonDecreasing(N, H):
+    decreases = 0
+    for i in range(1, N):
+        if H[i-1] > H[i]:
+            decreases += H[i-1] - H[i]
+    return "Yes" if decreases <= H[0] else "No"
+
+if __name__ == "__main__":
+    N = int(input())
+    H = list(map(int, input().split()))
+    print(nonDecreasing(N, H))
+```
+
+The `nonDecreasing` function takes the number of squares `N` and the heights of the squares `H` as input. It initializes a variable `decreases` to count the number of decreases required to make the heights non-decreasing.
+
+It then iterates through the squares from the second one to the last one. If the height of the previous square is greater than the current square, it adds the difference to the `decreases` variable.
+
+At the end, it checks if the total decreases required are less than or equal to the height of the first square. If so, it returns "Yes" indicating that it is possible to make the heights non-decreasing. Otherwise, it returns "No".
+
+The code is then executed in the main function, where it takes the input for `N` and `H`, and prints the result of the `nonDecreasing` function.

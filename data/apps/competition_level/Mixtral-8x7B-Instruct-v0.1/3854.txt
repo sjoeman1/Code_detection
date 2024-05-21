@@ -1,0 +1,38 @@
+ Here is a Python3 solution using dynamic programming to solve the problem:
+```python
+n, k = map(int, input().split())
+coins = list(map(int, input().split()))
+
+# Initialize a boolean array to keep track of the reachable values
+reachable = [False] * (k+1)
+reachable[0] = True
+
+# Iterate through each coin value
+for coin in coins:
+    # Initialize a new boolean array to keep track of the reachable values after adding the current coin
+    new_reachable = [False] * (k+1)
+    # Iterate through each possible remaining value
+    for j in range(k+1):
+        # If we could reach a value j before, we can now reach j + coin
+        if reachable[j]:
+            new_reachable[j + coin] = True
+    # Copy the new reachable values into the old reachable values
+    reachable = new_reachable
+
+# Find the number of reachable values
+q = sum(reachable)
+
+# Print the number of reachable values
+print(q)
+
+# Find the reachable values
+result = [i for i, x in enumerate(reachable) if x]
+
+# Print the reachable values
+print(*result)
+```
+The solution works by first initializing a boolean array `reachable` of size `k+1`, where `reachable[i]` is `True` if it is possible to make a value of `i` using some subset of the coins. We initialize `reachable[0]` to `True` since it is possible to make a value of 0 using an empty subset of coins.
+
+Then, for each coin, we initialize a new boolean array `new_reachable` of size `k+1`, where `new_reachable[i]` is `True` if it is possible to make a value of `i` using some subset of the coins that includes the current coin. For each possible remaining value `j`, if it was possible to make a value of `j` before, we can now make a value of `j + coin` using the current coin. After initializing `new_reachable`, we copy its values into `reachable`.
+
+Finally, we find the number of reachable

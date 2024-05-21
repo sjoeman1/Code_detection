@@ -1,0 +1,54 @@
+
+Here's the Python 3 code that solves the question:
+
+```python
+# Define the function to get the maximum influence
+def get_max_influence(spectators, n):
+    # Sort the spectators based on their influence in descending order
+    sorted_spectators = sorted(spectators, key=lambda x: x[1], reverse=True)
+    
+    # Initialize variables to track the maximum influence, number of supporters of Alice and Bob, and the current index
+    max_influence = 0
+    alice_count = 0
+    bob_count = 0
+    current_index = 0
+    
+    # Iterate through the sorted spectators
+    while alice_count < n / 2 or bob_count < n / 2:
+        # Get the current spectator
+        current_spectator = sorted_spectators[current_index]
+        
+        # Check if the current spectator supports Alice
+        if current_spectator[0] == "11" or current_spectator[0] == "10":
+            alice_count += 1
+        
+        # Check if the current spectator supports Bob
+        if current_spectator[0] == "11" or current_spectator[0] == "01":
+            bob_count += 1
+        
+        # Update the maximum influence
+        max_influence += current_spectator[1]
+        
+        # Increment the current index
+        current_index += 1
+    
+    # Return the maximum influence
+    return max_influence
+
+# Read the input
+n = int(input())
+spectators = []
+for _ in range(n):
+    s, a = input().split()
+    a = int(a)
+    spectators.append((s, a))
+
+# Calculate the maximum influence
+max_influence = get_max_influence(spectators, n)
+
+# Print the result
+print(max_influence)
+
+```
+
+This code reads the input and stores the spectators' political views and influence in a list. Then, it sorts the list in descending order based on the influence. Finally, it iterates through the sorted list and counts

@@ -6,15 +6,16 @@ import argparse
 import tqdm
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--dataset', default="results/gemma-7b-it-apps_interview.jsonl")
+parser.add_argument('--dataset', default="code_bert/codebert_competition_test.jsonl")
 parser.add_argument('--batch_size', default=4, type=int)
-parser.add_argument('--mask_lines', default=4, type=int)
+parser.add_argument('--mask_lines', default=8, type=int)
 parser.add_argument("--gpu", type=str, default="2")
 parser.add_argument("--model_name", type=str, default="facebook/incoder-1B")
 parser.add_argument("--run", type=str, default= "1")
 args = parser.parse_args()
 
-output_file = f'results/{args.dataset.split("/")[1]}_FIM_human_{args.run}_line_{args.mask_lines}.jsonl'
+output_file = f'FIM/{args.dataset.split("/")[1][:-6]}_FIM_human_{args.run}_line_{args.mask_lines}.jsonl'
+print(output_file)
 with open(args.dataset, 'r') as f:
     dataset = [json.loads(line) for line in f.readlines()]
 
@@ -86,19 +87,19 @@ if os.path.exists(output_file):
 
 ###### fill_in_middle_gold and fill_in_middle_parsed ######
 for idx, ins in tqdm.tqdm(enumerate(dataset), total = len(dataset)):
-    for input, output in [('parsed_codes','fill_in_middle_parsed'), ('gold_completion','fill_in_middle_gold')]:
-        gold_completion_all = []
-        if len(ins[input]) < 2500:
-            for _ in range(args.batch_size):
-                gold_codes_masked = mask_code(ins[input], mask_lines=args.mask_lines)
-                gold_completion_all.append(gold_codes_masked[:2500])
 
-            gold_completion_all = norm_inserts_num(gold_completion_all)
-            parts_batch = [example.split("<insert>") for example in gold_completion_all]
-            fill_in_middle_gold = infilling_model.batched_infill(parts_batch, max_to_generate=16*args.mask_lines, temperature=0.7)
-            ins[output] = fill_in_middle_gold
-        else:
-            ins[output] = ['token exceeds 2500']
+    gold_completion_all = []
+    if len(ins['code']) < 3200:
+        for _ in range(args.batch_size):
+            gold_codes_masked = mask_code(ins['code'], mask_lines=args.mask_lines)
+            gold_completion_all.append(gold_codes_masked[:3200])
+
+        gold_completion_all = norm_inserts_num(gold_completion_all)
+        parts_batch = [example.split("<insert>") for example in gold_completion_all]
+        fill_in_middle_gold = infilling_model.batched_infill(parts_batch, max_to_generate=16*args.mask_lines, temperature=0.7)
+        ins['FIM_code'] = fill_in_middle_gold
+    else:
+        ins['FIM_code'] = ['token exceeds 3200']
 
     with open(output_file, 'a') as f:
         f.write(json.dumps(ins) + '\n')

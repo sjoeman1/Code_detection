@@ -1,0 +1,1 @@
+{"columns": ["metric_name", "metric_value", "model_name"], "data": [["accuracy_score", 0.85, "MultinomialNB"], ["precision", 0.86, "MultinomialNB"], ["recall", 0.85, "MultinomialNB"], ["f1_score", 0.85, "MultinomialNB"]]}

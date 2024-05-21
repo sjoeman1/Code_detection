@@ -1,0 +1,27 @@
+
+
+
+
+Here's a Python 3 code that solves the problem:
+
+```python
+N = int(input())
+a = list(map(int, input().split()))
+
+m = 0
+operations = []
+
+for i in range(N):
+    for j in range(i+1, N):
+        if a[j] < a[i]:
+            m += 1
+            operations.append((j+1, i+1))
+            a[i] += a[j]
+            a[j] = 0
+
+print(m)
+for operation in operations:
+    print(*operation)
+```
+
+This code first takes the input for N and the array a. It then initializes m, the number of operations, to 0, and initializes operations, a list to store the operations. It then iterates through the array a and checks if the current element a[i] is smaller than the next element a[i+1]. If it is, it adds the current element to the next element, making the next element 0, and increments m by 1. It then prints m, and the operations in the required format.

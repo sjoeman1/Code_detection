@@ -1,0 +1,43 @@
+
+Here is the Python 3 code for the given problem:
+
+```python
+n, m = map(int, input().split())
+A = []
+for i in range(n):
+    A.append(list(map(int, input().split())))
+B = [[0] * m for i in range(n)]
+
+def check():
+    for i in range(n):
+        for j in range(m):
+            if A[i][j] != B[i][j]:
+                return False
+    return True
+
+def solve(i, j):
+    if i >= n or j >= m:
+        return False
+    if check():
+        return True
+    B[i][j] = 1
+    B[i][j+1] = 1
+    B[i+1][j] = 1
+    B[i+1][j+1] = 1
+    if solve(i, j+2):
+        return True
+    B[i][j] = 0
+    B[i][j+1] = 0
+    B[i+1][j] = 0
+    B[i+1][j+1] = 0
+    if solve(i+2, j):
+        return True
+    return False
+
+if solve(0, 0):
+    print(1)
+else:
+    print(-1)
+```
+
+In this code, we first read the input matrices A and B. We then check if A and B are equal. If they are not, we try to solve the problem by performing operations on B. We perform operations on B by setting the elements of the submatrix to 1 and then checking if A and B are equal. If they are, we return True. If not, we undo the operation and try the next operation. If no operation is possible, we return False.

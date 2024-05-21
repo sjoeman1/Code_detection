@@ -1,0 +1,31 @@
+
+Here's the Python 3 code that solves the problem:
+
+```
+n = int(input())
+
+numbers = list(map(int, input().split()))
+
+if 0 in numbers:
+    print(0)
+else:
+    if len(numbers) == 1:
+        print(numbers[0])
+    else:
+        negative_numbers = [x for x in numbers if x < 0]
+        if len(negative_numbers) % 2 == 0:
+            print(*numbers)
+        else:
+            max_negative = max(negative_numbers)
+            numbers[numbers.index(max_negative)] *= -1
+            numbers[numbers.index(max_negative)] -= 1
+            print(*numbers)
+```
+
+This code first reads the number of integers in the array, `n`, and the elements of the array, `numbers`. It then checks if the array contains a 0. If it does, it prints 0.
+
+If the array does not contain a 0, it checks if the array contains a single element. If it does, it prints the single element.
+
+If the array contains more than one element, it calculates the number of negative numbers in the array. If the number of negative numbers is even, it prints the elements of the array as they are.
+
+If the number of negative numbers is odd, it finds the largest negative number in the array, changes its sign, and subtracts 1 from it. It then prints the modified elements of the array.

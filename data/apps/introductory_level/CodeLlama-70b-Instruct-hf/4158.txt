@@ -1,0 +1,27 @@
+
+
+Here is the Python 3 code for solving the problem:
+
+```python
+n = int(input())
+
+points = list(map(int, input().split()))
+
+points.sort()
+
+max_subset = []
+
+for i in range(n):
+    for j in range(i + 1, n):
+        diff = points[j] - points[i]
+        if diff == 0:
+            continue
+        if diff & (diff - 1) == 0:
+            max_subset.append(points[i])
+            max_subset.append(points[j])
+
+print(len(max_subset) // 2)
+print(*max_subset)
+```
+
+This code reads the number of points and the coordinates of the points from the input. It then sorts the points in ascending order and iterates through all pairs of points. For each pair, it calculates the difference between the two points and checks if it is a power of 2. If it is, it adds the two points to the maximum subset. Finally, it prints the size of the maximum subset and the points in the subset.

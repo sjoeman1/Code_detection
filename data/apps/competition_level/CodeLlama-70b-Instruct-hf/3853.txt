@@ -1,0 +1,32 @@
+
+Here's a Python 3 code that solves the problem:
+
+```py
+import math
+
+def smallest_box(boxes):
+    # Sort the boxes by their side lengths in ascending order
+    boxes.sort(key=lambda x: x[1])
+
+    # Initialize the smallest side length to 0
+    smallest_side_length = 0
+
+    for k, a in boxes:
+        # Find the minimum side length that can contain all the boxes with side length 2^k - 1
+        smallest_side_length = max(smallest_side_length, 2**(k+1) - 1)
+
+    # Find the log2 of the smallest side length to get the power of 2
+    return math.ceil(math.log2(smallest_side_length))
+
+n = int(input())
+boxes = []
+
+for _ in range(n):
+    k, a = map(int, input().split())
+    for _ in range(a):
+        boxes.append((k, 2**k - 1))
+
+print(smallest_box(boxes))
+```
+
+This code defines a function `smallest_box` that takes a list of boxes as input. It sorts the boxes by their side lengths in ascending order and then iterates through the sorted list. For each box, it finds the minimum side length that can contain all the boxes with side length 2^k - 1. Finally, it finds the log2 of the smallest side length to get the power of 2, which is the required output. The code then reads the input, processes the boxes, and prints the smallest box power.

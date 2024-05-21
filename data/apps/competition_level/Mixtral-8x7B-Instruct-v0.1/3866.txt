@@ -1,0 +1,39 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def find\_lucky\_permutation(n):
+if n == 1:
+return [0]
+if n % 2 == 0:
+return -1
+
+a = [0] \* n
+a[0], a[1] = 0, 1
+for i in range(2, n, 2):
+a[i], a[i + 1] = i + 1, i
+
+b = [0] \* n
+for i in range(n):
+b[i] = (a[i] + i) % n
+
+c = [0] \* n
+for i in range(n):
+c[i] = (2 \* b[i]) % n
+
+return a, b, c
+
+n = int(input())
+result = find\_lucky\_permutation(n)
+
+if result == -1:
+print(-1)
+else:
+for perm in result:
+print(' '.join(map(str, perm)))
+```
+
+The solution first checks if the input `n` is 1, in which case the lucky permutation triple is `[0]`. If `n` is even, then there is no lucky permutation triple, so the solution returns `-1`.
+
+Otherwise, the solution constructs the permutation `a` such that `a[0] = 0`, `a[1] = 1`, and for `i > 1`, `a[i] = i + 1` if `i` is odd, and `a[i] = i - 1` if `i` is even. Then, the solution computes the permutation `b` such that `b[i] = (a[i] + i) % n` for all `i`. Finally, the solution computes the permutation `c` such that `c[i] = 2 * b[i] % n` for all `i`. The solution returns the three permutations `a`, `b`, and `c`.
+
+If the solution returns a triple of permutations, the program prints them out. Otherwise, it prints `-1`.

@@ -1,0 +1,15 @@
+ Here's the Python3 code to solve the problem:
+
+```python
+# Get input
+N = int(input().strip())
+side\_lengths = list(map(int, input().strip().split()))
+
+# Check if the longest side is strictly shorter than the sum of the other N-1 sides
+if max(side\_lengths) < sum(side\_lengths[:-1]):
+    print("Yes")
+else:
+    print("No")
+```
+
+The code first reads the value of `N` and the list of `side_lengths` from the standard input. Then, it checks if the longest side (`max(side_lengths)`) is strictly shorter than the sum of the other `N-1` sides (`sum(side_lengths[:-1])`). If the condition is satisfied, the code prints "Yes"; otherwise, it prints "No".

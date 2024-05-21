@@ -1,0 +1,22 @@
+
+Here is the Python3 code for solving the question:
+
+```py
+n = int(input())
+s = [int(x) for x in input().split()]
+g = [int(x) for x in input().split()]
+
+s_i = [0 for _ in range(n)]
+s_i[0] = s[0]
+
+for i in range(1, n):
+    if s_i[i - 1] - 1 <= s[i] + g[i] and s_i[i - 1] + 1 >= s[i]:
+        s_i[i] = s_i[i - 1]
+    else:
+        s_i[i] = s[i] + g[i]
+
+print(sum(s_i))
+print(*s_i)
+```
+
+This code will read the input, calculate the required values, and then print the output.

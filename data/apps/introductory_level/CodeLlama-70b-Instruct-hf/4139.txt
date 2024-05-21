@@ -1,0 +1,21 @@
+
+Here is the Python 3 code for solving the question:
+```
+import math
+
+def count_shichi_go_san_numbers(N):
+    count = 0
+    for i in range(1, N+1):
+        str_i = str(i)
+        if '7' in str_i and '5' in str_i and '3' in str_i:
+            count += 1
+    return count
+
+if __name__ == "__main__":
+    N = int(input())
+    result = count_shichi_go_san_numbers(N)
+    print(result)
+```
+In this code, the `count_shichi_go_san_numbers` function takes an integer N as input and iterates over all integers from 1 to N. For each integer, it converts it to a string and checks if the string contains the digits '7', '5', and '3'. If all three digits are present, it increments the count. The function returns the final count.
+
+The `if __name__ == "__main__":` block allows the function to be called from the command line. It reads the input N from the user, calculates the count of Shichi-Go-San numbers, and prints the result.

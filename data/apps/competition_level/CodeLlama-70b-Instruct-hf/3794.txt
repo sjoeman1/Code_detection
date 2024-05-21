@@ -1,0 +1,59 @@
+
+
+This is the Python3 code for the problem:
+
+```python
+#Input
+n = int(input())
+arr = list(map(int, input().split()))
+
+#Function to find GCD of two numbers
+def gcd(a, b):
+    if b == 0:
+        return a
+    else:
+        return gcd(b, a % b)
+
+#Function to find GCD of all integers in an array
+def array_gcd(arr):
+    result = arr[0]
+    for i in range(1, len(arr)):
+        result = gcd(result, arr[i])
+    return result
+
+#Initializing the answer array
+answer = [0] * n
+
+#If GCD of all integers is 1, it is not possible to split the array
+if array_gcd(arr) == 1:
+    print("NO")
+
+#Otherwise, we can split the array
+else:
+    print("YES")
+
+    #Initializing two groups
+    group1 = []
+    group2 = []
+
+    #Finding the GCD of all pairs of integers in the array
+    for i in range(n):
+        for j in range(i + 1, n):
+            g = gcd(arr[i], arr[j])
+            if g == 1:
+                group1.append(i)
+                group2.append(j)
+
+    #Assigning integers to groups
+    for i in range(n):
+        if i in group1:
+            answer[i] = 1
+        else:
+            answer[i] = 2
+
+    #Printing the answer
+    for x in answer:
+        print(x, end=" ")
+```
+
+This code takes the input, finds the GCD of all integers in the array. If the GCD is 1, it is not possible to split the array. Otherwise, it finds the GCD of all pairs of integers in the array and assigns integers to groups based on their GCD. Finally, it prints the answer.

@@ -1,0 +1,56 @@
+ Here is a Python3 solution using prefix sum array and two pointers technique:
+```python
+def possible_ways(n, w, a):
+    # Initialize prefix sum array
+    prefix_sum = [0]
+    for i in a:
+        prefix_sum.append(prefix_sum[-1] + i)
+
+    # Initialize left and right pointers
+    left = 0
+    right = 0
+
+    # Initialize count of possible ways
+    ways = 0
+
+    # Iterate over the prefix sum array
+    for i in range(1, len(prefix_sum)):
+        # Calculate the current number of passengers
+        curr_num = prefix_sum[i]
+
+        # While the current number of passengers is negative
+        while curr_num < 0:
+            # Move the left pointer to the right
+            left += 1
+            # Update the current number of passengers
+            curr_num += prefix_sum[left]
+
+        # Update the right pointer
+        right = max(right, left + 1)
+
+        # If the current number of passengers exceeds the capacity
+        if curr_num > w:
+            # Move the right pointer to the left
+            right = left + 1
+            continue
+
+        # Calculate the number of possible ways
+        ways += (right - left)
+
+    # If the number of ways is 0, then it is contradictory
+    if ways == 0:
+        return 0
+
+    # Return the number of possible ways
+    return ways
+
+# Read input
+n, w = map(int, input().split())
+a = list(map(int, input().split()))
+
+# Call the function and print the result
+print(possible_ways(n, w, a))
+```
+The solution uses a prefix sum array to keep track of the cumulative sum of the changes in the number of passengers. It also uses two pointers, left and right, to keep track of the range of possible initial numbers of passengers.
+
+The function iterates over the prefix sum array, updating the left and right pointers accordingly. If the current number of passengers is negative, it moves the left pointer to the right, adding the value of the leftmost element to the current number of passengers. If the current number of

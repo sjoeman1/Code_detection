@@ -1,0 +1,40 @@
+ Here is one possible solution in Python3 for the given problem:
+```python
+import random
+
+def is_valid(grid, h, w, num_white_components, num_black_components):
+    white_components = count_components(grid, h, w, 1)
+    black_components = count_components(grid, h, w, 0)
+    return white_components == num_white_components and black_components == num_black_components
+
+def count_components(grid, h, w, color):
+    visited = [[False] * w for _ in range(h)]
+    num_components = 0
+
+    for i in range(h):
+        for j in range(w):
+            if not visited[i][j] and grid[i][j] == color:
+                num_components += 1
+                dfs(grid, i, j, h, w, visited, color)
+
+    return num_components
+
+def dfs(grid, i, j, h, w, visited, color):
+    if i < 0 or i >= h or j < 0 or j >= w or visited[i][j] or grid[i][j] != color:
+        return
+
+    visited[i][j] = True
+    dfs(grid, i + 1, j, h, w, visited, color)
+    dfs(grid, i - 1, j, h, w, visited, color)
+    dfs(grid, i, j + 1, h, w, visited, color)
+    dfs(grid, i, j - 1, h, w, visited, color)
+
+def generate_grid(h, w, num_white_components, num_black_components):
+    grid = [[random.randint(0, 1) for _ in range(w)] for _ in range(h)]
+
+    while not is_valid(grid, h, w, num_white_components, num_black_components):
+        grid = [[random.randint(0, 1) for _ in range(w)] for _ in range(h)]
+
+    for i in range(h):
+        for j in range(w):
+            if grid[i][

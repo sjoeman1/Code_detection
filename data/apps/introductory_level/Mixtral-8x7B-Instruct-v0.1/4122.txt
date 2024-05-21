@@ -1,0 +1,29 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def min\_after\_which\_monster\_dies():
+\_\_author\_\_ = 'Dmytro Polishchuk'
+
+min\_hp = 0
+hp = hp\_limit = int(input())
+n = int(input())
+d = list(map(int, input().split()))
+
+for i in range(n):
+for j in range(i, n, n):
+hp += d[j]
+if hp <= min\_hp:
+min\_hp = hp
+if min\_hp <= 0:
+return i
+
+return -1
+
+print(min\_after\_which\_monster\_dies())
+```
+
+The solution uses a simple iterative approach. It initializes the minimum hit points (`min_hp`) to 0 and the current hit points (`hp`) to the initial hit points of the monster (`hp_limit`). Then, it iterates over the sequence `d` for each minute of a round. For each minute, it adds the corresponding change to the current hit points. If the current hit points become less than or equal to `min_hp`, it updates `min_hp` to the current hit points. If `min_hp` becomes less than or equal to 0, it returns the current minute.
+
+If the loop completes without returning a minute, it means that the superhero can't kill the monster and the battle will last infinitely, so it returns -1.
+
+Note that the solution assumes that the input is valid and does not contain any error handling.

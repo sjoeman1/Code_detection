@@ -1,0 +1,38 @@
+ Here is a Python3 solution for the problem:
+
+```python
+import sys
+from heapq import heappop, heappush
+
+input = sys.stdin.readline
+
+def dijkstra(n, p, start_positions, keys_positions):
+    dist = [float('inf')] * (n + 1)
+    dist[p] = 0
+    pq = [(0, p)]
+    while pq:
+        d, curr = heappop(pq)
+        if dist[curr] < d:
+            continue
+        for next_pos in (pos for pos in (start_positions + keys_positions) if pos != curr):
+            time = max(d, abs(curr - next_pos))
+            if time < dist[next_pos]:
+                dist[next_pos] = time
+                heappush(pq, (time, next_pos))
+    return dist
+
+def min_time_to_office(n, k, p, start_positions, keys_positions):
+    dist_to_keys = dijkstra(n, p, start_positions, [])
+    dist_to_office = dijkstra(n, p, start_positions + keys_positions, [])
+    return max(dist_to_keys[key] + dist_to_office[key] for key in keys_positions)
+
+if __name__ == '__main__':
+    n, k, p = map(int, input().strip().split())
+    start_positions = list(map(int, input().strip().split()))
+    keys_positions = list(map(int, input().strip().split()))
+    print(min_time_to_office(n, k, p, start_positions, keys_positions))
+```
+
+This solution uses Dijkstra's algorithm to find the minimum time required for each person to reach any key and then to reach the office. It then returns the maximum of these times, which is the minimum time required for all people to reach the office with keys.
+
+The `dijkstra` function implements Dijkstra's algorithm using a priority queue to efficiently find the shortest path

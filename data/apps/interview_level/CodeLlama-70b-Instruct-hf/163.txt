@@ -1,0 +1,38 @@
+
+
+Here is the Python 3 code for the question:
+
+```py
+# Function to check whether the grasshopper can reach the target
+def canReachTarget(n, k, obstacles):
+    # Get the indices of the grasshopper and the target
+    grasshopper_index = obstacles.index('G')
+    target_index = obstacles.index('T')
+
+    # If the grasshopper and the target are on the same side of an obstacle,
+    # return False
+    for i in range(n):
+        if obstacles[i] == '#' and grasshopper_index < i and i < target_index:
+            return False
+
+    # Calculate the distance between the grasshopper and the target
+    distance = abs(grasshopper_index - target_index)
+
+    # Check if the distance is divisible by k
+    if distance % k == 0:
+        return True
+    else:
+        return False
+
+# Read input
+n, k = map(int, input().split())
+obstacles = input()
+
+# Check if the grasshopper can reach the target
+if canReachTarget(n, k, obstacles):
+    print("YES")
+else:
+    print("NO")
+```
+
+In this code, the `canReachTarget` function checks whether the grasshopper can reach the target. It first gets the indices of the grasshopper and the target. Then, it checks if there is an obstacle between them and returns `False` if there is. Finally, it calculates the distance between the grasshopper and the target and checks if the distance is divisible by `k`. If it is, it returns `True` indicating that the grasshopper can reach the target. Otherwise, it returns `False`. The main function reads the input and calls the `canReachTarget` function to check if the grasshopper can reach the target. If it can, it prints `YES` and `NO` otherwise.

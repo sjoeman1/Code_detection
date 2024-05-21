@@ -1,0 +1,51 @@
+
+
+Here is the Python3 code for the question:
+
+```py
+# Input
+n, m, k = map(int, input().split())
+
+graph = [[] for _ in range(n + 1)]
+
+for _ in range(m):
+    a, b = map(int, input().split())
+    graph[a].append(b)
+    graph[b].append(a)
+
+# DFS
+def dfs(v, parent):
+    global dp
+    dp[v][0] = 1
+    for to in graph[v]:
+        if to != parent:
+            dfs(to, v)
+            for i in range(n - 1, 0, -1):
+                dp[v][i] += dp[to][i - 1]
+
+dp = [[0] * (n - 1) for _ in range(n + 1)]
+dfs(1, -1)
+
+# Finding the answer
+ans = []
+for i in range(1, n):
+    s = ""
+    for j in range(1, m + 1):
+        if dp[i][j] == dp[n][j - 1]:
+            s += "1"
+        else:
+            s += "0"
+    ans.append(s)
+
+# Output
+print(len(set(ans)))
+for s in set(ans):
+    print(s)
+```
+
+The code works as follows:
+
+1.  **Input**: The code reads the input values for `n`, `m`, and `k`. It also reads the road connections for each pair of cities.
+2.  **Graph**: The code creates a graph to represent the road connections. Each city is represented by a node, and each road is represented by an edge.
+3.  **DFS**: The code performs a depth-first search (DFS) on the graph to calculate the distances from the capital (city 1) to all other cities. The `dp` array is used to store the distances.
+4.  **Answer**: The code iterates over all cities (except the capital) and checks if the distance from the capital to that city is equal to the distance from that city to all other

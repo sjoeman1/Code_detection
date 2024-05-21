@@ -1,0 +1,24 @@
+ Here is one way to solve the problem using Python:
+
+```python
+n, m = map(int, input().split())
+s = input()
+t = input()
+
+i, j = 0, 0
+while i < n and j < m:
+    if s[i] == '*':
+        i += 1
+        continue
+    if s[i] != t[j]:
+        break
+    i += 1
+    j += 1
+
+if i < n:
+    print("NO")
+else:
+    print("YES")
+```
+
+This solution uses two pointers, `i` and `j`, to iterate over the strings `s` and `t` simultaneously. If the current character in `s` is a wildcard character `*`, we skip it and move on to the next character in `s`. If the current characters in `s` and `t` are not equal, then `t` does not match the pattern `s` and we print "NO". Otherwise, we continue until we have iterated over all characters in `s` and `t`, at which point we print "YES".

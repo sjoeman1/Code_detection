@@ -1,0 +1,21 @@
+ Here is a Python3 solution for the problem:
+```python
+def get_next_char(c):
+    if c == 'z':
+        return None
+    else:
+        return chr(ord(c) + 1)
+
+def can_reach_alphabet(s):
+    prev_char = None
+    for c in s:
+        if c == 'z':
+            if prev_char == 'y':
+                return False
+            else:
+                prev_char = None
+        elif prev_char is not None and get_next_char(prev_char) != c:
+            return False
+        else:
+            prev_char = c
+    return True

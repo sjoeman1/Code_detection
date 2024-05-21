@@ -1,0 +1,31 @@
+
+Here is the Python 3 code to solve the question:
+```python
+def answer_question(N, M):
+    # Base case
+    if N == 1:
+        return 2
+    # Recursive case
+    else:
+        return ((2**N) - (2**(N-1))) % M
+
+# Get the input from the user
+N, M = map(int, input().split())
+
+# Calculate the result
+result = answer_question(N, M)
+
+# Print the result
+print(result)
+```
+
+Here is an explanation of the code:
+
+1.  The `answer_question` function is defined. It takes `N` and `M` as input and calculates the number of sets of bowls of ramen that satisfy the conditions.
+2.  The base case is when `N == 1`. In this case, there are two sets of bowls of ramen: one with the topping and one without.
+3.  The recursive case is when `N > 1`. In this case, we calculate the number of sets of bowls of ramen by subtracting the number of sets with exactly one topping from the total number of sets. This is because the number of sets with exactly one topping includes the case where all toppings are used, which is not allowed.
+4.  We then get the input `N` and `M` from the user.
+5.  We calculate the result by calling the `answer_question` function.
+6.  Finally, we print the result.
+
+Note that this code assumes that the input is valid, and does not include error handling or validation.

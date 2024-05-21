@@ -1,0 +1,25 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def generate\_string(n, memo={}):
+if n == 0:
+return "What are you doing at the end of the world? Are you busy? Will you save us?"
+if n in memo:
+return memo[n]
+s = f"What are you doing while sending {generate\_string(n-1)}? Are you busy? Will you send {generate\_string(n-1)}?"
+memo[n] = s
+return s
+
+q = int(input().strip())
+for _ in range(q):
+n, k = map(int, input().strip().split())
+s = generate\_string(n)
+if len(s) < k:
+print(".")
+else:
+print(s[k-1])
+```
+
+The function `generate_string` generates the `n`-th string in the sequence. We use memoization to avoid recomputing the same string multiple times.
+
+The main loop reads the number of queries `q` and processes each query by reading `n` and `k`, generating the `n`-th string, and printing the `k`-th character of the string. If the string has less than `k` characters, we print `.` instead.

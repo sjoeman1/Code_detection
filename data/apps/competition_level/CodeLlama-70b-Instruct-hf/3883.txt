@@ -1,0 +1,39 @@
+
+
+The input for the question is a single line containing two positive integers a and b. The output for the question is a single line containing the answer. The answer is the minimum positive value of x that satisfies the condition. If there is no such x, the output should be -1.
+
+Here is a Python 3 code that solves the question:
+
+```
+import math
+
+# Function to find the minimum positive value of x
+def find_x(a, b):
+    # Check if a = b
+    if a == b:
+        # If so, return 1.0 as the minimum value of x
+        return 1.0
+    # Check if a > b
+    if a > b:
+        # If so, return -1 as there is no such x
+        return -1
+    # Find the minimum value of x
+    x = math.sqrt(2 * (b - a))
+    # Check if x is a positive integer
+    if x.is_integer() and x > 0:
+        # If so, return x
+        return x
+    # Otherwise, return -1
+    return -1
+
+# Read the input from stdin
+a, b = map(int, input().split())
+# Find the minimum positive value of x
+result = find_x(a, b)
+# Print the result
+print(result)
+```
+
+This code defines a function `find_x` that takes in two parameters `a` and `b`. It checks if `a == b`, and if so, it returns `1.0` as the minimum value of `x`. If `a > b`, it returns `-1` as there is no such `x`. Otherwise, it calculates the minimum value of `x` using `math.sqrt(2 * (b - a))`. If `x` is a positive integer, it returns `x`, otherwise it returns `-1`.
+
+After that, it reads the input from stdin, calls the `find_x` function, and prints the result.

@@ -1,0 +1,46 @@
+
+Here is the Python3 code for solving the question:
+
+```
+# n - number of groups coming to the restaurant
+# a - number of one-seater tables
+# b - number of two-seater tables
+# t_1, t_2, ..., t_n - sequence of integers describing clients in chronological order
+
+def solve(n, a, b, t):
+    # Initialize the number of people denied service to 0
+    denied_service = 0
+
+    # Iterate through each client in the sequence
+    for client in t:
+        # Check if the client consists of one person
+        if client == 1:
+            # Check if there are any one-seater tables available
+            if a > 0:
+                a -= 1
+            # Check if there are any two-seater tables with a single person
+            elif b > 0:
+                b -= 1
+            # Deny service if no tables are available
+            else:
+                denied_service += 1
+        # If the client consists of two people
+        else:
+            # Check if there are any two-seater tables available
+            if b > 0:
+                b -= 1
+            # Deny service if no tables are available
+            else:
+                denied_service += 2
+
+    return denied_service
+
+# Read the input from stdin
+n, a, b = map(int, input().split())
+t = list(map(int, input().split()))
+
+# Call the solve function with the input values and print the result
+print(solve(n, a, b, t))
+```
+
+This code reads the input values from stdin, calculates the number of people denied service, and prints the result.

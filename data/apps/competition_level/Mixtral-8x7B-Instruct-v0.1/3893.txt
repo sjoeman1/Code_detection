@@ -1,0 +1,42 @@
+ To solve this problem, you can use a line sweep algorithm to determine on which side of each road your home and the university are located. Then, you can use a graph to represent the blocks and the connections between them, where each node in the graph represents a block and each edge represents a common border between two blocks. Finally, you can use a BFS (breadth-first search) to find the shortest path between the node representing your home and the node representing the university.
+
+Here is an example of how you can implement this in Python:
+
+```
+import collections
+
+def solve():
+    def add_edge(x, y):
+        if x not in graph:
+            graph[x] = collections.defaultdict(int)
+        if y not in graph:
+            graph[y] = collections.defaultdict(int)
+        graph[x][y] = 1
+        graph[y][x] = 1
+
+    def sign(a, b, c, x, y):
+        if a == 0 and b == 0:
+            return 0
+        elif a == 0:
+            return -c // b if b > 0 else -c // b - 1
+        elif b == 0:
+            return -c // a if a > 0 else -c // a - 1
+        else:
+            return -c - a * x - b * y
+
+    x1, y1 = map(int, input().split())
+    x2, y2 = map(int, input().split())
+    n = int(input())
+    roads = []
+    for _ in range(n):
+        a, b, c = map(int, input().split())
+        roads.append((a, b, sign(a, b, c, x1, y1), sign(a, b, c, x2, y2)))
+
+    graph = collections.defaultdict(collections.defaultdict(int))
+    for a, b, s1, s2 in roads:
+        if s1 != 0:
+            add_edge(s1, -a // b)
+        if s2 != 0:
+            add_edge(-s2, a // b)
+
+    q = collections.deque([(0, 0

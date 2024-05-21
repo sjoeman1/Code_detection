@@ -1,0 +1,38 @@
+🤖 Here is a possible solution in Python 3:
+
+```python
+def is_valid_phone_number(s):
+    # Check if the string is a valid phone number
+    if len(s) == 11 and s[0] == '8':
+        return True
+    return False
+
+def has_winning_strategy(s):
+    # Base case: if the string is a valid phone number, Vasya wins
+    if is_valid_phone_number(s):
+        return True
+    
+    # Iterate through each character in the string
+    for i in range(len(s)):
+        # Erase the current character
+        new_s = s[:i] + s[i+1:]
+        
+        # If Petya can't win after this move, Vasya wins
+        if not has_winning_strategy(new_s):
+            return True
+    
+    # If none of the moves lead to a win for Vasya, Petya wins
+    return False
+
+# Read the input
+n = int(input())
+s = input()
+
+# Determine if Vasya has a winning strategy
+if has_winning_strategy(s):
+    print("YES")
+else:
+    print("NO")
+```
+
+This solution recursively checks if Petya has a winning strategy after each possible move by Vasya. If Petya cannot win after any of Vasya's moves, Vasya has a winning strategy.

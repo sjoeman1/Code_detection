@@ -1,0 +1,20 @@
+
+
+
+```python
+# Python 3 code
+def solve(n, s, v):
+    min_keg = min(v)
+    if s > n * min_keg:
+        return -1
+    else:
+        return min_keg - s % min_keg
+
+n, s = list(map(int, input().split()))
+v = list(map(int, input().split()))
+print(solve(n, s, v))
+```
+
+
+
+This code works by finding the minimum keg size, and then checking if the target volume can be reached by pulling from each keg at least once. If it can, it calculates the amount of kvass left in the smallest keg after filling the glass. If it can't, it returns -1.

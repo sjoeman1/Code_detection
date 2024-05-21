@@ -1,0 +1,43 @@
+
+
+ Here is the Python 3 code that solves the problem:
+
+```py
+from math import gcd
+
+def is_prime(n):
+    if n <= 1:
+        return False
+    if n <= 3:
+        return True
+    if n % 2 == 0 or n % 3 == 0:
+        return False
+    i = 5
+    while i * i <= n:
+        if n % i == 0 or n % (i + 2) == 0:
+            return False
+        i += 6
+    return True
+
+def solve(n, m):
+    total_seqs = 2**(m * n)
+    ans = total_seqs
+    for i in range(2, m + 1):
+        if is_prime(i):
+            ans -= total_seqs // i
+    for i in range(2, m + 1):
+        for j in range(i + 1, m + 1):
+            if gcd(i, j) == 1:
+                ans += total_seqs // (i * j)
+    for i in range(2, m + 1):
+        for j in range(i + 1, m + 1):
+            for k in range(j + 1, m + 1):
+                if gcd(i, j) == 1 and gcd(i, k) == 1 and gcd(j, k) == 1:
+                    ans -= total_seqs // (i * j * k)
+    return ans % (10**9 + 9)
+
+n, m = map(int, input().split())
+print(solve(n, m))
+```
+
+In this code, the `is_prime` function checks if a given number is prime or not. The `solve` function calculates the number of sequences that are not wool sequences. The `gcd` function calculates the greatest common divisor of two numbers. The `solve` function uses the inclusion-exclusion principle to count the number of sequences that are not wool sequences. The `solve` function returns the number of sequences modulo 1000000009 (10^9 + 

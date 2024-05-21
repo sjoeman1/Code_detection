@@ -1,0 +1,42 @@
+
+Here is the Python 3 code that solves the problem:
+
+```py
+def get_maximum_reposted_sum(n, k, x, beauty_values):
+    # Initialize the dynamic programming table
+    dp = [[0] * (n + 1) for _ in range(x + 1)]
+    
+    # Loop through all possible x values
+    for i in range(1, x + 1):
+        # Loop through all possible k values
+        for j in range(1, n + 1):
+            # Handle the case where k is greater than the current index
+            if j < k:
+                dp[i][j] = -1
+            # Handle the case where k is equal to the current index
+            elif j == k:
+                dp[i][j] = max(dp[i][j - 1], beauty_values[j - 1])
+            # Handle the case where k is less than the current index
+            else:
+                dp[i][j] = max(dp[i][j - 1], dp[i - 1][j - k] + beauty_values[j - 1])
+    
+    # Return the maximum reposted sum
+    return dp[x][n]
+
+# Read input from stdin
+n, k, x = map(int, input().split())
+beauty_values = list(map(int, input().split()))
+
+# Get the maximum reposted sum
+max_reposted_sum = get_maximum_reposted_sum(n, k, x, beauty_values)
+
+# Print the result
+if max_reposted_sum == -1:
+    print("-1")
+else:
+    print(max_reposted_sum)
+```
+
+The code defines a function `get_maximum_reposted_sum` that takes in the values `n`, `k`, `x`, and `beauty_values` as input. It initializes a dynamic programming table `dp` to store intermediate results. Then, it iterates through all possible values of `x` and `k`, calculating the maximum reposted sum for each combination. Finally, it returns the maximum reposted sum.
+
+The

@@ -1,0 +1,18 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n = int(input())
+a = int(input())
+b = int(input())
+
+for x in range(n//a + 1):
+    y = (n - x*a) // b
+    if x*a + y*b == n:
+        print("YES")
+        print(x, y)
+        break
+else:
+    print("NO")
+```
+
+The solution uses a simple loop to iterate through all possible values of `x` (number of bottles of Ber-Cola) and calculates the corresponding value of `y` (number of Bars bars) using the equation `x*a + y*b = n`. If a solution is found, it prints "YES" followed by the values of `x` and `y` and breaks out of the loop. If no solution is found after checking all possible values of `x`, it prints "NO".

@@ -1,0 +1,25 @@
+ Here is a Python3 solution using a dictionary to store the segments and then checking if any segment is contained within another:
+
+```python
+n = int(input())
+segments = {}
+
+for i in range(n):
+    l, r = map(int, input().split())
+    segments[i] = (l, r)
+
+for i, seg1 in segments.items():
+    for j, seg2 in segments.items():
+        if i != j and seg1[0] >= seg2[0] and seg1[1] <= seg2[1]:
+            print(i, j)
+            break
+    else:
+        continue
+    break
+else:
+    print(-1, -1)
+```
+
+This solution has a time complexity of O(n^2) since it checks for every pair of segments if one is contained within the other. This is because there can be up to n^2 pairs of segments, and each check takes constant time.
+
+Note that the `break` statements are used to exit the inner loop once a pair of segments that satisfy the condition is found. The `else` clauses on the loops are used to ensure that the `-1 -1` output is only printed if no pair of segments is found to satisfy the condition.

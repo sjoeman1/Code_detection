@@ -1,0 +1,20 @@
+
+
+def main():
+    # Initialize a variable to store the result
+    result = 0
+
+    # Read the input from the user
+    line1 = input()
+    line2 = input()
+    line3 = input()
+    line4 = input()
+
+    # Calculate the result
+    if line1 == "0" and line2 == "1" and line3 == "1" and line4 == "0":
+        result = 0
+    else:
+        result = 1
+
+    # Print the result
+    print(result)

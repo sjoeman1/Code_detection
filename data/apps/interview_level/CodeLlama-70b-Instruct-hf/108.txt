@@ -1,0 +1,21 @@
+
+```
+def solve(s):
+    n = len(s)
+    i = 0
+    j = 0
+    res = []
+    while i < n and j < 26:
+        if ord(s[i]) == ord('a') + j:
+            res.append(s[i])
+            i += 1
+            j += 1
+        else:
+            i += 1
+    if j == 26:
+        return ''.join(res)
+    else:
+        return -1
+```
+
+This code iterates through the string `s` and checks if the current character is the next character in the English alphabet. If it is, it adds it to the result string and moves on to the next character. If the current character is not the next character in the alphabet, it skips it and moves on to the next character. The code continues until it has iterated through the entire string or until it has found all the characters in the English alphabet. If it has found all the characters in the English alphabet, it returns the result string, otherwise it returns `-1`.

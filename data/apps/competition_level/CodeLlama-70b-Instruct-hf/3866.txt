@@ -1,0 +1,37 @@
+
+```python
+from collections import defaultdict
+from random import shuffle
+
+def find_permutation(n):
+    if n % 2 == 0:
+        return -1
+    permutation = list(range(n))
+    shuffle(permutation)
+    return permutation
+
+def find_lucky_permutation_triple(n):
+    a = find_permutation(n)
+    b = find_permutation(n)
+    c = [a[i] + b[i] for i in range(n)]
+    return a, b, c
+
+def solve_lucky_permutation_triple(n):
+    if n % 2 == 0:
+        return -1
+    a, b, c = find_lucky_permutation_triple(n)
+    return [a, b, c]
+
+if __name__ == '__main__':
+    n = int(input())
+    if n % 2 == 0:
+        print(-1)
+    else:
+        a, b, c = solve_lucky_permutation_triple(n)
+        for permutation in [a, b, c]:
+            print(' '.join(map(str, permutation)))
+```
+
+
+
+Here's the Python code to solve the problem. The `find_permutation` function generates a random permutation of length `n`. The `find_lucky_permutation_triple` function uses the `find_permutation` function to generate permutations `a` and `b`, and then calculates the third permutation `c` based on the sum of `a` and `b`. The `solve_lucky_permutation_triple` function is the main function that handles the input and output. If `n` is even, it prints -1, otherwise, it calls `find_lucky_permutation_triple` to generate the permutations and prints them.

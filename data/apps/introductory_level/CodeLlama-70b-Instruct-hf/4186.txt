@@ -1,0 +1,42 @@
+
+
+Here is the Python3 code for solving the question:
+
+```
+n = int(input())
+
+# Read the input
+a = list(map(int, input().split()))
+
+# Create a list to store the count of students with each skill level
+count = [0] * 101
+
+# Calculate the count of students with each skill level
+for skill in a:
+    count[skill] += 1
+
+# Initialize the number of pairs that can form a team
+pairs = 0
+
+# Initialize the number of problems that need to be solved
+problems = 0
+
+# Iterate through all the skill levels
+for skill in range(1, 101):
+    # If there are students with the current skill level, and the number of students with this skill level is even
+    if count[skill] > 0 and count[skill] % 2 == 0:
+        # Increment the number of pairs that can form a team
+        pairs += count[skill] // 2
+    # If there are students with the current skill level, and the number of students with this skill level is odd
+    elif count[skill] > 0:
+        # Increment the number of problems that need to be solved by the number of students with this skill level - 1
+        problems += count[skill] - 1
+
+# Calculate the total number of problems that need to be solved
+total_problems = problems * (n - pairs * 2)
+
+# Print the total number of problems that need to be solved
+print(total_problems)
+```
+
+The code reads the number of students, $n$, and the skill levels of each student, $a_1, a_2, \dots, a_n$. It then counts the number of students with each skill level and calculates the number of pairs of students who can form a team. If the number of students with a particular skill level is odd, it adds the number of students minus one to the number of problems that need to be solved. Finally, it calculates the total number of problems that need to be solved and prints it as the output.

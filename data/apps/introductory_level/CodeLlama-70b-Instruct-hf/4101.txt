@@ -1,0 +1,44 @@
+
+
+Here is the Python 3 code for solving the problem:
+
+```python
+# Function to sort a matrix by inverting rows and columns
+def sortMatrix(matrix):
+    n = len(matrix)
+    m = len(matrix[0])
+
+    # Invert rows and columns
+    for i in range(n):
+        for j in range(m):
+            if matrix[i][j] == 0:
+                matrix[i] = [1 - x for x in matrix[i]]
+                for k in range(n):
+                    matrix[k][j] = 1 - matrix[k][j]
+                break
+
+    # Check if the matrix is sorted
+    sorted_matrix = []
+    for i in range(n):
+        for j in range(m):
+            sorted_matrix.append(matrix[i][j])
+    sorted_matrix = sorted(sorted_matrix)
+
+    if sorted_matrix == matrix:
+        return "YES"
+    else:
+        return "NO"
+
+# Main function
+if __name__ == "__main__":
+    n, m = map(int, input().split())
+    matrix = []
+
+    for _ in range(n):
+        matrix.append(list(map(int, input().split())))
+
+    result = sortMatrix(matrix)
+    print(result)
+```
+
+The code first takes input for the number of rows and columns in the matrix. It then asks for the elements of the matrix row by row. The `sortMatrix` function is defined to sort the matrix by inverting rows and columns. It first checks if any element in the matrix is 0. If it finds one, it inverts the row and column containing that element. Then, it checks if the matrix is sorted. If it is, it prints "YES", otherwise, it prints "NO".

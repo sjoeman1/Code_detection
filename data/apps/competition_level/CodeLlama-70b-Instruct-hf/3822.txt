@@ -1,0 +1,19 @@
+
+
+Here's the Python 3 code to solve the question:
+
+```
+# Input
+n, l, v_1, v_2, k = map(int, input().split())
+
+# Calculate the minimum time required
+if k >= n:
+    time = l / v_2
+else:
+    time = (n // k) * (l / v_2 + (k - 1) / v_1) + (n % k) / v_1
+
+# Output
+print(time)
+```
+
+This code first reads the input values for n, l, v_1, v_2, and k. Then, it calculates the minimum time required to reach the place of excursion using the provided formula. If k is greater than or equal to n, then all pupils can fit in the bus, and the minimum time is calculated using the first term of the formula. If k is less than n, then some pupils will have to walk and others will ride the bus, and the minimum time is calculated using the second term of the formula. Finally, it prints the calculated minimum time.

@@ -1,0 +1,41 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def min_moves(s, t):
+    # Initialize the lengths of s and t
+    s_len, t_len = len(s), len(t)
+    
+    # Calculate the maximum length that the strings can be shortened to
+    max_len = min(s_len, t_len)
+    
+    # Initialize a 2D array to store the minimum number of moves needed to make
+    # the first `i` characters of `s` equal to the first `j` characters of `t`
+    dp = [[0 for _ in range(max_len + 1)] for _ in range(s_len + 1)]
+    
+    # Initialize the first row and column of the array
+    for i in range(s_len + 1):
+        dp[i][0] = i
+    for j in range(t_len + 1):
+        dp[0][j] = j
+    
+    # Fill in the rest of the array
+    for i in range(1, s_len + 1):
+        for j in range(1, t_len + 1):
+            if s[i - 1] == t[j - 1]:
+                dp[i][j] = dp[i - 1][j - 1]
+            else:
+                dp[i][j] = min(dp[i - 1][j], dp[i][j - 1]) + 1
+    
+    # The minimum number of moves needed to make `s` and `t` equal is in the
+    # bottom-right corner of the array
+    return dp[s_len][t_len]
+
+# Read in the two strings
+s = input()
+t = input()
+
+# Print the minimum number of moves needed to make `s` and `t` equal
+print(min_moves(s, t))
+```
+
+This solution uses dynamic programming to solve the problem. The idea is to calculate the minimum number of moves needed to make the first `i` characters of `s` equal to the first `j` characters of `t`, for all `i` and `j`. This is stored in a 2D array

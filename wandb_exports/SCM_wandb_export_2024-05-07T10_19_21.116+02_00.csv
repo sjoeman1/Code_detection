@@ -1,0 +1,4 @@
+Name,difficulty,accuracy,macro avg.f1-score,macro avg.precision,macro avg.recall
+,interview,0.857,0.767,0.89,0.728
+,introductory,0.846,0.756,0.858,0.722
+,competition,0.863,0.776,0.868,0.739

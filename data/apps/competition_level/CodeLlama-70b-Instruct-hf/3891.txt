@@ -1,0 +1,38 @@
+
+
+ 
+
+ Here is the Python3 code for solving the question:
+
+```py
+# Input the values of n and m
+n, m = map(int, input().split())
+
+# Initialize the black_cells_row and black_cells_col variables
+black_cells_row = []
+black_cells_col = []
+
+# For each row and column
+for i in range(n):
+    row = input()
+    for j in range(m):
+        # If a black cell is found, append the row and column index to the corresponding lists
+        if row[j] == 'B':
+            black_cells_row.append(i)
+            black_cells_col.append(j)
+
+# Calculate the center row and column index of the black square
+center_row = (min(black_cells_row) + max(black_cells_row)) // 2
+center_col = (min(black_cells_col) + max(black_cells_col)) // 2
+
+# Output the center row and column index
+print(center_row + 1, center_col + 1)
+```
+
+In this code, we first take the input values for n and m, representing the number of rows and columns in the table. Then, we create two lists, `black_cells_row` and `black_cells_col`, to store the indices of the rows and columns that contain black cells.
+
+For each row and column, we check if the cell contains a black cell. If it does, we add the row and column index to the corresponding lists.
+
+After processing all the rows and columns, we calculate the center row and column indices of the black square by taking the average of the minimum and maximum indices of black cells in each dimension. We add 1 to the indices to convert them to 1-based indexing.
+
+Finally, we print the center row and column indices separated by a space, as required by the output format.

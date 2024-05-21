@@ -1,0 +1,38 @@
+ Here is a Python3 solution for the problem:
+```python
+n = int(input())
+bids = list(map(int, input().split()))
+
+# Find the minimum and maximum bids
+min_bid = min(bids)
+max_bid = max(bids)
+
+# If the maximum bid is more than twice the minimum bid,
+# then it's impossible to make all bids equal.
+if max_bid > 2 * min_bid:
+    print("No")
+else:
+    # If all bids are equal, then they are already equal.
+    if max_bid == min_bid:
+        print("Yes")
+    else:
+        # If the maximum bid is exactly twice the minimum bid,
+        # then it's possible to make all bids equal if and only if
+        # all bids are either the minimum bid or the maximum bid.
+        if max_bid == 2 * min_bid:
+            if bids.count(min_bid) + bids.count(max_bid) == n:
+                print("Yes")
+            else:
+                print("No")
+        else:
+            # In this case, the maximum bid must be exactly three times
+            # the minimum bid. We can check if it's possible to make all
+            # bids equal by counting the number of bids that are equal
+            # to the minimum bid and the number of bids that are equal
+            # to the maximum bid.
+            if bids.count(min_bid) + bids.count(max_bid) == n:
+                print("Yes")
+            else:
+                print("No")
+```
+This solution first finds the minimum and maximum bids. If the maximum bid is more than twice the minimum bid, then it's impossible to make all bids equal. If all bids are equal, then they are already equal. If the maximum bid is exactly twice the minimum bid, then it's possible to make all bids equal if and only if all bids are either the minimum bid or the maximum bid. If the maximum bid is exactly three times the minimum bid, then we can check if it's possible to make all bids equal by counting the number of bids that are equal to the minimum bid and the

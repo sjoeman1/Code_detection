@@ -1,0 +1,24 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n = int(input())
+a = list(map(int, input().split()))
+
+max_rest = 0
+current_rest = 0
+for i in range(n):
+    if a[i] == 0:
+        current_rest += 1
+    else:
+        max_rest = max(max_rest, current_rest)
+        current_rest = 0
+
+# Check if there is a rest that spans across two days
+max_rest = max(max_rest, current_rest)
+
+print(max_rest)
+```
+
+The solution keeps track of the current length of the rest period and the maximum rest period found so far. If the current hour is a rest hour, it increments the current rest period. If the current hour is a work hour, it updates the maximum rest period found so far and resets the current rest period.
+
+Additionally, the solution checks if there is a rest that spans across two days after processing the entire schedule. This is necessary because the problem statement requires us to consider that days go one after another endlessly and Polycarp uses the same schedule for each day.

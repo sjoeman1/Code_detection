@@ -1,0 +1,47 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def check\_street\_pattern():
+n, m = map(int, input().split())
+horizontal\_streets = input()
+vertical\_streets = input()
+
+# Check if there is at least one horizontal street going in each direction
+if horizontal\_streets.count('<') == 0 or horizontal\_streets.count('>') == 0:
+if vertical\_streets.count('^') == 0 or vertical\_streets.count('v') == 0:
+print("YES")
+return
+
+# Check if there is at least one vertical street going in each direction
+print("NO")
+
+# Check if it's possible to reach any junction from any other junction
+else:
+print("YES")
+
+check\_street\_pattern()
+```
+
+This solution first reads the input and checks if there is at least one horizontal street going in each direction. If not, it checks if there is at least one vertical street going in each direction. If there is, it means that it's possible to reach any junction from any other junction. If not, it prints "NO".
+
+However, I noticed that the input format does not explicitly state that there will be at least one street going in each direction, so the solution above might not be correct. If that's the case, the solution below takes into account all possible cases:
+
+```python
+def check\_street\_pattern():
+n, m = map(int, input().split())
+horizontal\_streets = input()
+vertical\_streets = input()
+
+# Check if there is at least one horizontal street going in each direction
+if horizontal\_streets.count('<') == 0:
+direction\_h = '>'
+else:
+direction\_h = '<' if horizontal\_streets.count('>') == 0 else 'both'
+
+if vertical\_streets.count('^') == 0:
+direction\_v = 'v'
+else:
+direction\_v = '^' if vertical\_streets.count('v') == 0 else 'both'
+
+# If there is only one direction for horizontal or vertical streets
+if direction\_h == '>' or direction\_h == '^' or direction\_v == '<

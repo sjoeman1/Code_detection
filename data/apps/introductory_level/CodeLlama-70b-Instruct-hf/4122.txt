@@ -1,0 +1,27 @@
+
+```python
+def superhero_fights_monster(H, n, d):
+    if all(x < 0 for x in d):
+        return -1
+    k = 0
+    while H > 0:
+        for i in range(n):
+            H += d[i]
+            k += 1
+            if H <= 0:
+                return k
+    return -1
+
+
+H, n = map(int, input().split())
+d = list(map(int, input().split()))
+print(superhero_fights_monster(H, n, d))
+```
+
+This code defines a function `superhero_fights_monster` that takes three parameters: `H`, the initial hp of the monster, `n`, the number of minutes in a round, and `d`, the list of hp changes in each minute.
+
+The function first checks if all elements in the list `d` are negative. If so, the monster cannot be killed and the function returns -1.
+
+If there is at least one positive element in the list `d`, the function enters a while loop. The while loop continues as long as the monster's hp `H` is greater than 0. Inside the while loop, there is a for loop that iterates through the list `d`, adding each element to the monster's hp `H` and incrementing the minute counter `k`. If the monster's hp `H` becomes less than or equal to 0 during the for loop, the function returns the minute `k` at which the monster died.
+
+If the while loop finishes without returning a value, it means that the monster's hp `H` never became less than or equal to 0, and the function returns -1 to indicate that the battle will continue infinitely.

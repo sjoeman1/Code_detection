@@ -1,0 +1,51 @@
+
+
+```python
+# Input
+x = int(input())
+
+# Output
+operations = 0
+
+# 0. If x is already a perfect longcat, print 0
+if (x & (x + 1)) == 0:
+    print(0)
+    exit()
+
+# 1. First operation must be type A
+# Calculate n_1 such that x ⊕ (2^n_1 - 1) is a power of 2
+# (2^n_1 - 1) must have exactly 1 bit set, so we can use bitwise operations
+# Shift x to the right until we find the most significant bit
+n_1 = 0
+while (x >> n_1) & 1 == 0:
+    n_1 += 1
+
+# x ⊕ (2^n_1 - 1) is a power of 2, so we can find n_1 by shifting x to the right n_1 times
+# n_1 is the number of 0s after the most significant bit of x
+# Increment operations
+operations += 1
+
+# 2. Second operation is type B, x is incremented by 1
+x += 1
+operations += 1
+
+# 3. Repeat operations 1 and 2 until x is a perfect longcat or 40 operations are reached
+while (x & (x + 1)) != 0 and operations < 40:
+    # Calculate n_i such that x ⊕ (2^n_i - 1) is a power of 2
+    n_i = 0
+    while (x >> n_i) & 1 == 0:
+        n_i += 1
+
+    # Increment operations
+    operations += 1
+
+    # x ⊕ (2^n_i - 1) is a power of 2, so we can find n_i by shifting x to the right n_i times
+    # n_i is the number of 0s after the most significant bit of x
+
+    # Increment operations
+    operations += 1
+
+# Print the number of operations
+print(operations)
+
+# Print the numbers n_1, n_3, n_5,

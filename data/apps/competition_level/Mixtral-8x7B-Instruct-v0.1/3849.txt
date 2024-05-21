@@ -1,0 +1,29 @@
+ Here is a Python3 solution for the problem:
+
+```python
+import sys
+
+def duel(n, k, s):
+    if (n - 1) % (k - 1) != 0:
+        return "tokitsukaze" if k % 2 == 1 else "quailty"
+    if "1" not in s and "0" not in s:
+        return "once again"
+    if k == 1:
+        return "quailty" if "1" in s else "tokitsukaze"
+    if k == n:
+        return "tokitsukaze" if s[0] == s[-1] else "quailty"
+    if s[0] != s[-1]:
+        return "once again"
+    for i in range(1, n - k + 1):
+        if s[i:i + k] != s[i - 1] * k:
+            return "once again"
+    return "tokitsukaze" if s[0] == "1" else "quailty"
+
+if __name__ == '__main__':
+    lines = sys.stdin.readlines()
+    n, k = map(int, lines[0].split())
+    s = lines[1].strip()
+    print(duel(n, k, s))
+```
+
+The solution checks the parity of `n` and `k` and the number of consecutive `0`s or `1`s in the input string `s`. If the total number of moves can exceed `10^9`, the function returns `"once again"`. Otherwise, it checks the initial situation of the cards and the parity of `k`. If `k` is odd, the player who moves first will win, and if `k` is even, the player who moves second will win. The function also checks whether the input string `s` starts and ends with the same character. If they are different, the function returns `"once again"`. Finally, the function checks whether the input string `s` can be divided into `k`-length blocks with the same value. If it can, the player who moves first will win, and if it cannot, the player who moves second will win.

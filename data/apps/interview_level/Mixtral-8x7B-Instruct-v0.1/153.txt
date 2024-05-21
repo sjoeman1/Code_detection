@@ -1,0 +1,31 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def max\_points(n, k, M, t):
+n, k, M = map(int, (n, k, M))
+t = list(map(int, t))
+
+s = sorted(enumerate(t), key=lambda x: x[1])
+tasks = [0] * n
+points = 0
+
+for i in range(n):
+j, time = s[i]
+if M >= (k - j) * time:
+M -= (k - j) * time
+points += k + 1
+else:
+points += M // time
+M %= time
+
+return points
+
+n, k, M = map(int, input().split())
+t = list(map(int, input().split()))
+
+print(max\_points(n, k, M, t))
+```
+
+The solution uses a greedy approach to solve the problem. It first sorts the subtasks based on their time requirements and then processes them in that order. For each subtask, it checks if there is enough time to complete the remaining subtasks of that task. If there is enough time, it adds `k+1` points to the total and continues with the next task. Otherwise, it adds as many points as possible by solving the current subtask and moves on to the next task.
+
+The function `max_points` takes four arguments: `n`, `k`, `M`, and `t`. `n` and `k` are the number of tasks and the number of subtasks per task, respectively. `M` is the total time available, and `t` is a list of time requirements for each subtask. The function returns the maximum number of points that Polycarp can earn in `M` minutes.

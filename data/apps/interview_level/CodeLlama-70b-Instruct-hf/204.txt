@@ -1,0 +1,34 @@
+
+
+Here is the Python3 code for solving the question:
+
+```
+# Function to find the greatest common divisor (GCD)
+def gcd(a, b):
+    if b == 0:
+        return a
+    else:
+        return gcd(b, a % b)
+
+# Function to find the number of possible variants for a given aspect ratio
+def find_variants(x, y, a, b):
+    # Find the GCD of x and y
+    d = gcd(x, y)
+    # Calculate the new width and height
+    w = x // d
+    h = y // d
+    # Calculate the number of possible variants
+    count = (a // w) * (b // h)
+    return count
+
+# Take the input from the user
+a, b, x, y = map(int, input().split())
+
+# Call the function to find the number of possible variants
+result = find_variants(x, y, a, b)
+
+# Print the result
+print(result)
+```
+
+This code defines a function `gcd(a, b)` to find the greatest common divisor (GCD) of two numbers. It then defines another function `find_variants(x, y, a, b)` that takes the aspect ratio (x, y) and the constraints (a, b) as inputs. It calculates the new width and height using the GCD, and then calculates the number of possible variants by taking the product of the number of possible widths (a // w) and the number of possible heights (b // h). Finally, it prints the result after calling the `find_variants` function with the input values.

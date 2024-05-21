@@ -1,0 +1,36 @@
+
+Here is the Python 3 code for solving the question:
+```
+def max_moves(N, H):
+    # Initialize variables
+    current_position = 0
+    max_moves = 0
+    current_moves = 0
+
+    # Iterate over the squares
+    for i in range(1, N):
+        # Check if the height of the next square is not greater than that of the current square
+        if H[i] <= H[current_position]:
+            current_moves += 1
+        else:
+            # Update the maximum moves
+            max_moves = max(max_moves, current_moves)
+            current_moves = 0
+            current_position = i
+
+    # Check for the last case
+    max_moves = max(max_moves, current_moves)
+
+    return max_moves
+
+# Get the input
+N = int(input())
+H = list(map(int, input().split()))
+
+# Calculate the maximum number of moves
+max_moves = max_moves(N, H)
+
+# Print the result
+print(max_moves)
+```
+The provided code takes input from the user in the given format. It iterates through the squares and checks if the height of the next square is not greater than that of the current square. If it is, it increments the current moves by 1. If not, it updates the maximum moves and resets the current moves to 0. It then checks for the last case and prints the maximum number of moves.

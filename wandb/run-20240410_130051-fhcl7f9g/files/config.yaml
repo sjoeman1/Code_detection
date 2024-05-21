@@ -1,0 +1,61 @@
+wandb_version: 1
+
+dataset:
+  desc: null
+  value: results/gemma-7b-it-apps
+difficulty:
+  desc: null
+  value: competition
+classifier:
+  desc: null
+  value: LR
+max_features:
+  desc: null
+  value: 8000
+vectorizer:
+  desc: null
+  value: TfidfVectorizer
+ngram_range:
+  desc: null
+  value:
+  - 1
+  - 4
+tokenizer:
+  desc: null
+  value: tokenize_comment
+_wandb:
+  desc: null
+  value:
+    python_version: 3.10.11
+    cli_version: 0.16.4
+    framework: xgboost
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    start_time: 1712746851.0
+    t:
+      1:
+      - 1
+      - 5
+      - 6
+      - 33
+      - 53
+      - 55
+      - 95
+      2:
+      - 1
+      - 5
+      - 6
+      - 33
+      - 53
+      - 55
+      - 95
+      3:
+      - 13
+      - 16
+      - 23
+      4: 3.10.11
+      5: 0.16.4
+      8:
+      - 3
+      - 5
+      13: windows-amd64

@@ -1,0 +1,16 @@
+
+
+Here is the Python 3 code to solve the question:
+
+```python
+def min_product_mod(L, R):
+    MOD = 2019
+    result = float('inf')
+    for i in range(L, R):
+        for j in range(i + 1, R + 1):
+            result = min(result, (i * j) % MOD)
+    return result
+
+L, R = map(int, input().split())
+print(min_product_mod(L, R))
+```

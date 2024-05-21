@@ -1,0 +1,22 @@
+
+
+ I apologize for the mistake. Here is the corrected Python 3 code:
+
+```python
+n, k = map(int, input().split())
+q = list(map(int, input().split()))
+s = list(map(int, input().split()))
+
+for i in range(1, n+1):
+    if q.index(i) + 1 != s[i-1]:
+        print("NO")
+        break
+else:
+    print("YES")
+```
+
+In this code, we first take input for the length of the permutation `n` and the number of moves `k`. We then take input for the permutation `q` and the Masha's permutation `s`.
+
+We then iterate through the permutation `q` and check if the index of each element in `q` plus 1 is equal to the corresponding element in `s`. If this condition is not met for any element, we print "NO" and break the loop.
+
+If the loop completes without breaking, it means that the described situation is possible, and we print "YES".

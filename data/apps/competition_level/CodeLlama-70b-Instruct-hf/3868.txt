@@ -1,0 +1,38 @@
+
+
+This is a typical dynamic programming problem. Here is the Python 3 code:
+
+```python
+#!/usr/bin/env python3
+
+import sys
+
+def solve(n, m, k, flights):
+    dp = [[0 for _ in range(k)] for _ in range(n + 1)]
+    for i in range(1, n + 1):
+        for j in range(k):
+            min_cost = sys.maxsize
+            for flight in flights:
+                if flight[1] == i and flight[0] + j < k and dp[flight[2]][flight[0] + j] + flight[3] < min_cost:
+                    min_cost = dp[flight[2]][flight[0] + j] + flight[3]
+            dp[i][j] = min_cost
+
+    min_cost = sys.maxsize
+    for i in range(n + 1):
+        if dp[i][k - 1] < min_cost:
+            min_cost = dp[i][k - 1]
+
+    return -1 if min_cost == sys.maxsize else min_cost
+
+if __name__ == '__main__':
+    n, m, k = map(int, input().split())
+    flights = []
+    for _ in range(m):
+        d, f, t, c = map(int, input().split())
+        flights.append((d, f, t, c))
+
+    cost = solve(n, m, k, flights)
+    print(cost)
+```
+
+This code uses a 2D dynamic programming table `dp` to store the minimum cost of sending each jury member to Metropolis and back home. The `solve` function iterates over each jury member and day to find the minimum cost. The `main` function reads the input and prints the minimum cost or -1 if it is not possible.

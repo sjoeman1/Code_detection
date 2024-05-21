@@ -9,6 +9,8 @@ import ast
 from zss import Node
 from zss import simple_distance
 
+from transformers import RobertaTokenizer
+
 PorterStemmer = PorterStemmer()
 nlp = spacy.load('en_core_web_sm')
 stopwords = nlp.Defaults.stop_words
@@ -141,6 +143,10 @@ def parse_code_snippet(prompt, raw_o):
         gen = raw_o.split("```")[1].strip()
         if gen.startswith("python"):
             gen = gen[len("python") :].strip()
+        if gen.startswith("python3"):
+            gen = gen[len("python3") :].strip()
+        if gen.startswith("py"):
+            gen = gen[len("py") :].strip()
         if gen.startswith(prompt.strip()):
             suf = gen.split(prompt.strip())[-1]
             suf = remove_eos(suf)
@@ -201,6 +207,13 @@ def tag_comment_tokenizer(text):
 
 def hide_comment_tokenizer(text):
     tokenized = standard_tokenizer(text)
+    # remove newlines after comments
+    tokenized = [token for i, token in enumerate(tokenized)
+                 if not (token == "#NEWLINE#" and i > 0
+                         and is_comment(tokenized[i - 1])
+                         and (tokenized[i-2] == "#NEWLINE#"
+                              or tokenized[i-2] == "#INDENT#"
+                              or tokenized[i-2] == "#DEDENT#"))]
     tokenized = [token for token in tokenized if not is_comment(token)]
     return tokenized
 
@@ -229,7 +242,8 @@ def tokenize_only_comment(text):
 
 
 def is_comment(token):
-    return token.startswith("#") and not (token == "#NEWLINE#" or token == "#INDENT#" or token == "#DEDENT#")
+    return (token.startswith("#") and not (token == "#NEWLINE#" or token == "#INDENT#" or token == "#DEDENT#")
+            or (token.startswith("'''") and token.endswith("'''")))
 
 
 def standard_tokenizer(text):
@@ -237,3 +251,6 @@ def standard_tokenizer(text):
     # convert to string and return
     tokenized = [str(token) for token in tokenized]
     return tokenized
+
+def codebert_tokenizer(text):
+    return RobertaTokenizer.from_pretrained("microsoft/codebert-base").tokenize(text)

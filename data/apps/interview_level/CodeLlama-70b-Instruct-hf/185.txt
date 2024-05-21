@@ -1,0 +1,22 @@
+
+
+Here is the Python 3 code that solves the problem:
+
+```python
+def min_moves(n, k):
+    # Base cases
+    if n == 2:
+        return 6
+    if k == 1 or k == n:
+        return 2 * n - 3
+    return 2 * n - 4
+
+
+# Input
+n, k = map(int, input().split())
+
+# Output
+print(min_moves(n, k))
+```
+
+This code solves the problem by using a mathematical formula. It first checks for the base cases where $n = 2$ and where $k = 1$ or $k = n$, and then calculates the minimum number of moves using the formula.

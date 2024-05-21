@@ -1,7 +1,12 @@
+import numpy as np
+
 import wandb
 import argparse
 import json
 import pandas as pd
+import sys
+
+import matplotlib.pyplot as plt
 
 from sklearn.svm import SVC
 from sklearn.linear_model import LogisticRegression
@@ -13,56 +18,54 @@ from sklearn.metrics import classification_report
 import xgboost as xgb
 
 from utils import tag_comment_tokenizer, hide_comment_tokenizer, tokenize_comment_tokenizer, tokenize_only_comment, \
-    standard_tokenizer
+    standard_tokenizer, codebert_tokenizer
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--dataset', default="results/gemma-7b-it-apps_interview_207.jsonl")
-parser.add_argument('--classifier', default="XGB", choices=['SCM', 'LR', 'MNB', 'XGB'])
-parser.add_argument('--max_features', default=8000, type=int)
-parser.add_argument('--vectorizer', default='CountVectorizer', choices=['TfidfVectorizer', 'CountVectorizer'])
+parser.add_argument('--dataset', default="code_bert/codebert_train.jsonl")
+# parser.add_argument('--difficulty', default="competition", choices=["introductory", "interview", "competition"])
+parser.add_argument('--testset', default="code_bert/codebert_introductory_test.jsonl")
+parser.add_argument('--classifier', default="LR", choices=['SCM', 'LR', 'MNB', 'XGB'])
+parser.add_argument('--max_df', default=0.5, type=float)
+parser.add_argument('--min_df', default=0.0155, type=float)
+parser.add_argument('--vectorizer', default='TfidfVectorizer', choices=['TfidfVectorizer', 'CountVectorizer'])
 parser.add_argument('--ngram_range', default=(1, 4), type=tuple, nargs=2)
-parser.add_argument('--tokenizer', default='comment_only',
-                    choices=['tokenize_comment', 'tag_comment', 'hide_comment', 'standard_tokenizer', 'comment_only'])
+parser.add_argument('--tokenizer', default='tokenize_comment',
+                    choices=['tokenize_comment', 'tag_comment', 'hide_comment', 'standard_tokenizer', 'comment_only',
+                             'codebert_tokenizer'])
 args = parser.parse_args()
-# args.ngram_range = tuple(args.ngram_range)
 print(args)
 
 clf_name = args.classifier
-dataset_name = args.dataset.split('/')[-1].split('.')[0]
+dataset_name = args.dataset.split('/')[-1][:-6]
 run_name = f"{dataset_name}_{clf_name}"
 
-# load the dataset
-with open(args.dataset, 'r') as f:
-    dataset = [json.loads(line) for line in f.readlines()]
+# load train and test data
+with open(args.dataset, "r") as f:
+    train_dataset = [json.loads(line) for line in f.readlines()]
 
-wandb.init(project='Code_Detection', config=args, name=run_name, tags= [dataset_name.split('_')[1], dataset_name.split('_')[0]])
+with open(args.testset, "r") as f:
+    test_dataset = [json.loads(line) for line in f.readlines()]
+
+
+wandb.init(project='Code_Detection_full_dataset', config=args, name=run_name, tags=["full_dataset"])
 config = wandb.config
 
+df_train = pd.DataFrame(train_dataset)
+df_test = pd.DataFrame(test_dataset)
 
-# create dataframe
-df = pd.DataFrame(dataset)
-#remove rows with # CANNOT PARSE
-df = df[~df['parsed_codes'].str.startswith("# CANNOT")]
-print(df)
-human_written = df['gold_completion']
-machine_generated = df['parsed_codes']
-print(len(human_written), len(machine_generated))
-human_written_labels = [0] * len(human_written)
-machine_generated_labels = [1] * len(machine_generated)
+X_train = df_train['code']
+y_train = df_train['label']
 
-# combine the two lists
 
-# human_written and machine_generated are lists of strings
-data = human_written._append(machine_generated, ignore_index=True)
-print(data)
-data_labels = human_written_labels + machine_generated_labels
+
+print(df_train['label'].value_counts())
+
+X_test = df_test['code']
+y_test = df_test['label']
+
+print(df_test['label'].value_counts())
+
 labels = ['human_written', 'machine_generated']
-
-print(len(data), len(data_labels))
-
-# split the data into training and testing
-X_train, X_test, y_train, y_test = train_test_split(data, data_labels, shuffle=True, test_size=0.2, random_state=42)
-
 # create tokenizer
 match config['tokenizer']:
     case "tokenize_comment":
@@ -75,19 +78,25 @@ match config['tokenizer']:
         tokenizer = standard_tokenizer
     case "comment_only":
         tokenizer = tokenize_only_comment
+    case "codebert_tokenizer":
+        tokenizer = codebert_tokenizer
     case _:
         print("Invalid tokenizer name")
 
-# test the tokenizer
-train_ = df['parsed_codes'][2]
-print(train_)
-print(tokenize_comment_tokenizer(train_))
+# # test the tokenizer
+# train_ = df_train['code'][6]
+# print(train_)
+# print(tokenizer(train_))
+#
+# sys.exit(1)
 
 match config['vectorizer']:
     case "CountVectorizer":
-        vectorizer = CountVectorizer(tokenizer=tokenizer, max_features=config.max_features, ngram_range=tuple(config.ngram_range))
+        vectorizer = CountVectorizer(tokenizer=tokenizer, min_df=config.min_df, max_df=config.max_df,
+                                     ngram_range=tuple(config.ngram_range))
     case "TfidfVectorizer":
-        vectorizer = TfidfVectorizer(tokenizer=tokenizer, max_features=config.max_features, ngram_range=tuple(config.ngram_range))
+        vectorizer = TfidfVectorizer(tokenizer=tokenizer, min_df=config.min_df, max_df=config.max_df,
+                                     ngram_range=tuple(config.ngram_range))
     case _:
         print("Invalid vectorizer name")
         wandb.finish(exit_code=1)
@@ -95,6 +104,7 @@ match config['vectorizer']:
 
 X_train = vectorizer.fit_transform(X_train)
 X_test = vectorizer.transform(X_test)
+print(X_train.shape, X_test.shape)
 
 match config['classifier']:
     case "SCM":
@@ -132,4 +142,13 @@ wandb.sklearn.plot_summary_metrics(clf, X_train, y_train, X_test, y_test)
 if not config['classifier'] == "SCM":
     wandb.sklearn.plot_roc(y_test, y_probas, labels)
     wandb.sklearn.plot_feature_importances(clf, vectorizer.get_feature_names_out())
+    features = wandb.sklearn.calculate.feature_importances(clf, vectorizer.get_feature_names_out())
+
+    # get top and bottom 10 features out of features and plot them in wandb
+    top_features = features.value.data[:10]
+    bottom_features = features.value.data[-10:]
+    all_features = top_features + bottom_features
+    table = wandb.Table(data=all_features, columns=features.value.columns)
+    chart = wandb.visualize("top_20_features", table)
+    wandb.log({"top_20_features_log": chart})
 

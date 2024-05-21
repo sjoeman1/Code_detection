@@ -1,0 +1,29 @@
+
+
+Here is the Python 3 code to solve the question:
+
+```
+# Input
+N, M = map(int, input().split())
+prefectures = []
+for i in range(M):
+    prefecture, year = map(int, input().split())
+    prefectures.append((prefecture, year))
+
+# Sort the cities in ascending order of establishment year
+prefectures.sort(key=lambda x: x[1])
+
+# Create a dictionary to store the cities belonging to each prefecture
+cities_by_prefecture = {}
+for i, (prefecture, year) in enumerate(prefectures):
+    cities_by_prefecture.setdefault(prefecture, []).append(i + 1)
+
+# Print the ID numbers for all the cities
+for i, (prefecture, year) in enumerate(prefectures):
+    prefecture_str = str(prefecture).zfill(6)
+    city_str = str(cities_by_prefecture[prefecture].pop(0)).zfill(6)
+    id_number = prefecture_str + city_str
+    print(id_number)
+```
+
+This code will take the input in the specified format and then sort the cities by their establishment year. It will then create a dictionary to store the cities belonging to each prefecture and print the ID numbers for all the cities in ascending order of their indices.

@@ -1,0 +1,13 @@
+
+```python
+# Input:
+A, B = map(int, input().split())
+
+# Output:
+print(3, 3)
+print('##.')
+print('..#')
+print('#.#')
+```
+
+This code prints the grid shown in the sample output. The grid is a 3x3 grid with two white components and three black components.

@@ -1,0 +1,92 @@
+wandb_version: 1
+
+dataset:
+  desc: null
+  value: results/gemma-7b-it-apps_competition_207.jsonl
+classifier:
+  desc: null
+  value: MNB
+max_features:
+  desc: null
+  value: 8000
+vectorizer:
+  desc: null
+  value: TfidfVectorizer
+ngram_range:
+  desc: null
+  value:
+  - 1
+  - 4
+tokenizer:
+  desc: null
+  value: tag_comment
+_wandb:
+  desc: null
+  value:
+    python_version: 3.10.11
+    cli_version: 0.16.4
+    framework: xgboost
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    start_time: 1712655088.0
+    t:
+      1:
+      - 1
+      - 5
+      - 6
+      - 33
+      - 53
+      - 55
+      - 95
+      2:
+      - 1
+      - 5
+      - 6
+      - 33
+      - 53
+      - 55
+      - 95
+      3:
+      - 13
+      - 15
+      - 16
+      - 23
+      4: 3.10.11
+      5: 0.16.4
+      8:
+      - 3
+      - 5
+      10:
+      - 5
+      13: windows-amd64
+    viz:
+      confusion_matrix:
+        id: wandb/confusion_matrix/v1
+        historyFieldSettings:
+          x-axis: _step
+          key: confusion_matrix
+      learning_curve:
+        id: wandb/learning_curve/v1
+        historyFieldSettings:
+          x-axis: _step
+          key: learning_curve
+      class_proportions:
+        id: wandb/class_proportions/v1
+        historyFieldSettings:
+          x-axis: _step
+          key: class_proportions
+      calibration_curve:
+        id: wandb/calibration/v1
+        historyFieldSettings:
+          x-axis: _step
+          key: calibration_curve
+      summary_metrics:
+        id: wandb/metrics/v1
+        historyFieldSettings:
+          x-axis: _step
+          key: summary_metrics
+      roc:
+        id: wandb/roc/v1
+        historyFieldSettings:
+          x-axis: _step
+          key: roc

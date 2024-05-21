@@ -1,0 +1,9 @@
+ Here is a Python3 solution for the problem:
+
+```python
+import sys
+from collections import defaultdict
+
+def solve():
+    N = int(sys.stdin.readline())
+    A = list(map(int, sys.stdin.readline().split()))

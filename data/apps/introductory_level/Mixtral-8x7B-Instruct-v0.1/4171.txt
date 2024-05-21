@@ -1,0 +1,30 @@
+ Here is a Python3 solution for the problem:
+```python
+n, k = map(int, input().split())
+a = list(map(int, input().split()))
+
+# Count the frequency of each number in the array
+counts = [0] * (2 * 10 ** 5 + 1)
+for num in a:
+    counts[num] += 1
+
+# Initialize the result to 0
+result = 0
+
+# While the number of equal numbers is less than k
+while sum(count >= k for count in counts) < k:
+    # Increment the result
+    result += 1
+    
+    # Update the counts of each number
+    new_counts = [0] * (2 * 10 ** 5 + 1)
+    for num, count in enumerate(counts):
+        if count > 0:
+            new_counts[num // 2] += count
+    counts = new_counts
+
+print(result)
+```
+The solution works by first counting the frequency of each number in the array. Then, in a loop, it repeatedly divides all numbers by 2 (rounding down) and updates the counts accordingly. The loop continues until the number of equal numbers in the array is at least k. The minimum number of operations required is then the number of times the loop was executed.
+
+This solution has a time complexity of O(n log M), where n is the number of elements in the array and M is the maximum value of an element in the array. This is because each update of the counts array takes O(log M) time due to the division by 2.

@@ -1,0 +1,27 @@
+ Here is a Python3 solution for the problem:
+
+```python
+import math
+
+def gcd(a, b):
+    return math.gcd(a, b)
+
+n = int(input().strip())
+a = list(map(int, input().strip().split()))
+
+# Initialize the maximum GCD as the GCD of the first two numbers
+max_gcd = gcd(a[0], a[1])
+
+# Iterate over the rest of the numbers and update the maximum GCD
+for i in range(2, n):
+    max_gcd = max(max_gcd, gcd(a[i], a[i-1]), gcd(a[i], max_gcd), gcd(a[i-1], max_gcd))
+
+# Replace the first number with the maximum GCD and print the result
+print(gcd(max_gcd, a[0]))
+```
+
+The solution works by first computing the greatest common divisor (GCD) of the first two numbers. Then, for each subsequent number, it computes the GCD of the current number with the maximum GCD seen so far, and updates the maximum GCD if the new value is greater. Finally, it replaces the first number with the maximum GCD and prints the result.
+
+The reason this works is that the GCD of a set of numbers is equal to the GCD of any two numbers in the set, and the GCD operation is associative and commutative. Therefore, replacing any number with the maximum GCD seen so far will not decrease the overall GCD of the set.
+
+Note that the solution assumes that the input is well-formed and satisfies the given constraints. In particular, it assumes that `n` is at least 2 and that all `A_i` are non-negative integers. If these assumptions do not hold, additional error checking may be necessary.

@@ -1,0 +1,56 @@
+
+```python
+# Python 3 code to solve the problem
+
+# Function to find the missing numbers in the multiplication table
+def restore_multiplication_table(n, table):
+    # Initialize the array of missing numbers
+    a = [0] * n
+
+    # Restore the first row of the multiplication table
+    for j in range(1, n):
+        # Initialize the sum of all elements in the first row
+        sum_of_elements = 0
+
+        # Calculate the sum of all elements in the first row
+        for i in range(n):
+            sum_of_elements += table[i][j]
+
+        # Divide the sum by the number of elements in the first row
+        a[j] = sum_of_elements // n
+
+    # Restore the first column of the multiplication table
+    for i in range(1, n):
+        # Initialize the sum of all elements in the first column
+        sum_of_elements = 0
+
+        # Calculate the sum of all elements in the first column
+        for j in range(n):
+            sum_of_elements += table[i][j]
+
+        # Divide the sum by the number of elements in the first column
+        a[i] = sum_of_elements // n
+
+    return a
+
+# Driver Code
+if __name__ == '__main__':
+    # Take the input for the size of the table
+    n = int(input())
+
+    # Initialize the table
+    table = []
+
+    # Take the input for each row of the table
+    for i in range(n):
+        row = list(map(int, input().split()))
+        table.append(row)
+
+    # Find and print the missing numbers in the multiplication table
+    a = restore_multiplication_table(n, table)
+    print(*a)
+```
+
+
+
+This Python code takes the input for the size of the table and the multiplication table with missing numbers. It then calculates the missing numbers using the provided formula and prints the result.

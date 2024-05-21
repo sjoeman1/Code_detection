@@ -1,0 +1,42 @@
+
+Here is the Python 3 code that solves the problem:
+
+```python
+def min_cost(n, L, costs):
+    lemonade = []
+    # Create a list of tuples of (cost, volume)
+    for i in range(n):
+        lemonade.append((costs[i], 2**(i+1) - 1))
+    # Sort the list in ascending order of cost
+    lemonade.sort()
+    # Initialize the cost and volume
+    cost = 0
+    volume = 0
+    # Iterate through the list until the required volume is met
+    for c, v in lemonade:
+        while v <= L - volume:
+            cost += c
+            volume += v
+    return cost
+
+# Input
+n, L = map(int, input().split())
+costs = list(map(int, input().split()))
+
+# Output
+print(min_cost(n, L, costs))
+```
+
+The code is quite self-explanatory. The `min_cost` function takes three arguments:
+
+1.  `n`: The number of types of bottles.
+2.  `L`: The required amount of lemonade in liters.
+3.  `costs`: A list of costs of bottles of different types.
+
+Inside the function, we create a list of tuples of (cost, volume) for each type of bottle. We then sort the list in ascending order of cost.
+
+We initialize the cost and volume variables. Then we iterate through the list until the required volume is met. For each bottle, we check if the volume is less than or equal to the remaining required volume. If so, we add the cost and volume to the total.
+
+Finally, we return the total cost.
+
+The main function takes user input for `n` and `L`, along with the list of costs. It then calls the `min_cost` function to calculate and print the minimum cost.

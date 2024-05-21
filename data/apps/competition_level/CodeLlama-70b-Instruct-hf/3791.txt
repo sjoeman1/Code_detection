@@ -1,0 +1,24 @@
+
+Here is the Python3 code for solving the problem:
+
+```
+n = int(input())
+p = list(map(int, input().split()))
+
+def get_deviation(p):
+    return sum(abs(p[i] - i) for i in range(n))
+
+min_dev = get_deviation(p)
+min_k = 0
+
+for k in range(1, n):
+    p = p[-1:] + p[:-1]
+    dev = get_deviation(p)
+    if dev < min_dev:
+        min_dev = dev
+        min_k = k
+
+print(min_dev, min_k)
+```
+
+The code first reads the input, then defines a function `get_deviation` to calculate the deviation of the permutation. Then it uses a for loop to iterate through all possible shifts, calculates the deviation of each shift, and keeps track of the minimum deviation and its shift id. Finally, it prints the minimum deviation and its shift id.

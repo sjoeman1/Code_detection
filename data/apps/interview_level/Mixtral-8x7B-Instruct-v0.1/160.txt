@@ -1,0 +1,36 @@
+ To solve this problem, we need to first find the greatest common divisor (GCD) of all the elements in the array `A`. Then, we need to reduce each element in the array by its maximum possible value such that the GCD doesn't change. This can be done by repeatedly subtracting the GCD from each element until it becomes less than the GCD. Finally, we return the GCD as the answer.
+
+Here is the Python3 code to solve the problem:
+
+```python
+import math
+import sys
+
+def reduce_array(A, gcd):
+    for i in range(len(A)):
+        A[i] -= gcd
+        if A[i] < gcd:
+            A[i] = 0
+    return A
+
+def max_divides(N, K, A):
+    gcd = math.gcd(*A)
+    for _ in range(K):
+        gcd = math.gcd(gcd, max(A))
+        if gcd == 1:
+            break
+        A = reduce_array(A, gcd)
+    return gcd
+
+def main():
+    N, K = map(int, input().split())
+    A = list(map(int, input().split()))
+    print(max_divides(N, K, A))
+
+if __name__ == '__main__':
+    main()
+```
+
+In this code, we define three functions: `reduce_array`, `max_divides`, and `main`. The `reduce_array` function takes an array `A` and the greatest common divisor `gcd`, and reduces each element in the array by its maximum possible value such that the GCD doesn't change. The `max_divides` function takes the number of elements `N`, the maximum number of operations `K`, and the array `A`, and returns the maximum possible positive integer that divides every element of `A` after the operations. The `main` function reads the input, calls the `max_divides` function, and prints the output.
+
+The time complexity of this code is O(N \* log(max(A)) + K \* log(max(A))), where N is the number of elements in the array, K is the maximum number of

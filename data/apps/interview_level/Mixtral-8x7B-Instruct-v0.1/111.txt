@@ -1,0 +1,37 @@
+ Here is a Python3 solution for the problem:
+
+```python
+import math
+
+def is_prime(n):
+    if n < 2:
+        return False
+    if n == 2:
+        return True
+    if n % 2 == 0:
+        return False
+    sqrt_n = math.isqrt(n)
+    for i in range(3, sqrt_n + 1, 2):
+        if n % i == 0:
+            return False
+    return True
+
+def count_divisors(n):
+    count = 1
+    i = 2
+    while i * i <= n:
+        if n % i == 0:
+            count += 1
+            j = n // i
+            if j != i:
+                count += 1
+        i += 1
+    return count
+
+def k_th_divisor(n, k):
+    if is_prime(n) and k == 1:
+        return n
+    if k > count_divisors(n):
+        return -1
+    i = 2
+    while True:

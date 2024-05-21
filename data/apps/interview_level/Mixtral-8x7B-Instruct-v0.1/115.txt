@@ -1,0 +1,25 @@
+ Here is a Python3 solution for the problem:
+
+```python
+import sys
+from fractions import Fraction
+
+def lcm(a, b):
+    return abs(a*b) // math.gcd(a,b)
+
+def bad_luck_island(r, s, p):
+    total = lcm(r, lcm(s, p))
+    r, s, p = total//r, total//s, total//p
+    rs = r*s
+    rp = r*p
+    sp = s*p
+    rsp = r*s*p
+    ans = [Fraction(rsp, total), Fraction(rs*p, total), Fraction(r*sp, total)]
+    return [float(x) for x in ans]
+
+if __name__ == "__main__":
+    r, s, p = map(int, sys.stdin.readline().strip().split())
+    print(" ".join(map(str, bad_luck_island(r, s, p))))
+```
+
+The solution uses the principle of conservation of expected number of individuals to calculate the probability that each species will be the only one to inhabit the island. The total number of individuals is set to the least common multiple of the initial numbers of individuals in each species, so that each species will have an integer number of individuals. Then, the number of individuals in each species is updated by dividing the total number by the initial number of individuals in that species. Finally, the probabilities are calculated based on the updated numbers of individuals and returned as a list of floating-point numbers.

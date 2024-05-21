@@ -1,0 +1,37 @@
+
+
+This problem can be solved using a Python 3 script. Here is the code:
+
+```py
+# Input the number of elements in the array
+n = int(input())
+
+# Input the array
+a = list(map(int, input().split()))
+
+# Initialize the count of consecutive elements that can be erased
+count = 0
+
+# Iterate through the array
+for i in range(n - 1):
+    # Check if the current element is less than the next element
+    if a[i] < a[i + 1]:
+        # If so, increment the count
+        count += 1
+    else:
+        # If not, reset the count
+        count = 0
+
+# Print the maximum number of consecutive elements that can be erased
+print(count)
+```
+
+In this code, we first take the number of elements in the array as input. Then, we input the array elements as a list of integers.
+
+Next, we initialize a variable `count` to keep track of the maximum number of consecutive elements that can be erased.
+
+In the loop, we iterate through the array elements and check if the current element is less than the next element. If this is the case, we increment the `count` variable. This way, we can keep track of the maximum number of consecutive elements that are in ascending order.
+
+When we encounter an element that is not less than the next element, we reset the `count` variable to zero.
+
+Finally, we print the maximum number of consecutive elements that can be erased, which is the value of the `count` variable.

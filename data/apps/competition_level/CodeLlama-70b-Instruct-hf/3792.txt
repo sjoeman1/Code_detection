@@ -1,0 +1,27 @@
+
+Here is the Python 3 code that solves the problem:
+
+```py
+# Input
+n, k = map(int, input().split())
+s = input()
+t = input()
+
+# Initialization
+c = 0
+
+# Iterate through all possible strings
+for i in range(n):
+    for j in range(i, n):
+        # Check if the current string is a prefix of s or t
+        if s[i:j+1] == s[:j+1] or t[i:j+1] == t[:j+1]:
+            c += 1
+
+print(c)
+```
+
+The code reads the input `n`, `k`, `s`, and `t` from the user. Then, it initializes the value of `c` to 0.
+
+In the main loop, it iterates through all possible strings of length `n`. For each string, it checks if the string is a prefix of `s` or `t`. If it is, it increments the value of `c`.
+
+Finally, it prints the value of `c`.

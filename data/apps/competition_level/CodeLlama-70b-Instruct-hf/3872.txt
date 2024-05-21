@@ -1,0 +1,35 @@
+
+
+
+
+ Here's a Python3 code that solves the problem:
+
+```
+# Input the two strings
+s1 = input()
+s2 = input()
+
+# Function to check if two strings are equivalent
+def is_equivalent(a, b):
+    n = len(a)
+    if n != len(b):
+        return False
+    if n == 1:
+        return a == b
+    return (a[:n // 2] == b[:n // 2] and a[n // 2:] == b[n // 2:]) or (a[:n // 2] == b[n // 2:] and a[n // 2:] == b[:n // 2])
+
+# Check if the strings are equivalent
+if is_equivalent(s1, s2):
+    print("YES")
+else:
+    print("NO")
+```
+
+The `is_equivalent` function checks if two strings are equivalent by comparing them in two ways:
+
+1.  Checking if the first half of `a` is equivalent to the first half of `b`, and the second half of `a` is equivalent to the second half of `b`.
+2.  Checking if the first half of `a` is equivalent to the second half of `b`, and the second half of `a` is equivalent to the first half of `b`.
+
+If any of these conditions are true, the function returns `True`. Otherwise, it returns `False`.
+
+The main code checks if the two input strings are equivalent by calling the `is_equivalent` function. If they are equivalent, it prints "YES". Otherwise, it prints "NO".

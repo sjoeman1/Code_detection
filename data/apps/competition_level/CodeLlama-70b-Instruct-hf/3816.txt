@@ -1,0 +1,37 @@
+
+```py
+def triangle(a, b, c, l):
+    if l == 0:
+        return 1
+    if a + b <= c or b + c <= a or c + a <= b:
+        return 0
+    if a + b + c <= l:
+        return 2 ** 3
+    res = 0
+    if a <= l:
+        res += 2 ** 2
+    if b <= l:
+        res += 2 ** 2
+    if c <= l:
+        res += 2 ** 2
+    if a + b <= l:
+        res += 2 ** 1
+    if b + c <= l:
+        res += 2 ** 1
+    if a + c <= l:
+        res += 2 ** 1
+    return res
+
+a, b, c, l = map(int, input().split())
+print(triangle(a, b, c, l))
+```
+
+This code will check whether the sticks can form a triangle or not. If the sum of any two sticks is less than the third stick, then it is not possible to form a triangle.
+
+If the sum of all three sticks is less than or equal to `l`, then it is possible to form a triangle by increasing the lengths of all three sticks.
+
+If the length of any one stick is less than or equal to `l`, then it is possible to form a triangle by increasing the length of that stick.
+
+If the sum of any two sticks is less than or equal to `l`, then it is possible to form a triangle by increasing the length of those two sticks.
+
+The code will calculate the number of ways to form a triangle and print the result.

@@ -1,0 +1,19 @@
+ Here's the Python3 code to solve the problem:
+
+```python
+import sys
+
+input = sys.stdin.read().split()
+N, M, C = int(input[0]), int(input[1]), int(input[2])
+B = list(map(int, input[3].split()))
+coefficients = [list(map(int, input[i+4].split())) for i in range(N)]
+
+count = 0
+for code in coefficients:
+    if sum(a*b for a, b in zip(code, B)) + C > 0:
+        count += 1
+
+print(count)
+```
+
+This code reads the input from standard input and processes it line by line. It first converts the first line into the values of `N`, `M`, and `C`. Then, it extracts the `B` coefficients from the second line. After that, it extracts the `N` lines of `A` coefficients and stores them in a list called `coefficients`. Finally, it iterates over the `coefficients` list and checks if the condition `A_{i1} B_1 + A_{i2} B_2 + ... + A_{iM} B_M + C > 0` is satisfied. If it is, it increments the `count` variable. At the end, it prints the value of `count`, which represents the number of codes that correctly solve the problem.

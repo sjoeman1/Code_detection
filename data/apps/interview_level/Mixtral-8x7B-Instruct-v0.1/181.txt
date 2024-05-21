@@ -1,0 +1,21 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def min_rotations(x):
+    # Calculate the absolute value of x and floor divide by 90
+    num_rotations = abs(x) // 90
+    # If x is positive, return the number of rotations
+    if x > 0:
+        return num_rotations
+    # If x is negative, subtract the number of rotations from 4
+    # and return the result modulo 4 to handle cases where
+    # the absolute value of x is a multiple of 360
+    else:
+        return (4 - num_rotations) % 4
+
+# Test cases
+print(min_rotations(60))  # Output: 1
+print(min_rotations(-60)) # Output: 3
+```
+
+The function `min_rotations` takes an integer `x` as input, which represents the camera angle in degrees. It calculates the absolute value of `x` and floor divides it by 90 to determine the minimum number of 90 degree clockwise rotations required to get the image in a vertical position. If `x` is positive, it simply returns the number of rotations. If `x` is negative, it subtracts the number of rotations from 4 and returns the result modulo 4 to handle cases where the absolute value of `x` is a multiple of 360. This ensures that the output is always in the range [0, 3].

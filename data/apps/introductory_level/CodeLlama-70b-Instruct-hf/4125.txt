@@ -1,0 +1,24 @@
+
+Here is the Python3 code for solving the problem:
+```python
+n, x = map(int, input().split())
+cities = list(map(int, input().split()))
+
+left = 0
+right = max(cities) - min(cities)
+while left < right:
+    mid = (left + right) // 2
+    visited = set()
+    visited.add(x)
+    for city in cities:
+        if abs(x - city) % mid == 0:
+            visited.add(city)
+    if len(visited) == n + 1:
+        right = mid
+    else:
+        left = mid + 1
+
+print(left)
+```
+
+This code reads the input, calculates the minimum and maximum distances between the cities, and then uses binary search to find the maximum value of D that enables you to visit all the cities.

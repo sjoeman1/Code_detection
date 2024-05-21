@@ -1,0 +1,27 @@
+ Here is a solution using Python3. This solution uses networkx library to create a graph and find all the spanning trees of the graph using the `spanning_trees` function from the library. It then prints out `k` spanning trees if there are at least `k` of them, otherwise it prints out all the spanning trees found.
+
+```python
+import networkx as nx
+from itertools import islice
+
+def read_input():
+    n, m, k = map(int, input().split())
+    edges = [list(map(int, input().split())) for _ in range(m)]
+    return n, edges, k
+
+def find_trees(n, edges):
+    G = nx.Graph()
+    G.add_edges_from(edges)
+    return nx.spanning_trees(G)
+
+def print_trees(trees, k):
+    print(min(k, len(trees)))
+    for tree in islice(trees, k):
+        print(''.join('1' if (u, v) in tree else '0' for u, v in edges))
+
+n, edges, k = read_input()
+trees = find_trees(n, edges)
+print_trees(trees, k)
+```
+
+Note: This solution assumes that the input is given in the required format and does not perform any input validation.

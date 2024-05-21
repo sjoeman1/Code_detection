@@ -1,0 +1,7 @@
+Name,tokenizer,accuracy,weighted avg.f1-score,weighted avg.precision,weighted avg.recall
+tokenizer: comment_only,comment_only,0.81,0.755,0.848,0.81
+tokenizer: hide_comment,hide_comment,0.884,0.878,0.88,0.884
+tokenizer: tag_comment,tag_comment,0.904,0.901,0.901,0.904
+tokenizer: tokenize_comment,tokenize_comment,0.918,0.916,0.916,0.918
+tokenizer: codebert_tokenizer,codebert_tokenizer,0.875,0.857,0.893,0.875
+tokenizer: standard_tokenizer,standard_tokenizer,0.881,0.874,0.877,0.881

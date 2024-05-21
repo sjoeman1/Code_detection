@@ -1,0 +1,34 @@
+
+Here is the Python 3 code that solves the question:
+
+```py
+def solve(n, a):
+    # Find the minimum height of the wall
+    min_height = min(a)
+    # Initialize the number of bricks required
+    num_bricks = 0
+
+    # Iterate through the wall
+    for height in a:
+        # Calculate the difference between the current height and the minimum height
+        diff = height - min_height
+        # Add the difference to the number of bricks required
+        num_bricks += diff
+
+    # If the number of bricks required is divisible by 2, the wall can be completed
+    if num_bricks % 2 == 0:
+        return "YES"
+    else:
+        return "NO"
+
+
+# Input the number of parts of the wall
+n = int(input())
+# Input the heights of the parts of the wall
+a = list(map(int, input().split()))
+
+# Call the solve function and print the result
+print(solve(n, a))
+```
+
+This code defines a function `solve` that takes the number of parts of the wall `n` and the heights of the parts `a` as input. It finds the minimum height of the wall, calculates the number of bricks required to complete the wall, and determines whether the wall can be completed. The code then takes the input, calls the `solve` function, and prints the result.

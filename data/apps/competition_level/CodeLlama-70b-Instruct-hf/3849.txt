@@ -1,0 +1,30 @@
+
+Here is the Python3 code for solving the question:
+
+```
+def solve_duel(n, k, s):
+    def flip(i, j):
+        return s[:i] + s[i:j].replace('1', '2').replace('0', '1').replace('2', '0') + s[j:]
+
+    if n % k == 0:
+        return "once again"
+
+    for i in range(n):
+        for j in range(i, n, k):
+            if (j - i + 1) % k == 0:
+                s = flip(i, j + 1)
+                if s.count('0') == 0 or s.count('1') == 0:
+                    return "tokitsukaze"
+
+    return "quailty"
+
+n, k = map(int, input().split())
+s = input()
+print(solve_duel(n, k, s))
+```
+
+This code first checks if the number of cards, n, is divisible by the number of cards that can be flipped, k. If n is divisible by k, it returns "once again" because the game can end in a draw.
+
+Next, it iterates over the cards from the leftmost card to the rightmost card. It also iterates over the cards from the current card to the rightmost card in increments of k. If the number of cards between the current card and the rightmost card is divisible by k, it flips the cards and checks if all the color sides are facing the same direction. If they are, it returns "tokitsukaze" because Tokitsukaze will win.
+
+If no winning condition is found, it returns "quailty" because Quailty will win.

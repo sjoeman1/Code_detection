@@ -1,0 +1,44 @@
+
+
+Here is the Python3 code to solve the question:
+
+```python
+# input the string S
+S = input()
+
+# function to check if a string is a palindrome
+def is_palindrome(string):
+    return string == string[::-1]
+
+# function to solve the problem
+def solve(string):
+    # find the midpoint of the string
+    mid = len(string) // 2
+
+    # initialize a counter to track the number of hugs
+    count = 0
+
+    # iterate through the string from the front and back
+    for i in range(mid):
+        # if the characters at the current indices are not the same
+        if string[i] != string[len(string) - i - 1]:
+            # increment the counter
+            count += 1
+
+    # return the counter value
+    return count
+
+# check if S is a palindrome
+if is_palindrome(S):
+    # if it is a palindrome, print 0
+    print(0)
+else:
+    # otherwise, print the result of the solve function
+    print(solve(S))
+```
+
+The code starts by taking the input string `S` from the user. Then, it defines a function `is_palindrome` to check if a given string is a palindrome. The function reverses the string using the `[::-1]` slicing technique and compares it to the original string.
+
+The `solve` function finds the midpoint of the string and initializes a counter to track the number of hugs. It then iterates through the string from the front and back, comparing the characters at the current indices. If the characters are not the same, it increments the counter.
+
+Finally, the code checks if `S` is a palindrome using the `is_palindrome` function. If it is, it prints `0`. Otherwise, it prints the result of the `solve` function.

@@ -1,0 +1,20 @@
+ Here's the Python3 code to solve the problem:
+
+```python
+# Read the input values
+A, B = map(int, input().split())
+B = float(f"0.{B}") # Convert B to a number with two digits after the decimal point
+
+# Compute A * B and truncate its fractional part
+result = int(A * B)
+
+# Print the result as an integer
+print(result)
+```
+
+To use this code, simply copy and paste it into a Python3 interpreter or a text editor, and then input the values of A and B separated by a space. The code will output the result as an integer. For example:
+```makefile
+$ python3 truncate_multiplication.py
+198 1.10
+217
+```

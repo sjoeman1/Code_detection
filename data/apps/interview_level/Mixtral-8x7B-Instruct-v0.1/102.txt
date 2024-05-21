@@ -1,0 +1,26 @@
+ Here is a Python3 code that can solve the problem:
+
+```python
+def convert_num_to_words(n):
+    under_20 = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"]
+    tens = ["twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"]
+
+    if n < 20:
+        return under_20[n]
+    elif n < 100:
+        return tens[n//10-2] + (-n%10 and " " + convert_num_to_words(n%10))
+    elif n < 1000:
+        if n % 100 == 0:
+            return convert_num_to_words(n//100) + " hundred"
+        else:
+            return convert_num_to_words(n//100) + " hundred " + (-n%100 and "-" + convert_num_to_words(n%100))
+    else:
+        return "Number out of range"
+
+s = int(input())
+print(convert_num_to_words(s).replace(" ", "-").lower())
+```
+
+The function `convert_num_to_words` takes an integer `n` as input and returns a string representing the number in words. It uses two lists, `under_20` and `tens`, to store the words for numbers under 20 and tens digits respectively. The function then checks the range of the input number and returns the corresponding word representation.
+
+The code then takes an integer input `s` and calls the `convert_num_to_words` function to get the word representation. It then replaces any spaces in the string with hyphens and converts it to lowercase before printing the output.

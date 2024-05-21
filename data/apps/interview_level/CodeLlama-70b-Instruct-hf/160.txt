@@ -1,0 +1,28 @@
+1. The Python 3 code for the question is provided below:
+
+```python
+def gcd(a, b):
+    while b:
+        a, b = b, a % b
+    return a
+
+def answer(N, K, A):
+    g = A[0]
+    for i in range(1, N):
+        g = gcd(g, A[i])
+    for i in range(N):
+        A[i] //= g
+    for i in range(K):
+        mx = 0
+        for j in range(N):
+            mx = max(mx, A[j])
+        A[mx] -= 1
+        g = gcd(g, mx + 1)
+    return g
+
+N, K = list(map(int, input().split()))
+A = list(map(int, input().split()))
+print(answer(N, K, A))
+```
+
+In the code, we define a function `gcd` to calculate the greatest common divisor of two numbers. The `answer` function calculates the maximum positive integer that divides every element of A after the operations. The `gcd` function is used to calculate the GCD of all the elements of the array A. Then, we perform the operations K times and update the GCD. Finally, we return the maximum positive integer that divides every element of A after the operations.

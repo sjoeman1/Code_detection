@@ -1,0 +1,40 @@
+ Here is a Python3 solution for the problem:
+
+```python
+# Read in the number of data points
+n = int(input())
+
+# Initialize an array to store the differences between the candidate center and the data points
+diffs = [[0]*n for _ in range(201)]
+
+# Read in the data points and calculate the differences
+for i in range(n):
+    x, y, h = map(int, input().split())
+    for j in range(201):
+        for k in range(201):
+            if i == 0:
+                # Initialize the minimum difference
+                diffs[j][k] = abs(j-x) + abs(k-y) - h
+            else:
+                # Take the maximum of the current minimum difference and the new difference
+                diffs[j][k] = max(diffs[j][k], abs(j-x) + abs(k-y) - h)
+
+# Find the center coordinates by finding the maximum difference
+c_x, c_y = 0, 0
+max_diff = -1
+for i in range(201):
+    for j in range(201):
+        if diffs[i][j] > max_diff:
+            max_diff = diffs[i][j]
+            c_x, c_y = i, j
+
+# Calculate the height of the pyramid
+h = max_diff + 1
+
+# Print the answer
+print(c_x, c_y, h)
+```
+
+The solution works by first calculating the differences between the candidate center and the data points for all possible center coordinates. The center coordinates are then found by searching for the maximum difference. Finally, the height of the pyramid is calculated from the maximum difference.
+
+Note that the solution assumes that the data points are valid and the center coordinates and height can be uniquely identified. If this is not the case, additional checks may be necessary.

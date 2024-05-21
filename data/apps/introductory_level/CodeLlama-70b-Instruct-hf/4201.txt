@@ -1,0 +1,32 @@
+
+ 
+ Here's the Python3 code for the problem:
+
+```python
+H, W, K = map(int, input().split())
+grid = []
+for _ in range(H):
+    grid.append(input())
+
+count = 0
+for i in range(1 << H):
+    for j in range(1 << W):
+        black_count = 0
+        for r in range(H):
+            for c in range(W):
+                if (i & (1 << r)) or (j & (1 << c)):
+                    if grid[r][c] == '#':
+                        black_count += 1
+        if black_count == K:
+            count += 1
+
+print(count)
+```
+
+In this code, we first read the input values for H, W, and K from the user. Then, we create a 2D list called grid to store the input grid.
+
+Next, we use two nested loops to iterate over all possible choices of rows and columns. We use bitwise operations to check if a particular row or column is chosen. If a square is black and is painted red, we increment the black_count variable.
+
+If the black_count is equal to K, we increment the count variable, which stores the total number of choices that satisfy the condition.
+
+Finally, we print the count.

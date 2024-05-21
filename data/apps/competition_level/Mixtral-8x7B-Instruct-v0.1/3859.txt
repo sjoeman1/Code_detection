@@ -1,0 +1,37 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n = int(input())
+white\_pos = [0]*n
+black\_pos = [0]*n
+for i in range(1, 2*n+1):
+    if i % 2 == 1:
+        white\_pos[int(input().split()[1])-1] = i
+    else:
+        black\_pos[int(input().split()[1])-1] = i
+
+white\_swaps = 0
+for i in range(n):
+    for j in range(i+1, n):
+        if white\_pos[i] > white\_pos[j]:
+            white\_swaps += 1
+
+black\_swaps = 0
+for i in range(n):
+    for j in range(i+1, n):
+        if black\_pos[i] > black\_pos[j]:
+            black\_swaps += 1
+
+print(white\_swaps + black\_swaps)
+```
+
+The algorithm works as follows:
+
+1. Read in the input values for `n`, the positions and colors of all `2n` balls.
+2. Initialize two lists, `white_pos` and `black_pos`, to keep track of the current positions of the white and black balls, respectively.
+3. Iterate through the input values, and for each white ball, update its position in `white_pos`. Similarly, for each black ball, update its position in `black_pos`.
+4. Calculate the number of swaps required for the white balls by iterating through `white_pos` and counting the number of pairs that are out of order.
+5. Calculate the number of swaps required for the black balls by iterating through `black_pos` and counting the number of pairs that are out of order.
+6. Output the sum of the number of swaps required for the white and black balls.
+
+The time complexity of this algorithm is O(n^2) due to the nested loops in steps 4 and 5. The space complexity is O(n) due to the additional space required to store the positions of the white and black balls.

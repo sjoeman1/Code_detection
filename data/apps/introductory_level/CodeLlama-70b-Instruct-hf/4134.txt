@@ -1,0 +1,44 @@
+
+Here's a Python 3 solution:
+
+```python
+def calculate_paths(n, m, k, grid):
+    # Base case for empty grid
+    if n == 0 or m == 0:
+        return 0
+
+    # Create a 2D array to store the number of paths to each cell
+    dp = [[0] * m for _ in range(n)]
+
+    # Initialize the top row and leftmost column with 1
+    for i in range(n):
+        dp[i][0] = 1
+    for j in range(m):
+        dp[0][j] = 1
+
+    # Dynamic programming
+    for i in range(1, n):
+        for j in range(1, m):
+            # Calculate the xor sum of the current cell with the paths to the top and left cells
+            top_xor_sum = dp[i - 1][j] ^ grid[i - 1][j]
+            left_xor_sum = dp[i][j - 1] ^ grid[i][j - 1]
+
+            # If the xor sum is equal to k, add 1 to the number of paths to the current cell
+            if top_xor_sum == k:
+                dp[i][j] += 1
+            if left_xor_sum == k:
+                dp[i][j] += 1
+
+    # Return the number of paths to the bottom-right cell
+    return dp[n - 1][m - 1]
+
+# Read the input
+n, m, k = map(int, input().split())
+grid = [list(map(int, input().split())) for _ in range(n)]
+
+# Calculate and print the result
+result = calculate_paths(n, m, k, grid)
+print(result)
+```
+
+This Python 3 solution uses dynamic programming to solve the problem. It creates a 2D array to store the number of paths to each cell, initializing the top row and leftmost column with 1. Then, it iterates through the grid, calculating the xor sum of the current cell with the paths to the top and left cells. If the xor sum is

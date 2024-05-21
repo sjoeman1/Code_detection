@@ -1,0 +1,40 @@
+
+
+Here is the Python3 code for solving the question:
+
+```
+# Function to check if a string is a palindrome
+def isPalindrome(s):
+    return s == s[::-1]
+
+# Function to check if a string is a strong palindrome
+def isStrongPalindrome(s):
+    # Check if the string is a palindrome
+    if not isPalindrome(s):
+        return False
+
+    # Calculate the indices of the substrings
+    first_substring_end_index = len(s) // 2
+    second_substring_start_index = (len(s) + 3) // 2 - 1
+
+    # Extract the substrings
+    first_substring = s[:first_substring_end_index]
+    second_substring = s[second_substring_start_index:]
+
+    # Check if the substrings are palindromes
+    if isPalindrome(first_substring) and isPalindrome(second_substring):
+        return True
+    else:
+        return False
+
+# Read input from standard input
+s = input()
+
+# Check if the input string is a strong palindrome
+if isStrongPalindrome(s):
+    print("Yes")
+else:
+    print("No")
+```
+
+The code defines two functions: `isPalindrome` and `isStrongPalindrome`. The `isPalindrome` function checks if a string is a palindrome by comparing it to its reversed version. The `isStrongPalindrome` function uses the `isPalindrome` function to check if the input string is a palindrome. If it is, it then calculates the indices of the substrings and extracts them. It then checks if both substrings are palindromes using the `isPalindrome` function. If both substrings are palindromes, the function returns `True`, otherwise, it returns `False`. The main code reads the input string from standard input and checks if it is a strong palindrome using the `isStrongPalindrome` function. If it is, it prints `Yes`, otherwise, it prints `No`.

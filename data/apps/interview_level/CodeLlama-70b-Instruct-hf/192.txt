@@ -1,0 +1,37 @@
+
+
+Here is the Python 3 code for solving the problem:
+
+```
+def get_result(x, y):
+    if x == y:
+        return 0
+    if x < y:
+        return -1
+    if x % y == 0:
+        return x // y - 1
+    if x % 2 == 0:
+        return get_result(x // 2, y) + 1
+    return -1
+
+
+def main():
+    x, y = map(int, input().split())
+    result = get_result(x, y)
+    if result == -1:
+        print(-1)
+    else:
+        print(result)
+
+
+if __name__ == "__main__":
+    main()
+```
+
+The code above is a recursive function that takes the starting side length `x` and the desired side length `y`. It first checks if `x` is equal to `y`, in which case the result is 0. If `x` is less than `y`, the result is -1.
+
+If `x` is divisible by `y`, it returns `x // y - 1`, which is the number of times `x` can be divided by `y` minus one.
+
+If `x` is even, it recursively calls `get_result` with `x // 2` and `y` as the arguments and adds 1 to the result.
+
+Otherwise, it returns -1, indicating that it is not possible to obtain an equilateral triangle of side length `y` from an equilateral triangle of side length `x`.

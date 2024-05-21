@@ -1,0 +1,19 @@
+ Here's a Python3 solution for the problem:
+
+```python
+N = int(input().strip())
+doublets_in_a_row = 0
+for _ in range(N):
+    dice1, dice2 = map(int, input().strip().split())
+    if dice1 == dice2:
+        doublets_in_a_row += 1
+    else:
+        doublets_in_a_row = 0
+    if doublets_in_a_row >= 3:
+        print("Yes")
+        break
+else:
+    print("No")
+```
+
+This solution reads the number of rolls `N` and then processes each roll by reading two dice values and checking if they are the same. If they are, it increments the counter for doublets in a row; otherwise, it resets the counter. If the counter reaches 3 or more, it prints "Yes" and breaks out of the loop. If the loop finishes without finding 3 doublets in a row, it prints "No".

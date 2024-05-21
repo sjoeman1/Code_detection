@@ -1,0 +1,4 @@
+Name,test_data_file,accuracy,macro avg.f1-score,macro avg.precision,macro avg.recall
+laced-sun-69,D:\Artificial_Intelligence\Thesis\Code_detection\code_bert\codebert_introductory_test.jsonl,0.863,0.817,0.824,0.81
+celestial-water-68,D:\Artificial_Intelligence\Thesis\Code_detection\code_bert\codebert_interview_test.jsonl,0.941,0.915,0.964,0.883
+deep-terrain-67,D:\Artificial_Intelligence\Thesis\Code_detection\code_bert\codebert_competition_test.jsonl,0.966,0.954,0.944,0.965

@@ -1,0 +1,25 @@
+ Here's a Python3 solution for the problem:
+
+```python
+import sys
+
+def f(b, n):
+    if n < b:
+        return n
+    else:
+        return f(b, n // b) + (n % b)
+
+def find_b(n, s):
+    for b in range(2, min(n, s) + 1):
+        if s == f(b, n):
+            return b
+    return -1
+
+if __name__ == "__main__":
+    n = int(sys.stdin.readline())
+    s = int(sys.stdin.readline())
+    result = find_b(n, s)
+    print(result)
+```
+
+The function `f(b, n)` calculates the value of the function described in the problem statement. The function `find_b(n, s)` iterates through possible values of `b` and checks if `f(b, n)` equals `s`. If such `b` exists, it returns the smallest one, otherwise, it returns `-1`.

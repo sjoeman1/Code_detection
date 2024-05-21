@@ -1,0 +1,31 @@
+
+
+ Here's the Python 3 code that solves the problem:
+
+```python
+# input n
+n = int(input())
+
+# Initialize the array
+dp = [[0 for i in range(n)] for j in range(n)]
+
+# Base cases
+for i in range(n):
+    dp[i][i] = 1
+
+# Calculate the answer using Dynamic Programming
+for i in range(n):
+    for j in range(i + 1, n):
+        for k in range(i, j):
+            if (k - i) % 2 == 0:
+                dp[i][j] += dp[i][k] * dp[k + 1][j]
+            else:
+                dp[i][j] += dp[i][k] * dp[k + 1][j]
+
+# Print the answer
+print(dp[0][n - 1] % 998244353)
+```
+
+The code assumes that the input is provided as an integer $n$. It initializes a 2D array `dp` to store the number of striped binary search trees with $i$ to $j$ vertices. The base cases are when $i$ is equal to $j$, in which case there is only one tree, the degenerate tree.
+
+The code then calculates the answer using dynamic programming. For each $i$ from $0$ to $n-1$ and each $j$ from $i+1$ to $n-1$, it iterates through all possible roots $k$ from $i$ to $j$ and counts the number of striped binary search trees with $i$ to $k$ vertices on the left and $k+1$ to $j$ vertices on the right. If the parity of $k-i$ is even, it adds the product of the number of striped binary search trees with $i$ to $k$ vertices on the left and $k+1$ to $j$ vertices on the right to `dp[i][j]`. If the parity of $k-i$ is odd, it adds the product of the number of striped binary search trees with $i$ to $k$ vertices on the left and $k+1$ to

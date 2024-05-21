@@ -1,0 +1,43 @@
+
+
+ In this problem, we need to find the minimum number of coins needed to cover the range from 1 to m inclusive by increasing the scope of antennas. To solve this problem, we can use a dynamic programming approach.
+
+Here is a Python 3 code that solves the problem:
+
+```python
+def solve(n, m, antennas):
+    # Initialize the dynamic programming array
+    dp = [float('inf')] * (m + 1)
+
+    # Base case: no antennas, so cost is 0
+    dp[0] = 0
+
+    # Iterate over all antennas
+    for x, s in antennas:
+        # Iterate over all positions in the range
+        for i in range(m + 1):
+            # Check if this antenna covers the current position
+            if x - s <= i <= x + s:
+                # Update the cost if possible
+                dp[i] = min(dp[i], dp[max(0, i - s - 1)] + s + 1)
+
+    # Return the minimum cost to cover the entire range
+    return dp[m]
+
+# Read input
+n, m = map(int, input().split())
+antennas = []
+for _ in range(n):
+    x, s = map(int, input().split())
+    antennas.append((x, s))
+
+# Solve the problem and print the result
+result = solve(n, m, antennas)
+print(result)
+```
+
+In this code, we use a dynamic programming array `dp` to store the minimum cost to cover the range from 1 to `i` inclusive. The base case is when `i` is 0, and the cost is 0.
+
+For each antenna, we iterate over all positions in the range and check if the antenna covers the current position. If it does, we update the cost by comparing the current cost with the cost to cover the range from 1 to `i - s - 1` inclusive plus the scope of the current antenna `s + 1`.
+
+Finally, we return the minimum cost to cover the entire range from 1 to `m` inclusive.

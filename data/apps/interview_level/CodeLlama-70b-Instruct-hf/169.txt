@@ -1,0 +1,21 @@
+
+
+The solution to this problem is:
+
+```python
+def max_kefir(n, a, b, c):
+    glass_bottles = n // b
+    plastic_bottles = n // a
+    if glass_bottles == 0:
+        return plastic_bottles
+    else:
+        return_money = glass_bottles * c
+        plastic_bottles += (return_money // a)
+        return plastic_bottles
+
+
+n, a, b, c = map(int, input().split())
+print(max_kefir(n, a, b, c))
+```
+
+This solution will take the number of rubles (n) and the prices (a, b, c) as input and calculate the maximum number of kefir liters that Kolya can drink.

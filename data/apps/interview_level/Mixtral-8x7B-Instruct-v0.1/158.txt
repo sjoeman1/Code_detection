@@ -1,0 +1,25 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n = int(input().strip())
+ratings = list(map(int, input().strip().split()))
+
+# Check if it's possible to divide the players into two teams
+if max(ratings) not in ratings or min(ratings) not in ratings:
+    print("NO")
+else:
+    # Sort the ratings
+    ratings.sort()
+    # Check if the maximum and minimum ratings are at the ends
+    # of the sorted list
+    if ratings[-1] > ratings[-2] and ratings[0] < ratings[1]:
+        print("YES")
+    else:
+        print("NO")
+```
+
+The solution works by first checking if it's possible to divide the players into two teams with n people each. This is done by checking if the maximum and minimum ratings are present in the list. If they are not, then it's not possible to divide the players into two teams with n people each.
+
+If the maximum and minimum ratings are present in the list, then the solution sorts the ratings and checks if the maximum and minimum ratings are at the ends of the sorted list. If they are, then it's possible to divide the players into two teams with n people each such that the player from the first team wins every pairing. If they're not, then it's not possible to do so.
+
+The time complexity of the solution is O(n log n) and the space complexity is O(n), where n is the number of players.

@@ -1,0 +1,47 @@
+ Here's a Python3 solution for the problem:
+
+```python
+def check_bingo(bingo_card, chosen_numbers):
+    # Transpose the bingo card to check columns
+    transposed_card = list(zip(*bingo_card))
+
+    # Check rows and columns
+    for row in bingo_card:
+        if set(row) & set(chosen_numbers) == {1, 2}:
+            return True
+
+    for col in transposed_card:
+        if set(col) & set(chosen_numbers) == {1, 2}:
+            return True
+
+    # Check diagonals
+    if set(bingo_card[i][i] for i in range(3)) & set(chosen_numbers) == {1, 2}:
+        return True
+
+    if set(bingo_card[i][2 - i] for i in range(3)) & set(chosen_numbers) == {1, 2}:
+        return True
+
+    return False
+
+def main():
+    bingo_card = []
+    for _ in range(3):
+        bingo_card.append(list(map(int, input().split())))
+
+    N = int(input())
+    chosen_numbers = set(map(int, input().split()))
+
+    for _ in range(N):
+        num = int(input())
+        chosen_numbers.add(num)
+        if check_bingo(bingo_card, {2}):
+            print("Yes")
+            return
+
+    print("No")
+
+if __name__ == "__main__":
+    main()
+```
+
+This code reads the input bingo card and chosen numbers, then checks rows, columns, and diagonals for a bingo. The `check_bingo` function takes a bingo card and a set of chosen numbers and returns `True` if there is a bingo and `False` otherwise. The `main` function handles the input/output and checks for bingos after each chosen number. If a bingo is found, it prints "Yes" and returns immediately. If no bingo is found after all numbers are chosen, it prints "No".

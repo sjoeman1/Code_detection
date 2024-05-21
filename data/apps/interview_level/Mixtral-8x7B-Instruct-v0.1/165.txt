@@ -1,0 +1,21 @@
+ Here is one way to solve the problem using Python:
+
+```python
+def missing_meals(b, d, s):
+    # The minimum number of meals that Vasiliy could have missed is
+    # the maximum of the number of breakfasts, dinners, and suppers
+    # minus the total number of meals that he had.
+    return max(b, d, s) - (b + d + s)
+
+# Read the number of breakfasts, dinners, and suppers from input
+b, d, s = map(int, input().split())
+
+# Print the minimum number of meals that Vasiliy could have missed
+print(missing_meals(b, d, s))
+```
+
+This solution works by first defining a helper function `missing_meals` that takes the number of breakfasts, dinners, and suppers as input, and returns the minimum number of meals that Vasiliy could have missed. The minimum number of meals that Vasiliy could have missed is the maximum of the number of breakfasts, dinners, and suppers minus the total number of meals that he had.
+
+The main part of the solution reads the number of breakfasts, dinners, and suppers from input, and then prints the minimum number of meals that Vasiliy could have missed using the helper function.
+
+I hope this helps! Let me know if you have any questions.

@@ -1,0 +1,23 @@
+
+
+Here's the Python3 code for the question:
+
+```py
+def solve(n, a):
+    a.sort()
+    mex = 1
+    for i in range(n):
+        if a[i] > mex:
+            break
+        else:
+            mex = max(mex, a[i] + 1)
+    return mex
+
+
+n = int(input())
+a = list(map(int, input().split()))
+ans = solve(n, a)
+print(ans)
+```
+
+The code starts by reading the input values for n and the array a. It then sorts the array a in ascending order. Then, it iterates through the sorted array and checks if the smallest positive integer that hasn't appeared yet (initialized as 1) is greater than the current element in the array. If it is, it stops the loop and returns the smallest positive integer that hasn't appeared yet as the answer. Otherwise, it updates the smallest positive integer that hasn't appeared yet with the current element in the array plus 1. This ensures that the smallest positive integer that hasn't appeared yet is always the correct value.

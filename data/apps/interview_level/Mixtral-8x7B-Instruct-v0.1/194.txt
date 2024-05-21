@@ -1,0 +1,42 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def solve():
+    n, a, b = map(int, input().split())
+    table = [0] * (a + b)
+    denied = 0
+    for t in map(int, input().split()):
+        if t == 1:
+            if a > 0:
+                table[0] -= 1
+                a += 1
+            elif b > 0 and table[1] > 0:
+                table[1] -= 1
+                b -= 1
+            elif b > 0 and table[1] == 0:
+                denied += 1
+                b -= 1
+                table[1] = 2
+            else:
+                denied += 1
+        else:
+            if b > 0 and table[1] == 1:
+                table[1] = 2
+                b -= 1
+            elif b > 0 and table[1] > 1:
+                table[1] -= 2
+                b -= 1
+            elif a > 0 and b > 0:
+                table[0] -= 1
+                a -= 1
+                table[1] += 1
+                b -= 1
+            else:
+                denied += 2
+    print(denied)
+
+
+solve()
+```
+
+The solution uses two tables to keep track of the number of available one-seater and two-seater tables. For each group of people coming, the solution checks if it can be seated according to the rules given in the problem statement. If the group cannot be seated, the solution increments the `denied` variable. Finally, the solution prints the total number of people denied service.

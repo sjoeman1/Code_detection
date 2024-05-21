@@ -1,0 +1,27 @@
+
+
+This problem can be solved using Python3 with the following code:
+
+```
+# Read the input
+a, b = input().split()
+
+# Convert the input to integers
+a = int(a)
+b = int(b)
+
+# Calculate the sum of a and b
+sum = a + b
+
+# Print the sum
+print(sum)
+```
+
+Here's a breakdown of the code:
+
+*   The code starts with reading the input, which is stored in the variable `a` and `b`. The `input()` function is used to read the input from the user. The `split()` function is used to separate the input into two integers.
+*   Next, the code converts the input to integers using the `int()` function. This is necessary because the input is read as a string, and we need to convert it to an integer to perform mathematical operations.
+*   The code then calculates the sum of `a` and `b` and stores the result in the variable `sum`.
+*   Finally, the code prints the sum using the `print()` function.
+
+The code is designed to be a simple solution to the problem, using basic Python concepts.

@@ -1,0 +1,26 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n = int(input().strip())
+friends = []
+for i in range(n):
+    w, h = map(int, input().strip().split())
+    friends.append((w, h))
+
+friends.sort(key=lambda x: (x[0]*x[1], x[0]), reverse=True)
+
+width = 0
+height = 0
+for i in range(n):
+    if i >= n//2:
+        break
+    width += friends[i][0]
+    height = max(height, friends[i][1])
+
+width += sum(f[0] for f in friends[n//2:])
+height = max(height, sum(f[1] for f in friends[n//2:]))
+
+print(width * height)
+```
+
+This solution sorts the rectangles based on the product of their width and height in descending order and then iterates through the first `n//2` rectangles, adding their widths to the total width and keeping track of the maximum height. After that, it adds the widths of the remaining rectangles to the total width and updates the maximum height if necessary. Finally, it prints the product of the total width and height as the minimum possible area of the photo.

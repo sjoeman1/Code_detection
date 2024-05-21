@@ -1,0 +1,28 @@
+
+Here is the Python 3 code for solving the problem:
+
+```py
+def solve(n, k, a):
+    a.sort(reverse=True)
+    first_team = []
+    second_team = []
+    for i in range(n):
+        if i % 2 == 0:
+            first_team.append(a[i])
+        else:
+            second_team.append(a[i])
+    result = ["0"] * n
+    for i in range(n):
+        if a[i] in first_team:
+            result[i] = "1"
+        else:
+            result[i] = "2"
+    return "".join(result)
+
+
+n, k = map(int, input().split())
+a = list(map(int, input().split()))
+print(solve(n, k, a))
+```
+
+This code first sorts the programming skills in descending order. Then, it iterates through the sorted skills, adding them to the first team or the second team alternately. Finally, it creates a string of 1s and 2s indicating which team each student belongs to, and returns the string.

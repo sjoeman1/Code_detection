@@ -168,3 +168,5 @@ data/apps/introductory_level/introductory_samples.json
 data/apps/introductory_level/interview_samples.json
 
 data/apps/interview_level/interview_samples.json
+
+wandb/

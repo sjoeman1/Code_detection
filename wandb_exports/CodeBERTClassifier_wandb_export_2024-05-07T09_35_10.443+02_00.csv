@@ -1,0 +1,4 @@
+Name,test_data_file,accuracy,macro avg.f1-score,macro avg.precision,macro avg.recall
+,D:\Artificial_Intelligence\Thesis\Code_detection\code_bert\codebert_competition_test.jsonl,0.966,0.954,0.944,0.965
+,D:\Artificial_Intelligence\Thesis\Code_detection\code_bert\codebert_interview_test.jsonl,0.95,0.932,0.942,0.922
+,D:\Artificial_Intelligence\Thesis\Code_detection\code_bert\codebert_introductory_test.jsonl,0.872,0.826,0.839,0.816

@@ -1,0 +1,29 @@
+
+
+Here is the Python 3 code for the problem:
+
+```
+def min_recolor(s):
+    n = len(s)
+    count = 0
+    for i in range(n - 1):
+        if s[i] == s[i + 1]:
+            count += 1
+    return count
+
+
+if __name__ == "__main__":
+    s = input()
+    result = min_recolor(s)
+    print(result)
+```
+
+The provided code defines a function `min_recolor(s)` that takes a string `s` as input and returns the minimum number of tiles that need to be repainted to satisfy the condition.
+
+The function iterates over the characters in the string `s`, starting from the first character and ending at the second-to-last character. For each pair of adjacent characters, it checks if they are the same. If they are, it increments the `count` variable, which keeps track of the number of tiles that need to be repainted.
+
+The `min_recolor` function returns the `count` variable, which represents the minimum number of tiles that need to be repainted to satisfy the condition.
+
+The main section of the code takes input from the user, stores it in the variable `s`, and calls the `min_recolor` function with `s` as input. The returned value is stored in the `result` variable, which is then printed.
+
+This code should correctly calculate the minimum number of tiles that need to be repainted to satisfy the condition.

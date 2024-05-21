@@ -1,0 +1,32 @@
+
+ 
+ Here is the Python 3 code that solves the question:
+
+```py
+def can_draw_polygon(sides):
+    # Sort the sides in ascending order
+    sides.sort()
+    # Check if the longest side is shorter than the sum of the other sides
+    if sides[-1] < sum(sides[:-1]):
+        return "Yes"
+    else:
+        return "No"
+
+
+# Read the number of sides (N) from the input
+N = int(input())
+
+# Read the lengths of the sides (L_1, L_2, ..., L_N) from the input
+sides = list(map(int, input().split()))
+
+# Verify the input constraints
+if not (3 <= N <= 10 and all(1 <= L <= 100 for L in sides)):
+    print("Invalid input")
+else:
+    print(can_draw_polygon(sides))
+
+```
+
+This code defines a function `can_draw_polygon` that takes a list of polygon side lengths as input and checks if the longest side is shorter than the sum of the other sides. If it is, it returns "Yes"; otherwise, it returns "No".
+
+The main part of the code reads the input, verifies the input constraints, and then calls the `can_draw_polygon` function to determine whether the polygon can be drawn.

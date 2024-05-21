@@ -1,0 +1,31 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def check_win(board, player):
+    n = 4
+    # Check rows and columns
+    for i in range(n):
+        if all(board[j][i] == player for j in range(n)) or all(board[i][j] == player for j in range(n)):
+            return True
+    # Check diagonals
+    if all(board[i][i] == player for i in range(n)) or all(board[i][n-i-1] == player for i in range(n)):
+        return True
+    return False
+
+def tic_tac_toe():
+    board = [input() for _ in range(4)]
+    for i in range(4):
+        for j in range(4):
+            if board[i][j] == '.':
+                board[i][j] = 'x'
+                if check_win(board, 'x'):
+                    print('YES')
+                    return
+                board[i][j] = '.'
+
+    print('NO')
+
+tic_tac_toe()
+```
+
+The solution checks all possible winning positions for Ilya (X) after placing X in each empty cell. If there is a winning position, it prints 'YES', otherwise it prints 'NO'. The function `check_win()` checks if there is a win for a given player in the board. It checks rows, columns, and diagonals.

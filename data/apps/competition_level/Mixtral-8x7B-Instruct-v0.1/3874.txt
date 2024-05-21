@@ -1,0 +1,28 @@
+ Here is a Python3 code that can solve the problem:
+```python
+import re
+
+def find_pattern(n, files, to_delete):
+    # create a set of deleted files
+    deleted_files = set(files[i-1] for i in to_delete)
+    
+    # try all possible patterns
+    for pattern in deleted_files:
+        # check if the pattern matches all deleted files and no non-deleted files
+        if len(deleted_files) == len(set.intersection(deleted_files, {fn for fn in files if re.fullmatch(pattern, fn)})) and \
+           len(files) - len(to_delete) == len(set.intersection({fn for fn in files if fn not in deleted_files}, {fn for fn in files if re.fullmatch(pattern, fn)})):
+            return "Yes\n" + pattern
+            
+    return "No"
+
+# read input
+n, m = map(int, input().split())
+files = [input() for _ in range(n)]
+to_delete = list(map(int, input().split()))
+
+# find pattern
+print(find_pattern(n, files, to_delete))
+```
+The code first creates a set of deleted files, then tries all possible patterns and checks if the pattern matches all deleted files and no non-deleted files. If such pattern is found, it returns the pattern. If no such pattern is found, it returns "No".
+
+Note that the code uses regular expressions to match patterns, but the question mark '?' is escaped to '\?' to ensure that it matches any single character and not the end of the string.

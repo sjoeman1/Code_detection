@@ -1,0 +1,19 @@
+
+
+This is a simple mathematical problem. Here's the Python code:
+
+```
+def max_team_size(l, r, a):
+    team_size = 0
+    if l + r > a:
+        team_size = 2 * min(l, r) + a
+    elif l + r <= a and l + r > 0:
+        team_size = l + r
+    return team_size
+
+l, r, a = [int(x) for x in input().split()]
+team_size = max_team_size(l, r, a)
+print(team_size)
+```
+
+This code takes three integers as input, representing the number of left-handers, right-handers, and ambidexters. It then calculates the maximum team size based on the constraints given in the problem statement.

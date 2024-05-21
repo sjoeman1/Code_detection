@@ -1,0 +1,47 @@
+
+
+Here's the Python 3 code that solves the problem:
+
+```python
+def solve(n, m):
+    # Calculate the number of digits required to display the hours and minutes
+    digits_hours = len(str(n - 1))
+    digits_minutes = len(str(m - 1))
+
+    # Create a list to store the possible combinations of digits for hours and minutes
+    combinations = []
+
+    # Iterate through all possible combinations of hours and minutes
+    for hour in range(n):
+        for minute in range(m):
+            # Convert the hours and minutes to base 7
+            base7_hour = str(int(str(hour), 7))
+            base7_minute = str(int(str(minute), 7))
+
+            # Pad the hours and minutes with zeroes to match the number of digits
+            base7_hour = base7_hour.zfill(digits_hours)
+            base7_minute = base7_minute.zfill(digits_minutes)
+
+            # Create a set of digits used in the current combination
+            combination = set(base7_hour + base7_minute)
+
+            # If the combination is unique, add it to the list
+            if combination not in combinations:
+                combinations.append(combination)
+
+    # Return the number of unique combinations
+    return len(combinations)
+
+# Read the input
+n, m = map(int, input().split())
+
+# Calculate and print the result
+result = solve(n, m)
+print(result)
+```
+
+The code reads the input, which contains the number of hours (`n`) and minutes (`m`). It then calculates the number of digits required to display the hours and minutes in base 7.
+
+The code iterates through all possible combinations of hours and minutes, converts them to base 7, and pads them with zeroes to match the number of digits. It then creates a set of digits used in the current combination and checks if it's unique. If it is, it's added to the list of unique combinations.
+
+Finally, the code prints the number of unique combinations, which is the result.

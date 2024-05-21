@@ -1,0 +1,37 @@
+
+ Here is a possible Python3 code to solve the question:
+```python
+# Read input from standard input
+n, a, b, c = map(int, input().split())
+lengths = [int(input()) for _ in range(n)]
+
+# Initialize the magic points
+mp = 0
+
+# Check if there is a bamboo of length c
+if c in lengths:
+    # If present, increment magic points by 10
+    mp += 10
+    # Remove the bamboo of length c from the list
+    lengths.remove(c)
+
+# Iterate over the remaining bamboos
+for length in lengths:
+    # Check if the length is greater than or equal to a
+    if length >= a:
+        # If so, use the extension magic to increase the length
+        mp += (length - a)
+        # After extension, we can use the composition magic
+        mp += 10
+    # If the length is greater than or equal to b
+    elif length >= b:
+        # Use the shortening magic to decrease the length
+        mp += (b - length)
+        # After shortening, we can use the composition magic
+        mp += 10
+
+# Print the minimum magic points required
+print(mp)
+```
+
+This code will read the input from standard input in the given format and store the values in the respective variables. It will then check if there is a bamboo of length c in the list of lengths. If there is, it will increment the magic points by 10 and remove the bamboo of length c from the list. It will then iterate over the remaining bamboos and check if the length is greater than or equal to a or b. If it is, it will use the appropriate magic to obtain a bamboo of length a or b. Finally, it will print the minimum magic points required to obtain a bamboo of length a, b, and c.

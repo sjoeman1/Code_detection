@@ -1,0 +1,31 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def min\_decks(b, g, n):
+if b+g < n or n > b or n > g:
+return -1
+
+decks = 0
+while b <= n and g <= n:
+b -= min(n, b)
+g -= min(n, g)
+decks += 1
+n -= 1
+
+return decks
+
+b = int(input())
+g = int(input())
+n = int(input())
+
+result = min\_decks(b, g, n)
+
+if result == -1:
+print("No solution")
+else:
+print(result)
+```
+
+The function `min_decks` calculates the minimum number of decks that Vasya should take. It does so by repeatedly subtracting the minimum of `n` and the remaining number of boys or girls, until the number of boys or girls is greater than `n`. The function returns the number of decks used so far.
+
+The input is read from standard input and the result is printed to standard output. If there is no solution, the message "No solution" is printed instead.

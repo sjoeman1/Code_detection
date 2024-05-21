@@ -1,0 +1,34 @@
+
+
+Here is the Python 3 code for the given problem:
+
+```python
+# Input the string S
+S = input()
+
+# Initialize a flag to indicate if the string is easily playable
+easily_playable = True
+
+# Iterate over each character of the string
+for i in range(len(S)):
+    # If the character is in an odd position
+    if i % 2 == 1:
+        # Check if the character is R, U, or D
+        if S[i] not in ('R', 'U', 'D'):
+            easily_playable = False
+            break
+    # If the character is in an even position
+    else:
+        # Check if the character is L, U, or D
+        if S[i] not in ('L', 'U', 'D'):
+            easily_playable = False
+            break
+
+# Print the result
+if easily_playable:
+    print("Yes")
+else:
+    print("No")
+```
+
+In this code, we first take the input string S. Then, we initialize a flag to indicate if the string is easily playable. We iterate over each character of the string and check if it is in an odd or even position. If the character is in an odd position, we check if it is R, U, or D. If the character is in an even position, we check if it is L, U, or D. If we find a character that doesn't satisfy the conditions, we set the flag to False and break the loop. Finally, we print the result based on the flag's value.

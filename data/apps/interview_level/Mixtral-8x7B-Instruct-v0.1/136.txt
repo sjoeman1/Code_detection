@@ -1,0 +1,37 @@
+ Here is a Python3 solution using the `input()` function to read the input as a string, and then converting them to integers using the `int()` function with base 10. The `max()` function is used to compare the two integers and output the correct symbol.
+
+```python
+a = int(input())
+b = int(input())
+
+if max(a, b) == a:
+    if a > b:
+        print(">")
+    else:
+        print("<")
+else:
+    print("=")
+```
+
+Alternatively, you can use the following one-liner solution:
+
+```python
+print(">" if int(input()) > int(input()) else "<" if int(input()) < int(input()) else "=")
+```
+
+Note that in both solutions, the `input()` function is called 4 times, which may not be the most efficient way to read large inputs. A more efficient way would be to read the input as a whole line and then parse it using the `int()` function. Here is an example:
+
+```python
+a = int(input().strip())
+b = int(input().strip())
+
+if max(a, b) == a:
+    if a > b:
+        print(">")
+    else:
+        print("<")
+else:
+    print("=")
+```
+
+The `strip()` function is used to remove any leading or trailing whitespace from the input string.

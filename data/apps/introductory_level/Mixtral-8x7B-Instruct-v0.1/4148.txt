@@ -1,0 +1,21 @@
+ Here is a Python3 solution for the problem:
+
+```python
+n = int(input())
+s = input()
+
+result = ""
+for char in s:
+    shifted = ord(char) + n
+    if char == 'Z':
+        shifted = ord('A') + (n % 26) - 1
+    elif char == 'Y' and n >= 2:
+        shifted = ord('A') - 1
+    elif shifted > ord('Z'):
+        shifted = ord('A') + (shifted - ord('Z') - 1)
+    result += chr(shifted)
+
+print(result)
+```
+
+This code first reads the input values of `n` and `s`. Then, for each character in `s`, it calculates the shifted value by adding `n` to its ASCII value. If the character is `Z`, it wraps around to `A` by adding the remainder of `n` divided by 26 to the ASCII value of `A`. If the character is `Y` and `n` is greater than or equal to 2, it wraps around to `A` by subtracting 1 from the ASCII value of `A`. If the shifted value is greater than the ASCII value of `Z`, it wraps around to `A` by subtracting the difference between `Z` and `A` from the shifted value. Finally, it prints the resulting string.

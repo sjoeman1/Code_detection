@@ -1,0 +1,41 @@
+
+
+Here is the Python 3 code to solve the question:
+
+```
+n, k = map(int, input().split())
+coins = list(map(int, input().split()))
+
+# Function to calculate the values that Arya can make using a subset of coins with sum k
+def subset_values(coins, k):
+    # Create a dp array to store the values that can be made with each subset of coins
+    dp = [False] * (k + 1)
+    # Initialize the value 0 to True as Arya can make 0 with no coins
+    dp[0] = True
+    # Iterate through each coin
+    for coin in coins:
+        # Iterate through each value from k to coin
+        for i in range(k, coin - 1, -1):
+            # If a value can be made with a subset of coins, check if it can be made with the current coin as well
+            if dp[i - coin]:
+                dp[i] = True
+    # Initialize an empty set to store the values that Arya can make
+    values = set()
+    # Iterate through each value from 0 to k
+    for i in range(k + 1):
+        # If a value can be made, add it to the set
+        if dp[i]:
+            values.add(i)
+    return values
+
+# Calculate the values that Arya can make using a subset of coins with sum k
+values = subset_values(coins, k)
+# Sort the values in ascending order
+values = sorted(values)
+# Print the number of values
+print(len(values))
+# Print the values
+print(*values)
+```
+
+In this code, the subset_values function calculates the values that Arya can make using a subset of coins with sum k. The dp array is used to store the values that can be made with each subset of coins. The values are calculated by iterating through each coin and checking if a value can be made with a subset of coins. If it can be made, the value is added to the set. The set is then sorted in ascending order and printed.

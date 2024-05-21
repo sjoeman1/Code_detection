@@ -1,0 +1,61 @@
+
+
+The question is asking to find the minimum mass of fuel required for Natasha to fly to Mars and back to Earth. The input consists of the number of planets, the weight of the payload, and the coefficients for take-off and landing. The output is the minimum mass of fuel or -1 if it is not possible.
+
+The code for this problem can be written as follows:
+
+```
+# Define a function to calculate the minimum fuel mass
+def min_fuel(n, m, a, b):
+    # Initialize the fuel mass to 0
+    fuel = 0
+    
+    # Iterate through each planet
+    for i in range(n-1):
+        # Calculate the amount of fuel required for take-off
+        takeoff = m * a[i]
+        # Calculate the amount of fuel required for landing
+        landing = m * b[i]
+        
+        # If the fuel is greater than the takeoff, subtract the takeoff from the fuel
+        if fuel >= takeoff:
+            fuel -= takeoff
+        # Otherwise, add the takeoff to the fuel
+        else:
+            fuel += takeoff
+        
+        # If the fuel is greater than the landing, subtract the landing from the fuel
+        if fuel >= landing:
+            fuel -= landing
+        # Otherwise, add the landing to the fuel
+        else:
+            fuel += landing
+            
+    # If the fuel is greater than the payload, subtract the payload from the fuel
+    if fuel >= m:
+        fuel -= m
+    # Otherwise, add the payload to the fuel
+    else:
+        fuel += m
+        
+    # If the fuel is negative, return -1
+    if fuel < 0:
+        return -1
+    # Otherwise, return the fuel
+    else:
+        return fuel
+
+# Read input from stdin
+n = int(input())
+m = int(input())
+a = list(map(int, input().split()))
+b = list(map(int, input().split()))
+
+# Call the function to calculate the minimum fuel mass
+result = min_fuel(n, m, a, b)
+
+# Print the result
+print(result)
+```
+
+The function `min_fuel` calculates the minimum fuel mass required for Natasha to fly to

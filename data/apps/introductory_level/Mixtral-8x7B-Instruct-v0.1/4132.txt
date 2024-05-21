@@ -1,0 +1,28 @@
+ Here is a Python3 solution for the problem. The idea is to sort the monsters by their health in non-decreasing order. Then, the monster with the smallest health attacks the monster with the largest health, and we repeat this process until there is only one monster left. The final health of the last monster is the smallest health among all monsters.
+
+```python
+import random
+import sys
+input = sys.stdin.readline
+
+def solve():
+    N = int(input())
+    A = list(map(int, input().split()))
+    A.sort()
+
+    while len(A) > 1:
+        a = A.pop()
+        A[-1] -= a
+        if A[-1] < 0:
+            A[-1] = 0
+        A.sort()
+
+    print(A[0])
+
+if __name__ == "__main__":
+    solve()
+```
+
+In this code, we use the `sort` function to sort the list of monsters by their health in non-decreasing order. The `pop` function is used to remove the monster with the smallest health from the list, and the `append` function is used to add a monster to the end of the list. We use the `-=` operator to subtract the health of the attacking monster from the health of the attacked monster. If the health of the attacked monster becomes negative, we set it to 0. We repeat this process until there is only one monster left, and then we print the final health of the last monster, which is the smallest health among all monsters.
+
+Note that the `random` and `sys` modules are not actually used in this solution, but they are included in case they are needed for other problems.

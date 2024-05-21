@@ -1,0 +1,4 @@
+ Here is a Python3 code to solve the problem:
+
+```python
+A, B, C, N = map(int, input().split())

@@ -1,0 +1,31 @@
+
+Here is a Python3 code that solves the problem:
+
+```
+# Read input
+n, m = map(int, input().split())
+votes = list(map(int, input().split()))
+
+# Calculate the minimum votes needed for an item to be popular
+total_votes = sum(votes)
+min_votes = total_votes // (4 * m)
+
+# Check if there are M items with at least min_votes votes
+popular_items = [vote >= min_votes for vote in votes]
+if sum(popular_items) >= m:
+    print("Yes")
+else:
+    print("No")
+```
+
+Here's how the code works:
+
+1.  Read input:
+    *   Read the values of N and M from the first line of input and store them in the variables `n` and `m`.
+    *   Read the votes for each item from the second line of input and store them in the list `votes`.
+2.  Calculate the minimum votes needed for an item to be popular:
+    *   Calculate the total number of votes by summing all the values in the `votes` list.
+    *   Calculate the minimum votes needed for an item to be popular by dividing the total votes by 4M (using integer division).
+3.  Check if there are M items with at least min_votes votes:
+    *   Create a list `popular_items` where each item is True if its corresponding vote in the `votes` list is greater than or equal to `min_votes`.
+    *   If the sum of True values in `popular_items` is greater than or equal to M, print "Yes". Otherwise, print "No".

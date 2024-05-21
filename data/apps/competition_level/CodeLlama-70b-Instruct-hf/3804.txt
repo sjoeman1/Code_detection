@@ -1,0 +1,38 @@
+
+
+```python
+# function to count the number of numbers m
+# such that the sum of values in the cells
+# in the row number m + 1 of the resulting matrix equals t
+def count(n, t):
+    # initialize the count
+    count = 0
+    
+    # iterate over the numbers from 1 to n
+    for m in range(1, n + 1):
+        # initialize the sum
+        sum = 0
+        
+        # iterate over the numbers from 1 to m + 1
+        for i in range(1, m + 2):
+            # calculate the sum of values in the row number m + 1
+            sum += (i ^ (m + 1))
+        
+        # if the sum equals t, increment the count
+        if sum == t:
+            count += 1
+    
+    # return the count
+    return count
+
+# read the input
+n, t = map(int, input().split())
+
+# calculate the count
+count = count(n, t)
+
+# print the result
+print(count)
+```
+
+This code defines a function count() that takes two integers n and t as parameters. It iterates over the numbers from 1 to n and calculates the sum of values in the row number m + 1 of the resulting matrix. If the sum equals t, it increments the count. Finally, it returns the count. The main function reads the input, calculates the count using the count() function, and prints the result.

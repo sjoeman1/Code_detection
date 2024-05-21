@@ -1,0 +1,22 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def expected\_dresses(x, k):
+x\_mod = 1000000007
+power = 1
+for i in range(k):
+power = (power \* 2) % x\_mod
+if i != k - 1:
+expected = (power + expected\_dresses(x, k - 1)) // 2
+expected = expected % x\_mod
+return expected if x == 1 else (power + expected\_dresses(x - 1, k)) % x\_mod
+
+x, k = map(int, input().split())
+print(expected\_dresses(x, k))
+```
+
+This solution uses recursion to calculate the expected number of dresses at the end of the year. The `expected_dresses` function takes in two arguments: `x`, the initial number of dresses, and `k`, the number of months in a year in Byteland. The function calculates the expected number of dresses for the given `x` and `k`, and returns it modulo 10^9 + 7.
+
+The function uses a helper variable `power` to keep track of the number of dresses after doubling for `k` months. If `k` is not equal to `k - 1`, it recursively calls itself with `x - 1` and `k - 1` as arguments and calculates the expected number of dresses by taking the average of the current `power` and the expected number of dresses for the previous month. The function then returns the expected number of dresses modulo 10^9 + 7.
+
+The main part of the code reads the input values of `x` and `k` from the standard input, and calls the `expected_dresses` function with these arguments. The result is printed to the standard output.

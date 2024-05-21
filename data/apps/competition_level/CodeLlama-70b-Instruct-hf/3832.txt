@@ -1,0 +1,28 @@
+
+
+Here is the Python 3 code that solves the problem:
+
+```py
+def solve(n, hills):
+    hills.sort(reverse=True)
+    ans = [0] * (n // 2 + 1)
+    for i in range(1, n // 2 + 1):
+        ans[i] = ans[i - 1]
+        last = -1
+        for j, h in enumerate(hills):
+            if j == last:
+                continue
+            if h > hills[last]:
+                last = j
+                ans[i] += h - hills[last]
+            else:
+                break
+    return ans
+
+n = int(input())
+hills = list(map(int, input().split()))
+ans = solve(n, hills)
+print(*ans)
+```
+
+This code solves the problem by sorting the hills in descending order. Then, for each value of k, it iterates through the hills and checks if the current hill is higher than the last suitable hill. If it is, it decreases the current hill by the difference with the last suitable hill, and then marks the current hill as the last suitable hill. If not, it breaks out of the loop. The time complexity of this solution is O(n^2).

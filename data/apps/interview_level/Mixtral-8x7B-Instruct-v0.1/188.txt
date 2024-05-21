@@ -1,0 +1,36 @@
+ Here is a Python3 solution for the problem:
+
+```python
+def solve():
+    n, k = map(int, input().split())
+    a = list(map(int, input().split()))
+    curr\_seats = 0
+    curr\_group = 0
+    for i in range(k):
+        if a[i] + curr\_seats > 8:
+            print("NO")
+            return
+        if i % 2 == 0:
+            available\_seats = 8 - curr\_seats
+            if a[i] > available\_seats:
+                print("NO")
+                return
+            curr\_group += a[i]
+            curr\_seats = 0
+        else:
+            if a[i] + curr\_seats > 8:
+                print("NO")
+                return
+            curr\_seats += a[i]
+    print("YES")
+
+solve()
+```
+
+The solution works by iterating over the groups of soldiers and checking if it's possible to place them in the current plane configuration. At each step, it checks if the current group can be placed in the current row (if the current group size is less than or equal to the number of available seats). If it's not possible, it returns "NO" immediately. If it is possible, it updates the number of available seats and moves to the next group.
+
+The solution also handles the case where the current group cannot be placed in the current row, but it could be placed if it were the first group in the row (i.e., if the current row is empty). It does this by checking if the current group size is less than or equal to the number of available seats in the row, and if so, placing the group there and updating the number of available seats for the next group.
+
+The solution also handles the case where the current row is full (i.e., all 8 seats are occupied), by checking if the current group size is less than or equal to the number of available seats in the next row. If it's not possible, it returns "NO" immediately.
+
+The solution also handles the case where the number of soldiers in the current group is greater than the number of available seats in the current row. If it's not possible, it

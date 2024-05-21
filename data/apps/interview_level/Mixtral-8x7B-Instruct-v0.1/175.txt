@@ -1,0 +1,19 @@
+ Here is the Python3 code to solve the problem:
+
+```python
+def process(a, b):
+    while a > 0 and b > 0:
+        if a >= 2*b:
+            a -= 2*b
+        else:
+            b -= 2*a
+    return a, b
+
+# Read input values for a and b
+a, b = map(int, input().split())
+
+# Perform the sequence of actions and print the final values of a and b
+print(*process(a, b))
+```
+
+To use this code, simply run it in a Python3 environment and input the initial values of `a` and `b` separated by a space. The code will output the final values of `a` and `b` after the process ends.

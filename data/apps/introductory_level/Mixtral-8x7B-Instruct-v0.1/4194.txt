@@ -1,0 +1,24 @@
+ Here is a Python3 solution using greedy algorithm. The idea is to sort the assignments in decreasing order of their lengths, and then assign the longest available day to the longest available assignment, and so on. If at any point the remaining days are less than the length of the next assignment, then it is not possible to finish all assignments during the vacation.
+
+```python
+import sys
+
+def main():
+    N, M = map(int, input().split())
+    A = list(map(int, input().split()))
+
+    # Sort the assignments in decreasing order of their lengths
+    A.sort(reverse=True)
+
+    # Keep track of the remaining days
+    days_left = N
+
+    # Loop through the assignments
+    for a in A:
+        # If the remaining days are less than the length of the assignment,
+        # then it is not possible to finish all assignments during the vacation
+        if days_left < a:
+            print(-1)
+            return
+        # Otherwise, subtract the length of the assignment from the remaining days
+        days_left -= a

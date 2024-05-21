@@ -1,0 +1,49 @@
+ To solve this problem, you can use the Sharestaff algorithm, which is an extension of the gift wrapping algorithm for finding the convex hull. The Sharestaff algorithm can be used to find all the vertices on the convex hull, as well as all the points inside the convex hull.
+
+Here is the Python3 code for solving the problem:
+```python
+import sys
+from collections import defaultdict
+
+def cross_product(p1, p2, p0):
+    return (p1[0] - p0[0]) * (p2[1] - p0[1]) - (p1[1] - p0[1]) * (p2[0] - p0[0])
+
+def leftmost_point(points):
+    return min(points, key=lambda p: p[0])
+
+def sharestaff(points):
+    n = len(points)
+    if n <= 3:
+        return points
+
+    # Find the leftmost point
+    p0 = leftmost_point(points)
+    points = sorted(points, key=lambda p: cross_product(p0, p, (0, 0)))
+
+    # Initialize the convex hull
+    hull = [p0]
+    for p in points:
+        while len(hull) > 1 and cross_product(hull[-2], hull[-1], p) <= 0:
+            hull.pop()
+        hull.append(p)
+
+    # Find the points inside the convex hull
+    inside = set()
+    for p in points:
+        if p not in hull:
+            flag = True
+            for q in hull:
+                if cross_product(p, q, (0, 0)) > 0:
+                    flag = False
+                    break
+            if flag:
+                inside.add(p)
+
+    # Compute the score of each subset of the convex hull
+    mod = 998244353
+    dp = defaultdict(int)
+    dp[frozenset()] = 1
+    for p in hull:
+        new_dp = defaultdict(int)
+        for s, count in dp.items():
+            new_

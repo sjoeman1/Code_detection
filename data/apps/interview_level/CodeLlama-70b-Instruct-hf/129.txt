@@ -1,0 +1,21 @@
+
+
+Here is the Python3 code that solves the problem:
+
+```python
+N, M, K, L = map(int, input().split())
+
+if L <= M:
+    print(M - K)
+else:
+    if L - M > N - K:
+        print(-1)
+    else:
+        print(N - K - (L - M))
+```
+
+In this code, we first read the input values for N, M, K, and L. Then, we check if L is less than or equal to M. If it is, we print M - K as the minimum number of coins required.
+
+If L is greater than M, we check if L - M is greater than N - K. If it is, then it is not possible to meet all the conditions, and we print -1.
+
+Otherwise, we print N - K - (L - M), which is the minimum number of coins required to meet the conditions.

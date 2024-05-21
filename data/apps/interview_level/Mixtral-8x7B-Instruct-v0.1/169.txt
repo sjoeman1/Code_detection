@@ -1,0 +1,10 @@
+ Here is one way to solve the problem using Python3:
+
+```python
+n, a, b, c = map(int, input().split())
+
+# Calculate the net cost of a glass bottle (cost - deposit)
+glass\_cost = b - c
+
+# Check if it's better to buy a plastic bottle or a glass bottle
+#

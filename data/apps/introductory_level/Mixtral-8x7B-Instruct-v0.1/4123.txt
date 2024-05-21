@@ -1,0 +1,25 @@
+ Here is a Python3 solution for the problem:
+
+```python
+import collections
+
+def most_frequent_two_gram():
+    n = int(input())
+    s = input()
+
+    # Use collections.defaultdict to count occurrences of each two-gram
+    two_gram_count = collections.defaultdict(int)
+    for i in range(n-1):
+        two_gram_count[s[i:i+2]] += 1
+
+    # Find the two-gram with the maximum count
+    max_count = max(two_gram_count.values())
+    max_two_grams = [two_gram for two_gram in two_gram_count if two_gram_count[two_gram] == max_count]
+
+    # Print any two-gram with the maximum count
+    print(max_two_grams[0])
+
+most_frequent_two_gram()
+```
+
+This solution uses the `collections.defaultdict` class to count the occurrences of each two-gram in the input string. It then finds the two-gram with the maximum count and prints it. Note that there may be multiple two-grams with the same maximum count, so we print the first one we find.
