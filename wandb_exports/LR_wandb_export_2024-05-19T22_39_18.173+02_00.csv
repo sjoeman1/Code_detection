@@ -1,0 +1,4 @@
+Name,testset,accuracy,weighted avg.f1-score,weighted avg.precision,weighted avg.recall
+codebert_train_LR,code_bert/codebert_introductory_test.jsonl,0.838,0.817,0.842,0.838
+codebert_train_LR,code_bert/codebert_interview_test.jsonl,0.866,0.858,0.862,0.866
+codebert_train_LR,code_bert/codebert_competition_test.jsonl,0.923,0.92,0.923,0.923

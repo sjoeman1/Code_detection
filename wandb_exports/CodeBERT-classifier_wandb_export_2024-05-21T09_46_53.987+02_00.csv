@@ -1,0 +1,4 @@
+Dataset,test_data_file,accuracy,f1-score,precision,recall
+fresh-dew-74,D:\Artificial_Intelligence\Thesis\Code_detection\code_bert\codebert_competition_test.jsonl,0.957,0.958,0.958,0.957
+denim-dawn-73,D:\Artificial_Intelligence\Thesis\Code_detection\code_bert\codebert_interview_test.jsonl,0.95,0.949,0.949,0.95
+electric-night-72,D:\Artificial_Intelligence\Thesis\Code_detection\code_bert\codebert_introductory_test.jsonl,0.863,0.86,0.859,0.863
