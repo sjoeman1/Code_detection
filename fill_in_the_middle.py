@@ -1,4 +1,3 @@
-from transformers import AutoModelForCausalLM, AutoTokenizer
 import torch, json
 import random, os
 from utils_batch import InfillingModel
@@ -7,14 +6,14 @@ import tqdm
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--dataset', default="code_bert/codebert_competition_test.jsonl")
-parser.add_argument('--batch_size', default=4, type=int)
+parser.add_argument('--perturbations', default=4, type=int)
 parser.add_argument('--mask_lines', default=8, type=int)
 parser.add_argument("--gpu", type=str, default="2")
 parser.add_argument("--model_name", type=str, default="facebook/incoder-1B")
 parser.add_argument("--run", type=str, default= "1")
 args = parser.parse_args()
 
-output_file = f'FIM/{args.dataset.split("/")[1][:-6]}_FIM_human_{args.run}_line_{args.mask_lines}.jsonl'
+output_file = f'FIM/{args.dataset.split("/")[1][:-6]}_FIM_human_{args.run}_line_{args.mask_lines}_per_{args.perturbations}.jsonl'
 print(output_file)
 with open(args.dataset, 'r') as f:
     dataset = [json.loads(line) for line in f.readlines()]
@@ -90,7 +89,7 @@ for idx, ins in tqdm.tqdm(enumerate(dataset), total = len(dataset)):
 
     gold_completion_all = []
     if len(ins['code']) < 3200:
-        for _ in range(args.batch_size):
+        for _ in range(args.perturbations):
             gold_codes_masked = mask_code(ins['code'], mask_lines=args.mask_lines)
             gold_completion_all.append(gold_codes_masked[:3200])
 
