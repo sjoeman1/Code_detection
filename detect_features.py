@@ -14,28 +14,35 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report
+from sklearn.metrics import classification_report, roc_auc_score
 
 import xgboost as xgb
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--train_dataset', default="code_bert/codebert_train.jsonl")
-parser.add_argument('--test_dataset', default="code_bert/codebert_competition_test.jsonl")
-parser.add_argument('--classifier', default="Feature_LR",
+parser.add_argument('--train_dataset', default="code_bert/codebert_train.jsonl code_bert/codebert_val.jsonl")
+parser.add_argument('--test_dataset', default="code_bert/codebert_introductory_test.jsonl")
+# parser.add_argument('--train_dataset', default="code_bert/codebert_train.jsonl")
+# parser.add_argument('--test_dataset', default="code_bert/codebert_val.jsonl")
+parser.add_argument('--classifier', default="Feature_XGB",
                     choices=['Feature_SCM', 'Feature_LR', 'Feature_MNB', 'Feature_XGB'])
 args = parser.parse_args()
 # args.ngram_range = tuple(args.ngram_range)
 print(args)
 
 clf_name = args.classifier
-dataset_name = args.train_dataset.split('/')[-1][:-6]
+args.train_dataset = args.train_dataset.split(' ')
+dataset_name = [ds.split('/')[-1][:-6] for ds in args.train_dataset]
 run_name = f"{dataset_name}_{clf_name}"
+print(run_name)
 
 # load the dataset
-with open(args.train_dataset, 'r') as f:
-    dataset = [json.loads(line) for line in f.readlines()]
+dataset = []
+for dataset_file in args.train_dataset:
+    with open(dataset_file, 'r') as f:
+        dataset += [json.loads(line) for line in f.readlines()]
 
-wandb.init(project='Code_Detection_Features', config=args, name=run_name, tags= ['full_dataset'])
+
+wandb.init(project='Code_Detection_Features', config=args, name=run_name, tags= ['full_dataset', 'V4'])
 config = wandb.config
 
 
@@ -63,9 +70,9 @@ def extract_features(series):
     df['amount_of_indents'] = df['tokenized'].apply(lambda x: len([word for word in x if word == '#INDENT#']))
     df['amount_of_defs'] = df['tokenized'].apply(lambda x: len([word for word in x if word == 'def']))
     df['avg_len_line'] = df['code'].apply(lambda x: np.mean([len(line) for line in x.split('\n') if not line.startswith('#')]))
-    # df['amount_of_builtins'] = df['tokenized'].apply(lambda x: len([word for word in x if word in built_in_functions]))
-    # df['amount_of_keywords'] = df['tokenized'].apply(lambda x: len([word for word in x if keyword.iskeyword(word)]))
-    # df['amount_of_soft_keywords'] = df['tokenized'].apply(lambda x: len([word for word in x if keyword.issoftkeyword(word)]))
+    df['amount_of_builtins'] = df['tokenized'].apply(lambda x: len([word for word in x if word in built_in_functions]))
+    df['amount_of_keywords'] = df['tokenized'].apply(lambda x: len([word for word in x if keyword.iskeyword(word)]))
+    df['amount_of_soft_keywords'] = df['tokenized'].apply(lambda x: len([word for word in x if keyword.issoftkeyword(word)]))
 
     return df
 
@@ -104,11 +111,11 @@ match config['classifier']:
     case "Feature_SCM":
         clf = SVC(kernel='poly', C=10)
     case "Feature_LR":
-        clf = LogisticRegression(max_iter=1000)
+        clf = LogisticRegression(max_iter=1000, C=10, l1_ratio=0.5)
     case "Feature_MNB":
         clf = MultinomialNB()
     case "Feature_XGB":
-        clf = xgb.XGBClassifier(objective='binary:logistic', max_depth=10, n_estimators=180, gamma=1)
+        clf = xgb.XGBClassifier(objective='binary:logistic', max_depth=10, n_estimators=180, gamma=1.0)
     case _:
         print("Invalid model name")
         wandb.finish(exit_code=1)
@@ -134,8 +141,7 @@ if not config['classifier'] == "Feature_SCM":
     y_probas = clf.predict_proba(X_test)
 #print the classification report
 report = classification_report(y_test, y_pred, target_names=labels, output_dict=True)
-print(report)
-wandb.log(report)
+
 wandb.sklearn.plot_confusion_matrix(y_test, y_pred, labels)
 wandb.sklearn.plot_learning_curve(clf, X_train, y_train)
 wandb.sklearn.plot_class_proportions(y_train, y_test, labels)
@@ -143,15 +149,21 @@ wandb.sklearn.plot_confusion_matrix(y_test, y_pred, labels)
 wandb.sklearn.plot_summary_metrics(clf, X_train, y_train, X_test, y_test)
 
 if not config['classifier'] == "Feature_SCM":
+
     wandb.sklearn.plot_roc(y_test, y_probas, labels)
     wandb.sklearn.plot_feature_importances(clf, data_features.columns)
-    features = wandb.sklearn.calculate.feature_importances(clf, data_features.columns)
+    # features = wandb.sklearn.calculate.feature_importances(clf, data_features.columns)
+    #
+    # # get top and bottom 10 features out of features and plot them in wandb
+    # top_features = features.value.data[:10]
+    # bottom_features = features.value.data[-10:]
+    # all_features = top_features + bottom_features
+    # table = wandb.Table(data=all_features, columns=features.value.columns)
+    # chart = wandb.visualize("top_20_features", table)
+    # wandb.log({"top_20_features_log": chart})
 
-    # get top and bottom 10 features out of features and plot them in wandb
-    top_features = features.value.data[:10]
-    bottom_features = features.value.data[-10:]
-    all_features = top_features + bottom_features
-    table = wandb.Table(data=all_features, columns=features.value.columns)
-    chart = wandb.visualize("top_20_features", table)
-    wandb.log({"top_20_features_log": chart})
+    print(report)
+    report['roc_auc_score'] = roc_auc_score(y_test, y_probas[:, 1])
+
+wandb.log(report)
 
