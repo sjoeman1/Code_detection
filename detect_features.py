@@ -19,45 +19,36 @@ from sklearn.metrics import classification_report
 import xgboost as xgb
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--dataset', default="results/CodeLlama-70b-Instruct-hf-apps_competition_207.jsonl")
-parser.add_argument('--classifier', default="Feature_SCM",
+parser.add_argument('--train_dataset', default="code_bert/codebert_train.jsonl")
+parser.add_argument('--test_dataset', default="code_bert/codebert_competition_test.jsonl")
+parser.add_argument('--classifier', default="Feature_LR",
                     choices=['Feature_SCM', 'Feature_LR', 'Feature_MNB', 'Feature_XGB'])
 args = parser.parse_args()
 # args.ngram_range = tuple(args.ngram_range)
 print(args)
 
 clf_name = args.classifier
-dataset_name = args.dataset.split('/')[-1][:-6]
+dataset_name = args.train_dataset.split('/')[-1][:-6]
 run_name = f"{dataset_name}_{clf_name}"
 
 # load the dataset
-with open(args.dataset, 'r') as f:
+with open(args.train_dataset, 'r') as f:
     dataset = [json.loads(line) for line in f.readlines()]
 
-wandb.init(project='Code_Detection', config=args, name=run_name, tags= [dataset_name.split('_')[1], dataset_name.split('_')[0], 'V1'])
+wandb.init(project='Code_Detection_Features', config=args, name=run_name, tags= ['full_dataset'])
 config = wandb.config
 
 
 # create dataframe
 dataset_df = pd.DataFrame(dataset)
-#remove rows with # CANNOT PARSE
-dataset_df = dataset_df[~dataset_df['parsed_codes'].str.startswith("# CANNOT")]
-print(dataset_df)
-human_written = dataset_df['gold_completion']
-machine_generated = dataset_df['parsed_codes']
-print(len(human_written), len(machine_generated))
-human_written_labels = [0] * len(human_written)
-machine_generated_labels = [1] * len(machine_generated)
+print(dataset_df.columns)
 
-#print average length of the code
-print(np.mean([len(code) for code in human_written]))
-print(np.mean([len(code) for code in machine_generated]))
 
 
 def extract_features(series):
     # tokenize data
-    df = series.to_frame(name='codes')
-    df['tokenized'] = df['codes'].apply(lambda x: standard_tokenizer(x))
+    df = series.to_frame(name='code')
+    df['tokenized'] = df['code'].apply(lambda x: standard_tokenizer(x))
     # extract features from the data
     df['amount_of_tokens'] = df['tokenized'].apply(lambda x: len(x))
 
@@ -71,7 +62,7 @@ def extract_features(series):
     df['amount_of_newlines'] = df['tokenized'].apply(lambda x: len([word for word in x if word == '#NEWLINE#']))
     df['amount_of_indents'] = df['tokenized'].apply(lambda x: len([word for word in x if word == '#INDENT#']))
     df['amount_of_defs'] = df['tokenized'].apply(lambda x: len([word for word in x if word == 'def']))
-    df['avg_len_line'] = df['codes'].apply(lambda x: np.mean([len(line) for line in x.split('\n') if not line.startswith('#')]))
+    df['avg_len_line'] = df['code'].apply(lambda x: np.mean([len(line) for line in x.split('\n') if not line.startswith('#')]))
     # df['amount_of_builtins'] = df['tokenized'].apply(lambda x: len([word for word in x if word in built_in_functions]))
     # df['amount_of_keywords'] = df['tokenized'].apply(lambda x: len([word for word in x if keyword.iskeyword(word)]))
     # df['amount_of_soft_keywords'] = df['tokenized'].apply(lambda x: len([word for word in x if keyword.issoftkeyword(word)]))
@@ -90,27 +81,24 @@ def standardize_df(df):
     return df
 
 
-human_written = extract_features(human_written)
-machine_generated = extract_features(machine_generated)
+data = extract_features(dataset_df['code'])
 
-# combine the two lists
-# human_written and machine_generated are lists of strings
-data = pd.concat([human_written, machine_generated], ignore_index=True)
-print(data)
-[print(i, code) for i, code in enumerate(data['codes'])]
-data_labels = human_written_labels + machine_generated_labels
+print(data.columns)
+# [print(i, code) for i, code in enumerate(data['code'])]
+data_labels = dataset_df['label']
 labels = ['human_written', 'machine_generated']
 print(len(data), len(data_labels))
 
 
-data_features = data.drop(columns=['codes', 'tokenized'])
+data_features = data.drop(columns=['code', 'tokenized'])
+print(data_features)
 # normalize the data
 standardize_df(data_features)
 
 wandb.log({'data_features': list(data_features.columns)})
 
-# split the data into training and testing
-X_train, X_test, y_train, y_test = train_test_split(data_features, data_labels, shuffle=True, test_size=0.2, random_state=42)
+X_train, y_train = data_features, data_labels
+
 
 match config['classifier']:
     case "Feature_SCM":
@@ -129,12 +117,41 @@ match config['classifier']:
 
 # evaluate the model
 clf.fit(X_train, y_train)
+
+# load the test dataset
+with open(args.test_dataset, 'r') as f:
+    test_dataset = [json.loads(line) for line in f.readlines()]
+
+test_dataset_df = pd.DataFrame(test_dataset)
+test_data = extract_features(test_dataset_df['code'])
+test_data_labels = test_dataset_df['label']
+test_data_features = test_data.drop(columns=['code', 'tokenized'])
+standardize_df(test_data_features)
+X_test, y_test = test_data_features, test_data_labels
+
 y_pred = clf.predict(X_test)
-y_probas = clf.predict_proba(X_test)
+if not config['classifier'] == "Feature_SCM":
+    y_probas = clf.predict_proba(X_test)
 #print the classification report
 report = classification_report(y_test, y_pred, target_names=labels, output_dict=True)
 print(report)
 wandb.log(report)
-wandb.sklearn.plot_classifier(clf, X_train, X_test, y_train, y_test, y_pred, y_probas, labels, model_name=clf_name, feature_names=data_features.columns)
+wandb.sklearn.plot_confusion_matrix(y_test, y_pred, labels)
+wandb.sklearn.plot_learning_curve(clf, X_train, y_train)
+wandb.sklearn.plot_class_proportions(y_train, y_test, labels)
+wandb.sklearn.plot_confusion_matrix(y_test, y_pred, labels)
+wandb.sklearn.plot_summary_metrics(clf, X_train, y_train, X_test, y_test)
 
+if not config['classifier'] == "Feature_SCM":
+    wandb.sklearn.plot_roc(y_test, y_probas, labels)
+    wandb.sklearn.plot_feature_importances(clf, data_features.columns)
+    features = wandb.sklearn.calculate.feature_importances(clf, data_features.columns)
+
+    # get top and bottom 10 features out of features and plot them in wandb
+    top_features = features.value.data[:10]
+    bottom_features = features.value.data[-10:]
+    all_features = top_features + bottom_features
+    table = wandb.Table(data=all_features, columns=features.value.columns)
+    chart = wandb.visualize("top_20_features", table)
+    wandb.log({"top_20_features_log": chart})
 
