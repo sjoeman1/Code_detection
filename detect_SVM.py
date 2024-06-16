@@ -24,7 +24,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--train_dataset', default="code_bert/codebert_train.jsonl code_bert/codebert_val.jsonl")
 # parser.add_argument('--difficulty', default="competition", choices=["introductory", "interview", "competition"])
 parser.add_argument('--testset', default="code_bert/codebert_competition_test.jsonl")
-parser.add_argument('--classifier', default="SCM", choices=['SCM', 'LR', 'MNB', 'XGB'])
+parser.add_argument('--classifier', default="XGB", choices=['SCM', 'LR', 'MNB', 'XGB'])
 parser.add_argument('--max_df', default=0.5, type=float)
 parser.add_argument('--min_df', default=0.0155, type=float)
 parser.add_argument('--vectorizer', default='TfidfVectorizer', choices=['TfidfVectorizer', 'CountVectorizer'])
@@ -52,7 +52,7 @@ with open(args.testset, "r") as f:
     test_dataset = [json.loads(line) for line in f.readlines()]
 
 
-wandb.init(project='Code_Detection_full_dataset', config=args, name=run_name, tags=["full_dataset", "V4"])
+wandb.init(project='Code_Detection_full_dataset', config=args, name=run_name, tags=["full_dataset", "V4", "feature_importance"])
 config = wandb.config
 
 df_train = pd.DataFrame(train_dataset)
@@ -147,15 +147,38 @@ print(report)
 
 if not config['classifier'] == "SCM":
     wandb.sklearn.plot_feature_importances(clf, vectorizer.get_feature_names_out())
-    features = wandb.sklearn.calculate.feature_importances(clf, vectorizer.get_feature_names_out())
+    # Get feature names
+    feature_names = vectorizer.get_feature_names_out()
 
-    # get top and bottom 10 features out of features and plot them in wandb
-    top_features = features.value.data[:10]
-    bottom_features = features.value.data[-10:]
-    all_features = top_features + bottom_features
-    table = wandb.Table(data=all_features, columns=features.value.columns)
-    chart = wandb.visualize("top_20_features", table)
-    wandb.log({"top_20_features_log": chart})
+    # Get coefficients
+    if config['classifier'] == "XGB":
+        coefficients = clf.feature_importances_
+    else:
+        coefficients = clf.coef_[0]
+
+    # Create a DataFrame with feature names and their corresponding coefficients
+    feature_importances = pd.DataFrame({'feature': feature_names, 'importance': coefficients})
+
+    # Sort by the absolute value of the coefficients
+    feature_importances = feature_importances.reindex(
+        feature_importances.importance.abs().sort_values(ascending=False).index)
+
+    # Plot the top 10 features
+    top_features = feature_importances.head(20)
+    top_features.sort_values(by="importance", ascending=True, inplace=True)
+
+    plt.figure(figsize=(9, 6))
+    plt.barh(top_features['feature'], top_features['importance'], align='center')
+    if config['classifier'] == "XGB":
+        plt.title("Feature importances in the XGBoost model")
+    if config['classifier'] == "LR":
+        plt.title("Feature importances in the Logistic Regression model")
+    plt.xlabel("Importance")
+    plt.ylabel("Features")
+    plt.tight_layout()
+    wandb.log({"feature_importance": wandb.Image(plt)})
+
+    plt.show()
 
 
 wandb.log(report)
