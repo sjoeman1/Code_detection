@@ -1,4 +1,6 @@
 # use meta features of the dataset to perform classification
+from matplotlib import pyplot as plt
+
 import wandb
 import argparse
 import json
@@ -14,50 +16,48 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report
+from sklearn.metrics import classification_report, roc_auc_score
 
 import xgboost as xgb
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--dataset', default="results/CodeLlama-70b-Instruct-hf-apps_competition_207.jsonl")
-parser.add_argument('--classifier', default="Feature_SCM",
+parser.add_argument('--train_dataset', default="code_bert/codebert_train.jsonl code_bert/codebert_val.jsonl")
+parser.add_argument('--test_dataset', default="code_bert/codebert_introductory_test.jsonl")
+# parser.add_argument('--train_dataset', default="code_bert/codebert_train.jsonl")
+# parser.add_argument('--test_dataset', default="code_bert/codebert_val.jsonl")
+parser.add_argument('--classifier', default="Feature_LR",
                     choices=['Feature_SCM', 'Feature_LR', 'Feature_MNB', 'Feature_XGB'])
 args = parser.parse_args()
 # args.ngram_range = tuple(args.ngram_range)
 print(args)
 
 clf_name = args.classifier
-dataset_name = args.dataset.split('/')[-1][:-6]
+args.train_dataset = args.train_dataset.split(' ')
+dataset_name = [ds.split('/')[-1][:-6] for ds in args.train_dataset]
 run_name = f"{dataset_name}_{clf_name}"
+print(run_name)
 
 # load the dataset
-with open(args.dataset, 'r') as f:
-    dataset = [json.loads(line) for line in f.readlines()]
+dataset = []
+for dataset_file in args.train_dataset:
+    with open(dataset_file, 'r') as f:
+        dataset += [json.loads(line) for line in f.readlines()]
 
-wandb.init(project='Code_Detection', config=args, name=run_name, tags= [dataset_name.split('_')[1], dataset_name.split('_')[0], 'V1'])
+
+wandb.init(project='Code_Detection_Features', config=args, name=run_name, tags= ['full_dataset', 'V4'])
 config = wandb.config
 
 
 # create dataframe
 dataset_df = pd.DataFrame(dataset)
-#remove rows with # CANNOT PARSE
-dataset_df = dataset_df[~dataset_df['parsed_codes'].str.startswith("# CANNOT")]
-print(dataset_df)
-human_written = dataset_df['gold_completion']
-machine_generated = dataset_df['parsed_codes']
-print(len(human_written), len(machine_generated))
-human_written_labels = [0] * len(human_written)
-machine_generated_labels = [1] * len(machine_generated)
+print(dataset_df.columns)
 
-#print average length of the code
-print(np.mean([len(code) for code in human_written]))
-print(np.mean([len(code) for code in machine_generated]))
 
 
 def extract_features(series):
     # tokenize data
-    df = series.to_frame(name='codes')
-    df['tokenized'] = df['codes'].apply(lambda x: standard_tokenizer(x))
+    df = series.to_frame(name='code')
+    df['tokenized'] = df['code'].apply(lambda x: standard_tokenizer(x))
     # extract features from the data
     df['amount_of_tokens'] = df['tokenized'].apply(lambda x: len(x))
 
@@ -71,10 +71,10 @@ def extract_features(series):
     df['amount_of_newlines'] = df['tokenized'].apply(lambda x: len([word for word in x if word == '#NEWLINE#']))
     df['amount_of_indents'] = df['tokenized'].apply(lambda x: len([word for word in x if word == '#INDENT#']))
     df['amount_of_defs'] = df['tokenized'].apply(lambda x: len([word for word in x if word == 'def']))
-    df['avg_len_line'] = df['codes'].apply(lambda x: np.mean([len(line) for line in x.split('\n') if not line.startswith('#')]))
-    # df['amount_of_builtins'] = df['tokenized'].apply(lambda x: len([word for word in x if word in built_in_functions]))
-    # df['amount_of_keywords'] = df['tokenized'].apply(lambda x: len([word for word in x if keyword.iskeyword(word)]))
-    # df['amount_of_soft_keywords'] = df['tokenized'].apply(lambda x: len([word for word in x if keyword.issoftkeyword(word)]))
+    df['avg_len_line'] = df['code'].apply(lambda x: np.mean([len(line) for line in x.split('\n') if not line.startswith('#')]))
+    df['amount_of_builtins'] = df['tokenized'].apply(lambda x: len([word for word in x if word in built_in_functions]))
+    df['amount_of_keywords'] = df['tokenized'].apply(lambda x: len([word for word in x if keyword.iskeyword(word)]))
+    df['amount_of_soft_keywords'] = df['tokenized'].apply(lambda x: len([word for word in x if keyword.issoftkeyword(word)]))
 
     return df
 
@@ -90,37 +90,34 @@ def standardize_df(df):
     return df
 
 
-human_written = extract_features(human_written)
-machine_generated = extract_features(machine_generated)
+data = extract_features(dataset_df['code'])
 
-# combine the two lists
-# human_written and machine_generated are lists of strings
-data = pd.concat([human_written, machine_generated], ignore_index=True)
-print(data)
-[print(i, code) for i, code in enumerate(data['codes'])]
-data_labels = human_written_labels + machine_generated_labels
+print(data.columns)
+# [print(i, code) for i, code in enumerate(data['code'])]
+data_labels = dataset_df['label']
 labels = ['human_written', 'machine_generated']
 print(len(data), len(data_labels))
 
 
-data_features = data.drop(columns=['codes', 'tokenized'])
+data_features = data.drop(columns=['code', 'tokenized'])
+print(data_features)
 # normalize the data
 standardize_df(data_features)
 
 wandb.log({'data_features': list(data_features.columns)})
 
-# split the data into training and testing
-X_train, X_test, y_train, y_test = train_test_split(data_features, data_labels, shuffle=True, test_size=0.2, random_state=42)
+X_train, y_train = data_features, data_labels
+
 
 match config['classifier']:
     case "Feature_SCM":
         clf = SVC(kernel='poly', C=10)
     case "Feature_LR":
-        clf = LogisticRegression(max_iter=1000)
+        clf = LogisticRegression(max_iter=1000, C=10, l1_ratio=0.5)
     case "Feature_MNB":
         clf = MultinomialNB()
     case "Feature_XGB":
-        clf = xgb.XGBClassifier(objective='binary:logistic', max_depth=10, n_estimators=180, gamma=1)
+        clf = xgb.XGBClassifier(objective='binary:logistic', max_depth=10, n_estimators=180, gamma=1.0)
     case _:
         print("Invalid model name")
         wandb.finish(exit_code=1)
@@ -129,12 +126,68 @@ match config['classifier']:
 
 # evaluate the model
 clf.fit(X_train, y_train)
+
+# load the test dataset
+with open(args.test_dataset, 'r') as f:
+    test_dataset = [json.loads(line) for line in f.readlines()]
+
+test_dataset_df = pd.DataFrame(test_dataset)
+test_data = extract_features(test_dataset_df['code'])
+test_data_labels = test_dataset_df['label']
+test_data_features = test_data.drop(columns=['code', 'tokenized'])
+standardize_df(test_data_features)
+X_test, y_test = test_data_features, test_data_labels
+
 y_pred = clf.predict(X_test)
-y_probas = clf.predict_proba(X_test)
+if not config['classifier'] == "Feature_SCM":
+    y_probas = clf.predict_proba(X_test)
 #print the classification report
 report = classification_report(y_test, y_pred, target_names=labels, output_dict=True)
-print(report)
-wandb.log(report)
-wandb.sklearn.plot_classifier(clf, X_train, X_test, y_train, y_test, y_pred, y_probas, labels, model_name=clf_name, feature_names=data_features.columns)
 
+wandb.sklearn.plot_confusion_matrix(y_test, y_pred, labels)
+wandb.sklearn.plot_learning_curve(clf, X_train, y_train)
+wandb.sklearn.plot_class_proportions(y_train, y_test, labels)
+wandb.sklearn.plot_confusion_matrix(y_test, y_pred, labels)
+wandb.sklearn.plot_summary_metrics(clf, X_train, y_train, X_test, y_test)
+
+if not config['classifier'] == "Feature_SCM":
+
+    wandb.sklearn.plot_roc(y_test, y_probas, labels)
+    # Get feature names
+    feature_names = data_features.columns
+
+    # Get coefficients
+    if config['classifier'] == "Feature_XGB":
+        coefficients = clf.feature_importances_
+    else:
+        coefficients = clf.coef_[0]
+
+    # Create a DataFrame with feature names and their corresponding coefficients
+    feature_importances = pd.DataFrame({'feature': feature_names, 'importance': coefficients})
+
+    # Sort by the absolute value of the coefficients
+    feature_importances = feature_importances.reindex(
+        feature_importances.importance.abs().sort_values(ascending=False).index)
+
+    # Plot the top 10 features
+    top_features = feature_importances.head(20)
+    top_features.sort_values(by="importance", ascending=True, inplace=True)
+
+    plt.figure(figsize=(9, 6))
+    plt.barh(top_features['feature'], top_features['importance'], align='center')
+    if config['classifier'] == "Feature_XGB":
+        plt.title("Feature importances in the feature based XGBoost model")
+    if config['classifier'] == "Feature_LR":
+        plt.title("Feature importances in the Logistic Regression model")
+    plt.xlabel("Importance")
+    plt.ylabel("Features")
+    plt.tight_layout()
+    wandb.log({"feature_importance": wandb.Image(plt)})
+
+    plt.show()
+
+    print(report)
+    report['roc_auc_score'] = roc_auc_score(y_test, y_probas[:, 1])
+
+wandb.log(report)
 
