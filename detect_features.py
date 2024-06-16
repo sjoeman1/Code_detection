@@ -1,4 +1,6 @@
 # use meta features of the dataset to perform classification
+from matplotlib import pyplot as plt
+
 import wandb
 import argparse
 import json
@@ -23,7 +25,7 @@ parser.add_argument('--train_dataset', default="code_bert/codebert_train.jsonl c
 parser.add_argument('--test_dataset', default="code_bert/codebert_introductory_test.jsonl")
 # parser.add_argument('--train_dataset', default="code_bert/codebert_train.jsonl")
 # parser.add_argument('--test_dataset', default="code_bert/codebert_val.jsonl")
-parser.add_argument('--classifier', default="Feature_XGB",
+parser.add_argument('--classifier', default="Feature_LR",
                     choices=['Feature_SCM', 'Feature_LR', 'Feature_MNB', 'Feature_XGB'])
 args = parser.parse_args()
 # args.ngram_range = tuple(args.ngram_range)
@@ -151,16 +153,38 @@ wandb.sklearn.plot_summary_metrics(clf, X_train, y_train, X_test, y_test)
 if not config['classifier'] == "Feature_SCM":
 
     wandb.sklearn.plot_roc(y_test, y_probas, labels)
-    wandb.sklearn.plot_feature_importances(clf, data_features.columns)
-    # features = wandb.sklearn.calculate.feature_importances(clf, data_features.columns)
-    #
-    # # get top and bottom 10 features out of features and plot them in wandb
-    # top_features = features.value.data[:10]
-    # bottom_features = features.value.data[-10:]
-    # all_features = top_features + bottom_features
-    # table = wandb.Table(data=all_features, columns=features.value.columns)
-    # chart = wandb.visualize("top_20_features", table)
-    # wandb.log({"top_20_features_log": chart})
+    # Get feature names
+    feature_names = data_features.columns
+
+    # Get coefficients
+    if config['classifier'] == "Feature_XGB":
+        coefficients = clf.feature_importances_
+    else:
+        coefficients = clf.coef_[0]
+
+    # Create a DataFrame with feature names and their corresponding coefficients
+    feature_importances = pd.DataFrame({'feature': feature_names, 'importance': coefficients})
+
+    # Sort by the absolute value of the coefficients
+    feature_importances = feature_importances.reindex(
+        feature_importances.importance.abs().sort_values(ascending=False).index)
+
+    # Plot the top 10 features
+    top_features = feature_importances.head(20)
+    top_features.sort_values(by="importance", ascending=True, inplace=True)
+
+    plt.figure(figsize=(9, 6))
+    plt.barh(top_features['feature'], top_features['importance'], align='center')
+    if config['classifier'] == "Feature_XGB":
+        plt.title("Feature importances in the feature based XGBoost model")
+    if config['classifier'] == "Feature_LR":
+        plt.title("Feature importances in the Logistic Regression model")
+    plt.xlabel("Importance")
+    plt.ylabel("Features")
+    plt.tight_layout()
+    wandb.log({"feature_importance": wandb.Image(plt)})
+
+    plt.show()
 
     print(report)
     report['roc_auc_score'] = roc_auc_score(y_test, y_probas[:, 1])
