@@ -10,6 +10,7 @@ parser.add_argument('--mask_lines', default=8, type=int)
 args = parser.parse_args()
 
 file_paths = os.listdir(f'{args.directory}')
+file_paths = [file for file in file_paths if file.endswith('.jsonl')]
 print(file_paths)
 output_file = file_paths[0].split("_")[:-2]
 # replace 4th index with "combined"
