@@ -170,3 +170,5 @@ data/apps/introductory_level/interview_samples.json
 data/apps/interview_level/interview_samples.json
 
 wandb/
+
+code_bert/

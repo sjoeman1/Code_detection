@@ -1,7 +1,7 @@
 import os
 import json
 
-with open("FIM/codebert_interview_test_FIM_human_combined_line_8_per_56.jsonl", "r") as f:
+with open("FIM/interview/codebert_interview_test_FIM_human_combined_line_8_per_56.jsonl", "r") as f:
     dataset = [json.loads(line) for line in f.readlines()]
 
 # sample couple of lines and json dump them
