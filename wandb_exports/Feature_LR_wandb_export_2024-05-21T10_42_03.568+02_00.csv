@@ -1,0 +1,4 @@
+Dataset,accuracy,f1-score,precision,recall
+codebert_competition_test_Feature_LR,0.708,0.718,0.729,0.708
+codebert_interview_test_Feature_LR,0.792,0.783,0.777,0.792
+codebert_introductory_test_Feature_LR,0.75,0.708,0.821,0.75

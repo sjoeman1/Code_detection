@@ -13,7 +13,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report
+from sklearn.metrics import classification_report, roc_auc_score
 
 import xgboost as xgb
 
@@ -21,10 +21,10 @@ from utils import tag_comment_tokenizer, hide_comment_tokenizer, tokenize_commen
     standard_tokenizer, codebert_tokenizer
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--dataset', default="code_bert/codebert_train.jsonl")
+parser.add_argument('--train_dataset', default="code_bert/codebert_train.jsonl code_bert/codebert_val.jsonl")
 # parser.add_argument('--difficulty', default="competition", choices=["introductory", "interview", "competition"])
-parser.add_argument('--testset', default="code_bert/codebert_introductory_test.jsonl")
-parser.add_argument('--classifier', default="LR", choices=['SCM', 'LR', 'MNB', 'XGB'])
+parser.add_argument('--testset', default="code_bert/codebert_competition_test.jsonl")
+parser.add_argument('--classifier', default="XGB", choices=['SCM', 'LR', 'MNB', 'XGB'])
 parser.add_argument('--max_df', default=0.5, type=float)
 parser.add_argument('--min_df', default=0.0155, type=float)
 parser.add_argument('--vectorizer', default='TfidfVectorizer', choices=['TfidfVectorizer', 'CountVectorizer'])
@@ -36,18 +36,23 @@ args = parser.parse_args()
 print(args)
 
 clf_name = args.classifier
-dataset_name = args.dataset.split('/')[-1][:-6]
+args.train_dataset = args.train_dataset.split(' ')
+dataset_name = [ds.split('/')[-1][:-6] for ds in args.train_dataset]
 run_name = f"{dataset_name}_{clf_name}"
+print(run_name)
 
-# load train and test data
-with open(args.dataset, "r") as f:
-    train_dataset = [json.loads(line) for line in f.readlines()]
+# load the dataset
+train_dataset = []
+for dataset_file in args.train_dataset:
+    with open(dataset_file, 'r') as f:
+        train_dataset += [json.loads(line) for line in f.readlines()]
+
 
 with open(args.testset, "r") as f:
     test_dataset = [json.loads(line) for line in f.readlines()]
 
 
-wandb.init(project='Code_Detection_full_dataset', config=args, name=run_name, tags=["full_dataset"])
+wandb.init(project='Code_Detection_full_dataset', config=args, name=run_name, tags=["full_dataset", "V4", "feature_importance"])
 config = wandb.config
 
 df_train = pd.DataFrame(train_dataset)
@@ -108,7 +113,7 @@ print(X_train.shape, X_test.shape)
 
 match config['classifier']:
     case "SCM":
-        clf = SVC(kernel='poly', C=10)
+        clf = SVC(kernel='poly', C=10, probability=True, class_weight='balanced')
     case "LR":
         clf = LogisticRegression(max_iter=1000)
     case "MNB":
@@ -122,14 +127,12 @@ match config['classifier']:
 
 clf.fit(X_train, y_train)
 y_pred = clf.predict(X_test)
-if not config['classifier'] == "SCM":
-    y_probas = clf.predict_proba(X_test)
+
+y_probas = clf.predict_proba(X_test)
 
 
 # print the classification report
 report = classification_report(y_test, y_pred, target_names=labels, output_dict=True)
-print(report)
-wandb.log(report)
 
 
 wandb.sklearn.plot_confusion_matrix(y_test, y_pred, labels)
@@ -138,17 +141,45 @@ wandb.sklearn.plot_class_proportions(y_train, y_test, labels)
 wandb.sklearn.plot_calibration_curve(clf, X_train, y_train, config['classifier'])
 wandb.sklearn.plot_confusion_matrix(y_test, y_pred, labels)
 wandb.sklearn.plot_summary_metrics(clf, X_train, y_train, X_test, y_test)
+wandb.sklearn.plot_roc(y_test, y_probas, labels)
+report['roc_auc_score'] = roc_auc_score(y_test, y_probas[:, 1])
+print(report)
 
 if not config['classifier'] == "SCM":
-    wandb.sklearn.plot_roc(y_test, y_probas, labels)
     wandb.sklearn.plot_feature_importances(clf, vectorizer.get_feature_names_out())
-    features = wandb.sklearn.calculate.feature_importances(clf, vectorizer.get_feature_names_out())
+    # Get feature names
+    feature_names = vectorizer.get_feature_names_out()
 
-    # get top and bottom 10 features out of features and plot them in wandb
-    top_features = features.value.data[:10]
-    bottom_features = features.value.data[-10:]
-    all_features = top_features + bottom_features
-    table = wandb.Table(data=all_features, columns=features.value.columns)
-    chart = wandb.visualize("top_20_features", table)
-    wandb.log({"top_20_features_log": chart})
+    # Get coefficients
+    if config['classifier'] == "XGB":
+        coefficients = clf.feature_importances_
+    else:
+        coefficients = clf.coef_[0]
+
+    # Create a DataFrame with feature names and their corresponding coefficients
+    feature_importances = pd.DataFrame({'feature': feature_names, 'importance': coefficients})
+
+    # Sort by the absolute value of the coefficients
+    feature_importances = feature_importances.reindex(
+        feature_importances.importance.abs().sort_values(ascending=False).index)
+
+    # Plot the top 10 features
+    top_features = feature_importances.head(20)
+    top_features.sort_values(by="importance", ascending=True, inplace=True)
+
+    plt.figure(figsize=(9, 6))
+    plt.barh(top_features['feature'], top_features['importance'], align='center')
+    if config['classifier'] == "XGB":
+        plt.title("Feature importances in the XGBoost model")
+    if config['classifier'] == "LR":
+        plt.title("Feature importances in the Logistic Regression model")
+    plt.xlabel("Importance")
+    plt.ylabel("Features")
+    plt.tight_layout()
+    wandb.log({"feature_importance": wandb.Image(plt)})
+
+    plt.show()
+
+
+wandb.log(report)
 

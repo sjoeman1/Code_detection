@@ -1,0 +1,4 @@
+"Name","accuracy","weighted avg.f1-score","weighted avg.precision","weighted avg.recall"
+"codebert_competition_test_Feature_LR","0.7083333333333334","0.7176494676494677","0.7291666666666666","0.7083333333333334"
+"codebert_interview_test_Feature_LR","0.7916666666666666","0.7827635327635328","0.7770833333333332","0.7916666666666666"
+"codebert_introductory_test_Feature_LR","0.75","0.7083333333333334","0.8214285714285715","0.75"
