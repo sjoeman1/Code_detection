@@ -52,6 +52,6 @@ print(len(gpt_solutions))
 print(gpt_solutions[:2])
 
 # save gpt solutions
-with open(f'codebert_{args.difficulty}_test_gpt_{args.model}.jsonl', 'w') as f:
+with open(f'codebert_{args.difficulty}_test_gpt_{args.model}_2.jsonl', 'w') as f:
     for solution in gpt_solutions:
         f.write(json.dumps(solution) + '\n')
